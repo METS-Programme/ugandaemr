@@ -231,4 +231,20 @@ public class EncounterTypes {
             return "e305d98a-d6a2-45ba-ba2a-682b497ce27c";
         }
     };
+
+    public static EncounterTypeDescriptor ART_REGIMEN_CHANGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Regimen Change";
+        }
+
+        @Override
+        public String description() {
+            return "ART Regimen Switch or Change Encounter";
+        }
+
+        public String uuid() {
+            return "c11774c1-3b4a-4bdb-a847-6060895e006d";
+        }
+    };
 }

@@ -66,6 +66,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.TRANSFER_OUT);
         install(EncounterTypes.DR_TB_SUMMARY_ENCOUNTER);
         install(EncounterTypes.DR_TB_FOLLOWUP_ENCOUNTER);
+        install(EncounterTypes.ART_REGIMEN_CHANGE);
 
         //installing programs metadata
         log.info("Installing Programs");
