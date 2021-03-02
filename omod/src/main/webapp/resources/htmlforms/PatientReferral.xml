@@ -308,6 +308,96 @@
                 </tbody>
             </table>
         </section>
+        
+        <div id="art-regimen">
+            <section>
+                <div class="ai-page-frame" id="transfer_out">
+                    <div class="headers" style="text-align: center;">
+                        <h3>Art Regimen Switch and Substitution</h3>
+                    </div>
+                        <table id="art-history" class="table table-borderless">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label><b>Current Regimen</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Current Line</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Date</b></label>
+                                </td>
+                                <td id="disabled">
+                                    <div class="right-inner-addon ">
+                                        <i class=" icon-calendar small"></i>
+                                        <obs id="second" conceptId="99154" labelText=""/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Clinician</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Action Type</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>New Regimen</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Regimen Line</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Why</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs style="textarea" rows="3" conceptId="90265"/>
+                                </td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                </div>
+            </section>
+    
+
+        </div>
 
         <div id="comprehensive_transfer">
             <div class="ai-page-frame" id="transfer_in">
@@ -695,6 +785,8 @@
                         </tbody>
                     </table>
                 </section>
+
+                
 
                 <section>
                     <table class="enrollment">
