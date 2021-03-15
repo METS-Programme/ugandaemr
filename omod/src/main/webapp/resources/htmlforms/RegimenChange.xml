@@ -1,0 +1,103 @@
+<htmlform formName="Regimen Change"
+          formDescription=""
+          formUuid="53a3850c-855a-11eb-8dcd-0242ac130003"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.overallActions"
+          formOrder="1"
+          formIcon="icon-exchange"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="Regimen Change">
+
+          <div id="art-regimen">
+            <section>
+                <div class="ai-page-frame" id="transfer_out">
+                    <div class="headers" style="text-align: center;">
+                        <h3>Art Regimen Switch and Substitution</h3>
+                    </div>
+                        <table id="art-history" class="table table-borderless">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <label><b>Current Regimen</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Current Line</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Date</b></label>
+                                </td>
+                                <td id="disabled">
+                                    <div class="right-inner-addon ">
+                                        <i class=" icon-calendar small"></i>
+                                        <obs id="second" conceptId="99154" labelText=""/>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Clinician</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Action Type</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>New Regimen</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Regimen Line</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs conceptId="99055" answerConceptIds="90003,90004"
+                                         answerLabels="Yes,No"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label><b>Why</b></label>
+                                </td>
+                                <td class="PriorYesNoEnableDisable1">
+                                    <obs style="textarea" rows="3" conceptId="90265"/>
+                                </td>
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+                </div>
+            </section>
+    
+
+        </div>
+
+</htmlform>
