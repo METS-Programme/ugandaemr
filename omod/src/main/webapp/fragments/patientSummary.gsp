@@ -12,10 +12,6 @@
             ${lastcd4} ${lastcd4joiner} ${lastcd4date}
         </div>
         <div>
-            <strong>${ui.message("ugandaemr.patientdashboard.person.currentregimen")}:</strong>
-            ${currentregimen} ${currentregimenjoiner} ${currentregimendate}
-        </div>
-        <div>
             <strong>${ui.message("ugandaemr.patientdashboard.person.bmi")}:</strong>
             ${bmi} (${height} ${weight})
         </div>
