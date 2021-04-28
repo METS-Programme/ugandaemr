@@ -91,7 +91,7 @@
 		<idgenVersion>4.5.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
 		<junitParamsVersion>1.0.4</junitParamsVersion>
-		<legacyuiVersion>1.6.0</legacyuiVersion>
+		<legacyuiVersion>1.8.2</legacyuiVersion>
 		<metadatadeployVersion>1.11.0</metadatadeployVersion>
 		<metadatamappingVersion>1.3.4</metadatamappingVersion>
 		<metadatasharingVersion>1.6.0</metadatasharingVersion>
