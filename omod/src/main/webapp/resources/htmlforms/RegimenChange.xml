@@ -78,7 +78,7 @@
                         <td>
                             <obs id="regimen-change-actions" conceptId="166339" answerConceptIds="1371,1372">
                                 <controls>
-                                    <when value="1371" thenDisplay="#regimen-switch-reason"/>
+                                    <when value="1371" thenDisplay="#regimen-switch-line,#regimen-switch-reason"/>
                                     <when value="1372" thenDisplay="#regimen-substitution-reason"/>
                                 </controls>
                             </obs>
@@ -99,12 +99,12 @@
                             </span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr id="regimen-switch-line">
                         <td>
-                            <label><b>New Regimen Line</b></label>
+                            <label><b>New Regimen Line for Switch</b></label>
                         </td>
                         <td>
-                            <obs conceptId="164515" answerConceptIds="90271,90305,162916"/>
+                            <workflowState workflowId="3" stateIds="11,12,13" stateLabels="First Line,Second Line,Third Line" />
                         </td>
                     </tr>
                     <tr id="regimen-switch-reason">
