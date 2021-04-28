@@ -532,6 +532,24 @@ VALUES
 			UPDATE obs SET value_coded=165165 WHERE concept_id = 165275 and value_coded=90001 and obs_group_id is not null;
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-27-10-2021-01" author="ssmusoke">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
+			</sqlCheck>
+		</preConditions>
+		<comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN </comment>
+		<sql>
+			<!-- move the patients to the HIV Program -->
+			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
+			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='18c6d4aa-0a36-11e7-8dbb-507b9dc4c741') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
+
+			<!-- set the initial state to unknown -->
+			INSERT INTO patient_state(patient_program_id,state,start_date,creator,date_created,uuid)
+			SELECT pp.patient_program_id, 10, pp.date_enrolled, 1, pp.date_enrolled, uuid() FROM patient_program pp, program p WHERE pp.program_id = p.program_id AND p.uuid = '18c6d4aa-0a36-11e7-8dbb-507b9dc4c741'
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
