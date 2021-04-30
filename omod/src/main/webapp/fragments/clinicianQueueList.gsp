@@ -64,6 +64,12 @@
                 modal.find('.modal-title').text('New message to ' + order_id)
                 modal.find('.modal-body input').val(order_id)
             })
+
+            jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget)
+                jq("#patientQueueId").val(button.data('patientqueueid'));
+                jq("#goToURL").val(button.data('url'));
+            })
         });
     }
 
@@ -146,10 +152,20 @@
                 dataRowTable += "<td>" + waitingTime + "</td>";
                 dataRowTable += "<td>";
 
-                dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
+
+
+
+                if ("${enablePatientQueueSelection}".trim() === "true"  && element.status!=="COMPLETED") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + urlToPatientDashBoard + "'></i>";
+                } else {
+                    dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
+                }
+
                 if (element.status === "PENDING" && element.locationFrom !== "Lab") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-external-link edit-action\" title=\"Send Patient To Another Location\" data-toggle=\"modal\" data-target=\"#add_patient_to_other_queue_dialog\" data-id=\"\" data-patient-id=\"%s\"></i>".replace("%s", element.patientId);
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab") {
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab"  && "${enablePatientQueueSelection}".trim() === "true") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + encounterUrl + "'></i>";
+                }else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab"  && "${enablePatientQueueSelection}".trim() !== "true"){
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"location.href = '" + encounterUrl + "'\"></i>";
                 }
 
@@ -206,8 +222,9 @@
                     </div>
 
                     <div style="text-align: center">
-                        <h4>${currentProvider?.personName?.fullName}</h4>
+                        <h4>${currentProvider?.person?.personName?.fullName}</h4>
                     </div>
+
                     <div class="vertical"></div>
                 </div>
 
@@ -270,4 +287,5 @@
     </div>
 </div>
 ${ui.includeFragment("ugandaemr", "addPatientToAnotherQueue")}
+${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 <% } %>

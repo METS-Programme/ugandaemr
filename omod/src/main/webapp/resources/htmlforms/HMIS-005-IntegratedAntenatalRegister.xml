@@ -1197,7 +1197,8 @@
                                                     <obs id="165382" conceptId="165382" />
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <obs conceptId="165389" labelText="Infant ARV Prophylaxis" />
+                                                    <label>Infant ARV Prophylaxis</label>
+                                                    <obs conceptId="165389" answerConceptIds="631" answerLabels="NEVIRAPINE"/>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>WHO Clinical Stage</label>

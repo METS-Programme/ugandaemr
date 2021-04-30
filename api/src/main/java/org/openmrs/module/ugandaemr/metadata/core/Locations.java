@@ -299,4 +299,38 @@ public class Locations {
 
 	};
 
+	public static LocationDescriptor COVID19_CLINIC = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "1748bd6f-b013-449f-8d38-91319b576f3f";
+		}
+
+		@Override
+		public String description() {
+			return "This is the location where Covid-19 cases are registered";
+		}
+
+		@Override
+		public String name() {
+			return "Covid 19 Clinic";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION,
+					LocationTags.VISIT_LOCATION
+			);
+
+		}
+
+	};
+
 }

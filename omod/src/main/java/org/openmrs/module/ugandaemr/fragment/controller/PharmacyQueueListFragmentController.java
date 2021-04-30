@@ -43,8 +43,9 @@ public class PharmacyQueueListFragmentController {
         pageModel.addAttribute("currentDate", dateStr);
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.put("clinicianLocation", list);
-        pageModel.put("currentProvider", Context.getAuthenticatedUser());
+        pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("healthCenterName", Context.getAdministrationService().getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
+        pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
     }
 
 

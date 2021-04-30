@@ -339,9 +339,13 @@ public interface UgandaEMRService extends OpenmrsService {
 	 * @return
 	 */
 	public PatientProgramAttribute generatePatientProgramAttributeFromObservation(PatientProgram patientProgram, Set<Obs> observations, Integer conceptID, String programAttributeUUID);
+
 	/**
-	 * @param patientQueueList
-	 * @return
+	 * This processes viral load order to be sent to CPHL
+	 * @param viralLoadRequestObservation
+	 * @param accessionNumber
+	 * @return Encounter with Viral load Order
 	 */
+	public Encounter processRetrospectiveViralLoadOrder(Obs viralLoadRequestObservation,Obs accessionNumber,Obs specimenSource);
 
 }

@@ -550,6 +550,18 @@ VALUES
 			SELECT pp.patient_program_id, 10, pp.date_enrolled, 1, pp.date_enrolled, uuid() FROM patient_program pp, program p WHERE pp.program_id = p.program_id AND p.uuid = '18c6d4aa-0a36-11e7-8dbb-507b9dc4c741'
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-2021-03-15-1756" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM global_property where property = "ugandaemr.dhis2.organizationuuid" AND property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
+			</sqlCheck>
+		</preConditions>
+		<comment>Change the default value of the global property gandaemr.dhis2.organizationuuid from 'eg d06ace3e-9c46-11e7-abc4-cec278b6b50a' to an empty string</comment>
+		<sql>
+			UPDATE global_property SET property_value = ""  WHERE property = "ugandaemr.dhis2.organizationuuid" AND property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

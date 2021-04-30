@@ -121,7 +121,9 @@
                     sampleId: jq("#sample_id").val().trim().toLowerCase(),
                     referTest: jq("#refer_test").val().trim().toLowerCase(),
                     referenceLab: jq("#reference_lab").val().trim().toLowerCase(),
-                    specimenSourceId: jq("#specimen_source_id").val().trim().toLowerCase()
+                    specimenSourceId: jq("#specimen_source_id").val().trim().toLowerCase(),
+                    patientQueueId: jq("#patient-queue-id").val().trim().toLowerCase(),
+                    unProcessedOrders: jq("#unprocessed-orders").val().trim().toLowerCase()
                 }, function (response) {
                     if (!response) {
                         ${ ui.message("coreapps.none ") }
@@ -132,8 +134,12 @@
             jq('#add-order-to-lab-worklist-dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
                 var orderNumber = button.data('order-number');
+                var patientQueueId = button.data('patientqueueid');
+                var unProcessed = button.data('unprocessed-orders');
                 var modal = jq(this)
                 modal.find("#order_id").val(orderNumber);
+                modal.find("#patient-queue-id").val(patientQueueId);
+                modal.find("#unprocessed-orders").val(unProcessed);
                 modal.find("#sample_id").val("");
                 modal.find("#sample_generator").html("");
                 modal.find("#sample_generator").append("<a onclick=\"generateSampleId('" + orderNumber + "')\"><i class=\" icon-barcode\">Generate Sample Id</i></a>");
@@ -142,6 +148,13 @@
                 modal.find("#refer_test input[type=checkbox]").prop('checked', false);
             });
 
+
+            jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget);
+                var modal = jq(this);
+                modal.find("#patientQueueId").val(button.data('patientqueueid'));
+                modal.find("#goToURL").val(button.data('url'));
+            })
         });
     }
 
@@ -191,14 +204,14 @@
 
     function displayLabData(response) {
         var content = "";
-        var pendingCounter=0;
+        var pendingCounter = 0;
         content = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>TEST(S) ORDERED</th></tr></thead><tbody>";
 
 
-        var dataToDisplay=[];
+        var dataToDisplay = [];
 
-        if(response.patientLabQueueList.length>0){
-            dataToDisplay=response.patientLabQueueList.sort(function (a, b) {
+        if (response.patientLabQueueList.length > 0) {
+            dataToDisplay = response.patientLabQueueList.sort(function (a, b) {
                 return a.patientQueueId - b.patientQueueId;
             });
         }
@@ -206,10 +219,11 @@
         jq.each(dataToDisplay, function (index, element) {
                 var orders = displayLabOrderData(element, true);
                 if (orders !== null) {
+                    var isPatientPicked = isQueueIsPicked(element.patientQueueId);
                     var patientQueueListElement = element;
                     var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
 
-                    var visitNumber="";
+                    var visitNumber = "";
                     if (patientQueueListElement.visitNumber != null) {
                         visitNumber = patientQueueListElement.visitNumber.substring(15);
                     }
@@ -220,12 +234,19 @@
                     content += "<td>" + patientQueueListElement.age + "</td>";
                     content += "<td>" + patientQueueListElement.providerNames + " - " + patientQueueListElement.locationFrom + "</td>";
                     content += "<td>" + waitingTime + "</td>";
-                    content += "<td><a class=\"icon-list-alt\" data-toggle=\"collapse\" href=\"#collapse-tab\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExample\"> <span style=\"color: red;\">TestNo</span> Tests Unproccessed</a>".replace("#collapse-tab", "#collapse-tab" + patientQueueListElement.patientQueueId).replace("TestNo", noOfTests(element));
-                    content += "<div class=\"collapse\" id=\"collapse-tab" + patientQueueListElement.patientQueueId + "\"><div class=\"card card-body\">" + orders + "</div></div>";
+                    content += "<td>";
+                    if (isPatientPicked || "${enablePatientQueueSelection}".trim() === "false") {
+                        content += "<a class=\"icon-list-alt\" data-toggle=\"collapse\" href=\"#collapse-tab\" role=\"button\" aria-expanded=\"false\" aria-controls=\"collapseExample\"> <span style=\"color: red;\">TestNo</span> Tests Unproccessed</a>".replace("#collapse-tab", "#collapse-tab" + patientQueueListElement.patientQueueId).replace("TestNo", noOfTests(element));
+                        content += "<div class=\"collapse\" id=\"collapse-tab" + patientQueueListElement.patientQueueId + "\"><div class=\"card card-body\">" + orders + "</div></div>";
+                    }
+
+                    if (!isPatientPicked  &&  "${enablePatientQueueSelection}".trim() === "true") {
+                        content += "<i  style=\"font-size: 25px;\" class=\"icon-signin view-action\" title=\"Select Patient\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + patientQueueListElement.patientQueueId + "' data-url=\"\"></i>";
+                    }
                     content += "</td>";
                     content += "</tr>";
 
-                    pendingCounter+=1;
+                    pendingCounter += 1;
                 }
             }
         );
@@ -240,18 +261,18 @@
         var footer = "</tbody></table>";
         var orderedTestsRows = "";
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
+
         jq.each(labQueueList.orderMapper, function (index, element) {
             if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active") {
                 var urlTransferPatientToAnotherQueue = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.orderNumber);
                 orderedTestsRows += "<tr>";
                 orderedTestsRows += "<td>" + element.conceptName + "</td>";
                 orderedTestsRows += "<td>";
-                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId);
+                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId).replace("unProcessedOrders",noOfTests(labQueueList) ).replace("patientQueueId",labQueueList.patientQueueId);
                 orderedTestsRows += "</td>";
                 orderedTestsRows += "</tr>";
             }
         });
-
 
 
         if (orderedTestsRows !== "") {
@@ -259,6 +280,24 @@
         } else {
             return null;
         }
+    }
+
+
+    function isQueueIsPicked(patientQueueId) {
+        var isQueuePicked = false;
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/patientqueue/" + patientQueueId + "",
+            dataType: "json",
+            contentType: "application/json;",
+            async: false,
+            success: function (data) {
+                if (data.status === "PICKED") {
+                    isQueuePicked = true;
+                }
+            }
+        });
+        return isQueuePicked;
     }
 
     function noOfTests(labQueueList) {
@@ -374,7 +413,7 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                     </div>
 
                     <div>
-                        <h2>${currentProvider?.personName?.fullName}</h2>
+                        <h2>${currentProvider?.person?.personName?.fullName}</h2>
                     </div>
 
                     <div class="vertical"></div>
@@ -383,7 +422,7 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                 <div class="col-8">
                     <form method="get" id="patient-lab-search-form" onsubmit="return false">
                         <input type="text" id="patient-lab-search" name="patient-lab-search"
-                               placeholder="${ui.message ( "coreapps.findPatient.search.placeholder" )}"
+                               placeholder="${ui.message("coreapps.findPatient.search.placeholder")}"
                                autocomplete="off" class="provider-dashboard-patient-search"/>
 
                     </form>
@@ -454,11 +493,13 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
             </div>
         </div>
     </div>
+    ${
+            ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
 </div>
-${ui.includeFragment ( "ugandaemr", "lab/resultForm" )}
-${ui.includeFragment ( "ugandaemr" , "printResults" )}
+${ui.includeFragment("ugandaemr", "lab/resultForm")}
+${ui.includeFragment("ugandaemr", "printResults")}
+${ui.includeFragment("ugandaemr", "lab/scheduleTestDialogue")}
 </div>
-${ui.includeFragment ( "ugandaemr", "lab/scheduleTestDialogue" )}
 <% } %>
 
 

@@ -42,7 +42,8 @@ public class TriageQueueListFragmentController {
         pageModel.addAttribute("currentDate", dateStr);
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.addAttribute("triageLocation", TRIAGE_LOCATION_UUID);
-        pageModel.put("currentProvider", Context.getAuthenticatedUser());
+        pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
+        pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
     }
 
     /**

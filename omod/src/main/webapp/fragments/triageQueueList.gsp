@@ -42,6 +42,12 @@
                     getPatientQueue();
                 }
             });
+
+            jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget)
+                jq("#patientQueueId").val(button.data('patientqueueid'));
+                jq("#goToURL").val(button.data('url'));
+            })
         });
     }
     jq("form").submit(function (event) {
@@ -93,7 +99,14 @@
                     ;
                 }
 
-                var action = "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" onclick=\" location.href = '" + vitalsPageLocation + "'\"></i>";
+                var action = "";
+
+                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueueListElement.status!=="COMPLETED") {
+                    action += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + vitalsPageLocation + "'></i>";
+                } else {
+                    action += "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" onclick=\" location.href = '" + vitalsPageLocation + "'\"></i>";
+                }
+
 
                 var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
                 dataRowTable += "<tr>";
@@ -157,7 +170,7 @@
                     </div>
 
                     <div>
-                        <h2>${currentProvider?.personName?.fullName}</h2>
+                        <h2>${currentProvider?.person?.personName?.fullName}</h2>
                     </div>
 
                     <div class="vertical"></div>
@@ -209,6 +222,8 @@
         </div>
     </div>
 </div>
+
+${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 
 <% } %>
 

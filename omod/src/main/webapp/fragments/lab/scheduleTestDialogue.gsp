@@ -11,6 +11,8 @@
 
                     <span id="add_to_queue-container">
                         <input type="hidden" id="order_id" name="order_id" value="">
+                        <input type="hidden" id="patient-queue-id" name="patient-queue-id" value="">
+                        <input type="hidden" id="unprocessed-orders" name="unprocessed-orders" value="">
                     </span>
 
                     <div class="container">

@@ -67,6 +67,8 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.DR_TB_SUMMARY_ENCOUNTER);
         install(EncounterTypes.DR_TB_FOLLOWUP_ENCOUNTER);
         install(EncounterTypes.ART_REGIMEN_CHANGE);
+        install(EncounterTypes.COVID19_ENROLLMENT);
+        install(EncounterTypes.COVID19_FOLLOWUP);
 
         //installing programs metadata
         log.info("Installing Programs");
@@ -90,7 +92,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Locations.TRIAGE);
         install(Locations.COUNSELING_CENTER);
         install(Locations.Community);
-
+        install(Locations.COVID19_CLINIC);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));

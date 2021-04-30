@@ -31,6 +31,12 @@ button, input {
                     getPharmacyQueue();
                 }
             });
+
+            jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget)
+                jq("#patientQueueId").val(button.data('patientqueueid'));
+                jq("#goToURL").val(button.data('url'));
+            })
         });
     }
 
@@ -77,6 +83,9 @@ button, input {
                 var patientQueueListElement = element;
 
 
+                var isPatientPicked = isQueueIsPicked(element.patientQueueId);
+
+
                 var ordersNo = noOfDrugPrescriptions(element);
 
                 var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
@@ -93,7 +102,17 @@ button, input {
                     prescriptions += "<td>" + patientQueueListElement.age + "</td>";
                     prescriptions += "<td>" + patientQueueListElement.providerNames + " - " + patientQueueListElement.locationFrom + "</td>";
                     prescriptions += "<td>" + waitingTime + "</td>";
-                    prescriptions += "<td><a title=\"Dispense Medication\" onclick='showEditPrescriptionForm(" + patientQueueListElement.encounterId + "," + patientQueueListElement.patientQueueId + "," + index + ")'>Dispense Medication <i class=\"icon-list-ul small\"></i></a> <span style=\"color: red;\">" + ordersNo + "</span></td>";
+                    prescriptions += "<td>";
+
+                    if (isPatientPicked || "${enablePatientQueueSelection}".trim() === "false") {
+                        prescriptions += "<a title=\"Dispense Medication\" onclick='showEditPrescriptionForm(" + patientQueueListElement.encounterId + "," + patientQueueListElement.patientQueueId + "," + index + ")'>Dispense Medication <i class=\"icon-list-ul small\"></i></a> <span style=\"color: red;\">" + ordersNo + "</span>";
+                    }
+
+                    if (!isPatientPicked  && "${enablePatientQueueSelection}".trim() === "true") {
+                        prescriptions += "<i  style=\"font-size: 25px;\" class=\"icon-signin view-action\" title=\"Select Patient\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + patientQueueListElement.patientQueueId + "' data-url=\"\"></i>";
+                    }
+
+                    prescriptions += "</td>";
                     prescriptions += "</tr>";
                     prescriptionCount += 1;
                 } else if (ordersNo <= 0 && patientQueueListElement.status !== "COMPLETED") {
@@ -140,6 +159,23 @@ button, input {
         jq("#pharmacy-completed-number").append("   " + completedCount);
     }
 
+    function isQueueIsPicked(patientQueueId) {
+        var isQueuePicked = false;
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/patientqueue/" + patientQueueId + "",
+            dataType: "json",
+            contentType: "application/json;",
+            async: false,
+            success: function (data) {
+                if (data.status === "PICKED") {
+                    isQueuePicked = true;
+                }
+            }
+        });
+        return isQueuePicked;
+    }
+
     function noOfDrugPrescriptions(drugList) {
         var orderCount = 0;
         jq.each(drugList.orderMapper, function (index, element) {
@@ -182,7 +218,7 @@ button, input {
                     </div>
 
                     <div>
-                        <h2>${currentProvider?.personName?.fullName}</h2>
+                        <h2>${currentProvider?.person?.personName?.fullName}</h2>
                     </div>
 
                     <div class="vertical"></div>
@@ -249,6 +285,7 @@ button, input {
     </div>
 </div>
 ${ui.includeFragment("ugandaemr", "pharmacy/dispensingForm",[healthCenterName:healthCenterName])}
+${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 <% } %>
 
 

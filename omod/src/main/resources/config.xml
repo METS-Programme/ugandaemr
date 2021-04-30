@@ -245,6 +245,12 @@
         <description>enable or disable the functionality to allow the limiting the number of patients per day</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.enablePatientQueueSelection</property>
+        <defaultValue>false</defaultValue>
+        <description>when value is "true", it allows picking of patients from queue</description>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>

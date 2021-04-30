@@ -2,12 +2,12 @@
           formDescription="A visit for a client for clinical assessment "
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="12de5bc5-352e-4faf-9961-a2125085a75c"
-          formVersion="3.0"
+          formVersion="3.2.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="0"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4'"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b')"
           formDisplayStyle="Standard">
     <ifMode mode="ENTER,EDIT" include="false">
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
@@ -419,6 +419,19 @@
                     } else {
                         jq("#other-reason-for-next-appointment").find("input[type=hidden]").val() == " ";
                         disable_fields("other-reason-for-next-appointment");
+                    }
+                });
+
+                disable_fields("viral-load-accession-number");
+                disable_fields("viral-load-specimen-source");
+
+                jq("#order-viral-load-test").change(function () {
+                    if(jq(this).find(':checkbox').prop('checked')){
+                        enable_fields("viral-load-accession-number");
+                        enable_fields("viral-load-specimen-source");
+                    } else {
+                        disable_fields("viral-load-accession-number");
+                        disable_fields("viral-load-specimen-source");
                     }
                 });
 
@@ -1245,7 +1258,7 @@
                 </includeIf>
 
             <restrictByRole exclude="Data Clerk,System Developer,Organizational: System Administrator">
-                if (getValue('art-regimen.value') != "" &amp;&amp; getValue('no-of-art-pills.value') == "") {
+                if (!jq("#split-regimen").find(':checkbox').prop('checked') &amp;&amp; getValue('art-regimen.value') != "" &amp;&amp; getValue('no-of-art-pills.value') == "") {
                      getField('no-of-art-pills.error').html('No of ' + jq("#art-regimen").find(":selected").text() + ' pills required').show();
                     return false;
                 }
@@ -1275,6 +1288,21 @@
                     getField('other-meds-quantity.error').html('Quantity of ' + getValue('other-meds-trigger.value') + ' required').show();
                     return false;
                 }
+            </restrictByRole>
+
+                <restrictByRole exclude="HIV Clinic">
+                if (getValue('order-viral-load-test.value') === "165412" &amp;&amp;  getValue('viral-load-accession-number.value') === ""){
+                    getField('viral-load-accession-number.error').html('The Specimen ID/Serial No field can not be empty when ordering for Viral load').show();
+                    jq().toastmessage('showErrorToast', "The Specimen ID/Serial No field can not be empty when ordering for Viral load");
+                    return false;
+                }
+
+                if (getValue('order-viral-load-test.value') === "165412" &amp;&amp;  getValue('viral-load-specimen-source.value') === ""){
+                    getField('viral-load-specimen-source.error').html('Select a specimen source when ordering for Viral load').show();
+                    jq().toastmessage('showErrorToast', "Select a specimen source when ordering for Viral load");
+                    return false;
+                }
+
             </restrictByRole>
 
                 return true;
@@ -1590,7 +1618,7 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                     <label><span class="required">*</span>Attending Clinician</label>
-                                                        <encounterProvider role="Provider" style="autocomplete" id="provider"/>
+                                                        <encounterProviderAndRole role="Provider" encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="required"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -2516,6 +2544,22 @@
                                                                     <span id="viral-load-status"></span>
                                                                 </div>
                                                             </obsgroup>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <obs  id="order-viral-load-test" conceptId="1271" answerConceptId="165412" answerLabel="Order Viral Load Test"/>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <label>Specimen ID/Accession Number</label>
+                                                                <obs id="viral-load-accession-number" conceptId="165845"/>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <label>Specimen Source</label>
+                                                                <obs id="viral-load-specimen-source" conceptId="162476" answerConceptSetIds="162476"/>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

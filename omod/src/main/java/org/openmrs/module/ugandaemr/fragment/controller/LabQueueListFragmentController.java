@@ -48,7 +48,8 @@ public class LabQueueListFragmentController {
         pageModel.addAttribute("currentDate", dateStr);
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.put("clinicianLocation", list);
-        pageModel.put("currentProvider", Context.getAuthenticatedUser());
+        pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
+        pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
     }
 
     /**
@@ -83,8 +84,9 @@ public class LabQueueListFragmentController {
      * @param referenceLab
      * @return
      */
-    public void scheduleTest(@RequestParam(value = "orderNumber") String orderNumber, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab) {
+    public void scheduleTest(@RequestParam(value = "orderNumber") String orderNumber, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab,  @RequestParam(value = "unProcessedOrders", required = false) Integer unProcessedOrders, @RequestParam(value = "patientQueueId", required = false) Integer patientQueueId) {
         OrderService orderService = Context.getOrderService();
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         Order order = orderService.getOrderByOrderNumber(orderNumber);
 
         TestOrder testOrder = new TestOrder();
@@ -103,6 +105,10 @@ public class LabQueueListFragmentController {
         testOrder.setAction(Order.Action.REVISE);
         testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
         orderService.saveOrder(testOrder, null);
+
+        if (unProcessedOrders.equals(1)) {
+            patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueById(patientQueueId));
+        }
     }
 
     /**

@@ -39,6 +39,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_IN;
 import static org.openmrs.module.ugandaemr.metadata.core.EncounterTypes.TRANSFER_OUT;
@@ -1628,5 +1629,34 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             }
         }
         return null;
+    }
+
+
+    public Encounter processRetrospectiveViralLoadOrder(Obs viralLoadRequestObservation, Obs accessionNumber, Obs specimenSource) {
+
+        EncounterService encounterService = Context.getEncounterService();
+        Set<Order> orders = new HashSet<>();
+        CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
+        Encounter encounter = viralLoadRequestObservation.getEncounter();
+
+        TestOrder testOrder = new TestOrder();
+
+        testOrder.setConcept(viralLoadRequestObservation.getValueCoded());
+        testOrder.setEncounter(viralLoadRequestObservation.getEncounter());
+        testOrder.setOrderer(getProviderFromEncounter(viralLoadRequestObservation.getEncounter()));
+        testOrder.setAccessionNumber(accessionNumber.getValueText());
+        testOrder.setPatient(viralLoadRequestObservation.getEncounter().getPatient());
+        testOrder.setUrgency(Order.Urgency.STAT);
+        testOrder.setCareSetting(careSetting);
+        testOrder.setOrderType(Context.getOrderService().getOrderTypeByUuid(TEST_ORDER_TYPE_UUID));
+        testOrder.setAction(Order.Action.NEW);
+        testOrder.setInstructions("REFER TO " + "CPHL");
+        testOrder.setSpecimenSource(specimenSource.getValueCoded());
+        orders.add(testOrder);
+
+        encounter.setOrders(orders);
+        encounterService.saveEncounter(encounter);
+
+        return encounter;
     }
 }

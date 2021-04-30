@@ -46,6 +46,8 @@ public class HIVClinicalAssessmentSubmissionAction implements CustomFormSubmissi
             ugandaEMRService.processDrugOrdersFromEncounterObs(session, true);
 
             completeClinicianQueue(session.getEncounter());
+        } else {
+            orderViralLoadTest(session);
         }
 
         Patient patient = session.getPatient();
@@ -292,5 +294,26 @@ public class HIVClinicalAssessmentSubmissionAction implements CustomFormSubmissi
             }
         }
         return null;
+    }
+
+    private Encounter orderViralLoadTest(FormEntrySession formEntrySession) {
+        Obs viralLoadTest = null;
+        Obs labNo = null;
+        Obs specimenSource = null;
+        Encounter encounter = null;
+        for (Obs obs : formEntrySession.getEncounter().getAllObs()) {
+            if (obs.getValueCoded() != null && obs.getValueCoded().getConceptId() == 165412) {
+                viralLoadTest = obs;
+            } else if (obs.getConcept().getConceptId() == 165845) {
+                labNo = obs;
+            } else if (obs.getConcept().getConceptId() == 162476) {
+                specimenSource = obs;
+            }
+        }
+
+        if (viralLoadTest != null && labNo != null && specimenSource != null) {
+            encounter = Context.getService(UgandaEMRService.class).processRetrospectiveViralLoadOrder(viralLoadTest, labNo, specimenSource);
+        }
+        return encounter;
     }
 }

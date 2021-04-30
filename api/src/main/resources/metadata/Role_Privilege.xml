@@ -118,6 +118,7 @@
     <privilege  privilege="App: ugandaemr.widget.viralLoadHistory"  description="Access Viral load History on patient dashboard"  uuid="4f8329f8-77ff-4a6f-a1a2-309c99f2224a"/>
     <privilege  privilege="App: ugandaemr.widget.dsdmPatientHistory"  description="For Widget that shows the patient history in DSDM Models"  uuid="332fd951-ca78-4c85-97cb-f4146c69f823"/>
     <privilege  privilege="App: ugandaemr.widget.directionsToResidence"  description="Access Directions to Residence on patient dashboard"  uuid="56edc97f-5acd-4334-bfef-8883a6e8a04c"/>
+    <privilege  privilege="App: ugandaemr.widget.tptStatus"  description="Access tpt History on patient dashboard"  uuid="348b278d-4050-4635-915d-3c2e13a0a6eb"/>
 
     <!--MCH Clinic-->
     <privilege  privilege="App: ugandaemr.widget.eidSummary"  description="Access eidSummary On Patient Dashboard"  uuid="2dc27a93-a7d3-496e-b5ba-f8449ec90c12"/>
@@ -383,6 +384,7 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.patientSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
+    <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.tptStatus"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.directionsToResidence"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemrpoc.artclinic"/>
@@ -561,6 +563,7 @@
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.artStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.patientSummary"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.viralLoadHistory"/>
+    <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.tptStatus"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.dsdmPatientHistory"/>
     <role_privilege  role="Data Clerk"  privilege="App: ugandaemr.widget.directionsToResidence"/>
     <role_privilege  role="Data Clerk"  privilege="Task: coreapps.markPatientDead"/>

@@ -7,6 +7,7 @@ import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.appui.UiSessionContext;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
+import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.PatientQueueVisitMapper;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
@@ -30,7 +31,7 @@ public class ClinicianQueueListFragmentController {
         //Constructor
     }
 
-    public void controller(@SpringBean FragmentModel pageModel, @SpringBean("locationService") LocationService locationService) {
+    public void controller(@SpringBean FragmentModel pageModel, @SpringBean("locationService") LocationService locationService,UiSessionContext uiSessionContext) {
         List<String> list = new ArrayList();
 
         String locationUUIDS = Context.getAdministrationService()
@@ -42,7 +43,8 @@ public class ClinicianQueueListFragmentController {
 
         pageModel.put("locationList", (locationService.getRootLocations(false).get(0)).getChildLocations());
         pageModel.put("clinicianLocation", clinicianLocationUUIDList);
-        pageModel.put("currentProvider", Context.getAuthenticatedUser());
+        pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
+        pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
     }
 
     public SimpleObject getPatientQueueList(@RequestParam(value = "searchfilter", required = false) String searchfilter, UiSessionContext uiSessionContext) {
