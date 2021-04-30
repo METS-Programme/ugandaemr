@@ -544,6 +544,15 @@ VALUES
 			UPDATE global_property SET property_value = ""  WHERE property = "ugandaemr.dhis2.organizationuuid" AND property_value="eg d06ace3e-9c46-11e7-abc4-cec278b6b50a"
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-2021-04-30-1509" author="dbaluku">
+
+		<comment>Add observations of transfer in date  and transfer out date for transfer in encounters and transfer out encounters respectively</comment>
+		<sql>
+			INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator, date_created, voided, status,uuid) SELECT e.patient_id,99160,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid() FROM encounter e  inner join  encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid ='3e8354f7-31b3-4862-a52e-ff41a1ee60af' and e.voided =0;
+			INSERT INTO obs (person_id, concept_id, encounter_id, obs_datetime, location_id,value_datetime, creator, date_created, voided, status,uuid) SELECT e.patient_id,99165,e.encounter_id,e.encounter_datetime,2,e.encounter_datetime,e.creator,e.date_created,0,'FINAL',uuid() FROM encounter e  inner join  encounter_type et on e.encounter_type = et.encounter_type_id WHERE et.uuid ='e305d98a-d6a2-45ba-ba2a-682b497ce27c' and e.voided =0;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
