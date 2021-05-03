@@ -58,7 +58,7 @@
                             <label><b>Current Line</b></label>
                         </td>
                         <td>
-                            <obs conceptId="164350" answerConceptIds="90271,90305,162916"/>
+                            <lookup expression="fn.currentProgramWorkflowStatus(3).state.concept.name" />
                         </td>
                     </tr>
 
