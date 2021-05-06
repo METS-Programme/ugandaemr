@@ -536,10 +536,10 @@ VALUES
 	<changeSet id="ugandaemr-27-10-2021-01" author="ssmusoke">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
-				SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
+				SELECT COUNT(program_workflow_state_id) FROM program_workflow_state  WHERE uuid = 'ec890f83-fd47-4406-9c86-8f779b38f6d6';
 			</sqlCheck>
 		</preConditions>
-		<comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN </comment>
+		<comment>Move all patients who have ever enrolled into care into the HIV program and set the state to UNKNOWN only after the state has been loaded </comment>
 		<sql>
 			<!-- move the patients to the HIV Program -->
 			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
