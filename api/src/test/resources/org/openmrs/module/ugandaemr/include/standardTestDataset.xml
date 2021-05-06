@@ -149,7 +149,7 @@
     <patient_program patient_program_id="22" patient_id="8" program_id="12" date_enrolled="2008-08-02 00:00:00.0" creator="1" date_created="2008-08-18 11:41:19.0" voided="false" uuid="2edf272c-bf05-4208-9f93-2fa213ed0422"/>
 	<patient_program patient_program_id="33" patient_id="10001" program_id="11" date_enrolled="2016-09-09 00:00:00.0" creator="1" date_created="2016-09-09 11:40:48.0" changed_by="1" date_changed="2016-09-09 12:29:29.0" voided="false" uuid="b8bd5c91-254e-4e67-9116-eeb42b1a7258"/>
 	<patient_program patient_program_id="44" patient_id="10002" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="511391c1-b57f-4564-9a7e-d3a25850675d"/>
-	<patient_program patient_program_id="55" patient_id="10009" program_id="11" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="c64468e1-ac75-4c8f-95e1-44a917ad2752"/>
+	<patient_program patient_program_id="55" patient_id="10007" program_id="3" date_enrolled="2008-08-01 00:00:00.0" creator="1" date_created="2008-08-18 11:40:48.0" changed_by="1" date_changed="2008-08-18 12:29:29.0" voided="false" uuid="c64468e1-ac75-4c8f-95e1-44a917ad2752"/>
 
 	<patient_state patient_state_id="11" patient_program_id="11" state="10" start_date="2001-01-01" creator="1" date_created="2008-08-18 12:29:29.0" voided="false" uuid="39321704-b1a3-43d6-acb2-dff2dc76e928"/>
 	<patient_state patient_state_id="12" patient_program_id="55" state="10" start_date="2001-01-01" end_date="2005-01-10" creator="1" date_created="2008-08-18 12:29:29.0" voided="false" uuid="51a3d665-a964-4960-8433-918e5aa04da1"/>
