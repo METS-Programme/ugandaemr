@@ -29,7 +29,6 @@
     <program_attribute_type  program_attribute_type_id="8"  name="DR TB No"  description="The number that Identifies a patient in a TB program Who is Drug resistant"   datatype="org.openmrs.customdatatype.datatype.FreeTextDatatype"  min_occurs="0"    creator="1"  date_created="2020-07-29 09:30:34"     uuid="1628fa4e-fda2-11ea-adc1-0242ac120002"/>
 
     <!-- HIV Program - ART Regimen Lines -->
-    <program_workflow_state  program_workflow_state_id="10"  program_workflow_id="3"  concept_id="1067"  initial="1"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="ec890f83-fd47-4406-9c86-8f779b38f6d6"/>
     <program_workflow_state  program_workflow_state_id="11"  program_workflow_id="3"  concept_id="90271"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2"/>
     <program_workflow_state  program_workflow_state_id="12"  program_workflow_id="3"  concept_id="90305"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 20:06:21"  retired="0"  uuid="9a42a3ad-d8a4-4f2e-9fa0-04d5f2e6436e"/>
     <program_workflow_state  program_workflow_state_id="13"  program_workflow_id="3"  concept_id="162987"  initial="0"  terminal="0"  creator="1"  date_created="2020-07-29 21:17:16"  retired="0"  uuid="5d2d0e7e-69a6-408a-b5ce-8d93fb72bc21"/>
