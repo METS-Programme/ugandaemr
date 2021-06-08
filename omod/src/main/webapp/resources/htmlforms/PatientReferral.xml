@@ -103,11 +103,11 @@
                     transferDate= getValue('encounterDate.value');
                     var type = jq('#encounter_type option:selected').text();
                     if(type==transferInName){
-                        setValue('99160.value',transferDate);
-                        setValue('99165.value','');
+                        setValue('transfer-in-date.value',transferDate);
+                        setValue('transfer-out-date.value','');
                     }else if(type==transferOutName){
-                       setValue('99165.value',transferDate);
-                        setValue('99160.value','');
+                       setValue('transfer-out-date.value',transferDate);
+                        setValue('transfer-in-date.value','');
                     }
                 });
 
@@ -115,23 +115,11 @@
                     transferDate= getValue('encounterDate.value');
                     var type = jq('#encounter_type option:selected').text();
                     if(type==transferInName){
-                        setValue('99160.value',transferDate);
-                        setValue('99165.value','');
+                        setValue('transfer-in-date.value',transferDate);
+                        setValue('transfer-out-date.value','');
                     }else if(type==transferOutName){
-                        setValue('99165.value',transferDate);
-                        setValue('99160.value','');
-                    }
-                });
-
-                jq('#encounterDate').each(function(){
-                    transferDate= getValue('encounterDate.value');
-                    var type = jq('#encounter_type option:selected').text();
-                    if(type==transferInName){
-                        setValue('99160.value',transferDate);
-                        setValue('99165.value','');
-                    }else if(type==transferOutName){
-                        setValue('99165.value',transferDate);
-                        setValue('99160.value','');
+                        setValue('transfer-out-date.value',transferDate);
+                        setValue('transfer-in-date.value','');
                     }
                 });
 
@@ -222,20 +210,7 @@
                 });
             });
 
-            function getPatientTransferEncounterTypes(encounterType) {
-                var enctype="";
-                jq.ajax({
-                type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encountertype/"+encounterType +"?v=full",
-                dataType: "json",
-                contentType: "application/json;",
-                async: false,
-                success: function (data) {
-                    enctype = data.name;
-                }
-                });
-                return enctype;
-            }
+
             function viral_load_widget(triger, enabledDisabledId) {
                 /* Handle viral load results */
                 jq("#" + enabledDisabledId).attr("disabled", true);
@@ -344,8 +319,8 @@
                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                                         </span>
                         <span style="display:none;">
-                            <obs id="99160" conceptId="99160"/>
-                            <obs id="99165" conceptId="99165"/>
+                            <obs id="transfer-in-date" conceptId="99160"/>
+                            <obs id="transfer-out-date" conceptId="99165"/>
                         </span>
                     </td>
                     <td>
