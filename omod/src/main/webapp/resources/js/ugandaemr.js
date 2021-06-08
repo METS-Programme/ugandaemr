@@ -845,7 +845,7 @@ function getLatestEncounterFromEncounterList(encounterList) {
  * @param encounterType Uuid
  * @returns {string} Naame of Encounters
  */
-function getPatientTransferEncounterTypes(encounterType) {
+function getEncounterTypeName(encounterType) {
     var encounterTypeName="";
     jq.ajax({
         type: "GET",
