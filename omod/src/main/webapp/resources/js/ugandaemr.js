@@ -849,7 +849,7 @@ function getEncounterTypeName(encounterType) {
     var encounterTypeName="";
     jq.ajax({
         type: "GET",
-        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encountertype/"+encounterType+"?v=full",
+        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encountertype/"+encounterType+"?v=custom:(name)",
         dataType: "json",
         contentType: "application/json;",
         async: false,
