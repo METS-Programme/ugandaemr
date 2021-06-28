@@ -1,0 +1,344 @@
+<htmlform formName="Covid-19 Postmortem"
+          formDescription="Covid-19: Case Investigation"
+          formEncounterType="422ee220-9e83-451d-9b25-79a688a0413a"
+          formUuid="9644a450-5027-4584-8e74-e64a4c7cd347" 
+          formVersion="3.0.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="1"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false&amp;&amp; sessionLocation.uuid=='1748bd6f-b013-449f-8d38-91319b576f3f'"
+          formDisplayStyle="Standard"
+          formLabel="Covid-19 Postmortem Report">
+
+    <script type="text/javascript">
+
+        if (jQuery) {
+
+            jq(document).ready(function () {
+
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+                disable_fields("date-of-diagnosis");
+                disable_fields("diagnosis-type");
+                disable_fields("specify");            
+                disable_fields("other-medical-intervention");
+                disable_fields("how-was-the-diagnosis-confirmed");            
+
+                jq(".166319").change(function () {
+                    if (jq(this).find('#other').find(':checkbox').prop('checked')) {
+                        enable_fields("specify");
+                    } else {
+                        disable_fields("specify"); 
+                    }
+                });
+
+                jq("#covid-confirmed").click(function () {
+                    if (jq(this).find("input[type='radio']:checked").val() == "90003") {
+                        enable_fields("date-of-diagnosis");
+                        enable_fields("how-was-the-diagnosis-confirmed");
+                    } else {
+                        disable_fields("date-of-diagnosis");
+                        disable_fields("how-was-the-diagnosis-confirmed");
+                    }
+                });
+
+                jq("#covid-confirmed").click(function () {
+                    if (jq(this).find("input[type='radio']:checked").val() == "90004") {
+                        enable_fields("diagnosis-type");
+                    } else {
+                        disable_fields("diagnosis-type");
+                    }
+                });
+
+                jq("#evidence-of-medical-intervention").change(function () {
+                    if (jq(this).find("select").find(":selected").val() == "5622") {
+                        enable_fields("other-medical-intervention");
+                    } else {
+                        disable_fields("other-medical-intervention");
+                    }
+                });
+
+
+            });
+
+        }
+
+    </script>
+
+
+    <div>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Covid-19: Postmortem Report</h1>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+                <submit class="confirm" submitLabel="Save" submitStyle="customSubmit"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs nav-fill card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#patient-info-diagnosis-history-section">Patient Information and Diagnosis History</a>
+                            </li>                            
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#autopsy-findings-section">Autopsy Findings</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="patient-info-diagnosis-history-section">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Patient Information
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Report Number</label>
+                                                <obs conceptId="159395" />
+                                            </div>
+                                            <div class="col-md-3">
+												<label>Date of Autopsy</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 47%;"></i>
+												<obs conceptId="159376" />
+											</div>
+                                            <div class="col-md-3">
+												<label>Date of Death</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 47%;"></i>
+												<obs conceptId="90272" />
+											</div>
+                                            <div class="col-md-3">
+												<label>Date of Discharge</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 47%;"></i>
+												<obs conceptId="90272" />
+											</div>
+                                            </div>
+                                            <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Covid symptoms</label>
+                                                <obs conceptId="159395" style="textarea" />
+                                            </div>
+                                            <div class="col-md-3">
+												<label>Date of Reciept of Body</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 35%;"></i>
+												<obs conceptId="159376" />
+                                            </div>
+                                            <div class="col-md-3">
+												<label>Date of Admission in Hospital</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 35%;"></i>
+												<obs conceptId="159376" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Medical Officer</label>
+                                                <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="required"/>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        Diagnosis History
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Covid Confirmed</label>
+                                                <obs id="covid-confirmed" conceptId="166285" answerConceptIds="90003,90004" answerLabels="Yes, No"
+                                                     style="radio" class="horizontal"/>
+                                            </div>
+                                            <div class="col-md-3">
+												<label>Date of Diagnosis</label>
+												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 45%;"></i>
+												<obs id="date-of-diagnosis" conceptId="90272" />
+											</div>
+                                            <div class="col-md-3">
+                                                <label>How was the diagnosis confirmed?</label>
+                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542"
+                                                     answerConceptIds="166272,159466,166273,5622"
+                                                     answerLabels="Ante mortem Lab Diagnosis, Ante mortem Radiological Diagnosis, Ante mortem Clinical Diagnosis, Post-Mortem Lab Diagnosis"/>
+                                            </div>                                                                                        
+                                            </div>
+                                            <div class="row">                                                                                     
+                                            <div class="col-md-12">
+                                                <label>Diagnosis Type</label>
+                                                <obs id="diagnosis-type" conceptId="166285" answerConceptIds="90003,90004" answerLabels="Antemortem case under investigation, Post-mortem Examination (gross) diagnosis"
+                                                     style="radio" class="horizontal"/>
+                                            </div>                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane" id="autopsy-findings-section">
+                                <div class="card">
+                                    <div class="card-header">
+                                        External Examination
+                                    </div>
+                                    <div class="card-body 166319">
+                                    <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Physique</label>
+                                        <obs id="1542" conceptId="1542"
+                                             answerConceptIds="166272,159466,166273"
+                                             answerLabels="lean, medium, obese, Well-built, average built, poor built, emaciated"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Evidence of Medical Intervention</label>
+                                        <obs id="evidence-of-medical-intervention" conceptId="1542"
+                                             answerConceptIds="166272,159466,166273,166273,5622"
+                                             answerLabels="cannula, I.V line, NGT, catheters, Other Specify"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Other Medical Intervention</label>
+                                        <obs id="other-medical-intervention" conceptId="165136"/>
+                                    </div>
+                                    </div>
+                                    <div class="row 90251">
+                                        <obs conceptId="90251" answerConceptId="90109" answerLabel="Pallor" style="checkbox" class="col-md-4"/>
+                                        <obs conceptId="90251" answerConceptId="90115" answerLabel="Jaundice" style="checkbox" class="col-md-4" />
+                                        <obs conceptId="90251" answerConceptId="161" answerLabel="Adenopathy" style="checkbox" class="col-md-4" />
+                                    </div>
+                                    <div class="row">
+                                        <obs conceptId="90251" answerConceptId="90094" answerLabel="Bleeding through orifices" style="checkbox" class="col-md-4" />
+                                        <obs conceptId="90251" answerConceptId="460" answerLabel="Oedema" style="checkbox" class="col-md-4"/>
+                                        <obs conceptId="90251" answerConceptId="165501" answerLabel="Skin lesions (rash, bleeding etc.)" style="checkbox" class="col-md-4"/>
+                                    </div>
+                                    <div class="row">
+                                        <obs id="other" conceptId="90251" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-4"/>
+                                        <div class="col-md-4">
+                                            <label>Specify</label>
+                                            <obs id="specify" conceptId="166296" />
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Cause of Death</label>
+                                        <obs id="5002" conceptId="5002"
+                                             answerConceptIds="90001,99288,99287,58,165374,165375,165376,165377,116030"
+                                             answerLabels="Unknown, Disease, Accident, Tuberculosis, Infectious Disease other than TB, HIV Non-infectious Disease, Natural Causes, Non natural causes, Cancer"/>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Height (cm)</label>
+                                        <obs id="5090" conceptId="5090" />
+                                    </div><div class="col-md-4">
+                                        <label>Weight (kgs)</label>
+                                        <obs id="5089" conceptId="5089" />
+                                    </div>                                    
+                                    </div>                                 
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Internal Examination
+                                </div>
+                                <div class="card-body">
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Brain</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Right Kidney</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Heart</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Left Kidney</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Pancreas</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Right Lung</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Right Adrenal Gland</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Left Lung</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Left Adrenal Gland</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Liver</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Thyroid</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Spleen</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Uterus, if pregnant</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Head</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Neck</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                <div class="row">
+                                <div class="col-md-4">
+                                    <label>Chest</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Abdomen</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                <div class="col-md-4">
+                                    <label>Spleen- Pancreas</label>
+                                    <obs conceptId="159395" style="textarea" />
+                                </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</htmlform>

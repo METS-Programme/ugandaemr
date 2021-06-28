@@ -412,12 +412,10 @@
                     DSDMStabilityCheck();
                 });
 
-
-                jq("#reason-for-next-appointment").change(function () {
-                    if (jq(this).find("select").find(":selected").val() == "90002") {
+                jq(".reason-for-next-appointment").change(function () {
+                    if (jq(this).find('#check-other-reason-for-next-appointment').find(':checkbox').prop('checked')) {
                         enable_fields("other-reason-for-next-appointment");
                     } else {
-                        jq("#other-reason-for-next-appointment").find("input[type=hidden]").val() == " ";
                         disable_fields("other-reason-for-next-appointment");
                     }
                 });
@@ -1598,31 +1596,52 @@
                                                         </excludeIf>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <span class="">
-                                                            <label>Reasons for next appointment</label>
-                                                            <obs id="reason-for-next-appointment" conceptId="160288"
-                                                                 answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                                                 answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up,
-                                                             9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetes, 13. Nutrition,14. Other Specify"/>
-                                                        </span>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <label>Other Reason for next appointment</label>
-                                                        <obs id="other-reason-for-next-appointment" conceptId="164975"/>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-3">
                                                         <obs conceptId="90069" labelText="Visit on Schedule"
                                                              style="checkbox"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                    <label><span class="required">*</span>Attending Clinician</label>
+                                                        <label><span class="required">*</span>Attending Clinician</label>
                                                         <encounterProviderAndRole role="Provider" encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="required"/>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                Reasons for next appointment
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row reason-for-next-appointment" >
+                                                    <obs conceptId="160288" answerConceptId="164968"   answerLabel="ART Initiation" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164972"   answerLabel="ART Refill" class="col-md-3" />
+                                                    <obs conceptId="160288" answerConceptId="164970"   answerLabel="ART Regimen Switch/ Substitution" class="col-md-3" />
+                                                    <obs conceptId="160288" answerConceptId="856"   answerLabel="Viral Load" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="5497"   answerLabel="CD4" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="163153"  answerLabel="IAC" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164971"     answerLabel="T.B Drug Refill" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164973"  answerLabel="T.B Follow up" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="99324"  answerLabel="ANC" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164974"  answerLabel="EID" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="90012"     answerLabel="PMTCT" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="903"  answerLabel="Hypertension/ Diabetes" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="5484"  answerLabel="Nutrition" class="col-md-3"/>
+                                                    <obs id="check-other-reason-for-next-appointment" conceptId="160288" answerConceptId="90002"  answerLabel="Other Specify" class="col-md-3"/>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <obs id="other-reason-for-next-appointment" conceptId="164975"
+                                                             labelText="Other Reason for next appointment"/>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+
+
                                         <div class="card">
                                             <div class="card-header">Vital Signs</div>
                                             <div class="card-body">
@@ -3722,12 +3741,42 @@
                     </div>
 
                     <div class="card" id="next-course-of-action">
-
                         <div class="card-header">
                             <label>Next Course of Action</label>
                         </div>
                         <div class="card-body">
                             <div class="final-out-come">
+                                <div class="row">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Reasons for next appointment
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row reason-for-next-appointment" >
+                                                <obs conceptId="160288" answerConceptId="164968"   answerLabel="ART Initiation" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="164972"   answerLabel="ART Refill" class="col-md-3" />
+                                                <obs conceptId="160288" answerConceptId="164970"   answerLabel="ART Regimen Switch/ Substitution" class="col-md-3" />
+                                                <obs conceptId="160288" answerConceptId="856"   answerLabel="Viral Load" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="5497"   answerLabel="CD4" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="163153"  answerLabel="IAC" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="164971"     answerLabel="T.B Drug Refill" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="164973"  answerLabel="T.B Follow up" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="99324"  answerLabel="ANC" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="164974"  answerLabel="EID" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="90012"     answerLabel="PMTCT" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="903"  answerLabel="Hypertension/ Diabetes" class="col-md-3"/>
+                                                <obs conceptId="160288" answerConceptId="5484"  answerLabel="Nutrition" class="col-md-3"/>
+                                                <obs id="check-other-reason-for-next-appointment" conceptId="160288" answerConceptId="90002"  answerLabel="Other Specify" class="col-md-3"/>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <obs id="other-reason-for-next-appointment" conceptId="164975"
+                                                         labelText="Other Reason for next appointment"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <excludeIf velocityTest="$patient.person.dead ==true">
@@ -3748,16 +3797,6 @@
                                             </includeIf>
                                         </excludeIf>
                                     </div>
-                                    <div class="col-md-4">
-                                        <obs id="reason-for-next-appointment" conceptId="160288"
-                                             labelText="Reasons for next appointment"
-                                             answerConceptIds="164968,164972,164970,856,5497,163153,164971,164973,99324,164974,90012,903,5484,90002"
-                                             answerLabels="1. ART Initiation, 2. ART Refill, 3. ART Regimen Switch/ Substitution, 4. Viral Load, 5. CD4, 6. IAC, 7. T.B Drug Refill,8. T.B Follow up, 9. ANC,10. EID,11. PMTCT, 12. Hypertension/ Diabetes, 13. Nutrition,14. Other Specify"/>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <obs id="other-reason-for-next-appointment" conceptId="164975"
-                                             labelText="Other Reason for next appointment"/>
-                                    </div>
                                 </div>
                                 <obsgroup groupingConceptId="99166">
                                     <div class="row">
@@ -3775,6 +3814,7 @@
                                 </obsgroup>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

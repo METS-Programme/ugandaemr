@@ -251,12 +251,12 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor COVID19_ENROLLMENT = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Covid19 Case Initiation";
+            return "Covid19 Case Investigation";
         }
 
         @Override
         public String description() {
-            return "Covid19 Case Enrollment Encounter";
+            return "Covid19 Case Investigation Encounter";
         }
 
         public String uuid() {
@@ -267,16 +267,31 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor COVID19_FOLLOWUP = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Covid19 Case Followup";
+            return "Covid19 Clinical Management";
         }
 
         @Override
         public String description() {
-            return "Covid19 Case Followup Encounter";
+            return "Covid19 Clinical Management Encounter";
         }
 
         public String uuid() {
-            return "95d334b0-c322-46ee-856a-4f503c8979ee";
+            return "cd9a2698-206f-44f3-a888-f824544413b4";
+        }
+    };
+    public static EncounterTypeDescriptor COVID19_DISCHARGE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Covid19 Discharge";
+        }
+
+        @Override
+        public String description() {
+            return "Covid19 Discharge Encounter";
+        }
+
+        public String uuid() {
+            return "482e4b17-fb9c-4937-a1cf-9052d3e3be68";
         }
     };
 }

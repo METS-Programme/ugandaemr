@@ -80,19 +80,35 @@
     <script type="text/javascript">
         if (jQuery) {
             jq(document).ready(function () {
+                var patientuuid = '<lookup expression="patient.uuid"/>';
+                var transferInName = getEncounterTypeName("3e8354f7-31b3-4862-a52e-ff41a1ee60af");
+                var transferOutName = getEncounterTypeName("e305d98a-d6a2-45ba-ba2a-682b497ce27c");
 
-                var data1 = jq.ajax({
-                    dataType: "json",
-                    url: "http://localhost:8080/openmrs/ws/rest/v1/encounter?patient=990d60c5-1966-45b0-9222-3322f7a59317&amp;v=custom%3A(display%2Cobs%3A(concept%3A(conceptId)%2CvalueText%2CvalueNumeric%2CvalueDatetime%2CvalueCoded%3A(conceptId)))&amp;encounterType=8d5b27bc-c2cc-11de-8d13-0010c6dffd0f&amp;limit=1",
-                    data: "",
-                    success: "success"
+
+                var transferDate = getValue('encounterDate.value');
+
+                jq('#encounter_type').change(function(){
+                    transferDate= getValue('encounterDate.value');
+                    var type = jq('#encounter_type option:selected').text();
+                    if(type==transferInName){
+                        setValue('transfer-in-date.value',transferDate);
+                        setValue('transfer-out-date.value','');
+                    }else if(type==transferOutName){
+                       setValue('transfer-out-date.value',transferDate);
+                        setValue('transfer-in-date.value','');
+                    }
                 });
 
-                var data2 = jq.ajax({
-                    dataType: "json",
-                    url: "http://localhost:8080/openmrs/ws/rest/v1/encounter?patient=990d60c5-1966-45b0-9222-3322f7a59317&amp;v=custom%3A(display%2Cobs%3A(concept%3A(conceptId)%2CvalueText%2CvalueNumeric%2CvalueDatetime%2CvalueCoded%3A(conceptId)))&amp;encounterType=8d5b2be0-c2cc-11de-8d13-0010c6dffd0ff&amp;limit=1",
-                    data: "",
-                    success: "success"
+                jq('#encounterDate').change(function(){
+                    transferDate= getValue('encounterDate.value');
+                    var type = jq('#encounter_type option:selected').text();
+                    if(type==transferInName){
+                        setValue('transfer-in-date.value',transferDate);
+                        setValue('transfer-out-date.value','');
+                    }else if(type==transferOutName){
+                        setValue('transfer-out-date.value',transferDate);
+                        setValue('transfer-in-date.value','');
+                    }
                 });
 
                 // Enable disable other outcomes
@@ -181,6 +197,7 @@
                     viral_load_widget('viral-load-results-qualitative_1', 'viral-load-results-copies_1');
                 });
             });
+
 
             function viral_load_widget(triger, enabledDisabledId) {
                 /* Handle viral load results */
@@ -289,6 +306,10 @@
                                             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                                         </span>
+                        <span style="display:none;">
+                            <obs id="transfer-in-date" conceptId="99160"/>
+                            <obs id="transfer-out-date" conceptId="99165"/>
+                        </span>
                     </td>
                     <td>
                         <obs id="99109" conceptId="99109" labelText=" From Where"/>

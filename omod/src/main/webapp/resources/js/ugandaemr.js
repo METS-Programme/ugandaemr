@@ -839,3 +839,23 @@ function getLatestEncounterFromEncounterList(encounterList) {
     return latestEncounter
 }
 
+/**
+ *
+ * function returns the name of the Encounter type Uuid passed
+ * @param encounterType Uuid
+ * @returns {string} Naame of Encounters
+ */
+function getEncounterTypeName(encounterType) {
+    var encounterTypeName="";
+    jq.ajax({
+        type: "GET",
+        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encountertype/"+encounterType+"?v=custom:(name)",
+        dataType: "json",
+        contentType: "application/json;",
+        async: false,
+        success: function (data) {
+            encounterTypeName = data.name;
+        }
+    });
+    return encounterTypeName;
+}

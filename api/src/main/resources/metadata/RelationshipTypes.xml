@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+<relationship_type relationship_type_id="6" a_is_to_b="Spouse" b_is_to_a="Spouse" description="This applies to married people" creator="1" date_created="2021-05-03 09:09:17"  uuid="06f7820d-7e5d-4922-aecd-2f5f40f2ed0f"  />
+</dataset>

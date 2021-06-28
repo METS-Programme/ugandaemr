@@ -251,6 +251,12 @@
         <description>when value is "true", it allows picking of patients from queue</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.receptionLocationUUID</property>
+        <defaultValue>4501e132-07a2-4201-9dc8-2f6769b6d412</defaultValue>
+        <description>The UUID of the Reception</description>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>
