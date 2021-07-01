@@ -180,7 +180,7 @@
     "config": {
       "widget": "programstatus",
       "icon": "icon-stethoscope",
-      "label": "Regimen Lines",
+      "label": "ART Regimen Lines",
       "dateFormat": "dd MMM yyyy",
       "program": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741"
     },
