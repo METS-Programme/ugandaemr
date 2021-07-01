@@ -11,6 +11,23 @@
           formDisplayStyle="Standard"
           formLabel="ART Regimen Change">
 
+        <lookup complexExpression="#if ($encounter) #set ($encounterDate = $encounter.encounterDatetime) #else #set ($encounterDate = $visit.startDatetime) #end"/>
+    <lookup complexExpression="#set ($regimenLineId = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.Id)" />
+    <lookup complexExpression="#set ($regimenLineName = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name)" />
+    <script type="text/javascript">
+        beforeSubmit.push(function () {
+            // ensure that the current regimen is not the same as the switch or substituted regimen
+            var current_regimen_id = jq("#current-regimen-id").html();
+
+            if (current_regimen_id == getValue('new-regimen.value')) {
+                getField('new-regimen.error').html('The new regimen ' + jq("#current-regimen-name").html() + ' cannot be the same as the current regimen ').show();
+                jq().toastmessage('showErrorToast', "The new regimen " + jq("#current-regimen-name").html() + " cannot be the same as the current regimen");
+                return false;
+            }
+            return true;
+        });
+    </script>
+
     <div>
         <div class="row">
             <div class="col-md-11">
@@ -43,14 +60,9 @@
                             <label><b>Current Regimen</b></label>
                         </td>
                         <td>
-                            <obs conceptId="99055"
-                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                            Latest Obs
-                            <lookup complexExpression="$fn.latestObs(90315).valueCoded.Id"/>
-                            -
-                            <lookup complexExpression="$fn.latestObs(90315).valueCoded.name"/>
-
+                            <lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/>
+                            <span class="hidden" id="current-regimen-id"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.Id"/></span>
+                            <span class="hidden" id="current-regimen-name"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/></span>
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +70,7 @@
                             <label><b>Current Line</b></label>
                         </td>
                         <td>
-                            <lookup expression="fn.currentProgramWorkflowStatus(3).state.concept.name" />
+                            <lookup expression="fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name" />
                         </td>
                     </tr>
 
@@ -72,16 +84,22 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td nowrap="">
                             <label><b>Regimen Change Type</b></label>
                         </td>
                         <td>
-                            <obs id="regimen-change-actions" conceptId="166339" answerConceptIds="1371,1372">
-                                <controls>
-                                    <when value="1371" thenDisplay="#regimen-switch-line,#regimen-switch-reason"/>
-                                    <when value="1372" thenDisplay="#regimen-substitution-reason"/>
-                                </controls>
-                            </obs>
+                            <ifMode mode="EDIT">
+                                <lookup complexExpression="$fn.latestObs(166339,$encounterDate).valueCoded.name"/>
+                            </ifMode>
+                            <ifMode mode="EDIT" include="false">
+                                <obs id="regimen-change-actions" conceptId="166339" answerConceptIds="1371,1372">
+                                    <controls>
+                                        <when value="1371" thenDisplay="#regimen-switch-line,#regimen-switch-reason"/>
+                                        <when value="1372" thenDisplay="#regimen-substitution-reason"/>
+                                    </controls>
+                                </obs>
+                            </ifMode>
+
                         </td>
                     </tr>
                     <tr>
@@ -104,7 +122,20 @@
                             <label><b>New Regimen Line for Switch</b></label>
                         </td>
                         <td>
-                            <workflowState workflowId="3" stateIds="11,12,13" stateLabels="First Line,Second Line,Third Line" />
+                            <ifMode mode="EDIT">
+                                <!-- in Edit mode just display the name of the regimen line - do not allow it to be changed here again -->
+                                <lookup complexExpression="$regimenLineName" />
+                            </ifMode>
+                            <ifMode mode="EDIT" include="false">
+                                <!-- Current Regimen is Second Line so only shows Third Line -->
+                                <includeIf velocityTest="$regimenLineId == 90305">
+                                    <workflowState workflowId="3" stateId="13" stateLabel="Third Line" />
+                                </includeIf>
+                                <!-- Current Regimen is First Line so shows Second and Third Line -->
+                                <includeIf velocityTest="$regimenLineId == 90271">
+                                    <workflowState type="radio" workflowId="3" stateIds="12,13" stateLabels="Second Line,Third Line" />
+                                </includeIf>
+                            </ifMode>
                         </td>
                     </tr>
                     <tr id="regimen-switch-reason">
