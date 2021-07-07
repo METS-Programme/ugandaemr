@@ -278,4 +278,34 @@ public class EncounterTypes {
             return "482e4b17-fb9c-4937-a1cf-9052d3e3be68";
         }
     };
+    public static EncounterTypeDescriptor COVID19_POSTMORTEM = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Covid19 Postmortem";            
+        }
+
+        @Override
+        public String description() {
+            return "Covid19 Postmortem Encounter";
+        }
+
+        public String uuid() {
+            return "7f7f59dc-defe-11eb-ba80-0242ac130004";
+        }
+    };
+    public static EncounterTypeDescriptor COVID19_REFERRAL = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Covid19 Referral";
+        }
+
+        @Override
+        public String description() {
+            return "Covid19 Referral Encounter";
+        }
+
+        public String uuid() {
+            return "afcdfcd8-defe-11eb-ba80-0242ac130004";
+        }
+    };
 }
