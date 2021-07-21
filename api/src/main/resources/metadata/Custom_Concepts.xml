@@ -1909,7 +1909,7 @@
     <concept  concept_id="166454"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-19 14:31:22" version="1.0"  changed_by="1"  date_changed="2021-07-19 14:31:22"  uuid="f523846c-b80a-4720-9c27-010ba17a1bf2"/>
     <concept  concept_id="166453"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-19 14:24:15" version="1.0"  changed_by="1"  date_changed="2021-07-19 14:24:15"  uuid="b5b933db-1054-4f78-9bab-441dbf29be69"/>
 
-    <concept  concept_id="166464"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-21 10:33:16" version="1.0"  changed_by="1"  date_changed="2021-07-21 10:33:16"  retire_reason="NULL"  uuid="5eadaac5-880d-4aea-9ac9-5b66fd3e7ad0"/>
+    <concept  concept_id="166464"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-21 10:33:16" version="1.0"  changed_by="1"  date_changed="2021-07-21 10:33:16"  uuid="5eadaac5-880d-4aea-9ac9-5b66fd3e7ad0"/>
 
 
     <!--CONCEPT NUMERIC-->
@@ -2495,7 +2495,7 @@
     <concept_description  concept_description_id="18541"  concept_id="166433"  description="Non-steroidal anti-inflammatory drugs given"  locale="en"  creator="1"  date_created="2021-05-03 12:48:16"  uuid="0e271021-be20-4f6f-a986-08c381b18ef1"/>
 
     <!-- Emergency ART Services Register -->
-    <concept_description  concept_description_id="18543"  concept_id="166464"  description="T.B Refill Pills"  locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
+    <concept_description  concept_description_id="18543"  concept_id="166464"  description="T.B Refill Pills"                             locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
 
 
 
