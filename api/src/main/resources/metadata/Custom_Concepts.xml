@@ -1909,6 +1909,8 @@
     <concept  concept_id="166454"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-19 14:31:22" version="1.0"  changed_by="1"  date_changed="2021-07-19 14:31:22"  uuid="f523846c-b80a-4720-9c27-010ba17a1bf2"/>
     <concept  concept_id="166453"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-19 14:24:15" version="1.0"  changed_by="1"  date_changed="2021-07-19 14:24:15"  uuid="b5b933db-1054-4f78-9bab-441dbf29be69"/>
 
+    <concept  concept_id="166464"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-21 10:33:16" version="1.0"  changed_by="1"  date_changed="2021-07-21 10:33:16"  retire_reason="NULL"  uuid="5eadaac5-880d-4aea-9ac9-5b66fd3e7ad0"/>
+
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -2492,7 +2494,8 @@
     <concept_description  concept_description_id="18540"  concept_id="166430"  description="Antibiotics for covid19 treatment"            locale="en"  creator="1"  date_created="2021-05-03 09:48:54"  uuid="5f9170ce-9335-4f31-a034-128e486e932a"/>
     <concept_description  concept_description_id="18541"  concept_id="166433"  description="Non-steroidal anti-inflammatory drugs given"  locale="en"  creator="1"  date_created="2021-05-03 12:48:16"  uuid="0e271021-be20-4f6f-a986-08c381b18ef1"/>
 
-
+    <!-- Emergency ART Services Register -->
+    <concept_description  concept_description_id="18543"  concept_id="166464"  description="T.B Refill Pills"  locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
 
 
 
@@ -5977,6 +5980,8 @@
     <concept_name  concept_name_id="162719"  concept_id="166461"  name="General ART Client"  				 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:55:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="b0d86a43-dfde-4aa5-b1b6-debbd53d567c"/>
     <concept_name  concept_name_id="162720"  concept_id="166462"  name="Non IDU"  							 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:28"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e722cfbd-065a-4066-833e-5b2b5f59ff13"/>
     <concept_name  concept_name_id="162721"  concept_id="166463"  name="Other PPs"  						 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="2dcf1c17-1511-4ebe-83d1-f1016d9469bb"/>
+    <concept_name  concept_name_id="162722"  concept_id="166464"  name="T.B Pill"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-21 10:33:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e25a2201-1f5b-4c9b-b92a-1bdadaae8719"/>
+
 
 
     <!--CONCEPT ANSWERS-->
