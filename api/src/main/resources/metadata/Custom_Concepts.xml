@@ -2495,7 +2495,7 @@
     <concept_description  concept_description_id="18541"  concept_id="166433"  description="Non-steroidal anti-inflammatory drugs given"  locale="en"  creator="1"  date_created="2021-05-03 12:48:16"  uuid="0e271021-be20-4f6f-a986-08c381b18ef1"/>
 
     <!-- Emergency ART Services Register -->
-    <concept_description  concept_description_id="18543"  concept_id="166464"  description="T.B Refill Pills"                             locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
+    <concept_description  concept_description_id="18543"  concept_id="166464"  description="TB Drug Refill Pills"                             locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
 
 
 
@@ -5980,7 +5980,7 @@
     <concept_name  concept_name_id="162719"  concept_id="166461"  name="General ART Client"  				 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:55:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="b0d86a43-dfde-4aa5-b1b6-debbd53d567c"/>
     <concept_name  concept_name_id="162720"  concept_id="166462"  name="Non IDU"  							 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:28"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e722cfbd-065a-4066-833e-5b2b5f59ff13"/>
     <concept_name  concept_name_id="162721"  concept_id="166463"  name="Other PPs"  						 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="2dcf1c17-1511-4ebe-83d1-f1016d9469bb"/>
-    <concept_name  concept_name_id="162722"  concept_id="166464"  name="T.B Pill"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-21 10:33:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e25a2201-1f5b-4c9b-b92a-1bdadaae8719"/>
+    <concept_name  concept_name_id="162722"  concept_id="166464"  name="TB Drug Refill Pills"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-21 10:33:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e25a2201-1f5b-4c9b-b92a-1bdadaae8719"/>
 
 
 
