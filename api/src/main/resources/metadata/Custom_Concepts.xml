@@ -1910,6 +1910,7 @@
     <concept  concept_id="166453"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-19 14:24:15" version="1.0"  changed_by="1"  date_changed="2021-07-19 14:24:15"  uuid="b5b933db-1054-4f78-9bab-441dbf29be69"/>
 
     <concept  concept_id="166464"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-21 10:33:16" version="1.0"  changed_by="1"  date_changed="2021-07-21 10:33:16"  uuid="5eadaac5-880d-4aea-9ac9-5b66fd3e7ad0"/>
+    <concept  concept_id="166465"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-22 13:33:43"  version="1.0"  changed_by="1"  date_changed="2021-07-22 13:33:43" uuid="8ea2dd3d-7d16-42f6-b034-5ffe3a4dbc99"/>
 
 
     <!--CONCEPT NUMERIC-->
@@ -2496,6 +2497,7 @@
 
     <!-- Emergency ART Services Register -->
     <concept_description  concept_description_id="18543"  concept_id="166464"  description="TB Drug Refill Pills"                             locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
+    <concept_description  concept_description_id="18544"  concept_id="166465"  description="HIV Exposed Infant Number"                     locale="en"  creator="1"  date_created="2021-07-22 13:33:43" uuid="44ee0072-a85e-4a75-8413-627c096aa875"/>
 
 
 
@@ -5981,6 +5983,7 @@
     <concept_name  concept_name_id="162720"  concept_id="166462"  name="Non IDU"  							 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:28"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e722cfbd-065a-4066-833e-5b2b5f59ff13"/>
     <concept_name  concept_name_id="162721"  concept_id="166463"  name="Other PPs"  						 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="2dcf1c17-1511-4ebe-83d1-f1016d9469bb"/>
     <concept_name  concept_name_id="162722"  concept_id="166464"  name="TB Drug Refill Pills"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-21 10:33:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e25a2201-1f5b-4c9b-b92a-1bdadaae8719"/>
+    <concept_name  concept_name_id="162723"  concept_id="166465"  name="EID Number"                          locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-22 13:33:43"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="62436b5e-e6d3-4df1-b88f-00e527a163bd"/>
 
 
 
