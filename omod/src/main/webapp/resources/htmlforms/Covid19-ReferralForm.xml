@@ -726,9 +726,8 @@ formLabel="Covid-19 Referral Form">
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3">
-												<label>Date of Admission in Hospital</label>
-												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 50%;"></i>
-												<obs conceptId="159376" />
+                                              <label>Date of Admission in Hospital</label>
+                                              <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
                                             </div>
                                         </div>                                       
                                     </div>                                    
