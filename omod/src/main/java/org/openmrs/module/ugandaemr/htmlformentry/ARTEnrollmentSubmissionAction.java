@@ -2,33 +2,36 @@ package org.openmrs.module.ugandaemr.htmlformentry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-
 import org.openmrs.Obs;
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
+import org.openmrs.PatientState;
 import org.openmrs.Program;
 import org.openmrs.User;
 import org.openmrs.api.context.Context;
-import org.openmrs.module.ugandaemr.fragment.controller.PatientSummaryFragmentController;
 import org.openmrs.module.htmlformentry.CustomFormSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
-
+import org.openmrs.module.ugandaemr.fragment.controller.PatientSummaryFragmentController;
+import org.openmrs.module.ugandaemr.metadata.core.Programs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.Arrays;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.GP_DSDM_CONCEPT_ID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.GP_DSDM_PROGRAM_UUID_NAME;
 
 /**
- * Enrolls patients into DSDM programs
+ * Executes on the ART summary page which enrolls a patient into care that does the following:
+ * 1. Enrolls patients into DSDM programs
+ * 2. Adds the patient to the ART First Line Regimen workflow state of the HIV Care Program
  */
-public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
+public class ARTEnrollmentSubmissionAction implements CustomFormSubmissionAction {
     private static final Log log = LogFactory.getLog(PatientSummaryFragmentController.class);
 
     @Override
@@ -39,9 +42,19 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
         }
 
         //Create DSDM Program on entry of ART Summary Page
-        if(mode.equals(Mode.ENTER) && session.getEncounter().getEncounterType()==Context.getEncounterService().getEncounterTypeByUuid("8d5b27bc-c2cc-11de-8d13-0010c6dffd0f")){
-            createPatientProgram(session.getEncounter().getPatient(), session.getEncounter().getEncounterDatetime(), Context.getProgramWorkflowService().getProgramByUuid("de5d54ae-c304-11e8-9ad0-529269fb1459"));
-        return;
+        if(mode.equals(Mode.ENTER) && session.getEncounter().getEncounterType() == Context.getEncounterService().getEncounterTypeByUuid("8d5b27bc-c2cc-11de-8d13-0010c6dffd0f")){
+            createPatientProgram(session.getEncounter().getPatient(), session.getEncounter().getEncounterDatetime(), Context.getProgramWorkflowService().getProgramByUuid(Programs.FBIM_PROGRAM.uuid()), null);
+
+            // enroll in First Line Regimen Workflow
+            Program hivProgram = Context.getProgramWorkflowService().getProgramByUuid(Programs.HIV_PROGRAM.uuid());
+            PatientState firstLineRegimenState = new PatientState();
+            firstLineRegimenState.setStartDate(session.getEncounter().getEncounterDatetime());
+            firstLineRegimenState.setState(Context.getProgramWorkflowService().getStateByUuid("ab6d1f1d-fcf6-4255-8b6f-2bf8959ad8f2"));
+
+            Set<PatientState> states = new HashSet<PatientState>();
+            states.add(firstLineRegimenState);
+            createPatientProgram(session.getEncounter().getPatient(), session.getEncounter().getEncounterDatetime(), hivProgram, states);
+            return;
         }
 
 
@@ -75,7 +88,7 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
                                 /**
                                  * Recreate Voided Program
                                  */
-                                createPatientProgram(patient, previousPatientProgram.getDateEnrolled(), previousPatientProgram.getProgram());
+                                createPatientProgram(patient, previousPatientProgram.getDateEnrolled(), previousPatientProgram.getProgram(), null);
                             }
                         }
                     }
@@ -128,16 +141,21 @@ public class DSDSProgramSubmissionAction implements CustomFormSubmissionAction {
          * Enroll patient in  new PatientProgram
          */
         if (getProgramByConceptFromObs(obsList) != null) {
-            createPatientProgram(patient, session.getEncounter().getEncounterDatetime(), getProgramByConceptFromObs(obsList));
+            createPatientProgram(patient, session.getEncounter().getEncounterDatetime(), getProgramByConceptFromObs(obsList), null);
         }
     }
 
-    private PatientProgram createPatientProgram(Patient patient, Date enrollmentDate, Program program) {
+    private PatientProgram createPatientProgram(Patient patient, Date enrollmentDate, Program program, Set<PatientState> states) {
         PatientProgram patientProgram = new PatientProgram();
         patientProgram.setPatient(patient);
         patientProgram.setDateEnrolled(enrollmentDate);
         patientProgram.setProgram(program);
         patientProgram.setDateCompleted(null);
+
+        if (states != null) {
+            System.out.println("Saving the Regimen line with states");
+            patientProgram.setStates(states);
+        }
         return Context.getProgramWorkflowService().savePatientProgram(patientProgram);
     }
 

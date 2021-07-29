@@ -1965,7 +1965,7 @@
                         </div>
                     </div>
                 </div>
-                <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.DSDSProgramSubmissionAction"/>
+                <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.ARTEnrollmentSubmissionAction"/>
             </div>
         </div>
     </div>
