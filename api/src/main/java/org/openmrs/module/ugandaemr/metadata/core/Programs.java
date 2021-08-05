@@ -175,7 +175,7 @@ public class Programs {
 
         @Override
         public String name() {
-            return "FGB";
+            return "FBG";
         }
 
         @Override
