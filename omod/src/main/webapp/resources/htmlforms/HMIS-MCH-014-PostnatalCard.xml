@@ -250,6 +250,7 @@
                 <div class="card-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="mother-info" >
+
                             <div class="card">
                                 <div class="card-header">
                                     Visit Summary
@@ -280,6 +281,129 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="card">                                
+                                <div class="card-body">
+                                    <div class="row">                                        
+                                                                              
+                                    </div>
+                                    <div class="row">                                        
+                                        <obs conceptId="1646" labelText="How is your appetite?" class="col-md-3"/>
+                                        <obs conceptId="374" answerConceptId="163144" answerLabel="Fever" class="col-md-2"/>
+                                        <obs conceptId="374" answerConceptId="163145" answerLabel="smelling vaginal discharge" class="col-md-2" />
+                                        <obs conceptId="374" answerConceptId="163146" answerLabel="breast engorgement" class="col-md-2" />
+                                        <obs conceptId="374" answerConceptId="163147" answerLabel="cracked nipples/nipple sores" class="col-md-3"/>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Caesarean  Section Findings</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Did you get an episiotomy or a tear?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Did you heal properly? </label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                    </div>                                     
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Maternal Medication
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Are you taking any medicines?</label>
+                                            <obs conceptId="159367" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Verify type ,dose and adherence</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Comments</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>                                        
+                                        <span class="hidden">
+                                            <encounterLocation
+                                                default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                                            <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
+                                        </span>
+                                    </div>                                    
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    After Six Weeks
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">                                        
+                                        <div class="col-md-4">
+                                            <label>Do you have any complaints today?</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>How is your appetite? </label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Is there abdominal pain? </label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>                                                                                 
+                                    </div>
+                                    <div class="row">                                        
+                                        <div class="col-md-4">
+                                            <label>Is there an abnormal vaginal discharge?</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Have you resumed the monthly period?</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Have you resumed sexual intercourse?</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>                                                                                 
+                                    </div>
+                                    <div class="row">                                        
+                                        <div class="col-md-4">
+                                            <label>Have you ever had post-coital bleeding during the last 6 weeks?</label>
+                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                        </div>                                                                                                                       
+                                    </div>                                    
+                                </div>
+                            </div>
+
+                            <div class="card">                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Did you test for HIV during pregnancy?</label>
+                                            <obs conceptId="159367" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>HIV Results</label>
+                                            <obs id="99628" conceptId="99628" answerConceptIds="703, 664"
+                                                 answerLabels="Positive, Negative" class="horizontal" style="radio"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>ARV Drugs Recieved</label>
+                                            <obs id="arv-recieved" conceptId="162872" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Counselling Done</label>
+                                            <obs id="arv-recieved" conceptId="162918" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal"/>
+                                        </div>                                                                               
+                                    </div>                                    
+                                </div>
+                            </div>
+
                             <div class="card">
                                 <div class="card-header">
                                     General Conditions
@@ -569,6 +693,99 @@
                         </div>
 
                         <div class="tab-pane" id="infant-info">
+                            <div class="card">
+                                <div class="card-header">
+                                    Infant Breastfeeding
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="Exclusive breastfeeding" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="Exclusive Replacement feeding" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-2">
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText=" Mixed feeding" class="horizontal" />
+                                        </div>                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="Is the baby feeding normally?" class="horizontal" />
+                                        </div>                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <obs conceptId="99320" style="textarea" labelText="Comment" id="other-treatment"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">                                
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Is the cord stump wet, foul smelling or has a discharge?</label>
+                                            <obs conceptId="165816" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                        </div>                                       
+                                        <div class="col-md-4">
+                                        <label>Antibiotic Given</label>
+                                        <obs id="facility-referred-from" conceptId="166421" answerConceptIds="265, 963, 496, 737, 784, 91, 916"
+                                             answerLabels="AMOXICILLIN, CEFIXIME, CEFTRIAXONE, CEFUROXIME, PENICILLIN, TRIMETHOPRIM, TRIMETHOPRIM AND SULFAMETHOXAZOLE">
+                                        </obs>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <obs conceptId="1646" labelText="Hours done for KMC" />
+                                    </div> 
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    Infant information
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Is the baby cold or hot?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>KMC done?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Is the baby passing urine?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Is the baby passing stool?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label>Birth at Commnunity Level</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>Has started Septrin prophylaxis?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>ARVs given to breatfeeding child?</label>
+                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                        </div>                                                                               
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="card">
                                 <div class="card-header">
                                     General Conditions
