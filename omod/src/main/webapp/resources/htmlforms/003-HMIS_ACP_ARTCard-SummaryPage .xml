@@ -40,24 +40,6 @@
                 jq().toastmessage('showErrorToast', "Care Entry Point is required");
             }
 
-            //Validation for Substitution within 1st line
-            submitValStageART.push(dateValidator("99163_1", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("99163_2", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("99163_3", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("99163_4", "99161", "99160", message5, message6, "less_than", false));
-
-            //Validation for Switch to 2nd
-            submitValStageART.push(dateValidator("99164_1", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("99164_2", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("99164_3", "99161", "99160", message5, message6, "less_than", false));
-
-            //Validation for Switch to 3rd
-            submitValStageART.push(dateValidator("162991_1", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("162991_2", "99161", "99160", message5, message6, "less_than", false));
-            submitValStageART.push(dateValidator("162991_3", "99161", "99160", message5, message6, "less_than", false));
-
-            submitValStage = submitValStageART;
-
             //Validation for Date Confirmed HIV +Ve
             submitValStage.push(dateValidator("90267", "encounterDate", "", message4, "", "greater_than", true));
 
