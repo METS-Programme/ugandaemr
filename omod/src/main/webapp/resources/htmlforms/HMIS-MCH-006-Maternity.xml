@@ -20,6 +20,17 @@
                 disable_fields("transferred-by");
 				disable_fields("transferred-to");
                 disable_fields("other-mode-of-delivery");
+				disable_fields("other-family-planning-option");
+
+				jq('#family-planning-method-given').change(function () {
+					if (getValue('family-planning-method-given.value') == 5622){
+						enable_fields("other-family-planning-option");
+					}else{
+						disable_fields("other-family-planning-option");
+					}
+				});
+ 
+
 
                 //enable/disable other management procedure
                 jq("#165443").change(function () {
@@ -601,7 +612,7 @@
 											<div class="row">
 												<div class="col-md-3">
 													<label>Family Planning Method Given</label>
-													<obs conceptId="374"  answerConceptIds="90089,162960,162959,162961,780,162963,5622,162964" answerLabels="PP-BTL, PP-IUD, PAC-IUD, Implant, Oral Pills, Depo, Other, No FP Method Given" style="dropdown"/>
+													<obs id="family-planning-method-given" conceptId="374"  answerConceptIds="90089,162960,162959,162961,780,162963,5622,162964" answerLabels="PP-BTL, PP-IUD, PAC-IUD, Implant, Oral Pills, Depo, Other, No FP Method Given" style="dropdown"/>
 												</div>
 												<div class="col-md-3">
 													<label>Treatment Offered To the Baby</label>
@@ -612,8 +623,18 @@
 													<obs conceptId="165451"/>
 												</div>
 												<div class="col-md-3">
-													<label>Delivered By</label>
-													<encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" id="delivered-by" />
+													<label><span class="required">*</span>Delivered By</label>
+													<encounterProvider role="Provider" style="autocomplete" id="provider"/>
+													<span style="display: none;">
+														<encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+																		   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+													</span>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-3">
+													<label>Specify Other</label>
+													<obs id="other-family-planning-option" conceptId="166470" />
 												</div>
 											</div>
 										</div>
@@ -670,7 +691,7 @@
 												</div>
 												<div class="col-md-3">
 													<label>Condition of Baby at Discharge</label>
-													<obs conceptId="99334"  class="long-value-select"  answerConceptIds="99331,162953,99332,99333,165448,165449,162954" answerLabels="MSB - Macerated Still Bath,FSB - Fresh Still Birth, NND - Immediate Neonatal Death, AL - Live Baby, AL-R - Live baby referred to another unit, AL-T - Live baby transferred to another ward/ Department, BDF - Baby Born With defect" style="dropdown" id="99334"/>
+													<obs conceptId="99334"  class="long-value-select"  answerConceptIds="135436,162953,99332,99333,165448,165449,162954" answerLabels="MSB - Macerated Still Bath,FSB - Fresh Still Birth, NND - Immediate Neonatal Death, AL - Live Baby, AL-R - Live baby referred to another unit, AL-T - Live baby transferred to another ward/ Department, BDF - Baby Born With defect" style="dropdown" id="99334"/>
 												</div>
 												<div class="col-md-3">
 													<label>Other Ward/Department</label>
