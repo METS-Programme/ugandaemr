@@ -65,10 +65,9 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(8));
         htmlForm1.setForm(form1);
         FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
-
 
         //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
         session1.getHtmlToDisplay();
@@ -105,7 +104,7 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
 
@@ -145,7 +144,7 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
 
@@ -184,7 +183,7 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());
@@ -228,7 +227,7 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());
@@ -269,7 +268,7 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());
