@@ -579,6 +579,18 @@ VALUES
  
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-20210813-0923" author="dbaluku">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) from scheduler_task_config WHERE uuid ='415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f'
+			</sqlCheck>
+		</preConditions>
+		<comment>Delete TB Lost to Followup Exit Task</comment>
+		<sql>
+			DELETE FROM scheduler_task_config WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
