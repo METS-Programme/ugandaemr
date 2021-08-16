@@ -86,7 +86,7 @@
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentryuiVersion>1.10.0</htmlformentryuiVersion>
-		<htmlformentryVersion>4.0.2-SNAPSHOT</htmlformentryVersion>
+		<htmlformentryVersion>4.0.2</htmlformentryVersion>
 		<htmlwidgetsVersion>1.10.0</htmlwidgetsVersion>
 		<idgenVersion>4.5.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
