@@ -113,7 +113,7 @@
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.2.0-SNAPSHOT</patientqueueingVersion>
-		<ugandaemrSyncVersion>1.0.9</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>1.0.10</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 
 		<!-- core configuration library -->
