@@ -112,7 +112,7 @@
 		<uiframeworkVersion>3.17.0</uiframeworkVersion>
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
-		<patientqueueingVersion>1.2.0-SNAPSHOT</patientqueueingVersion>
+		<patientqueueingVersion>1.2.0</patientqueueingVersion>
 		<ugandaemrSyncVersion>1.0.10</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 
