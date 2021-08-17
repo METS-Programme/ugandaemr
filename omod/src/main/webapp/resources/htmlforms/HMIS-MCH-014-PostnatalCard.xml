@@ -354,7 +354,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label>Is there abdominal pain? </label>
-                                            <obs conceptId="99320" style="textarea" id="other-treatment"/>
+                                            <obs conceptId="90100" style="" id="other-treatment"/>
                                         </div>                                                                                 
                                     </div>
                                     <div class="row">                                        
@@ -385,7 +385,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label>Did you test for HIV during pregnancy?</label>
-                                            <obs conceptId="159367" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                                            <obs conceptId="99464" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
                                         </div>
                                         <div class="col-md-3">
                                             <label>HIV Results</label>
@@ -754,7 +754,7 @@
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label>Is the baby cold or hot?</label>
-                                            <obs conceptId="1151" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" labelText="" class="horizontal" />
+                                            <obs conceptId="5088" answerConceptIds="1065,1066" labelText="" class="" />
                                         </div>
                                         <div class="col-md-3">
                                             <label>KMC done?</label>
