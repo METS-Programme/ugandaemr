@@ -1423,7 +1423,7 @@
     <concept  concept_id="165428"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-29 12:52:53"  version="1.0"  changed_by="1"  date_changed="2019-11-29 12:52:53"  uuid="f48dc58e-3755-4a5c-9525-9a649fd2a148"/>
     <concept  concept_id="165429"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:30:12"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:34:20"  uuid="5d26ffa1-8b58-45af-a534-bc3b469850cb"/>
     <concept  concept_id="165438"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-11-29 14:32:47"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:32:47"  uuid="eae2bbc8-8f82-4241-9b26-0579bf57b833"/>
-    <concept  concept_id="165431"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:33:25"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:33:25"  uuid="fd77a408-514b-4325-8777-77dcc9b4d4e8"/>
+    <concept  concept_id="165431"  retired="0"  datatype_id="4"  class[id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:33:25"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:33:25"  uuid="fd77a408-514b-4325-8777-77dcc9b4d4e8"/>
     <concept  concept_id="165432"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:55:25"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:55:25"  uuid="97ad10e2-04de-47da-9fd8-59a1d0b7022d"/>
     <concept  concept_id="165433"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:56:17"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:56:17"  uuid="17a8f443-31dd-4d40-b344-3584d5611c3c"/>
     <concept  concept_id="165434"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-11-29 14:56:42"  version="1.0"  changed_by="1"  date_changed="2019-11-29 14:56:42"  uuid="111aa2a7-5604-4071-8446-c92972c93e51"/>
@@ -1917,6 +1917,32 @@
 
     <concept  concept_id="166464"  retired="0"  datatype_id="1"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-21 10:33:16" version="1.0"  changed_by="1"  date_changed="2021-07-21 10:33:16"  uuid="5eadaac5-880d-4aea-9ac9-5b66fd3e7ad0"/>
     <concept  concept_id="166465"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2021-07-22 13:33:43"  version="1.0"  changed_by="1"  date_changed="2021-07-22 13:33:43" uuid="8ea2dd3d-7d16-42f6-b034-5ffe3a4dbc99"/>
+
+    <!--PNC Concepts -->
+    <concept  concept_id="166471"  retired="0"   datatype_id="4"  class_id="11" is_set="0"  creator="1"  date_created="2021-08-19 17:06:55"  changed_by="1"  date_changed="2021-08-19 17:06:55"  uuid="c17c6319-0ffa-4486-9e41-8cb64c93f499"/>
+    <concept  concept_id="166472"  retired="0"   datatype_id="4"  class_id="11" is_set="0"  creator="1"  date_created="2021-08-19 17:12:50"  changed_by="1"  date_changed="2021-08-19 17:12:50"  uuid="a9ea38cb-3642-4d13-88ea-5e0bb3c3d586"/>
+    <concept  concept_id="166473"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:15:11"  changed_by="1"  date_changed="2021-08-19 17:15:11"  uuid="ada3e677-07a5-441c-9d0c-e8bf59bf1b8b"/>
+    <concept  concept_id="166474"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:19:39"  changed_by="1"  date_changed="2021-08-19 17:19:39"  uuid="bdd9c3cf-02b0-42a3-96ab-fbba9fbd0af6"/>
+    <concept  concept_id="166475"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:24:29"  changed_by="1"  date_changed="2021-08-19 17:24:29"  uuid="85ff031b-af5d-48d1-a8ed-77598c452931"/>
+    <concept  concept_id="166476"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:25:11"  changed_by="1"  date_changed="2021-08-19 17:25:11"  uuid="097641c4-ec66-48c4-b70b-903d763744cb"/>
+    <concept  concept_id="166477"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:25:35"  changed_by="1"  date_changed="2021-08-19 17:25:35"  uuid="11133eed-ffe1-421d-8026-20307f543c27"/>
+    <concept  concept_id="166478"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:29:15"  changed_by="1"  date_changed="2021-08-19 17:29:15"  uuid="d6899a24-3364-4f71-8220-4740873e340b"/>
+    <concept  concept_id="166479"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:32:33"  changed_by="1"  date_changed="2021-08-19 17:32:33"  uuid="7f0fee35-0759-49dd-88ea-09e473c14f21"/>
+    <concept  concept_id="166480"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:34:43"  changed_by="1"  date_changed="2021-08-19 17:34:43"  uuid="1c647de0-d727-4b0e-9579-ab36e5eb87f8"/>
+    <concept  concept_id="166481"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:36:42"  changed_by="1"  date_changed="2021-08-19 17:36:42"  uuid="36d7a335-1aef-4fd8-b77c-a2bef1e56b1e"/>
+    <concept  concept_id="166482"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:38:05"  changed_by="1"  date_changed="2021-08-19 17:38:05"  uuid="e74c4ea1-2a3e-46dc-853e-874da315e983"/>
+    <concept  concept_id="166483"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:39:48"  changed_by="1"  date_changed="2021-08-19 17:39:48"  uuid="c2a69b95-e2f6-49a2-9527-eb1ffdc4a252"/>
+    <concept  concept_id="166484"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:40:12"  changed_by="1"  date_changed="2021-08-19 17:40:12"  uuid="10349e8d-4415-4dbd-a0c8-539c7985e625"/>
+    <concept  concept_id="166485"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:43:11"  changed_by="1"  date_changed="2021-08-19 17:43:11"  uuid="f9e3625e-44ba-4e5b-bee0-d52fba03d04c"/>
+    <concept  concept_id="166486"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:43:32"  changed_by="1"  date_changed="2021-08-19 17:43:32"  uuid="477f1be0-ea82-41c3-8316-3536be3ce965"/>
+    <concept  concept_id="166487"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:43:53"  changed_by="1"  date_changed="2021-08-19 17:43:53"  uuid="d561e6fb-c2e3-4edb-a123-7d259fd6f005"/>
+    <concept  concept_id="166488"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:44:16"  changed_by="1"  date_changed="2021-08-19 17:44:16"  uuid="007f5889-4b0d-4c07-b373-03f3dffa54d7"/>
+    <concept  concept_id="166489"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:44:41"  changed_by="1"  date_changed="2021-08-19 17:44:41"  uuid="79185d62-3574-409e-b318-119c2dac6c45"/>
+    <concept  concept_id="166490"  retired="0"   datatype_id="5"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:45:13"  changed_by="1"  date_changed="2021-08-19 17:45:13"  uuid="4dea4907-0edb-4685-bbe8-531b58d311fc"/>
+    <concept  concept_id="166491"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:47:12"  changed_by="1"  date_changed="2021-08-19 17:47:12"  uuid="b817d594-17de-42fe-b70f-e04fb23ba0d3"/>
+    <concept  concept_id="166492"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:49:28"  changed_by="1"  date_changed="2021-08-19 17:54:52"  uuid="13b65fd8-9a87-4de9-a3fe-6166be5524cc"/>
+    <concept  concept_id="166493"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:55:02"  changed_by="1"  date_changed="2021-08-19 17:55:02"  uuid="599391b9-e739-4e64-8a92-b50f61cfccae"/>
+    <concept  concept_id="166494"  retired="0"   datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:58:02"  changed_by="1"  date_changed="2021-08-19 17:58:02"  uuid="994f4252-1eb9-4941-ac36-f46cdb1c49d9"/>
 
 
     <!--CONCEPT NUMERIC-->
@@ -2504,6 +2530,12 @@
     <!-- Emergency ART Services Register -->
     <concept_description  concept_description_id="18543"  concept_id="166464"  description="TB Drug Refill Pills"                             locale="en"  creator="1"  date_created="2021-07-21 10:33:16" uuid="a212ac72-7ffb-4756-a1c1-74f7a9066aae"/>
     <concept_description  concept_description_id="18544"  concept_id="166465"  description="HIV Exposed Infant Number"                     locale="en"  creator="1"  date_created="2021-07-22 13:33:43" uuid="44ee0072-a85e-4a75-8413-627c096aa875"/>
+
+    <!-- PNC Concepts-->
+    <concept_description  concept_description_id="18545"  concept_id="166471"  description="Use to ask and examine the condition of the abdominal wound"  							locale="en"  creator="1"  date_created="2021-08-19 17:06:55"  uuid="198eed44-f729-44e1-9e7a-05f182ac4e1a"/>
+    <concept_description  concept_description_id="18546"  concept_id="166483"  description="PNC question"												  							locale="en"  creator="1"  date_created="2021-08-19 17:39:48"  uuid="0e656ac6-877b-4ff8-9794-b4fb5b54eeb1"/>
+    <concept_description  concept_description_id="18547"  concept_id="166492"  description="This is for Find out whether birth was notified and registered at the community level"  locale="en"  creator="1"  date_created="2021-08-19 17:52:22"  uuid="8e0bd917-29c7-4b44-b58a-4fe4792c6726"/>
+
 
 
 
@@ -5996,6 +6028,33 @@
     <concept_name  concept_name_id="162721"  concept_id="166463"  name="Other PPs"  						 locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-19 14:56:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="2dcf1c17-1511-4ebe-83d1-f1016d9469bb"/>
     <concept_name  concept_name_id="162722"  concept_id="166464"  name="TB Drug Refill Pills"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-21 10:33:16"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e25a2201-1f5b-4c9b-b92a-1bdadaae8719"/>
     <concept_name  concept_name_id="162723"  concept_id="166465"  name="EID Number"                          locale="en"  locale_preferred="1"  creator="1"  date_created="2021-07-22 13:33:43"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="62436b5e-e6d3-4df1-b88f-00e527a163bd"/>
+
+    <!-- PNC Concepts-->
+    <concept_name  concept_name_id="162728"  concept_id="166471"  name="Caesarean Section Findings"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:06:55"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8d67f169-b8a2-426e-a218-628262efb7a4"/>
+    <concept_name  concept_name_id="162729"  concept_id="166472"  name="Did you get an episiotomy or a tear?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:12:50"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e42101a4-16b5-48ca-8c53-3ef04d25dc5d"/>
+    <concept_name  concept_name_id="162730"  concept_id="166473"  name="Did you heal properly?"  										  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:15:11"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="1dcbac85-0c72-4e4a-8f56-859e8dd07bb5"/>
+    <concept_name  concept_name_id="162731"  concept_id="166474"  name="Maternal Medication Comments"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:19:39"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="49f85a13-1fb0-40f2-8531-2ee383fb0d75"/>
+    <concept_name  concept_name_id="162732"  concept_id="166475"  name="Do you have any complaints today?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:24:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="00977218-a3bd-4a30-9939-f0466968a109"/>
+    <concept_name  concept_name_id="162733"  concept_id="166476"  name="How is your appetite?"  										  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:25:11"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="583255f7-30c2-47f3-ba24-e8b32338fbdb"/>
+    <concept_name  concept_name_id="162734"  concept_id="166477"  name="Is there an abnormal vaginal discharge?"  						  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:25:35"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e4d6de7f-7b02-4deb-a9d6-37f7bb6d8b81"/>
+    <concept_name  concept_name_id="162735"  concept_id="166478"  name="Have you resumed the monthly period?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:29:15"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="76657252-2daf-4b7f-9a10-4a34971d8b06"/>
+    <concept_name  concept_name_id="162736"  concept_id="166479"  name="Have you resumed sexual intercourse?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:32:33"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="1003aea9-4f4d-4a81-8851-f51e77182ff8"/>
+    <concept_name  concept_name_id="162737"  concept_id="166480"  name="Have you ever had post-coital bleeding during the last 6 weeks?"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:34:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8a953658-e25c-4915-85a7-1775a6042852"/>
+    <concept_name  concept_name_id="162738"  concept_id="166481"  name="Exclusive breastfeeding"  										  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:36:42"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="ff3fcdd5-c56c-4b11-a5df-2535234ef832"/>
+    <concept_name  concept_name_id="162739"  concept_id="166482"  name="Exclusive Replacement feeding"  								  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:38:05"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="6a9c5a04-2c40-4096-9d13-c1e86b289345"/>
+    <concept_name  concept_name_id="162740"  concept_id="166483"  name="Baby mixed feeding"  											  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:39:48"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e288293c-fdf3-420c-9dc5-344f9d2eaed2"/>
+    <concept_name  concept_name_id="162741"  concept_id="166484"  name="Is the baby feeding normally?"  								  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:40:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="7a83f085-8f15-4cff-8624-b6d10fdcfb23"/>
+    <concept_name  concept_name_id="162742"  concept_id="166485"  name="Hours done for KMC"  											  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:43:11"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="621145d0-d296-4156-9063-b50324b323c4"/>
+    <concept_name  concept_name_id="162743"  concept_id="166486"  name="Is the baby cold or hot?"  										  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:43:32"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8a2f19b3-e01b-48e6-9dd6-bdeb002fa0b6"/>
+    <concept_name  concept_name_id="162744"  concept_id="166487"  name="Hot"  															  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:43:53"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="895b31d2-5c85-42ca-ac67-cf5d48960ba1"/>
+    <concept_name  concept_name_id="162745"  concept_id="166488"  name="Cold"  															  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:44:16"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="83cb9c5e-cc17-4505-94cc-70420ef19af2"/>
+    <concept_name  concept_name_id="162746"  concept_id="166489"  name="KMC done?"  												   	  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:44:41"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="b06bff78-b332-4b6f-aea6-839ca3a80161"/>
+    <concept_name  concept_name_id="162747"  concept_id="166490"  name="Is the baby passing urine?"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:45:13"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d97c173c-d766-4b12-bfa3-8f04dd3db396"/>
+    <concept_name  concept_name_id="162748"  concept_id="166491"  name="Is the baby passing stool?"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:47:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="faeb0ae4-d3ae-4ab5-94e5-43b7b0563d90"/>
+    <concept_name  concept_name_id="162749"  concept_id="166492"  name="Birth at Commnunity Level"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:49:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="be53c34e-799a-45f2-b9c9-406dddd2ede8"/>
+    <concept_name  concept_name_id="162750"  concept_id="166493"  name="Has started Septrin prophylaxis?"  								  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:55:02"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="9b8411a9-2feb-4241-b780-6a9ac23b8540"/>
+    <concept_name  concept_name_id="162751"  concept_id="166494"  name="ARVs given to breatfeeding child?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:58:02"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="07e7c8b8-d750-48ce-8bfb-861c8a49db8d"/>
+    
 
 
 
