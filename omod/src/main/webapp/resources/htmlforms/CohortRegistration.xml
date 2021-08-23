@@ -40,6 +40,10 @@
                 });
             }
 
+                function hasWhiteSpace(s) {
+                    return s.indexOf(' ') >= 0;
+                }
+
             function getCohorts(){
                 jq.ajax({
                 type: "GET",
@@ -79,7 +83,7 @@
                 var name = jq('#name').val();
                 var description = jq('#description').val();
                 var unique_id = jq('#uuid').val();
-                var submitVal = false;
+                var submitVal = true;
 
 
                 if (name == ""){
@@ -97,6 +101,11 @@
                     jq().toastmessage('showErrorToast', "CDDP unique identifier is required");
                 }
 
+                if(hasWhiteSpace(unique_id)){
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "No spaces are allowed in the unique identifier");
+                }
+
                 var today = new Date();
                 var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
                 var dataToPost = "{\"name\":\"" +  name + "\"," +
@@ -106,10 +115,10 @@
                    "\"location\":\"3ec8ff90-3ec1-408e-bf8c-22e4553d6e17\","+
                    " \"groupCohort\":\"false\","+
                    "\"startDate\":\""+ date + "\"}";
-                saveCohort(dataToPost)
+                if(submitVal){
+                    saveCohort(dataToPost)
+                }
                 console.log(dataToPost);
-
-                return submitVal;
             });
         }
     </script>
