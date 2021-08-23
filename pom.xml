@@ -62,7 +62,7 @@
 		<openMRSVersion>2.3.1</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webservices.restModuleVersion>2.28.0</webservices.restModuleVersion> 
+		<webservices.restModuleVersion>2.28.0</webservices.restModuleVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
@@ -115,6 +115,7 @@
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
 		<ugandaemrSyncVersion>1.0.10</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
+		<cohortModuleVersion>2.0</cohortModuleVersion>
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.25</ugandaemrReportsVersion>
@@ -461,6 +462,11 @@
 				<scope>provided</scope>
 				<type>test-jar</type>
     		</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>cohort</artifactId>
+				<version>${cohortModuleVersion}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

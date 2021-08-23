@@ -1,0 +1,148 @@
+<htmlform formName="Cohort Registration"
+          formDescription=""
+          formUuid="8d43a2ea-e26b-4a57-a32b-93d98b806b9d"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.overallActions"
+          formOrder="110"
+          formIcon="icon-exchange"
+          formShowIf="patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="Cohort Registration">
+    <style>
+
+
+    </style>
+    <script type="text/javascript">
+        if (jQuery) {
+
+            jq(document).ready(function () {
+                getCohorts();
+            });
+            function saveCohort(dataToPost){
+                jq.ajax({
+                    type: "POST",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort",
+                    dataType: "json",
+                    contentType: "application/json",
+                    accept: "application/json",
+                    data: dataToPost,
+                    async: false,
+                    success: function (data) {
+                        jq('#name:text').val("");
+                        jq('#description:text').val("");
+                        jq('#uuid:text').val("");
+                        jq().toastmessage('showSuccessToast', "CDDP Group Saved Successfully");
+                    },
+                    error: function (response) {
+                        jq().toastmessage('showErrorToast', "Error while Saving CDDP Group");
+                    }
+                });
+            }
+
+            function getCohorts(){
+                jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort?v=custom:(name,uuid,description)",
+                dataType: "json",
+                contentType: "application/json",
+                async: false,
+                success: function (data) {
+                var cohorts = data.results;
+                displaySavedCohorts(cohorts);
+                console.log(cohorts);
+                }
+                });
+            }
+
+            function displaySavedCohorts(data){
+            var container = document.getElementById("savedCohortsSections");
+            for (var i = 0; i &lt; data.length; i++) {
+                var div = document.createElement("div");
+                var div1 = document.createElement("div");
+                var div2 = document.createElement("div");
+                div.innerHTML = 'Name: ' + data[i].name + '-' + data[i].uuid;
+                div1.innerHTML = 'Identifier: ' + data[i].uuid;
+                div2.innerHTML = 'Description: ' + data[i].description + "<br/>"+ "<hr/>";
+                container.appendChild(div);
+                container.appendChild(div1);
+                container.appendChild(div2);
+
+            }
+
+
+
+            }
+
+
+            beforeSubmit.push(function () {
+                var name = jq('#name').val();
+                var description = jq('#description').val();
+                var unique_id = jq('#uuid').val();
+                var submitVal = false;
+
+
+                if (name == ""){
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "CDDP Name is required");
+                }
+
+                if (description== ""){
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "CDDP Description is required");
+                }
+
+                if (unique_id == "") {
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "CDDP unique identifier is required");
+                }
+
+                var dataToPost = "{\"name\":\"" +  name + "\", \"description\": \"" + description + "\", \"uuid\":\"" + unique_id + "\",\"memberIds\": [10,9]}";
+                saveCohort(dataToPost)
+                console.log(dataToPost);
+
+                return submitVal;
+            });
+        }
+    </script>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #94979A; padding: 10px;">CDDP Group Registration </h3>
+        </div>
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Name</label>
+                            <input type="text" id="name" name="name"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Description</label>
+                            <input type="text" id="description" name="description"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Unique Identifier No </label>
+                            <input type="text" id="uuid" name="uuid"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="well">
+                        <div id="savedCohortsSections">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <br/>
+        <submit submitLabel="Save"/>
+    </div>
+</htmlform>

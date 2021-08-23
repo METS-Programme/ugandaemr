@@ -1,0 +1,138 @@
+<htmlform formName="CohortMemberRegistration"
+          formDescription=""
+          formUuid="48d3d8d5-8e41-4e21-9805-4ff269aa1ba6"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.overallActions"
+          formOrder="111"
+          formIcon="icon-exchange"
+          formShowIf="patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="CohortMemberRegistration">
+    <style>
+
+
+    </style>
+    <script type="text/javascript">
+        if (jQuery) {
+            var patientuuid = '<lookup expression="patient.uuid"/>';
+            jq(document).ready(function () {
+                getCohorts();
+                getPatientsCohorts()
+            });
+
+            function getCohorts(){
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort?v=custom:(name,uuid)",
+                    dataType: "json",
+                    contentType: "application/json",
+                    async: false,
+                    success: function (data) {
+                    var cohorts = data.results;
+                    addToDropDown(cohorts);
+                    }
+                });
+            }
+
+            function getPatientsCohorts(){
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember?v=default&amp;patient=" + patientuuid,
+                    dataType: "json",
+                    Accept: "application/json",
+                    async: false,
+                    success: function (data) {
+                    var cohorts = data.results;
+                    console.log(cohorts);
+                    processPatientCohorts(cohorts);
+                    }
+                });
+            }
+
+            function processPatientCohorts(data){
+                for (var i = 0; i &lt; data.length; i++) {
+                    jq('#patientsCohorts').append("<tr><td>"+ data[i].cohort.display + "- " + data[i].cohort.uuid+"</td>" +
+                    "<td>"+ data[i].startDate + "</td>" +
+                    "<td>"+ data[i].endDate + "</td></tr>");
+                }
+            }
+
+            function addToDropDown(data){
+                for (var i = 0; i &lt; data.length; i++) {
+                    jq('#selectCohort').append($("<option></option>").attr("value", data[i].uuid).text(data[i].name));
+                }
+            }
+
+
+            beforeSubmit.push(function () {
+                var cohort = jq('#selectCohort').val();
+                console.log(cohort);
+                var submitVal = false;
+
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var dataToPost = "{\"patient\": \"" +  patientuuid + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
+                if (cohort == ""){
+                    submitVal = false;
+                    jq().toastmessage('showErrorToast', "Select at least CDDP Group");
+                }else{
+                    jq.ajax({
+                        type: "POST",
+                        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/",
+                        dataType: "json",
+                        contentType: "application/json",
+                        accept: "application/json",
+                        data: dataToPost,
+                        success: function (data) {
+                        jq().toastmessage('showSuccessToast', "Client Added to CDDP Group Successfully");
+                        },
+                        error: function (response) {
+                        jq().toastmessage('showErrorToast', "Error while Added Client to CDDP Group");
+                        }
+                    });
+                }
+                console.log(dataToPost);
+
+                return submitVal;
+            });
+        }
+    </script>
+    <div class="ai-page-frame">
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #94979A; padding: 10px;">CDDP Group Assignment </h3>
+        </div>
+        <section>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>CDDP Group </label>
+                            <select name="cohort" id="selectCohort"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table>
+                                <thead>
+                                <td><b>Patient already exists in Groups</b></td>
+                                <td><b>Start Date</b></td>
+                                <td><b>End Date</b></td>
+                                </thead>
+                                <tbody id="patientsCohorts">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <br/>
+        <submit submitLabel="Save"/>
+    </div>
+</htmlform>
