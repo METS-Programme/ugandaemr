@@ -22,7 +22,7 @@
             function saveCohort(dataToPost){
                 jq.ajax({
                     type: "POST",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort",
                     dataType: "json",
                     contentType: "application/json",
                     accept: "application/json",
@@ -43,7 +43,7 @@
             function getCohorts(){
                 jq.ajax({
                 type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort?v=custom:(name,uuid,description)",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=custom:(name,uuid,description)&amp;cohortType=e50fa0af-df36-4a26-853f-feb05244e5ca",
                 dataType: "json",
                 contentType: "application/json",
                 async: false,
@@ -97,7 +97,15 @@
                     jq().toastmessage('showErrorToast', "CDDP unique identifier is required");
                 }
 
-                var dataToPost = "{\"name\":\"" +  name + "\", \"description\": \"" + description + "\", \"uuid\":\"" + unique_id + "\",\"memberIds\": [10,9]}";
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var dataToPost = "{\"name\":\"" +  name + "\"," +
+                   " \"description\": \"" + description + "\"," +
+                   " \"uuid\":\"" + unique_id + "\","+
+                   " \"cohortType\":\"e50fa0af-df36-4a26-853f-feb05244e5ca\","+
+                   "\"location\":\"3ec8ff90-3ec1-408e-bf8c-22e4553d6e17\","+
+                   " \"groupCohort\":\"false\","+
+                   "\"startDate\":\""+ date + "\"}";
                 saveCohort(dataToPost)
                 console.log(dataToPost);
 

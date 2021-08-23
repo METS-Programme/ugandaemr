@@ -24,7 +24,7 @@
             function getCohorts(){
                 jq.ajax({
                     type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohort?v=custom:(name,uuid)",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=custom:(name,uuid,description)&amp;cohortType=e50fa0af-df36-4a26-853f-feb05244e5ca",
                     dataType: "json",
                     contentType: "application/json",
                     async: false,
@@ -38,13 +38,12 @@
             function getPatientsCohorts(){
                 jq.ajax({
                     type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember?v=default&amp;patient=" + patientuuid,
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember?v=full&amp;patient=" + patientuuid,
                     dataType: "json",
                     Accept: "application/json",
                     async: false,
                     success: function (data) {
                     var cohorts = data.results;
-                    console.log(cohorts);
                     processPatientCohorts(cohorts);
                     }
                 });
@@ -52,9 +51,13 @@
 
             function processPatientCohorts(data){
                 for (var i = 0; i &lt; data.length; i++) {
-                    jq('#patientsCohorts').append("<tr><td>"+ data[i].cohort.display + "- " + data[i].cohort.uuid+"</td>" +
-                    "<td>"+ data[i].startDate + "</td>" +
-                    "<td>"+ data[i].endDate + "</td></tr>");
+                    var cohortType = data[i].cohort.cohortType;
+                    console.log(cohortType);
+                    if(cohortType!=null &amp;&amp;cohortType.uuid=="e50fa0af-df36-4a26-853f-feb05244e5ca"){
+                        jq('#patientsCohorts').append("<tr><td>"+ data[i].cohort.display + "- " + data[i].cohort.uuid+"</td>" +
+                        "<td>"+ data[i].startDate + "</td>" +
+                        "<td>"+ data[i].endDate + "</td></tr>");
+                    }
                 }
             }
 
