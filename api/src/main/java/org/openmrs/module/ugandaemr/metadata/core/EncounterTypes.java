@@ -297,7 +297,7 @@ public class EncounterTypes {
     public static EncounterTypeDescriptor COVID19_POSTMORTEM = new EncounterTypeDescriptor() {
         @Override
         public String name() {
-            return "Covid19 Postmortem";            
+            return "Covid19 Postmortem";
         }
 
         @Override
@@ -324,4 +324,5 @@ public class EncounterTypes {
             return "afcdfcd8-defe-11eb-ba80-0242ac130004";
         }
     };
+
 }
