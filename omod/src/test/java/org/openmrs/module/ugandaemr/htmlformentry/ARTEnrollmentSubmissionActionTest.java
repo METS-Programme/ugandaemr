@@ -4,12 +4,19 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openmrs.*;
+import org.openmrs.Encounter;
+import org.openmrs.EncounterType;
+import org.openmrs.Form;
+import org.openmrs.Patient;
+import org.openmrs.PatientProgram;
+import org.openmrs.PatientState;
+import org.openmrs.Program;
 import org.openmrs.api.ProgramWorkflowService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.HtmlForm;
+import org.openmrs.module.ugandaemr.metadata.core.Programs;
 import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
@@ -25,13 +32,13 @@ import static org.mockito.Mockito.when;
 /**
  * Tests patient enrollment into the MCH program
  */
-public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensitiveTest {
+public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensitiveTest {
 
     protected static final String UGANDAEMR_DSDM_DATASET_XML = "org/openmrs/module/ugandaemr/include/dsdmTestDataSet.xml";
 
-    private String xml = "<htmlform>\n" + "" + "Date: <encounterDate default='today'/>\n" + "Location: <encounterLocation default='1'/>\n" + "Provider: <encounterProvider role='Provider' default='1'/>\n" + "<obs id=\"165143\" conceptId=\"165143\" answerConceptIds=\"165138,165140,165139,165142,165141\" answerLabels=\"FBIM,FBG,FTR,CDDP,CCLAD\" required=\"required\" labelText=\"DSDM Model\" defaultValue=\"165140\"/>\n" + "<postSubmissionAction class='org.openmrs.module.ugandaemr.htmlformentry.DSDSProgramSubmissionAction'/>\n" + "<submit/>" + "</htmlform>";
+    private String xml = "<htmlform formEncounterType=\"8d5b27bc-c2cc-11de-8d13-0010c6dffd0f\">\n" + "" + "Date: <encounterDate default='today'/>\n" + "Location: <encounterLocation default='1'/>\n" + "Provider: <encounterProvider role='Provider' default='1'/>\n" + "<obs id=\"165143\" conceptId=\"165143\" answerConceptIds=\"165138,165140,165139,165142,165141\" answerLabels=\"FBIM,FBG,FTR,CDDP,CCLAD\" required=\"required\" labelText=\"DSDM Model\" defaultValue=\"165140\"/>\n" + "<postSubmissionAction class='org.openmrs.module.ugandaemr.htmlformentry.ARTEnrollmentSubmissionAction'/>\n" + "<submit/>" + "</htmlform>";
 
-    private String xml2 = "<htmlform>\n" + "" + "Date: <encounterDate default='2015-02-10 00:00:00'/>\n" + "Location: <encounterLocation default='1'/>\n" + "Provider: <encounterProvider role='Provider' default='2'/>\n" + "<input type=\"hidden\" name=\"personId\" value=\"1393\"/>" + "<input type=\"hidden\" name=\"createVisit\" value=\"false\"/>\n" + "<input type=\"hidden\" name=\"encounterId\" value=\"31182\"/>\n" + "<input type=\"hidden\" name=\"visitId\" value=\"31165\"/>\n" + "<obs id=\"165143\" conceptId=\"165143\" answerConceptIds=\"165138,165140,165139,165142,165141\" answerLabels=\"FBIM,FBG,FTR,CDDP,CCLAD\" required=\"required\" labelText=\"DSDM Model\" defaultValue=\"165140\"/>\n" + "<postSubmissionAction class='org.openmrs.module.ugandaemr.htmlformentry.DSDSProgramSubmissionAction'/>\n" + "<submit/>" + "</htmlform>";
+    private String xml2 = "<htmlform formEncounterType=\"8d5b27bc-c2cc-11de-8d13-0010c6dffd0f\">\n" + "" + "Date: <encounterDate default='2015-02-10 00:00:00'/>\n" + "Location: <encounterLocation default='1'/>\n" + "Provider: <encounterProvider role='Provider' default='2'/>\n" + "<input type=\"hidden\" name=\"personId\" value=\"1393\"/>" + "<input type=\"hidden\" name=\"createVisit\" value=\"false\"/>\n" + "<input type=\"hidden\" name=\"encounterId\" value=\"31182\"/>\n" + "<input type=\"hidden\" name=\"visitId\" value=\"31165\"/>\n" + "<obs id=\"165143\" conceptId=\"165143\" answerConceptIds=\"165138,165140,165139,165142,165141\" answerLabels=\"FBIM,FBG,FTR,CDDP,CCLAD\" required=\"required\" labelText=\"DSDM Model\" defaultValue=\"165140\"/>\n" + "<postSubmissionAction class='org.openmrs.module.ugandaemr.htmlformentry.ARTEnrollmentSubmissionAction'/>\n" + "<submit/>" + "</htmlform>";
 
     @Before
     public void setup() throws Exception {
@@ -41,6 +48,46 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
     @After
     public void cleanup() throws Exception {
         deleteAllData();
+    }
+
+    /**
+     * New  Patient Encounter should enroll patient in first line regimen
+     *
+     * @throws Exception
+     */
+    @Test
+    public void shouldAssignPatientToFirstLineRegimenStateOnSubmit() throws Exception {
+        Patient patient = new Patient(1393);
+        ProgramWorkflowService service = Context.getService(ProgramWorkflowService.class);
+        Program hivProgram = service.getProgramByUuid(Programs.HIV_PROGRAM.uuid());
+
+        //prepare and submit an html form to enroll patient in mch program
+        HtmlForm htmlForm1 = new HtmlForm();
+        htmlForm1.setXmlData(xml);
+        Form form1 = new Form(8);
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(8));
+        htmlForm1.setForm(form1);
+        FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
+
+        //getHtmlToDisplay() is called to generate necessary tag handlers and cache the form
+        session1.getHtmlToDisplay();
+
+        //prepareForSubmit is called to set patient and encounter if specified in tags
+        session1.prepareForSubmit();
+
+        HttpServletRequest request = mock(MockHttpServletRequest.class);
+        when(request.getParameter("w1")).thenReturn("2021-07-29");
+        session1.getSubmissionController().handleFormSubmission(session1, request);
+
+        session1.applyActions();
+
+        List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, hivProgram,null, null, null,null,false);
+        Assert.assertEquals(1, patientPrograms.size());
+        Assert.assertEquals(Programs.HIV_PROGRAM.uuid(), patientPrograms.get(0).getProgram().getUuid());
+        Assert.assertNull(patientPrograms.get(0).getDateCompleted());
+        Assert.assertEquals(1, patientPrograms.get(0).getStates().size());
+        PatientState firstLineRegimenState = patientPrograms.get(0).getStates().iterator().next();
+        Assert.assertEquals(90271, firstLineRegimenState.getState().getConcept().getConceptId().intValue());
     }
 
     /**
@@ -57,7 +104,7 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
 
@@ -97,7 +144,7 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         FormEntrySession session1 = new FormEntrySession(patient, null, FormEntryContext.Mode.ENTER, htmlForm1, new MockHttpSession());
 
@@ -136,7 +183,7 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());
@@ -180,7 +227,7 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());
@@ -221,7 +268,7 @@ public class DSDMProgramSubmissionActionTest extends BaseModuleWebContextSensiti
         HtmlForm htmlForm1 = new HtmlForm();
         htmlForm1.setXmlData(xml2);
         Form form1 = new Form(8);
-        form1.setEncounterType(new EncounterType(15));
+        form1.setEncounterType(Context.getEncounterService().getEncounterType(15));
         htmlForm1.setForm(form1);
         Encounter encounter = new Encounter();
         encounter.setDateCreated(new Date());

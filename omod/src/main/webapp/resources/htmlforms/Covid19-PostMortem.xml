@@ -133,8 +133,7 @@
                                             </div>
                                             <div class="col-md-3">
 												<label>Date of Admission in Hospital</label>
-												<i class="icon-calendar small right-addon-row position-absolute" style="right: 25%; top: 35%;"></i>
-												<obs conceptId="159376" />
+                                                <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Medical Officer</label>
