@@ -81,7 +81,7 @@
 		<dataexchangeVersion>1.3.3</dataexchangeVersion>
 		<dataintegrityVersion>4.4.3</dataintegrityVersion>
 		<emrapiVersion>1.29.0</emrapiVersion>
-		<eventVersion>2.7.0</eventVersion>
+		<eventVersion>2.9.0</eventVersion>
 		<fhir2Version>1.2.2</fhir2Version>
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
