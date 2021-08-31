@@ -70,44 +70,26 @@
                     hideContainer("#cddp_categorization");
                 }
 
-                jq("#pharmacy_selection_id").attr("disabled", true);
+                jq("#refill_point_select_id").attr("disabled", true);
                 disable_fields("cddp_category");
-                disable_fields("clddp_id");
-                jq.ajax({
-                    type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/location?v=full&amp;&amp;tag=45e82faa-d8c6-4ae0-b52c-d263f8ac9cef",
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
 
-                        var code_attribute_type_uuid = "3c27cd88-8383-49d4-9072-29b92de60e44";
-                        data.results.forEach(function (location) {
-                            location.attributes.forEach(function (attribute) {
-                                if (attribute.attributeType.uuid === code_attribute_type_uuid) {
-                                    var option = "<option value=" + attribute.value + ">" + location.name + "</option>";
-                                    jq("#pharmacy_selection_id").append(option);
-                                }
-                            })
 
-                        })
-                    }
-                });
-
-                jq("#pharmacy_selection_id").change(function () {
-                    jq("#pharmacy_id input").val(this.value);
+                jq("#refill_point_select_id").change(function () {
+                    jq("#refill_point_id input").val(this.value);
                 });
 
                 jq("#cddp_category").change(function () {
                     var cddpCategory= jq("#cddp_category").find("select").find(":selected").val();
                     if (cddpCategory === "a6a0ab45-b7dc-43b2-b28c-45a91f968ebf") {
-                        jq("#pharmacy_selection_id").attr("disabled", false);
-                        disable_fields("clddp_id");
+<!--                            CRPDDP categories fetching-->
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("e50fa0af-df36-4a26-853f-feb05244e5ca");
                     } else if (cddpCategory === "d77cc565-5e53-4633-8fc7-956cfc1831d9") {
-                        enable_fields("clddp_id");
-                        jq("#pharmacy_selection_id").attr("disabled", true);
+<!--                            CLDDP categories fetching -->
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
                     }else {
-                        jq("#pharmacy_selection_id").attr("disabled", true);
-                        disable_fields("clddp_id");
+                        jq("#refill_point_select_id").attr("disabled", true);
                     }
                 });
 
@@ -146,6 +128,25 @@
                 }else {
                     return false;
                 }
+            }
+
+            function getCohortCategorizations(uuid){
+                jq('#refill_point_select_id').empty();
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=custom:(name,uuid,description)&amp;cohortType=" + uuid,
+                    dataType: "json",
+                    contentType: "application/json",
+                    async: false,
+                    success: function (data) {
+                    var cohorts = data.results;
+                    jq('#refill_point_select_id').append($("<option>Select Refill Point</option>"));
+                        for (var i = 0; i &lt; cohorts.length; i++) {
+                                jq('#refill_point_select_id').append($("<option></option>").attr("value", cohorts[i].uuid).text(cohorts[i].name));
+                        }
+
+                    }
+                });
             }
 
            jq(document).ready(function () {
@@ -1364,6 +1365,30 @@
                 }
 
             </restrictByRole>
+
+            var cohort = getValue('refill_point_id.value');
+            var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
+            var DSDCategory = getValue('cddp_category.value');
+            var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
+            if (cohort == "" &amp;&amp; (DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9")){
+                jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
+                return false;
+            }else{
+                jq.ajax({
+                type: "POST",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/",
+                dataType: "json",
+                contentType: "application/json",
+                accept: "application/json",
+                data: dataToPost,
+                success: function (data) {
+                    jq().toastmessage('showSuccessToast', "Client Added to a Refill Group Successfully");
+                },
+                error: function (response) {
+                    jq().toastmessage('showErrorToast', "Error while Added Client to Refill Group");
+                }
+                });
+            }
 
                 return true;
             });
@@ -2735,20 +2760,16 @@
                                                         <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Pharmacy</label>
+                                                       <label>DSD Group Refill Point</label>
                                                         <div class="form-group">
-                                                            <select class="form-control" id="pharmacy_selection_id" name="pharmacy_selection_id">
-                                                                <option value="">Select Pharmacy</option>
+                                                            <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
+                                                                <option value="">Select Refill Point</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <obs id="pharmacy_id" conceptId="166476"
-                                                             labelText="Pharmacy Code"/>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <obs id="clddp_id" conceptId="166475"
-                                                             labelText="CLDDP Location"/>
+                                                        <obs id="refill_point_id" conceptId="166476"
+                                                             labelText="DSD Group Code"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3839,20 +3860,16 @@
                                     <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                 </div>
                                 <div class="col-md-3">
-                                    <label>Pharmacy</label>
+                                   <label>DSD Group Refill Point</label>
                                     <div class="form-group">
-                                        <select class="form-control" id="pharmacy_selection_id" name="pharmacy_selection_id">
-                                            <option value="">Select Pharmacy</option>
+                                        <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
+                                            <option value="">Select A refill Point</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <obs id="pharmacy_id" conceptId="166476"
-                                         labelText="Pharmacy Code"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs id="clddp_id" conceptId="166475"
-                                         labelText="CLDDP Location"/>
+                                    <obs id="refill_point_id" conceptId="166476"
+                                         labelText="DSD Group Code"/>
                                 </div>
                             </div>
                         </div>
