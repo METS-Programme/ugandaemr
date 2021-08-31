@@ -115,7 +115,16 @@
 
         function deleteCohort(id){
             if(id!==null){
-               console.log(id);
+                jq.ajax({
+                    type: "DELETE",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id,
+                    dataType: "json",
+                    contentType: "application/json",
+                    async: false,
+                    success: function (data) {
+                        jq().toastmessage('showSuccessToast', "Cohort Deleted");
+                    }
+                });
             }
         }
 
