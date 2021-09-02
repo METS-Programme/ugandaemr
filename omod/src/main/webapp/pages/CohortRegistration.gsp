@@ -30,29 +30,31 @@
 
         jq(document).ready(function () {
             getCohorts();
-
-
-            jq.ajax({
-                    type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohorttype?v=default",
-                    dataType: "json",
-                    contentType: "application/json",
-                    async: false,
-                    success: function (data) {
-                        var types = data.results;
-                        console.log(types);
-                        for (var i = 0; i<types.length; i++) {
-                            jq('#cohort-type').append("<option value='"+ types[i].uuid+"'>"+ types[i].name+ "</option>");
-                        }
-
-                    }
-            });
+            getCohortTypes();
 
         });
-        function saveCohort(dataToPost){
+
+        function getCohortTypes(){
+            jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohorttype?v=default",
+                dataType: "json",
+                contentType: "application/json",
+                async: false,
+                success: function (data) {
+                    var types = data.results;
+
+                    for (var i = 0; i<types.length; i++) {
+                        jq('#cohort-type').append("<option value='"+ types[i].uuid+"'>"+ types[i].name+ "</option>");
+                    }
+
+                }
+            });
+        }
+        function saveCohort(dataToPost,url){
             jq.ajax({
                 type: "POST",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort",
+                url: url,
                 dataType: "json",
                 contentType: "application/json",
                 accept: "application/json",
@@ -129,6 +131,8 @@
         }
 
         function editCohort(id){
+            jq("#cohort-type").empty();
+            getCohortTypes()
             var row = jq('#'+id);
             row.each(function (i) {
                 var tds = jq(this).find('td');
@@ -140,17 +144,30 @@
                 jq('#name').attr("value",name);
                 jq('#description').attr("value",description);
                 jq('#uuid').attr("value",uuid);
-                jq("#cohort-type option :selected").removeAttr('selected');
                 jq("#cohort-type option:contains('"+type+"')").attr("selected", "selected");
-
-
-
             });
 
+            jq('.modal-footer > input').attr("onclick","saveEditedData('"+id+"')");
 
         }
 
+        function saveEditedData(id){
+            var dataToPost = processFormData();
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id;
+            if(dataToPost!==""){
+                saveCohort(dataToPost,url);
+            }
+        }
+
         function submit() {
+            var dataToPost = processFormData();
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort";
+            if(dataToPost!==""){
+                saveCohort(dataToPost,url);
+            }
+        }
+
+        function processFormData(){
             var name = jq('#name').val();
             var description = jq('#description').val();
             var unique_id = jq('#uuid').val();
@@ -193,9 +210,10 @@
                 "\"location\":\"841cb8d9-b662-41ad-9e7f-d476caac48aa\","+
                 " \"groupCohort\":\"false\","+
                 "\"startDate\":\""+ date + "\"}";
-            if(submitVal){
-                saveCohort(dataToPost);
+            if(submitVal==false){
+                dataToPost="";
             }
+            return dataToPost;
         }
     }
 </script>
