@@ -78,9 +78,18 @@
         }
 
         function getCohorts(){
+            jq('#savedCohortsSections').empty();
+
+            getCohort("e50fa0af-df36-4a26-853f-feb05244e5ca");
+            getCohort("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
+            getCohort("5b7136fa-d207-4229-94a8-da6661ae00bf");
+        }
+
+        function getCohort(type){
+
             jq.ajax({
                 type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=default",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=default&cohortType="+type,
                 dataType: "json",
                 contentType: "application/json",
                 async: false,
@@ -93,7 +102,6 @@
 
         function displaySavedCohorts(data){
             var container = jq('#savedCohortsSections');
-            jq('#savedCohortsSections').empty();
             for (var i = 0; i <data.length; i++) {
                 if(data[i].cohortType!=null && data[i].voided==false){
                     var uuid = new String(data[i].uuid);
