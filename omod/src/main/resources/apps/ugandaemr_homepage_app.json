@@ -203,19 +203,39 @@
     ]
   },
   {
-  "id": "ugandaemr.configs",
-  "description": "Configurations for Health Center",
-  "order": 5,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "Health Center Configurations",
-      "url": "admin/maintenance/settings.list?show=Ugandaemr",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
+    "id": "ugandaemr.configs",
+    "description": "Configurations for Health Center",
+    "order": 5,
+    "extensions": [
+      {
+        "id": "coreapps.activeVisitsHomepageLink",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Health Center Configurations",
+        "url": "admin/maintenance/settings.list?show=Ugandaemr",
+        "icon": " icon-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
+    ]
+  },
+  {
+    "id": "covid.findPatient",
+    "instanceOf": "coreapps.template.findPatient",
+    "description": "Basic patient search that goes to the patient dashboard",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "covid.findPatientLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "Find Covid Patient",
+        "url": "ugandaemr/findpatient/covid/findPatient.page?app=covid.findPatient",
+        "icon": "icon-search",
+        "requiredPrivilege": "App: ugandaemrpoc.findPatient"
+      }
+    ],
+    "config": {
+      "registrationAppLink": "registrationapp/registerPatient.page?appId=ugandaemr.registrationapp.registerPatient"
     }
-  ]
-}
+  }
 ]

@@ -15,8 +15,7 @@
 
         if (jQuery) {
 
-            jq(document).ready(function () { 
-
+            jq(document).ready(function () {
                 //Block Multiple encounter entry on same date
                 blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
 
@@ -227,7 +226,7 @@
                                     <div class="card-header">
                                         Admission Information
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body"> 
                                         <div class="row">
                                             <div class="col-md-4" id="visit-date">
                                                 <label>Enrolment Date</label>
@@ -235,7 +234,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Case ID</label>
-                                                <obs conceptId="1646" />
+                                                <obs conceptId="1646" id="case-id"/>
                                             </div>
                                         </div>
                                     </div>
@@ -248,7 +247,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Care Giver Name</label>
-                                                <obs conceptId="165919" />
+                                                <obs conceptId="165919" id="care-giver"/>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Care Giver Phone Number</label>
