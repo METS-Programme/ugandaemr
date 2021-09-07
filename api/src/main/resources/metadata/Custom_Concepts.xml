@@ -1944,6 +1944,15 @@
     <concept  concept_id="166493"  retired="0"   datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:55:02"  changed_by="1"  date_changed="2021-08-19 17:55:02"  uuid="599391b9-e739-4e64-8a92-b50f61cfccae"/>
     <concept  concept_id="166494"  retired="0"   datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2021-08-19 17:58:02"  changed_by="1"  date_changed="2021-08-19 17:58:02"  uuid="994f4252-1eb9-4941-ac36-f46cdb1c49d9"/>
 
+    <!-- ART Access-->
+    <concept  concept_id="166495"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2021-09-07 06:37:41" changed_by="1"  date_changed="2021-09-07 06:55:22" uuid="0907d345-a413-41ec-a034-1e462622d62b"/>
+    <concept  concept_id="166496"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-07 06:50:22" changed_by="1"  date_changed="2021-09-07 06:50:22" uuid="0e8c2722-61a5-4658-ab58-4014c991f92a"/>
+    <concept  concept_id="166497"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-07 06:52:17" changed_by="1"  date_changed="2021-09-07 06:52:17" uuid="f9764a92-d2fa-4866-a7bf-b9a6fc98067a"/>
+    <concept  concept_id="166498"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-07 06:54:48" changed_by="1"  date_changed="2021-09-07 06:54:48" uuid="566e7e03-4024-4299-b12e-ecaa2820698d"/>
+    <concept  concept_id="166499"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-07 06:58:03" changed_by="1"  date_changed="2021-09-07 06:58:03" uuid="6a46388b-115d-4e32-8d13-9ec6f22fa0cc"/>
+    <concept  concept_id="166500"  retired="0" datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2021-09-07 06:58:34" changed_by="1"  date_changed="2021-09-07 06:58:34" uuid="7a22cfcb-a272-4eff-968c-5e9467125a7b"/>
+
+
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -6054,6 +6063,16 @@
     <concept_name  concept_name_id="162749"  concept_id="166492"  name="Birth at Commnunity Level"  									  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:49:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="be53c34e-799a-45f2-b9c9-406dddd2ede8"/>
     <concept_name  concept_name_id="162750"  concept_id="166493"  name="Has started Septrin prophylaxis?"  								  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:55:02"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="9b8411a9-2feb-4241-b780-6a9ac23b8540"/>
     <concept_name  concept_name_id="162751"  concept_id="166494"  name="ARVs given to breatfeeding child?"  							  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-08-19 17:58:02"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="07e7c8b8-d750-48ce-8bfb-861c8a49db8d"/>
+
+    <!-- ART Access -->
+    <concept_name  concept_name_id="162752"  concept_id="166495"  name="Drug Pick Up Model"  								locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:37:41"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="6160d767-4d49-441c-a9e1-930a38dd2108"/>
+    <concept_name  concept_name_id="162753"  concept_id="166496"  name="Community Led Drug Distribution Point"  			locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:50:22"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="407feb21-c252-4c9b-bf53-84782a539872"/>
+    <concept_name  concept_name_id="162754"  concept_id="166496"  name="CLDDP"  											locale="en"  locale_preferred="0"  creator="1"  date_created="2021-09-07 06:50:22"  concept_name_type="SHORT" 				voided="0" uuid="2b38aa14-1532-4758-9236-6388b4c83b05"/>
+    <concept_name  concept_name_id="162755"  concept_id="166497"  name="General CDDP"  										locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:52:17"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="5d1e7976-b95a-408e-ad2d-77149495bf21"/>
+    <concept_name  concept_name_id="162756"  concept_id="166498"  name="CRPDDP"  											locale="en"  locale_preferred="0"  creator="1"  date_created="2021-09-07 06:54:48"  concept_name_type="SHORT"  				voided="0" uuid="faaeb6a7-ad7f-4156-8aa4-f24dd3fabe3c"/>
+    <concept_name  concept_name_id="162757"  concept_id="166498"  name="Community Retail Pharmacy Drug Distribution Point"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:54:48"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="05b6ded9-c125-4b81-9dbf-4d6f9f25af90"/>
+    <concept_name  concept_name_id="162758"  concept_id="166499"  name="CLDDP Location Name"  								locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:58:03"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="cc12183d-3cab-4726-a421-611ec46e811b"/>
+    <concept_name  concept_name_id="162759"  concept_id="166500"  name="Refill Point Code"  								locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:58:34"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="26da5fd4-1e7d-44f8-ade3-c320a7e1293b"/>
     
 
 
@@ -8200,9 +8219,10 @@
     <concept_answer  concept_answer_id="7367891"  concept_id="166494"  answer_concept="1065"   creator="1"  date_created="2021-08-20 13:37:13"  sort_weight="1"  uuid="6a846516-8d29-482b-89e4-b33a366fc7b1"/>
     <concept_answer  concept_answer_id="7367892"  concept_id="166494"  answer_concept="1066"   creator="1"  date_created="2021-08-20 13:37:13"  sort_weight="2"  uuid="17107ffb-f769-4784-b58c-85bc78cc9f98"/>   
 
-
-
-
+    <!-- ART Access-->
+    <concept_answer  concept_answer_id="7367893"  concept_id="166495"  answer_concept="166496" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="1"  uuid="f0af02de-4268-422a-b50f-6e2086e37014"/>
+    <concept_answer  concept_answer_id="7367894"  concept_id="166495"  answer_concept="166497" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="2"  uuid="411ad462-fe64-4078-9845-636ef3cbbb9a"/>
+    <concept_answer  concept_answer_id="7367895"  concept_id="166495"  answer_concept="166498" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="3"  uuid="28e15cb8-14e6-4b15-9ce5-881c0ea9aaa8"/>    
 
 
     <!--CONCEPT SET-->
