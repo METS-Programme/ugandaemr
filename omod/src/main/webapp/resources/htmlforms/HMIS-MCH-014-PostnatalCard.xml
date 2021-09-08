@@ -271,9 +271,8 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label>Timing for PNC Visit</label>
-                                                <obs conceptId="166502" answerConceptIds="165462,165463"
-                                                     answerLabels="PNC at 6 hours,PNC at 24 hours"/>
-                                                                                    </div>
+                                                <obs conceptId="166502" /> 
+                                        </div>
                                         <span class="hidden">
                                             <encounterLocation
                                                 default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
