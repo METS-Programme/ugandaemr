@@ -101,6 +101,9 @@
                     if (jq("#165143").find("select").find(":selected").val() === "165142") {
                         enable_fields("cddp_category");
                     }else {
+                        setValue('refill_point_id.value','');
+                        jq("#refill_point_select_id  option").prop("selected", false);
+                        jq("#cddp_category  option").prop("selected", false);
                         disable_fields("cddp_category");
                     }
                 });
