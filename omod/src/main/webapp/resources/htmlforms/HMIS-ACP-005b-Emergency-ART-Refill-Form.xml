@@ -1,0 +1,176 @@
+<htmlform formName="HMIS ACP 005b: Emergency ART Refill Form" 
+formDescription="HMIS ACP 005b: Emergency ART Refill Form" 
+formEncounterType="d18bd8f2-dfcd-11eb-ba80-0242ac130004" 
+formUuid="aa858f72-0080-44a8-8bac-55bc275e1d10" 
+formVersion="3.0" 
+formAddMetadata="yes" 
+formUILocation="patientDashboard.visitActions" 
+formOrder="3" 
+formIcon="icon-medkit" 
+formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b')"
+formDisplayStyle="Standard">
+
+
+    <script type="text/javascript">
+
+        if (jQuery) {
+    
+                jq(document).ready(function () {   
+                    
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");                                                                                      
+            });                        
+        }
+            
+    </script>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Emergency ART Refill</h3>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-1">
+            <submit class="confirm mb-2" submitLabel="Save" submitStyle="customSubmit" />
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">Patient History</div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Walk-in Date</label>
+                    <div class="html-form-entry-disabled-field" id="walkin-date">
+                        <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                    </div>
+                    <label> Serial No</label>
+                    <obs id="serial-number" conceptId="1646" required="true" />
+                    <label>Parent Health facility</label>
+                    <obs id="parent-health-facility" conceptId="166453" required="true" />
+                    <label>District of Parent Health Facility</label>
+                    <obs id="district-of-parent-health-facility" labelText="" conceptId="166454" />
+                    <label>Reason for Visit </label>
+                    <obs id="reason-for-visit" conceptId="160288" answerConceptIds="166455, 166456, 165043, 90002" answerLabels="Lockdown, Natural Disaster, Admission, Other" required="true">
+                        <controls>
+                            <when value="90002" thenDisplay="#reason-for-visit-other" />
+                        </controls>
+                    </obs>
+                    <label>Current Regimen</label>
+                    <obs id="current-regimen" conceptId="90315" answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002" answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other" required="true">
+                        <controls>
+                            <when value="90002" thenDisplay="#other-regimen" />
+                        </controls>
+                    </obs>                                                            
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <obs id="reason-for-visit-other" labelText="Other Specify" conceptId="164975" />
+                        <obs id="other-regimen" labelText="Other Regimen" conceptId="99126" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Patient Demographics</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">                    
+                    <label>ART Number at Parent Facility</label>
+                    <obs id="patientnumber" conceptId="90264" required="false" />
+                    <includeIf velocityTest="$patient.age &gt; 5">
+                    <label>EID Number</label>
+                    <obs id="eid-number" conceptId="99077" />
+                    </includeIf>
+                    <label>National ID Number</label>
+                    <span id="nin-number">
+                        <patient field="identifier" identifierTypeId="f0c16a6d-dc5f-4118-a803-616d0075d282" required="false" />
+                    </span>
+                    <obs id="client-category" conceptId="165169" labelText="Client Category" answerConceptIds="90315, 165132, 159674, 162198, 165125, 90041, 99601, 157351, 99087,165133, 159991, 165127, 166461, 166462, 166463" answerLabels="MW- Migrant Workers, AGYW- Adoloscent Girls and Young Women, FF- Fisher Folk, LDT- Long Distance Truck Drivers, UF- Uniformed Forces, Preg- Pregnant, BF- Breastfeeding, IDU- Injectable Drug User, HEI- HIV Exposed Infant, OKP- Other KPs, TB- TB/HIV Client, RF- Refugee, ART- General ART Client, NIDU- Non IDU, OPP- Other PPs" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Vitals
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Weight</label>
+                    <obs conceptId="5089" />
+                    <label>Blood Pressure</label>
+                    <div class="row ml-1">
+                        <obs conceptId="5085" id="bp_systolic" />
+                        <p class="left">/</p>
+                        <obs conceptId="5086" id="bp_diastolic" />
+                    </div>
+                    <label>Temperature (c)</label>
+                    <obs conceptId="CIEL:5088" id="temperature" />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Clinical Assessment and Refill</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>TB Status</label>
+                            <obs id="tb-status" class="long-value-select" conceptId="90216" answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071" answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx" required="true" />
+                            <label>TB Pills</label>
+                            <obs conceptId="166464" />                            
+                            <label>INH Status</label>
+                            <obs id="tpt-status" conceptId="165288" answerConceptIds="1090,90072,165307,90040,160035" answerLabels="H0- Never Initiated, H1- On INH, H2- Defaulted, H3- Taken off due to side effects, H4- Completed" />
+                            <label>INH Pills</label>
+                            <obs conceptId="160856" id="inh-pills" />
+                        </div>
+                    </div>
+                    <label>Nutrition Status</label>
+                    <obs conceptId="165050" answerConceptIds="1115, 99271, 99272, 99273, 5277" answerLabels="N - Normal, MAM - Moderate Acute Malnutrition, SAM - Severe Acute Malnutrition, SAMO - Severe Acute Malnutrition with Oedema, O - Overweight/Obese" />
+                    <obs labelText="CTX Refill" id="160856" conceptId="160856" />
+
+                    <label>ART Regimen</label>
+                    <obs id="90315" conceptId="90315" answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,165797,165796,165795,165808,165807,165806,165805,165804,165803,165802,165801,165800,165799,165798,90002" answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,AZT/3TC/RAL,ABC/3TC/AZT,TDF/3TC/AZT,DRV/RTV/RAL/ABC/3TC,DRV/RTV/ETV/ABC/3TC,DRV/RTV/RAL/TDF/3TC,DRV/RTV/RAL/AZT/3TC,DRV/RTV/RAL,DRV/RTV/ETV/TDF/3TC,DRV/RTV/ETV/AZT/3TC,DRV/RTV/ETV,DRV/RTV/DTG/TDF/3TC,DRV/RTV/DTG/AZT/3TC,DRV/RTV/DTG,Other">
+                        <controls>
+                            <when value="90002" thenDisplay="#other-art-regimen" />
+                        </controls>
+                    </obs>
+                    <label>ART Refill</label>
+                    <obs id="no-of-art-pills" conceptId="99038" required="true" />
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <obs id="other-art-regimen" labelText="Other Specify" conceptId="166368" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Follow-up after Emergency</div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Client Follow-up Done?</label>
+                    <obs id="patient-follow-up" conceptId="165113" answerConceptIds="1065,1066" answerLabels="Yes, No" style="radio" class="horizontal" />
+                    <label>Client Follow-up Status</label>
+                    <obs id="client-follow-status" conceptId="166460" answerConceptIds="166457, 166458, 166459" answerLabels="Active at parent facility, Active at temporary Facility, Not followed up" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</htmlform>
