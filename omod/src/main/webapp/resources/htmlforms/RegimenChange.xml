@@ -54,7 +54,7 @@
             // ensure that the current regimen is not the same as the switch or substituted regimen
             var current_regimen_id = jq("#current-regimen-id").html();
 
-            if (current_regimen_id == getValue('new-regimen.value')) {
+            if (current_regimen_id === getValue('new-regimen.value')) {
                 getField('new-regimen.error').html('The new regimen ' + jq("#current-regimen-name").html() + ' cannot be the same as the current regimen ').show();
                 jq().toastmessage('showErrorToast', "The new regimen " + jq("#current-regimen-name").html() + " cannot be the same as the current regimen");
                 return false;
@@ -95,7 +95,8 @@
                             <label><b>Current Regimen</b></label>
                         </td>
                         <td>
-                            <lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/>
+                            <lookup complexExpression="#if ($fn.latestObs(90315,$encounterDate).valueCoded.name) #set ($currentRegimen='No Current Regimen') #else #set ($currentRegimen = $fn.latestObs(90315,$encounterDate).valueCoded.name) #end"/>
+                            <lookup complexExpression="$currentRegimen" />
                             <span class="hidden" id="current-regimen-id"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.Id"/></span>
                             <span class="hidden" id="current-regimen-name"><lookup complexExpression="$fn.latestObs(90315,$encounterDate).valueCoded.name"/></span>
                         </td>
@@ -166,9 +167,9 @@
                                 <includeIf velocityTest="$regimenLineId == 90305">
                                     <workflowState workflowId="3" stateId="13" stateLabel="Third Line" />
                                 </includeIf>
-                                <!-- Current Regimen is First Line so shows Second and Third Line -->
+                                <!-- Current Regimen is First Line so only shows Second Line -->
                                 <includeIf velocityTest="$regimenLineId == 90271">
-                                    <workflowState type="radio" workflowId="3" stateIds="12,13" stateLabels="Second Line,Third Line" />
+                                    <workflowState workflowId="3" stateId="12" stateLabel="Second Line" />
                                 </includeIf>
                             </ifMode>
                         </td>
