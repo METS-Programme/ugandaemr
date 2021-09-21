@@ -115,6 +115,7 @@
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
 		<ugandaemrSyncVersion>1.0.10</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
+		<cohortModuleVersion>3.0.0-SNAPSHOT</cohortModuleVersion>
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.26</ugandaemrReportsVersion>
@@ -461,6 +462,11 @@
 				<scope>provided</scope>
 				<type>test-jar</type>
     		</dependency>
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>cohort</artifactId>
+				<version>${cohortModuleVersion}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

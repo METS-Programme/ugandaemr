@@ -257,6 +257,13 @@
         <description>The UUID of the Reception</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.enableCDDPCategorization</property>
+        <defaultValue>false</defaultValue>
+        <description>This allows a health center to enable other categories of CDDP such as CRPDDP</description>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>

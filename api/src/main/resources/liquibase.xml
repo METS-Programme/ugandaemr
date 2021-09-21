@@ -591,6 +591,15 @@ VALUES
 			DELETE FROM scheduler_task_config WHERE uuid = '415b8d70-6b45-41d8-a0ba-41b1a6b8aa1f';
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-20210823-0915" author="dbaluku">
+		<comment>Insert Cohort type for CDDP Group </comment>
+		<sql>
+			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+			('CRPDDP Cohort Type','2021-08-23',1,'e50fa0af-df36-4a26-853f-feb05244e5ca'),
+			('CLDDP Cohort Type','2021-08-23',1,'aa536e57-a3c3-453c-9413-cf70b5d2ad5d'),
+			('CCLAD Cohort Type','2021-08-23',1,'5b7136fa-d207-4229-94a8-da6661ae00bf');
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

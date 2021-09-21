@@ -216,6 +216,22 @@
       "icon": " icon-cog",
       "requiredPrivilege": "App: coreapps.systemAdministration"
     }
+    ]
+   },
+  {
+  "id": "ugandaemr.cohortTypeConfigs",
+  "description": "DSD SubGroup Registration",
+  "order": 40,
+  "extensions": [
+    {
+      "id": "coreapps.activeVisitsHomepageLink",
+      "extensionPointId": "systemAdministration.apps",
+      "type": "link",
+      "label": "DSD SubGroup Configurations",
+      "url": "ugandaemr/CohortRegistration.page",
+      "icon": " icon-cog",
+      "requiredPrivilege": "App: coreapps.systemAdministration"
+    }
   ]
 }
 ]
