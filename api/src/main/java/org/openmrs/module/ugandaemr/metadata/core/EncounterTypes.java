@@ -324,4 +324,19 @@ public class EncounterTypes {
             return "afcdfcd8-defe-11eb-ba80-0242ac130004";
         }
     };
+    public static EncounterTypeDescriptor POSITIVE_INFANT = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Positive Infant Audit";
+        }
+
+        @Override
+        public String description() {
+            return "Positive Infant Audit Encounter";
+        }
+
+        public String uuid() {
+            return "a142dee9-ad64-4cf9-b1bb-8e033d07fcaf";
+        }
+    };
 }
