@@ -30,6 +30,9 @@ formLabel="Positive Infant Audit Form">
                 disable_fields("missed-dose-date");
                 disable_fields("dr-for-infant");
 
+                disable_fields("other-sti");
+                disable_fields("other-reason-not-started-on-art");
+
 
                 jq("#confirmatory-pcr-done").click(function () {
                     if (jq(this).find("input[type='radio']:checked").val() == "90003") {
@@ -72,6 +75,22 @@ formLabel="Positive Infant Audit Form">
                         enable_fields("dr-for-infant");
                     } else {
                         disable_fields("dr-for-infant");
+                    }
+                });
+
+                jq("#main-other-sti").change(function () {
+                    if (jq(this).find("select").find(":selected").val() == "5622") {
+                        enable_fields("other-sti");
+                    } else {
+                        disable_fields("other-sti");
+                    }
+                });
+
+                jq("#reason-for-not-start-on-art").change(function () {
+                    if (jq(this).find("select").find(":selected").val() == "5622") {
+                        enable_fields("other-reason-not-started-on-art");
+                    } else {
+                        disable_fields("other-reason-not-started-on-art");
                     }
                 });
 
@@ -163,7 +182,7 @@ formLabel="Positive Infant Audit Form">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Indicate which PCR</label>
-                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542" answerConceptIds="166272,159466,166273,5622" answerLabels="Ante mortem Lab Diagnosis, Ante mortem Radiological Diagnosis, Ante mortem Clinical Diagnosis, Post-Mortem Lab Diagnosis" />
+                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542" answerConceptIds="166272,159466,166273" answerLabels="1st RDT, 2nd RDT, 3rd RDT" />
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Was confirmatory PCR done?</label>
@@ -202,13 +221,13 @@ formLabel="Positive Infant Audit Form">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>If no, state reason</label>
-                                                <obs id="reason-for-not-start-on-art" conceptId="1542" answerConceptIds="166272,159466,166273,5622, 5622" answerLabels="Dead, Referred to Another Facility, Mother Refuses ART, LTFU, other" />
+                                                <obs id="reason-for-not-start-on-art" conceptId="1542" answerConceptIds="166272,159466,166273,166273, 5622" answerLabels="Dead, Referred to Another Facility, Mother Refuses ART, LTFU, other" />
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>Other Specify</label>
-                                                <obs id="other-reason" conceptId="159395" />
+                                                <obs id="other-reason-not-started-on-art" conceptId="159395" />
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Referred Facility Name</label>
@@ -243,7 +262,7 @@ formLabel="Positive Infant Audit Form">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Infant Feeding option &#62; 6 months</label>
-                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542" answerConceptIds="166272,159466,166273,5622, 5622" answerLabels="Dead, Referred to Another Facility, Mother Refuses ART, LTFU, other" />
+                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542" answerConceptIds="166272,159466,166273" answerLabels="EBF, ERF, Complementary"/>
                                             </div>
                                         </div>
                                     </div>
@@ -275,7 +294,7 @@ formLabel="Positive Infant Audit Form">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>Other STIs</label>
-                                                <obs id="how-was-the-diagnosis-confirmed" conceptId="1542" answerConceptIds="166272,159466,166273,5622, 5622" answerLabels="Syphilis, Hep B, None, Unknown, Other" />
+                                                <obs id="main-other-sti" conceptId="1542" answerConceptIds="166272,159466,166273,5622, 5622" answerLabels="Syphilis, Hep B, None, Unknown, Other" />
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Other</label>
@@ -351,7 +370,7 @@ formLabel="Positive Infant Audit Form">
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Interventions to improve VL results</label>
-                                                <obs id="intervention-for-vl-results" conceptId="1542" answerConceptIds="166272,159466,166273,5622" answerLabels="1/2/3, IAC sessions, switch to 2L, None, NA" />
+                                                <obs id="intervention-for-vl-results" conceptId="1542" answerConceptIds="166272,159466,166273,5622,166273" answerLabels="1/2/3, IAC sessions, switch to 2L, None, NA" />
                                             </div>
                                         </div>
 
