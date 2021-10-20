@@ -8251,6 +8251,39 @@
     <concept_answer  concept_answer_id="7367894"  concept_id="166495"  answer_concept="166497" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="2"  uuid="411ad462-fe64-4078-9845-636ef3cbbb9a"/>
     <concept_answer  concept_answer_id="7367895"  concept_id="166495"  answer_concept="166498" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="3"  uuid="28e15cb8-14e6-4b15-9ce5-881c0ea9aaa8"/>    
 
+    <!-- Prior ARV Regimen -->
+    <concept_answer  concept_answer_id="7367903"  concept_id="166039"  answer_concept="99015" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="1"  uuid="64d95f26-b0f8-493d-9f33-6b022c39f03c"/>
+    <concept_answer  concept_answer_id="7367904"  concept_id="166039"  answer_concept="99016" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="2"  uuid="cc6c07e7-3c71-4adf-aee9-afe041a93fca"/>
+    <concept_answer  concept_answer_id="7367905"  concept_id="166039"  answer_concept="99005" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="3"  uuid="72f5a907-38c3-4494-9249-378c488d8b3e"/>
+    <concept_answer  concept_answer_id="7367906"  concept_id="166039"  answer_concept="99006" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="4"  uuid="2d89820d-d3db-43c5-a2cb-73c53e669126"/>
+    <concept_answer  concept_answer_id="7367907"  concept_id="166039"  answer_concept="164979 creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="5"  uuid="1b4fc7ea-aec2-4724-a82e-9618fa60203d"/>
+    <concept_answer  concept_answer_id="7367908"  concept_id="166039"  answer_concept="99039" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="6"  uuid="c5fae96d-dbf0-4ac7-945d-a602bf34037e"/>
+    <concept_answer  concept_answer_id="7367909"  concept_id="166039"  answer_concept="99040" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="7"  uuid="84c57517-0f26-4c39-b3d8-8eab4f0d67f6"/>
+    <concept_answer  concept_answer_id="7367910"  concept_id="166039"  answer_concept="164977 creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="8"  uuid="43f6108c-214a-4394-a521-9530a3b2cd99"/>
+    <concept_answer  concept_answer_id="7367911"  concept_id="166039"  answer_concept="99041" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="9"  uuid="6753f0bc-2984-449a-b13b-82677765057a"/>
+    <concept_answer  concept_answer_id="7367912"  concept_id="166039"  answer_concept="99042" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="10" uuid="9a561c92-d285-4a69-b41e-f3614a6f990b"/>
+    <concept_answer  concept_answer_id="7367913"  concept_id="166039"  answer_concept="99007" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="11" uuid="ce8f133b-1d7c-40c7-8ffb-4bcf689b08d7"/>
+    <concept_answer  concept_answer_id="7367914"  concept_id="166039"  answer_concept="99008" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="12" uuid="ae874e5b-c92a-4e05-909d-9e29d2bf8139"/>
+    <concept_answer  concept_answer_id="7367915"  concept_id="166039"  answer_concept="99044" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="13" uuid="df287f6b-0eb4-4341-8df3-74c5c058ed6e"/>
+    <concept_answer  concept_answer_id="7367916"  concept_id="166039"  answer_concept="99043" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="14" uuid="3d0dbb4f-48e7-4f7b-9b7c-53a05df63f90"/>
+    <concept_answer  concept_answer_id="7367917"  concept_id="166039"  answer_concept="99282" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="15" uuid="2e74f7e4-5073-4f00-a027-4c025d05c0cb"/>
+    <concept_answer  concept_answer_id="7367918"  concept_id="166039"  answer_concept="99283" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="16" uuid="9f290a9a-8199-4194-aa46-0b783d05548e"/>
+    <concept_answer  concept_answer_id="7367919"  concept_id="166039"  answer_concept="99046" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="17" uuid="d04da2f5-e1f7-4e41-b67a-7a8b535e2249"/>
+    <concept_answer  concept_answer_id="7367920"  concept_id="166039"  answer_concept="99017" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="18" uuid="6116a932-3b78-4928-917c-2e2c95592818"/>
+    <concept_answer  concept_answer_id="7367921"  concept_id="166039"  answer_concept="99018" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="19" uuid="b64fc5e9-8677-479e-99eb-6d914ce12563"/>
+    <concept_answer  concept_answer_id="7367922"  concept_id="166039"  answer_concept="99019" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="20" uuid="e42dcbbb-c5c7-41ee-a988-f8f0732c8848"/>
+    <concept_answer  concept_answer_id="7367923"  concept_id="166039"  answer_concept="99045" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="21" uuid="b908d5fb-27fe-4725-95c6-8b195e2ec1ae"/>
+    <concept_answer  concept_answer_id="7367924"  concept_id="166039"  answer_concept="99284" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="22" uuid="b7a51aac-ae36-40d7-bc80-0566a7450413"/>
+    <concept_answer  concept_answer_id="7367925"  concept_id="166039"  answer_concept="99285" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="23" uuid="914cfffe-1cd9-4221-8c25-f9784921c948"/>
+    <concept_answer  concept_answer_id="7367926"  concept_id="166039"  answer_concept="99286" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="24" uuid="8b142d6b-11aa-48eb-8191-595c3cadda70"/>
+    <concept_answer  concept_answer_id="7367927"  concept_id="166039"  answer_concept="99884" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="25" uuid="af842c22-85e0-44fa-af96-14cbb207ac13"/>
+    <concept_answer  concept_answer_id="7367928"  concept_id="166039"  answer_concept="99885" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="26" uuid="fbdc5c40-2f50-402d-a0a3-d98995b79bdf"/>
+    <concept_answer  concept_answer_id="7367929"  concept_id="166039"  answer_concept="164978 creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="27" uuid="86a1e4b3-c7ef-46b2-be7f-e6525679d557"/>
+    <concept_answer  concept_answer_id="7367930"  concept_id="166039"  answer_concept="99888" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="28" uuid="ddba505f-00fc-453d-9b2f-0f1b66e1a3e3"/>
+    <concept_answer  concept_answer_id="7367931"  concept_id="166039"  answer_concept="163017 creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="29" uuid="e0bad3c1-0701-4991-a5d5-da5c5e063420"/>
+    <concept_answer  concept_answer_id="7367932"  concept_id="166039"  answer_concept="99887" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="30" uuid="e71ba0e2-5f6f-45dd-b667-1763576581ff"/>
+    <concept_answer  concept_answer_id="7367933"  concept_id="166039"  answer_concept="90002" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="31" uuid="5f2ad029-6699-490e-883e-cd0a2ebb2502"/>
+    
 
     <!--CONCEPT SET-->
     <!--MCH-->
