@@ -1167,6 +1167,7 @@
     <concept  concept_id="165180"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2019-07-10 15:49:47"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:49:47" uuid="2766c090-c057-44f2-98f0-691b6d0336dc"/>
     <concept  concept_id="165179"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2019-07-10 15:45:02"  version="1.0"  changed_by="1"  date_changed="2019-07-10 15:45:02" uuid="c09c3d3d-d07d-4d34-84f0-89ea4fd5d6d5"/>
     <concept  concept_id="165184"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-08-07 10:30:02"  version="1.0"  changed_by="1"  date_changed="2019-08-07 10:30:02"  uuid="eac4e9c2-a086-43fc-8d43-b5a4e02febb4"/>
+    <concept concept_id="166506" retired="0" datatype_id="4" class_id="5" is_set="0" creator="1" date_created="2021-10-20 13:16:42" version="1.0" changed_by="1" date_changed="2021-10-20 13:16:42" uuid="43eae374-df77-464c-ad3c-3deb5bfe2447"/>
     <!--    Health Education Concept-->
     <concept  concept_id="165223"  retired="0"    datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2019-08-29 10:45:01"  version="1.0"  changed_by="1"  date_changed="2019-08-29 10:45:01"    uuid="f6e863c5-1e09-445a-a714-fe4a2255ae64"/>
     <concept  concept_id="165222"  retired="0"    datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2019-08-29 10:41:30"  version="1.0"  changed_by="1"  date_changed="2019-08-29 10:41:30"    uuid="32e3fc5e-cfb6-49f5-949a-77e6f191b437"/>
@@ -2557,7 +2558,9 @@
     <concept_description  concept_description_id="18547"  concept_id="166492"  description="This is for Find out whether birth was notified and registered at the community level"  locale="en"  creator="1"  date_created="2021-08-19 17:52:22"  uuid="8e0bd917-29c7-4b44-b58a-4fe4792c6726"/>
 
 
+    <!-- HTS -->
 
+    <concept_description concept_description_id="18548" concept_id="166506" description="Social Network Strategy (SNS) is an evidence-supported approach to engage and motivate a person to accept HIV testing. This approach is based on the underlying principle that persons within the same social network who know, trust, and can exert influence on each other share similar HIV risk behaviors. SNS is particularly useful to recruit marginalized and/or hidden persons at risk for HIV." locale="en" creator="1" date_created="2021-10-20 13:16:42" uuid="d1a35025-895b-4be3-b5e1-b4292ba900e6"/>
 
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -5192,6 +5195,10 @@
     <concept_name  concept_name_id="160227"  concept_id="165179"  name="Ward"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-07-10 15:45:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="362b39bf-55ff-4974-844d-97bc93dcfdca"/>
     <concept_name  concept_name_id="160233"  concept_id="165184"  name="Other Special Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-08-07 10:30:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="81a56425-5240-4afd-8447-24ab99efa120"/>
     <concept_name  concept_name_id="160234"  concept_id="165184"  name="Other Special Classification"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-08-07 10:30:03"  concept_name_type="SHORT"  voided="0" uuid="c4bd0105-700f-4253-8f1d-d15d2b3b1493"/>
+
+    <concept_name concept_name_id="162765" concept_id="166506" name="SNS" locale="en" locale_preferred="0" creator="1" date_created="2021-10-20 13:16:42" concept_name_type="SHORT" voided="0" uuid="18ca8bd8-1925-4996-b360-cdebd4859ca8"/>
+    <concept_name concept_name_id="162766" concept_id="166506" name="Social Network Strategy (SNS)" locale="en" locale_preferred="1" creator="1" date_created="2021-10-20 13:16:42" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="723bb0c7-8673-42d7-9bbb-b34ce3147e8e"/>
+
     <!-- CONCEPT NAME FOR HEALTH EDUCAITON-->
     <concept_name  concept_name_id="160275"  concept_id="165223"  name="Had less than one meal a day"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-08-29 10:45:01"  concept_name_type="FULLY_SPECIFIED"  voided="0"       uuid="7381006e-5572-4e95-9fd4-f3ae842ba75f"/>
     <concept_name  concept_name_id="160274"  concept_id="165222"  name="Has signs of abuse, exploitation or neglect"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-08-29 10:41:30"  concept_name_type="FULLY_SPECIFIED"  voided="0"       uuid="d590cecf-9573-4cfb-a12a-b0ee1e26139c"/>
@@ -7113,6 +7120,7 @@
     <concept_answer  concept_answer_id="7161"  concept_id="162925"  answer_concept="165179"  creator="1"  date_created="2019-07-10 15:45:49"  sort_weight="23"  uuid="aacb66f9-28c0-47a5-84df-7a28dd651a6b"/>
     <concept_answer  concept_answer_id="7162"  concept_id="162925"  answer_concept="90002"  creator="1"  date_created="2019-07-10 15:45:49"  sort_weight="24"  uuid="ccfb7c0a-a3b6-497c-b91e-cede100d876c"/>
     <concept_answer  concept_answer_id="7169"  concept_id="99472"  answer_concept="1175"  creator="1"  date_created="2019-08-06 12:06:58"  sort_weight="4"  uuid="97714f24-0659-432e-a524-0bbac00ccc19"/>
+    <concept_answer concept_answer_id="7367930" concept_id="165168" answer_concept="166506" creator="1" date_created="2021-10-20 14:17:58" sort_weight="9" uuid="f8dca2ad-8c6e-4fbe-83a0-eac86f8ed93c"/>
     <!--    HEALTH EDUCATION CONCEPT ANSWERS-->
     <concept_answer  concept_answer_id="7228"  concept_id="165200"  answer_concept="165223"    creator="1"  date_created="2019-08-29 10:45:56"  sort_weight="7"  uuid="428b7408-5543-4173-a588-1568d00265d2"/>
     <concept_answer  concept_answer_id="7222"  concept_id="165200"  answer_concept="165186"    creator="1"  date_created="2019-08-29 10:43:44"  sort_weight="1"  uuid="d29d8f7a-2527-4b23-b998-3eb9c8649604"/>

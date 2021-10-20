@@ -429,9 +429,9 @@
                     <td>
                             <span id="checkboxRadio">
                                 <obs conceptId="165168" id="165168"
-                                     answerConceptIds="165161,165162,165163,99056,165164,165165,165166,90012,90002"
+                                     answerConceptIds="165161,165162,165163,99056,165164,165165,165166,90012,90002, 166506"
                                      answerLabels="1 - Assisted Partner Notification (APN),2 - Index Client Testing other than APN,
-                                     3 - PrEP,4 - PEP,5 - HIV Self -Test Positive,6 - Inconclusive HIV result,7 - Self-initiative,8 - PMTCT, 9 - Others "/>
+                                     3 - PrEP,4 - PEP,5 - HIV Self -Test Positive,6 - Inconclusive HIV result,7 - Self-initiative,8 - PMTCT, 9 - Others, 10 - Social Network Strategy (SNS) "/>
 
                             </span>
                         <span >
