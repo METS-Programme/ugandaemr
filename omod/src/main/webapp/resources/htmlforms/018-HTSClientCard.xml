@@ -385,7 +385,7 @@
                         <label>HTS Approach:</label>
                     </td>
                     <td colspan="3">
-                        <obs id="br" conceptId="99462" answerConceptIds="162919,99459" answerLabels="1 - CICT/VCT,2 - PITC" style="radio" required="true"/>
+                        <obs conceptId="99462" answerConceptIds="162919,99459" answerLabels="1 - CICT/VCT,2 - PITC" style="radio" required="true"/>
                     </td>
                 </tr>
 
@@ -398,11 +398,22 @@
                              <span >
                                 <obs conceptId="162925" id="162925"
                                      answerConceptIds="160542,165179,165047,165048,165156,99593,164983,160456,165046,164984,165155,90015,90002"
-                                     answerLabels="1 - OPD, 2 - Ward,3 - ART Clinic,4 - TB Clinic,5 - Nutrition unit,6 - Young Child Clinic (YCC),7 - ANC,8 - Maternity,9 - PNC,10 - Family Planning,11 - SMC,12 - STI Clinic,13 - Others (specify)"/>
+                                     answerLabels="1 - OPD, 2 - Ward,3 - ART Clinic,4 - TB Clinic,5 - Nutrition unit,6 - Young Child Clinic (YCC),7 - ANC,8 - Maternity,9 - PNC,10 - Family Planning,11 - SMC,12 - STI Clinic,13 - Others (specify)"
+                                >
+                                    <controls>
+                                        <when value="90002" thenDisplay="#entry-point-other-specify" />
+                                         <when value="164983" thenDisplay="#anc-visit-number" />
+                                    </controls>
+                                </obs>
                             </span>
-                              <label>Specify</label>
-                        <obs id="99115" conceptId="99115" class="horizontal-layout-options"/>
-
+                        <span id="entry-point-other-specify">
+                            <label>Specify</label>
+                            <obs id="99115" conceptId="99115" class="horizontal-layout-options"/>
+                        </span>
+                        <span id="anc-visit-number">
+                            <label>ANC Visit Number</label>
+                            <obs conceptId="99727" class="horizontal-layout-options" />
+                        </span>
                     </td>
                 </tr>
                 <tr>
