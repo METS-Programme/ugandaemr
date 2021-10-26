@@ -89,7 +89,7 @@
 
             jq.ajax({
                 type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=default&cohortType="+type,
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=custom:(name,uuid,description,voided,cohortType,startDate)&cohortType="+type,
                 dataType: "json",
                 contentType: "application/json",
                 async: false,
@@ -161,7 +161,7 @@
 
         function saveEditedData(id){
             var dataToPost = processFormData();
-            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id;
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id+"?v=full";
             if(dataToPost!==""){
                 saveCohort(dataToPost,url);
             }
@@ -169,7 +169,7 @@
 
         function submit() {
             var dataToPost = processFormData();
-            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort";
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=full";
             if(dataToPost!==""){
                 saveCohort(dataToPost,url);
             }

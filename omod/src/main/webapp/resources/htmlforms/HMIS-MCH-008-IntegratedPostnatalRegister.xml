@@ -279,13 +279,19 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label>Timing for PNC Visit</label>
-                                            <obs conceptId="1732" answerConceptIds="1822, 1072, 1073, 1074"  answerLabels="24 Hours, 6 Days, 6 Weeks, 6 Months"/>
+                                            <obs conceptId="166502" answerConceptIds="165462, 165463, 166503, 166504, 166505"  answerLabels="	PNC at 6 hours, PNC at 24 hours, PNC at 6 days, PNC at 6 weeks, PNC at 6 months"/>
                                         </div>
                                         <span class="hidden">
                                             <encounterLocation
                                                 default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
                                             <encounterProvider role="Provider" type="autocomplete" default="currentUser" />
-                                        </span>
+                                        </span>                                        
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Referrals in/Out</label>
+                                            <obs conceptId="165855" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -324,4 +324,19 @@ public class EncounterTypes {
             return "afcdfcd8-defe-11eb-ba80-0242ac130004";
         }
     };
+    public static EncounterTypeDescriptor EMERGENCY_ART_SERVICE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Emergency ART Service Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Emergency ART Service Encounter";
+        }
+
+        public String uuid() {
+            return "d18bd8f2-dfcd-11eb-ba80-0242ac130004";
+        }
+    };
 }
