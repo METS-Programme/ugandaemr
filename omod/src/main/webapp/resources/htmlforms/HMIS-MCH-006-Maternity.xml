@@ -309,7 +309,7 @@
 										<div class="row">
 											<div class="col-md-3">
 												<label>Woman eMTCT</label>
-												<obs id="emtct-code-woman" conceptId="99317" answerConceptIds="99313, 99734, 99314, 99315, 99735, 99736, 99739, 99741"
+												<obs id="emtct-code-woman" conceptId="99317" answerConceptIds="99313, 99734, 99314, 99315, 99739, 99741, 99737, 99738"
                                                  	 answerLabels="C - Counseled but declined HIV testing,
 	                                                               T - Counseled and tested but didn't receive results,
 	                                                               TR - Counseled tested and results given - Client tested HIV Negative in Maternity,
@@ -322,7 +322,7 @@
 											</div>
 											<div class="col-md-3">
 												<label>Patner eMTCT</label>
-												<obs id="emtct-code-partner" conceptId="99342"  answerConceptIds="99313,99734,99314,99315,164962,99736,99739,99741" 
+												<obs id="emtct-code-partner" conceptId="99342"  answerConceptIds="99313,99734,99314,99315,99739,99741,99737,99738"
 													 answerLabels="C - Counseled but declined HIV testing,
 													 			   T - Counseled and tested but didn't recieve results,
                                                         		   TR - Counseled tested and results given,
@@ -584,7 +584,7 @@
 																		<obs conceptId="5916"/>
 																	</div>
 																	<div class="col-md-4">
-																		<obs conceptId="165380"  answerConceptIds="165381,1408,1175" answerLabels="High,Low,NA" 
+																		<obs conceptId="165380"  answerConceptIds="1408,165381,1175" answerLabels="High,Low,NA"
 																			 labelText="Risk Status" style="radio" class="horizontal"/>
 																	</div>
 																	<div class="col-md-4">
