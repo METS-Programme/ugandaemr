@@ -1981,6 +1981,7 @@
     <concept_numeric concept_id="164942" allow_decimal="false"/>
     <concept_numeric concept_id="164943" allow_decimal="false"/>
     <concept_numeric concept_id="164948" units="Weeks" allow_decimal="false"/>
+    <concept_numeric concept_id="166464" allow_decimal="false" />
 
     <!--ART-->
     <concept_numeric  concept_id="90214" allow_decimal="0"/>
