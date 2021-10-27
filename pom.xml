@@ -6,7 +6,7 @@
 	<artifactId>ugandaemr</artifactId>
 	<version>3.2.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Ugandaemr</name>
+	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
 	<url>https://wiki.openmrs.org/display/docs/ugandaemr+Module+Module</url>
 
