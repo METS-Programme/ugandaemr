@@ -405,6 +405,10 @@
                                              <when value="164983" thenDisplay="#anc-visit-number" />
                                         </controls>
                                     </obs>
+                                     <span id="anc-visit-number">
+                                        <label>ANC Visit Number</label>
+                                        <obs conceptId="99727" class="horizontal-layout-options" />
+                                    </span>
                                  </includeIf>
                                  <includeIf velocityTest="$patient.gender == 'M' ">
                                     <obs conceptId="162925" id="162925"
@@ -420,10 +424,7 @@
                             <label>Specify</label>
                             <obs id="99115" conceptId="99115" class="horizontal-layout-options"/>
                         </span>
-                        <span id="anc-visit-number">
-                            <label>ANC Visit Number</label>
-                            <obs conceptId="99727" class="horizontal-layout-options" />
-                        </span>
+
                     </td>
                 </tr>
                 <tr>

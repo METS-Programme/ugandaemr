@@ -9,8 +9,8 @@
 
 	<artifactId>ugandaemr-api</artifactId>
 	<packaging>jar</packaging>
-	<name>Ugandaemr Module API</name>
-	<description>API project for ugandaemr</description>
+	<name>UgandaEMR Module API</name>
+	<description>API project for UgandaEMR</description>
 
 	<dependencies>
 

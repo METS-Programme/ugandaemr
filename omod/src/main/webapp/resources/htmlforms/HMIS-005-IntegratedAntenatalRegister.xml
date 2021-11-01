@@ -600,12 +600,18 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>ANC Visit Number</label>
+                                                    <label>ANC Client Number</label>
                                                     <obs conceptId="99727" />
                                                 </div>
                                                 <div class="col-md-4">
+                                                    <label>ANC Visit Number</label>
+                                                    <obs conceptId="166517"
+                                                         answerConceptIds="166508, 166509, 166507, 166510, 166511, 166512, 166513, 166514, 166515, 166516"
+                                                         answerLabels="1st ANC visit, 2nd ANC visit, 3rd ANC visit, 4th ANC visit, 5th ANC visit,6th ANC visit, 7th ANC visit, 8th ANC visit, 9th ANC visit, 10th ANC visit" class="long-value-select"/>
+                                                </div>
+                                                <div class="col-md-4">
                                                     <label>Referrals in/Out</label>
-                                                    <obs conceptId="165855" />
+                                                    <obs conceptId="165855" class="long-value-select" />
                                                 </div>
                                             </div>
                                         </div>
