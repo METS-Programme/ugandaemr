@@ -13,10 +13,10 @@
 
 
     <ifMode mode="ENTER,EDIT" include="false">
-        <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0 or $fn.allEncounters('8d5b2be0-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
+        <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
                 jq(function () {
-                    jq().toastmessage('showErrorToast', "This patient is missing an ART Summary page and a Clinical Assessment page");
+                    jq().toastmessage('showErrorToast', "This patient is missing an ART Summary page");
                     alert('This patient has no Summary page, you will now be forwarded to the patient dashboard');
 
                     /*
