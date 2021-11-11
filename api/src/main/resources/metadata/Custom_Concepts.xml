@@ -8340,7 +8340,22 @@
     <concept_answer  concept_answer_id="7367932"  concept_id="166039"  answer_concept="99887" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="30" uuid="e71ba0e2-5f6f-45dd-b667-1763576581ff"/>
     <concept_answer  concept_answer_id="7367933"  concept_id="166039"  answer_concept="90002" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="31" uuid="5f2ad029-6699-490e-883e-cd0a2ebb2502"/>
     
+    <!-- Making Transfer IN Regimen consistent with the Current Regimen -->
 
+    <concept_answer concept_answer_id="7367946" concept_id="90315" answer_concept="99002" creator="1" date_created="2021-11-11 00:00:00" sort_weight="34" uuid="cf4571de-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367947" concept_id="90315" answer_concept="99003" creator="1" date_created="2021-11-11 00:00:00" sort_weight="35" uuid="cf457512-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367948" concept_id="90315" answer_concept="99004" creator="1" date_created="2021-11-11 00:00:00" sort_weight="36" uuid="cf45780a-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367949" concept_id="90315" answer_concept="99007" creator="1" date_created="2021-11-11 00:00:00" sort_weight="37" uuid="cf457986-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367950" concept_id="90315" answer_concept="99008" creator="1" date_created="2021-11-11 00:00:00" sort_weight="38" uuid="cf457ab2-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367951" concept_id="90315" answer_concept="99009" creator="1" date_created="2021-11-11 00:00:00" sort_weight="39" uuid="cf457bac-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367952" concept_id="90315" answer_concept="99010" creator="1" date_created="2021-11-11 00:00:00" sort_weight="40" uuid="cf457ce2-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367953" concept_id="90315" answer_concept="99011" creator="1" date_created="2021-11-11 00:00:00" sort_weight="41" uuid="cf457dc8-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367954" concept_id="90315" answer_concept="99012" creator="1" date_created="2021-11-11 00:00:00" sort_weight="42" uuid="cf457ea4-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367955" concept_id="90315" answer_concept="99013" creator="1" date_created="2021-11-11 00:00:00" sort_weight="43" uuid="cf457f80-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367956" concept_id="90315" answer_concept="99014" creator="1" date_created="2021-11-11 00:00:00" sort_weight="44" uuid="cf458138-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367957" concept_id="90315" answer_concept="99144" creator="1" date_created="2021-11-11 00:00:00" sort_weight="45" uuid="cf458214-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367958" concept_id="90315" answer_concept="99143" creator="1" date_created="2021-11-11 00:00:00" sort_weight="46" uuid="cf45830e-42ab-11ec-be7c-105c9dfe22af"/>
+    <concept_answer concept_answer_id="7367959" concept_id="90315" answer_concept="99282" creator="1" date_created="2021-11-11 00:00:00" sort_weight="47" uuid="cf4583e0-42ab-11ec-be7c-105c9dfe22af"/>
     <!--CONCEPT SET-->
     <!--MCH-->
     <concept_set concept_set_id="167" concept_id="1410" concept_set="1421" sort_weight="2.0" creator="1" date_created="2006-12-08 18:48:21.0" uuid="167AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
