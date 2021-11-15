@@ -170,6 +170,7 @@
         function submit() {
             var dataToPost = processFormData();
             var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=full";
+            console.log(dataToPost);
             if(dataToPost!==""){
                 saveCohort(dataToPost,url);
             }
