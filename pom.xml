@@ -115,7 +115,7 @@
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
 		<ugandaemrSyncVersion>1.1.1</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
-		<cohortModuleVersion>2.2.0</cohortModuleVersion>
+		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.27</ugandaemrReportsVersion>
