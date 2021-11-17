@@ -52,6 +52,10 @@
     <lookup complexExpression="#set ($regimenLineId = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.Id)" />
     <lookup complexExpression="#set ($regimenLineName = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name)" />
     <script type="text/javascript">
+        jq(document).ready(function () {
+            // set the value of the prior regimen
+            setValue('prior-regimen.value', jq("#current-regimen-id").html());
+        });
         beforeSubmit.push(function () {
             // ensure that the current regimen is not the same as the switch or substituted regimen
             var current_regimen_id = jq("#current-regimen-id").html();
@@ -102,6 +106,9 @@
                             <lookup complexExpression="$currentRegimenName" />
                             <span class="hidden" id="current-regimen-id"><lookup complexExpression="$currentRegimen.valueCoded.Id"/></span>
                             <span class="hidden" id="current-regimen-name"><lookup complexExpression="$currentRegimen.valueCoded.name"/></span>
+                            <span class="hidden">
+                                <obs id="prior-regimen" conceptId="166039" />
+                            </span>
                         </td>
                     </tr>
                     <tr>
