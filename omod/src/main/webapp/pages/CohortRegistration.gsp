@@ -170,7 +170,6 @@
         function submit() {
             var dataToPost = processFormData();
             var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=full";
-            console.log(dataToPost);
             if(dataToPost!==""){
                 saveCohort(dataToPost,url);
             }
@@ -181,7 +180,6 @@
             var description = jq('#description').val();
             var unique_id = jq('#uuid').val();
             var cohort_type = jq('#cohort-type option:selected').val();
-            console.log(cohort_type);
             var submitVal = true;
 
 
