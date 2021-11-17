@@ -9239,4 +9239,9 @@
 
     <!-- Change Data type to Coded-->
     <concept  concept_id="162476"  retired="0" datatype_id="2"  class_id="10"  is_set="1"  creator="1"  date_created="2014-05-16 15:26:52"  version=""  changed_by="1"  date_changed="2014-05-16 15:27:31"  uuid="162476AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
+
+    <!-- Retirement -->
+
+    <concept_name concept_name_id="5264" concept_id="90315" name="K00315" locale="en" locale_preferred="0" creator="1" date_created="2004-03-31 12:00:00" concept_name_type="SHORT" voided="1" voided_by="1" date_voided="2021-11-17 20:31:11" void_reason="Not required" uuid="25163f58-32c0-49c2-b667-f1d96ed8abad" date_changed="2021-11-17 20:31:11" changed_by="1"/>
+
 </dataset>
