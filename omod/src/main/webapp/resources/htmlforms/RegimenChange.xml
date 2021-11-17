@@ -123,7 +123,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td nowrap="">
+                        <td>
                             <label><b>Regimen Change Type</b></label>
                         </td>
                         <td>
@@ -141,6 +141,7 @@
 
                         </td>
                     </tr>
+                    <excludeIf velocityTest="$fn.latestObs(166339,$encounterDate).valueCoded.Id == 1371">
                     <tr>
                         <td>
                             <label><b>New Regimen</b></label>
@@ -156,6 +157,16 @@
                             </span>
                         </td>
                     </tr>
+                    <tr id="regimen-substitution-reason">
+                        <td>
+                            <label><b>Reason for regimen substitution</b></label>
+                        </td>
+                        <td>
+                            <obs conceptId="90246" rows="5"/>
+                        </td>
+                    </tr>
+                    </excludeIf>
+                    <excludeIf velocityTest="$fn.latestObs(166339,$encounterDate).valueCoded.Id == 1372">
                     <tr id="regimen-switch-line">
                         <td>
                             <label><b>New Regimen Line for Switch</b></label>
@@ -185,14 +196,8 @@
                             <obs conceptId="90247" rows="5"/>
                         </td>
                     </tr>
-                    <tr id="regimen-substitution-reason">
-                        <td>
-                            <label><b>Reason for regimen substitution</b></label>
-                        </td>
-                        <td>
-                            <obs conceptId="90246" rows="5"/>
-                        </td>
-                    </tr>
+                    </excludeIf>
+
                     <tr>
                         <td>
                             <label><b>Clinician Notes</b></label>
