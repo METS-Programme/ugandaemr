@@ -47,6 +47,8 @@
     </ifMode>
 
         <lookup complexExpression="#if ($encounter) #set ($encounterDate = $encounter.encounterDatetime) #else #set ($encounterDate = $visit.startDatetime) #end"/>
+    <!-- Use the date a day before the encounter date as there will be an overlap if the actual encounter date is used -->
+    <lookup complexExpression="#set ($previousRegimenDate = $fn.yesterday($encounterDate))"/>
     <lookup complexExpression="#set ($regimenLineId = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.Id)" />
     <lookup complexExpression="#set ($regimenLineName = $fn.currentProgramWorkflowStatus(3,$encounterDate).state.concept.name)" />
     <script type="text/javascript">
@@ -95,7 +97,7 @@
                             <label><b>Current Regimen</b></label>
                         </td>
                         <td>
-                            <lookup complexExpression="#if ($fn.latestObs(90315,$encounterDate)) #set ($currentRegimen=$fn.latestObs(90315,$encounterDate)) #else #set ($currentRegimen=$fn.latestObs(99064,$encounterDate)) #end"/>
+                            <lookup complexExpression="#if ($fn.latestObs(90315,$previousRegimenDate)) #set ($currentRegimen=$fn.latestObs(90315,$previousRegimenDate)) #else #set ($currentRegimen=$fn.latestObs(99064,$previousRegimenDate)) #end"/>
                             <lookup complexExpression="#if (!$currentRegimen) #set ($currentRegimenName='No Current or Transfer-in Regimen') #else #set ($currentRegimenName=$currentRegimen.valueCoded.name) #end"/>
                             <lookup complexExpression="$currentRegimenName" />
                             <span class="hidden" id="current-regimen-id"><lookup complexExpression="$currentRegimen.valueCoded.Id"/></span>
