@@ -198,6 +198,32 @@
     ]
   },
   {
+    "id": "ugandaemr.regimenChangeList",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Regimen Change history for the patient",
+    "order": 6,
+    "config": {
+      "widget": "obsacrossencounters",
+      "icon": "icon-user-md",
+      "label": "Regimen Change History",
+      "concepts": "ca5a71aa-05f9-42a0-bf0d-65bcfd08036b,107bef04-bf05-4f41-9260-b167c1108f7e,dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
+      "encounterType": "c11774c1-3b4a-4bdb-a847-6060895e006d",
+      "maxRecords": "5"
+    },
+    "requiredPrivilege": "App: ugandaemr.widget.regimenChangeList",
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.regimenChangeList",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.directionstoresidence",
     "instanceOf": "coreapps.template.dashboardWidget",
     "description": "Directions to client residence",
