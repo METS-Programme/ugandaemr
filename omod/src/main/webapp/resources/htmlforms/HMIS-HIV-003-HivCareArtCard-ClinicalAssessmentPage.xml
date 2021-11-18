@@ -1374,7 +1374,7 @@
                 }
 
             </restrictByRole>
-
+            <includeIf velocityTest="$fn.globalProperty('ugandaemr.enableCDDPCategorization') == 'true'">
             var cohort = getValue('refill_point_id.value');
             var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
             var DSDCategory = getValue('cddp_category.value');
@@ -1394,10 +1394,12 @@
                     jq().toastmessage('showSuccessToast', "Client Added to a Refill Group Successfully");
                 },
                 error: function (response) {
-                    jq().toastmessage('showErrorToast', "Error while Added Client to Refill Group");
+                    if (cohort !== ""){
+                        jq().toastmessage('showErrorToast', "Error while Added Client to Refill Group");}
                 }
                 });
             }
+            </includeIf>
 
                 return true;
             });

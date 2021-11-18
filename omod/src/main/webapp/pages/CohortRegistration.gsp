@@ -180,7 +180,6 @@
             var description = jq('#description').val();
             var unique_id = jq('#uuid').val();
             var cohort_type = jq('#cohort-type option:selected').val();
-            console.log(cohort_type);
             var submitVal = true;
 
 
