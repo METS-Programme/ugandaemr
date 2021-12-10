@@ -101,7 +101,7 @@
                             <label><b>Current Regimen</b></label>
                         </td>
                         <td>
-                            <lookup complexExpression="#if ($fn.latestObs(90315,$previousRegimenDate)) #set ($currentRegimen=$fn.latestObs(90315,$previousRegimenDate)) #else #set ($currentRegimen=$fn.latestObs(99064,$previousRegimenDate)) #end"/>
+                            <lookup complexExpression="#if ($fn.latestObs(90315,$previousRegimenDate)) #set ($currentRegimen=$fn.latestObs(90315,$previousRegimenDate)) #else #set ($currentRegimen=$fn.latestObs(99064,$encounterDate)) #end"/>
                             <lookup complexExpression="#if (!$currentRegimen) #set ($currentRegimenName='No Current or Transfer-in Regimen') #else #set ($currentRegimenName=$currentRegimen.valueCoded.name) #end"/>
                             <lookup complexExpression="$currentRegimenName" />
                             <span class="hidden" id="current-regimen-id"><lookup complexExpression="$currentRegimen.valueCoded.Id"/></span>
