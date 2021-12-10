@@ -281,19 +281,27 @@ public class Flags {
     public static FlagDescriptor MISSED_APPOINTMENT = new FlagDescriptor() {
         @Override
         public String criteria() {
-            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y') \n" +
-                    "FROM patient p\n" +
-                    " INNER JOIN obs o ON p.patient_id = o.person_id \n" +
-                    " INNER JOIN person pe on pe.person_id=p.patient_id\n" +
-                    " WHERE pe.dead=FALSE\n" +
-                    " AND o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id \n" +
-                    " HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 29 DAY) AND DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY)\n" +
-                    " AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo WHERE oo.concept_id = 90306 AND oo.voided = FALSE)";
+            return "SELECT p.patient_id, DATE_FORMAT(MAX(o.value_datetime), '%d.%b.%Y'),\n" +
+                    "       CASE\n" +
+                    "       WHEN l.uuid ='8d6c993e-c2cc-11de-8d13-0010c6dffd0f' THEN 'ART CLINIC'\n" +
+                    "       WHEN l.uuid ='629d78e9-93e5-43b0-ad8a-48313fd99117' THEN 'ART CLINIC'\n" +
+                    "       WHEN l.uuid ='86863db4-6101-4ecf-9a86-5e716d6504e4' THEN 'ART CLINIC'\n" +
+                    "       WHEN l.uuid ='841cb8d9-b662-41ad-9e7f-d476caac48aa' THEN 'Community'\n" +
+                    "       WHEN l.uuid ='3ec8ff90-3ec1-408e-bf8c-22e4553d6e17' THEN 'Pharmacy'\n" +
+                    "       WHEN l.uuid IS NULL THEN 'ART CLINIC'\n" +
+                    "       END as location\n" +
+                    "    FROM patient p\n" +
+                    "    INNER JOIN obs o ON p.patient_id = o.person_id  INNER JOIN person pe on pe.person_id=p.patient_id\n" +
+                    "    LEFT JOIN location l  on o.location_id = l.location_id\n" +
+                    "    WHERE pe.dead=FALSE AND o.concept_id = 5096 AND o.voided = FALSE GROUP BY o.person_id\n" +
+                    "    HAVING MAX(o.value_datetime) BETWEEN DATE_SUB(CURRENT_DATE(), INTERVAL 29 DAY) AND\n" +
+                    "    DATE_SUB(CURRENT_DATE(), INTERVAL 7 DAY) AND p.patient_id NOT IN (SELECT oo.person_id FROM obs oo\n" +
+                    "    WHERE oo.concept_id = 90306 AND oo.voided = FALSE);";
         }
 
         @Override
         public String message() {
-            return "Missed appointment on ${1}";
+            return "Missed appointment on ${1} at ${2}";
         }
 
         @Override

@@ -26,6 +26,7 @@ public class PatientStabilityFragmentController {
         ObsService obsService = Context.getObsService();
         ConceptService conceptService = Context.getConceptService();
         PatientService patientService = Context.getPatientService();
+        Integer minimumDurationOnCurrentRegimen = Integer.parseInt(Context.getAdministrationService().getGlobalProperty("ugandaemr.dsdm.currentRegimenDurationRequirementInMonths"));
 
         Visit encounterVisit = new Visit();
         if (visit == null && encounter != null) {
@@ -61,7 +62,7 @@ public class PatientStabilityFragmentController {
         /**
          * Current regimen
          */
-        int monthOffSet = -12;
+        int monthOffSet = -minimumDurationOnCurrentRegimen;
 
         Obs obs=getMostRecentObservation(encounterVisit,"90315");
 
