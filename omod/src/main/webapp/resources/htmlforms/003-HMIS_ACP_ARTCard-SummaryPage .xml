@@ -1348,7 +1348,7 @@
                                                             <div class="right-inner-addon ">
                                                                 <i class=" icon-calendar small start-art-icon"></i>
                                                                 <obs id="99161" conceptId="99161"
-                                                                     labelText="At Start ART:"/>
+                                                                     labelText="At Start ART:" allowFutureDates="true"/>
                                                             </div>
                                                         </td>
                                                         <td class="ARTStartEnableDisableChild1">
