@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>3.2.4-SNAPSHOT</version>
+	<version>3.3.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -86,7 +86,7 @@
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.0.0</formfilterVersion>
 		<htmlformentryuiVersion>1.10.0</htmlformentryuiVersion>
-		<htmlformentryVersion>4.3.0-SNAPSHOT</htmlformentryVersion>
+		<htmlformentryVersion>4.3.0</htmlformentryVersion>
 		<htmlwidgetsVersion>1.10.0</htmlwidgetsVersion>
 		<idgenVersion>4.5.0</idgenVersion>
 		<jacksonVersion>1.8.3</jacksonVersion>
@@ -113,12 +113,12 @@
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
-		<ugandaemrSyncVersion>1.1.1</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>1.1.2</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.27</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.28</ugandaemrReportsVersion>
 
 	</properties>
 
