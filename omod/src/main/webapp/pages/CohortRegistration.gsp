@@ -124,23 +124,27 @@
 
         function deleteCohort(id){
             if(id!==null){
-                jq.ajax({
-                    type: "DELETE",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id,
-                    dataType: "json",
-                    contentType: "application/json",
-                    async: false,
-                    success: function (data) {
-                        jq().toastmessage('showSuccessToast', "Cohort Deleted");
-                        getCohorts();
-                    }
-                });
+                var deleteMessageURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/cohort/delete?uuid=' + id;
+                    jq.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url: deleteMessageURL,
+                        async: false,
+                        success: function (response) {
+                            jq().toastmessage('showSuccessToast', response.message);
+                            getCohorts();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            jq().toastmessage('showErrorToast', "Delete Failed");
+                        }
+                    });
+                    getCohorts();
             }
         }
 
         function editCohort(id){
             jq("#cohort-type").empty();
-            getCohortTypes()
+            getCohortTypes();
             var row = jq('#'+id);
             row.each(function (i) {
                 var tds = jq(this).find('td');
