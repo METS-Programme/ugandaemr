@@ -32,4 +32,20 @@ public class CohortRegistrationController {
 		return response;
 	}
 
+	@RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/" + UgandaEMRConstants.UGANDAEMR_MODULE_ID
+			+ "/cohort/edit", method = RequestMethod.GET)
+	@ResponseBody
+	public SimpleObject editCohort(
+			@RequestParam(required = true, value = "uuid") String cohortUuid) {
+
+		Cohort cohort = Context.getCohortService().getCohortByUuid(cohortUuid);
+		SimpleObject response = new SimpleObject();
+
+		response.add("name", cohort.getName());
+		response.add("description", cohort.getDescription());
+		response.add("uuid", cohort.getUuid());
+
+		return response;
+	}
+
 }
