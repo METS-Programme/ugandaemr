@@ -1395,7 +1395,7 @@
                 },
                 error: function (response) {
                     if (cohort !== ""){
-                        jq().toastmessage('showErrorToast', "Error while Added Client to Refill Group");}
+                        jq().toastmessage('showErrorToast', response.responseJSON.error.message);}
                 }
                 });
             }
