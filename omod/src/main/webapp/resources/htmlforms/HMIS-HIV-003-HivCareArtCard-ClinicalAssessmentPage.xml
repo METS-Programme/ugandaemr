@@ -1750,7 +1750,8 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Attending Clinician</label>
-                                                        <encounterProvider role="Provider" style="autocomplete" id="provider"/>
+                                                        <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                                                  required="required"  id="provider"/>
                                                         <span class="required">*</span><span style="display: none;">
                                                             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
                                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
