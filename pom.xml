@@ -467,6 +467,12 @@
 				<artifactId>cohort</artifactId>
 				<version>${cohortModuleVersion}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.json</groupId>
+				<artifactId>json</artifactId>
+				<version>20160810</version>
+				<type>jar</type>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 

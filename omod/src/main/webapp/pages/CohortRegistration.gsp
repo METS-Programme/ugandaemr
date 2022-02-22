@@ -145,7 +145,6 @@
         }
 
         function editCohort(id){
-            if (id.indexOf("/")>=0) {
                 var editURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/cohort/edit?uuid=' + id;
                 jq.ajax({
                     type: 'GET',
@@ -162,38 +161,19 @@
                         jq('#name').attr("value", name);
                         jq('#description').attr("value", description);
                         jq('#uuid').attr("value", uuid);
+
+                        jq('.modal-footer > input').attr("onclick","saveEditedData('"+id+"')");
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                     }
                 });
-            }else{
-                jq("#cohort-type").empty();
-                getCohortTypes();
-                var row = jq('#'+id);
-                row.each(function (i) {
-                    var tds = jq(this).find('td');
-                    var name = tds.eq(0).text();
-                    var description = tds.eq(1).text();
-                    var type= tds.eq(2).text();
-                    var uuid = tds.eq(4).text();
-
-                    jq('#name').attr("value",name);
-                    jq('#description').attr("value",description);
-                    jq('#uuid').attr("value",uuid);
-                    jq("#cohort-type option:contains('"+type+"')").attr("selected", "selected");
-                });
-
-                jq('.modal-footer > input').attr("onclick","saveEditedData('"+id+"')");
-
-            }
-
         }
 
         function saveEditedData(id){
             var dataToPost = processFormData();
-            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id+"?v=full";
-            if(dataToPost!==""){
-                saveCohort(dataToPost,url);
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/ugandaemr/cohort/saveEdit?uuid="+id;
+            if(dataToPost!=="") {
+                saveCohort(dataToPost, url);
             }
         }
 
