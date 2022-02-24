@@ -417,7 +417,7 @@
                       </div>
                       <div class="col-md-3">
                           <label>Date Results given to Client</label>
-                          <obs id="163156" conceptId="163156" allowFutureDates="false" required="true"/>
+                          <obs id="163156" conceptId="163156" allowFutureDates="true" required="true"/>
                       </div>
                       </obsgroup>
                   </div>
@@ -503,7 +503,7 @@
                                                         <div class="row">
                                                                 <div class="col-md-12">
                                                                     <label>Session Date</label>
-                                                                    <obs id="163154_{n}" conceptId="163154" allowFutureDates="false"/>
+                                                                    <obs id="163154_{n}" conceptId="163154" allowFutureDates="true"/>
                                                                 </div>
                                                         </div>
                                                     </td>

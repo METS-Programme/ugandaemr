@@ -1687,7 +1687,7 @@
                                                         <td id="disabled">
                                                             <div class="right-inner-addon ">
                                                                 <i class=" icon-calendar small"></i>
-                                                                <obs id="99165" conceptId="99165"/>
+                                                                <obs id="99165" conceptId="99165" allowFutureDates="true"/>
                                                             </div>
 
                                                         </td>
@@ -1705,7 +1705,7 @@
                                                         <td id="disabled">
                                                             <div class="right-inner-addon ">
                                                                 <i class=" icon-calendar small"></i>
-                                                                <obs id="90209" conceptId="90209"/>
+                                                                <obs id="90209" conceptId="90209" allowFutureDates="true"/>
                                                             </div>
                                                         </td>
                                                         <td></td>
@@ -1729,7 +1729,7 @@
                                                 <label>Date TPT started: </label>
                                                 <div class="right-inner-addon ">
                                                     <i class=" icon-calendar small right-inner-addon-row"></i>
-                                                    <obs id="165226" conceptId="165226"/>
+                                                    <obs id="165226" conceptId="165226" allowFutureDates="true"/>
                                                 </div>
 
                                             </div>
@@ -1737,7 +1737,7 @@
                                                 <label>Date TPT Completed: </label>
                                                 <div class="right-inner-addon ">
                                                     <i class=" icon-calendar small right-inner-addon-row"></i>
-                                                    <obs id="165227" conceptId="165227"/>
+                                                    <obs id="165227" conceptId="165227" allowFutureDates="true"/>
                                                 </div>
 
                                             </div>
