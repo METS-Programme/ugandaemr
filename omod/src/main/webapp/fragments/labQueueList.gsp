@@ -344,8 +344,10 @@
             orderedTestsRows += "</tr>";
             if (element.status !== "has results") {
                 if (instructions != null && instructions.toLowerCase().indexOf("refer to") >= 0) {
-                    referedTests += orderedTestsRows;
-                    refferedCounter += 1;
+                    if (element.status !== "has results") {
+                        referedTests += orderedTestsRows;
+                        refferedCounter += 1;
+                    }
                 } else {
                     workListTests += orderedTestsRows;
                     worklistCounter += 1;

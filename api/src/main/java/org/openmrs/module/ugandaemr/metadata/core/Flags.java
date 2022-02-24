@@ -826,10 +826,10 @@ public class Flags {
         @Override
         public String criteria() {
             return "Select p.patient_id,ooo.value_text ,DATE_FORMAT(oo.value_datetime,'%d. %b. %Y')\n" +
-                    "from obs o   INNER JOIN obs oo ON o.person_id=oo.person_id\n" +
-                    "INNER JOIN patient p on p.patient_id =o.person_id\n" +
-                    " INNER JOIN obs ooo ON o.person_id = ooo.person_id  WHERE o.concept_id =90306  AND o.voided= FALSE \n" +
-                    " and oo.concept_id =99165  AND oo.voided = FALSE AND ooo.voided = FALSE  and ooo.concept_id = 90211";
+                    "from  obs oo \n" +
+                    "INNER JOIN patient p on p.patient_id =oo.person_id\n" +
+                    " INNER JOIN obs ooo ON oo.person_id = ooo.person_id WHERE \n" +
+                    " oo.concept_id =99165  AND oo.voided = FALSE AND ooo.voided = FALSE  and ooo.concept_id = 90211";
         }
 
         @Override

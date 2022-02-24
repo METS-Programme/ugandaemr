@@ -59,6 +59,9 @@
             var latestTransferInEncounter = getLatestEncounterFromEncounterList(transferInEncounters);
             var latestTransferOutEncounter = getLatestEncounterFromEncounterList(transferOutEncounters);
 
+            var prescription = 'false';
+
+
             jq(document).ready(function () {
 
 
@@ -158,6 +161,38 @@
                 });
             }
 
+            //Check if any prescription is made, if so that return date will be mandatory
+            jq(document).ready(function () { 
+
+                jq(".prescription-poc").change(function () {
+                    var prescriptionMade =[];
+
+                    //if there is any value in the text box
+                    var ptext = jq(this).find("input[type$='text']").each(function() {
+                        if($(this).val()!="")
+                        prescriptionMade.push($(this).val());
+                    })
+                    
+                    //if there is any radio button checked
+                    jq(this).find("input[type$='radio']:checked").each(function() {
+                        if($(this).val()!=1066)
+                        prescriptionMade.push($(this).val());
+                    })
+
+                    //if any regimen is selected
+                    var regimen = jq(".regimen-given :selected").each(function() {
+                        if($(this).val()!="")
+                        prescriptionMade.push($(this).val());
+                    })
+
+                    if(prescriptionMade.length > 0 )
+                        prescription = 'true';
+                    else 
+                        prescription = 'false';
+                    
+                });
+            });
+
            jq(document).ready(function () {
                 $allRows_other = jq(this).find('.multi-drug-other');
                 $allRows_other.hide();
@@ -189,7 +224,6 @@
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry-other').toggle(true);
                 jq('#' + correctedRemoveButtonId + '-removeEntry-other').toggle(true);
-
                 return false;
                 });
 
@@ -230,9 +264,6 @@
                 });
 
         });
-
-
-
 
         jq(document).ready(function () {
                 $allRows = jq(this).find('.multi-drug');
@@ -340,6 +371,7 @@
                 });
 
             });
+
         <ifMode mode = "EDIT" >
             jq(document).ready(function () {
                 $allRows = jq(this).find('.multi-drug');
@@ -520,7 +552,6 @@
                 });
                 <ifMode mode="ENTER">
                 disable_fields("edd");
-                disable_fields("emtct");
                 disable_fields("age-in-months");
                 disable_fields("anc_no");
 
@@ -585,7 +616,6 @@
 
                 <ifMode mode="EDIT">
                     disable_enable_on_edit_mode("edd");
-                    disable_enable_on_edit_mode("emtct");
                     disable_enable_on_edit_mode("age-in-months");
                     disable_enable_on_edit_mode("anc_no");
 
@@ -684,17 +714,15 @@
                    jq('.tpt-without-inh').show();
                 </ifMode>
 
-                /* enable the edd,emtct,age in months and ANC no. fields in case the client is pregnant */
+                /* enable the edd,age in months and ANC no. fields in case the client is pregnant */
 
                 jq(".pregnancy").change(function () {
                     if (jq(this).find('#pregnant').find(':checkbox').prop('checked')) {
                         enable_fields("edd");
-                        enable_fields("emtct");
                         enable_fields("age-in-months");
                         enable_fields("anc_no");
                     } else {
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("age-in-months");
                         disable_fields("anc_no");
                     }
@@ -704,19 +732,10 @@
                     if (jq(this).find(':checkbox').prop('checked')) {
                         enable_fields("transfer_out_date");
                         enable_fields("transfer_out_location");
+                        
                     } else {
                         disable_fields("transfer_out_date");
                         disable_fields("transfer_out_location");
-                    }
-                });
-
-                jq(".pregnancy").change(function () {
-                    if (jq(this).find('#breast-feeding').find(':checkbox').prop('checked')) {
-                        enable_fields("emtct");
-                    } else if(jq(this).find('#pregnant').find(':checkbox').prop('checked')){
-                        enable_fields("emtct");
-                    }else{
-                        disable_fields("emtct");
                     }
                 });
 
@@ -725,7 +744,6 @@
                         jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
                         jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("162983");
                         disable_fields("anc_no");
                         disable_fields("162983");
@@ -739,7 +757,6 @@
                         jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         jq("#not-pregnant-not-breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("162983");
                         disable_fields("anc_no");
                     }
@@ -781,7 +798,6 @@
                         disable_fields("district-tb-no");
                     }
                 });
-
 
                 jq("#tb-status").change(function () {
                     if (jq(this).find("select").find(":selected").val() == "99421") {
@@ -873,7 +889,6 @@
                 /*disable fluconazole prescription*/
 
 
-
                 // enable number of fluconazole stop date if fluconazole start date is defined
                 jq("#fluconazole-start-date").change(function () {
                     if (jq(this).find("input[type=hidden]").val() != "") {
@@ -896,7 +911,6 @@
                         disable_fields("other-regimen");
                     }
                 });
-
 
 
                 /* enable art prescription */
@@ -977,8 +991,6 @@
                 });
 
                 /*enable disable Hepatitis B status*/
-
-
 
                 jq(".hepB-status").change(function () {
                     var hepStatus = jq(this).find("input[type='radio']:checked").val();
@@ -1086,7 +1098,6 @@
                 });
 
 
-
                 jq("#enable-disable-other-poor-art-adherence-reason").change(function () {
                     if (jq(this).find(':checkbox').prop('checked')) {
                         jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", false);
@@ -1186,23 +1197,50 @@
                 setValue('other-meds-quantity.error','');
             </restrictByRole>
 
-
                 var encounterDate = new Date((getValue('encounterDate.value')));
                 var appointment = new Date((jq("#returndate").find('input[type=hidden]').val()));
-                var transferOutDate = new Date((getValue('transfer_out_date.value')));
+                var transferOutDate = new Date((getValue('transfer_out_date.value'))); 
+                var transferOut   = jq('.transfer_out').find("input[type$='checkbox']:checked").val();
+                var returnDate    = getValue('returndate.value');
+                var returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
+
 
                 if(getValue('provider.value')==""){
-                     jq().toastmessage('showErrorToast', "Attending clinician is required");
-                 }
+                    jq().toastmessage('showErrorToast', "Attending clinician is required");
+                }
 
-                if (encounterDate &gt;= appointment) {
+                if(encounterDate &gt;= appointment){
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
                         formatDateForDisplay(encounterDate)).show();
                     jq().toastmessage('showErrorToast', "The return date must be after the date of this visit");
                     return false;
-
                 }
 
+                //Return visit date is required if any prescription is made
+                if(prescription=="true" &amp;&amp; returnDate=="") {
+                    jq().toastmessage('showErrorToast', "The return visit date is required");
+                    return false;
+                }
+
+                //In case of a transfer out
+                if(transferOut == 90003) {
+                    if(getValue('transfer_out_date.value')==""){
+                        jq().toastmessage('showErrorToast', "The transfer out date is required");
+                        return false;
+                    }
+
+                    if(getValue('transfer_out_location.value')==""){
+                        jq().toastmessage('showErrorToast', "Transfer out place/facility is required");
+                        return false;
+                    } 
+                }
+
+                //Return visit date is required if there is no transfer out in non POC mode
+                if(transferOut !==90003 &amp;&amp; returnDatePoc =="") {
+                    jq().toastmessage('showErrorToast', "The return visit date is required");
+                    return false;
+                }
+                                                
                 if(getValue('transfer_out_date.value') !== "" &amp;&amp; encounterDate.getTime() !== transferOutDate.getTime()){
                     getField('transfer_out_date.error').html('The Transfer out date has to be exactly the same as the encounter date' +
                         formatDateForDisplay(encounterDate)).show();
@@ -1222,10 +1260,6 @@
                     jq().toastmessage('showErrorToast', "The return date must be before the transfer out date of "+(new Date(latestTransferOutEncounter.encounterDatetime)));
                         return false;
                 }
-
-
-
-
 
                 var viral_load_qualitative = getValue('viral-load-results-qualitative.value');
                 var date_viral_load_taken = getValue('date-viral-load-taken.value');
@@ -1253,7 +1287,6 @@
                     jq().toastmessage('showErrorToast', "Please enter the number of virus copies per ml. the minimum number of copies is 20");
                     return false;
                 }
-
 
                 /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
                 if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val() !== "165138" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "165140" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "")) {
@@ -1470,9 +1503,7 @@
                 }
             });
 
-
         </ifMode>
-
 
         </includeIf>
 
@@ -1601,6 +1632,10 @@
     </span>
     <span class="hidden" id="numberOfPatients"><lookup expression="fn.globalProperty('ugandaemr.maximumPatientsPerDay')"/></span>
 
+    <div class="hidden">
+        <encounterLocation id="location_id" default="SessionAttribute:emrContext.sessionLocationId"/>
+    </div>
+
     <restrictByRole exclude="HIV Clinic">
         <div>
             <div class="row">
@@ -1667,12 +1702,12 @@
                                                                 <includeIf velocityTest="$transfer_out=='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true"/>
+                                                                         allowFutureDates="true" class="return-date-poc"/>
                                                                 </includeIf>
                                                                 <includeIf velocityTest="$transfer_out!='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         required="required" allowFutureDates="true"/>
+                                                                         allowFutureDates="true" class="return-date-poc"/>
                                                                 </includeIf>
                                                             </ifMode>
                                                             <ifMode mode="EDIT">
@@ -1683,12 +1718,12 @@
                                                                 <includeIf velocityTest="$transfer_out=='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true"/>
+                                                                         allowFutureDates="true" class="return-date-poc"/>
                                                                 </includeIf>
                                                                 <includeIf velocityTest="$transfer_out!='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         required="required" allowFutureDates="true"/>
+                                                                         allowFutureDates="true" class="return-date-poc"/>
                                                                 </includeIf>
                                                             </ifMode>
                                                         </excludeIf>
@@ -1698,8 +1733,13 @@
                                                              style="checkbox"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label><span class="required">*</span>Attending Clinician</label>
-                                                        <encounterProviderAndRole role="Provider" encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f" required="required"/>
+                                                        <label>Attending Clinician</label>
+                                                        <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                                                  required="required"  id="provider"/>
+                                                        <span class="required">*</span><span style="display: none;">
+                                                            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                                        </span>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -2793,13 +2833,13 @@
                                                 <div class="row">
                                                     <div class="col-md-4" id="final-out-come">
                                                         <obs id="transfer_out" conceptId="90306" answerConceptId="90003"
-                                                             answerLabel="Transfer out"/>
+                                                             answerLabel="Transfer out" class="transfer_out" />
                                                     </div>
                                                     <div class="col-md-4" id="disabled">
-                                                        <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer"/>
+                                                        <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer" class="transfer_out_date"/>
                                                     </div>
                                                     <div class="col-md-4" id="disabled">
-                                                        <obs id="transfer_out_location" conceptId="90211" labelText="Where"/>
+                                                        <obs id="transfer_out_location" conceptId="90211" labelText="Where" class="transfer_out_location"/>
                                                     </div>
                                                 </div>
                                                 </obsgroup>
@@ -2848,8 +2888,6 @@
                         <div class="hidden">
                             <label>Encounter Date</label>
                             <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
-                            <encounterLocation id="location_id"
-                                               default="SessionAttribute:emrContext.sessionLocationId"/>
 
                         </div>
                         <div class="submission-section hidden">
@@ -2892,9 +2930,8 @@
                             </ul>
                         </div>
 
-                        <div class="card-body">
-                            <div class="tab-content">
-
+                            <div class="card-body">
+                                <div class="tab-content">
                                 <div class="tab-pane fade show active" id="patient-vitals" >
                                     <uiInclude provider="ugandaemr" fragment="vitals"/>
                                 </div>
@@ -3572,13 +3609,13 @@
                                         <div class="card-header">
                                             ARV - regimens
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body prescription-poc">
                                             <obsgroup groupingConceptId="165430">
                                                 <div class="row arv-regimen">
                                                     <div class="col-md-3">
                                                         <obs id="art-regimen" conceptId="90315" labelText="Regimen"
                                                              answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,165797,165796,165795,165808,165807,165806,165805,165804,165803,165802,165801,165800,165799,165798,90002"
-                                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,AZT/3TC/RAL,ABC/3TC/AZT,TDF/3TC/AZT,DRV/RTV/RAL/ABC/3TC,DRV/RTV/ETV/ABC/3TC,DRV/RTV/RAL/TDF/3TC,DRV/RTV/RAL/AZT/3TC,DRV/RTV/RAL,DRV/RTV/ETV/TDF/3TC,DRV/RTV/ETV/AZT/3TC,DRV/RTV/ETV,DRV/RTV/DTG/TDF/3TC,DRV/RTV/DTG/AZT/3TC,DRV/RTV/DTG,Other"/>
+                                                             answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,AZT/3TC/RAL,ABC/3TC/AZT,TDF/3TC/AZT,DRV/RTV/RAL/ABC/3TC,DRV/RTV/ETV/ABC/3TC,DRV/RTV/RAL/TDF/3TC,DRV/RTV/RAL/AZT/3TC,DRV/RTV/RAL,DRV/RTV/ETV/TDF/3TC,DRV/RTV/ETV/AZT/3TC,DRV/RTV/ETV,DRV/RTV/DTG/TDF/3TC,DRV/RTV/DTG/AZT/3TC,DRV/RTV/DTG,Other" class="regimen-given"/>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <br/>
@@ -3643,7 +3680,7 @@
                                         <div class="card-header">
                                             TPT/B6
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body prescription-poc">
                                             <obsgroup groupingConceptId="165305">
                                                 <div class="row">
                                                     <div class="col-md-3">
@@ -3693,9 +3730,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        CTX/DAPSONE (ANTI-BIOTICS)
+                                        CTX/DAPSONE (Anti-biotics)
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body prescription-poc">
                                         <obsgroup groupingConceptId="165304">
                                             <div class="row">
                                                 <div class="col-md-3">
@@ -3728,9 +3765,9 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            Fluconazole - (Anti-fungal)
+                                            Fluconazole (Anti-fungal)
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body prescription-poc">
                                             <obsgroup groupingConceptId="165306">
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -3769,7 +3806,7 @@
                                         <div class="card-header">
                                             <label>Other Medications</label>
                                         </div>
-                                        <div class="card-body">
+                                        <div class="card-body prescription-poc">
                                             <div>
                                                 <repeat>
                                                     <template>
@@ -3932,14 +3969,14 @@
                                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/>
                                             </span>
                                             <includeIf velocityTest="$transfer_out=='YES'">
-                                                <obs id="returndate" conceptId="5096" allowFutureDates="true"
-                                                     labelText="Return date"/>
+                                                <label>Return date</label>
+                                                    <obs id="returndate" conceptId="5096"
+                                                     allowFutureDates="true"/>
                                             </includeIf>
 
                                             <includeIf velocityTest="$transfer_out!='YES'">
-                                                <obs id="returndate" conceptId="5096" required="required"
-                                                     allowFutureDates="true"
-                                                     labelText="Return date"/>
+                                                <label>Return date</label>
+                                                    <obs id="returndate" conceptId="5096" allowFutureDates="true"/>
                                             </includeIf>
                                         </excludeIf>
                                     </div>
@@ -3948,13 +3985,13 @@
                                     <div class="row">
                                         <div class="col-md-4" id="final-out-come">
                                             <obs id="transfer_out" conceptId="90306" answerConceptId="90003"
-                                                 answerLabel="Transfer out"/>
+                                                 answerLabel="Transfer out" class="transfer_out"/>
                                         </div>
                                         <div class="col-md-4" id="disabled">
-                                            <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer"/>
+                                            <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer" class="transfer_date"/>
                                         </div>
                                         <div class="col-md-4" id="disabled">
-                                            <obs id="transfer_out_location" conceptId="90211" labelText="Where"/>
+                                            <obs id="transfer_out_location" conceptId="90211" labelText="Where" class="transfer_out_location"/>
                                         </div>
                                     </div>
                                 </obsgroup>

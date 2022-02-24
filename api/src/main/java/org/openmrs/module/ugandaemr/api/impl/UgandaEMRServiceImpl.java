@@ -38,6 +38,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.openmrs.OrderType.TEST_ORDER_TYPE_UUID;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
@@ -800,7 +801,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 if (order.isActive()) {
                     orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
                 }
-                if (orderHasResults(order)) {
+                if (testOrderHasResults(order)) {
                     orderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
                 }
                 orderMappers.add(orderMapper);
@@ -857,7 +858,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 if (order.isActive()) {
                     drugOrderMapper.setStatus(QUEUE_STATUS_ACTIVE);
                 }
-                if (orderHasResults(order)) {
+                if (testOrderHasResults(order)) {
                     drugOrderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
                 }
                 orderMappers.add(drugOrderMapper);
@@ -940,16 +941,54 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
     }
 
-    private boolean orderHasResults(Order order) {
+
+
+    /**
+     * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#testOrderHasResults(org.openmrs.Order)
+     */
+    public boolean testOrderHasResults(Order order) {
         boolean hasOrder = false;
 
         List list = Context.getAdministrationService().executeSQL("select obs_id from obs where order_id=" + order.getOrderId() + "", true);
 
         if (!list.isEmpty()) {
             hasOrder = true;
+        } else if (resultsEnteredOnEncounter(order)) {
+
+            hasOrder = true;
         }
         return hasOrder;
     }
+
+
+    private boolean resultsEnteredOnEncounter(Order order) {
+
+        boolean resultsEnteredOnEncounter = false;
+
+        Set<Obs> allObs = order.getEncounter().getAllObs(false);
+        for (Obs obs1 : allObs) {
+            if (obs1.getConcept().getConceptId().equals(order.getConcept().getConceptId()) && (!obs1.getValueAsString(Locale.ENGLISH).equals("") || obs1.getValueAsString(Locale.ENGLISH) != null)) {
+                resultsEnteredOnEncounter = true;
+                return true;
+            }
+        }
+
+        Set<Concept> conceptSet = allObs.stream().map(Obs::getConcept).collect(Collectors.toSet());
+        List<Concept> members = order.getConcept().getSetMembers();
+
+        if (members.size() > 0) {
+            for (Concept concept : members) {
+                if (conceptSet.contains(concept)) {
+                    resultsEnteredOnEncounter = true;
+                    return true;
+                }
+            }
+        }
+
+        return resultsEnteredOnEncounter;
+
+    }
+
 
     /**
      * Add Lab Results Observation to Encounter
