@@ -1395,7 +1395,13 @@
                 },
                 error: function (response) {
                     if (cohort !== ""){
-                        jq().toastmessage('showErrorToast', response.responseJSON.error.message);}
+                        var errorMessage = response.responseJSON.error.message;
+                        if(errorMessage.indexOf("already exists") > 0){
+                            jq().toastmessage('showSuccessToast', response.responseJSON.error.message);
+                        }else{
+                            jq().toastmessage('showErrorToast', response.responseJSON.error.message);
+                        }
+                     }
                 }
                 });
             }
