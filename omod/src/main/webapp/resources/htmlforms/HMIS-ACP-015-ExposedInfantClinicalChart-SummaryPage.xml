@@ -621,7 +621,7 @@
                                                 <div class="col-md-3">
                                                     <label>Test Date</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="99606" id="first-pcr-date"></obs>
+                                                    <obs conceptId="99606" id="first-pcr-date" allowFutureDates="true"></obs>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Feeding Method</label>
@@ -635,7 +635,7 @@
                                                 <div class="col-md-3">
                                                     <label>Date Results given to caregiver</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="99438" id="first-pcr-results-date"></obs>
+                                                    <obs conceptId="99438" id="first-pcr-results-date" allowFutureDates="true"></obs>
                                                 </div>
                                             </div>
                                         </div>
@@ -649,7 +649,7 @@
                                                 <div class="col-md-3">
                                                     <label>Test Date</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="99436" id="second-pcr-date"></obs>
+                                                    <obs conceptId="99436" id="second-pcr-date" allowFutureDates="true"></obs>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Feeding Method</label>
@@ -663,7 +663,7 @@
                                                 <div class="col-md-3">
                                                     <label>Date Results given to caregiver</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="99442" id="second-pcr-results-date"></obs>
+                                                    <obs conceptId="99442" id="second-pcr-results-date" allowFutureDates="true"></obs>
                                                 </div>
                                             </div>
                                         </div>
@@ -677,7 +677,7 @@
                                                 <div class="col-md-3">
                                                     <label>Test Date</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="165405" id="third-pcr-date"></obs>
+                                                    <obs conceptId="165405" id="third-pcr-date" allowFutureDates="true"></obs>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Feeding Method</label>
@@ -691,7 +691,7 @@
                                                 <div class="col-md-3">
                                                     <label>Date Results given to caregiver</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="165408" id="third-pcr-results-date"></obs>
+                                                    <obs conceptId="165408" id="third-pcr-results-date" allowFutureDates="true"></obs>
                                                 </div>
                                             </div>
                                         </div>
@@ -705,7 +705,7 @@
                                                 <div class="col-md-3">
                                                     <label>Test Date</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="162876" id="repeat-pcr-date"/>
+                                                    <obs conceptId="162876" id="repeat-pcr-date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Feeding Method</label>
@@ -719,7 +719,7 @@
                                                 <div class="col-md-3">
                                                     <label>Date Results given to caregiver</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="162882" id="repeat-pcr-results-date"/>
+                                                    <obs conceptId="162882" id="repeat-pcr-results-date" allowFutureDates="true"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -733,7 +733,7 @@
                                                 <div class="col-md-3">
                                                     <label>Test Date</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="162879" id="rapid-pcr-date"/>
+                                                    <obs conceptId="162879" id="rapid-pcr-date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Feeding Method</label>
@@ -747,7 +747,7 @@
                                                 <div class="col-md-3">
                                                     <label>Date Results given to caregiver</label>
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="162883" id="rapid-pcr-results-date"/>
+                                                    <obs conceptId="162883" id="rapid-pcr-results-date" allowFutureDates="true"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -787,7 +787,7 @@
                                                 <label>Date Referred to ART Clinic</label>
                                                 <div class="col-md-3">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 25%;"></i>
-                                                    <obs id="link-to-care-date" conceptId="162981"/>
+                                                    <obs id="link-to-care-date" conceptId="162981" allowFutureDates="true"/>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -802,7 +802,7 @@
                                                 <label>Date Enrolled at ART Clinic</label>
                                                 <div class="col-md-3">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 25%;"></i>
-                                                    <obs id="date-enrolled-art-clinic" conceptId="162980"/>
+                                                    <obs id="date-enrolled-art-clinic" conceptId="162980" allowFutureDates="true"/>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -831,7 +831,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 15%; top: 25%;"></i>
-                                                    <obs conceptId="162967" id="first-followup-date" class="horizontal" labelText="Date"/>
+                                                    <obs conceptId="162967" id="first-followup-date" class="horizontal" labelText="Date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <obs conceptId="162968" class="horizontal" labelText="Method"/>
@@ -850,7 +850,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 15%; top: 25%;"></i>
-                                                    <obs conceptId="162971" id="second-followup-date" class="horizontal" labelText="Date"/>
+                                                    <obs conceptId="162971" id="second-followup-date" class="horizontal" labelText="Date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <obs conceptId="162972" class="horizontal" labelText="Method"/>
@@ -869,7 +869,7 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 15%; top: 25%;"></i>
-                                                    <obs conceptId="162975" id="third-followup-date" class="horizontal" labelText="Date"/>
+                                                    <obs conceptId="162975" id="third-followup-date" class="horizontal" labelText="Date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <obs conceptId="162976" class="horizontal" labelText="Method"/>
@@ -903,11 +903,11 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs id="transfer-date" conceptId="99165" class="horizontal" labelText="Transfer out Date" />
+                                                    <obs id="transfer-date" conceptId="99165" class="horizontal" labelText="Transfer out Date" allowFutureDates="true"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <i class="icon-calendar small right-addon-row position-absolute" style="right: 23%; top: 50%;"></i>
-                                                    <obs conceptId="162979" class="horizontal" labelText="Final Outcome Date" />
+                                                    <obs conceptId="162979" class="horizontal" labelText="Final Outcome Date" allowFutureDates="true" />
                                                 </div>
                                             </div>
                                         </div>
