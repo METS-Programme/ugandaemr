@@ -552,7 +552,6 @@
                 });
                 <ifMode mode="ENTER">
                 disable_fields("edd");
-                disable_fields("emtct");
                 disable_fields("age-in-months");
                 disable_fields("anc_no");
 
@@ -617,7 +616,6 @@
 
                 <ifMode mode="EDIT">
                     disable_enable_on_edit_mode("edd");
-                    disable_enable_on_edit_mode("emtct");
                     disable_enable_on_edit_mode("age-in-months");
                     disable_enable_on_edit_mode("anc_no");
 
@@ -716,17 +714,15 @@
                    jq('.tpt-without-inh').show();
                 </ifMode>
 
-                /* enable the edd,emtct,age in months and ANC no. fields in case the client is pregnant */
+                /* enable the edd,age in months and ANC no. fields in case the client is pregnant */
 
                 jq(".pregnancy").change(function () {
                     if (jq(this).find('#pregnant').find(':checkbox').prop('checked')) {
                         enable_fields("edd");
-                        enable_fields("emtct");
                         enable_fields("age-in-months");
                         enable_fields("anc_no");
                     } else {
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("age-in-months");
                         disable_fields("anc_no");
                     }
@@ -744,21 +740,10 @@
                 });
 
                 jq(".pregnancy").change(function () {
-                    if (jq(this).find('#breast-feeding').find(':checkbox').prop('checked')) {
-                        enable_fields("emtct");
-                    } else if(jq(this).find('#pregnant').find(':checkbox').prop('checked')){
-                        enable_fields("emtct");
-                    }else{
-                        disable_fields("emtct");
-                    }
-                });
-
-                jq(".pregnancy").change(function () {
                     if (jq(this).find('#not-pregnant-not-breast-feeding').find(':checkbox').prop('checked')) {
                         jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
                         jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("162983");
                         disable_fields("anc_no");
                         disable_fields("162983");
@@ -772,7 +757,6 @@
                         jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         jq("#not-pregnant-not-breast-feeding").find("input[type$='checkbox']").prop("checked", false);
                         disable_fields("edd");
-                        disable_fields("emtct");
                         disable_fields("162983");
                         disable_fields("anc_no");
                     }
@@ -1444,7 +1428,13 @@
                 },
                 error: function (response) {
                     if (cohort !== ""){
-                        jq().toastmessage('showErrorToast', "Error while Added Client to Refill Group");}
+                        var errorMessage = response.responseJSON.error.message;
+                        if(errorMessage.indexOf("already exists") > 0){
+                            jq().toastmessage('showSuccessToast', response.responseJSON.error.message);
+                        }else{
+                            jq().toastmessage('showErrorToast', response.responseJSON.error.message);
+                        }
+                     }
                 }
                 });
             }
