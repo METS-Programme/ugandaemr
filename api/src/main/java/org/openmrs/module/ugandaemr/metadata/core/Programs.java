@@ -234,5 +234,28 @@ public class Programs {
             return "de5d6034-c304-11e8-9ad0-529269fb1459";
         }
     };
+
+    public static ProgramDescriptor SMS_PROGRAM = new ProgramDescriptor() {
+
+        @Override
+        public String conceptUuid() {
+            return "4c1e5822-f5ec-4f73-884c-1641734799f6";
+        }
+
+        @Override
+        public String name() {
+            return "SMS Program";
+        }
+
+        @Override
+        public String description() {
+            return "The program is for tracking clients that consented to enroll in the SMS Program";
+        }
+
+        @Override
+        public String uuid() {
+            return "aba5124b-8123-427d-b1e6-c0552e593361";
+        }
+    };
 }
 

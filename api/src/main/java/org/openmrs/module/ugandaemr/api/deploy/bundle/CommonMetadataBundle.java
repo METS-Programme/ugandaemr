@@ -73,6 +73,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.COVID19_POSTMORTEM);
         install(EncounterTypes.COVID19_REFERRAL);
         install(EncounterTypes.EMERGENCY_ART_SERVICE);
+        install(EncounterTypes.SMS_ENROLLMENT);
 
 
         //installing programs metadata
@@ -86,6 +87,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.FTR_PROGRAM);
         install(Programs.CCLAD_PROGRAM);
         install(Programs.CDDP_PROGRAM);
+        install(Programs.SMS_PROGRAM);
 
         //install Locations
         log.info("Installing Locations");

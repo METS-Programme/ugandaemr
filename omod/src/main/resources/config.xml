@@ -270,6 +270,12 @@
         <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.SMSTemplate</property>
+        <defaultValue>Dear &lt;name&gt; you are reminded for a visit at the facility on &lt;date&gt; for &lt;reason&gt;</defaultValue>
+        <description>This is a facility SMS Template used by the SMS Program</description>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>

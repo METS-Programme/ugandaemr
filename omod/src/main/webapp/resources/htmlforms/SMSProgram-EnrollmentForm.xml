@@ -1,0 +1,146 @@
+<htmlform formName="SMS Enrollment Form"
+          formDescription="SMS Enrollment Form"
+          formEncounterType="05fa932f-4203-43c9-8985-60f2bea8a773"
+          formUuid="c2ec62ba-3897-4244-8062-c1c8bd2c0dce"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="20"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="SMS Enrollment Form">
+    <script type="text/javascript">
+        if (jQuery) {
+
+        jq(document).ready(function () {
+
+            disable_fields("165276");
+
+            jq("#99881").click(function () {
+            if (jq(this).find("input[type='radio']:checked").val() == "90003") {
+                enable_fields("165276");
+            } else {
+                disable_fields("165276");
+            }
+            });
+
+            beforeSubmit.push(function () {
+                var phone_number = getValue('90278.value');
+                if(phone_number!==""){
+                    phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
+                    if(!(phone_number.length == 12 &amp;&amp; phone_number.match(/^[2]{1}[5]{1}[6]{1}[0-9]{9}$/g))){
+                        jq().toastmessage('showErrorToast', "Please specify a valid mobile number without any spaces like 256712345678");
+                        return false;
+                    }
+                }
+
+                return true
+            });
+
+
+        });
+        }
+
+
+    </script>
+
+
+    <div class="ai-page-frame" id="sms-form">
+
+        <div class="row">
+            <div class="col-md-6">
+                <h1 style="padding: 10px;">SMS Form</h1>
+            </div>
+            <div class="col-md-4"></div>
+            <div class="col-md-2">
+                <submit class="confirm" submitLabel="Save" submitStyle="customSubmit"/>
+                <postSubmissionAction
+                        class="org.openmrs.module.ugandaemr.htmlformentry.SMSProgramEnrollmentPostSubmissionAction"/>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Enrollment
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Date of Enrollment:</label>
+                                <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                            </div>
+                            <div class="col-md-4">
+                                <label><span class="required">*</span>Attending Clinician:</label>
+                                <encounterProvider role="Provider" style="autocomplete"
+                                                   id="provider"/>
+                                <span style="display: none;">
+                                    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                       order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                <label>SMS Tel No:</label>
+                                <span>
+                                    <obs conceptId="90278" class="ugsmsphone" id="90278" placeholder="256700110022"/>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="row ">
+                                    <label>SMS Reminder Types:</label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="HIV Appointment Reminder" style="checkbox"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="ANC Reminder" style="checkbox"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="SMC Followup" style="checkbox"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="Missed Appointment Reminder" style="checkbox"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        Exit of Program
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Exit SMS Program:</label>
+                                <obs id="99881" conceptId="99881" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Date of Exit:</label>
+                                <span>
+                                    <i class=" icon-calendar small family-date-icon"></i>
+                                    <obs id="165276" conceptId="165276" allowFutureDates="true"/>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</htmlform>
