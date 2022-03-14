@@ -118,7 +118,7 @@
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.29</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.30</ugandaemrReportsVersion>
 
 	</properties>
 
