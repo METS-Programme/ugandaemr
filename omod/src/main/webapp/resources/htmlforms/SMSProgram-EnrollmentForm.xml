@@ -55,8 +55,6 @@
             <div class="col-md-4"></div>
             <div class="col-md-2">
                 <submit class="confirm" submitLabel="Save" submitStyle="customSubmit"/>
-                <postSubmissionAction
-                        class="org.openmrs.module.ugandaemr.htmlformentry.SMSProgramEnrollmentPostSubmissionAction"/>
             </div>
         </div>
 

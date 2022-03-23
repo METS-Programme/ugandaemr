@@ -87,7 +87,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.FTR_PROGRAM);
         install(Programs.CCLAD_PROGRAM);
         install(Programs.CDDP_PROGRAM);
-        install(Programs.SMS_PROGRAM);
 
         //install Locations
         log.info("Installing Locations");
