@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>3.3.4-SNAPSHOT</version>
+	<version>3.3.6-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -118,7 +118,7 @@
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.29</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.30</ugandaemrReportsVersion>
 
 	</properties>
 

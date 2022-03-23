@@ -600,6 +600,14 @@ VALUES
 			('CCLAD Cohort Type','2021-08-23',1,'5b7136fa-d207-4229-94a8-da6661ae00bf');
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-19-10-2-2021" author="odorajonathan">
+		<comment>
+			Retire SMC Clinic
+		</comment>
+		<sql>
+			UPDATE location SET retired = 1 WHERE location_id = 4;
+     </sql>
+	</changeSet>
 	<changeSet id="ugandaemr-01032022-1401" author="dbaluku">
 		<comment>
 			Updating encounters and obs that were created with location_id set a null to  ART Clinic location

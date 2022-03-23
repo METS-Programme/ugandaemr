@@ -1418,7 +1418,7 @@
                                                                     <td class="ARTStartEnableDisable2 ">
                                                                         <div class="right-inner-addon ">
                                                                             <i class=" icon-calendar small"></i>
-                                                                            <obs id="99160" conceptId="99160"/>
+                                                                            <obs id="99160" conceptId="99160" allowFutureDates="true"/>
                                                                         </div>
                                                                     </td>
                                                                     <td class="ARTStartEnableDisableChild2 ">

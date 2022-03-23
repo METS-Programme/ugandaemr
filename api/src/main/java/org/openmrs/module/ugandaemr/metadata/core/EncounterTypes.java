@@ -22,22 +22,6 @@ public class EncounterTypes {
         }
     };
 
-    public static EncounterTypeDescriptor SMC_FOLLOW_UP_ENCOUNTER = new EncounterTypeDescriptor() {
-        @Override
-        public String name() {
-            return "SMC FOLLOW UP - Encounter";
-        }
-
-        @Override
-        public String description() {
-            return "An encounter for SMC Follow up";
-        }
-
-        public String uuid() {
-            return "d0f9e0b7-f336-43bd-bf50-0a7243857fa6";
-        }
-    };
-
     public static EncounterTypeDescriptor OPD_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {

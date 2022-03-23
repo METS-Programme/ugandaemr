@@ -1975,6 +1975,10 @@
     <concept  concept_id="166499"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-07 06:58:03" changed_by="1"  date_changed="2021-09-07 06:58:03" uuid="6a46388b-115d-4e32-8d13-9ec6f22fa0cc"/>
     <concept  concept_id="166500"  retired="0" datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2021-09-07 06:58:34" changed_by="1"  date_changed="2021-09-07 06:58:34" uuid="7a22cfcb-a272-4eff-968c-5e9467125a7b"/>
 
+    <!-- SMC CLient Form -->
+    <concept  concept_id="166506"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-10-19 13:32:35" changed_by="1"  date_changed="2021-10-19 13:32:35" uuid="b1f34616-de68-4b90-9bc4-f0397692befa"/>
+    <concept  concept_id="166507"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-10-19 13:53:46" changed_by="1"  date_changed="2021-10-19 13:53:46" uuid="dc353acd-1d7f-4b62-a38b-96cd0924a798"/>
+    
 
 
     <!--CONCEPT NUMERIC-->
@@ -2582,6 +2586,10 @@
     <concept_description  concept_description_id="18546"  concept_id="166483"  description="PNC question"												  							locale="en"  creator="1"  date_created="2021-08-19 17:39:48"  uuid="0e656ac6-877b-4ff8-9794-b4fb5b54eeb1"/>
     <concept_description  concept_description_id="18547"  concept_id="166492"  description="This is for Find out whether birth was notified and registered at the community level"  locale="en"  creator="1"  date_created="2021-08-19 17:52:22"  uuid="8e0bd917-29c7-4b44-b58a-4fe4792c6726"/>
 
+    <!-- SMC CLient Form -->
+    <concept_description  concept_description_id="18548"  concept_id="166506"  description="Bupivicaine Batch Number for SMC" locale="en"  creator="1"  date_created="2021-10-19 13:32:35" uuid="75f233f4-ea89-454b-b40b-ac889d050050"/>
+    <concept_description  concept_description_id="18549"  concept_id="166507"  description="Lignocaine Batch Number for SMC"  locale="en"  creator="1"  date_created="2021-10-19 13:53:46" uuid="e596085d-7eb2-4086-952a-09040500240a"/>
+    
 
     <!-- HTS -->
 
@@ -6138,7 +6146,10 @@
     <concept_name  concept_name_id="162758"  concept_id="166499"  name="CLDDP Location Name"  								locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:58:03"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="cc12183d-3cab-4726-a421-611ec46e811b"/>
     <concept_name  concept_name_id="162759"  concept_id="166500"  name="Refill Point Code"  								locale="en"  locale_preferred="1"  creator="1"  date_created="2021-09-07 06:58:34"  concept_name_type="FULLY_SPECIFIED"  	voided="0" uuid="26da5fd4-1e7d-44f8-ade3-c320a7e1293b"/>
     
-
+    <!-- SMC Client Form -->
+    <concept_name  concept_name_id="162765"  concept_id="166506"  name="Bupivicaine Batch Number" locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-19 13:32:35"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="740b42fe-01be-4802-a095-b1b2744c6dda"/>
+    <concept_name  concept_name_id="162766"  concept_id="166507"  name="Lignocaine Batch Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-19 13:53:46"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="ced20ac7-f999-43a7-a623-1022788f6e9e"/>
+    
 
 
     <!--CONCEPT ANSWERS-->
