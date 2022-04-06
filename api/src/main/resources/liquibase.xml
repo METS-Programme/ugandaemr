@@ -617,6 +617,17 @@ VALUES
 			UPDATE obs SET location_id = (select location_id from location where uuid='86863db4-6101-4ecf-9a86-5e716d6504e4') WHERE location_id IS null;
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-20220323-1015" author="dbaluku">
+		<comment>Insert Cohort type for SMS Cohort and SMS Cohorts </comment>
+		<sql>
+			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+			('SMS Cohort Type','2022-03-23',1,'889aa250-7113-4ba7-ab8c-ca062e004696');
+
+			REPLACE INTO cohort(name,date_created,creator,uuid,cohort_type_id)VALUES
+			('SMS Appointment Reminder','2022-03-23',1,'c418984c-fe55-431a-90be-134da0a5ec67',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696')),
+			('SMS Non Suppressed ViralLoad ','2022-03-23',1,'f538f903-0258-4151-a4f6-f8ceb8046017',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696'));
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

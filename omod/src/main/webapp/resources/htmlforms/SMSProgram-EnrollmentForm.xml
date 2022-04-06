@@ -4,16 +4,50 @@
           formUuid="c2ec62ba-3897-4244-8062-c1c8bd2c0dce"
           formVersion="1.0"
           formAddMetadata="yes"
-          formUILocation="patientDashboard.visitActions"
+          formUILocation="patientDashboard.overallActions"
           formOrder="20"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formShowIf="patient.person.dead==false"
           formDisplayStyle="Standard"
           formLabel="SMS Enrollment Form">
     <script type="text/javascript">
         if (jQuery) {
 
         jq(document).ready(function () {
+            var encounterDate = new Date((getValue('encounterDate.value')));
+            var patientUUID      = '<lookup complexExpression="$patient.uuid"/>';
+
+            jq('#encounterDate').change(function(){
+                encounterDate= new Date((getValue('encounterDate.value')));
+            });
+
+            function savePatientToCohort(cohortuuid){
+                var cohort = cohortuuid;
+                var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
+                var DSDCategory = getValue('cddp_category.value');
+                var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
+                jq.ajax({
+                    type: "POST",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/",
+                    dataType: "json",
+                    contentType: "application/json",
+                    accept: "application/json",
+                    data: dataToPost,
+                    success: function (data) {
+                        jq().toastmessage('showSuccessToast', "Client Added to a SMS Group Successfully");
+                    },
+                    error: function (response) {
+                        if (cohort !== ""){
+                            var errorMessage = response.responseJSON.error.message;
+                            if(errorMessage.indexOf("already exists") > 0){
+                                jq().toastmessage('showSuccessToast', response.responseJSON.error.message);
+                            }else{
+                            jq().toastmessage('showErrorToast', response.responseJSON.error.message);
+                            }
+                        }
+                    }
+                    });
+            }
 
             disable_fields("165276");
 
@@ -26,7 +60,9 @@
             });
 
             beforeSubmit.push(function () {
+                <!-- verify that phone number is valid     -->
                 var phone_number = getValue('90278.value');
+                var cohortUuid="";
                 if(phone_number!==""){
                     phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
                     if(!(phone_number.length == 12 &amp;&amp; phone_number.match(/^[2]{1}[5]{1}[6]{1}[0-9]{9}$/g))){
@@ -35,7 +71,19 @@
                     }
                 }
 
-                return true
+<!--  assign cohorts to client depending on the types of reminders they have chosen  -->
+                if (jq("#appointmentReminder").find(':checkbox').prop('checked')) {
+<!--                    assign SMS appointment reminder cohort-->
+                    cohortUuid="c418984c-fe55-431a-90be-134da0a5ec67";
+                    savePatientToCohort(cohortUuid);
+                }
+
+                if (jq("#nonsuppressedReminder").find(':checkbox').prop('checked')) {
+                <!--   assign SMS appointment reminder cohort-->
+                    cohortUuid="f538f903-0258-4151-a4f6-f8ceb8046017";
+                    savePatientToCohort(cohortUuid);
+                }
+                return true;
             });
 
 
@@ -64,11 +112,15 @@
                     <div class="card-header">
                         Enrollment
                     </div>
-                    <div class="card-body">
+                    <div id="enrollment" class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Date of Enrollment:</label>
-                                <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                                <label>Date of Enrsollment:</label>
+                                <encounterDate required="true" id="encounterDate"/>
+                                <span style="display: none;">
+                                    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                       order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                </span>
                             </div>
                             <div class="col-md-4">
                                 <label><span class="required">*</span>Attending Clinician:</label>
@@ -94,22 +146,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="HIV Appointment Reminder" style="checkbox"/>
+                                        <obs id="appointmentReminder" conceptId="165169" answerConceptId="162277" answerLabel="HIV Appointment Reminder" style="checkbox"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="ANC Reminder" style="checkbox"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="SMC Followup" style="checkbox"/>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <obs conceptId="165169" answerConceptId="162277" answerLabel="Missed Appointment Reminder" style="checkbox"/>
+                                        <obs id="nonsuppressedReminder" conceptId="165169" answerConceptId="162277" answerLabel="Non Suppressed Reminder" style="checkbox"/>
                                     </div>
                                 </div>
 
@@ -118,7 +160,7 @@
 
                     </div>
                 </div>
-                <div class="card">
+                <div id="exit" class="card">
                     <div class="card-header">
                         Exit of Program
                     </div>
