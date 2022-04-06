@@ -932,7 +932,7 @@
                                                     <label>Enrollment into HIV Care Transfer in from: </label>
                                                     <div class="right-inner-addon">
                                                         <i class=" icon-calendar small right-inner-addon-row"></i>
-                                                        <obs id="165312" conceptId="165312"/>
+                                                        <obs id="165312" conceptId="165312" allowFutureDates="true"/>
                                                     </div>
                                                 </td>
                                                 <td>
@@ -947,7 +947,7 @@
                                                     <div class="right-inner-addon">
                                                         <label>Date verification HIV test:</label>
                                                         <i class=" icon-calendar small right-inner-addon-row"></i>
-                                                        <obs id="90267" conceptId="90267"/>
+                                                        <obs id="90267" conceptId="90267" allowFutureDates="true"/>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -1304,7 +1304,7 @@
                                                                     <div class="row right-inner-addon">
                                                                         <div class="col-md-12 ">
                                                                             <i class=" icon-calendar small family-date-icon"></i>
-                                                                            <obs id="165276" conceptId="165276"/>
+                                                                            <obs id="165276" conceptId="165276" allowFutureDates="true"/>
                                                                         </div>
                                                                     </div>
                                                                 </obsgroup>
@@ -1498,7 +1498,8 @@
                                                             <td id="disabled">
                                                                 <div class="right-inner-addon ">
                                                                     <i class=" icon-calendar small"></i>
-                                                                    <obs id="second" conceptId="99154" labelText=""/>
+                                                                    <obs id="second" conceptId="99154" labelText=""
+                                                                         allowFutureDates="true"/>
                                                                 </div>
                                                             </td>
                                                             <td id="disabled">
@@ -1516,7 +1517,8 @@
                                                         <td id="disabled">
                                                             <div class="right-inner-addon ">
                                                                 <i class=" icon-calendar small"></i>
-                                                                <obs id="second" conceptId="165250" labelText=""/>
+                                                                <obs id="second" conceptId="165250" labelText=""
+                                                                      allowFutureDates="true"/>
                                                             </div>
                                                         </td>
                                                         <td id="disabled">
@@ -1532,7 +1534,8 @@
                                                             <td id="disabled">
                                                                 <div class="right-inner-addon ">
                                                                     <i class=" icon-calendar small"></i>
-                                                                    <obs id="second" conceptId="99595" labelText=""/>
+                                                                    <obs id="second" conceptId="99595" labelText=""
+                                                                          allowFutureDates="true"/>
                                                                 </div>
                                                             </td>
                                                             <td id="disabled">
@@ -1551,7 +1554,7 @@
                                                                     <div class="right-inner-addon ">
                                                                         <i class=" icon-calendar small"></i>
                                                                         <obs id="second" conceptId="99155"
-                                                                             labelText=""/>
+                                                                             labelText="" allowFutureDates="true"/>
                                                                     </div>
                                                                 </td>
                                                                 <td id="disabled">
@@ -1569,7 +1572,8 @@
                                                             <td id="disabled">
                                                                 <div class="right-inner-addon ">
                                                                     <i class=" icon-calendar small"></i>
-                                                                    <obs id="second" conceptId="99156" labelText=""/>
+                                                                    <obs id="second" conceptId="99156" labelText=""
+                                                                          allowFutureDates="true"/>
                                                                 </div>
                                                             </td>
                                                             <td id="disabled">
@@ -1626,7 +1630,7 @@
                                                                         <td>
                                                                             <div class="right-inner-addon ">
                                                                                 <i class=" icon-calendar small"></i>
-                                                                                <obs conceptId="165230"/>
+                                                                                <obs conceptId="165230" allowFutureDates="true"/>
                                                                             </div>
                                                                         </td>
                                                                         <td>
@@ -1637,7 +1641,7 @@
                                                                         <td>
                                                                             <div class="right-inner-addon ">
                                                                                 <i class=" icon-calendar small"></i>
-                                                                                <obs conceptId="160738"/>
+                                                                                <obs conceptId="160738" allowFutureDates="true"/>
                                                                             </div>
 
                                                                         </td>
@@ -1821,7 +1825,7 @@
                                                                     <span>
                                                                         <div class="right-inner-addon ">
                                                                             <i class=" icon-calendar small"></i>
-                                                                            <obs conceptId="165247"/>
+                                                                            <obs conceptId="165247" allowFutureDates="true"/>
                                                                         </div>
 
                                                                     </span>
@@ -1867,7 +1871,7 @@
                                                                     <span>
                                                                         <div class="right-inner-addon ">
                                                                             <i class=" icon-calendar small"></i>
-                                                                            <obs conceptId="165248"/>
+                                                                            <obs conceptId="165248" allowFutureDates="true"/>
                                                                         </div>
 
                                                                     </span>
@@ -1913,7 +1917,7 @@
                                                                     <span>
                                                                         <div class="right-inner-addon ">
                                                                             <i class=" icon-calendar small"></i>
-                                                                            <obs conceptId="165249"/>
+                                                                            <obs conceptId="165249" allowFutureDates="true"/>
                                                                         </div>
                                                                     </span>
                                                                     </td>
