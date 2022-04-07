@@ -1411,11 +1411,13 @@
             var cohort = getValue('refill_point_id.value');
             var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
             var DSDCategory = getValue('cddp_category.value');
-            var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
-            if (cohort == "" &amp;&amp; (DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9")){
-                jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
-                return false;
+            if (cohort == ""){
+               if(DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9"){
+                    jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
+                    return false;
+               }
             }else{
+                var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
                 jq.ajax({
                 type: "POST",
                 url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/",
