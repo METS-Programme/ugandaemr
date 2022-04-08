@@ -624,7 +624,7 @@
                             <label>HIV Recency Test Result:</label>
                         </td>
                         <td>
-                            <obs id="141520" conceptId="141520" answerConceptIds="141518,141519,664,163611" answerLabels="1 - Recent,2 - Long Term,3 - Negative,4 - Invalid"/>
+                            <obs id="141520" conceptId="141520" answerConceptIds="141519,141518" answerLabels="1 - Long term infection ,2 - Recent infection"/>
                         </td>
                     </tr>
                 </excludeIf>

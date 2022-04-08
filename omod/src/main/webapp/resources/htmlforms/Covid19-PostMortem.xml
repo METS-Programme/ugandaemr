@@ -60,6 +60,313 @@
                     }
                 });
 
+                //change results for a selected test
+                jq("#165844_1").change(function () {
+
+                    if(jq(this).find("select").find(":selected").val() == "90225") {
+                        jq("#smear-results_1").removeClass('hidden'); 
+                    } else {
+                        jq("#smear-results_1").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "165413") {
+                        jq("#geneexper-results_1").removeClass('hidden'); 
+                    } else {
+                        jq("#geneexper-results_1").addClass('hidden');
+                    }
+
+                     if(jq(this).find("select").find(":selected").val() == "165416") {
+                        jq("#tblam-results_1").removeClass('hidden'); 
+                    } else {
+                        jq("#tblam-results_1").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "12") {
+                        jq("#xray-results_1").removeClass('hidden'); 
+                    } else {
+                        jq("#xray-results_1").addClass('hidden');
+                    }
+                });
+
+                jq("#165844_2").change(function () {
+
+                    if(jq(this).find("select").find(":selected").val() == "90225") {
+                        jq("#smear-results_2").removeClass('hidden'); 
+                    } else {
+                        jq("#smear-results_2").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "165413") {
+                        jq("#geneexper-results_2").removeClass('hidden'); 
+                    } else {
+                        jq("#geneexper-results_2").addClass('hidden');
+                    }
+
+                     if(jq(this).find("select").find(":selected").val() == "165416") {
+                        jq("#tblam-results_2").removeClass('hidden'); 
+                    } else {
+                        jq("#tblam-results_2").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "12") {
+                        jq("#xray-results_2").removeClass('hidden'); 
+                    } else {
+                        jq("#xray-results_2").addClass('hidden');
+                    }
+                });
+
+                jq("#165844_3").change(function () {
+
+                    if(jq(this).find("select").find(":selected").val() == "90225") {
+                        jq("#smear-results_3").removeClass('hidden'); 
+                    } else {
+                        jq("#smear-results_3").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "165413") {
+                        jq("#geneexper-results_3").removeClass('hidden'); 
+                    } else {
+                        jq("#geneexper-results_3").addClass('hidden');
+                    }
+
+                     if(jq(this).find("select").find(":selected").val() == "165416") {
+                        jq("#tblam-results_3").removeClass('hidden'); 
+                    } else {
+                        jq("#tblam-results_3").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "12") {
+                        jq("#xray-results_3").removeClass('hidden'); 
+                    } else {
+                        jq("#xray-results_3").addClass('hidden');
+                    }
+                });
+
+                jq("#165844_4").change(function () {
+
+                    if(jq(this).find("select").find(":selected").val() == "90225") {
+                        jq("#smear-results_4").removeClass('hidden'); 
+                    } else {
+                        jq("#smear-results_4").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "165413") {
+                        jq("#geneexper-results_4").removeClass('hidden'); 
+                    } else {
+                        jq("#geneexper-results_4").addClass('hidden');
+                    }
+
+                     if(jq(this).find("select").find(":selected").val() == "165416") {
+                        jq("#tblam-results_4").removeClass('hidden'); 
+                    } else {
+                        jq("#tblam-results_4").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "12") {
+                        jq("#xray-results_4").removeClass('hidden'); 
+                    } else {
+                        jq("#xray-results_4").addClass('hidden');
+                    }
+                });
+
+                jq("#165844_5").change(function () {
+
+                    if(jq(this).find("select").find(":selected").val() == "90225") {
+                        jq("#smear-results_5").removeClass('hidden'); 
+                    } else {
+                        jq("#smear-results_5").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "165413") {
+                        jq("#geneexper-results_5").removeClass('hidden'); 
+                    } else {
+                        jq("#geneexper-results_5").addClass('hidden');
+                    }
+
+                     if(jq(this).find("select").find(":selected").val() == "165416") {
+                        jq("#tblam-results_5").removeClass('hidden'); 
+                    } else {
+                        jq("#tblam-results_5").addClass('hidden');
+                    }
+
+                    if(jq(this).find("select").find(":selected").val() == "12") {
+                        jq("#xray-results_5").removeClass('hidden'); 
+                    } else {
+                        jq("#xray-results_5").addClass('hidden');
+                    }
+                });
+
+                <ifMode mode = "ENTER" >                    
+
+                    disable_fields("165844_1"); //test
+                    disable_fields("165844_2");
+                    disable_fields("165844_3");
+                    disable_fields("165844_4");
+                    disable_fields("165844_5");
+
+                    disable_fields("165845_1"); //lab number
+                    disable_fields("165845_2");
+                    disable_fields("165845_3");
+                    disable_fields("165845_4");
+                    disable_fields("165845_5");
+
+                </ifMode>                                               
+
+                //enable test and lab number if text date is provided
+                jq('#164431_1').change(function () {
+                    if(jq(this).find("input[type$='text']").val()!= "") {
+                        enable_fields("165844_1");
+                        enable_fields("165845_1");
+                    } else {
+                        disable_fields("165844_1");
+                        disable_fields("165845_1");
+                    }
+                });
+
+                jq('#164431_2').change(function () {
+                    if(jq(this).find("input[type$='text']").val()!= "") {
+                        enable_fields("165844_2");
+                        enable_fields("165845_2");
+                    } else {
+                        disable_fields("165844_2");
+                        disable_fields("165845_2");
+                    }
+                });
+
+                jq('#164431_3').change(function () {
+                    if(jq(this).find("input[type$='text']").val()!= "") {
+                        enable_fields("165844_3");
+                        enable_fields("165845_3");
+                    } else {
+                        disable_fields("165844_3");
+                        disable_fields("165845_3");
+                    }
+                });
+
+                jq('#164431_4').change(function () {
+                    if(jq(this).find("input[type$='text']").val()!= "") {
+                        enable_fields("165844_4");
+                        enable_fields("165845_4");
+                    } else {
+                        disable_fields("165844_4");
+                        disable_fields("165845_4");
+                    }
+                });
+
+                jq('#164431_5').change(function () {
+                    if(jq(this).find("input[type$='text']").val()!= "") {
+                        enable_fields("165844_5");
+                        enable_fields("165845_5");
+                    } else {
+                        disable_fields("165844_5");
+                        disable_fields("165845_5");
+                    }
+                });
+
+                //enable other test and other results
+                jq("#165844_1").change(function () {
+                    if(jq(this).find("select").find(":selected").val() == "90002") {
+                        jq("#other-test-div_1").removeClass('hidden');
+                        jq("#other-results-div_1").removeClass('hidden');
+                        jq("#results-div_1").addClass('hidden');
+                    } else {
+                        jq("#other-test-div_1").addClass('hidden');
+                        jq("#other-results-div_1").addClass('hidden');
+                        jq("#results-div_1").removeClass('hidden');
+                    }
+                });
+
+                jq("#165844_2").change(function () {
+                    if(jq(this).find("select").find(":selected").val() == "90002") {
+                        jq("#other-test-div_2").removeClass('hidden');
+                        jq("#other-results-div_2").removeClass('hidden');
+                        jq("#results-div_2").addClass('hidden');
+                    } else {
+                        jq("#other-test-div_2").addClass('hidden');
+                        jq("#other-results-div_2").addClass('hidden');
+                        jq("#results-div_2").removeClass('hidden');
+                    }
+                });
+
+                jq("#165844_3").change(function () {
+                    if(jq(this).find("select").find(":selected").val() == "90002") {
+                        jq("#other-test-div_3").removeClass('hidden');
+                        jq("#other-results-div_3").removeClass('hidden');
+                        jq("#results-div_3").addClass('hidden');
+                    } else {
+                        jq("#other-test-div_3").addClass('hidden');
+                        jq("#other-results-div_3").addClass('hidden');
+                        jq("#results-div_3").removeClass('hidden');
+                    }
+                });
+
+                jq("#165844_4").change(function () {
+                    if(jq(this).find("select").find(":selected").val() == "90002") {
+                        jq("#other-test-div_4").removeClass('hidden');
+                        jq("#other-results-div_4").removeClass('hidden');
+                        jq("#results-div_4").addClass('hidden');
+                    } else {
+                        jq("#other-test-div_4").addClass('hidden');
+                        jq("#other-results-div_4").addClass('hidden');
+                        jq("#results-div_4").removeClass('hidden');
+                    }
+                });
+
+                jq("#165844_5").change(function () {
+                    if(jq(this).find("select").find(":selected").val() == "90002") {
+                        jq("#other-test-div_5").removeClass('hidden');
+                        jq("#other-results-div_5").removeClass('hidden');
+                        jq("#results-div_5").addClass('hidden');
+                    } else {
+                        jq("#other-test-div_5").addClass('hidden');
+                        jq("#other-results-div_5").addClass('hidden');
+                        jq("#results-div_5").removeClass('hidden');
+                    }
+                });
+
+                 <!-- Add/remove tests and results-->
+                 var $otherRows,
+                 $firstRow,
+                 $thisRow,
+                 $nextRow,
+                 $lastVisibleRow;
+             var showAddButtonForLastVisibleRow = function($container) {
+                 $lastVisibleRow = $container.find('span.add-remove-section:visible:last');
+                 $lastVisibleRow.find('.add').show();
+             };
+
+             $firstRow = jq('span.add-remove-section:first-of-type');
+             $otherRows = jq('span.add-remove-section:not(:first-of-type)');
+
+             jq('.add').click(function(e) { //Handle add button event
+                 e.preventDefault();
+                 $thisRow = jq(this).parents('span.add-remove-section:first');
+                 $nextRow = $thisRow.next();
+
+                 if ($nextRow.length &gt; 0) {
+                     $nextRow.show('slow');
+                     $thisRow.find('.add').hide();
+                 }
+             });
+
+             jq('.remove').click(function(e) { //Handle remove button event
+                 e.preventDefault();
+                 $thisRow = jq(this).parents('span.add-remove-section:first');
+                 if (confirm('Are you sure you want to remove this record? All fields for this record will be cleared.') == 1) {
+                     $thisRow = jq(this).parents('span.add-remove-section:first');
+                     $lastRow = jq(this).parents('span.add-remove-section:last');
+                     $lastVisibleRow = $lastRow.prev();
+
+                     $thisRow.hide('slow', function() {
+                         fieldHelper.clearAllFields($thisRow);
+                         $lastVisibleRow.find('.add').show();
+                     });
+                 }
+             });
+            
+             $otherRows.hide(); //Hide all rows apart from first row if adding new form
+             $firstRow.find('.remove').hide(); //Hide the remove button from the first row 
+
 
             });
 
@@ -90,6 +397,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#autopsy-findings-section">Autopsy Findings</a>
                             </li>
+                            <li class="nav-item">
+								<a class="nav-link" data-toggle="tab" href="#radiology-section">Radiology</a>
+							</li>
                         </ul>
                     </div>
                     <div class="card-body">
@@ -327,9 +637,99 @@
                                 </div>
                                 </div>
                             </div>
-
-
                         </div>
+
+                        <div class="tab-pane" role="tabpanel" aria-leballebdy="nav-profile-tab" id="radiology-section">
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            Swab Samples Taken
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <obs conceptId="1271" answerConceptId="165418" answerLabel="Anterior Nares (Nasal)" class="col-md-3"/>
+		                                            <obs conceptId="1271" answerConceptId="165417" answerLabel="Mid-turbinate"  class="col-md-3"/>
+		                                            <obs conceptId="1271" answerConceptId="165416" answerLabel="Nasopharyngeal" class="col-md-3"/>
+		                                            <obs conceptId="1271" answerConceptId="165413" answerLabel="Oropharyngeal" class="col-md-3"/>
+		                                            <obs conceptId="1271" answerConceptId="165415" answerLabel="Saliva samples" class="col-md-3"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <div class="col-md-5">
+                                <div class="card">
+                                    <div class="card-header">
+                                        Radiology
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <repeat with="['12','CXR']">
+                                                    <obs id="{0}" conceptId="1271" answerConceptId="{0}"
+                                                         answerLabel="{1}" style="checkbox"/>
+                                                </repeat>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header">
+                                    Test Results
+                                </div>
+                                <div class="card-body">
+                                    <repeat>
+                                        <template>
+                                            <obsgroup groupingConceptId="99292">
+                                                <span class="row add-remove-section">
+                                                    <div class="col-md-3">
+                                                        <label>Date Sample Taken</label>
+                                                        <obs conceptId="164431" allowTime="false" id="164431_{n}"/>
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label>Test</label>
+                                                        <obs conceptId="165844" answerConceptIds="90225,165413,165416,12,90002" 
+                                                             answerLabels="RT-PCR, NAAT, RDT-Ag, RDT-Ad, Other" id="165844_{n}"/>
+                                                    </div>
+                                                    <div class="col-md-2 hidden" id="other-test-div_{n}">
+                                                        <label>Other Test</label>
+                                                        <obs conceptId="99114" id="99114_{n}" />
+                                                    </div>
+                                                    <div class="col-md-2 hidden" id="other-results-div_{n}">
+                                                        <label>Other Results</label>
+                                                        <obs conceptId="99291" id="99291_{n}" />
+                                                    </div>
+                                                    <div class="col-md-2" id="results-div_{n}">
+                                                        <label>Results</label>
+                                                        <obs conceptId="90225"  id="smear-results_{n}" class="hidden" />
+                                                        <obs conceptId="162202" id="geneexper-results_{n}" class="long-value-select hidden" />
+                                                        <obs conceptId="165291" id="tblam-results_{n}" class="hidden" />
+                                                        <obs conceptId="12"     id="xray-results_{n}" class="hidden" />
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <label>Lab No.</label>
+                                                        <obs conceptId="165845" id="165845_{n}" />
+                                                    </div>
+                                                    <div class="col-md-1">
+                                                        <br/>
+                                                        <a href="#" class="add add-more-link"><i class= "icon-plus-sign"></i></a>
+                                                        <a href="#" class="remove remove-more-link required"><i class="icon-minus"></i></a>
+                                                    </div>
+                                                </span>
+                                            </obsgroup>
+                                        </template>
+                                        <render n="1"/>
+                                        <render n="2"/>
+                                        <render n="3"/>
+                                        <render n="4"/>
+                                        <render n="5"/>
+                                    </repeat>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

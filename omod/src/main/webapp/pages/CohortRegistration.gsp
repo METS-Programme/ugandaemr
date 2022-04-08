@@ -71,6 +71,7 @@
                     jq().toastmessage('showErrorToast', "Error while Saving CDDP Group");
                 }
             });
+            window.location.reload();
         }
 
         function hasWhiteSpace(s) {
@@ -124,46 +125,55 @@
 
         function deleteCohort(id){
             if(id!==null){
-                jq.ajax({
-                    type: "DELETE",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id,
-                    dataType: "json",
-                    contentType: "application/json",
-                    async: false,
-                    success: function (data) {
-                        jq().toastmessage('showSuccessToast', "Cohort Deleted");
-                        getCohorts();
-                    }
-                });
+                var deleteMessageURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/cohort/delete?uuid=' + id;
+                    jq.ajax({
+                        type: 'GET',
+                        dataType: 'json',
+                        url: deleteMessageURL,
+                        async: false,
+                        success: function (response) {
+                            jq().toastmessage('showSuccessToast', response.message);
+                            getCohorts();
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            jq().toastmessage('showErrorToast', "Delete Failed");
+                        }
+                    });
+                    getCohorts();
             }
+            window.location.reload();
         }
 
         function editCohort(id){
-            jq("#cohort-type").empty();
-            getCohortTypes()
-            var row = jq('#'+id);
-            row.each(function (i) {
-                var tds = jq(this).find('td');
-                   var name = tds.eq(0).text();
-                   var description = tds.eq(1).text();
-                   var type= tds.eq(2).text();
-                   var uuid = tds.eq(4).text();
+                var editURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/cohort/edit?uuid=' + id;
+                jq.ajax({
+                    type: 'GET',
+                    dataType: 'json',
+                    url: editURL,
+                    async: false,
+                    success: function (response) {
+                        jq("#cohort-type").empty();
+                        getCohortTypes();
+                        var name = response.name;
+                        var description = response.description;
+                        var uuid = response.uuid;
 
-                jq('#name').attr("value",name);
-                jq('#description').attr("value",description);
-                jq('#uuid').attr("value",uuid);
-                jq("#cohort-type option:contains('"+type+"')").attr("selected", "selected");
-            });
+                        jq('#name').attr("value", name);
+                        jq('#description').attr("value", description);
+                        jq('#uuid').attr("value", uuid);
 
-            jq('.modal-footer > input').attr("onclick","saveEditedData('"+id+"')");
-
+                        jq('.modal-footer > input').attr("onclick","saveEditedData('"+id+"')");
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                    }
+                });
         }
 
         function saveEditedData(id){
             var dataToPost = processFormData();
-            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+id+"?v=full";
-            if(dataToPost!==""){
-                saveCohort(dataToPost,url);
+            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/ugandaemr/cohort/saveEdit?uuid="+id;
+            if(dataToPost!=="") {
+                saveCohort(dataToPost, url);
             }
         }
 
