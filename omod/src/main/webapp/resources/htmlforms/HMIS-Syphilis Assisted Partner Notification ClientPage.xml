@@ -1,0 +1,177 @@
+<html>
+    <head>
+        <title>Client Information</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <obs id="90260" conceptId="90260"/>
+                </div>
+                <div class="col">
+                    <label for="ancNo" class="form-label">ANC Number</label>
+                    <obs id="99026" conceptId="99026"/>
+                </div>
+                <div class="col">
+                    <label for="ClientCategory" class="form-label">Client Category</label> <br>
+                    <obs id="" conceptId="" answerConceptIds=" , ,"
+                         answerLabels="1 - National, 2 - Foreigner, 3 - Refugee"/>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="lastName" class="form-label">Last Name</label>
+                    <obs id="90259" conceptId="90259"/>
+                </div>
+                <div class="col">
+                    <label for="Telephone" class="form-label">Telephone</label>
+                    <obs id="90266" conceptId="90266"/>
+                </div>
+                <div class="col">
+                    <label for="IndexClientType" class="form-label">Index Client Type</label> <br>
+                    <obs id="" conceptId="" answerConceptIds=",,,"
+                          answerLabels="1 - Newly identified, 2 - On  ART with new risks,
+                          3 - Newly identified, 4 - Referred from  another ANC"/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="clientInitials" class="form-label">Client Initials</label>
+                    <obs id="166537" conceptId="166537"/>
+                </div>
+                <div class="col">
+                    <label for="district" class="form-label">District</label> <br>
+                    <obs id="165853" conceptId="165853" answerConceptIds=""
+                          answerLabels="1 - Kampala, 2 - Wakiso"/>
+                </div>
+                <div class="col">
+                    <label for="FacilityEntryPoint" class="form-label">Facility Entry Point</label> <>
+                    <obs id="164993" conceptId="164993" answerConceptIds="166551, 166552"
+                         answerLabels="1 - ANC, 2 - Maternity"/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="NIN" class="form-label">NIN</label>
+                    <obs id="166538" conceptId="166538" />
+                </div>
+                <div class="col">
+                    <label for="subCounty" class="form-label">Sub-County</label> <br>
+                    <obs id="99135" conceptId="99135" answerConceptIds=""
+                         answerLabels="1 - Central Division, 2 - Kawempe Division, 3 - Makindye Division,
+                         4 - Nakawa Division, 5 - Rubaga Division, 6 - Busukuma, 7 - Division B,
+                         8 - Kakiri, 9 - Katabi, 10 - Masulita, 11 - Namayumba, 12 - Division A,
+                         13 - Gombe, 14 - Kasanje, 15 - Kira, 16 - Nabweru, 17 - Nangabo, 18 - Nsangi,
+                         19 - Ssisa, 20 - Wakiso Town Council, 21 - Ssabagabo-Makindye"/>
+                </div>
+                <div class="col">
+                    <label for="kpppCategorization" class="form-label">KP/PP categorization</label> <br>
+                    <obs id="" conceptId="" answerConceptIds="162277, 165127, 165132"
+                         answerLabels="1 - Prisoners, 2 - Refugees, 3 - Adolescent Girls and young women,
+                         4 - People with disabilities (PWD), 5 - Others"/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="birthdate">Date of birth</label> <br>
+                    <obs id="" conceptId=""/>
+                </div>
+                <div class="col">
+                    <label for="village" class="form-label">Village</label>
+                    <obs id="99137" conceptId="99137"/>
+                </div>
+                <div class="col">
+                    <label for="others kppp categorization" class="form-label">Others Specify</label>
+                    <obs id="" conceptId=""/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="age" class="form-label">Age in years</label>
+                    <obs id="989" conceptId="989"/>
+                </div>
+                <div class="col">
+                    <label for="prominentFeature" class="form-label">Prominent Feature</label>
+                    <obs id="166542" conceptId="166542"/>
+                </div>
+                <div class="col">
+                    <label for="sexual partners" class="form-label">Number of Sexual Partners in  the past 9 months</label>
+                    <obs id="" conceptId=""/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <label for="gender" class="form-label">Gender</label>
+                    <obs id="90252" conceptId="90252" answerConceptIds="90164"
+                         answerLabels="90164"/>
+                </div>
+                <div class="col">
+                    <label for="IPV history" class="form-label">History of IPV</label> <br>
+                    <obs id="" conceptId="" answerConceptIds="90003,90004"
+                         answerLabels="1 - Yes, 2 - No"/>
+                </div>
+                <div class="col">
+                    <label for="apn encounter" class="form-label">First APN encounter</label> <br>
+                    <obs id="" conceptId="" answerConceptIds="90003,90004"
+                         answerLabels="1 - Yes, 2 - No"/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+        <div class="row">
+            <div class="col">
+                <label for="maritalStatus" class="form-label">Marital Status</label>
+                <obs id="90244" conceptId="90244" answerConceptIds="90006,,1057,90008,90007,90009"
+                     answerLabels="1 - Married, 2 - Cohabiting, 3 - Never Married, 4 - Separated,
+                     5 - Divorced, 6 - Widowed"/>
+            </div>
+            <div class="col">
+                <label for="IPV experience" class="form-label">IPV Experience within a month</label> <br>
+                <obs id="" conceptId="" answerConceptIds="90003,90004"
+                     answerLabels="1 - Yes, 2 - No"/>
+            </div>
+            <div class="col">
+                <label for="remarks" class="form-label">Remarks</label>
+                <obs id="" conceptId=""/>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-lg">Submit</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-lg">Add Partner details</button>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-secondary btn-lg">Add baby details</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
