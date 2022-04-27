@@ -1411,11 +1411,13 @@
             var cohort = getValue('refill_point_id.value');
             var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
             var DSDCategory = getValue('cddp_category.value');
-            var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
-            if (cohort == "" &amp;&amp; (DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9")){
-                jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
-                return false;
+            if (cohort == ""){
+               if(DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9"){
+                    jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
+                    return false;
+               }
             }else{
+                var dataToPost = "{\"patient\": \"" +  patientUUID + "\", \"cohort\": \"" + cohort + "\",\"startDate\": \"" + date+ "\"}";
                 jq.ajax({
                 type: "POST",
                 url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/",
@@ -3903,27 +3905,26 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div id="cddp_categorization" class="card">
-                        <div class="card-header">Drug Pick Up Model</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3" id="cddp_category">
-                                    <label>CDDP Category</label>
-                                    <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
-                                </div>
-                                <div class="col-md-3">
-                                   <label>DSD Group Refill Point</label>
-                                    <div class="form-group">
-                                        <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
-                                            <option value="">Select Refill Point</option>
-                                        </select>
+                        <div id="cddp_categorization" class="card">
+                            <div class="card-header">Drug Pick Up Model</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3" id="cddp_category">
+                                        <label>CDDP Category</label>
+                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs id="refill_point_id" conceptId="166500"
-                                         labelText="DSD Group Code"/>
+                                    <div class="col-md-3">
+                                        <label>DSD Group Refill Point</label>
+                                        <div class="form-group">
+                                            <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
+                                                <option value="">Select Refill Point</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <obs id="refill_point_id" conceptId="166500"
+                                             labelText="DSD Group Code"/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
