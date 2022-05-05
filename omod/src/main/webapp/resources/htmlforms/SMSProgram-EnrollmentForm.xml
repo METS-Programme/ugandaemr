@@ -49,19 +49,19 @@
                     });
             }
 
-            disable_fields("165276");
+            disable_fields("166567");
 
-            jq("#99881").click(function () {
+            jq("#166566").click(function () {
             if (jq(this).find("input[type='radio']:checked").val() == "90003") {
-                enable_fields("165276");
+                enable_fields("166567");
             } else {
-                disable_fields("165276");
+                disable_fields("166567");
             }
             });
 
             beforeSubmit.push(function () {
                 <!-- verify that phone number is valid     -->
-                var phone_number = getValue('90278.value');
+                var phone_number = getValue('166561.value');
                 var cohortUuid="";
                 if(phone_number!==""){
                     phone_number = phone_number.replace(/\(|\)|\s+|-/g, "");
@@ -134,7 +134,7 @@
                             <div class="col-md-4">
                                 <label>SMS Tel No:</label>
                                 <span>
-                                    <obs conceptId="90278" class="ugsmsphone" id="90278" placeholder="256700110022"/>
+                                    <obs conceptId="166561" class="ugsmsphone" id="166561" placeholder="256700110022"/>
                                 </span>
                             </div>
                         </div>
@@ -146,12 +146,12 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <obs id="appointmentReminder" conceptId="165169" answerConceptId="162277" answerLabel="HIV Appointment Reminder" style="checkbox"/>
+                                        <obs id="appointmentReminder" conceptId="166565" answerConceptId="166562" answerLabel="HIV Appointment Reminder" style="checkbox"/>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <obs id="nonsuppressedReminder" conceptId="165169" answerConceptId="162277" answerLabel="Non Suppressed Reminder" style="checkbox"/>
+                                        <obs id="nonsuppressedReminder" conceptId="166565" answerConceptId="166563" answerLabel="Non Suppressed Reminder" style="checkbox"/>
                                     </div>
                                 </div>
 
@@ -168,13 +168,13 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label>Exit SMS Program:</label>
-                                <obs id="99881" conceptId="99881" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
+                                <obs id="166566" conceptId="166566" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
                             </div>
                             <div class="col-md-4">
                                 <label>Date of Exit:</label>
                                 <span>
                                     <i class=" icon-calendar small family-date-icon"></i>
-                                    <obs id="165276" conceptId="165276" allowFutureDates="true"/>
+                                    <obs id="166567" conceptId="166567" allowFutureDates="true"/>
                                 </span>
                             </div>
                         </div>
