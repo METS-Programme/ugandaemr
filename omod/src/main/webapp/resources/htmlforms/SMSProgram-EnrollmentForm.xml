@@ -69,6 +69,9 @@
                         jq().toastmessage('showErrorToast', "Please specify a valid mobile number without any spaces like 256712345678");
                         return false;
                     }
+                }else if( getValue('166566' + '.value')!== 90003){
+                    jq().toastmessage('showErrorToast', "Phone number is required");
+                    return false;
                 }
 
 <!--  assign cohorts to client depending on the types of reminders they have chosen  -->
@@ -132,9 +135,9 @@
                                 </span>
                             </div>
                             <div class="col-md-4">
-                                <label>SMS Tel No:</label>
+                                <label><span class="required">*</span>SMS Tel No:</label>
                                 <span>
-                                    <obs conceptId="166561" class="ugsmsphone" id="166561" placeholder="256700110022"/>
+                                    <obs conceptId="166561" class="ugsmsphone" id="166561" placeholder="256700110022" required="true"/>
                                 </span>
                             </div>
                         </div>
