@@ -1979,6 +1979,14 @@
     <concept  concept_id="166506"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-10-19 13:32:35" changed_by="1"  date_changed="2021-10-19 13:32:35" uuid="b1f34616-de68-4b90-9bc4-f0397692befa"/>
     <concept  concept_id="166507"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2021-10-19 13:53:46" changed_by="1"  date_changed="2021-10-19 13:53:46" uuid="dc353acd-1d7f-4b62-a38b-96cd0924a798"/>
     <concept  concept_id="166560"  retired="0" datatype_id="6"  class_id="7"  is_set="0"  creator="1"  date_created="2022-04-01 16:17:05" changed_by="1"  date_changed="2022-04-01 16:17:05" uuid="f6c456f7-1ab4-4b4d-a3b4-e7417c81002a"/>
+    <concept  concept_id="166561"  retired="0" datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2022-04-27 11:33:59" changed_by="1"  date_changed="2022-04-27 11:33:59"  uuid="0593abe7-6658-43c3-ab53-a714a761de55"/>
+    <concept  concept_id="166562"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2022-04-27 11:41:06" changed_by="1"  date_changed="2022-04-27 11:41:06"  uuid="d102f003-b0aa-4706-978d-239c8f1fc3f6"/>
+    <concept  concept_id="166563"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2022-04-27 11:41:43" changed_by="1"  date_changed="2022-04-27 11:41:43"  uuid="a81dd50d-79d5-4033-8023-00b402a3e04b"/>
+    <concept  concept_id="166564"  retired="0" datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2022-04-27 11:42:04" changed_by="1"  date_changed="2022-04-27 11:42:04"  uuid="d8a85546-4348-4a23-97fb-b3d160e64f4c"/>
+    <concept  concept_id="166565"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2022-04-27 11:44:25" changed_by="1"  date_changed="2022-04-27 11:44:25"  uuid="66ba3fca-5d96-42a0-9dcf-a4f20bf33c19"/>
+    <concept  concept_id="166566"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2022-04-27 11:49:12" changed_by="1"  date_changed="2022-04-27 11:49:12"  uuid="2a0e30a4-1153-48b6-903d-371dd4ec3ab0"/>
+    <concept  concept_id="166567"  retired="0" datatype_id="6"  class_id="5"  is_set="0"  creator="1"  date_created="2022-04-27 11:52:14" changed_by="1"  date_changed="2022-04-27 11:52:14"  uuid="1ca2a45e-8176-4f09-a2ef-9b261ce8d0a0"/>
+    <concept  concept_id="166568"  retired="0" datatype_id="2"  class_id="7"  is_set="0"  creator="1"  date_created="2022-04-27 11:54:16" changed_by="1"  date_changed="2022-04-27 11:54:16"  uuid="6a419e0c-e26f-4e51-8e62-ac414a47b8c2"/>
 
 
     <!--CONCEPT NUMERIC-->
@@ -6151,6 +6159,16 @@
     <concept_name  concept_name_id="162766"  concept_id="166507"  name="Lignocaine Batch Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-19 13:53:46"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="ced20ac7-f999-43a7-a623-1022788f6e9e"/>
     <concept_name  concept_name_id="162822"  concept_id="166560"  name="Next Pharmacy Visit Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-01 16:17:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="af6d9e91-eea7-409b-9c51-f73009f6bff8"/>
 
+    <!-- SMS ENROLLMENT -->
+    <concept_name  concept_name_id="162823"  concept_id="166561"  name="Preferred SMS Telephone Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:33:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="9b101766-fb8c-46c3-b8cf-9ce7176016f4"/>
+    <concept_name  concept_name_id="162824"  concept_id="166562"  name="HIV Appointment Reminder"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:41:06"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="346a3095-0b09-41b2-ad04-ee03c434dbc4"/>
+    <concept_name  concept_name_id="162825"  concept_id="166563"  name="Non Suppressed Notice Reminder"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:41:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="2ed53754-4783-44d4-a3ae-b8b89bc8ce87"/>
+    <concept_name  concept_name_id="162826"  concept_id="166564"  name="ANC Appointment Reminder"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:42:04"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="34d7e64a-f3a4-4403-9943-8694110c172b"/>
+    <concept_name  concept_name_id="162827"  concept_id="166565"  name="SMS Reminder Type"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:44:25"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="49cff163-7438-49e3-bbaa-8c82fdb03ca6"/>
+    <concept_name  concept_name_id="162828"  concept_id="166566"  name="Exit SMS Program"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:49:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="24f65675-c1ae-4c89-bd41-83f2a53bc156"/>
+    <concept_name  concept_name_id="162829"  concept_id="166567"  name="SMS Program Exit Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:52:14"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="0a47b4ac-bc3c-4516-b0e5-6f52d47c654a"/>
+    <concept_name  concept_name_id="162830"  concept_id="166568"  name="SMS Reminder Exited"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:54:16"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4576759c-c769-4cd0-941c-4990c56cc663"/>
+
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -8367,6 +8385,17 @@
     <concept_answer concept_answer_id="7367957" concept_id="90315" answer_concept="99144" creator="1" date_created="2021-11-11 00:00:00" sort_weight="45" uuid="cf458214-42ab-11ec-be7c-105c9dfe22af"/>
     <concept_answer concept_answer_id="7367958" concept_id="90315" answer_concept="99143" creator="1" date_created="2021-11-11 00:00:00" sort_weight="46" uuid="cf45830e-42ab-11ec-be7c-105c9dfe22af"/>
     <concept_answer concept_answer_id="7367959" concept_id="90315" answer_concept="99282" creator="1" date_created="2021-11-11 00:00:00" sort_weight="47" uuid="cf4583e0-42ab-11ec-be7c-105c9dfe22af"/>
+
+    <!-- SMS ENROLLMENT CONCEPT ANSWERS -->
+    <concept_answer  concept_answer_id="7367960"  concept_id="166565"  answer_concept="166563"   creator="1"  date_created="2022-04-27 11:44:25"  sort_weight="2"  uuid="9de8318f-e1f8-408f-87fb-ad6392b8d403"/>
+    <concept_answer  concept_answer_id="7367961"  concept_id="166565"  answer_concept="166564"   creator="1"  date_created="2022-04-27 11:44:25"  sort_weight="3"  uuid="b32601bd-7feb-4539-921b-d74fa265a92f"/>
+    <concept_answer  concept_answer_id="7367962"  concept_id="166565"  answer_concept="166562"   creator="1"  date_created="2022-04-27 11:44:25"  sort_weight="1"  uuid="86796a5b-4b73-4b1f-ad8f-9e9add850e52"/>
+    <concept_answer  concept_answer_id="7367963"  concept_id="166566"  answer_concept="90004"   creator="1"  date_created="2022-04-27 11:49:12"  sort_weight="2"  uuid="2fac8d91-0adf-4dfc-9670-796ae7efa809"/>
+    <concept_answer  concept_answer_id="7367964"  concept_id="166566"  answer_concept="90003"   creator="1"  date_created="2022-04-27 11:49:12"  sort_weight="1"  uuid="abeb968f-dcd1-4175-95b7-b9d4142fefc2"/>
+    <concept_answer  concept_answer_id="7367965"  concept_id="166568"  answer_concept="166562"   creator="1"  date_created="2022-04-27 11:54:16"  sort_weight="1"  uuid="52ea1e7a-a656-48a7-9eb6-a7ac331488f8"/>
+    <concept_answer  concept_answer_id="7367966"  concept_id="166568"  answer_concept="166564"   creator="1"  date_created="2022-04-27 11:54:16"  sort_weight="3"  uuid="040988a0-06c6-40d6-a616-15055763ea15"/>
+    <concept_answer  concept_answer_id="7367967"  concept_id="166568"  answer_concept="166563"   creator="1"  date_created="2022-04-27 11:54:16"  sort_weight="2"  uuid="9601c30f-091d-4023-8ef3-caeb76644773"/>
+
     <!--CONCEPT SET-->
     <!--MCH-->
     <concept_set concept_set_id="167" concept_id="1410" concept_set="1421" sort_weight="2.0" creator="1" date_created="2006-12-08 18:48:21.0" uuid="167AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>

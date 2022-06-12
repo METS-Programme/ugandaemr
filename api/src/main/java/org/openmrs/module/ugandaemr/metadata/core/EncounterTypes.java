@@ -324,6 +324,54 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor COVID19_VACCINATION_TRACKING = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Covid19 Vaccination Tracking Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Covid19 vaccination tracking for clients active on ART";
+        }
+
+        public String uuid() {
+            return "c392cf0e-5024-4f47-9ed9-e10e307e942f";
+        }
+    };
+
+    public static EncounterTypeDescriptor CACX_SCREENING_LOG = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "CaCx Screening Eligibility Log Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "CaCx Screening Eligibility Log Encounter";
+        }
+
+        public String uuid() {
+            return "91725548-2d90-4b28-be6d-0509ba37bb0f";
+        }
+    };
+
+    public static EncounterTypeDescriptor CACX_TREATMENT_REGISTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "CaCx Treatment Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "CaCx Treatment Encounter";
+        }
+
+        public String uuid() {
+            return "6d647bd4-33d6-4d04-a04a-595d2159b456";
+        }
+    };
+
     public static EncounterTypeDescriptor SMS_ENROLLMENT = new EncounterTypeDescriptor() {
         @Override
         public String name() {
