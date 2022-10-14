@@ -6844,7 +6844,7 @@
 
     <!-- SMC Client Form -->
     <concept_name  concept_name_id="162766"  concept_id="166507"  name="Lignocaine Batch Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-19 13:53:46"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="ced20ac7-f999-43a7-a623-1022788f6e9e"/>
-    <concept_name  concept_name_id="162822"  concept_id="166560"  name="Next Pharmacy Visit Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-01 16:17:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="af6d9e91-eea7-409b-9c51-f73009f6bff8"/>
+    <concept_name  concept_name_id="162822"  concept_id="166560"  name="Next Return Date At Facility"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-01 16:17:05"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="af6d9e91-eea7-409b-9c51-f73009f6bff8"/>
 
     <!-- SMS ENROLLMENT -->
     <concept_name  concept_name_id="162823"  concept_id="166561"  name="Preferred SMS Telephone Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-04-27 11:33:59"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="9b101766-fb8c-46c3-b8cf-9ce7176016f4"/>
