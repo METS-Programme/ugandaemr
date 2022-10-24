@@ -217,7 +217,27 @@
       "requiredPrivilege": "App: coreapps.systemAdministration"
     }
     ]
-   },
+  },
+  {
+    "id": "covid.findPatient",
+    "instanceOf": "coreapps.template.findPatient",
+    "description": "Basic patient search that goes to the patient dashboard",
+    "order": 2,
+    "extensions": [
+      {
+        "id": "covid.findPatientLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "Find Covid Patient",
+        "url": "ugandaemr/findpatient/covid/findPatient.page?app=covid.findPatient",
+        "icon": "icon-search",
+        "requiredPrivilege": "App: ugandaemrpoc.findPatient"
+      }
+    ],
+    "config": {
+      "registrationAppLink": "registrationapp/registerPatient.page?appId=ugandaemr.registrationapp.registerPatient"
+    }
+  },
   {
   "id": "ugandaemr.cohortTypeConfigs",
   "description": "DSD SubGroup Registration",

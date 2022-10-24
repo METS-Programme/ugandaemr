@@ -10,55 +10,133 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false&amp;&amp; sessionLocation.uuid=='1748bd6f-b013-449f-8d38-91319b576f3f'"
           formDisplayStyle="Standard"
           formLabel="Covid-19 Case Investigation">
-          
+
+    <ifMode mode = "ENTER" > <!--Hide all optional fields by default on creation -->
+        <script type="text/javascript">
+            if (jQuery) {
+                jq(document).ready(function () {
+                    disable_fields("rdt-ag");
+                    disable_fields("rdt-ab");
+                    disable_fields("pcr");
+
+                    jq("#other-occupation-container").hide();
+                    jq("#other-country-of-residence-container").hide();
+                    jq("#date-of-first-symptom-container").hide();
+                    jq("#other-bleeding-site-container").hide();
+                    jq("#other-symptoms-container").hide();
+                    jq("#other-comorbidities-container").hide();
+                    jq("#hiv-info-container").hide();
+                    jq("#countries-container").hide();
+                    jq("#district-container").hide();
+                    jq("#country-container").hide();
+                    jq("#public-transport-means-container").hide();
+                    jq("#travel-history-container").hide();
+                    jq("#admit-to-hospital-cases-container").hide();
+                    jq("#admit-to-hospital-specify-other-container").hide();
+                    jq("#pregnancy-details-container").hide();
+                });
+            }
+        </script>
+    </ifMode>
+
+    <ifMode mode = "EDIT" > <!-- Handle edit logic for optional fields -->
+        <script type="text/javascript">
+            if (jQuery) {
+                jq(document).ready(function () {
+                    if (jq("#occupation").find("select").find(":selected").val() != "5622") {
+                        jq("#other-occupation-container").hide();
+                    }
+
+                    if (jq("#country-of-residence").find("select").find(":selected").val() != "90002") {
+                        jq("#other-country-of-residence-container").hide();
+                    }
+
+                    if (jq("#date-of-positive-lab-test").find("input[type='text']").val() == '') {
+                        disable_fields("rdt-ag");
+                        disable_fields("rdt-ab");
+                        disable_fields("pcr");
+                    }
+
+                    if (jq("#is-patient-symptomatic").find("input[type='radio']:checked").val() != "90003") {
+                        jq("#date-of-first-symptom-container").hide();
+                    }
+
+                    if (!jq(".symptoms").find('#other-bleeding-site').find(':checkbox').prop('checked')) {
+                        jq("#other-bleeding-site-container").hide();
+                    }
+
+                    if (!jq(".symptoms").find('#other-symptoms').find(':checkbox').prop('checked')) {
+                        jq("#other-symptoms-container").hide();
+                    }
+
+                    if (!jq(".comorbidities").find('#other-comorbidities').find(':checkbox').prop('checked')) {
+                        jq("#other-comorbidities-container").hide();
+                    }
+
+                    if (!jq(".comorbidities").find('#hiv-status-check').find(':checkbox').prop('checked')) {
+                        jq("#hiv-info-container").hide();
+                    }
+
+                    if (jq("#travel-history").find("input[type='radio']:checked").val() == "90003") {
+                        if (jq("#mode-of-transport").find("select").find(":selected").val() != "166304") {
+                            jq("#public-transport-means-container").hide();
+                        }
+                        if (jq("#travel-type").find("input[type='radio']:checked").val() == "166298") {
+                            jq("#countries-container").hide();
+                        } else if (jq("#travel-type").find("input[type='radio']:checked").val() == "166299") {
+                            jq("#district-container").hide();
+                            jq("#country-container").hide();
+                        } else {
+                            jq("#countries-container").hide();
+                            jq("#district-container").hide();
+                            jq("#country-container").hide();
+                        }
+                    } else {
+                        jq("#travel-history-container").hide();
+                    }
+
+                    if (jq("#admit-to-hospital").find("input[type='radio']:checked").val() != "166317") {
+                        jq("#admit-to-hospital-cases-container").hide();
+                    }
+
+                    if (jq("#admit-to-hospital-cases").find("select").find(":selected").val() != "90002") {
+                        jq("#admit-to-hospital-specify-other-container").hide();
+                    }
+                });
+            }
+        </script>
+    </ifMode>
+
     <script type="text/javascript">
 
         if (jQuery) {
 
-            jq(document).ready(function () { 
-
+            jq(document).ready(function () {
                 //Block Multiple encounter entry on same date
                 blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
-
-                disable_fields("country");
-                disable_fields("city");
-                disable_fields("other-country-of-residence");
-                disable_fields("rdt-ag");
-                disable_fields("rdt-ab");
-                disable_fields("pcr");
-                disable_fields("other-occupation");
-                disable_fields("date-of-first-symptom");
-                disable_fields("specify-other-bleeding-site");
-                disable_fields("specify-other-comorbidities");
-                disable_fields("district");
-                disable_fields("county");
-                disable_fields("admit-to-hospital-specify-other");
-                disable_fields("gestational-age");
-                disable_fields("trimester");
-                disable_fields("bus");
-                disable_fields("matatu-minibus");
-                disable_fields("boda-boda");
-                disable_fields("bleeding-site");
-                disable_fields("countries-traveled");
 
                 jq("#occupation").change(function () {
                     if (jq(this).find("select").find(":selected").val() == "5622") {
                         enable_fields("other-occupation");
+                        jq("#other-occupation-container").show();
                     } else {
                         disable_fields("other-occupation");
+                        jq("#other-occupation-container").hide();
                     }
                 });
 
                 jq("#country-of-residence").change(function () {
                     if (jq(this).find("select").find(":selected").val() == "90002") {
                         enable_fields("other-country-of-residence");
+                        jq("#other-country-of-residence-container").show();
                     } else {
                         disable_fields("other-country-of-residence");
+                        jq("#other-country-of-residence-container").hide();
                     }
                 });
 
-                jq("#date-of-positive-lab-test").mouseover(function () {
-                    if (getValue('date-of-positive-lab-test.value') !== " ") {
+                jq("#date-of-positive-lab-test").change(function () {
+                    if (jq(this).find("input[type='text']").val() != '') {
                         enable_fields("rdt-ag");
                         enable_fields("rdt-ab");
                         enable_fields("pcr");
@@ -72,56 +150,62 @@
                 jq("#is-patient-symptomatic").click(function () {
                     if (jq(this).find("input[type='radio']:checked").val() == "90003") {
                         enable_fields("date-of-first-symptom");
+                        jq("#date-of-first-symptom-container").show();
                     } else {
-                        disable_fields("date-of-first-symptom"); 
+                        disable_fields("date-of-first-symptom");
+                        jq("#date-of-first-symptom-container").hide();
                     }
                 });
 
                 jq(".symptoms").change(function () {
                     if (jq(this).find('#other-bleeding-site').find(':checkbox').prop('checked')) {
                         enable_fields("specify-other-bleeding-site");
+                        jq("#other-bleeding-site-container").show();
                     } else {
-                        disable_fields("specify-other-bleeding-site"); 
+                        disable_fields("specify-other-bleeding-site");
+                        jq("#other-bleeding-site-container").hide();
                     }
-                });
-                
-                jq(".90251").change(function () {
-                    if (jq(this).find('#147241').find(':checkbox').prop('checked')) {
-                        enable_fields("bleeding-site");
+
+                    if (jq(this).find('#other-symptoms').find(':checkbox').prop('checked')) {
+                        enable_fields("specify-other-symptoms");
+                        jq("#other-symptoms-container").show();
                     } else {
-                        disable_fields("bleeding-site");
+                        disable_fields("specify-other-symptoms");
+                        jq("#other-symptoms-container").hide();
                     }
                 });
 
-                jq(".underlying-conditions").change(function () {
-                    if (jq(this).find('#pregnancy').find(':checkbox').prop('checked')) {
+                jq("#pregnancy").click(function () {
+                    if (jq(this).find("input[type='radio']:checked").val() == "1065"){
                         enable_fields("post-partum");
                         enable_fields("breast-feeding");
                         enable_fields("gestational-age");
                         enable_fields("trimester");
+                        jq("#pregnancy-details-container").show();
                     } else {
                         disable_fields("post-partum");
                         disable_fields("breast-feeding");
                         disable_fields("gestational-age");
                         disable_fields("trimester");
+                        jq("#pregnancy-details-container").hide();
                     }
                 });
 
                 jq(".comorbidities").change(function () {
                     if (jq(this).find('#other-comorbidities').find(':checkbox').prop('checked')) {
                         enable_fields("specify-other-comorbidities");
+                        jq("#other-comorbidities-container").show();
                     } else {
-                        disable_fields("specify-other-comorbidities"); 
+                        disable_fields("specify-other-comorbidities");
+                        jq("#other-comorbidities-container").hide();
                     }
 
                     if (jq(this).find('#hiv-status-check').find(':checkbox').prop('checked')) {
-                        enable_fields("on-art");
-                        enable_fields("not-on-art");
-                        enable_fields("unknown-hiv");
+                        jq("#hiv-info-container").show();
+                        enable_fields("hiv-treatment-check");
                     } else {
-                        disable_fields("on-art");
-                        disable_fields("not-on-art");
-                        disable_fields("unknown-hiv");
+                        jq("#hiv-info-container").hide();
+                        disable_fields("hiv-treatment-check");
                     }
                 });
 
@@ -129,21 +213,37 @@
                     if (jq(this).find("input[type='radio']:checked").val() == "90003") {
                         enable_fields("country");
                         enable_fields("city");
+                        enable_fields("date-of-arrival");
+                        enable_fields("date-of-departure");
+                        enable_fields("travel-type");
+                        enable_fields("district");
+                        enable_fields("county");
+                        enable_fields("countries-traveled");
+                        enable_fields("mode-of-transport");
+                        enable_fields("public-transport-means");
+                        jq("#travel-history-container").show();
                     } else {
                         disable_fields("country");
-                        disable_fields("city"); 
+                        disable_fields("city");
+                        disable_fields("date-of-arrival");
+                        disable_fields("date-of-departure");
+                        disable_fields("travel-type");
+                        disable_fields("district");
+                        disable_fields("county");
+                        disable_fields("countries-traveled");
+                        disable_fields("mode-of-transport");
+                        disable_fields("public-transport-means");
+                        jq("#travel-history-container").hide();
                     }
                 });
 
-                jq(".mode-of-transport").change(function () {
-                    if (jq(this).find('#public-road').find(':checkbox').prop('checked')) {
-                        enable_fields("bus");
-                        enable_fields("matatu-minibus");
-                        enable_fields("boda-boda");
+                jq("#mode-of-transport").change(function () {
+                    if (jq(this).find("select").find(":selected").val() == "166304") {
+                        enable_fields("public-transport-means");
+                        jq("#public-transport-means-container").show();
                     } else {
-                        disable_fields("bus");
-                        disable_fields("matatu-minibus");
-                        disable_fields("boda-boda"); 
+                        disable_fields("public-transport-means");
+                        jq("#public-transport-means-container").hide();
                     }
                 });
 
@@ -151,39 +251,48 @@
                     if (jq(this).find("input[type='radio']:checked").val() == "166298") {
                         enable_fields("district");
                         enable_fields("county");
+                        jq("#district-container").show();
+                        jq("#country-container").show();
                     } else {
                         disable_fields("district");
-                        disable_fields("county"); 
+                        disable_fields("county");
+                        jq("#district-container").hide();
+                        jq("#country-container").hide();
                     }
                 });
 
                 jq("#travel-type").click(function () {
                     if (jq(this).find("input[type='radio']:checked").val() == "166299") {
                         enable_fields("countries-traveled");
+                        jq("#countries-container").show();
                     } else {
                         disable_fields("countries-traveled");
+                        jq("#countries-container").hide();
                     }
                 });
 
-                jq(".admit-to-hospital").change(function () {
-                    if (jq(this).find('#admit-to-hospital').find(':checkbox').prop('checked')) {
-                        enable_fields("isolation-ward-for-suspect-cases");
-                        enable_fields("isolation-ward-for-confirmed-cases");
-                        enable_fields("high-dependency-unit");
-                        enable_fields("icu");
+                jq("#admit-to-hospital").click(function () {
+                    if (jq(this).find("input[type='radio']:checked").val() == "166317") {
                         enable_fields("admit-to-hospital-other");
-                    } else {
-                        disable_fields("isolation-ward-for-suspect-cases");
-                        disable_fields("isolation-ward-for-confirmed-cases");
-                        disable_fields("high-dependency-unit");
-                        disable_fields("icu");
-                        disable_fields("admit-to-hospital-other");
-                    }
+                        enable_fields("admit-to-hospital-cases");
+                        jq("#admit-to-hospital-cases-container").show();
 
-                    if (jq(this).find('#admit-to-hospital-other').find(':checkbox').prop('checked')) {
+                    } else {
+                        disable_fields("admit-to-hospital-cases");
+                        disable_fields("admit-to-hospital-other");
+                        disable_fields("admit-to-hospital-specify-other");
+                        jq("#admit-to-hospital-cases-container").hide();
+                        jq("#admit-to-hospital-specify-other-container").hide();
+                    }
+                });
+
+                jq("#admit-to-hospital-cases").change(function () {
+                    if (jq(this).find("select").find(":selected").val() == "90002") {
                         enable_fields("admit-to-hospital-specify-other");
+                        jq("#admit-to-hospital-specify-other-container").show();
                     } else {
                         disable_fields("admit-to-hospital-specify-other");
+                        jq("#admit-to-hospital-specify-other-container").hide();
                     }
                 });
                 
@@ -235,7 +344,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Case ID</label>
-                                                <obs conceptId="1646" />
+                                                <obs conceptId="1646" id="case-id"/>
                                             </div>
                                         </div>
                                     </div>
@@ -248,7 +357,7 @@
                                         <div class="row">
                                             <div class="col-md-4">
                                                 <label>Care Giver Name</label>
-                                                <obs conceptId="165919" />
+                                                <obs conceptId="165919" id="care-giver"/>
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Care Giver Phone Number</label>
@@ -267,18 +376,19 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-3">
                                                     <label>Occupation</label>
                                                     <obs id="occupation" conceptId="1542"
                                                          answerConceptIds="166272,159466,166273,5622"
                                                          answerLabels="Health Care Worker, Truck Driver, Surveillance Officer/Contact Tracer, Other Specify"/>
                                             </div>
-                                            <div class="col-md-2">
+
+                                            <div id="other-occupation-container" class="col-3">
                                                 <label>Other Occupation</label>
                                                 <obs id="other-occupation" conceptId="165136"/>
                                             </div>
 
-                                            <div class="col-md-2">
+                                            <div class="col-3">
                                                 <span class="">
                                                     <label>Country of Residence</label>
                                                     <obs id="country-of-residence" conceptId="166280"
@@ -286,11 +396,10 @@
                                                          answerLabels="Uganda, Kenya, Tanzania, Rwanda, DRC, S.Sudan, Other Specify "/>
                                                 </span>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div id="other-country-of-residence-container" class="col-3">
                                                 <label>Other Country of Residence</label>
                                                 <obs id="other-country-of-residence" conceptId="166295"/>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div> 
@@ -325,13 +434,13 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-3">
                                                 <label>Is Patient Symptomatic</label>
                                                 <obs id="is-patient-symptomatic" conceptId="166285" answerConceptIds="90003,90004" answerLabels="Yes, No"
                                                      style="radio" class="horizontal"/>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label>Date on Set of First Symptom</label>
+                                            <div id="date-of-first-symptom-container" class="col-4">
+                                                <label>Date onset of first symptom</label>
                                                 <obs id="date-of-first-symptom" conceptId="166286" />
                                             </div>
                                         </div>
@@ -367,18 +476,18 @@
                                         </div>
                                         <div class="row">
                                             <obs conceptId="90251" answerConceptId="166287" answerLabel="Recent Inability to Walk" style="checkbox" class="col-md-3" />
-                                            <obs id="147241" conceptId="90251" answerConceptId="147241" answerLabel="Bleeding" style="checkbox" class="col-md-3" />
-                                            <obs id="other-bleeding-site" conceptId="90251" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-3" />
-                                        </div>
-                                        <div class="row"> 
                                             <obs conceptId="90251" answerConceptId="206" answerLabel="Seizures" style="checkbox" class="col-md-3" />
-                                            <div class="col-md-3">
+                                            <obs id="other-bleeding-site" conceptId="90251" answerConceptId="147241" answerLabel="Bleeding" style="checkbox" class="col-md-3" />
+                                            <obs id="other-symptoms" conceptId="90251" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-3" />
+                                        </div>
+                                        <div class="row">
+                                            <div id="other-bleeding-site-container" class="col-md-3">
                                                 <label>Bleeding Site</label>
-                                                <obs id="bleeding-site" conceptId="166288" />
-                                            </div>    
-                                            <div class="col-md-3">
+                                                <obs id="specify-other-bleeding-site" conceptId="166288" />
+                                            </div>
+                                            <div id="other-symptoms-container" class="col-md-3">
                                                 <label>Specify Other</label>
-                                                <obs id="specify-other-bleeding-site" conceptId="166296" />
+                                                <obs id="specify-other-symptoms" conceptId="166296" />
                                             </div>
                                         </div>
                                     </div>
@@ -396,14 +505,14 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                                                <label>Was patient diagnosed with Covid as a result of this visit</label> 
+                                                <label>Was patient diagnosed with Covid as a result of this visit?</label>
                                                 <obs conceptId="166289" answerConceptIds="90003, 90004, 1175" answerLabels="Yes, No, Not Applicable"
-                                                     style="radio" class="horizontal"/>
+                                                     style="checkbox"/>
                                             </div>
                                             <div class="col-md-6">
-                                                <label>Was patient discharged home after this visit</label>
+                                                <label>Was patient discharged home after this visit?</label>
                                                 <obs conceptId="166337" answerConceptIds="90003, 90004, 1175" answerLabels="Yes, No, Not Applicable"
-                                                     style="radio" class="horizontal"/>
+                                                     style="checkbox"/>
                                             </div>
                                         </div>
                                     </div>
@@ -415,10 +524,15 @@
                                         </div>
                                         <div class="card-body underlying-conditions">
                                             <div class="row">
-                                                <obs id="pregnancy" conceptId="166293" answerConceptId="90041" answerLabel="Pregnancy" style="checkbox" class="col-md-2"/>
+                                                <div class="col-2">
+                                                    <label>Pregnant</label>
+                                                </div>
+                                                <div class="col-4">
+                                                    <obs id="pregnancy" conceptId="90041" answerConceptIds="1065,1066" answerLabels="Yes,No" style="radio" class="horizontal"/>
+                                                </div>
                                             </div>
-                                            <div class="row">
-                                                <obs id="post-partum" conceptId="90041" answerConceptId="166291" answerLabel="Post-Partum (&lt;6 Weeks)" style="checkbox" class="col-md-2"/>
+                                            <div id="pregnancy-details-container" class="row">
+                                                <obs id="post-partum" conceptId="90041" answerConceptId="166291" answerLabel="Post-Partum (&lt;6 Weeks)" style="checkbox" class="col-md-3"/>
                                                 <obs id="breast-feeding" conceptId="90041" answerConceptId="99601" answerLabel="Breast Feeding" style="checkbox" class="col-md-2" />
                                                 <div class="col-md-3">
                                                     <label>Est Gestational Age (weeks)</label>
@@ -455,15 +569,14 @@
                                             <obs conceptId="166319" answerConceptId="99095" answerLabel="Chronic Liver Disease" style="checkbox" class="col-md-3" />
                                             <obs conceptId="166319" answerConceptId="166294" answerLabel="Obesity" style="checkbox" class="col-md-3"/>
                                         </div>
-                                        <div class="row"> <!-- conceptIDs  miss match attach answers to HIV concept -->
-                                            <obs id="hiv-status-check" conceptId="90251" answerConceptId="1169" answerLabel="HIV" style="checkbox" class="col-md-3"/>
-                                            <obs id="on-art" conceptId="165169" answerConceptId="99415" answerLabel="On ART" style="checkbox" class="col-md-3"/>
-                                            <obs id="not-on-art" conceptId="165169" answerConceptId="165904" answerLabel="Not On ART" style="checkbox" class="col-md-3"/>
-                                            <obs id="unknown-hiv" conceptId="165169" answerConceptId="90001" answerLabel="Unknown" style="checkbox" class="col-md-3"/>
-                                        </div>
                                         <div class="row">
+                                            <obs id="hiv-status-check" conceptId="166319" answerConceptId="166338" answerLabel="HIV Positive" style="checkbox" class="col-md-3"/>
+                                            <div id="hiv-info-container" class="col-md-3">
+                                                <label>HIV Info</label>
+                                                <obs id="hiv-treatment-check" conceptId="166338" answerConceptIds="99415, 165904, 90001" answerLabels="On ART, Not On ART, Unknown" style="checkbox"/>
+                                            </div>
                                             <obs id="other-comorbidities" conceptId="90251" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-3"/>
-                                            <div class="col-md-3">
+                                            <div id="other-comorbidities-container" class="col-md-3">
                                                 <label>Specify Other</label>
                                                 <obs conceptId="166297" id="specify-other-comorbidities"/>
                                             </div>
@@ -479,15 +592,14 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Did patient travel out of town in 2 weeks before onset (or sample taking, if no symptoms) </label>
-                                            </div>
-                                            <div class="col-md-1">
+                                            <div class="col-12">
+                                                <label>Did patient travel out of town in 2 weeks before onset (or sample taking, if no symptoms)? </label>
                                                 <obs id="travel-history" conceptId="166322" answerConceptIds="90003,90004" answerLabels="Yes, No"
                                                      style="radio" class="horizontal"/>
-
                                             </div>
                                         </div>
+
+                                        <div id="travel-history-container">
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <label>Country</label>
@@ -499,52 +611,42 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Date of arrival to this site</label>
-                                                <obs conceptId="166320" />
+                                                <obs id="date-of-arrival" conceptId="166320" />
                                             </div>
                                             <div class="col-md-3">
                                                 <label>Date of departure to next site</label>
-                                                <obs conceptId="166321" />
+                                                <obs id="date-of-departure" conceptId="166321" />
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-6 mode-of-transport">
+                                            <div class="col-3">
                                                 <label>Mode of Transport</label>
-                                                <div class="row mt-3">
-                                                <obs conceptId="166307" answerConceptId="166303" answerLabel="Air" style="checkbox" class="col-md-2"/>
-                                                <obs id="public-road" conceptId="166307" answerConceptId="166304" answerLabel="Public Road" style="checkbox" class="col-md-3" />
-                                                <obs conceptId="166307" answerConceptId="166305" answerLabel="Private Road" style="checkbox" class="col-md-3" />
-                                                <obs conceptId="166307" answerConceptId="166306" answerLabel="Water" style="checkbox" class="col-md-3"/>
-                                                </div>
+                                                <obs id="mode-of-transport" conceptId="166307" answerConceptIds="166303,166304,166305,166306" answerLabels="Air,Road (Public Means),Road (Private Means),Water" style="checkbox"/>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div id="public-transport-means-container" class="col-3">
                                                 <label>Public transport means</label>
-                                                <div class="row mt-3 public-transport-means">
-                                                <obs id="bus" conceptId="166304" answerConceptId="166308" answerLabel="Bus" style="checkbox" class="col-md-2"/>
-                                                <obs id="matatu-minibus" conceptId="166304" answerConceptId="166309" answerLabel="Matatu/Minibus" style="checkbox"
-                                                     class="col-md-3" />
-                                                <obs id="boda-boda" conceptId="166304" answerConceptId="166310" answerLabel="Boda Boda" style="checkbox" class="col-md-3" />
-                                                </div>
-
+                                                <obs id="public-transport-means" conceptId="166304" answerConceptIds="166308,166309,166310" answerLabels="Bus,Taxis/Minibus,Boda Boda" style="checkbox"/>
                                             </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-3">
                                                 <label>Travel Type</label>
-                                                 <obs id="travel-type" conceptId="166300" answerConceptIds="166298,166299" answerLabels="Domestic, International"
+                                                <obs id="travel-type" conceptId="166300" answerConceptIds="166298,166299" answerLabels="Domestic, International"
                                                      style="radio" class="horizontal"/>
                                             </div>
-                                            <div class="col-md-3">
+                                            <div id="district-container" class="col-md-3">
                                                 <label>District</label>
                                                 <obs id="district" conceptId="165853"/>
                                             </div>
-                                            <div class="col-md-3">
-                                                <label>County</label>
-                                                <obs id="county" conceptId="165929"/>
-                                            </div>
-                                            <div class="col-md-3">
+                                            <div id="countries-container" class="col-md-3">
                                                 <label>Country/Countries</label>
                                                 <obs id="countries-traveled" conceptId="166420"/>
                                             </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="country-container" class="col-md-3">
+                                                <label>County</label>
+                                                <obs id="county" conceptId="165929"/>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -558,20 +660,21 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                             <obs id="admit-to-hospital" conceptId="166323" answerConceptIds="166317, 166311, 166312, 160034" 
-                                                 answerLabel="Admit to hospital, Admit to non-traditional isolation facility, Home Isolation, Died" 
+                                                 answerLabel="Admit to hospital, Admit to non-traditional isolation facility, Home Isolation, Died"
                                                  style="radio" class="horizontal"/>
                                             </div>
                                         </div>
+
                                         <div class="row">
-                                            <obs id="isolation-ward-for-suspect-cases" conceptId="166317" answerConceptId="166313" answerLabel="Isolation ward for suspect cases" style="checkbox"
-                                                 class="col-md-4"/>
-                                            <obs id="isolation-ward-for-confirmed-cases" conceptId="166317" answerConceptId="166314" answerLabel="Isolation ward for confirmed cases" style="checkbox" class="col-md-4" />
-                                            <obs id="high-dependency-unit" conceptId="166317" answerConceptId="166315" answerLabel="High dependency unit" style="checkbox" class="col-md-4" />
-                                        </div>
-                                        <div class="row">
-                                            <obs id="icu" conceptId="166317" answerConceptId="161936" answerLabel="ICU" style="checkbox" class="col-md-4" />
-                                            <obs id="admit-to-hospital-other" conceptId="166317" answerConceptId="90002" answerLabel="Other" style="checkbox" class="col-md-4" />
-                                            <obs id="admit-to-hospital-specify-other" conceptId="166316" labelText="Specify Other" class="col-md-3"/>
+                                            <div id="admit-to-hospital-cases-container" class="col-4">
+                                                <label>Select Case</label>
+                                                <obs id="admit-to-hospital-cases" conceptId="166317" answerConceptIds="166313,166314,166315,161936,90002"
+                                                     answerLabels="Isolation ward for suspect cases,Isolation ward for confirmed cases,High dependency unit,ICU,Other"
+                                                     style="checkbox"/>
+                                            </div>
+                                            <div id="admit-to-hospital-specify-other-container" class="col-4">
+                                                <obs id="admit-to-hospital-specify-other" conceptId="166316" labelText="Specify Other"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

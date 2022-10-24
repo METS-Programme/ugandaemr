@@ -413,13 +413,14 @@ function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
 
 // Disable inputs and add grey background on them
 function disable_fields(elementId) {
-
-    var element = jq("#" + elementId);
+    var name = ("#" + elementId);
+    var element = jq(name);
 
     /* clear the input fields */
     element.find("input[type='text']").val('');
     element.find("input[type$='checkbox']").prop("checked", false);
     element.find("input[type='radio']").prop("checked", false);
+    jq(name + " > select").val($(name + " > select option:first").val());
 
     /* disable input fields */
     element.find("input").attr("disabled", true);

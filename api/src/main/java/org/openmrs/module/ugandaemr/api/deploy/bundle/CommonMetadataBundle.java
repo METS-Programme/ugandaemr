@@ -72,6 +72,11 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.COVID19_POSTMORTEM);
         install(EncounterTypes.COVID19_REFERRAL);
         install(EncounterTypes.EMERGENCY_ART_SERVICE);
+        install(EncounterTypes.CACX_SCREENING_LOG);
+        install(EncounterTypes.CACX_TREATMENT_REGISTER);
+        install(EncounterTypes.COVID19_VACCINATION_TRACKING);
+
+        install(EncounterTypes.SMS_ENROLLMENT);
 
 
         //installing programs metadata

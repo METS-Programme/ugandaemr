@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>3.3.8-SNAPSHOT</version>
+	<version>3.3.10-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -37,6 +37,13 @@
 		</developer>
 		<developer>
 			<name>Semujju  David</name>
+		</developer>
+		<developer>
+			<name>Isaac  Akileng</name>
+		</developer>
+
+		<developer>
+			<name>Jacob Wasswa </name>
 		</developer>
 	</developers>
 
@@ -113,12 +120,13 @@
 		<uilibraryVersion>2.0.6</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
-		<ugandaemrSyncVersion>1.1.4</ugandaemrSyncVersion>
+		<ugandaemrSyncVersion>1.1.7</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.31</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.35</ugandaemrReportsVersion>
+
 
 	</properties>
 

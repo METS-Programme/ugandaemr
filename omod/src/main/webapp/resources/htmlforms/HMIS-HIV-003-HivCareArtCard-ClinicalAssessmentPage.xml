@@ -2830,6 +2830,10 @@
                                                         <obs id="refill_point_id" conceptId="166500"
                                                              labelText="DSD Group Code"/>
                                                     </div>
+                                                    <div class="col-md-3">
+                                                        <obs id="next facility visit date" conceptId="166560"
+                                                             labelText="Facility Return Date"/>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -3337,7 +3341,7 @@
                                                 <div class="card-body">
                                                     <div class="row investigations">
                                                         <span class="lablex2">
-                                                            <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL']">
+                                                            <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT']">
                                                                 <obs id="{0}" conceptId="1271" answerConceptId="{0}"
                                                                      answerLabel="{1}" style="checkbox"/>
                                                             </repeat>
@@ -3924,6 +3928,10 @@
                                     <div class="col-md-3">
                                         <obs id="refill_point_id" conceptId="166500"
                                              labelText="DSD Group Code"/>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <obs id="next facility visit date" conceptId="166560"
+                                             labelText="Facility Return Date"/>
                                     </div>
                                 </div>
                             </div>
