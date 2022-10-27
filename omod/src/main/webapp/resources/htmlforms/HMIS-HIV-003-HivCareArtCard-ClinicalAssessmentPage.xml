@@ -2831,7 +2831,7 @@
                                                              labelText="DSD Group Code"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <obs id="next facility visit date" conceptId="166560"
+                                                        <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
                                                              labelText="Facility Return Date"/>
                                                     </div>
                                                 </div>
@@ -3930,7 +3930,7 @@
                                              labelText="DSD Group Code"/>
                                     </div>
                                     <div class="col-md-3">
-                                        <obs id="next facility visit date" conceptId="166560"
+                                        <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
                                              labelText="Facility Return Date"/>
                                     </div>
                                 </div>
