@@ -334,6 +334,7 @@
       "label": "RETURN DATE FROM PHARMACY TO FACILITY",
       "concepts": "f6c456f7-1ab4-4b4d-a3b4-e7417c81002a"
     },
+    "requiredPrivilege": "App: ugandaemr.widget.nextAppointment",
     "extensions": [
       {
         "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",

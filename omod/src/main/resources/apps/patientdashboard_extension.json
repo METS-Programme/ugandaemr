@@ -51,6 +51,7 @@
   },{
   "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.nextAppointment",
   "extensionPointId": "patientDashboard.secondColumnFragments",
+  "requiredPrivilege": "App: ugandaemr.widget.nextAppointment",
   "order": -9,
   "extensionParams": {
     "icon": "icon-exchange",
