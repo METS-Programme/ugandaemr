@@ -77,7 +77,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.COVID19_VACCINATION_TRACKING);
 
         install(EncounterTypes.SMS_ENROLLMENT);
-
+        install(EncounterTypes.SMC_FOLLOWUP);
 
         //installing programs metadata
         log.info("Installing Programs");
