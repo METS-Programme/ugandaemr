@@ -91,6 +91,10 @@
         <require_module>
             org.openmrs.module.ugandaemrfingerprint
         </require_module>
+
+        <require_module>
+            org.openmrs.module.stockmanagement
+        </require_module>
 	</require_modules>
 	
 	<aware_of_modules>

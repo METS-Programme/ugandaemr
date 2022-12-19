@@ -123,6 +123,7 @@
 		<ugandaemrSyncVersion>1.1.7</ugandaemrSyncVersion>
 		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
+		<stockmanagementModuleVersion>1.0.0-SNAPSHOT</stockmanagementModuleVersion>
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.35</ugandaemrReportsVersion>
@@ -480,6 +481,12 @@
 				<artifactId>json</artifactId>
 				<version>20160810</version>
 				<type>jar</type>
+			</dependency>
+			<dependency>
+				<groupId>org.openmrs.module.</groupId>
+				<artifactId>stockmanagement-api</artifactId>
+				<version>${stockmanagementModuleVersion}</version>
+				<scope>provided</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

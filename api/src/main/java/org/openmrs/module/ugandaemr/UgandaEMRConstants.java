@@ -89,6 +89,10 @@ public class UgandaEMRConstants {
     public static final int MEDICATION_DURATION_UNIT_CONCEPT_ID = 1732;
     public static final int CURRENTLY_TAKING_MEDICATION_CONCEPT_ID = 159367;
     public static final int MEDICATION_COMMENT_CONCEPT_ID = 160632;
+
+    public static final int DISPENSING_LOCATION_CONCEPT_ID = 166968;
+
+    public static final int DRUG_ID_CONCEPT_ID = 166970;
     public static final int DEFALUT_ROUTE_CONCEPT_ID = 160240;
     public static final int DEFALUT_DOSE_UNIT_CONCEPT_ID = 162366;
     public static final int DEFALUT_DISPENSING_UNIT_CONCEPT_ID = 162399;

@@ -110,6 +110,7 @@
     <!--* DASHBOARD WIDGET *-->
     <!--General Clinic-->
     <privilege  privilege="App: ugandaemr.widget.dataIntegrityViolation"  description="Access data integrity Violations on patient dashboard"  uuid="e6280dd4-52b0-47f9-81f1-670774b5af8e"/>
+    <privilege  privilege="App: ugandaemr.widget.nextAppointment"  description="Access next appointment widgets"  uuid="17a0465c-3b24-420b-9d4b-214e93a1d594"/>
 
     <!--ART Clinic-->
     <privilege  privilege="App: ugandaemr.widget.lastARTVisitSummary"  description="Access Last ART Visit Summary on patient dashborad"  uuid="b1147517-c28d-4ad0-9f21-ef84e2e50414"/>
@@ -314,6 +315,7 @@
     <role_privilege  role="Base Role" privilege="View Providers"/>
     <role_privilege  role="Base Role" privilege="View Relationships"/>
     <role_privilege  role="Base Role" privilege="View Visits"/>
+    <role_privilege  role="Base Role" privilege="App: ugandaemr.widget.nextAppointment"/>
 
     <!--***** PERSON/LOCATION CENTERED ROLES *****-->
 
@@ -397,6 +399,7 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.regimenChangeList"/>
 
     <role_privilege  role="HIV Clinic"  privilege="Add Visits"/>
+
     <!--* OPD Clinic *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="OPD Clinic"/>
