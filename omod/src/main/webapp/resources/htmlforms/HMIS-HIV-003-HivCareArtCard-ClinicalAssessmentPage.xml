@@ -4142,70 +4142,70 @@
 
                         <div class="card" id="programing-dsdm-poc">
 
-                            <div class="card-header">
-                                <label>DSDM</label>
+                        <div class="card-header">
+                            <label>DSDM</label>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Patient categorisation</label>
+                                    <obs id="patient-categorization" conceptId="165144" answerConceptIds="90003,90004"
+                                         answerLabels="S - Stable, US - Unstable" class="horizontal long-value-select"/>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <obs id="165143" conceptId="165143"
+                                             answerConceptIds="165138,165140,165139,165142,165141"
+                                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
+                                             labelText="Approach" class="horizontal long-value-select"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <obs id="duration-on-art" conceptId="99024"
+                                         labelText="Duration (Months since baseline)"/>
+                                </div>
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <obs id="duration-on-current-regimen" conceptId="99025"
+                                         labelText="Duration (Months on current regimen)"/>
+                                </div>
+                                <div class="col-md-8">
+                                    <label>Visit Type</label>
+                                    <obs conceptId="160288" answerConceptIds="164969,165284"
+                                         answerLabels="R - Drug Refill ONLY, C - Clinical Assessment/Drug refill and/or Tests/Investigations"
+                                         style="radio" class="horizontal"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="cddp_categorization" class="card">
+                            <div class="card-header">Drug Pick Up Model</div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Patient categorisation</label>
-                                        <obs id="patient-categorization" conceptId="165144" answerConceptIds="90003,90004"
-                                             answerLabels="S - Stable, US - Unstable" class="horizontal long-value-select"/>
+                                    <div class="col-md-3" id="cddp_category">
+                                        <label>CDDP Category</label>
+                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
+                                        <label>DSD Group Refill Point</label>
                                         <div class="form-group">
-                                            <obs id="165143" conceptId="165143"
-                                                 answerConceptIds="165138,165140,165139,165142,165141"
-                                                 answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
-                                                 labelText="Approach" class="horizontal long-value-select"/>
+                                            <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
+                                                <option value="">Select Refill Point</option>
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <obs id="duration-on-art" conceptId="99024"
-                                             labelText="Duration (Months since baseline)"/>
+                                    <div class="col-md-3">
+                                        <obs id="refill_point_id" conceptId="166500"
+                                             labelText="DSD Group Code"/>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <obs id="duration-on-current-regimen" conceptId="99025"
-                                             labelText="Duration (Months on current regimen)"/>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <label>Visit Type</label>
-                                        <obs conceptId="160288" answerConceptIds="164969,165284"
-                                             answerLabels="R - Drug Refill ONLY, C - Clinical Assessment/Drug refill and/or Tests/Investigations"
-                                             style="radio" class="horizontal"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="cddp_categorization" class="card">
-                                <div class="card-header">Drug Pick Up Model</div>
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-3" id="cddp_category">
-                                            <label>CDDP Category</label>
-                                            <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>DSD Group Refill Point</label>
-                                            <div class="form-group">
-                                                <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
-                                                    <option value="">Select Refill Point</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <obs id="refill_point_id" conceptId="166500"
-                                                 labelText="DSD Group Code"/>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
-                                                 labelText="Facility Return Date"/>
-                                        </div>
+                                    <div class="col-md-3">
+                                        <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
+                                             labelText="Facility Return Date"/>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <div class="card" id="next-course-of-action">
                             <div class="card-header">
