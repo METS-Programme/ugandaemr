@@ -612,6 +612,28 @@
                  disable_fields("159368");
                  disable_fields("transfer_out_date");
                  disable_fields("transfer_out_location");
+
+                    var tptStatus = "<lookup expression="fn.latestObs('165288').valueCoded"/>";
+                    if(tptStatus == 'Concept #160035') {
+                        disable_fields("tpt-status");
+                        jq("#tpt-status").find("select").val("160035");
+                    }
+
+                    var tptInitiationDate = "<lookup expression="fn.latestObs('165226').obsDatetime"/>";
+                    if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
+                        jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
+                    }
+
+                    var tptCompletionDate = "<lookup expression="fn.latestObs('165227').obsDatetime"/>";
+                    if(tptCompletionDate != '' || tptCompletionDate != null || tptCompletionDate != NULL || typeof tptCompletionDate != "undefined") {
+                        jq("#tpt-completion-date").find("input").val(tptCompletionDate);
+                    }
+
+                    var tptSideEffects = "<lookup expression="fn.latestObs('165792')"/>";
+                    if(tptSideEffects != '' || tptSideEffects != null || tptSideEffects != NULL || typeof tptSideEffects != "undefined") {
+                        jq("#tpt-side-effects").find("input").val(tptSideEffects);
+                    }
+
                 </ifMode>
 
                 <ifMode mode="EDIT">
@@ -829,6 +851,10 @@
                         enable_fields("tpt-initiation-date");
                     } else {
                         disable_fields("tpt-initiation-date");
+                        var tptInitiationDate = "<lookup expression="fn.latestObs('165226').obsDatetime"/>";
+                        if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
+                            jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
+                        }
                     }
                 });
 
@@ -2056,7 +2082,7 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-3">
-                                                    <label>Tb Status</label>
+                                                    <label>TB Status</label>
                                                     <obs id="tb-status" class="long-value-select" conceptId="90216"
                                                          answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071,99421"
                                                          answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx - Currently on TB treatment, 5 - Completed TB Treatment"/>
