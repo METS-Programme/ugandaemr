@@ -322,5 +322,29 @@
         }
       }
     ]
+  },
+  {
+    "id": "ugandaemr.dashboardwidget.ReturnDateToFacilityFromPharmacy",
+    "instanceOf": "coreapps.template.dashboardWidget",
+    "description": "Return Date to facility from Pharmacy",
+    "order": 2,
+    "config": {
+      "widget": "latestobsforconceptlist",
+      "icon": "icon-user-md",
+      "label": "RETURN DATE FROM PHARMACY TO FACILITY",
+      "concepts": "f6c456f7-1ab4-4b4d-a3b4-e7417c81002a"
+    },
+    "requiredPrivilege": "App: ugandaemr.widget.nextAppointment",
+    "extensions": [
+      {
+        "id": "org.openmrs.module.coreapps.mostRecentVitals.clinicianDashboardFirstColumn",
+        "appId": "ugandaemr.dashboardwidget.ReturnDateToFacilityFromPharmacy",
+        "extensionPointId": "patientDashboard.secondColumnFragments",
+        "extensionParams": {
+          "provider": "coreapps",
+          "fragment": "dashboardwidgets/dashboardWidget"
+        }
+      }
+    ]
   }
 ]

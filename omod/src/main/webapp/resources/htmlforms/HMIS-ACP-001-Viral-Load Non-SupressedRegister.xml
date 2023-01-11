@@ -398,7 +398,7 @@
                   <div class="row">
                       <div class="col-md-3">
                           <label>Date of the sample collection</label>
-                          <obs id="165820" conceptId="165820" allowFutureDates="false" required="true" />
+                          <obs id="165820" conceptId="165820" allowFutureDates="true" required="true" />
                       </div>
                       <div class="col-md-3">
                           <label>Date Results Received at Health Facility</label>
@@ -424,7 +424,7 @@
                   <div class="row">
                       <div class="col-md-3">
                           <label>Date  CD4  Sample collected</label>
-                          <obs conceptId="165819" />
+                          <obs conceptId="165819" allowFutureDates="true" />
                       </div>
                       <div class="col-md-3">
                           <label>CD4 Test Results </label>
@@ -553,7 +553,7 @@
                         <obsgroup groupingConceptId="163157">
                         <div class="col-md-3">
                             <label>Date of VL repeat</label>
-                            <obs id="163023" conceptId="163023" allowFutureDates="false"/>
+                            <obs id="163023" conceptId="163023" allowFutureDates="true"/>
                         </div>
                         <div class="col-md-3">
                             <label>HIVDR Sample Collected</label>
@@ -580,7 +580,7 @@
                         <obsgroup groupingConceptId="163157">
                         <div class="col-md-3">
                             <label>Date VL Results Received</label>
-                            <obs id="163150_2" conceptId="163150" allowFutureDates="false"/>
+                            <obs id="163150_2" conceptId="163150" allowFutureDates="true"/>
                         </div>
                         </obsgroup>
                         <div class="col-md-3">

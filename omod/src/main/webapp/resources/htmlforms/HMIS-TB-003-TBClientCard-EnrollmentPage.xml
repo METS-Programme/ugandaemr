@@ -766,7 +766,7 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col-md-3 html-form-entry-disabled-field">
-                                                <label>Encounter Date</label>
+                                                <label>Registration Date</label>
                                                 <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                                                 <enrollInProgram programId="9dc21a72-0971-11e7-8037-507b9dc4c741" stateIds="1,4"/>
                                             </div>
@@ -805,7 +805,7 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header">Disease Classification</div>
+                                    <div class="card-header">Disease Classification and Patient Type</div>
                                     <div class="card-body">
 										<div class="row">
 											<div class="col-md-8">
@@ -813,11 +813,11 @@
 											</div>
                                         </div>
                                         <div class="row">
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<label>Indicate Site</label>
 												<obs id="165832" conceptId="165832" />
 											</div>
-											<div class="col-md-3">
+											<div class="col-md-4">
 												<label>Patient Type</label>
 												<obs conceptId="99386" answerConceptIds="99380,99381,165833,165834,165835" 
 													 answerLabels="New, Relapse, Treament after lost to follow up, Treament after failure, Treament history unknown" style="checkbox"/>
@@ -825,29 +825,64 @@
 										</div>
 									</div>
 								</div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        Referral
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Referral Date</label>
+                                                <obs conceptId="166774" allowTime="false"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Referral Source</label>
+                                                <obs conceptId="165855" answerConceptIds="165235,165331" answerLabels="Facility, Community"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Referring Health Facility</label>
+                                                <obs conceptId="166758"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Referring Community Name</label>
+                                                <obs conceptId="166776"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Referring District</label>
+                                                <obs conceptId="166775"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Phone no. of Referring Health Worker</label>
+                                                <obs conceptId="166777"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 							</div>
 							<div class="tab-pane" id="treatmeant-risk-group-section">
 								<div class="card">
-									<div class="card-header">Regimen</div>
+									<div class="card-header">First Line Treatment</div>
 									<div class="card-body">
 										<div class="row">
-												<div class="col-md-3">
-													<br/>
-													<obs conceptId="165837" style="checkbox" labelText="Started on First Regimen"/>
-												</div>
-												<div class="col-md-3">
-													<label>Date Started</label>
-													<obs conceptId="165838" allowTime="false" allowFutureDates="false"/>
-												</div>
 											<div class="col-md-3">
-												<label>Drug Susceptible Tb</label>
-												<obs conceptId="159958" answerConceptIds="99372,164960,5622"
-                                                 	 answerLabels="2RHZE/10RH,2RHZ/4RH,Other" class="long-value-select" id="159958"/>
+												<br/>
+												<obs conceptId="165837" style="checkbox" labelText="Started on First Line Treament"/>
 											</div>
 											<div class="col-md-3">
-												<label>Specify</label>
-												<obs conceptId="165836" id="165836"/>
+												<label>Date Started</label>
+												<obs conceptId="165838" allowTime="false" allowFutureDates="false"/>
 											</div>
+											<div class="col-md-3">
+												<label>DS TB Regimen</label>
+												<obs conceptId="159958" answerConceptIds="99372,164960"
+                                                 	 answerLabels="2RHZE/10RH,2RHZ/4RH" class="long-value-select" id="159958"/>
+											</div>
+                                            <div class="col-md-4">
+                                                <label>Specify Other DS TB Regimen</label>
+                                                <!-- <obs conceptId="99431" id="99431" /> -->
+                                            </div>
 										</div>
 									</div>
 								</div>
@@ -859,25 +894,11 @@
 	                                    <div class="row">
 	                                        <div class="col-md-4">
 	                                        	<br/>
-	                                            <obs conceptId="90216" answerConceptId="90078" style="radio" />
-	                                        </div>
+	                                            <obs conceptId="165839" labelText="Diagnosed with DR TB" style="checkbox"/>
+                                            </div>
 	                                        <div class="col-md-4">
 	                                        	<label>Date</label>
 	                                            <obs conceptId="165840" allowTime="false" allowFutureDates="false"/>
-	                                        </div>
-	                                    </div>
-	                                   	<div class="row">
-	                                        <div class="col-md-4">
-	                                        	<br/>
-	                                            <obs conceptId="165842" style="checkbox" labelText="Started on DRTB Treatment"/>
-	                                        </div>
-	                                        <div class="col-md-4">
-	                                            <label>Date</label>
-	                                            <obs conceptId="165841" allowFutureDates="false"/>
-	                                        </div>
-	                                        <div class="col-md-4">
-	                                        	<label>DRTB No.</label>
-	                                            <obs conceptId="165843" />
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -937,16 +958,23 @@
 											<obs conceptId="165169" answerConceptId="5619" answerLabel="Health Worker" style="checkbox" class="col-md-2"/> 
 											<obs conceptId="165169" answerConceptId="165882" answerLabel="TB Contact" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="162277" answerLabel="Prisoner" style="checkbox" class="col-md-2" />
-											<obs conceptId="165169" answerConceptId="165127" answerLabel="Refugee" style="checkbox" class="col-md-2" />
+                                            <obs conceptId="165169" answerConceptId="90041" answerLabel="Pregnant" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="165125" answerLabel="Uniformed/Armed Personnel" style="checkbox" class="col-md-3" />
 										</div>
 										<div class="row">
+											<obs conceptId="165169" answerConceptId="165127" answerLabel="Refugee" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="159674" answerLabel="Fisher Folk" style="checkbox" class="col-md-2" />
                                             <obs conceptId="165169" answerConceptId="119481" answerLabel="Diabetic Patient" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="165883" answerLabel="Miner" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="1455" answerLabel="Tobacco User" style="checkbox" class="col-md-2" />
 											<obs conceptId="165169" answerConceptId="134337" answerLabel="Mentally Ill" style="checkbox" class="col-md-2" />
 	                                	</div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            <label>Other Risk Group</label>
+                                                <obs conceptId="165184"/>
+                                            </div>
+                                        </div>
 	                                </div>
 	                            </div>
 							</div>
@@ -1043,51 +1071,6 @@
 										</repeat>
 									</div>
 								</div>
-                                <div class="card">
-                                    <div class="card-header">
-                                        Referral and Transfer
-                                    </div>
-                                    <div class="card-body">
-                                        <repeat>
-                                            <template>
-                                                <obsgroup groupingConceptId="165856">
-                                                    <span class="row add-remove-section">
-                                                            <div class="col-md-2">
-                                                                <label>Date</label>
-                                                                <obs conceptId="165854" allowTime="false" id="165854_{n}"/>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Referral Type</label>
-                                                                <obs conceptId="165855" answerConceptIds="99764,99110,160036" answerLabels="Referred In, Transferred In, Transferred Out" id="165855_{n}"/>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>Health Facility</label>
-                                                                <obs conceptId="90211" id="90211_{n}"/>
-                                                            </div>
-                                                            <div class="col-md-2">
-                                                                <label>District</label>
-                                                                <obs conceptId="165853" id="165853_{n}"/>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <label>Phone no. of recieving Health Unit</label>
-                                                                <obs conceptId="159635" id="159635_{n}"/>
-                                                            </div>
-                                                            <div class="col-md-1">
-                                                                <br/>
-                                                                <a href="#" class="add add-more-link"><i class= "icon-plus-sign"></i></a>
-                                                                <a href="#" class="remove remove-more-link required"><i class="icon-minus"></i></a>
-                                                            </div>
-                                                    </span>
-                                                </obsgroup>
-                                            </template>
-                                            <render n="1"/>
-                                            <render n="2"/>
-                                            <render n="3"/>
-                                            <render n="4"/>
-                                            <render n="5"/>
-                                        </repeat>
-                                    </div>
-                                </div>
 							</div>
 						</div>
 					</div>
