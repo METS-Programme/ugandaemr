@@ -369,7 +369,6 @@
 
                     return false;
                 });
-
             });
 
         <ifMode mode = "EDIT" >
@@ -632,6 +631,28 @@
                     var tptSideEffects = "<lookup expression="fn.latestObs('165792')"/>";
                     if(tptSideEffects != '' || tptSideEffects != null || tptSideEffects != NULL || typeof tptSideEffects != "undefined") {
                         jq("#tpt-side-effects").find("input").val(tptSideEffects);
+                    }
+
+                    var tbRegNo = "<lookup expression="fn.latestObs('165826').valueText"/>";
+                    if(tbRegNo != '' || tbRegNo != null || tbRegNo != NULL || typeof tbRegNo != "undefined") {
+                        jq("#district-tb-no").find("input").val(tbRegNo);
+                    } else {
+                        jq("#district-tb-no").find("input").val("Not set");
+                    }
+
+                    var tbStartDate = "<lookup expression="fn.latestObs('165838').obsDatetime"/>";
+                    if(tbStartDate != '' || tbStartDate != null || tbStartDate != NULL || typeof tbStartDate != "undefined") {
+                        jq("#tb-start-date").find("input").val(tbStartDate);
+                    } else {
+                        jq("#tb-start-date").find("input").val("Not set");
+                    }
+
+                    /* TODO: Compare with start date and TB outcome */
+                    var tbStopDate = "<lookup expression="fn.latestObs('165872').obsDatetime"/>";
+                    if(tbStopDate != '' || tbStopDate != null || tbStopDate != NULL || typeof tbStopDate != "undefined") {
+                        jq("#tb-stop-date").find("input").val(tbStopDate);
+                    } else {
+                        jq("#tb-stop-date").find("input").val("Not set");
                     }
 
                 </ifMode>
