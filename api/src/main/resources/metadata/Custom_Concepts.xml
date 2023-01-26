@@ -2437,7 +2437,16 @@
     <concept  concept_id="167037"  retired="0" datatype_id="2"  class_id="27"  date_created="2022-11-02 13:35:55"  is_set="0"  creator="1"  version="1.0.0"  changed_by="1"  date_changed="2022-11-02 13:45:19" uuid="8ed4bfcc-5605-49c4-85db-0f5742c417ff"/>
     <concept  concept_id="167038"  retired="0" datatype_id="3"  class_id="11"  date_created="2022-11-02 13:43:49"  is_set="0"  creator="1"  version="1.0.0"  changed_by="1"  date_changed="2022-11-02 13:43:49" uuid="1912a16a-6a5d-479c-90d3-e27af7ebc748"/>
     <concept  concept_id="167039"  retired="0" datatype_id="2"  class_id="27"  date_created="2022-11-02 13:49:26"  is_set="0"  creator="1"  version="1.0.0"  changed_by="1"  date_changed="2022-11-02 13:49:26" uuid="e1c974d8-b08a-4033-bef3-4f647d7d957c"/>
-    
+
+    <!-- STOCK NEW CONCEPTS -->
+
+    <concept  concept_id="167040"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 11:59:03"  changed_by="1"  date_changed="2023-01-17 11:59:03"  uuid="c1ff3aad-a64e-4f64-a13c-e091e9c0e464"/>
+    <concept  concept_id="167041"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 11:59:43"  changed_by="1"  date_changed="2023-01-17 11:59:43"  uuid="8f90a24d-21c6-472e-bf7a-417f9ba5edff"/>
+    <concept  concept_id="167042"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 12:00:26"  changed_by="1"  date_changed="2023-01-17 12:00:26"  uuid="42470698-9fd7-4cad-946b-3cc1aa347b72"/>
+    <concept  concept_id="167043"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 12:02:06"  changed_by="1"  date_changed="2023-01-17 12:02:06"  uuid="8906fd6a-0a0d-4eda-af8f-81de3ab4f54e"/>
+    <concept  concept_id="167044"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 12:03:26"  changed_by="1"  date_changed="2023-01-17 12:03:26"  uuid="bce2b1af-98b1-48a2-98a2-3e4ffb3c79c2"/>
+    <concept  concept_id="167045"  retired="0"  datatype_id="2"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 12:04:22"  changed_by="1"  date_changed="2023-01-17 12:04:22"  uuid="6d24eb6e-b42f-4706-ab2d-ae4472161f6a"/>
+    <concept  concept_id="167046"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2023-01-17 12:08:52"  changed_by="1"  date_changed="2023-01-17 12:08:52"  uuid="0cadd656-0b3d-4773-9b01-6ba4ceb04b54"/>
 
     <!--CONCEPT NUMERIC-->
     <!--MCH-->
@@ -3245,6 +3254,15 @@
     
     <concept_description  concept_description_id="18711"  concept_id="166904"  description="Bupivicaine batch number for SMC" locale="en"  creator="1"  date_created="2022-09-15 15:48:20"  uuid="dccf795f-2222-4477-bf9f-431cd6c36fc2"/>
 
+
+    <!-- STOCK -->
+    <concept_description  concept_description_id="18715"  concept_id="167040"  description="Packaging units"      				locale="en"  creator="1"  date_created="2023-01-17 11:59:03"  uuid="49a1a3b4-ebd0-4d8b-ab15-95e18e696dc9"/>
+    <concept_description  concept_description_id="18716"  concept_id="167041"  description="Packaging units"      				locale="en"  creator="1"  date_created="2023-01-17 11:59:43"  uuid="38d81fce-9f33-401b-ae7d-eae1fbd83cd9"/>
+    <concept_description  concept_description_id="18717"  concept_id="167042"  description="Stock Item Category"  				locale="en"  creator="1"  date_created="2023-01-17 12:00:26"  uuid="cf962629-c7fb-4a4b-902b-67b452391f49"/>
+    <concept_description  concept_description_id="18718"  concept_id="167043"  description="Stock Item Category"  				locale="en"  creator="1"  date_created="2023-01-17 12:02:06"  uuid="e1ed362f-8d51-4769-970c-50e178e0ebfa"/>
+    <concept_description  concept_description_id="18719"  concept_id="167044"  description="The coded concept for packaging units"  	locale="en"  creator="1"  date_created="2023-01-17 12:03:26"  uuid="e088f0f0-3e71-4070-b2dd-854df49eea11"/>
+    <concept_description  concept_description_id="18720"  concept_id="167045"  description="The coded concept for stock item categories"    locale="en"  creator="1"  date_created="2023-01-17 12:04:22"  uuid="a3ee92c7-d93a-43c8-b705-6b005e0f16a4"/>
+    <concept_description  concept_description_id="18721"  concept_id="167046"  description="stock source types"  				locale="en"  creator="1"  date_created="2023-01-17 12:08:52"  uuid="b19ce2ff-89d8-49ba-bb07-7551b65c8454"/>
 
     <!--CONCEPT NAME-->
     <!--ART-->
@@ -7303,6 +7321,14 @@
     <concept_name  concept_name_id="163313"  concept_id="167039"  name="Implants"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-11-02 13:49:26"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="bb5d1a7d-54da-4f1f-a108-498b701502cd"/>
     
 
+    <!-- NEW STOCK CONCEPT NAMES-->
+    <concept_name  concept_name_id="163314"  concept_id="167040"  name="Piece"  	          locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 11:59:03"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d2d556ea-5612-49aa-9784-9592231bd512"/>
+    <concept_name  concept_name_id="163315"  concept_id="167041"  name="Strip"  	          locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 11:59:43"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f9a787db-82c9-448a-b75f-263fae0180db"/>
+    <concept_name  concept_name_id="163316"  concept_id="167042"  name="Drugs"  	          locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 12:00:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="0610d787-7e02-4adf-a12e-18071fb16fc1"/>
+    <concept_name  concept_name_id="163317"  concept_id="167043"  name="Non Drugs"            locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 12:02:06"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="ebc43707-e405-459a-ace3-251a2cb77980"/>
+    <concept_name  concept_name_id="163318"  concept_id="167044"  name="Packaging Units"      locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 12:03:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="de8bf772-d48d-4939-bb47-eaa330850250"/>
+    <concept_name  concept_name_id="163319"  concept_id="167045"  name="Stock Item Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 12:04:22"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f75c4cc0-6c31-4671-95e4-f54da5c70767"/>
+    <concept_name  concept_name_id="163320"  concept_id="167046"  name="Local"  		  locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 12:08:52"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="fb4c9b72-6de5-42b2-bf65-ab224c96fb2e"/>
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -9994,6 +10020,14 @@
     <concept_answer  concept_answer_id="7368407"  concept_id="167039"  answer_concept="166998"   creator="1"  date_created="2022-11-02 13:49:26"  sort_weight="1"  uuid="5cbf9b7b-3c6c-4f7c-96d1-509f86ae2b95"/>
     <concept_answer  concept_answer_id="7368408"  concept_id="167039"  answer_concept="166999"   creator="1"  date_created="2022-11-02 13:49:26"  sort_weight="2"  uuid="e4f74d08-76b7-48b8-9c34-78e288c3a669"/>
 
+
+    <!-- New Stock answers-->
+
+    <concept_answer  concept_answer_id="7368409"  concept_id="167044"  answer_concept="167040"  creator="1"  date_created="2023-01-17 12:03:26"  sort_weight="1"  uuid="727d9904-22b3-42b9-bc7e-b068a57926b8"/>
+    <concept_answer  concept_answer_id="7368410"  concept_id="167044"  answer_concept="167041"  creator="1"  date_created="2023-01-17 12:03:26"  sort_weight="2"  uuid="e8da4d94-dcd7-4080-8b73-8c2b2b840b5d"/>
+    <concept_answer  concept_answer_id="7368411"  concept_id="167044"  answer_concept="162396"  creator="1"  date_created="2023-01-17 12:03:26"  sort_weight="3"  uuid="f718d1b1-f540-4272-bf0f-055e546e4f96"/>
+    <concept_answer  concept_answer_id="7368412"  concept_id="167045"  answer_concept="167043"  creator="1"  date_created="2023-01-17 12:04:22"  sort_weight="2"  uuid="d894e349-eba6-4cf3-97fa-58011ad4e74d"/>
+    <concept_answer  concept_answer_id="7368413"  concept_id="167045"  answer_concept="167042"  creator="1"  date_created="2023-01-17 12:04:22"  sort_weight="1"  uuid="d236ef37-497b-4962-86a6-55855b0866ef"/>
     
 
     <!--CONCEPT SET-->
