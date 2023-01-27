@@ -68,6 +68,13 @@
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
+			<artifactId>stockmanagement-api</artifactId>
+			<version>${stockmanagementModuleVersion}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
 			<artifactId>calculation-api</artifactId>
 		</dependency>
 

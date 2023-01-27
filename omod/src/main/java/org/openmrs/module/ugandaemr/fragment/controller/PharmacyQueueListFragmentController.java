@@ -3,6 +3,7 @@ package org.openmrs.module.ugandaemr.fragment.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.openmrs.Location;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.appui.UiSessionContext;
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.PHARMACY_LOCATION_UUID;
@@ -39,7 +41,10 @@ public class PharmacyQueueListFragmentController {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dateStr = sdf.format(new Date());
         List<String> list = new ArrayList();
-        list.add(PHARMACY_LOCATION_UUID);
+
+        list.addAll(Context.getLocationService().getLocationsByTag(Context.getLocationService().getLocationTagByUuid("fe7c970f-2aba-11ed-ba4a-507b9dea1806")).stream().map(Location::getUuid).collect(Collectors.toList()));
+        list.addAll(Context.getLocationService().getLocationsByTag(Context.getLocationService().getLocationTagByUuid("89a80c4d-2899-11ed-bdcb-507b9dea1806")).stream().map(Location::getUuid).collect(Collectors.toList()));
+
         pageModel.addAttribute("currentDate", dateStr);
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.put("clinicianLocation", list);

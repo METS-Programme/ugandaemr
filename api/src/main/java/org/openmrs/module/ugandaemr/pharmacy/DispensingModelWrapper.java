@@ -7,6 +7,7 @@ import java.util.List;
 public class DispensingModelWrapper {
 
 	private Integer encounterId;
+
 	private Integer patientQueueId;
 
 	private List<DrugOrderMapper> drugOrderMappers;
