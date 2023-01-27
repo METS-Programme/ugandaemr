@@ -1212,10 +1212,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Set<Order> orders = new HashSet<>();
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
-        Set<Obs> obsList = encounter.getObs();
+
+        Set<Obs> obsList = encounter.getObs().stream().filter(obs ->  !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))).collect(Collectors.toSet());
 
         for (Obs obs : obsList) {
-            if ((obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals(LAB_SET_CLASS) || obs.getValueCoded().getConceptClass().getName().equals(TEST_SET_CLASS))) && !orderExists(obs.getValueCoded(), obs.getEncounter())) {
+            if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
                 TestOrder testOrder = new TestOrder();
                 testOrder.setConcept(obs.getValueCoded());
                 testOrder.setEncounter(obs.getEncounter());
@@ -1268,10 +1269,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Set<Order> orders = new HashSet<>();
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
-        Set<Obs> obsList = encounter.getObs();
+        Set<Obs> obsList = encounter.getObs().stream().filter(obs ->  !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("Drug"))).collect(Collectors.toSet());;
+
         OrderService orderService = Context.getOrderService();
         for (Obs obs : obsList) {
-            if ((obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals(DRUG_SET_CLASS))) && !orderExists(obs.getValueCoded(), obs.getEncounter())) {
+            if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
                 DrugOrder drugOrder = new DrugOrder();
                 Set<Obs> obsGroupMembers = new HashSet<>();
                 if (obs.getObsGroup() != null) {
