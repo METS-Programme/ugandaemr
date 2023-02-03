@@ -118,7 +118,7 @@
                     <div id="enrollment" class="card-body">
                         <div class="row">
                             <div class="col-md-4">
-                                <label>Date of Enrsollment:</label>
+                                <label>Date of Enrollment:</label>
                                 <encounterDate required="true" id="encounterDate"/>
                                 <span style="display: none;">
                                     <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"

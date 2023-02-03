@@ -731,20 +731,24 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label>If tested HIV positive finger print has been  captured</label>
                                             <obs id="165182" conceptId="165182" answerConceptIds="1065,1066" answerLabels="1 - Yes,2 - No" style="radio" class="horizontal"/>
                                         </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-3">
                                                 <label>Results received as individual</label>
                                                 <obs conceptId="165183" answerConceptIds="1065,1066" answerLabels="1 - Yes,2 - No" style="radio" class="horizontal"/>
                                             </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label>Results received as a couple</label>
                                             <obs conceptId="99494" id="99494" answerConceptIds="1065,1066" answerLabels="1 - Yes,2 - No" style="radio" class="horizontal"/>
                                         </div>
-                                    </div>
+                                        <div class="col-md-3">
+                                            <label>Couple results:</label>
+                                            <obs conceptId="99497" id="99497" answerConceptIds="6096,165173,165174" answerLabels="1 - Discordant Couple,2 - Concordant Negative,3 - Concordant positive"  class="horizontal"/>
+                                        </div>
 
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label>Client has presumptive TB</label>
@@ -756,7 +760,6 @@
 
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 

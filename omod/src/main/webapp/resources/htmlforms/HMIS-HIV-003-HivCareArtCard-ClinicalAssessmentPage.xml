@@ -59,10 +59,13 @@
             var latestTransferInEncounter = getLatestEncounterFromEncounterList(transferInEncounters);
             var latestTransferOutEncounter = getLatestEncounterFromEncounterList(transferOutEncounters);
 
+            var currentLocationUUID;
+
             var prescription = 'false';
 
 
             jq(document).ready(function () {
+                currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
 
 
                 var enableCDDPCategorization = <lookup expression="fn.globalProperty('ugandaemr.enableCDDPCategorization')"/>;
@@ -85,12 +88,12 @@
                     var cddpCategory= jq("#cddp_category").find("select").find(":selected").val();
                     setValue('refill_point_id.value','');
                     if (cddpCategory === "a6a0ab45-b7dc-43b2-b28c-45a91f968ebf") {
-<!--                            CRPDDP categories fetching-->
+                        <!--                            CRPDDP categories fetching-->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('Pharmacy');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("e50fa0af-df36-4a26-853f-feb05244e5ca");
                     } else if (cddpCategory === "d77cc565-5e53-4633-8fc7-956cfc1831d9") {
-<!--                            CLDDP categories fetching -->
+                        <!--                            CLDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
@@ -115,7 +118,124 @@
                         disable_fields("cddp_category");
                     }
                 });
+
+                jq(".drug_strength").change(function () {
+                    var objectPosition =  jq(this).attr("id").match(/\d/g)[0]
+                    jq('#drug_strength_' + objectPosition + ' input').val(jq(this).find(":selected").attr("strength"))
+                    jq('#drug_stock_item_' + objectPosition + ' input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq('#drug_dispensing_location_' + objectPosition + ' input').val(jq(this).find(":selected").attr("location"))
+                    jq('#drug_' + objectPosition + ' input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#art-regimen  select").change(function () {
+                    getDrugByConcept(jq(this).find(":selected").val(), "drug_strength_art_select")
+                });
+
+                jq("#drug_strength_art_select").change(function () {
+                    jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#isoniazid-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_isoniazid_select")
+                });
+
+                jq("#drug_strength_isoniazid_select").change(function () {
+                    jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#vitamin-b6-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_vitamin_b6_select")
+                });
+
+                jq("#drug_strength_vitamin_b6_select").change(function () {
+                    jq(this).parent().find('#drug_strength_vitamin_b6_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_vitamin_b6_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_vitamin_b6_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_vitamin_b6_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#fluconazole-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_fluconazole_select")
+                });
+
+                jq("#drug_strength_fluconazole_select").change(function () {
+                    jq(this).parent().find('#drug_strength_fluconazole_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_fluconazole_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_fluconazole_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_fluconazole_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#99413-target  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
+                });
+
+                jq("#drug_strength_fluconazole_select").change(function () {
+                    jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_99413_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq(".drug-other").change(function () {
+                    getDrugByConcept(jq(this).find("input:hidden").val(), "drug_strength_select_" + jq(this).attr("id").match(/\d/g)[0] + "")
+                });
+
+                jq(".arv-split").change(function () {
+                    getDrugByConcept(jq(this).find("input:hidden").val(),  jq(this).attr("id").match(/\d/g)[0] +"_arv_split_strength_select")
+                });
+
+                jq(".arv_split-strength").change(function () {
+                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
+                    jq('#'+objectPosition+'_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
+                    jq('#'+objectPosition+'_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq('#'+objectPosition+'_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
+                    jq('#'+objectPosition+'_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
             });
+
+
+            function getDrugByConcept(concept, drug_strength_id) {
+                jq("#" + drug_strength_id + "").find("select").empty();
+                var stockItems = []
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid="+currentLocationUUID+"&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        stockItems = data.results;
+                    }
+                });
+                if(stockItems.length){
+                    enable_fields(drug_strength_id)
+                }
+                jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
+                for (var i = 0; i &lt; stockItems.length; i++) {
+                    jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
+                }
+
+            }
+
+            function getLocationByName(locationName) {
+                var locationUUID
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/location?q=" + locationName,
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        locationUUID = data.results[0].uuid
+                    }
+                });
+                return locationUUID
+            }
 
 
             function getEncountersByEncounterTypeUUID(patientUUID,encounterTypeUUID){
@@ -154,8 +274,8 @@
                     contentType: "application/json",
                     async: false,
                     success: function (data) {
-                    var cohorts = data.results;
-                    jq('#refill_point_select_id').append($("<option ></option>").attr("value",''));
+                        var cohorts = data.results;
+                        jq('#refill_point_select_id').append($("<option ></option>").attr("value",''));
                         for (var i = 0; i &lt; cohorts.length; i++) {
                             if(cohorts[i].voided===false){
                                 jq('#refill_point_select_id').append($("<option></option>").attr("value", cohorts[i].uuid).text(cohorts[i].name));
@@ -498,7 +618,7 @@
                     var other_third_regimen = jq("#otherThirdLineRegimen").html();
                     var patient_regimen = other_third_regimen + third_second_regimen + other_first_second_regimen + other_first_second_regimen + first_second_regimen + other_art_start_regimen + art_start_regimen + other_art_transfer_regimen + art_transfer_regimen;
 
-                    /* Check if  Patient has art start or transfer regimen selected on ART Summary Page*/
+                    /* Check if  Patient has art start or tranfer regimen selected on ART Summary Page*/
                     if (art_start_regimen == "null" &amp;&amp; art_transfer_regimen == "null") {
                         jq().toastmessage('showNoticeToast', "Patient Doesn't have any either ART Start or Transfer regimen on ART Summary selected");
                     }
@@ -2819,7 +2939,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3" id="cddp_category">
                                                         <label>CDDP Category</label>
-                                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP, CRPDDP"/>
+                                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
                                                        <label>DSD Group Refill Point</label>

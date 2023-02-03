@@ -179,7 +179,7 @@ button, input {
     function noOfDrugPrescriptions(drugList) {
         var orderCount = 0;
         jq.each(drugList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active") {
+            if (element.accessionNumber === null && element.status === "active" && element.dispensingLocation === currentLocationUUID) {
                 orderCount += 1;
             }
         });
