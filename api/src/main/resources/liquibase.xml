@@ -628,6 +628,15 @@ VALUES
 			('SMS Non Suppressed ViralLoad ','2022-03-23',1,'f538f903-0258-4151-a4f6-f8ceb8046017',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696'));
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-20230127-2345" author="daphinenalule">
+		<comment>
+			Insert General CDDP Cohort type for CDDP Group
+		</comment>
+		<sql>
+			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+			('General CDDP Cohort Type','2023-01-27',1,'da964ff0-648e-440b-a219-d2aeba3670d0');
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

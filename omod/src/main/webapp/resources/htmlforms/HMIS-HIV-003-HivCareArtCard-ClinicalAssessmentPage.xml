@@ -94,6 +94,11 @@
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
+                    }else if (cddpCategory === "1b9b83d4-eaca-40da-a7c6-53b8ea3436ad") {
+<!--                            General CDDP categories fetching -->
+                        jq('#refill_point_select_id').parent('div').parent('div').find('label').html('General CDDP Group Name');
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("41e414f7-7cd9-4918-9b56-de626941e5c7");
                     }else {
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('DSD Refill Group');
                         jq("#refill_point_select_id").attr("disabled", true);
@@ -493,7 +498,7 @@
                     var other_third_regimen = jq("#otherThirdLineRegimen").html();
                     var patient_regimen = other_third_regimen + third_second_regimen + other_first_second_regimen + other_first_second_regimen + first_second_regimen + other_art_start_regimen + art_start_regimen + other_art_transfer_regimen + art_transfer_regimen;
 
-                    /* Check if  Patient has art start or tranfer regimen selected on ART Summary Page*/
+                    /* Check if  Patient has art start or transfer regimen selected on ART Summary Page*/
                     if (art_start_regimen == "null" &amp;&amp; art_transfer_regimen == "null") {
                         jq().toastmessage('showNoticeToast', "Patient Doesn't have any either ART Start or Transfer regimen on ART Summary selected");
                     }
@@ -1355,8 +1360,6 @@
                                 }
                         });
 
-                        // check the appointment dates on public holiday
-                        return isValid;
                     }
                 </includeIf>
 
@@ -1412,7 +1415,7 @@
             var date = encounterDate.getFullYear()+'-'+(encounterDate.getMonth()+1)+'-'+encounterDate.getDate();
             var DSDCategory = getValue('cddp_category.value');
             if (cohort == ""){
-               if(DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9"){
+               if(DSDCategory==="a6a0ab45-b7dc-43b2-b28c-45a91f968ebf" || DSDCategory==="d77cc565-5e53-4633-8fc7-956cfc1831d9" || DSDCategory==="1b9b83d4-eaca-40da-a7c6-53b8ea3436ad"){
                     jq().toastmessage('showErrorToast', "Select at least a DSD Refill for this client");
                     return false;
                }
@@ -2816,7 +2819,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3" id="cddp_category">
                                                         <label>CDDP Category</label>
-                                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP, CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
                                                        <label>DSD Group Refill Point</label>
