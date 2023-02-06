@@ -101,8 +101,13 @@
                 });
 
                 jq("#165143 select").change(function () {
-                    if (jq("#165143").find("select").find(":selected").val() === "165142") {
+                    var model= jq("#165143").find("select").find(":selected").val();
+                    if (model === "165142") {
                         enable_fields("cddp_category");
+                    }else if (model === "165141"){
+                        hideContainer("#cddp_category");
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
                     }else {
                         setValue('refill_point_id.value','');
                         jq("#refill_point_select_id  option").prop("selected", false);
@@ -110,7 +115,7 @@
                         disable_fields("cddp_category");
                     }
                 });
-            });
+        });
 
 
             function getEncountersByEncounterTypeUUID(patientUUID,encounterTypeUUID){
@@ -1327,7 +1332,6 @@
                                 isValid = false;
                             }
                         });
-                        return isValid;
                     }
                     </includeIf>
 
@@ -1354,9 +1358,6 @@
                                     isValid  = false;
                                 }
                         });
-
-                        // check the appointment dates on public holiday
-                        return isValid;
                     }
                 </includeIf>
 
