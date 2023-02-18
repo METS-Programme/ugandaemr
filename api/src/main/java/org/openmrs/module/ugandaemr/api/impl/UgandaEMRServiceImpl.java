@@ -826,6 +826,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     public Set<DrugOrderMapper> processDrugOrders(Set<Order> orders) {
         Set<DrugOrderMapper> orderMappers = new HashSet<>();
+        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
 
         for (Order order : orders) {
             if (order.getOrderType().equals(Context.getOrderService().getOrderTypeByUuid(ORDER_TYPE_DRUG_UUID)) && order.isActive()) {
@@ -1382,13 +1383,20 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             encounterService.saveEncounter(encounter);
             List<String> orderLocations = new ArrayList<>();
             if (!session.getEncounter().getOrders().isEmpty()) {
-                orders.forEach(order -> {
-                    orderLocations.add(getDispesingLocation((DrugOrder) order));
-                });
+                boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+                if (enableStockManagement) {
+                    orders.forEach(order -> {
+                        orderLocations.add(getDispesingLocation((DrugOrder) order));
+                    });
 
-                orderLocations.forEach(orderLocation -> {
-                    sendPatientToNextLocation(session, orderLocation, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
-                });
+                    orderLocations.forEach(orderLocation -> {
+                        sendPatientToNextLocation(session, orderLocation, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+                    });
+                } else {
+                    sendPatientToNextLocation(session, PHARMACY_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+                }
+
+
                 completePreviousQueue(session.getPatient(), session.getEncounter().getLocation(), PatientQueue.Status.PENDING);
             }
         }
@@ -1536,9 +1544,14 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         encounter.setObs(obs);
 
+        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+
 
         try {
-            reduceStockBalances(resultWrapper);
+            if (enableStockManagement) {
+                reduceStockBalances(resultWrapper);
+            }
+
             encounterService.saveEncounter(encounter);
             patientQueue.setEncounter(encounter);
             patientQueueingService.savePatientQue(patientQueue);

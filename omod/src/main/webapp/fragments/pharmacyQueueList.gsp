@@ -179,7 +179,7 @@ button, input {
     function noOfDrugPrescriptions(drugList) {
         var orderCount = 0;
         jq.each(drugList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active" && element.dispensingLocation === currentLocationUUID) {
+            if (element.accessionNumber === null && element.status === "active" && (element.dispensingLocation === currentLocationUUID || ${enableStockManagement} === false)) {
                 orderCount += 1;
             }
         });
@@ -284,7 +284,15 @@ button, input {
         </div>
     </div>
 </div>
-${ui.includeFragment("ugandaemr", "pharmacy/dispensingForm",[healthCenterName:healthCenterName])}
+
+
+
+<% if (enableStockManagement == true) { %>
+${ui.includeFragment("ugandaemr", "pharmacy/newDispensingForm", [healthCenterName: healthCenterName])}
+<% } else { %>
+${ui.includeFragment("ugandaemr", "pharmacy/oldDispensingForm", [healthCenterName: healthCenterName])}
+<% } %>
+
 ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 <% } %>
 

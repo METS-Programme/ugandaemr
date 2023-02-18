@@ -63,6 +63,8 @@
 
             var prescription = 'false';
 
+            var enableStockManagement = <lookup expression="fn.globalProperty('ugandaemr.enableStockManagement')"/>;
+
 
             jq(document).ready(function () {
                 currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
@@ -115,108 +117,169 @@
                     }
                 });
 
-                jq(".drug_strength").change(function () {
-                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
-                    jq('#drug_strength_' + objectPosition + ' input').val(jq(this).find(":selected").attr("strength"))
-                    jq('#drug_stock_item_' + objectPosition + ' input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq('#drug_dispensing_location_' + objectPosition + ' input').val(jq(this).find(":selected").attr("location"))
-                    jq('#drug_' + objectPosition + ' input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                if (enableStockManagement) {
+                    jq("#drug_strength_art_select").removeClass("hidden");
+                    jq("#drug_strength_isoniazid_select").removeClass("hidden");
+                    jq("#drug_strength_vitamin_b6_select").removeClass("hidden");
+                    jq("#drug_strength_99413_select").removeClass("hidden");
+                    jq("#drug_strength_fluconazole_select").removeClass("hidden");
 
-                jq("#art-regimen  select").change(function () {
-                    getDrugByConcept(jq(this).find(":selected").val(), "drug_strength_art_select")
-                });
+                    jq("#1_arv_split_strength_select").removeClass("hidden");
+                    jq("#2_arv_split_strength_select").removeClass("hidden");
+                    jq("#3_arv_split_strength_select").removeClass("hidden");
+                    jq("#4_arv_split_strength_select").removeClass("hidden");
+                    jq("#5_arv_split_strength_select").removeClass("hidden");
+                    jq("#6_arv_split_strength_select").removeClass("hidden");
+                    jq("#7_arv_split_strength_select").removeClass("hidden");
+                    jq("#8_arv_split_strength_select").removeClass("hidden");
+                    jq("#9_arv_split_strength_select").removeClass("hidden");
+                    jq("#10_arv_split_strength_select").removeClass("hidden");
 
-                jq("#drug_strength_art_select").change(function () {
-                    jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
-                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
-                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#drug_strength_select_1").removeClass("hidden");
+                    jq("#drug_strength_select_2").removeClass("hidden");
+                    jq("#drug_strength_select_3").removeClass("hidden");
+                    jq("#drug_strength_select_4").removeClass("hidden");
+                    jq("#drug_strength_select_5").removeClass("hidden");
+                    jq("#drug_strength_select_6").removeClass("hidden");
+                    jq("#drug_strength_select_7").removeClass("hidden");
+                    jq("#drug_strength_select_8").removeClass("hidden");
+                    jq("#drug_strength_select_9").removeClass("hidden");
+                    jq("#drug_strength_select_10").removeClass("hidden");
 
-                jq("#isoniazid-trigger  input:radio").change(function () {
-                    getDrugByConcept(jq(this).val(), "drug_strength_isoniazid_select")
-                });
+                } else {
+                    jq("#drug_strength_art").removeClass("hidden");
+                    jq("#drug_strength_isoniazid").removeClass("hidden");
+                    jq("#drug_strength_vitamin_b6").removeClass("hidden");
+                    jq("#drug_strength_99413").removeClass("hidden");
+                    jq("#drug_strength_fluconazole").removeClass("hidden");
 
-                jq("#drug_strength_isoniazid_select").change(function () {
-                    jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
-                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
-                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#1_arv_split_strength").removeClass("hidden");
+                    jq("#2_arv_split_strength").removeClass("hidden");
+                    jq("#3_arv_split_strength").removeClass("hidden");
+                    jq("#4_arv_split_strength").removeClass("hidden");
+                    jq("#5_arv_split_strength").removeClass("hidden");
+                    jq("#6_arv_split_strength").removeClass("hidden");
+                    jq("#7_arv_split_strength").removeClass("hidden");
+                    jq("#8_arv_split_strength").removeClass("hidden");
+                    jq("#9_arv_split_strength").removeClass("hidden");
+                    jq("#10_arv_split_strength").removeClass("hidden");
 
-                jq("#vitamin-b6-trigger  input:radio").change(function () {
-                    getDrugByConcept(jq(this).val(), "drug_strength_vitamin_b6_select")
-                });
+                    jq("#drug_strength_1").removeClass("hidden");
+                    jq("#drug_strength_2").removeClass("hidden");
+                    jq("#drug_strength_3").removeClass("hidden");
+                    jq("#drug_strength_4").removeClass("hidden");
+                    jq("#drug_strength_5").removeClass("hidden");
+                    jq("#drug_strength_6").removeClass("hidden");
+                    jq("#drug_strength_7").removeClass("hidden");
+                    jq("#drug_strength_8").removeClass("hidden");
+                    jq("#drug_strength_9").removeClass("hidden");
+                    jq("#drug_strength_10").removeClass("hidden");
+                }
+                if (enableStockManagement) {
+                    jq(".drug_strength").change(function () {
+                        var objectPosition = jq(this).attr("id").match(/\d/g)[0]
+                        jq('#drug_strength_' + objectPosition + ' input').val(jq(this).find(":selected").attr("strength"))
+                        jq('#drug_stock_item_' + objectPosition + ' input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq('#drug_dispensing_location_' + objectPosition + ' input').val(jq(this).find(":selected").attr("location"))
+                        jq('#drug_' + objectPosition + ' input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
 
-                jq("#drug_strength_vitamin_b6_select").change(function () {
-                    jq(this).parent().find('#drug_strength_vitamin_b6_id input').val(jq(this).find(":selected").attr("strength"))
-                    jq(this).parent().find('#drug_stock_item_vitamin_b6_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq(this).parent().find('#drug_dispensing_location_vitamin_b6_id input').val(jq(this).find(":selected").attr("location"))
-                    jq(this).parent().find('#drug_vitamin_b6_id input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#art-regimen  select").change(function () {
+                        getDrugByConcept(jq(this).find(":selected").val(), "drug_strength_art_select")
+                    });
 
-                jq("#fluconazole-trigger  input:radio").change(function () {
-                    getDrugByConcept(jq(this).val(), "drug_strength_fluconazole_select")
-                });
+                    jq("#drug_strength_art_select").change(function () {
+                        jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                        jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
 
-                jq("#drug_strength_fluconazole_select").change(function () {
-                    jq(this).parent().find('#drug_strength_fluconazole_id input').val(jq(this).find(":selected").attr("strength"))
-                    jq(this).parent().find('#drug_stock_item_fluconazole_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq(this).parent().find('#drug_dispensing_location_fluconazole_id input').val(jq(this).find(":selected").attr("location"))
-                    jq(this).parent().find('#drug_fluconazole_id input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#isoniazid-trigger  input:radio").change(function () {
+                        getDrugByConcept(jq(this).val(), "drug_strength_isoniazid_select")
+                    });
 
-                jq("#99413-target  input:radio").change(function () {
-                    getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
-                });
+                    jq("#drug_strength_isoniazid_select").change(function () {
+                        jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                        jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
 
-                jq("#drug_strength_fluconazole_select").change(function () {
-                    jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
-                    jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))
-                    jq(this).parent().find('#drug_99413_id input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#vitamin-b6-trigger  input:radio").change(function () {
+                        getDrugByConcept(jq(this).val(), "drug_strength_vitamin_b6_select")
+                    });
 
-                jq(".drug-other").change(function () {
-                    getDrugByConcept(jq(this).find("input:hidden").val(), "drug_strength_select_" + jq(this).attr("id").match(/\d/g)[0] + "")
-                });
+                    jq("#drug_strength_vitamin_b6_select").change(function () {
+                        jq(this).parent().find('#drug_strength_vitamin_b6_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_stock_item_vitamin_b6_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq(this).parent().find('#drug_dispensing_location_vitamin_b6_id input').val(jq(this).find(":selected").attr("location"))
+                        jq(this).parent().find('#drug_vitamin_b6_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
 
-                jq(".arv-split").change(function () {
-                    getDrugByConcept(jq(this).find("input:hidden").val(), jq(this).attr("id").match(/\d/g)[0] + "_arv_split_strength_select")
-                });
+                    jq("#fluconazole-trigger  input:radio").change(function () {
+                        getDrugByConcept(jq(this).val(), "drug_strength_fluconazole_select")
+                    });
 
-                jq(".arv_split-strength").change(function () {
-                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
-                    jq('#' + objectPosition + '_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
-                    jq('#' + objectPosition + '_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq('#' + objectPosition + '_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
-                    jq('#' + objectPosition + '_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
-                });
+                    jq("#drug_strength_fluconazole_select").change(function () {
+                        jq(this).parent().find('#drug_strength_fluconazole_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_stock_item_fluconazole_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq(this).parent().find('#drug_dispensing_location_fluconazole_id input').val(jq(this).find(":selected").attr("location"))
+                        jq(this).parent().find('#drug_fluconazole_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
+
+                    jq("#99413-target  input:radio").change(function () {
+                        getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
+                    });
+
+                    jq("#drug_strength_fluconazole_select").change(function () {
+                        jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))
+                        jq(this).parent().find('#drug_99413_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
+
+                    jq(".drug-other").change(function () {
+                        getDrugByConcept(jq(this).find("input:hidden").val(), "drug_strength_select_" + jq(this).attr("id").match(/\d/g)[0] + "")
+                    });
+
+                    jq(".arv-split").change(function () {
+                        getDrugByConcept(jq(this).find("input:hidden").val(), jq(this).attr("id").match(/\d/g)[0] + "_arv_split_strength_select")
+                    });
+
+                    jq(".arv_split-strength").change(function () {
+                        var objectPosition = jq(this).attr("id").match(/\d/g)[0]
+                        jq('#' + objectPosition + '_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
+                        jq('#' + objectPosition + '_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                        jq('#' + objectPosition + '_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
+                        jq('#' + objectPosition + '_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
+                    });
+                }
 
             });
 
 
             function getDrugByConcept(concept, drug_strength_id) {
-                jq("#" + drug_strength_id + "").find("select").empty();
-                var stockItems = []
-                jq.ajax({
-                    type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
-                    dataType: "json",
-                    async: false,
-                    success: function (data) {
-                        stockItems = data.results;
+                if (enableStockManagement) {
+                    jq("#" + drug_strength_id + "").find("select").empty();
+                    var stockItems = []
+                    jq.ajax({
+                        type: "GET",
+                        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            stockItems = data.results;
+                        }
+                    });
+                    if (stockItems.length) {
+                        enable_fields(drug_strength_id)
                     }
-                });
-                if (stockItems.length) {
-                    enable_fields(drug_strength_id)
+                    jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
+                    for (var i = 0; i &lt; stockItems.length; i++) {
+                        jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
+                    }
                 }
-                jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
-                for (var i = 0; i &lt; stockItems.length; i++) {
-                    jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
-                }
-
             }
 
             function getLocationByName(locationName) {
@@ -3856,12 +3919,15 @@
                                                             <obs id="split-regimen" conceptId="165809" labelText="Split"
                                                                  style="checkbox"/>
                                                         </div>
-                                                        <div class="col-md-3" id="drug_strength_art_select">
+                                                        <div class="col-md-3 hidden" id="drug_strength_art_select">
                                                             <label>Strength | Stock Qty</label>
-                                                            <select class="form-control"
-                                                                    name="drug_strength_art_select">
+                                                            <select class="form-control" name="drug_strength_art_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
+                                                        </div>
+                                                        <div class="col-md-3 hidden" id="drug_strength_art">
+                                                            <obs id="drug_strength_art_id" class="drug-strength"
+                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="hidden">
                                                             <obs id="drug_stock_item_id" conceptId="166969"
@@ -3869,8 +3935,6 @@
                                                             <obs id="drug_dispensing_location_id" conceptId="166968"
                                                                  labelText="dispensing Location ID"/>
                                                             <obs id="drug_id" conceptId="166970" labelText="Drug ID"/>
-                                                            <obs id="drug_strength_art_id" class="drug-strength"
-                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <obs id="no-of-art-pills" conceptId="99038"
@@ -3896,13 +3960,20 @@
                                                                              class="fullwidth arv-split"/>
                                                                     </div>
 
-                                                                    <div class="col-md-3 arv_split-strength"
+                                                                    <div class="col-md-3 arv_split-strength hidden"
                                                                          id="{id}_arv_split_strength_select">
                                                                         <label>Strength | Stock Qty</label>
                                                                         <select class="form-control"
                                                                                 name="{id}_arv_split_drug_strength_select">
                                                                             <option value="">Select Strength</option>
                                                                         </select>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 arv_split-strength hidden"
+                                                                         id="{id}_arv_split_strength">
+                                                                        <obs id="{id}_arv_split_strength"
+                                                                             class="drug-strength" conceptId="1444"
+                                                                             labelText="Strength"/>
                                                                     </div>
                                                                     <div class="hidden">
                                                                         <obs id="{id}_arv_split_stock_item"
@@ -3913,9 +3984,6 @@
                                                                              labelText="dispensing Location ID"/>
                                                                         <obs id="{id}_arv_split" conceptId="166970"
                                                                              labelText="Drug ID"/>
-                                                                        <obs id="{id}_arv_split_strength"
-                                                                             class="drug-strength" conceptId="1444"
-                                                                             labelText="Strength"/>
                                                                     </div>
 
                                                                     <div class="col-md-2">
@@ -3970,12 +4038,17 @@
                                                                  answerConceptIds="656" answerLabels="Isoniazid"/>
                                                         </div>
 
-                                                        <div class="col-md-3" id="drug_strength_isoniazid_select">
+                                                        <div class="col-md-3 hidden" id="drug_strength_isoniazid_select">
                                                             <label>Strength | Stock Qty</label>
                                                             <select class="form-control"
                                                                     name="drug_strength_isoniazid_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
+                                                        </div>
+
+                                                        <div class="col-md-3 hidden" id="drug_strength_isoniazid">
+                                                            <obs id="drug_strength_isoniazid_id" class="drug-strength"
+                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="hidden">
                                                             <obs id="drug_stock_item_id" conceptId="166969"
@@ -3983,8 +4056,6 @@
                                                             <obs id="drug_dispensing_location_id" conceptId="166968"
                                                                  labelText="dispensing Location ID"/>
                                                             <obs id="drug_id" conceptId="166970" labelText="Drug ID"/>
-                                                            <obs id="drug_strength_art_id" class="drug-strength"
-                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
 
                                                         <div class="col-md-3">
@@ -4005,12 +4076,18 @@
                                                                  answerConceptIds="82912" answerLabels="Vitamin B6"/>
                                                         </div>
 
-                                                        <div class="col-md-3" id="drug_strength_vitamin_b6_select">
+                                                        <div class="col-md-3 hidden"
+                                                             id="drug_strength_vitamin_b6_select">
                                                             <label>Strength | Stock Qty</label>
                                                             <select class="form-control"
                                                                     name="drug_strength_vitamin_b6_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
+                                                        </div>
+
+                                                        <div class="col-md-3 hidden" id="drug_strength_vitamin_b6">
+                                                            <obs id="drug_strength_vitamin_b6_id" class="drug-strength"
+                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="hidden">
                                                             <obs id="drug_stock_item_vitamin_b6_id" conceptId="166969"
@@ -4019,8 +4096,6 @@
                                                                  conceptId="166968" labelText="dispensing Location ID"/>
                                                             <obs id="drug_vitamin_b6_id" conceptId="166970"
                                                                  labelText="Drug ID"/>
-                                                            <obs id="drug_strength_vitamin_b6_id" class="drug-strength"
-                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
 
                                                         <div class="col-md-3">
@@ -4061,12 +4136,16 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-3" id="drug_strength_99413_select">
+                                                        <div class="col-md-3 hidden" id="drug_strength_99413_select">
                                                             <label>Strength | Stock Qty</label>
                                                             <select class="form-control"
                                                                     name="drug_strength_99413_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
+                                                        </div>
+                                                        <div class="col-md-3 hidden" id="drug_strength_99413">
+                                                            <obs id="drug_strength_99413_id" class="drug-strength"
+                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="hidden">
                                                             <obs id="drug_stock_item_99413_id" conceptId="166969"
@@ -4075,8 +4154,6 @@
                                                                  conceptId="166968" labelText="dispensing Location ID"/>
                                                             <obs id="drug_99413_id" conceptId="166970"
                                                                  labelText="Drug ID"/>
-                                                            <obs id="drug_strength_99413_id" class="drug-strength"
-                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="col-md-4">
                                                             <obs labelText="Number of Pills" id="160856"
@@ -4106,12 +4183,16 @@
                                                                  answerConceptIds="747" answerLabels="Fluconazole"
                                                                  style="radio" class="horizontal"/>
                                                         </div>
-                                                        <div class="col-md-3" id="drug_strength_fluconazole_select">
+                                                        <div class="col-md-3 hidden" id="drug_strength_fluconazole_select">
                                                             <label>Strength | Stock Qty</label>
                                                             <select class="form-control"
                                                                     name="drug_strength_fluconazole_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
+                                                        </div>
+                                                        <div class="col-md-3 hidden" id="drug_strength_fluconazole">
+                                                            <obs id="drug_strength_fluconazole_id" class="drug-strength"
+                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                         <div class="hidden">
                                                             <obs id="drug_stock_item_fluconazole_id" conceptId="166969"
@@ -4120,8 +4201,6 @@
                                                                  conceptId="166968" labelText="dispensing Location ID"/>
                                                             <obs id="drug_fluconazole_id" conceptId="166970"
                                                                  labelText="Drug ID"/>
-                                                            <obs id="drug_strength_fluconazole_id" class="drug-strength"
-                                                                 conceptId="1444" labelText="Strength"/>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -4164,7 +4243,7 @@
                                                                              answerClasses="Drug" style="autocomplete"
                                                                              class="fullwidth drug-other"/>
                                                                     </div>
-                                                                    <div class="col-md-3 drug_strength"
+                                                                    <div class="col-md-3 drug_strength hidden"
                                                                          id="drug_strength_select_{id}">
                                                                         <label>Strength | Stock Qty</label>
                                                                         <select class="form-control"
@@ -4172,6 +4251,13 @@
                                                                                 onselect="this">
                                                                             <option value="">Select Strength</option>
                                                                         </select>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 drug_strength hidden"
+                                                                         id="drug_strength_{id}">
+                                                                        <obs id="drug_strength_{id}"
+                                                                             class="drug-strength" conceptId="1444"
+                                                                             labelText="Strength"/>
                                                                     </div>
                                                                     <div class="hidden">
                                                                         <obs id="drug_stock_item_{id}"
@@ -4182,9 +4268,6 @@
                                                                              labelText="dispensing Location ID"/>
                                                                         <obs id="drug_{id}" conceptId="166970"
                                                                              labelText="Drug ID"/>
-                                                                        <obs id="drug_strength_{id}"
-                                                                             class="drug-strength" conceptId="1444"
-                                                                             labelText="Strength"/>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <obs id="other-meds-quantity"

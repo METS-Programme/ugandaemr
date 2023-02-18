@@ -275,6 +275,13 @@
     </globalProperty>
 
     <globalProperty>
+        <property>ugandaemr.enableStockManagement</property>
+        <defaultValue>false</defaultValue>
+        <description>This allows the facility to use the stock management module in the clinical rooms and pharmacy</description>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
+    <globalProperty>
         <property>ugandaemr.SMSTemplate</property>
         <defaultValue>Dear &lt;name&gt; this is to remind you of your appointment on &lt;date&gt; </defaultValue>
         <description>This is a facility SMS Template used by the SMS Program</description>

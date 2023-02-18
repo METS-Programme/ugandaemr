@@ -51,6 +51,7 @@ public class PharmacyQueueListFragmentController {
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("healthCenterName", Context.getAdministrationService().getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
+        pageModel.put("enableStockManagement", Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement")));
     }
 
 
