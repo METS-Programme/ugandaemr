@@ -1,0 +1,268 @@
+<htmlform formName="HMIS ACP 002: Lab Request Form for HIV Viral Load Analysis"
+          formDescription="Lab Request Form for HIV Viral Load Analysis"
+          formEncounterType="d0cc0915-cf47-470a-9e1c-c165ec1e195a"
+          formUuid="b407c209c-5109-4a45-a4c6-7f82f1de44b5"
+          formVersion="1.0"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="13"
+          formIcon="icon-medkit"
+
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
+          formDisplayStyle="Standard"
+          formLabel="Lab Request Form for HIV Viral Load Analysis">
+    <script type="text/javascript">
+        if (jQuery) {
+        jq(document).ready(function () {
+
+        //Block Multiple encounter entry on same date
+        blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"),"block");
+
+        <ifMode mode="EDIT">
+            if( jq("#159792").find("input").val()==''){
+            disable_fields(159792);
+            }
+        </ifMode>
+
+        disable_fields(159792);
+
+
+        /* add the validator on the beforeSubmit*/
+        beforeSubmit.push(function () {
+        jq("#htmlform").validate();
+        return jq("#htmlform").valid();
+        }
+        );
+
+        });
+
+        function disable_fields(groupId){
+        var disable = true;
+        var group = jq("#"+groupId);
+        group.find("input").attr("disabled", disable);
+        group.find('select').attr("disabled", disable);
+
+        if (disable) {
+        /* fade out the fields that are disabled */
+        group.find("input").fadeTo(250, 0.25);
+        group.find("select").fadeTo(250, 0.25);
+        } else {
+        /* remove the fade on the fields */
+        group.find("input").fadeTo(250, 1);
+        group.find("select").fadeTo(250, 1);
+        }
+        }
+
+        function enable_fields(group){
+        var disable = false;
+        var group = jq("#"+group);
+        group.find("input").attr("disabled", disable);
+        group.find('select').attr("disabled", disable);
+
+        if (!disable) {
+        /* remove the fade on the fields */
+        group.find("input").fadeTo(250, 1);
+        group.find("select").fadeTo(250, 1);
+        }
+        }
+
+        function enable_disable(triggerId, enabledDisabledId, conditionValue) {
+        if (getValue(triggerId + '.value') == conditionValue){
+
+        enableContainer('#' + enabledDisabledId);
+        }
+        else {
+        if(getValue(enabledDisabledId+'.value')!=''){
+        setValue(enabledDisabledId+'.value', '');
+        }
+        disableContainer('#' + enabledDisabledId);
+        }
+
+        }
+
+        beforeSubmit.push(function () {
+        setValue('165160.error', '');
+        setValue('99115.error', '');
+
+        var submitVal = true;
+        var submitValStage = [];
+        if(! jq("#162925").find("select").is(':disabled') &amp;&amp; jq("#162925").find("select").find(":selected").val()== 90002 &amp;&amp; jq("#99115").find("input[type$='text']").val()=='') {
+        getField('99115.error').html('Required text field is empty').show();
+        return false;
+        }
+
+        return true;
+        });
+        }
+
+    </script>
+
+    <div id="form-id">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>HMIS ACP 002: Lab Request Form for HIV Viral Load Analysis</h1>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1">
+                <submit class="confirm" submitLabel="Save" submitStyle="customSubmit" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs nav-fill card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#HIV_Drug_Resistance_Testing"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="HIV_Drug_Resistance_Testing">
+                                <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">Treatment Information</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                        <div class="col-md-4">
+                                            <label><span class="required">*</span>Requesting Clinician</label>
+                                            <encounterProvider role="Provider" style="autocomplete" id="provider"/>
+                                            <span style="display: none;">
+                                                <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                                   order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                            </span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Phone number</label>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <obs conceptId="90278" class="ugphone" id="90278"/>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                            <div class="col-md-4 html-form-entry-disabled-field">
+                                                <label>Date</label>
+                                                <encounterDate default="today" disallowMultipleEncountersOnDate="block" />
+                                                <span class="hidden">
+                                                    <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117" order="629d78e9-93e5-43b0-ad8a-48313fd99117" />
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Date of Treatment Initiation</label>
+                                                <obs class="return-date-poc" id="99161" conceptId="99161" allowFutureDates="true"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Current WHO Stage</label>
+                                                <obs id="90203" conceptId="90203" />
+                                            </div>
+                                            <div class="col-md-4">
+<!--                                                TODO: CREATE CONCEPT FOR DURATION ON CURRENT REGIMEN-->
+                                                <label>Duration on current regimen</label>
+                                                <obs id="99025" conceptId="99025" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <includeIf velocityTest="$patient.gender =='F' &amp;&amp; $patient.age &gt;11">
+                                            <div class="col-md-3">
+                                                <label>Is mother pregnant?</label>
+                                                <obs id="90041" conceptId="90041" answerConceptIds="90003,90004" answerLabels="Yes,No" class="horizontal" style="radio"/>
+                                            </div>
+                                            </includeIf>
+                                            <includeIf velocityTest="$patient.gender =='F' &amp;&amp; $patient.age &gt;11">
+                                            <div class="col-md-3">
+                                                <label>If Pregnant, ANC No.</label>
+                                                    <span id="anc_no">
+                                                        <patient field="identifier"
+                                                                 identifierTypeId="b0cc255e-ef57-4266-839e-0df7f5099eb9"
+                                                                 required="false"/>
+                                                    </span>
+                                            </div>
+                                            </includeIf>
+                                            <includeIf velocityTest="$patient.gender =='F' &amp;&amp; $patient.age &gt;11">
+                                            <div class="col-md-3">
+                                                <label>If Pregnant, PNC No.</label>
+                                                <span id="anc_no">
+                                                    <patient field="identifier"
+                                                             identifierTypeId="758ef6e4-9ceb-4137-bc8d-9246dc7b41fe"
+                                                             required="false"/>
+                                                </span>
+                                            </div>
+                                            </includeIf>
+                                            <includeIf velocityTest="$patient.gender =='F' &amp;&amp; $patient.age &gt;11">
+                                            <div class="col-md-3">
+<!--                                                TODO: CHECK CONCEPT FOR BREASTFEEDING-->
+                                                <obs conceptId="99780"
+                                                     answerConceptId="99601"
+                                                     answerLabel="Is mother breastfeeding?"/>
+                                            </div>
+                                            </includeIf>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+<!--                                                TODO: CHECK CONCEPT FOR ACTIVE TB-->
+                                                <obs conceptId="90216"
+                                                     answerConceptId="90078"
+                                                     answerLabel="Patient has active TB?"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>If Yes, are they on</label>
+                                                <obs id="159792" conceptId="159792" answerConceptIds="159795,159794" answerLabels="Initiation phase,Continuation phase" class="horizontal" style="radio"/>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label>Adherence</label>
+                                                <obs conceptId="90221" answerConceptIds="90156,90157,90158"
+                                                     answerLabels=" Good, Fair, Poor" class="horizontal"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <label>Approach</label>
+                                                <obs id="165143" conceptId="165143"
+                                                     answerConceptIds="165138,165140,165139,165142,165141"
+                                                     answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
+                                                     class="long-value-select" required="required"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                                            <div class="col-md-12">
+                                                <div class="card">
+                                                    <div class="card-header">Indication for Viral Load Testing</div>
+                                                    <span>To be completed by Clinician</span>
+                                                        <div class="col-md-12">
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Cigarette Smoking</label>
+                                                                    <obs id="smoking" conceptId="90012" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Excessive alcohol consumption</label>
+                                                                    <obs id="alcohol" conceptId="90012" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
+                                                                </div>
+                                                                <div class="col-md-4">
+                                                                    <label>Active Injective Drug Use</label>
+                                                                    <obs id="drug_use" conceptId="90012" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-md-4">
+                                                                    <label>Treatment Line and Current Regimen</label>
+                                                                    <obs id="90315" conceptId="90315" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</htmlform>
