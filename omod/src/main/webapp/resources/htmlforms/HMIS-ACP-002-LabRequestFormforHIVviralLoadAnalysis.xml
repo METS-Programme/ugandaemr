@@ -26,7 +26,6 @@
 
         disable_fields(159792);
 
-
         /* add the validator on the beforeSubmit*/
         beforeSubmit.push(function () {
         jq("#htmlform").validate();
