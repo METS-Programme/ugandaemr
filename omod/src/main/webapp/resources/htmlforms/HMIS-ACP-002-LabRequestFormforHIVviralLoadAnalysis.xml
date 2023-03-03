@@ -33,7 +33,6 @@
         }
         );
 
-        });
 
         function disable_fields(groupId){
         var disable = true;
