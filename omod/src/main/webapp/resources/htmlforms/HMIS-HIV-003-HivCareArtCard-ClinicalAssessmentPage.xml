@@ -618,12 +618,7 @@
                         jq("#tpt-status").find("select").val("160035");
                     }
 
-                    var tptInitiationDate = "<lookup expression="fn.latestObs('165226').obsDatetime"/>";
-                    if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
-                        jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
-                    }
-
-                    var tptCompletionDate = "<lookup expression="fn.latestObs('165227').obsDatetime"/>";
+                    var tptCompletionDate = "<lookup expression="fn.latestObs('165227').valueDatetime"/>";
                     if(tptCompletionDate != '' || tptCompletionDate != null || tptCompletionDate != NULL || typeof tptCompletionDate != "undefined") {
                         jq("#tpt-completion-date").find("input").val(tptCompletionDate);
                     }
@@ -632,29 +627,6 @@
                     if(tptSideEffects != '' || tptSideEffects != null || tptSideEffects != NULL || typeof tptSideEffects != "undefined") {
                         jq("#tpt-side-effects").find("input").val(tptSideEffects);
                     }
-
-                    var tbRegNo = "<lookup expression="fn.latestObs('165826').valueText"/>";
-                    if(tbRegNo != '' || tbRegNo != null || tbRegNo != NULL || typeof tbRegNo != "undefined") {
-                        jq("#district-tb-no").find("input").val(tbRegNo);
-                    } else {
-                        jq("#district-tb-no").find("input").val("Not set");
-                    }
-
-                    var tbStartDate = "<lookup expression="fn.latestObs('165838').obsDatetime"/>";
-                    if(tbStartDate != '' || tbStartDate != null || tbStartDate != NULL || typeof tbStartDate != "undefined") {
-                        jq("#tb-start-date").find("input").val(tbStartDate);
-                    } else {
-                        jq("#tb-start-date").find("input").val("Not set");
-                    }
-
-                    /* TODO: Compare with start date and TB outcome */
-                    var tbStopDate = "<lookup expression="fn.latestObs('165872').obsDatetime"/>";
-                    if(tbStopDate != '' || tbStopDate != null || tbStopDate != NULL || typeof tbStopDate != "undefined") {
-                        jq("#tb-stop-date").find("input").val(tbStopDate);
-                    } else {
-                        jq("#tb-stop-date").find("input").val("Not set");
-                    }
-
                 </ifMode>
 
                 <ifMode mode="EDIT">
@@ -757,6 +729,42 @@
                    jq('.tpt-without-inh').show();
                 </ifMode>
 
+                disable_fields("tb-status");
+
+                var tptInitiationDate = "<lookup expression="fn.latestObs('165226').valueDatetime"/>";
+                if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
+                    jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
+                }
+
+                var tbRegNo = "<lookup expression="fn.latestObs('165826').valueText"/>";
+                if(tbRegNo != '' || tbRegNo != null || tbRegNo != NULL || typeof tbRegNo != "undefined") {
+                    disable_fields("district-tb-no");
+                    jq("#district-tb-no").find("input").val(tbRegNo);
+                }
+
+                var tbStartDate = "<lookup expression="fn.latestObs('165838').valueDatetime"/>";
+                if(tbStartDate != '' || tbStartDate != null || tbStartDate != NULL || typeof tbStartDate != "undefined") {
+                    jq("#tb-start-date").find("input").val(tbStartDate);
+
+
+                    var treatmentOutcome = "<lookup expression="fn.latestObs('99423').valueCoded"/>";
+                    console.log("TB outcome is " + treatmentOutcome);
+                    if(treatmentOutcome) {
+                        if(treatmentOutcome == 'Concept #159791' || treatmentOutcome == 'Concept #99421') {
+                            jq("#tb-status").find("select").val("99421");
+                        } else {
+                            jq("#tb-status").find("select").val("90071");
+                        }
+                        var tbStopDate = "<lookup expression="fn.latestObs('165872').valueDatetime"/>";
+                        if(tbStopDate != '' || tbStopDate != null || tbStopDate != NULL || typeof tbStopDate != "undefined") {
+                            jq("#tb-stop-date").find("input").val(tbStopDate);
+                        }
+                    } else {
+                        jq("#tb-status").find("select").val("90071");
+                    }
+                }
+
+
                 /* enable the edd,age in months and ANC no. fields in case the client is pregnant */
 
                 jq(".pregnancy").change(function () {
@@ -832,40 +840,40 @@
                 });
 
                 //enable start date and district number if client is on TbRx
-                jq("#tb-status").change(function () {
-                    if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300" ) {
-                        enable_fields("tb-start-date");
-                        enable_fields("district-tb-no");
-                    } else {
-                        disable_fields("tb-start-date");
-                        disable_fields("district-tb-no");
-                    }
-                });
+<!--                jq("#tb-status").change(function () {-->
+<!--                    if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300" ) {-->
+<!--                        enable_fields("tb-start-date");-->
+<!--                        enable_fields("district-tb-no");-->
+<!--                    } else {-->
+<!--                        disable_fields("tb-start-date");-->
+<!--                        disable_fields("district-tb-no");-->
+<!--                    }-->
+<!--                });-->
 
-                jq("#tb-status").change(function () {
-                    if (jq(this).find("select").find(":selected").val() == "99421") {
-                        enable_fields("tb-stop-date");
-                    } else {
-                        disable_fields("tb-stop-date");
-                    }
-                });
+<!--                jq("#tb-status").change(function () {-->
+<!--                    if (jq(this).find("select").find(":selected").val() == "99421") {-->
+<!--                        enable_fields("tb-stop-date");-->
+<!--                    } else {-->
+<!--                        disable_fields("tb-stop-date");-->
+<!--                    }-->
+<!--                });-->
 
                 //enable tpt treatment if patient is has no signs of TB
-                jq("#tb-status").change(function () {
-                    if (jq(this).find("select").find(":selected").val() == "90079") {
-                        jq("#tpt-status").find('select option:nth-child(3)').show();
-                    } else {
-                        jq("#tpt-status").find('select option:nth-child(3)').hide();
-                    }
-                });
+<!--                jq("#tb-status").change(function () {-->
+<!--                    if (jq(this).find("select").find(":selected").val() == "90079") {-->
+<!--                        jq("#tpt-status").find('select option:nth-child(3)').show();-->
+<!--                    } else {-->
+<!--                        jq("#tpt-status").find('select option:nth-child(3)').hide();-->
+<!--                    }-->
+<!--                });-->
 
-                jq("#tb-status").each(function () {
-                    if (jq(this).find("select").find(":selected").val() == "90079") {
-                        jq("#tpt-status").find('select option:nth-child(3)').show();
-                    } else {
-                        jq("#tpt-status").find('select option:nth-child(3)').hide();
-                    }
-                });
+<!--                jq("#tb-status").each(function () {-->
+<!--                    if (jq(this).find("select").find(":selected").val() == "90079") {-->
+<!--                        jq("#tpt-status").find('select option:nth-child(3)').show();-->
+<!--                    } else {-->
+<!--                        jq("#tpt-status").find('select option:nth-child(3)').hide();-->
+<!--                    }-->
+<!--                });-->
 
                 jq("#tpt-status").change(function () {
                     if (jq(this).find("select").find(":selected").val() == "90072") {

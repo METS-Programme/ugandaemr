@@ -168,6 +168,26 @@
                     }
                 });
 
+                // Lookup for Art Initiation date
+                var artInitiationDate = "<lookup expression="fn.latestObs('99161').valueDatetime"/>";
+                if(artInitiationDate != '' || artInitiationDate != null || artInitiationDate != NULL || typeof artInitiationDate != "undefined") {
+                    jq("#99161").find("input").val(artInitiationDate);
+
+                    //HIV Status
+                    disable_fields("165396");
+                    jq("#165396").find("select").val("165350");
+
+                    //ART Status
+                    jq("#1358").find("input[type='radio']").val("1367");
+                    jq("#1358").find("input[type='radio']").attr('checked',true);
+
+                    //Date HIV verified
+                    var dateHIVverified = "<lookup expression="fn.latestObs('90267').valueDatetime"/>";
+                    if(dateHIVverified != '' || dateHIVverified != null || dateHIVverified != NULL || typeof dateHIVverified != "undefined") {
+                        jq("#hiv-test-date").find("input").val(dateHIVverified);
+                    }
+                }
+
                 //enable/disable cpt/dapson start date if cpt/dapson started is yes
                 jq("#166070").click(function () {
                     if (jq(this).find("input[type='radio']:checked").val() == "1065") {
@@ -933,7 +953,11 @@
 	                                        </div>
 	                                        <div class="col-md-4">
 	                                        	<label>ART No.</label>
-	                                            <obs conceptId="99431" id="99431" />
+<!--	                                            <obs conceptId="99431" id="99431" />-->
+                                                    <patient field="identifier"
+                                                             identifierTypeId="e1731641-30ab-102d-86b0-7a5022ba4115"
+                                                             required="false"/>
+
 	                                        </div>
 	                                    </div>
 	                                    <div class="row">

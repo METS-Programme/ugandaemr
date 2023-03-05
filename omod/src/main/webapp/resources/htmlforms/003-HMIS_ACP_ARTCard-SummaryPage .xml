@@ -618,6 +618,16 @@
                     enable_disable(jq(this), "PriorYesNo", 'selected_value == "yes"', "select");
                 });
 
+                var tptStartDate = "<lookup expression="fn.latestObs('165226').valueDatetime"/>";
+                if(tptStartDate != '' || tptStartDate != null || tptStartDate != NULL || typeof tptStartDate != "undefined") {
+                    jq("#165226").find("input").val(tptStartDate);
+                }
+
+                var tptCompletionDate = "<lookup expression="fn.latestObs('165227').valueDatetime"/>";
+                if(tptCompletionDate != '' || tptCompletionDate != null || tptCompletionDate != NULL || typeof tptCompletionDate != "undefined") {
+                    jq("#165227").find("input").val(tptCompletionDate);
+                }
+
                 jq("#165143").addClass('hidden');
 
                 jq(".enableDisable").each(function () {
