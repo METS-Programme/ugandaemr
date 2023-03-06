@@ -1,0 +1,100 @@
+<htmlform formName="HMIS LAB 001:GENERAL LABORATORY TEST REQUEST FORM"
+          formDescription="A request for Lab test to Lab"
+          formEncounterType="cbf01392-ca29-11e9-a32f-2a2ae2dbcce4"
+          formUuid="14f82cc8-ca2a-11e9-a32f-2a2ae2dbcce4"
+          formVersion="3.7.10"
+          formAddMetadata="yes"
+          formUILocation="patientDashboard.visitActions"
+          formOrder="2"
+          formIcon="icon-medkit"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp;"
+          formDisplayStyle="Standard">
+    <div>
+        <div class="headers" style="text-align: center;">
+            <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS LAB 001:GENERAL LABORATORY TEST REQUEST FORM</h3>
+        </div>
+
+        <ul class="nav nav-tabs nav-fill card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#lab-request-section">Lab Request</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#lab-results-section">Lab Results</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="lab-request-section">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <label>Date and General Comments</label>
+                            </div>
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>Date</label>
+                                                <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                                                <span style="display: none">
+                                                    <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"
+                                                                       restrictToCurrentVisitLocation="true"/>
+                                                    <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                                              required="required" default="currentUser"/>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <obs conceptId="160632" rows="4" cols="90" labelText="Clinical Notes"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-8">
+                                        <uiInclude provider="ugandaemr" fragment="displayResultListOnEncounter"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <label>Laboratory Orders</label>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="row investigations">
+                                        <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT'],['647','FULL HEMOGRAM'],['652','LFTS'],['953','LIVER FUNCTION TESTS'],['1010','LIPID Panel'],['1026','DIFFERENTIAL'],['5473','SERUM ELECTROLYTES'],['99145','BASELINE CD4 PERCENTAGE'],['159645','CSF Examination'],['159981','TB Culture Construct'],['161152','Prothrombin Time (with INR)'],['161199','Cytology'],['161422','HBG With Electrophoresis'],['161424','RBC Morphology Test'],['161425','Sedimentation Test'],['161426','Malarial Parasites Smear'],['161428','Microfilaria Test'],['161429','Hemoglobin Only'],['161430','Routine Blood Panel'],['161431','Sickling Test Only'],['161432','Absolute Eosinophil Count Test'],['161434','Bleeding Time Test'],['161436','Clotting Time Test'],['161437','Anemia Panel'],['161446','Routine Urine'],['161451','Stool Test'],['161458','Vaginal Fluid Examination'],['161461','Ziehl-Neelsen Stain Test'],['161463','Skin Fungal Test'],['161464','Skin Mycobacterial Test'],['161468','Semen Analysis Test'],['161473','Blood Grouping Test'],['161474','Hepatitis C Serological Test'],['161475','Hepatitis B Serological Test'],['161476','Syphilis serological Panel'],['161477','Typhoid serological Test'],['161478','Anti-Streptolysin O Test'],['161479','Rheumatoid Factor Test'],['161480','HIV Serological Test'],['161483','Serum Chemistry Panel'],['161486','Culture Panel'],['161487','Diabetes Panel'],['161488','Renal Function Panel'],['161491','FSH Panel'],['161492','Leutinizing Hormone Panel'],['161493','Alpha Fetoprotein Test'],['161495','ANA'],['161496','Bone Marrow Test'],['161497','Cancer Marker Panel'],['161498','CPK Measurement'],['161499','Coombs Test'],['161501','C-reactive Protein Test'],['161506','Thyroid Panel'],['161508','Ceruloplasmin Test'],['161509','Serum HCG'],['161510','Carcinoembryonic Antigen'],['161512','Serum Iron Profile'],['161514','G6PD'],['161515','Lipase Test'],['161517','Prolactin Test'],['161518','Cardiac Enzyme Test'],['161520','PSA Test'],['161532','TORCH Panel'],['161533','TORCHS Panel'],['162630','Basic Metabolic Panel'],['163436','Coagulation Profile'],['163602','Arterial Blood Gas Panel'],['163625','Toxoplasma Panel'],['163628','VTC Panel'],['163631','Tuberculin skin test Panel'],['163652','Urethral fluid examination Panel'],['163679','Bacterial culture Panel'],['163697','Urine microscopy Panel'],['163700','CBC (auto)'],['163701','CBC With Manual Differential'],['163702','Clotting Panel'],['163708','GTT  (75g)'],['165419','Malaria Test'],['165824','HIVDR'],['166284','Covid test type'],['166405','Blood gas done'],['166429','ALT/SGOT'],['167178','PPG'],['163342','HIV p24 antigen'],['163610','HIV drug-resistance'],['163722','Rapid test for HIV'],['167441','HIV PCR, DBS']">
+                                            <div class="col-3">
+                                                <obs id="{0}" conceptId="1271"
+                                                     answerConceptId="{0}"
+                                                     answerLabel="{1}" style="checkbox"/>
+                                            </div>
+                                        </repeat>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <submit class="confirm" submitLabel="SAVE"/>
+                        <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.LabOrderSubmissionAction"/>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="lab-results-section">
+
+            </div>
+        </div>
+    </div>
+</htmlform>

@@ -17,7 +17,11 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     private String quantityUnits;
 
+    private String stockQuantityUnitUuid;
+
     private String drug;
+
+    private String drugUUID;
 
     private String asNeededCondition;
 
@@ -33,11 +37,17 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     private String brandName;
 
+    private String dispensingLocation;
+
     private Boolean dispenseAsWritten = Boolean.FALSE;
 
     private String drugNonCoded;
 
     private String strength;
+
+    private String stockItem;
+
+    private String stockBatchNo;
 
     public Double getDose() {
         return dose;
@@ -173,5 +183,45 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     public void setStrength(String strength) {
         this.strength = strength;
+    }
+
+    public String getDrugUUID() {
+        return drugUUID;
+    }
+
+    public void setDrugUUID(String drugUUID) {
+        this.drugUUID = drugUUID;
+    }
+
+    public String getDispensingLocation() {
+        return dispensingLocation;
+    }
+
+    public void setDispensingLocation(String dispensingLocation) {
+        this.dispensingLocation = dispensingLocation;
+    }
+
+    public String getStockItem() {
+        return stockItem;
+    }
+
+    public void setStockItem(String stockItem) {
+        this.stockItem = stockItem;
+    }
+
+    public String getStockBatchNo() {
+        return stockBatchNo;
+    }
+
+    public void setStockBatchNo(String stockBatchNo) {
+        this.stockBatchNo = stockBatchNo;
+    }
+
+    public String getStockQuantityUnitUuid() {
+        return stockQuantityUnitUuid;
+    }
+
+    public void setStockQuantityUnitUuid(String stockQuantityUnitUuid) {
+        this.stockQuantityUnitUuid = stockQuantityUnitUuid;
     }
 }

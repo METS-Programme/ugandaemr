@@ -1,3 +1,8 @@
+<style>
+.modal-lg, .modal-xl {
+    max-width: 50%;
+}
+</style>
 <script>
     jq(function () {
         jq('#date').datepicker("option", "dateFormat", "dd/mm/yy");
@@ -45,11 +50,66 @@
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
         jq.each(pharmacyQueueList.patientPharmacyQueueList[position].orderMapper, function (index, element) {
-            if (element.encounterId === encounterId) {
+            if (element.encounterId === encounterId && element.dispensingLocation === currentLocationUUID) {
+                let stockItemInventorys = getStockItemInventory(element.drugUUID)
+                stockItemInventorys = addExpiryMothAndYear(stockItemInventorys);
+
+                Object.defineProperty(element, "stockItemInventory", {
+                    value: stockItemInventorys,
+                    writable: false
+                })
+
+                Object.defineProperty(element, "maxDispenseValue", {
+                    value: getMaxDispenseValue(stockItemInventorys,element),
+                    writable: false
+                })
                 orderedTestsRows.push(element);
             }
         });
         return orderedTestsRows;
+    }
+
+    function getMaxDispenseValue(stock, prescription) {
+        var maxDispenseQty = 0;
+        for (let i = 0; i < stock.length; i++) {
+            if (stock[i].quantity > maxDispenseQty) {
+                maxDispenseQty = stock[i].quantity;
+            }
+        }
+        if (maxDispenseQty >= prescription.quantity) {
+            maxDispenseQty = prescription.quantity;
+        }
+        return maxDispenseQty;
+    }
+
+
+    function addExpiryMothAndYear(stock) {
+        for (let i = 0; i < stock.length; i++) {
+            Object.defineProperty(stock[i], "expiryYear", {
+                value: new Date(stock[i].expiration).getFullYear(),
+                writable: false
+            })
+            Object.defineProperty(stock[i], "expiryMonth", {
+                value: new Date(stock[i].expiration).getMonth(),
+                writable: false
+            })
+        }
+        return stock;
+    }
+
+    function getStockItemInventory(druguuid) {
+        var stockIventoryItems = []
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid="+currentLocationUUID+"",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                stockIventoryItems = data.results;
+
+            }
+        });
+        return stockIventoryItems
     }
 
     function getEditPrescriptionTempLate(pharmacyData, encounterId, position) {
@@ -91,15 +151,15 @@
         var newWin = window.open('', 'Print-Window');
         var providerInformation = "<tr><td width='30%' style='text-align: center;'>" + dataToPrint[0].orderer + "</td><td width='50%' style='text-align: center;'>_______________________</td></tr>";
         jq("#patient-names").append(dataToPrint[0].patient);
-        jq("#patient-age").append(dataToPrint[0].patientAge+" year(s)");
+        jq("#patient-age").append(dataToPrint[0].patientAge + " year(s)");
         jq("#prescription-date").append("${ui.format(new Date())}");
         jq("#prescribing-provider-info").append(providerInformation);
         jq.each(dataToPrint, function (index, dataToPrint) {
-            var strength="";
-            if(dataToPrint.strength!==null && dataToPrint.strength!=="" ){
-                strength=dataToPrint.strength;
+            var strength = "";
+            if (dataToPrint.strength !== null && dataToPrint.strength !== "") {
+                strength = dataToPrint.strength;
             }
-            var medicationInformation = "<tr><td width='50%' style='text-align: left;'>" + dataToPrint.conceptName + " "+strength+"</td><td width='50%' style='text-align: right;'>" + dataToPrint.quantity + "</td></tr>";
+            var medicationInformation = "<tr><td width='50%' style='text-align: left;'>" + dataToPrint.conceptName + " " + strength + "</td><td width='50%' style='text-align: right;'>" + dataToPrint.quantity + "</td></tr>";
             jq("#containerToAppendRefferedOutPrescriptions").append(medicationInformation);
         });
         newWin.document.open();
@@ -258,11 +318,10 @@ form input {
                     <table>
                         <thead>
                         <th>Drug Name</th>
-                        <th>Prescribed Quantity</th>
-                        <th>Prescription Period</th>
-                        <th>Strength</th>
-                        <th>Dispense Quantity</th>
-                        <th>Dispense Period</th>
+                        <th>Prescribed Qty</th>
+                        <th>Period</th>
+                        <th>Batch No | Stock Qty</th>
+                        <th>Dispense Qty</th>
                         <th>Refer Out</th>
 
                         </thead>
@@ -328,16 +387,32 @@ form input {
                                    data-bind="attr: { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].scheduledDate' }, value: encounter?encounter+'.'+scheduledDate:scheduledDate">
                             <input type="hidden"
                                    data-bind="attr: { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].status' }, value: encounter?encounter+'.'+status:status">
+
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].strength', value : strength }">
+
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].duration', value : duration }">
+
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockItem', value : stockItemInventory[0].stockItemUuid }">
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].dispensingLocation', value : stockItemInventory[0].locationUuid }">
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockQuantityUnitUuid', value : stockItemInventory[0].quantityUoMUuid }">
+
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].encounterId', value : encounterId }">
                             <!--Other Input Types-->
 
                             <td data-bind="">
                                 <div id="data">
                                     <span data-bind="if:drug && drug.toUpperCase() === 'WRITE COMMENT'">
-                                        <label data-bind="text: drug + ' (' + container+')'"></label>
+                                        <label data-bind="text: drug + ' '+strength+' (' + container+')'"></label>
                                     </span>
 
                                     <span data-bind="if:drug && drug.toUpperCase() !== 'WRITE COMMENT'">
-                                        <label data-bind="text: drug"></label>
+                                        <label data-bind="text: drug+' '+strength"></label>
                                     </span>
                                 </div>
                             </td>
@@ -366,21 +441,14 @@ form input {
 
                             <td data-bind="">
                                 <div id="data">
-                                    <input class="prescription-text"
-                                           data-bind="attr : { 'type' : 'text', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].strength', value : strength }">
+                                    <select class="prescription-text"
+                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return 'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
                                 </div>
                             </td>
                             <td data-bind="">
                                 <div id="data">
                                     <input class="prescription-text"
-                                           data-bind="attr : { 'type' : 'number', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].quantity', value : '' }">
-                                </div>
-                            </td>
-
-                            <td data-bind="">
-                                <div id="data">
-                                    <input class="prescription-text"
-                                           data-bind="attr : { 'type' : 'number', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].duration', value : '' }">
+                                           data-bind="attr : { 'type' : 'number','max' : maxDispenseValue, 'name' : 'wrap.drugOrderMappers[' + \$index() + '].quantity', value : '' }">
                                 </div>
                             </td>
                             <td data-bind="">
@@ -417,12 +485,16 @@ form input {
                 <table>
                     <tbody>
                     <tr>
-                        <th width="30%" style="text-align: left;">Patient Name:</th><td style="text-align: right;" width="70%" id="patient-names"></td>
+                        <th width="30%" style="text-align: left;">Patient Name:</th><td style="text-align: right;"
+                                                                                        width="70%"
+                                                                                        id="patient-names"></td>
                     </tr>
                     <tr>
-                        <th width="30%" style="text-align: left;">Age:</th><td  style="text-align: right;" width="70%" id="patient-age"></td>
+                        <th width="30%" style="text-align: left;">Age:</th><td style="text-align: right;" width="70%"
+                                                                               id="patient-age"></td>
                     </tr>
-                    <tr><th width="30%" style="text-align: left;">Date:</th><td style="text-align: right;" width="70%" id="prescription-date"></td></tr>
+                    <tr><th width="30%" style="text-align: left;">Date:</th><td style="text-align: right;" width="70%"
+                                                                                id="prescription-date"></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -455,12 +527,16 @@ form input {
                 </table>
             </div>
             <footer style="margin-top: 50px">
-                <div style="text-align: left;font-size: 10px"><img width="40px" src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span></div>
+                <div style="text-align: left;font-size: 10px"><img width="40px"
+                                                                   src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
+                </div>
             </footer>
         </div>
     </center>
 
 </div>
+
+
 
 
 

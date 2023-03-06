@@ -107,28 +107,39 @@
         jq("#from-lab-list-table").html("No Patient In Lab List");
         var stillInQueueDataRows = "";
         var completedDataRows = "";
+        var servingDataRows = "";
         var fromLabDataRows = "";
         stillInQueue = 0;
         completedQueue = 0;
+        servingQueue = 0;
         fromLabQueue = 0;
         var headerPending = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var headerCompleted = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
         var headerFromLab = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
-        var dataToDisplay=[];
+        var dataToDisplay = [];
 
-        if(response.patientClinicianQueueList.length>0){
-            dataToDisplay=response.patientClinicianQueueList.sort(function (a, b) {
+        if (response.patientClinicianQueueList.length > 0) {
+            dataToDisplay = response.patientClinicianQueueList.sort(function (a, b) {
                 return a.patientQueueId - b.patientQueueId;
             });
+        }
+
+        if ("${enablePatientQueueSelection}".trim() === "true") {
+            jq("#serving-list").removeClass("hidden");
+            jq("#clinician-serving").removeClass("hidden");
+        } else {
+            jq("#serving-list").addClass("hidden");
+            jq("#clinician-serving").addClass("hidden");
         }
 
         jq.each(dataToDisplay, function (index, element) {
                 var patientQueueListElement = element;
                 var dataRowTable = "";
                 var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", element.patientId);
-                var encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patientId + "&encounterId=" + element.encounterId + "&returnUrl="+"/"+OPENMRS_CONTEXT_PATH+"/patientqueueing/providerDashboard.page";
+                var encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patientId + "&encounterId=" + element.encounterId + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
 
                 var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
                 dataRowTable += "<tr>";
@@ -140,6 +151,7 @@
                 dataRowTable += "<td>" + patientQueueListElement.patientNames + "</td>";
                 dataRowTable += "<td>" + patientQueueListElement.gender + "</td>";
                 dataRowTable += "<td>" + patientQueueListElement.age + "</td>";
+
                 if (element.status === "PENDING" && element.locationFrom !== "Lab") {
                     if (patientQueueListElement.priorityComment != null) {
                         dataRowTable += "<td>" + patientQueueListElement.priorityComment + "</td>";
@@ -147,15 +159,25 @@
                         dataRowTable += "<td></td>";
                     }
                 }
+
+
                 dataRowTable += "<td>" + patientQueueListElement.locationFrom.substring(0, 3) + "</td>";
+
+
+                if (element.status === "PICKED") {
+                    if (element.providerNames != null) {
+                        dataRowTable += "<td>" + element.providerNames + "</td>";
+                    } else {
+                        dataRowTable += "<td></td>";
+                    }
+                }
+
                 dataRowTable += "<td>" + patientQueueListElement.status + "</td>";
                 dataRowTable += "<td>" + waitingTime + "</td>";
                 dataRowTable += "<td>";
 
 
-
-
-                if ("${enablePatientQueueSelection}".trim() === "true"  && element.status!=="COMPLETED") {
+                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueueListElement.status === "PENDING") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + urlToPatientDashBoard + "'></i>";
                 } else {
                     dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
@@ -163,9 +185,9 @@
 
                 if (element.status === "PENDING" && element.locationFrom !== "Lab") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-external-link edit-action\" title=\"Send Patient To Another Location\" data-toggle=\"modal\" data-target=\"#add_patient_to_other_queue_dialog\" data-id=\"\" data-patient-id=\"%s\"></i>".replace("%s", element.patientId);
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab"  && "${enablePatientQueueSelection}".trim() === "true") {
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab" && "${enablePatientQueueSelection}".trim() === "true") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + encounterUrl + "'></i>";
-                }else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab"  && "${enablePatientQueueSelection}".trim() !== "true"){
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab" && "${enablePatientQueueSelection}".trim() !== "true") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"location.href = '" + encounterUrl + "'\"></i>";
                 }
 
@@ -177,7 +199,10 @@
                 } else if (element.status === "PENDING" && element.locationFrom !== "Lab") {
                     stillInQueue += 1;
                     stillInQueueDataRows += dataRowTable;
-                } else if (element.status === "COMPLETED" && element.locationFrom !== "Lab"){
+                } else if (element.status === "PICKED") {
+                    servingQueue += 1;
+                    servingDataRows += dataRowTable;
+                } else if (element.status === "COMPLETED" && element.locationFrom !== "Lab") {
                     completedQueue += 1;
                     completedDataRows += dataRowTable;
                 }
@@ -196,6 +221,11 @@
             jq("#clinician-completed-list-table").append(headerCompleted + completedDataRows + footer);
         }
 
+        if (servingDataRows !== "") {
+            jq("#clinician-serving-list-table").html("");
+            jq("#clinician-serving-list-table").append(headerServing + servingDataRows + footer);
+        }
+
         if (fromLabDataRows !== "") {
             jq("#from-lab-list-table").html("");
             jq("#from-lab-list-table").append(headerFromLab + fromLabDataRows + footer);
@@ -204,6 +234,8 @@
 
         jq("#clinician-pending-number").html("");
         jq("#clinician-pending-number").append("   " + stillInQueue);
+        jq("#clinician-serving-number").html("");
+        jq("#clinician-serving-number").append("   " + servingQueue);
         jq("#clinician-completed-number").html("");
         jq("#clinician-completed-number").append("   " + completedQueue);
         jq("#from-lab-number").html("");
@@ -247,6 +279,12 @@
                                                                                                  id="clinician-pending-number">0</span>
                 </a>
             </li>
+            <li class="nav-item hidden" id="serving-list">
+                <a class="nav-link" id="serving-tab" data-toggle="tab" href="#clinician-serving" role="tab"
+                   aria-controls="clinician-serving-tab" aria-selected="false">Serving<span style="color:red"
+                                                                                            id="clinician-serving-number">0</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#from-lab" role="tab"
                    aria-controls="from-lab-tab" aria-selected="false">Patients - Lab Results<span style="color:red"
@@ -265,6 +303,14 @@
                  aria-labelledby="clinician-pending-tab">
                 <div class="info-body">
                     <div id="clinician-queue-list-table">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade hidden" id="clinician-serving" role="tabpanel"
+                 aria-labelledby="clinician-serving-tab">
+                <div class="info-body">
+                    <div id="clinician-serving-list-table">
                     </div>
                 </div>
             </div>

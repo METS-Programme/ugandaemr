@@ -3,7 +3,7 @@
 	formDescription="This is a summary of the TB Treatment program" 
 	formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66" 
 	formUuid="b00452b6-bb7c-11ea-b3de-0242ac130004" 
-	formVersion="3.0.0" 
+	formVersion="3.1.0"
 	formAddMetadata="yes" 
 	formUILocation="patientDashboard.visitActions" 
 	formOrder="3" 
