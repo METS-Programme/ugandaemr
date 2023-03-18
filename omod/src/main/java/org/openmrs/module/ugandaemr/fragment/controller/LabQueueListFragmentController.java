@@ -67,9 +67,9 @@ public class LabQueueListFragmentController {
         SimpleObject simpleObject = new SimpleObject();
         List<PatientQueue> patientQueueList = new ArrayList();
         if (!searchfilter.equals("")) {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), uiSessionContext.getSessionLocation(), null);
         } else {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), uiSessionContext.getSessionLocation(), null);
         }
         simpleObject.put("patientLabQueueList", objectMapper.writeValueAsString(Context.getService(UgandaEMRService.class).mapPatientQueueToMapperWithOrders(patientQueueList)));
         return simpleObject;

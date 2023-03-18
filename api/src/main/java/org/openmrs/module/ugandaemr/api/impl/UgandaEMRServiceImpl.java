@@ -787,32 +787,33 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     public Set<OrderMapper> processOrders(Set<Order> orders, boolean fiterOutProccessed) {
         Set<OrderMapper> orderMappers = new HashSet<>();
-        for (Order order : orders) {
-            if (order.getOrderType().equals(Context.getOrderService().getOrderTypeByUuid(ORDER_TYPE_LAB_UUID))) {
-                String names = order.getPatient().getFamilyName() + " " + order.getPatient().getGivenName() + " " + order.getPatient().getMiddleName();
-                OrderMapper orderMapper = new OrderMapper();
-                orderMapper.setAccessionNumber(order.getAccessionNumber());
-                orderMapper.setCareSetting(order.getCareSetting().getName());
-                orderMapper.setConcept(order.getConcept().getConceptId().toString());
-                orderMapper.setConceptName(order.getConcept().getDisplayString());
-                orderMapper.setDateActivated(order.getDateActivated().toString());
-                orderMapper.setOrderer(order.getOrderer().getName());
-                orderMapper.setOrderNumber(order.getOrderNumber());
-                orderMapper.setPatientId(order.getPatient().getPatientId());
-                orderMapper.setInstructions(order.getInstructions());
-                orderMapper.setUrgency(order.getUrgency().name());
-                orderMapper.setPatient(names.replace("null", ""));
-                orderMapper.setOrderId(order.getOrderId());
-                orderMapper.setEncounterId(order.getEncounter().getEncounterId());
-                if (order.isActive()) {
-                    orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
-                }
-                if (testOrderHasResults(order)) {
-                    orderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
-                }
-                orderMappers.add(orderMapper);
+        OrderType orderType=Context.getOrderService().getOrderTypeByUuid(ORDER_TYPE_LAB_UUID);
+        orders= orders.stream().filter(order -> order.getOrderType().equals(orderType)).collect(Collectors.toSet());
+
+        orders.forEach(order -> {
+            String names = order.getPatient().getFamilyName() + " " + order.getPatient().getGivenName() + " " + order.getPatient().getMiddleName();
+            OrderMapper orderMapper = new OrderMapper();
+            orderMapper.setAccessionNumber(order.getAccessionNumber());
+            orderMapper.setCareSetting(order.getCareSetting().getName());
+            orderMapper.setConcept(order.getConcept().getConceptId().toString());
+            orderMapper.setConceptName(order.getConcept().getDisplayString());
+            orderMapper.setDateActivated(order.getDateActivated().toString());
+            orderMapper.setOrderer(order.getOrderer().getName());
+            orderMapper.setOrderNumber(order.getOrderNumber());
+            orderMapper.setPatientId(order.getPatient().getPatientId());
+            orderMapper.setInstructions(order.getInstructions());
+            orderMapper.setUrgency(order.getUrgency().name());
+            orderMapper.setPatient(names.replace("null", ""));
+            orderMapper.setOrderId(order.getOrderId());
+            orderMapper.setEncounterId(order.getEncounter().getEncounterId());
+            if (order.isActive()) {
+                orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
             }
-        }
+            if (testOrderHasResults(order)) {
+                orderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
+            }
+            orderMappers.add(orderMapper);
+        });
         return orderMappers;
     }
 
@@ -826,57 +827,58 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     public Set<DrugOrderMapper> processDrugOrders(Set<Order> orders) {
         Set<DrugOrderMapper> orderMappers = new HashSet<>();
+        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+        OrderType orderType = Context.getOrderService().getOrderTypeByUuid(ORDER_TYPE_DRUG_UUID);
+        orders = orders.stream().filter(order -> order.getOrderType().equals(orderType) && order.isActive()).collect(Collectors.toSet());
 
-        for (Order order : orders) {
-            if (order.getOrderType().equals(Context.getOrderService().getOrderTypeByUuid(ORDER_TYPE_DRUG_UUID)) && order.isActive()) {
-                DrugOrder drugOrder = (DrugOrder) order;
-                String names = order.getPatient().getFamilyName() + " " + order.getPatient().getGivenName() + " " + order.getPatient().getMiddleName();
-                DrugOrderMapper drugOrderMapper = new DrugOrderMapper();
+        orders.forEach(order -> {
+            DrugOrder drugOrder = (DrugOrder) order;
+            String names = order.getPatient().getFamilyName() + " " + order.getPatient().getGivenName() + " " + order.getPatient().getMiddleName();
+            DrugOrderMapper drugOrderMapper = new DrugOrderMapper();
+            drugOrderMapper.setAsNeeded(drugOrder.getAsNeeded());
+            drugOrderMapper.setAsNeededCondition(drugOrder.getAsNeededCondition());
+            drugOrderMapper.setBrandName(drugOrder.getBrandName());
+            drugOrderMapper.setDose(drugOrder.getDose());
+            drugOrderMapper.setDoseUnits(drugOrder.getDoseUnits().getDisplayString());
+            drugOrderMapper.setDrug(drugOrder.getConcept().getDisplayString());
+            drugOrderMapper.setDuration(drugOrder.getDuration());
+            drugOrderMapper.setDurationUnits(drugOrder.getDurationUnits().getDisplayString());
+            drugOrderMapper.setDrugNonCoded(drugOrder.getDrugNonCoded());
+            drugOrderMapper.setFrequency(drugOrder.getFrequency().getName());
+            drugOrderMapper.setNumRefills(drugOrder.getNumRefills());
+            drugOrderMapper.setQuantity(drugOrder.getQuantity());
+            drugOrderMapper.setQuantityUnits(drugOrder.getQuantityUnits().getDisplayString());
+            drugOrderMapper.setStrength(getDrugStrength(drugOrder));
+            drugOrderMapper.setRoute(drugOrder.getRoute().getDisplayString());
+            drugOrderMapper.setAccessionNumber(drugOrder.getAccessionNumber());
+            drugOrderMapper.setCareSetting(drugOrder.getCareSetting().getName());
+            drugOrderMapper.setConcept(drugOrder.getConcept().getConceptId().toString());
+            drugOrderMapper.setConceptName(drugOrder.getConcept().getDisplayString());
+            drugOrderMapper.setDateActivated(drugOrder.getDateActivated().toString());
+            drugOrderMapper.setOrderer(drugOrder.getOrderer().getName());
+            drugOrderMapper.setOrderNumber(drugOrder.getOrderNumber());
+            drugOrderMapper.setPatientId(drugOrder.getPatient().getPatientId());
+            drugOrderMapper.setInstructions(drugOrder.getInstructions());
+            drugOrderMapper.setUrgency(drugOrder.getUrgency().name());
 
-                drugOrderMapper.setAsNeeded(drugOrder.getAsNeeded());
-                drugOrderMapper.setAsNeededCondition(drugOrder.getAsNeededCondition());
-                drugOrderMapper.setBrandName(drugOrder.getBrandName());
-                drugOrderMapper.setDose(drugOrder.getDose());
-                drugOrderMapper.setDoseUnits(drugOrder.getDoseUnits().getDisplayString());
-                drugOrderMapper.setDrug(drugOrder.getConcept().getDisplayString());
-                drugOrderMapper.setDuration(drugOrder.getDuration());
-                drugOrderMapper.setDurationUnits(drugOrder.getDurationUnits().getDisplayString());
-                drugOrderMapper.setDrugNonCoded(drugOrder.getDrugNonCoded());
-                drugOrderMapper.setFrequency(drugOrder.getFrequency().getName());
-                drugOrderMapper.setNumRefills(drugOrder.getNumRefills());
-                drugOrderMapper.setQuantity(drugOrder.getQuantity());
-                drugOrderMapper.setQuantityUnits(drugOrder.getQuantityUnits().getDisplayString());
-                drugOrderMapper.setStrength(getDrugStrength(drugOrder));
-                drugOrderMapper.setRoute(drugOrder.getRoute().getDisplayString());
-                drugOrderMapper.setAccessionNumber(drugOrder.getAccessionNumber());
-                drugOrderMapper.setCareSetting(drugOrder.getCareSetting().getName());
-                drugOrderMapper.setConcept(drugOrder.getConcept().getConceptId().toString());
-                drugOrderMapper.setConceptName(drugOrder.getConcept().getDisplayString());
-                drugOrderMapper.setDateActivated(drugOrder.getDateActivated().toString());
-                drugOrderMapper.setOrderer(drugOrder.getOrderer().getName());
-                drugOrderMapper.setOrderNumber(drugOrder.getOrderNumber());
-                drugOrderMapper.setPatientId(drugOrder.getPatient().getPatientId());
-                drugOrderMapper.setInstructions(drugOrder.getInstructions());
-                drugOrderMapper.setUrgency(drugOrder.getUrgency().name());
+            drugOrderMapper.setDispensingLocation(getDispesingLocation(drugOrder));
 
-                drugOrderMapper.setDispensingLocation(getDispesingLocation(drugOrder));
-
-                if (drugOrder.getDrug() != null) {
-                    drugOrderMapper.setDrugUUID(drugOrder.getDrug().getUuid());
-                }
-
-                drugOrderMapper.setPatient(names.replace("null", ""));
-                drugOrderMapper.setOrderId(drugOrder.getOrderId());
-                drugOrderMapper.setEncounterId(drugOrder.getEncounter().getEncounterId());
-                if (order.isActive()) {
-                    drugOrderMapper.setStatus(QUEUE_STATUS_ACTIVE);
-                }
-                if (testOrderHasResults(order)) {
-                    drugOrderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
-                }
-                orderMappers.add(drugOrderMapper);
+            if (drugOrder.getDrug() != null) {
+                drugOrderMapper.setDrugUUID(drugOrder.getDrug().getUuid());
             }
-        }
+
+            drugOrderMapper.setPatient(names.replace("null", ""));
+            drugOrderMapper.setOrderId(drugOrder.getOrderId());
+            drugOrderMapper.setEncounterId(drugOrder.getEncounter().getEncounterId());
+            if (order.isActive()) {
+                drugOrderMapper.setStatus(QUEUE_STATUS_ACTIVE);
+            }
+
+            if (testOrderHasResults(order)) {
+                drugOrderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
+            }
+            orderMappers.add(drugOrderMapper);
+        });
         return orderMappers;
     }
 
@@ -1243,7 +1245,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
 
-        Set<Obs> obsList = encounter.getObs().stream().filter(obs ->  !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))).collect(Collectors.toSet());
+        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))).collect(Collectors.toSet());
 
         for (Obs obs : obsList) {
             if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
@@ -1299,7 +1301,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Set<Order> orders = new HashSet<>();
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
-        Set<Obs> obsList = encounter.getObs().stream().filter(obs ->  !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("Drug"))).collect(Collectors.toSet());;
+        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("Drug"))).collect(Collectors.toSet());
 
         OrderService orderService = Context.getOrderService();
         for (Obs obs : obsList) {
@@ -1382,13 +1384,20 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             encounterService.saveEncounter(encounter);
             List<String> orderLocations = new ArrayList<>();
             if (!session.getEncounter().getOrders().isEmpty()) {
-                orders.forEach(order -> {
-                    orderLocations.add(getDispesingLocation((DrugOrder) order));
-                });
+                boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+                if (enableStockManagement) {
+                    orders.forEach(order -> {
+                        orderLocations.add(getDispesingLocation((DrugOrder) order));
+                    });
 
-                orderLocations.forEach(orderLocation -> {
-                    sendPatientToNextLocation(session, orderLocation, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
-                });
+                    orderLocations.forEach(orderLocation -> {
+                        sendPatientToNextLocation(session, orderLocation, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+                    });
+                } else {
+                    sendPatientToNextLocation(session, PHARMACY_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+                }
+
+
                 completePreviousQueue(session.getPatient(), session.getEncounter().getLocation(), PatientQueue.Status.PENDING);
             }
         }
@@ -1536,9 +1545,14 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         encounter.setObs(obs);
 
+        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+
 
         try {
-            reduceStockBalances(resultWrapper);
+            if (enableStockManagement) {
+                reduceStockBalances(resultWrapper);
+            }
+
             encounterService.saveEncounter(encounter);
             patientQueue.setEncounter(encounter);
             patientQueueingService.savePatientQue(patientQueue);

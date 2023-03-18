@@ -51,6 +51,7 @@ public class PharmacyQueueListFragmentController {
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("healthCenterName", Context.getAdministrationService().getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
+        pageModel.put("enableStockManagement", Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement")));
     }
 
 
@@ -60,9 +61,9 @@ public class PharmacyQueueListFragmentController {
         SimpleObject simpleObject = new SimpleObject();
         List<PatientQueue> patientQueueList;
         if (!searchfilter.equals("")) {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), uiSessionContext.getSessionLocation(), null);
         } else {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), uiSessionContext.getSessionLocation(), null);
         }
         if (!patientQueueList.isEmpty()) {
             simpleObject.put("patientPharmacyQueueList", objectMapper.writeValueAsString(Context.getService(UgandaEMRService.class).mapPatientQueueToMapperWithDrugOrders(patientQueueList)));

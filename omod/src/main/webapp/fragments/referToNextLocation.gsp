@@ -92,28 +92,12 @@
 
     <div class="row" id="patient_status_container">
         <div class="col-4">Urgency of Care:</div>
-
         <div class="col-8">
             <div class="form-group">
                 <select class="form-control" id="patient_status" name="patient_status">
                     <option value="">Select Urgency of Care</option>
                     <option value="Normal">Normal</option>
                     <option value="emergency">Emergency</option>
-                </select>
-                <span class="field-error" style="display: none;"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="row" id="visit_comment_container">
-        <div class="col-4">Visit Type:</div>
-
-        <div class="col-8">
-            <div class="form-group">
-                <select class="form-control" id="visit_comment" name="visit_comment">
-                    <option value="">Select Visit Type</option>
-                    <option value="new visit">New Visit</option>
-                    <option value="revisit">Revisit</option>
                 </select>
                 <span class="field-error" style="display: none;"></span>
             </div>
