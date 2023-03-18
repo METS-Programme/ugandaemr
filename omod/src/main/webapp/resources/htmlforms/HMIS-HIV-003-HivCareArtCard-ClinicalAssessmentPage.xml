@@ -2925,11 +2925,11 @@
                                                              class="horizontal"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Approach</label>
+                                                        <label>Treatment Care Approach(DSDM)</label>
                                                         <obs id="165143" conceptId="165143"
                                                              answerConceptIds="165138,165140,165139,165142,165141"
                                                              answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
-                                                             class="long-value-select" required="required"/>
+                                                             class="long-value-select"/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
