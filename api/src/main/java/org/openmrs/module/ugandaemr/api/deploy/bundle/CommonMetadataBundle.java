@@ -78,6 +78,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         install(EncounterTypes.SMS_ENROLLMENT);
         install(EncounterTypes.SMC_FOLLOWUP);
+        install(EncounterTypes.HIV_MORTALITY_SURVEILLANCE);
 
         //installing programs metadata
         log.info("Installing Programs");
@@ -90,6 +91,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Programs.FTR_PROGRAM);
         install(Programs.CCLAD_PROGRAM);
         install(Programs.CDDP_PROGRAM);
+
 
         //install Locations
         log.info("Installing Locations");

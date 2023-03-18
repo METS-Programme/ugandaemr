@@ -404,4 +404,20 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor HIV_MORTALITY_SURVEILLANCE = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "HIV Mortality Surveillance";
+        }
+
+        @Override
+        public String description() {
+            return "Case Review Forms for HIV Mortality Surveillance";
+        }
+
+        public String uuid() {
+            return "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c";
+        }
+    };
+
 }

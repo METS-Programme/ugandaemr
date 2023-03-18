@@ -48,13 +48,13 @@
 
         if (jQuery) {
 
-            var patientUUID      = '<lookup complexExpression="$patient.uuid"/>';
-            var visitDate        = '<lookup expression="visit.startDatetime"/>';
-            var transferInEncounterTypeUUID="3e8354f7-31b3-4862-a52e-ff41a1ee60af";
-            var transferOutEncounterTypeUUID="e305d98a-d6a2-45ba-ba2a-682b497ce27c";
+            var patientUUID = '<lookup complexExpression="$patient.uuid"/>';
+            var visitDate = '<lookup expression="visit.startDatetime"/>';
+            var transferInEncounterTypeUUID = "3e8354f7-31b3-4862-a52e-ff41a1ee60af";
+            var transferOutEncounterTypeUUID = "e305d98a-d6a2-45ba-ba2a-682b497ce27c";
 
-            var transferInEncounters   = getEncountersByEncounterTypeUUID(patientUUID,transferInEncounterTypeUUID);
-            var transferOutEncounters   = getEncountersByEncounterTypeUUID(patientUUID,transferOutEncounterTypeUUID);
+            var transferInEncounters = getEncountersByEncounterTypeUUID(patientUUID, transferInEncounterTypeUUID);
+            var transferOutEncounters = getEncountersByEncounterTypeUUID(patientUUID, transferOutEncounterTypeUUID);
 
             var latestTransferInEncounter = getLatestEncounterFromEncounterList(transferInEncounters);
             var latestTransferOutEncounter = getLatestEncounterFromEncounterList(transferOutEncounters);
@@ -68,11 +68,12 @@
                 currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
 
 
-                var enableCDDPCategorization = <lookup expression="fn.globalProperty('ugandaemr.enableCDDPCategorization')"/>;
+                var enableCDDPCategorization = <lookup
+                    expression="fn.globalProperty('ugandaemr.enableCDDPCategorization')"/>;
                 fieldHelper.makeReadonly(getField('refill_point_id.value'));
-                if(enableCDDPCategorization===true){
+                if (enableCDDPCategorization === true) {
                     showContainer("#cddp_categorization");
-                }else {
+                } else {
                     hideContainer("#cddp_categorization");
                 }
 
@@ -85,8 +86,8 @@
                 });
 
                 jq("#cddp_category").change(function () {
-                    var cddpCategory= jq("#cddp_category").find("select").find(":selected").val();
-                    setValue('refill_point_id.value','');
+                    var cddpCategory = jq("#cddp_category").find("select").find(":selected").val();
+                    setValue('refill_point_id.value', '');
                     if (cddpCategory === "a6a0ab45-b7dc-43b2-b28c-45a91f968ebf") {
                         <!--                            CRPDDP categories fetching-->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('Pharmacy');
@@ -97,7 +98,7 @@
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
-                    }else {
+                    } else {
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('DSD Refill Group');
                         jq("#refill_point_select_id").attr("disabled", true);
                     }
@@ -106,8 +107,8 @@
                 jq("#165143 select").change(function () {
                     if (jq("#165143").find("select").find(":selected").val() === "165142") {
                         enable_fields("cddp_category");
-                    }else {
-                        setValue('refill_point_id.value','');
+                    } else {
+                        setValue('refill_point_id.value', '');
                         jq("#refill_point_select_id  option").prop("selected", false);
                         jq("#cddp_category  option").prop("selected", false);
                         disable_fields("cddp_category");
@@ -115,7 +116,7 @@
                 });
 
                 jq(".drug_strength").change(function () {
-                    var objectPosition =  jq(this).attr("id").match(/\d/g)[0]
+                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
                     jq('#drug_strength_' + objectPosition + ' input').val(jq(this).find(":selected").attr("strength"))
                     jq('#drug_stock_item_' + objectPosition + ' input').val(jq(this).find(":selected").attr("stockItemUUID"))
                     jq('#drug_dispensing_location_' + objectPosition + ' input').val(jq(this).find(":selected").attr("location"))
@@ -182,15 +183,15 @@
                 });
 
                 jq(".arv-split").change(function () {
-                    getDrugByConcept(jq(this).find("input:hidden").val(),  jq(this).attr("id").match(/\d/g)[0] +"_arv_split_strength_select")
+                    getDrugByConcept(jq(this).find("input:hidden").val(), jq(this).attr("id").match(/\d/g)[0] + "_arv_split_strength_select")
                 });
 
                 jq(".arv_split-strength").change(function () {
                     var objectPosition = jq(this).attr("id").match(/\d/g)[0]
-                    jq('#'+objectPosition+'_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
-                    jq('#'+objectPosition+'_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
-                    jq('#'+objectPosition+'_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
-                    jq('#'+objectPosition+'_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
+                    jq('#' + objectPosition + '_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
+                    jq('#' + objectPosition + '_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq('#' + objectPosition + '_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
+                    jq('#' + objectPosition + '_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
                 });
 
             });
@@ -201,14 +202,14 @@
                 var stockItems = []
                 jq.ajax({
                     type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid="+currentLocationUUID+"&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
                     dataType: "json",
                     async: false,
                     success: function (data) {
                         stockItems = data.results;
                     }
                 });
-                if(stockItems.length){
+                if (stockItems.length) {
                     enable_fields(drug_strength_id)
                 }
                 jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
@@ -233,11 +234,11 @@
             }
 
 
-            function getEncountersByEncounterTypeUUID(patientUUID,encounterTypeUUID){
-                var serverResponse =[];
+            function getEncountersByEncounterTypeUUID(patientUUID, encounterTypeUUID) {
+                var serverResponse = [];
                 jq.ajax({
                     type: "GET",
-                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encounter?v=full&amp;patient="+patientUUID+"&amp;encounterType="+encounterTypeUUID,
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/encounter?v=full&amp;patient=" + patientUUID + "&amp;encounterType=" + encounterTypeUUID,
                     dataType: "json",
                     async: false,
                     success: function (data) {
@@ -247,20 +248,20 @@
                 return serverResponse
             }
 
-            function isPatientTransferedOut(latestTransferInEncounter,latestTransferOutEncounter){
+            function isPatientTransferedOut(latestTransferInEncounter, latestTransferOutEncounter) {
 
-                if(latestTransferOutEncounter === null){
+                if (latestTransferOutEncounter === null) {
                     return false;
-                }else if(latestTransferInEncounter === null){
+                } else if (latestTransferInEncounter === null) {
                     return true;
-                } else  if((new Date(latestTransferInEncounter.encounterDatetime) &lt; new Date(latestTransferOutEncounter.encounterDatetime))){
+                } else if ((new Date(latestTransferInEncounter.encounterDatetime) &lt; new Date(latestTransferOutEncounter.encounterDatetime))) {
                     return true
-                }else {
+                } else {
                     return false;
                 }
             }
 
-            function getCohortCategorizations(uuid){
+            function getCohortCategorizations(uuid) {
                 jq('#refill_point_select_id').empty();
                 jq.ajax({
                     type: "GET",
@@ -270,9 +271,9 @@
                     async: false,
                     success: function (data) {
                         var cohorts = data.results;
-                        jq('#refill_point_select_id').append($("<option ></option>").attr("value",''));
+                        jq('#refill_point_select_id').append($("<option ></option>").attr("value", ''));
                         for (var i = 0; i &lt; cohorts.length; i++) {
-                            if(cohorts[i].voided===false){
+                            if (cohorts[i].voided === false) {
                                 jq('#refill_point_select_id').append($("<option></option>").attr("value", cohorts[i].uuid).text(cohorts[i].name));
                             }
                         }
@@ -285,27 +286,27 @@
             jq(document).ready(function () {
 
                 jq(".prescription-poc").change(function () {
-                    var prescriptionMade =[];
+                    var prescriptionMade = [];
 
                     //if there is any value in the text box
-                    var ptext = jq(this).find("input[type$='text']").each(function() {
-                        if($(this).val()!="")
+                    var ptext = jq(this).find("input[type$='text']").each(function () {
+                        if ($(this).val() != "")
                             prescriptionMade.push($(this).val());
                     })
 
                     //if there is any radio button checked
-                    jq(this).find("input[type$='radio']:checked").each(function() {
-                        if($(this).val()!=1066)
+                    jq(this).find("input[type$='radio']:checked").each(function () {
+                        if ($(this).val() != 1066)
                             prescriptionMade.push($(this).val());
                     })
 
                     //if any regimen is selected
-                    var regimen = jq(".regimen-given :selected").each(function() {
-                        if($(this).val()!="")
+                    var regimen = jq(".regimen-given :selected").each(function () {
+                        if ($(this).val() != "")
                             prescriptionMade.push($(this).val());
                     })
 
-                    if(prescriptionMade.length > 0 )
+                    if (prescriptionMade.length > 0)
                         prescription = 'true';
                     else
                         prescription = 'false';
@@ -492,7 +493,7 @@
 
             });
 
-            <ifMode mode = "EDIT" >
+            <ifMode mode="EDIT">
                 jq(document).ready(function () {
                 $allRows = jq(this).find('.multi-drug');
                 $allRows.hide();
@@ -546,7 +547,7 @@
 
                 jq("#visit-date").addClass("html-form-entry-disabled-field");
                 <!-- Determine muac code based on muac score and age -->
-                var age = <lookup complexExpression = "$patient.age" />;
+                var age = <lookup complexExpression="$patient.age"/>;
 
                 getMUACCodeFromMUACScoreByAge(age, '1343', '99030');
 
@@ -589,12 +590,12 @@
                     durationOnCurrentRegimen = periodBetweenDates(new Date(currentRegimenStartDate), new Date(jq("#encounterDate").find("input[type=hidden]").val()));
                     jq("#duration-on-current-regimen input").val(durationOnCurrentRegimen);
                 }
-                var allowClinicanToOverrideDSDMStabilityDecision = <lookup expression="fn.globalProperty('ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability')"/>;
+                var allowClinicanToOverrideDSDMStabilityDecision = <lookup
+                    expression="fn.globalProperty('ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability')"/>;
 
-                if(allowClinicanToOverrideDSDMStabilityDecision !== true){
+                if (allowClinicanToOverrideDSDMStabilityDecision !== true) {
                     disableContainer("#patient-categorization");
                 }
-
 
 
                 DSDMStabilityCheck();
@@ -648,7 +649,7 @@
                 disable_fields("viral-load-specimen-source");
 
                 jq("#order-viral-load-test").change(function () {
-                    if(jq(this).find(':checkbox').prop('checked')){
+                    if (jq(this).find(':checkbox').prop('checked')) {
                         enable_fields("viral-load-accession-number");
                         enable_fields("viral-load-specimen-source");
                     } else {
@@ -704,13 +705,13 @@
                     jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", true);
                     jq("#other-poor-art-adherence-reason-enabled").addClass("html-form-entry-disabled-field");
 
-                    /* disabling art regimen fields  */
+                    /* disabling art regimen fields */
                     disable_fields("no-of-art-pills");
                     disable_fields("no-of-art-pills-days");
                     disable_fields("split-regimen");
                     disable_fields("drug_strength_art_select");
 
-                    /* disabling isonaziad fields  */
+                    /* disabling isonaziad fields */
                     disable_fields("no-of-isoniazid");
                     disable_fields("duration-on-isoniazid");
                     disable_fields("drug_strength_isoniazid_select");
@@ -718,7 +719,7 @@
                     disable_fields("no-of-dapsone-pills");
                     disable_fields("no-of-dapsone-pills-days");
 
-                    /* disabling vitamin b6 fields  */
+                    /* disabling vitamin b6 fields */
                     disable_fields("no-of-vitamin-b6");
                     disable_fields("duration-on-vitamin-b6");
                     disable_fields("drug_strength_vitamin_b6_select");
@@ -895,7 +896,7 @@
                         disable_fields("drug_strength_art_select");
                         showContainer("#split_regimen_container");
 
-                    }else {
+                    } else {
                         enable_fields("no-of-art-pills");
                         enable_fields("no-of-art-pills-days");
                         enable_fields("no-of-art-pills-days");
@@ -919,7 +920,7 @@
 
                 //enable start date and district number if client is on TbRx
                 jq("#tb-status").change(function () {
-                    if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300" ) {
+                    if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300") {
                         enable_fields("tb-start-date");
                         enable_fields("district-tb-no");
                     } else {
@@ -1044,7 +1045,7 @@
 
                 /* enable art prescription */
                 jq("#art-regimen").change(function () {
-                    if (jq(this).find("select").find(":selected").val() !== " "&amp;&amp; jq(this).find("select").find(":selected").val() !== "") {
+                    if (jq(this).find("select").find(":selected").val() !== " " &amp;&amp; jq(this).find("select").find(":selected").val() !== "") {
                         enable_fields("no-of-art-pills");
                         enable_fields("no-of-art-pills-days");
                         enable_fields("split-regimen");
@@ -1066,7 +1067,7 @@
 
                     if (viral_load_status == 1301) {
                         /* Detected */
-                        <ifMode mode = "ENTER" >
+                        <ifMode mode="ENTER">
                             setValue('viral-load-results-copies.value', '');
                         </ifMode>
 
@@ -1143,21 +1144,25 @@
                     var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
                     var dsdmRegimenCoceptsIds = "164976,164977,164978,164979";
 
-                    var allowedCurrentRegimenDuration = <lookup expression="fn.globalProperty('ugandaemr.dsdm.currentRegimenDurationRequirementInMonths')"/>;
-                    var allowedDurationOnTB = <lookup expression="fn.globalProperty('ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired')"/>;
-                    var viralLoadSuppressionCopies = <lookup expression="fn.globalProperty('ugandaemr.dsdm.viralloadSuppressionCopies')"/>;
-                    var validPeriodInMothsForViralLoad = <lookup expression="fn.globalProperty('ugandaemr.dsdm.validPeriodInMothsForViralLoad')"/>;
+                    var allowedCurrentRegimenDuration = <lookup
+                        expression="fn.globalProperty('ugandaemr.dsdm.currentRegimenDurationRequirementInMonths')"/>;
+                    var allowedDurationOnTB = <lookup
+                        expression="fn.globalProperty('ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired')"/>;
+                    var viralLoadSuppressionCopies = <lookup
+                        expression="fn.globalProperty('ugandaemr.dsdm.viralloadSuppressionCopies')"/>;
+                    var validPeriodInMothsForViralLoad = <lookup
+                        expression="fn.globalProperty('ugandaemr.dsdm.validPeriodInMothsForViralLoad')"/>;
 
-                    if(previousVl === ""){
+                    if (previousVl === "") {
                         stableArray.push(false);
                         instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found\n ";
-                    } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &gt; validPeriodInMothsForViralLoad){
+                    } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &gt; validPeriodInMothsForViralLoad) {
                         stableArray.push(false);
-                        instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found. The last Viral Load was collected on "+(new Date(previousVlDate)) +"\n";
-                    }else if(previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt; validPeriodInMothsForViralLoad &amp;&amp; previousVl &gt; viralLoadSuppressionCopies){
+                        instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found. The last Viral Load was collected on " + (new Date(previousVlDate)) + "\n";
+                    } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt; validPeriodInMothsForViralLoad &amp;&amp; previousVl &gt; viralLoadSuppressionCopies) {
                         stableArray.push(false);
-                        instabilityCause = instabilityCause + "The patient has a viral load of "+previousVl+" copies per mil which is regarded as non suppressed.\n ";
-                    }else if (previousVl !== "" &amp;&amp; previousVl &lt;= viralLoadSuppressionCopies &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt;= validPeriodInMothsForViralLoad) {
+                        instabilityCause = instabilityCause + "The patient has a viral load of " + previousVl + " copies per mil which is regarded as non suppressed.\n ";
+                    } else if (previousVl !== "" &amp;&amp; previousVl &lt;= viralLoadSuppressionCopies &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt;= validPeriodInMothsForViralLoad) {
                         stableArray.push(true);
                     }
 
@@ -1191,7 +1196,7 @@
                         stableArray.push(true);
                     } else {
                         stableArray.push(false);
-                        instabilityCause += "Patient has not spent more than"+ allowedCurrentRegimenDuration +" months on current Regimen \n "
+                        instabilityCause += "Patient has not spent more than" + allowedCurrentRegimenDuration + " months on current Regimen \n "
                     }
 
                     if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; periodBetweenDates(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; allowedDurationOnTB) {
@@ -1331,20 +1336,20 @@
                 var encounterDate = new Date((getValue('encounterDate.value')));
                 var appointment = new Date((jq("#returndate").find('input[type=hidden]').val()));
                 var transferOutDate = new Date((getValue('transfer_out_date.value')));
-                var transferOut   = jq('.transfer_out').find("input[type$='checkbox']:checked").val();
-                var returnDate    = getValue('returndate.value');
+                var transferOut = jq('.transfer_out').find("input[type$='checkbox']:checked").val();
+                var returnDate = getValue('returndate.value');
                 var returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
                 var returnDatePocClassLength = jq('.return-date-poc').length;
 
-                if( returnDatePocClassLength &gt; 0){
-                   returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
+                if (returnDatePocClassLength &gt; 0) {
+                    returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
                 }
 
-                if(getValue('provider.value')==""){
+                if (getValue('provider.value') == "") {
                     jq().toastmessage('showErrorToast', "Attending clinician is required");
                 }
 
-                if(encounterDate &gt;= appointment){
+                if (encounterDate &gt;= appointment) {
                     getField('returndate.error').html('The return date must be after the date of this visit ' +
                         formatDateForDisplay(encounterDate)).show();
                     jq().toastmessage('showErrorToast', "The return date must be after the date of this visit");
@@ -1352,31 +1357,31 @@
                 }
 
                 //Return visit date is required if any prescription is made
-                if(prescription=="true" &amp;&amp; returnDate=="") {
+                if(prescription=="true" &amp;&amp; returnDate=="" &amp;&amp; transferOut !== 90003) {
                     jq().toastmessage('showErrorToast', "The return visit date is required");
                     return false;
                 }
 
                 //In case of a transfer out
-                if(transferOut == 90003) {
-                    if(getValue('transfer_out_date.value')==""){
+                if (transferOut == 90003) {
+                    if (getValue('transfer_out_date.value') == "") {
                         jq().toastmessage('showErrorToast', "The transfer out date is required");
                         return false;
                     }
 
-                    if(getValue('transfer_out_location.value')==""){
+                    if (getValue('transfer_out_location.value') == "") {
                         jq().toastmessage('showErrorToast', "Transfer out place/facility is required");
                         return false;
                     }
                 }
 
                 //Return visit date is required if there is no transfer out in non POC mode
-                if(transferOut !==90003 &amp;&amp; returnDatePocClassLength &lt;=0) {
+                if (transferOut !== 90003 &amp;&amp; returnDatePocClassLength &lt;= 0  &amp;&amp; (returnDate=="" || returnDate==null )) {
                     jq().toastmessage('showErrorToast', "The return visit date is required");
                     return false;
                 }
 
-                if(getValue('transfer_out_date.value') !== "" &amp;&amp; encounterDate.getTime() !== transferOutDate.getTime()){
+                if (getValue('transfer_out_date.value') !== "" &amp;&amp; encounterDate.getTime() !== transferOutDate.getTime()) {
                     getField('transfer_out_date.error').html('The Transfer out date has to be exactly the same as the encounter date' +
                         formatDateForDisplay(encounterDate)).show();
                     jq().toastmessage('showErrorToast', "The Transfer out date has to be exactly the same as the encounter date");
@@ -1384,15 +1389,15 @@
                 }
 
                 <!-- Check that the encounter date is not greater than the transfer out date if patient is transfered out -->
-                if(isPatientTransferedOut(latestTransferInEncounter, latestTransferOutEncounter) &amp;&amp; (new Date(encounterDate)) &gt; (new Date(latestTransferOutEncounter.encounterDatetime))){
-                    jq().toastmessage('showErrorToast', "This Patient is a "+latestTransferOutEncounter.display+" The Visit Date Must be before the transfer out date");
+                if (isPatientTransferedOut(latestTransferInEncounter, latestTransferOutEncounter) &amp;&amp; (new Date(encounterDate)) &gt; (new Date(latestTransferOutEncounter.encounterDatetime))) {
+                    jq().toastmessage('showErrorToast', "This Patient is a " + latestTransferOutEncounter.display + " The Visit Date Must be before the transfer out date");
                     return false;
                 }
 
                 <!-- Check that the return date is before the transfer out date only if there is a transfer out date -->
-                if (getValue('returndate.value')!== "" &amp;&amp;  isPatientTransferedOut(latestTransferInEncounter, latestTransferOutEncounter) &amp;&amp; appointment &gt;= (new Date(latestTransferOutEncounter.encounterDatetime))) {
+                if (getValue('returndate.value') !== "" &amp;&amp; isPatientTransferedOut(latestTransferInEncounter, latestTransferOutEncounter) &amp;&amp; appointment &gt;= (new Date(latestTransferOutEncounter.encounterDatetime))) {
                     getField('returndate.error').html('The return date must be before the transfer out date of ' + formatDateForDisplay(transfer_out_date_id)).show();
-                    jq().toastmessage('showErrorToast', "The return date must be before the transfer out date of "+(new Date(latestTransferOutEncounter.encounterDatetime)));
+                    jq().toastmessage('showErrorToast', "The return date must be before the transfer out date of " + (new Date(latestTransferOutEncounter.encounterDatetime)));
                     return false;
                 }
 
@@ -1438,8 +1443,10 @@
                 var formattedDate = changeFieldDateToJavascriptDate(selectedDate);
 
                 <includeIf velocityTest="$fn.globalProperty('ugandaemr.enableMaximumPatientsPerDay').trim() == 'true'">
-                    var appointmentCountURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/appointmentcount?nextAppointmentDate=' + formattedDate.replace(/['"]+/g, '') + '&amp;encounterType=8d5b2be0-c2cc-11de-8d13-0010c6dffd0f';
-                    var maxNumberOfBooked =  jq("#numberOfPatients").html();
+                    var appointmentCountURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH +
+                    '/ws/rest/v1/ugandaemr/appointmentcount?nextAppointmentDate=' + formattedDate.replace(/['"]+/g, '')
+                    + '&amp;encounterType=8d5b2be0-c2cc-11de-8d13-0010c6dffd0f';
+                    var maxNumberOfBooked = jq("#numberOfPatients").html();
 
                     // check when a return visit date has been specified
                     if(getValue('returndate.value')!== "") {
@@ -1496,7 +1503,8 @@
                 </includeIf>
 
                 <restrictByRole exclude="Data Clerk,System Developer,Organizational: System Administrator">
-                    if (!jq("#split-regimen").find(':checkbox').prop('checked') &amp;&amp; getValue('art-regimen.value') != "" &amp;&amp; getValue('no-of-art-pills.value') == "") {
+                    if (!jq("#split-regimen").find(':checkbox').prop('checked') &amp;&amp; getValue('art-regimen.value')
+                    != "" &amp;&amp; getValue('no-of-art-pills.value') == "") {
                     getField('no-of-art-pills.error').html('No of ' + jq("#art-regimen").find(":selected").text() + ' pills required').show();
                     return false;
                 }
@@ -1506,7 +1514,8 @@
                     return false;
                 }
 
-                    if (getValue('vitamin-b6-trigger.value') != "" &amp;&amp; getValue('vitamin-b6-pills.value') == "") {
+                    if (getValue('vitamin-b6-trigger.value') != "" &amp;&amp; getValue('vitamin-b6-pills.value') ==
+                    "") {
                     getField('vitamin-b6-pills.error').html('No. of Vitamin B6 pills required').show();
                     return false;
                 }
@@ -1517,25 +1526,29 @@
                     return false;
                 }
 
-                    if (getValue('fluconazole-trigger.value') != "" &amp;&amp; getValue('fluconazole-pills.value') == "") {
+                    if (getValue('fluconazole-trigger.value') != "" &amp;&amp; getValue('fluconazole-pills.value') ==
+                    "") {
                     getField('fluconazole-pills.error').html('No. of fluconazole pills required').show();
                     return false;
                 }
 
-                    if ((getValue('other-meds-trigger.value') != ""  &amp;&amp; getValue('other-meds-trigger.value') != null) &amp;&amp; getValue('other-meds-quantity.value') == "") {
+                    if ((getValue('other-meds-trigger.value') != ""  &amp;&amp; getValue('other-meds-trigger.value') !=
+                    null) &amp;&amp; getValue('other-meds-quantity.value') == "") {
                     getField('other-meds-quantity.error').html('Quantity of ' + getValue('other-meds-trigger.value') + ' required').show();
                     return false;
                 }
                 </restrictByRole>
 
                 <restrictByRole exclude="HIV Clinic">
-                    if (getValue('order-viral-load-test.value') === "165412" &amp;&amp;  getValue('viral-load-accession-number.value') === ""){
+                    if (getValue('order-viral-load-test.value') ===
+                    "165412" &amp;&amp;  getValue('viral-load-accession-number.value') === ""){
                     getField('viral-load-accession-number.error').html('The Specimen ID/Serial No field can not be empty when ordering for Viral load').show();
                     jq().toastmessage('showErrorToast', "The Specimen ID/Serial No field can not be empty when ordering for Viral load");
                     return false;
                 }
 
-                    if (getValue('order-viral-load-test.value') === "165412" &amp;&amp;  getValue('viral-load-specimen-source.value') === ""){
+                    if (getValue('order-viral-load-test.value') ===
+                    "165412" &amp;&amp;  getValue('viral-load-specimen-source.value') === ""){
                     getField('viral-load-specimen-source.error').html('Select a specimen source when ordering for Viral load').show();
                     jq().toastmessage('showErrorToast', "Select a specimen source when ordering for Viral load");
                     return false;
@@ -1583,7 +1596,7 @@
         }
 
         <!-- only show BMI if patient is more than 5 years old (on the encounterDate) -->
-        <includeIf velocityTest = "$patient.getAge($encounter.getEncounterDatetime()) > 5">
+        <includeIf velocityTest="$patient.getAge($encounter.getEncounterDatetime()) > 5">
 
             var calculateBmi = function (wt, ht) {
             var bmi = null
@@ -1593,7 +1606,7 @@
             return bmi;
         }
 
-            <ifMode mode = "ENTER" >
+            <ifMode mode="ENTER">
 
                 //functions to handle updating the bmi when in ENTER mode
                 var updateBmi = function () {
@@ -1625,7 +1638,7 @@
             jq('#bp_systolic > input').addClass('expected');
             jq('#bp_diastolic > input').addClass('expected');
 
-            <ifMode mode = "VIEW" >
+            <ifMode mode="VIEW">
                 // handle displaying the bmi when in VIEW mode
                 // we have to iterate through in case there are multiple vitals forms
                 // displayed on a single page
@@ -1667,7 +1680,8 @@
                 // Creates a map with the query string parameters
                 while (m = re.exec(queryString)) {
                     queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
-                }''
+                }
+                ''
                 location.href = window.location.protocol + "//" + window.location.host +
                     '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
                     + queryParameters['patientId']; // Causes page to reload
@@ -1773,7 +1787,8 @@
         <lookup
                 complexExpression="#foreach($other_third_line_regimen in $fn.allObs(162989)) $other_first_second_line_regimen.valueText #end"/>
     </span>
-    <span class="hidden" id="numberOfPatients"><lookup expression="fn.globalProperty('ugandaemr.maximumPatientsPerDay')"/></span>
+    <span class="hidden" id="numberOfPatients"><lookup
+            expression="fn.globalProperty('ugandaemr.maximumPatientsPerDay')"/></span>
 
     <div class="hidden">
         <encounterLocation id="location_id" default="SessionAttribute:emrContext.sessionLocationId"/>
@@ -1787,7 +1802,8 @@
                 </div>
                 <div class="col-md-5"></div>
                 <div class="col-md-1 submitButton">
-                    <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.HIVClinicalAssessmentSubmissionAction"/>
+                    <postSubmissionAction
+                            class="org.openmrs.module.ugandaemr.htmlformentry.HIVClinicalAssessmentSubmissionAction"/>
                     <submit class="confirm" submitLabel="Save"/>
                 </div>
             </div>
@@ -1845,12 +1861,14 @@
                                                                 <includeIf velocityTest="$transfer_out=='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true" class="return-date-poc" />
+                                                                         allowFutureDates="true"
+                                                                         class="return-date-poc"/>
                                                                 </includeIf>
                                                                 <includeIf velocityTest="$transfer_out!='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true" class="return-date-poc"/>
+                                                                         allowFutureDates="true"
+                                                                         class="return-date-poc"/>
                                                                 </includeIf>
                                                             </ifMode>
                                                             <ifMode mode="EDIT">
@@ -1861,12 +1879,14 @@
                                                                 <includeIf velocityTest="$transfer_out=='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true" class="return-date-poc"/>
+                                                                         allowFutureDates="true"
+                                                                         class="return-date-poc"/>
                                                                 </includeIf>
                                                                 <includeIf velocityTest="$transfer_out!='YES'">
                                                                     <label>Return date</label>
                                                                     <obs id="returndate" conceptId="5096"
-                                                                         allowFutureDates="true" class="return-date-poc"/>
+                                                                         allowFutureDates="true"
+                                                                         class="return-date-poc"/>
                                                                 </includeIf>
                                                             </ifMode>
                                                         </excludeIf>
@@ -1877,11 +1897,13 @@
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>Attending Clinician</label>
-                                                        <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
-                                                                                  required="required"  id="provider"/>
+                                                        <encounterProviderAndRole
+                                                                encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                                required="required" id="provider"/>
                                                         <span class="required">*</span><span style="display: none;">
-                                                            <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                                                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                                            <encounterLocation
+                                                                    default="629d78e9-93e5-43b0-ad8a-48313fd99117"
+                                                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -1911,6 +1933,8 @@
                                                     <obs conceptId="160288" answerConceptId="90012"     answerLabel="PMTCT" class="col-md-3"/>
                                                     <obs conceptId="160288" answerConceptId="903"  answerLabel="Hypertension/ Diabetes" class="col-md-3"/>
                                                     <obs conceptId="160288" answerConceptId="5484"  answerLabel="Nutrition" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="165315"  answerLabel="Cervical Cancer Screening" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="656"  answerLabel="INH Refill" class="col-md-3"/>
                                                     <obs id="check-other-reason-for-next-appointment" conceptId="160288" answerConceptId="90002"  answerLabel="Other Specify" class="col-md-3"/>
                                                 </div>
                                                 <div class="row">
@@ -2107,7 +2131,8 @@
                                                             <label>Is on Family Planning ?</label>
                                                         </div>
                                                         <div class="col-md-2">
-                                                            <obs id="enable-disable-family-planning-methods" class="horizontal"
+                                                            <obs id="enable-disable-family-planning-methods"
+                                                                 class="horizontal"
                                                                  conceptId="90238"
                                                                  answerConceptIds="90082,90081" answerLabels="Yes,No"
                                                                  style="radio"/>
@@ -2255,7 +2280,7 @@
                                                         </div>
                                                         <div class="col-md-3 duration">
                                                             <label>No. of Days</label>
-                                                            <obs conceptId="159368" id="duration-on-isoniazid" />
+                                                            <obs conceptId="159368" id="duration-on-isoniazid"/>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -2417,7 +2442,8 @@
                                                         <label>WHO Clinical stages</label>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <obs id="who-clinic-stage" class="long-value-select" conceptId="90203"
+                                                        <obs id="who-clinic-stage" class="long-value-select"
+                                                             conceptId="90203"
                                                              answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                                                              answerLabels="1,2,3,4,T1,T2,T3,T4"/>
                                                     </div>
@@ -2465,7 +2491,8 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <br/>
-                                                            <obs id="99413" conceptId="99413" answerConceptIds="1065,1066" labelText="Given:
+                                                            <obs id="99413" conceptId="99413"
+                                                                 answerConceptIds="1065,1066" labelText="Given:
 " class="horizontal" style="radio"/>
                                                         </div>
                                                         <div class="col-md-3">
@@ -2473,10 +2500,11 @@
                                                             <obs id="99413-target" conceptId="1282" class="horizontal"
                                                                  answerConceptSetIds="1157"
                                                                  answerConceptIds="92,90168"
-                                                                 answerLabels="Dapsone,Cotrimoxazole"   style="radio"/>
+                                                                 answerLabels="Dapsone,Cotrimoxazole" style="radio"/>
                                                         </div>
                                                         <div class="col-md-3">
-                                                            <obs labelText="Number of Pills" id="160856" conceptId="160856"/>
+                                                            <obs labelText="Number of Pills" id="160856"
+                                                                 conceptId="160856"/>
                                                         </div>
 
                                                         <div class="col-md-4 duration">
@@ -2531,25 +2559,34 @@
                                                             <obsgroup groupingConceptId="160741">
                                                                 <div class="row multi-drug" id="{id}-toggleContainer">
                                                                     <div class="col-2">
-                                                                        <obs labelText="Drugs"  id="{id}-drug" conceptId="1282" answerClasses="Drug" style="autocomplete" class="fullwidth"/>
+                                                                        <obs labelText="Drugs" id="{id}-drug"
+                                                                             conceptId="1282" answerClasses="Drug"
+                                                                             style="autocomplete" class="fullwidth"/>
                                                                     </div>
                                                                     <div class="col-2">
                                                                         <obs labelText="Quantity" conceptId="160856"/>
                                                                     </div>
                                                                     <div class="col-2">
-                                                                        <obs labelText="Qty unit" conceptId="165791" answerConceptSetIds="162402,162384"/>
+                                                                        <obs labelText="Qty unit" conceptId="165791"
+                                                                             answerConceptSetIds="162402,162384"/>
                                                                     </div>
                                                                     <div class="col-2 duration">
                                                                         <label>Duration</label>
                                                                         <obs conceptId="159368"/>
                                                                     </div>
                                                                     <div class="col-2">
-                                                                        <obs conceptId="1732" labelText="Duration unit"/>
+                                                                        <obs conceptId="1732"
+                                                                             labelText="Duration unit"/>
                                                                     </div>
                                                                     <div class="col-2">
                                                                         <div class="add-entry">
-                                                                            <a href="#" id="{id}-addEntry" class="addEntry add-more-link"><i class="icon-plus-sign"></i></a>
-                                                                            <a href="#" class="removeEntry remove-more-link" id="{id}-removeEntry"><i class="icon-minus"></i></a>
+                                                                            <a href="#" id="{id}-addEntry"
+                                                                               class="addEntry add-more-link"><i
+                                                                                    class="icon-plus-sign"></i></a>
+                                                                            <a href="#"
+                                                                               class="removeEntry remove-more-link"
+                                                                               id="{id}-removeEntry"><i
+                                                                                    class="icon-minus"></i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2578,27 +2615,36 @@
                                                     <repeat>
                                                         <template>
                                                             <obsgroup groupingConceptId="165874">
-                                                                <div class="row multi-drug-other" id="{id}-toggleContainer-other">
+                                                                <div class="row multi-drug-other"
+                                                                     id="{id}-toggleContainer-other">
                                                                     <div class="col-2">
-                                                                        <obs labelText="Drug" id="{id}-drugother" conceptId="99035" class="fullwidth"/>
+                                                                        <obs labelText="Drug" id="{id}-drugother"
+                                                                             conceptId="99035" class="fullwidth"/>
                                                                     </div>
                                                                     <div class="col-2">
                                                                         <obs labelText="Quantity" conceptId="160856"/>
                                                                     </div>
                                                                     <div class="col-2">
-                                                                        <obs labelText="Qty unit" conceptId="165791" answerConceptSetIds="162384,162402"/>
+                                                                        <obs labelText="Qty unit" conceptId="165791"
+                                                                             answerConceptSetIds="162384,162402"/>
                                                                     </div>
                                                                     <div class="col-2 duration">
                                                                         <label>Duration</label>
                                                                         <obs conceptId="159368"/>
                                                                     </div>
                                                                     <div class="col-2">
-                                                                        <obs conceptId="1732" labelText="Duration unit"/>
+                                                                        <obs conceptId="1732"
+                                                                             labelText="Duration unit"/>
                                                                     </div>
                                                                     <div class="col-2">
                                                                         <div class="add-entry">
-                                                                            <a href="#" id="{id}-addEntry-other" class="addEntry-other add-more-link"><i class="icon-plus-sign"></i></a>
-                                                                            <a href="#" class="removeEntry-other remove-more-link" id="{id}-removeEntry-other"><i class="icon-minus"></i></a>
+                                                                            <a href="#" id="{id}-addEntry-other"
+                                                                               class="addEntry-other add-more-link"><i
+                                                                                    class="icon-plus-sign"></i></a>
+                                                                            <a href="#"
+                                                                               class="removeEntry-other remove-more-link"
+                                                                               id="{id}-removeEntry-other"><i
+                                                                                    class="icon-minus"></i></a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -2740,7 +2786,7 @@
                                                                     <label>Crag Results</label>
                                                                     <obs conceptId="165290"
                                                                          answerConceptIds="703,664,1118,1175"
-                                                                         answerLabels="Positive, Negative, Not Done, Not Applicable" />
+                                                                         answerLabels="Positive, Negative, Not Done, Not Applicable"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -2757,7 +2803,7 @@
                                                                     <label>RPR Results</label>
                                                                     <obs conceptId="165289"
                                                                          answerConceptIds="1228,1229,1118,1175"
-                                                                         answerLabels="Reactive, Non-reactive, Not Done, Not Applicable" />
+                                                                         answerLabels="Reactive, Non-reactive, Not Done, Not Applicable"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -2774,7 +2820,7 @@
                                                                     <label>TB LAM Results</label>
                                                                     <obs conceptId="165291"
                                                                          answerConceptIds="703,664,1118,1175"
-                                                                         answerLabels="Positive, Negative, Not Done, Not Applicable" />
+                                                                         answerLabels="Positive, Negative, Not Done, Not Applicable"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -2792,7 +2838,7 @@
                                                                     <label>Gene xpert results</label>
                                                                     <obs conceptId="162202"
                                                                          answerConceptIds="703,664,1118"
-                                                                         answerLabels="Positive, Negative, Not Done" />
+                                                                         answerLabels="Positive, Negative, Not Done"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -2809,7 +2855,7 @@
                                                                     <label>Microscopy Results</label>
                                                                     <obs id="" conceptId="165414"
                                                                          answerConceptIds="703,664"
-                                                                         answerLabels="Positive, Negative" />
+                                                                         answerLabels="Positive, Negative"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -2847,18 +2893,22 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-12">
-                                                                <obs  id="order-viral-load-test" conceptId="1271" answerConceptId="165412" answerLabel="Order Viral Load Test"/>
+                                                                <obs id="order-viral-load-test" conceptId="1271"
+                                                                     answerConceptId="165412"
+                                                                     answerLabel="Order Viral Load Test"/>
                                                             </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <label>Specimen ID/Accession Number</label>
-                                                                <obs id="viral-load-accession-number" conceptId="165845"/>
+                                                                <obs id="viral-load-accession-number"
+                                                                     conceptId="165845"/>
                                                             </div>
 
                                                             <div class="col-md-6">
                                                                 <label>Specimen Source</label>
-                                                                <obs id="viral-load-specimen-source" conceptId="162476" answerConceptSetIds="162476"/>
+                                                                <obs id="viral-load-specimen-source" conceptId="162476"
+                                                                     answerConceptSetIds="162476"/>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2873,17 +2923,25 @@
                                                             <repeat>
                                                                 <template>
                                                                     <obsgroup groupingConceptId="165877">
-                                                                        <div class="row multi-test" id="{id}-toggleContainer3">
+                                                                        <div class="row multi-test"
+                                                                             id="{id}-toggleContainer3">
                                                                             <div class="col-md-3">
-                                                                                <obs labelText="Test Name" conceptId="165875"/>
+                                                                                <obs labelText="Test Name"
+                                                                                     conceptId="165875"/>
                                                                             </div>
                                                                             <div class="col-md-3">
-                                                                                <obs labelText="Results" conceptId="165876"/>
+                                                                                <obs labelText="Results"
+                                                                                     conceptId="165876"/>
                                                                             </div>
                                                                             <div class="col-md-3">
                                                                                 <div class="add-entry3">
-                                                                                    <a href="#" id="{id}-addEntry3" class="addEntry3 add-more-link"><i class="icon-plus-sign"></i></a>
-                                                                                    <a href="#" class="removeEntry3 remove-more-link" id="{id}-removeEntry3"><i class="icon-minus"></i></a>
+                                                                                    <a href="#" id="{id}-addEntry3"
+                                                                                       class="addEntry3 add-more-link"><i
+                                                                                            class="icon-plus-sign"></i></a>
+                                                                                    <a href="#"
+                                                                                       class="removeEntry3 remove-more-link"
+                                                                                       id="{id}-removeEntry3"><i
+                                                                                            class="icon-minus"></i></a>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -2925,11 +2983,11 @@
                                                              class="horizontal"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <label>Treatment Care Approach(DSDM)</label>
+                                                        <label>Approach</label>
                                                         <obs id="165143" conceptId="165143"
                                                              answerConceptIds="165138,165140,165139,165142,165141"
                                                              answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
-                                                             class="long-value-select"/>
+                                                             class="long-value-select" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -2951,12 +3009,14 @@
                                                 <div class="row">
                                                     <div class="col-md-3" id="cddp_category">
                                                         <label>CDDP Category</label>
-                                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                                        <workflowState workflowId="4" stateIds="16,14,15"
+                                                                       stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>DSD Group Refill Point</label>
                                                         <div class="form-group">
-                                                            <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
+                                                            <select class="form-control" id="refill_point_select_id"
+                                                                    name="refill_point_select_id">
                                                                 <option value="">Select Refill Point</option>
                                                             </select>
                                                         </div>
@@ -2966,7 +3026,8 @@
                                                              labelText="DSD Group Code"/>
                                                     </div>
                                                     <div class="col-md-3">
-                                                        <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
+                                                        <obs id="next facility visit date" conceptId="166560"
+                                                             allowFutureDates="true"
                                                              labelText="Facility Return Date"/>
                                                     </div>
                                                 </div>
@@ -2979,14 +3040,18 @@
                                                 <obsgroup groupingConceptId="99166">
                                                     <div class="row">
                                                         <div class="col-md-4" id="final-out-come">
-                                                            <obs id="transfer_out" conceptId="90306" answerConceptId="90003"
-                                                                 answerLabel="Transfer out" class="transfer_out" />
+                                                            <obs id="transfer_out" conceptId="90306"
+                                                                 answerConceptId="90003"
+                                                                 answerLabel="Transfer out" class="transfer_out"/>
                                                         </div>
                                                         <div class="col-md-4" id="disabled">
-                                                            <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer" class="transfer_out_date"/>
+                                                            <obs id="transfer_out_date" conceptId="99165"
+                                                                 labelText="Date of Transfer"
+                                                                 class="transfer_out_date"/>
                                                         </div>
                                                         <div class="col-md-4" id="disabled">
-                                                            <obs id="transfer_out_location" conceptId="90211" labelText="Where" class="transfer_out_location"/>
+                                                            <obs id="transfer_out_location" conceptId="90211"
+                                                                 labelText="Where" class="transfer_out_location"/>
                                                         </div>
                                                     </div>
                                                 </obsgroup>
@@ -3009,23 +3074,30 @@
                     <div class="col-md-2">
 
                         <div class="card">
-                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                <a class="nav-link nav-link-1 links active active-1" id="clinical-encounter-menu-poc" href="#encounter-card-poc" data-toggle="pill"
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                                 aria-orientation="vertical">
+                                <a class="nav-link nav-link-1 links active active-1" id="clinical-encounter-menu-poc"
+                                   href="#encounter-card-poc" data-toggle="pill"
                                    role="tab" aria-selected="true">Clinical Encounter
                                 </a>
-                                <a class="nav-link links nav-link-1" id="investigations-menu-poc" href="#investigation-reports-poc" data-toggle="pill"
+                                <a class="nav-link links nav-link-1" id="investigations-menu-poc"
+                                   href="#investigation-reports-poc" data-toggle="pill"
                                    role="tab" aria-selected="false">Investigation Reports
                                 </a>
-                                <a class="nav-link links nav-link-1" id="diagnosis-menu-poc" href="#diagnosis-poc" data-toggle="pill"
+                                <a class="nav-link links nav-link-1" id="diagnosis-menu-poc" href="#diagnosis-poc"
+                                   data-toggle="pill"
                                    role="tab" aria-selected="false">Diagnosis
                                 </a>
-                                <a class="nav-link links nav-link-1" id="medication-menu-poc" href="#medication-poc" data-toggle="pill"
+                                <a class="nav-link links nav-link-1" id="medication-menu-poc" href="#medication-poc"
+                                   data-toggle="pill"
                                    role="tab" aria-selected="false">Medication
                                 </a>
-                                <a class="nav-link links nav-link-1" id="dsdm-menu-poc" href="#programing-dsdm-poc" data-toggle="pill"
+                                <a class="nav-link links nav-link-1" id="dsdm-menu-poc" href="#programing-dsdm-poc"
+                                   data-toggle="pill"
                                    role="tab" aria-selected="false">Programming ie DSDM
                                 </a>
-                                <a class="nav-link links nav-link-1" id="course-of-action-menu-poc" href="#next-course-of-action" data-toggle="pill"
+                                <a class="nav-link links nav-link-1" id="course-of-action-menu-poc"
+                                   href="#next-course-of-action" data-toggle="pill"
                                    role="tab" aria-selected="false">Next Course of Action
                                 </a>
                             </div>
@@ -3072,17 +3144,18 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" data-toggle="tab" href="#nav-investigations">Investigations</a>
+                                        <a class="nav-link" data-toggle="tab"
+                                           href="#nav-investigations">Investigations</a>
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="card-body">
                                 <div class="tab-content">
-                                    <div class="tab-pane fade show active" id="patient-vitals" >
+                                    <div class="tab-pane fade show active" id="patient-vitals">
                                         <uiInclude provider="ugandaemr" fragment="vitals"/>
                                     </div>
-                                    <div class="tab-pane fade" id="nav-family-planning" role="tabpanel" >
+                                    <div class="tab-pane fade" id="nav-family-planning" role="tabPanel">
 
                                         <div class="row">
                                             <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
@@ -3177,7 +3250,8 @@
                                                                     <label>Family Planning Status</label>
                                                                 </div>
                                                                 <div class="col-md-7">
-                                                                    <obs id="enable-disable-family-planning-methods" class="horizontal"
+                                                                    <obs id="enable-disable-family-planning-methods"
+                                                                         class="horizontal"
                                                                          conceptId="90238"
                                                                          answerConceptIds="90082,90081"
                                                                          answerLabels="Yes,No"
@@ -3225,10 +3299,12 @@
                                                             <div>
                                                                 <div class="row">
                                                                     <div class="col-md-9">
-                                                                        <label>Intention to conceive in the next three months</label>
+                                                                        <label>Intention to conceive in the next three
+                                                                            months</label>
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <obs conceptId="165316" answerConceptIds="1065,1066"
+                                                                        <obs conceptId="165316"
+                                                                             answerConceptIds="1065,1066"
                                                                              answerLabels="Yes,No" style="radio"
                                                                              class="horizontal"/>
                                                                     </div>
@@ -3265,12 +3341,14 @@
                                                                      answerLabel="{1}" style="checkbox"/>
                                                             </repeat>
                                                             <span id="trigger">
-                                                                <obs id="enable-disable-signs-and-symptoms" conceptId="90251"
+                                                                <obs id="enable-disable-signs-and-symptoms"
+                                                                     conceptId="90251"
                                                                      answerConceptId="90002"
                                                                      answerLabel="Other specify"/>
                                                             </span>
                                                             <span id="disabled">
-                                                                <obs id="signs-and-symptoms-enabled" conceptId="99032" size="17" />
+                                                                <obs id="signs-and-symptoms-enabled" conceptId="99032"
+                                                                     size="17"/>
                                                             </span>
                                                         </span>
                                                         </div>
@@ -3302,7 +3380,8 @@
                                                                         <label>Hep B Status</label>
                                                                     </div>
                                                                     <div class="col-md-8">
-                                                                        <obs conceptId="1322" answerConceptIds="159971,90001"
+                                                                        <obs conceptId="1322"
+                                                                             answerConceptIds="159971,90001"
                                                                              answerLabels="T - Tested, NT - Not Tested"
                                                                              style="radio"
                                                                              class="hepB-status horizontal"/>
@@ -3351,7 +3430,8 @@
                                                                     <div class="col-md-6">
                                                                         <obs conceptId="165272"
                                                                              answerConceptIds="165309, 165266, 165267, 165268, 165269, 165270, 165271"
-                                                                             answerLabels="1 - No Adv. Disease, 2 - Suspected Adv. Disease, 3a - Confirmed Adv. Disease CD4 &lt; 200, 3b - Confirmed Adv. Disease - Pos CrAg, 3c - Confirmed Adv. Disease - Pos TB, 3d - Confirmed Adv. Disease - WHO Stage 3/4, 3e - Confirmed Adv. Disease - Child &lt; 5 Yrs" class="long-value-select"/>
+                                                                             answerLabels="1 - No Adv. Disease, 2 - Suspected Adv. Disease, 3a - Confirmed Adv. Disease CD4 &lt; 200, 3b - Confirmed Adv. Disease - Pos CrAg, 3c - Confirmed Adv. Disease - Pos TB, 3d - Confirmed Adv. Disease - WHO Stage 3/4, 3e - Confirmed Adv. Disease - Child &lt; 5 Yrs"
+                                                                             class="long-value-select"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -3380,10 +3460,9 @@
                                                                         <label>TB Status</label>
                                                                     </div>
                                                                     <div class="col-md-7">
-                                                                        <obs id="tb-status" class="long-value-select"
-                                                                             conceptId="90216"
-                                                                             answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071"
-                                                                             answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx"/>
+                                                                        <obs id="tb-status" class="long-value-select" conceptId="90216"
+                                                                             answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071,99421"
+                                                                             answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx - Currently on TB treatment, 5 - Completed TB Treatment"/>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -3468,46 +3547,51 @@
                                     </div>
                                     <div class="tab-pane fade" id="nav-investigations">
                                         <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                        <label>Laboratory Tests</label>
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <div class="row investigations">
-                                                        <span class="lablex2">
-                                                            <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT']">
-                                                                <obs id="{0}" conceptId="1271" answerConceptId="{0}"
-                                                                     answerLabel="{1}" style="checkbox"/>
-                                                            </repeat>
-                                                        </span>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-12">
                                                 <div class="card">
                                                     <div class="card-header">
                                                         <label>Radiology</label>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="investigations">
-                                                            <repeat with="['12','CXR']">
-                                                                <obs id="{0}" conceptId="1271" answerConceptId="{0}"
-                                                                     answerLabel="{1}" style="checkbox"/>
+                                                        <div class="investigations row">
+                                                            <repeat with="['12','X-RAY CHEST'],['101','X-RAY ABDOMEN'],['309','X-RAY OTHER'],['377','X-RAY ARM'],['380','X-RAY LEG'],['382','X-RAY HAND'],['384','X-RAY FOOT'],['386','X-RAY SKULL'],['390','X-RAY SPINE'],['392','X-RAY PELVIS'],['394','X-RAY SHOULDER'],['845','ULTRASOUND ABDOMEN'],['852','ULTRASOUND HEPATIC'],['846','CT SCAN HEAD']">
+                                                                <div class="col-3">
+                                                                    <obs id="{0}" conceptId="1271" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                </div>
                                                             </repeat>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-12">
                                                 <div class="card">
                                                     <div class="card-header">
-                                                        <label>Theater</label>
+                                                        <label>Laboratory</label>
                                                     </div>
                                                     <div class="card-body">
-                                                        <div class="investigations">
+                                                        <div class="row investigations">
+                                                            <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT']">
+                                                                <div class="col-2">
+                                                                    <obs id="{0}" conceptId="1271" answerConceptId="{0}"
+                                                                         answerLabel="{1}" style="checkbox"/>
+                                                                </div>
+                                                            </repeat>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row investigations">
+                                                                    <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT'],['647','FULL HEMOGRAM'],['652','LFTS'],['953','LIVER FUNCTION TESTS'],['1010','LIPID Panel'],['1026','DIFFERENTIAL'],['5473','SERUM ELECTROLYTES'],['99145','BASELINE CD4 PERCENTAGE'],['159645','CSF Examination'],['159981','TB Culture Construct'],['161152','Prothrombin Time (with INR)'],['161199','Cytology'],['161422','HBG With Electrophoresis'],['161424','RBC Morphology Test'],['161425','Sedimentation Test'],['161426','Malarial Parasites Smear'],['161428','Microfilaria Test'],['161429','Hemoglobin Only'],['161430','Routine Blood Panel'],['161431','Sickling Test Only'],['161432','Absolute Eosinophil Count Test'],['161434','Bleeding Time Test'],['161436','Clotting Time Test'],['161437','Anemia Panel'],['161446','Routine Urine'],['161451','Stool Test'],['161458','Vaginal Fluid Examination'],['161461','Ziehl-Neelsen Stain Test'],['161463','Skin Fungal Test'],['161464','Skin Mycobacterial Test'],['161468','Semen Analysis Test'],['161473','Blood Grouping Test'],['161474','Hepatitis C Serological Test'],['161475','Hepatitis B Serological Test'],['161476','Syphilis serological Panel'],['161477','Typhoid serological Test'],['161478','Anti-Streptolysin O Test'],['161479','Rheumatoid Factor Test'],['161480','HIV Serological Test'],['161483','Serum Chemistry Panel'],['161486','Culture Panel'],['161487','Diabetes Panel'],['161488','Renal Function Panel'],['161491','FSH Panel'],['161492','Leutinizing Hormone Panel'],['161493','Alpha Fetoprotein Test'],['161495','ANA'],['161496','Bone Marrow Test'],['161497','Cancer Marker Panel'],['161498','CPK Measurement'],['161499','Coombs Test'],['161501','C-reactive Protein Test'],['161506','Thyroid Panel'],['161508','Ceruloplasmin Test'],['161509','Serum HCG'],['161510','Carcinoembryonic Antigen'],['161512','Serum Iron Profile'],['161514','G6PD'],['161515','Lipase Test'],['161517','Prolactin Test'],['161518','Cardiac Enzyme Test'],['161520','PSA Test'],['161532','TORCH Panel'],['161533','TORCHS Panel'],['162630','Basic Metabolic Panel'],['163436','Coagulation Profile'],['163602','Arterial Blood Gas Panel'],['163625','Toxoplasma Panel'],['163628','VTC Panel'],['163631','Tuberculin skin test Panel'],['163652','Urethral fluid examination Panel'],['163679','Bacterial culture Panel'],['163697','Urine microscopy Panel'],['163700','CBC (auto)'],['163701','CBC With Manual Differential'],['163702','Clotting Panel'],['163708','GTT  (75g)'],['165419','Malaria Test'],['165824','HIVDR'],['166284','Covid test type'],['166405','Blood gas done'],['166429','ALT/SGOT'],['167178','PPG'],['163342','HIV p24 antigen'],['163610','HIV drug-resistance'],['163722','Rapid test for HIV'],['167441','HIV PCR, DBS']">
+                                                                        <div class="col-3">
+                                                                            <obs id="{0}" conceptId="1271"
+                                                                                 answerConceptId="{0}"
+                                                                                 answerLabel="{1}" style="checkbox"/>
+                                                                        </div>
+                                                                    </repeat>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -3644,13 +3728,15 @@
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Viral Load Results</label>
-                                                                    <obs id="viral-load-results-qualitative" conceptId="1305"
+                                                                    <obs id="viral-load-results-qualitative"
+                                                                         conceptId="1305"
                                                                          answerConceptIds="1301,1306,1304"
                                                                          answerLabels="Detected,Not Detected, Sample Rejected"/>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Viral Load (copies/ml)</label>
-                                                                    <obs id="viral-load-results-copies" conceptId="856"/>
+                                                                    <obs id="viral-load-results-copies"
+                                                                         conceptId="856"/>
                                                                 </div>
                                                                 <div class="col-md-3">
                                                                     <label>Viral Load Status</label>
@@ -3772,7 +3858,8 @@
                                                         </div>
                                                         <div class="col-md-3" id="drug_strength_art_select">
                                                             <label>Strength | Stock Qty</label>
-                                                            <select class="form-control" name="drug_strength_art_select">
+                                                            <select class="form-control"
+                                                                    name="drug_strength_art_select">
                                                                 <option value="">Select Strength</option>
                                                             </select>
                                                         </div>
@@ -3809,7 +3896,8 @@
                                                                              class="fullwidth arv-split"/>
                                                                     </div>
 
-                                                                    <div class="col-md-3 arv_split-strength" id="{id}_arv_split_strength_select">
+                                                                    <div class="col-md-3 arv_split-strength"
+                                                                         id="{id}_arv_split_strength_select">
                                                                         <label>Strength | Stock Qty</label>
                                                                         <select class="form-control"
                                                                                 name="{id}_arv_split_drug_strength_select">
@@ -3831,7 +3919,8 @@
                                                                     </div>
 
                                                                     <div class="col-md-2">
-                                                                        <obs labelText="No. of Pills" conceptId="160856"/>
+                                                                        <obs labelText="No. of Pills"
+                                                                             conceptId="160856"/>
                                                                     </div>
 
                                                                     <div class="col-md-2 duration">
@@ -3881,7 +3970,7 @@
                                                                  answerConceptIds="656" answerLabels="Isoniazid"/>
                                                         </div>
 
-                                                        <div class="col-md-3"  id="drug_strength_isoniazid_select">
+                                                        <div class="col-md-3" id="drug_strength_isoniazid_select">
                                                             <label>Strength | Stock Qty</label>
                                                             <select class="form-control"
                                                                     name="drug_strength_isoniazid_select">
@@ -3960,7 +4049,8 @@
                                                     <div class="row">
                                                         <div class="col-md-3">
                                                             <br/>
-                                                            <obs id="99413" conceptId="99413" class="horizontal" answerConceptIds="1065,1066" labelText="Given:
+                                                            <obs id="99413" conceptId="99413" class="horizontal"
+                                                                 answerConceptIds="1065,1066" labelText="Given:
 " style="radio"/>
                                                         </div>
                                                         <div class="col-md-6">
@@ -4074,7 +4164,8 @@
                                                                              answerClasses="Drug" style="autocomplete"
                                                                              class="fullwidth drug-other"/>
                                                                     </div>
-                                                                    <div class="col-md-3 drug_strength"  id="drug_strength_select_{id}">
+                                                                    <div class="col-md-3 drug_strength"
+                                                                         id="drug_strength_select_{id}">
                                                                         <label>Strength | Stock Qty</label>
                                                                         <select class="form-control"
                                                                                 name="drug_strength_select_{id}"
@@ -4146,70 +4237,75 @@
 
                         <div class="card" id="programing-dsdm-poc">
 
-                        <div class="card-header">
-                            <label>DSDM</label>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <label>Patient categorisation</label>
-                                    <obs id="patient-categorization" conceptId="165144" answerConceptIds="90003,90004"
-                                         answerLabels="S - Stable, US - Unstable" class="horizontal long-value-select"/>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <obs id="165143" conceptId="165143"
-                                             answerConceptIds="165138,165140,165139,165142,165141"
-                                             answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
-                                             labelText="Approach" class="horizontal long-value-select"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <obs id="duration-on-art" conceptId="99024"
-                                         labelText="Duration (Months since baseline)"/>
-                                </div>
+                            <div class="card-header">
+                                <label>DSDM</label>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <obs id="duration-on-current-regimen" conceptId="99025"
-                                         labelText="Duration (Months on current regimen)"/>
-                                </div>
-                                <div class="col-md-8">
-                                    <label>Visit Type</label>
-                                    <obs conceptId="160288" answerConceptIds="164969,165284"
-                                         answerLabels="R - Drug Refill ONLY, C - Clinical Assessment/Drug refill and/or Tests/Investigations"
-                                         style="radio" class="horizontal"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="cddp_categorization" class="card">
-                            <div class="card-header">Drug Pick Up Model</div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-3" id="cddp_category">
-                                        <label>CDDP Category</label>
-                                        <workflowState  workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                    <div class="col-md-4">
+                                        <label>Patient categorisation</label>
+                                        <obs id="patient-categorization" conceptId="165144"
+                                             answerConceptIds="90003,90004"
+                                             answerLabels="S - Stable, US - Unstable"
+                                             class="horizontal long-value-select"/>
                                     </div>
-                                    <div class="col-md-3">
-                                        <label>DSD Group Refill Point</label>
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <select class="form-control" id="refill_point_select_id" name="refill_point_select_id">
-                                                <option value="">Select Refill Point</option>
-                                            </select>
+                                            <obs id="165143" conceptId="165143"
+                                                 answerConceptIds="165138,165140,165139,165142,165141"
+                                                 answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
+                                                 labelText="Approach" class="horizontal long-value-select"/>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <obs id="refill_point_id" conceptId="166500"
-                                             labelText="DSD Group Code"/>
+                                    <div class="col-md-4">
+                                        <obs id="duration-on-art" conceptId="99024"
+                                             labelText="Duration (Months since baseline)"/>
                                     </div>
-                                    <div class="col-md-3">
-                                        <obs id="next facility visit date" conceptId="166560" allowFutureDates="true"
-                                             labelText="Facility Return Date"/>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <obs id="duration-on-current-regimen" conceptId="99025"
+                                             labelText="Duration (Months on current regimen)"/>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <label>Visit Type</label>
+                                        <obs conceptId="160288" answerConceptIds="164969,165284"
+                                             answerLabels="R - Drug Refill ONLY, C - Clinical Assessment/Drug refill and/or Tests/Investigations"
+                                             style="radio" class="horizontal"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="cddp_categorization" class="card">
+                                <div class="card-header">Drug Pick Up Model</div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3" id="cddp_category">
+                                            <label>CDDP Category</label>
+                                            <workflowState workflowId="4" stateIds="16,14,15"
+                                                           stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>DSD Group Refill Point</label>
+                                            <div class="form-group">
+                                                <select class="form-control" id="refill_point_select_id"
+                                                        name="refill_point_select_id">
+                                                    <option value="">Select Refill Point</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs id="refill_point_id" conceptId="166500"
+                                                 labelText="DSD Group Code"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs id="next facility visit date" conceptId="166560"
+                                                 allowFutureDates="true"
+                                                 labelText="Facility Return Date"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
                         <div class="card" id="next-course-of-action">
                             <div class="card-header">
@@ -4223,21 +4319,37 @@
                                                 Reasons for next appointment
                                             </div>
                                             <div class="card-body">
-                                                <div class="row reason-for-next-appointment" >
-                                                    <obs conceptId="160288" answerConceptId="164968"   answerLabel="ART Initiation" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="164972"   answerLabel="ART Refill" class="col-md-3" />
-                                                    <obs conceptId="160288" answerConceptId="164970"   answerLabel="ART Regimen Switch/ Substitution" class="col-md-3" />
-                                                    <obs conceptId="160288" answerConceptId="856"   answerLabel="Viral Load" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="5497"   answerLabel="CD4" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="163153"  answerLabel="IAC" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="164971"     answerLabel="T.B Drug Refill" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="164973"  answerLabel="T.B Follow up" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="99324"  answerLabel="ANC" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="164974"  answerLabel="EID" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="90012"     answerLabel="PMTCT" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="903"  answerLabel="Hypertension/ Diabetes" class="col-md-3"/>
-                                                    <obs conceptId="160288" answerConceptId="5484"  answerLabel="Nutrition" class="col-md-3"/>
-                                                    <obs id="check-other-reason-for-next-appointment" conceptId="160288" answerConceptId="90002"  answerLabel="Other Specify" class="col-md-3"/>
+                                                <div class="row reason-for-next-appointment">
+                                                    <obs conceptId="160288" answerConceptId="164968"
+                                                         answerLabel="ART Initiation" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164972"
+                                                         answerLabel="ART Refill" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164970"
+                                                         answerLabel="ART Regimen Switch/ Substitution"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="856"
+                                                         answerLabel="Viral Load" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="5497" answerLabel="CD4"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="163153" answerLabel="IAC"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164971"
+                                                         answerLabel="T.B Drug Refill" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164973"
+                                                         answerLabel="T.B Follow up" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="99324" answerLabel="ANC"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="164974" answerLabel="EID"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="90012" answerLabel="PMTCT"
+                                                         class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="903"
+                                                         answerLabel="Hypertension/ Diabetes" class="col-md-3"/>
+                                                    <obs conceptId="160288" answerConceptId="5484"
+                                                         answerLabel="Nutrition" class="col-md-3"/>
+                                                    <obs id="check-other-reason-for-next-appointment" conceptId="160288"
+                                                         answerConceptId="90002" answerLabel="Other Specify"
+                                                         class="col-md-3"/>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-4">
@@ -4256,35 +4368,38 @@
                                                 <lookup
                                                         complexExpression="#set($transfer_out_date=($fn.latestObs('99165').valueDatetime)) #set($lost_to_follow_date=$fn.latestObs('99165').valueDatetime) #set($transfer_out=$fn.latestObs('90306').valueCoded.name) $transfer_out_date"/>
                                             </span>
-                                            <includeIf velocityTest="$transfer_out=='YES'">
-                                                <label>Return date</label>
+                                                <includeIf velocityTest="$transfer_out=='YES'">
+                                                    <label>Return date</label>
                                                     <obs class="return-date-poc" id="returndate" conceptId="5096"
-                                                     allowFutureDates="true"/>
-                                            </includeIf>
+                                                         allowFutureDates="true"/>
+                                                </includeIf>
 
-                                            <includeIf velocityTest="$transfer_out!='YES'">
-                                                <label>Return date</label>
-                                                    <obs class="return-date-poc" id="returndate" conceptId="5096" allowFutureDates="true"/>
-                                            </includeIf>
-                                        </excludeIf>
+                                                <includeIf velocityTest="$transfer_out!='YES'">
+                                                    <label>Return date</label>
+                                                    <obs class="return-date-poc" id="returndate" conceptId="5096"
+                                                         allowFutureDates="true"/>
+                                                </includeIf>
+                                            </excludeIf>
+                                        </div>
                                     </div>
+                                    <obsgroup groupingConceptId="99166">
+                                        <div class="row">
+                                            <div class="col-md-4" id="final-out-come">
+                                                <obs id="transfer_out" conceptId="90306" answerConceptId="90003"
+                                                     answerLabel="Transfer out" class="transfer_out"/>
+                                            </div>
+                                            <div class="col-md-4" id="disabled">
+                                                <obs id="transfer_out_date" conceptId="99165"
+                                                     labelText="Date of Transfer" class="transfer_date"/>
+                                            </div>
+                                            <div class="col-md-4" id="disabled">
+                                                <obs id="transfer_out_location" conceptId="90211" labelText="Where"
+                                                     class="transfer_out_location"/>
+                                            </div>
+                                        </div>
+                                    </obsgroup>
                                 </div>
-                                <obsgroup groupingConceptId="99166">
-                                    <div class="row">
-                                        <div class="col-md-4" id="final-out-come">
-                                            <obs id="transfer_out" conceptId="90306" answerConceptId="90003"
-                                                 answerLabel="Transfer out" class="transfer_out"/>
-                                        </div>
-                                        <div class="col-md-4" id="disabled">
-                                            <obs id="transfer_out_date" conceptId="99165" labelText="Date of Transfer" class="transfer_date"/>
-                                        </div>
-                                        <div class="col-md-4" id="disabled">
-                                            <obs id="transfer_out_location" conceptId="90211" labelText="Where" class="transfer_out_location"/>
-                                        </div>
-                                    </div>
-                                </obsgroup>
                             </div>
-                        </div>
 
                         </div>
                     </div>
