@@ -98,7 +98,7 @@ public class PatientSummaryFragmentController {
 		    model.addAttribute("viralloadresult", "");
 	    } else {
 		    model.addAttribute("viralloadresult", "Not Detected");
-	    	if (latestViralLoadResult.getValueCoded().getId() == 1306) {
+	    	if (latestViralLoadResult.getValueCoded()!=null && latestViralLoadResult.getValueCoded().getId() == 1306) {
 			    model.addAttribute("viralloadresult", "Not Detected");
 		    } else {
 			    if (latestViralLoadValue == null) {

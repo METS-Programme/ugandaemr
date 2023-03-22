@@ -225,7 +225,8 @@ public class Locations {
 
 			return Arrays.asList(
 					LocationTags.LOGIN_LOCATION,
-					LocationTags.VISIT_LOCATION
+					LocationTags.VISIT_LOCATION,
+					LocationTags.MAIN_PHARMACY
 			);
 
 		}

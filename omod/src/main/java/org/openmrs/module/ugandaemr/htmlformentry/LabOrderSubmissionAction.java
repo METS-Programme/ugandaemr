@@ -8,7 +8,7 @@ import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 
 /**
- * Enrolls patients into DSDM programs
+ * Ordering for Lab Tests
  */
 public class LabOrderSubmissionAction implements CustomFormSubmissionAction {
 
@@ -19,10 +19,6 @@ public class LabOrderSubmissionAction implements CustomFormSubmissionAction {
 		Mode mode = session.getContext().getMode();
 		if (!(mode.equals(Mode.ENTER) || mode.equals(Mode.EDIT))) {
 			return;
-		}
-
-		if (mode.equals(Mode.EDIT)) {
-
 		}
 		ugandaEMRService.processLabTestOrdersFromEncounterObs(session, true);
 	}
