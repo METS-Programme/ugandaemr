@@ -98,7 +98,7 @@
 <!--                            General CDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('General CDDP Group Name');
                         jq("#refill_point_select_id").attr("disabled", false);
-                        getCohortCategorizations("41e414f7-7cd9-4918-9b56-de626941e5c7");
+                        getCohortCategorizations("da964ff0-648e-440b-a219-d2aeba3670d0");
                     }else {
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('DSD Refill Group');
                         jq("#refill_point_select_id").attr("disabled", true);
