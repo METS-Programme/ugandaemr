@@ -13,16 +13,24 @@
  */
 package org.openmrs.module.ugandaemr.api.db.hibernate;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.Encounter;
+import org.openmrs.Obs;
+import org.openmrs.Order;
 import org.openmrs.api.APIException;
+import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.db.UgandaEMRDAO;
 import org.openmrs.module.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.util.OpenmrsUtil;
 
 /**
  * It is a default implementation of  {@link UgandaEMRDAO}.
@@ -69,5 +77,58 @@ public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate) {
 		return (List<PublicHoliday>) getSessionFactory().getCurrentSession().createCriteria(PublicHoliday.class).add(Restrictions.eq("date", publicHolidayDate)).list();
 	}
-	
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
+	 */
+	@Override
+	public OrderObs saveOrderObs(OrderObs orderObs) {
+		sessionFactory.getCurrentSession().saveOrUpdate(orderObs);
+		return orderObs;
+	}
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObs(org.openmrs.Encounter, java.util.Date, java.util.Date, java.util.List, java.util.List,boolean)
+	 */
+	public List<OrderObs> getOrderObs(Encounter encounter, Date onOrBefore, Date onOrAfter, List<Order> orders, List<Obs> obs,boolean includeVoided) {
+
+		Criteria crit = sessionFactory.getCurrentSession().createCriteria(OrderObs.class);
+		if (encounter != null) {
+			crit.add(Restrictions.eq("encounter", encounter));
+		}
+
+		if (encounter != null) {
+			crit.add(Restrictions.in("order", orders));
+		}
+
+		if (encounter != null) {
+			crit.add(Restrictions.in("order", obs));
+		}
+
+		if (onOrAfter != null) {
+			crit.add(Restrictions.ge("dateCreated", OpenmrsUtil.firstSecondOfDay(onOrAfter)));
+		}
+
+		if (onOrBefore != null) {
+			crit.add(Restrictions.le("dateCreated", OpenmrsUtil.getLastMomentOfDay(onOrBefore)));
+		}
+
+		if (!includeVoided) {
+			crit.add(Restrictions.eq("voided", false));
+		}
+
+		crit.addOrder(org.hibernate.criterion.Order.desc("dateCreated"));
+
+		return crit.list();
+	}
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsByObs(org.openmrs.Obs)
+	 */
+	@Override
+	public OrderObs getOrderObsByObs(Obs obs) {
+		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("obs", obs)).uniqueResult();
+	}
+
+
 }

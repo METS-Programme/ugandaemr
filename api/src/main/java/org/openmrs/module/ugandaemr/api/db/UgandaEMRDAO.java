@@ -16,8 +16,13 @@ package org.openmrs.module.ugandaemr.api.db;
 import java.util.Date;
 import java.util.List;
 
+import org.openmrs.Encounter;
+import org.openmrs.Obs;
+import org.openmrs.Order;
+import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
+import org.openmrs.module.ugandaemr.api.lab.OrderObs;
 
 /**
  *  Database methods for {@link UgandaEMRService}.
@@ -37,5 +42,19 @@ public interface UgandaEMRDAO {
 	public PublicHoliday getPublicHolidaybyUuid(String uuid);
 
 	public List<PublicHoliday> getPublicHolidaysByDate(Date publicHolidayDate);
-	
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
+	 */
+    OrderObs saveOrderObs(OrderObs orderObs);
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObs(org.openmrs.Encounter, java.util.Date, java.util.Date, java.util.List, java.util.List,boolean)
+	 */
+    List<OrderObs> getOrderObs(Encounter encounter, Date onOrBefore, Date onOrAfter, List<Order> orders, List<Obs> obs,boolean includeVoided);
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsByObs(org.openmrs.Obs)
+	 */
+	OrderObs getOrderObsByObs(Obs obs);
 }

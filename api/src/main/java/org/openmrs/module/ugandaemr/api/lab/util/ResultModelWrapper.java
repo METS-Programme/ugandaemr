@@ -4,15 +4,15 @@ import java.util.List;
 
 public class ResultModelWrapper {
 
-	private Integer testId;
+	private String testId;
 
 	private List<ResultModel> results;
 
-	public Integer getTestId() {
+	public String getTestId() {
 		return testId;
 	}
 
-	public void setTestId(Integer testId) {
+	public void setTestId(String testId) {
 		this.testId = testId;
 	}
 

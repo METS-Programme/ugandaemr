@@ -628,6 +628,68 @@ VALUES
 			('SMS Non Suppressed ViralLoad ','2022-03-23',1,'f538f903-0258-4151-a4f6-f8ceb8046017',(SELECT cohort_type_id from cohort_type where uuid='889aa250-7113-4ba7-ab8c-ca062e004696'));
 		</sql>
 	</changeSet>
+
+
+	<changeSet author="slubwama" id="order-obs-202303081017-1">
+		<createTable tableName="order_obs">
+			<column autoIncrement="true" name="order_obs_id" type="INT">
+				<constraints primaryKey="true" unique="true"/>
+			</column>
+			<column name="order_id" type="INT"/>
+			<column name="obs_id" type="INT"/>
+			<column name="encounter_id" type="INT"/>
+			<column name="date_created" type="datetime"/>
+			<column name="changed_by" type="INT"/>
+			<column name="date_changed" type="datetime"/>
+			<column name="voided" type="TINYINT(3)"/>
+			<column name="date_voided" type="datetime"/>
+			<column name="voided_by" type="INT"/>
+			<column name="void_reason" type="VARCHAR(255)"/>
+			<column name="creator" type="INT"/>
+			<column name="uuid" type="VARCHAR(38)"/>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-2">
+		<createIndex indexName="order_obs_encounter_id_index" tableName="order_obs">
+			<column name="encounter_id"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-3">
+		<addForeignKeyConstraint baseColumnNames="encounter_id" baseTableName="order_obs" constraintName="order_obs_encounter_id_index" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="encounter_id" referencedTableName="encounter"/>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-4">
+		<createIndex indexName="order_obs_orders_order_id_fk" tableName="order_obs">
+			<column name="order_id"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-5">
+		<addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_obs" constraintName="order_obs_orders_order_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="order_id" referencedTableName="orders"/>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-6">
+		<createIndex indexName="order_obs_obs_obs_id_fk" tableName="order_obs">
+			<column name="obs_id"/>
+		</createIndex>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-7">
+		<addForeignKeyConstraint baseColumnNames="obs_id" baseTableName="order_obs" constraintName="order_obs_obs_obs_id_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="obs_id" referencedTableName="obs"/>
+	</changeSet>
+
+	<changeSet author="slubwama" id="order_obs_202303081017-8">
+		<addUniqueConstraint columnNames="obs_id,order_id" constraintName="order_obs_order_id_obs_id_uindex" tableName="order_obs"/>
+	</changeSet>
+
+	<changeSet  author="slubwama" id="ugandaemr-2023-03-08-1712">
+		<comment>add test orders with results into the order_obs table</comment>
+		<sql>
+			replace into order_obs (encounter_id, order_id, obs_id, date_created, creator, uuid) (select encounter_id, order_id, obs_id, date_created, creator, uuid() from obs where order_id is not null);
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

@@ -8,7 +8,8 @@
       "fragment": "patientSummary"
     },
     "requiredPrivilege": "App: ugandaemr.widget.patientSummary"
-  },{
+  },
+  {
     "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.patientTransfer",
     "extensionPointId": "patientDashboard.secondColumnFragments",
     "order": -9,
@@ -33,7 +34,7 @@
     "extensionPointId": "registrationSummary.overallActions",
     "type": "link",
     "label": "Goto Patient Dashboard",
-    "url" : "coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "url": "coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
     "icon": "icon-file-alt",
     "order": 10,
     "requiredPrivilege": "App: ugandaemr.patientDashbord"
@@ -43,20 +44,39 @@
     "extensionPointId": "patientDashboard.overallActions",
     "type": "link",
     "label": "Goto Patient Registration Summary",
-    "url" : "coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
-    "url" : "registrationapp/registrationSummary.page?patientId={{patient.uuid}}&appId=ugandaemr.registrationapp.registerPatient",
+    "url": "coreapps/clinicianfacing/patient.page?patientId={{patient.uuid}}",
+    "url": "registrationapp/registrationSummary.page?patientId={{patient.uuid}}&appId=ugandaemr.registrationapp.registerPatient",
     "icon": "icon-file-alt",
     "order": 15,
     "requiredPrivilege": "App: registrationapp.registrationSummary"
-  },{
-  "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.nextAppointment",
-  "extensionPointId": "patientDashboard.secondColumnFragments",
-  "requiredPrivilege": "App: ugandaemr.widget.nextAppointment",
-  "order": -9,
-  "extensionParams": {
-    "icon": "icon-exchange",
-    "provider": "${project.parent.artifactId}",
-    "fragment": "nextAppointment"
+  },
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.secondColumnFragments.nextAppointment",
+    "extensionPointId": "patientDashboard.secondColumnFragments",
+    "requiredPrivilege": "App: ugandaemr.widget.nextAppointment",
+    "order": -9,
+    "extensionParams": {
+      "icon": "icon-exchange",
+      "provider": "${project.parent.artifactId}",
+      "fragment": "nextAppointment"
+    }
+  },
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.firstColumnFragments.clinicalNotes",
+    "extensionPointId": "patientDashboard.firstColumnFragments",
+    "order": 0,
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "clinicalNotes"
+    }
+  },
+  {
+    "id": "${project.parent.groupId}.${project.parent.artifactId}.patientDashboard.firstColumnFragments.displayLabResults",
+    "extensionPointId": "patientDashboard.firstColumnFragments",
+    "order": 0,
+    "extensionParams": {
+      "provider": "${project.parent.artifactId}",
+      "fragment": "displayLabResults"
+    }
   }
-}
 ]

@@ -83,7 +83,7 @@ button, input {
                 var patientQueueListElement = element;
 
 
-                var isPatientPicked = isQueueIsPicked(element.patientQueueId);
+                var isPatientPicked = element.status === "PICKED";
 
 
                 var ordersNo = noOfDrugPrescriptions(element);
@@ -95,7 +95,7 @@ button, input {
                     visitNumber = patientQueueListElement.visitNumber.substring(15);
                 }
 
-                if (ordersNo > 0) {
+                if (patientQueueListElement.encounterId !==null && patientQueueListElement.status !== "COMPLETED") {
                     prescriptions += "<tr>";
                     prescriptions += "<td>" + visitNumber + "</td>";
                     prescriptions += "<td>" + patientQueueListElement.patientNames + "</td>";
@@ -159,27 +159,10 @@ button, input {
         jq("#pharmacy-completed-number").append("   " + completedCount);
     }
 
-    function isQueueIsPicked(patientQueueId) {
-        var isQueuePicked = false;
-        jq.ajax({
-            type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/patientqueue/" + patientQueueId + "",
-            dataType: "json",
-            contentType: "application/json;",
-            async: false,
-            success: function (data) {
-                if (data.status === "PICKED") {
-                    isQueuePicked = true;
-                }
-            }
-        });
-        return isQueuePicked;
-    }
-
     function noOfDrugPrescriptions(drugList) {
         var orderCount = 0;
         jq.each(drugList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active") {
+            if (element.accessionNumber === null && element.status === "active" && (element.dispensingLocation === currentLocationUUID || ${enableStockManagement} === false)) {
                 orderCount += 1;
             }
         });
@@ -284,7 +267,15 @@ button, input {
         </div>
     </div>
 </div>
-${ui.includeFragment("ugandaemr", "pharmacy/dispensingForm",[healthCenterName:healthCenterName])}
+
+
+
+<% if (enableStockManagement == true) { %>
+${ui.includeFragment("ugandaemr", "pharmacy/newDispensingForm", [healthCenterName: healthCenterName])}
+<% } else { %>
+${ui.includeFragment("ugandaemr", "pharmacy/oldDispensingForm", [healthCenterName: healthCenterName])}
+<% } %>
+
 ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 <% } %>
 

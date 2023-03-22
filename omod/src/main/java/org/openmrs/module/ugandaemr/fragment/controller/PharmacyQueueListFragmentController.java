@@ -3,6 +3,7 @@ package org.openmrs.module.ugandaemr.fragment.controller;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.openmrs.Location;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.appui.UiSessionContext;
@@ -23,6 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.PHARMACY_LOCATION_UUID;
@@ -39,13 +41,17 @@ public class PharmacyQueueListFragmentController {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dateStr = sdf.format(new Date());
         List<String> list = new ArrayList();
-        list.add(PHARMACY_LOCATION_UUID);
+
+        list.addAll(Context.getLocationService().getLocationsByTag(Context.getLocationService().getLocationTagByUuid("fe7c970f-2aba-11ed-ba4a-507b9dea1806")).stream().map(Location::getUuid).collect(Collectors.toList()));
+        list.addAll(Context.getLocationService().getLocationsByTag(Context.getLocationService().getLocationTagByUuid("89a80c4d-2899-11ed-bdcb-507b9dea1806")).stream().map(Location::getUuid).collect(Collectors.toList()));
+
         pageModel.addAttribute("currentDate", dateStr);
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.put("clinicianLocation", list);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("healthCenterName", Context.getAdministrationService().getGlobalProperty(UgandaEMRConstants.GP_HEALTH_CENTER_NAME));
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
+        pageModel.put("enableStockManagement", Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement")));
     }
 
 
@@ -60,7 +66,23 @@ public class PharmacyQueueListFragmentController {
             patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
         }
         if (!patientQueueList.isEmpty()) {
-            simpleObject.put("patientPharmacyQueueList", objectMapper.writeValueAsString(Context.getService(UgandaEMRService.class).mapPatientQueueToMapperWithDrugOrders(patientQueueList)));
+            simpleObject.put("patientPharmacyQueueList", objectMapper.writeValueAsString(Context.getService(UgandaEMRService.class).mapPatientQueueToMapperWithDrugOrders(patientQueueList,false)));
+        } else {
+            simpleObject.put("patientPharmacyQueueList", "");
+        }
+
+        return simpleObject;
+    }
+
+    public SimpleObject getPharmacyMapper(@RequestParam(value = "queue_id", required = false) Integer queue, UiSessionContext uiSessionContext) throws IOException, ParseException {
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleObject simpleObject = new SimpleObject();
+        List<PatientQueue> patientQueueList = new ArrayList<>();
+        patientQueueList.add(patientQueueingService.getPatientQueueById(queue));
+
+        if (patientQueueList.size()>0) {
+            simpleObject.put("patientPharmacyQueueList", objectMapper.writeValueAsString(Context.getService(UgandaEMRService.class).mapPatientQueueToMapperWithDrugOrders(patientQueueList,true)));
         } else {
             simpleObject.put("patientPharmacyQueueList", "");
         }

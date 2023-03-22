@@ -12,7 +12,9 @@ import org.openmrs.module.appui.UiSessionContext;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
+import org.openmrs.module.ugandaemr.api.lab.OrderObs;
 import org.openmrs.module.ugandaemr.api.lab.util.*;
+import org.openmrs.module.ugandaemr.utils.DateFormatUtil;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.ui.framework.UiUtils;
 import org.openmrs.ui.framework.annotation.BindParams;
@@ -24,9 +26,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Date;
+import java.util.ArrayList;
+import java.util.Set;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.GregorianCalendar;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 
@@ -42,6 +48,8 @@ public class LabQueueListFragmentController {
         pageModel.put("specimenSource", Context.getOrderService().getTestSpecimenSources());
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String labWorkListBackLogDaysToDisplay = Context.getAdministrationService().getGlobalProperty("ugandaemr.labWorkListBackLogDaysToDisplay");
+        String labReferenceListBackLogDaysToDisplay = Context.getAdministrationService().getGlobalProperty("ugandaemr.labReferenceListBackLogDaysToDisplay");
         String dateStr = sdf.format(new Date());
         List<String> list = new ArrayList();
         list.add("ba158c33-dc43-4306-9a4a-b4075751d36c");
@@ -50,7 +58,21 @@ public class LabQueueListFragmentController {
         pageModel.put("clinicianLocation", list);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
+        pageModel.put("labReferenceListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labReferenceListBackLogDaysToDisplay)));
+        pageModel.put("labWorkListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labWorkListBackLogDaysToDisplay)));
     }
+
+    private String getDateDaysBack(Date date, int daysBack) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH, -daysBack);
+        try {
+            return DateFormatUtil.dateFormtterString(cal.getTime(), "00:00:00");
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     /**
      * Get Patients in Lab Queue
@@ -84,7 +106,7 @@ public class LabQueueListFragmentController {
      * @param referenceLab
      * @return
      */
-    public void scheduleTest(@RequestParam(value = "orderNumber") String orderNumber, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab,  @RequestParam(value = "unProcessedOrders", required = false) Integer unProcessedOrders, @RequestParam(value = "patientQueueId", required = false) Integer patientQueueId) {
+    public void scheduleTest(@RequestParam(value = "orderNumber") String orderNumber, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab, @RequestParam(value = "unProcessedOrders", required = false) Integer unProcessedOrders, @RequestParam(value = "patientQueueId", required = false) Integer patientQueueId) {
         OrderService orderService = Context.getOrderService();
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         Order order = orderService.getOrderByOrderNumber(orderNumber);
@@ -103,26 +125,16 @@ public class LabQueueListFragmentController {
         testOrder.setOrderType(order.getOrderType());
         testOrder.setPreviousOrder(order);
         testOrder.setAction(Order.Action.REVISE);
+        testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
         testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
         orderService.saveOrder(testOrder, null);
+        orderService.updateOrderFulfillerStatus(order, null, null, "");
 
         if (unProcessedOrders.equals(1)) {
             patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueById(patientQueueId));
         }
     }
 
-    /**
-     * Get Lab Orders without Results
-     *
-     * @param asOfDate
-     * @return
-     * @throws IOException
-     */
-    public SimpleObject getOrders(@RequestParam(value = "date", required = false) String asOfDate) throws IOException, ParseException {
-        Date date = new Date();
-
-        return Context.getService(UgandaEMRService.class).getProcessedOrders(PROCESSED_ORDER_WITHOUT_NO_DATE_FILTER_RESULT_QUERY, null, true);
-    }
 
     /**
      * Get Lab Orders without Results
@@ -133,9 +145,19 @@ public class LabQueueListFragmentController {
      * @throws ParseException
      */
     public SimpleObject getOrderWithResult(@RequestParam(value = "date", required = false) String asOfDate) throws IOException, ParseException {
+        SimpleObject simpleObject = new SimpleObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        Date date = new Date();
-        return Context.getService(UgandaEMRService.class).getProcessedOrders(PROCESSED_ORDER_WITH_RESULT_QUERY, date, true);
+        List<OrderObs> orderObs = ugandaEMRService.getOrderObs(null, null, new Date(), null, null, false);
+        Set<Order> orders=new HashSet<>();
+
+        orderObs.forEach(orderObs1 -> {
+            orders.add(orderObs1.getOrder());
+        });
+
+        simpleObject.put("ordersList", objectMapper.writeValueAsString(ugandaEMRService.processOrders(orders, true)));
+        return simpleObject;
     }
 
     /**
@@ -185,8 +207,8 @@ public class LabQueueListFragmentController {
         return simpleObjects;
     }
 
-    public List<SimpleObject> getResultTemplate(@RequestParam("testId") Integer testId, UiUtils ui) {
-        Order test = Context.getOrderService().getOrder(testId);
+    public List<SimpleObject> getResultTemplate(@RequestParam("testId") String testId, UiUtils ui) {
+        Order test = Context.getOrderService().getOrderByUuid(testId);
         List<ParameterModel> parameters = new ArrayList<ParameterModel>();
         LaboratoryUtil.generateParameterModels(parameters, test.getConcept(), null, test);
         //Collections.sort(parameters);
@@ -230,7 +252,7 @@ public class LabQueueListFragmentController {
         EncounterService encounterService = Context.getEncounterService();
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        Order test = orderService.getOrder(resultWrapper.getTestId());
+        Order test = orderService.getOrderByUuid(resultWrapper.getTestId());
 
         Encounter encounter = test.getEncounter();
         for (ResultModel resultModel : resultWrapper.getResults()) {
@@ -256,14 +278,22 @@ public class LabQueueListFragmentController {
         }
 
         encounter = encounterService.saveEncounter(encounter);
-        test.setEncounter(encounter);
         try {
+            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, "Completed with results: " + resultDisplay);
             orderService.discontinueOrder(test, "Completed", new Date(), provider, test.getEncounter());
+            saveOrderObservations(encounter);
             sendPatientBackToClinician(encounter, encounter.getLocation(), sessionContext.getSessionLocation(), QUEUE_STATUS_SENT_TO_LAB);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return SimpleObject.create("status", "success", "message", "Saved!");
+    }
+
+    private void saveOrderObservations(Encounter encounter) {
+        encounter.getAllObs().stream().filter(obs -> obs.getOrder() != null).forEach(obs -> {
+            OrderObs orderObs = new OrderObs(obs.getOrder(), obs, obs.getEncounter());
+            Context.getService(UgandaEMRService.class).saveOrderObs(orderObs);
+        });
     }
 
     private PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus) throws ParseException {
@@ -286,7 +316,7 @@ public class LabQueueListFragmentController {
             ugandaEMRService.completePreviousQueue(encounter.getPatient(), encounter.getLocation(), PatientQueue.Status.PENDING);
         }
 
-        List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(),null);
+        List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(), null);
 
         List<PatientQueue> fromLabQueue = new ArrayList<>();
 
