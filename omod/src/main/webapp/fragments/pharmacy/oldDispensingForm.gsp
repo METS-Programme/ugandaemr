@@ -36,7 +36,7 @@
     });
 
     function showEditPrescriptionForm(encounter, queueId, position) {
-        getEditPrescriptionTempLate(pharmacyData, encounter, position);
+        getEditPrescriptionTempLate(encounter,queueId, position);
         editPrescriptionForm.find("#edit-prescription-id").val(encounter);
         editPrescriptionForm.find("#edit-queue-id").val(queueId);
 
@@ -45,20 +45,31 @@
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
         jq.each(pharmacyQueueList.patientPharmacyQueueList[position].orderMapper, function (index, element) {
-            if (element.encounterId === encounterId) {
                 orderedTestsRows.push(element);
-            }
         });
         return orderedTestsRows;
     }
 
-    function getEditPrescriptionTempLate(pharmacyData, encounterId, position) {
-        var editPrescriptionParameterOptions = getDrugOrderData(pharmacyData, encounterId, position);
-        jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
-            editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
+    function getEditPrescriptionTempLate(encounterId,queue_id, position) {
+        var pharmacyData = {};
+        jq.get('${ ui.actionLink("ugandaemr","pharmacyQueueList","getPharmacyMapper") }', {
+            queue_id: queue_id,
+            async: false
+        }, function (response) {
+            if (response!==null || response!=="") {
+                var pharmacyQueueList = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
+
+                if(pharmacyQueueList.patientPharmacyQueueList.length>0) {
+                    var editPrescriptionParameterOptions = getDrugOrderData(pharmacyQueueList, encounterId, position);
+                    jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
+                        editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
+                    });
+                    editPrescriptionDialog.show();
+                }
+            }
         });
 
-        editPrescriptionDialog.show();
+
     }
 
     function saveEditResult() {
@@ -459,11 +470,4 @@ form input {
             </footer>
         </div>
     </center>
-
 </div>
-
-
-
-
-
-

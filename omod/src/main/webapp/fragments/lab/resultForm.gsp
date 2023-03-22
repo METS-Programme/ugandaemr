@@ -56,6 +56,14 @@
             });
 
             editResultsDialog.show();
+
+            jq(".col-6").each(function () {
+                if (jq(this).html()==="") {
+                   jq(this).addClass("hidden");
+                } else {
+                    jq(this).remove("hidden");
+                }
+            });
         });
     }
 
@@ -146,55 +154,8 @@ form input {
     flex: 1 1 160px;
 }
 
-.div-row {
-    display: table-row;
-    width: 100%;
-}
-
-.div-col1 {
-    display: table-cell;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-}
-
-.div-col2 {
-    display: table-cell;
-    margin-right: auto;
-    margin-left: auto;
-    width: 50%;
-}
-
-.div-col3 {
-    display: table-cell;
-    margin-right: auto;
-    margin-left: auto;
-    width: 33%;
-}
-
-.div-col4 {
-    display: table-cell;
-    margin-right: auto;
-    margin-left: auto;
-    width: 25%;
-}
-
-.div-col5 {
-    display: table-cell;
-    margin-right: auto;
-    margin-left: auto;
-    width: 20%;
-}
-
-.div-col6 {
-    display: table-cell;
-    margin-right: auto;
-    margin-left: auto;
-    width: 16%;
-}
-
 .dialog {
-    width: 70%;
+    width: 100%;
 }
 
 .dialog .dialog-content {
@@ -203,6 +164,10 @@ form input {
 
 .dialog .dialog-header {
     background: #151414;
+}
+.modal-dialog {
+    max-width: 55%;
+    margin: 1.75rem auto;
 }
 </style>
 
@@ -217,11 +182,11 @@ form input {
                 <form>
                     <input type="hidden" name="wrap.testId" id="edit-result-id"/>
 
-                    <div class="box" data-bind="foreach: editResultsParameterOptions">
+                    <div class="row" data-bind="foreach: editResultsParameterOptions">
                         <input type="hidden"
                                data-bind="attr: { 'name' : 'wrap.results[' + \$index() + '].conceptName' }, value: containerId?containerId+'.'+id:id">
 
-                        <div data-bind="if:type && type.toLowerCase() === 'select'">
+                        <div  class="col-6" data-bind="if:type && type.toLowerCase() === 'select'">
                             <p>
                                 <span data-bind="if:title && title.toUpperCase() === 'TEST RESULT VALUE'">
                                     <label data-bind="text: container"></label>
@@ -240,7 +205,7 @@ form input {
                         </div>
 
                         <!--Test for radio or checkbox-->
-                        <div data-bind="if:(type && type.toLowerCase() === 'radio') || (type && type.toLowerCase() === 'checkbox')">
+                        <div class="col-6" data-bind="if:(type && type.toLowerCase() === 'radio') || (type && type.toLowerCase() === 'checkbox')">
                             <p>
 
                             <div class="dialog-data"></div>
@@ -253,7 +218,7 @@ form input {
                         </div>
 
                         <!--Other Input Types-->
-                        <div data-bind="if:(type && type.toLowerCase() !== 'select') && (type && type.toLowerCase() !== 'radio') && (type && type.toLowerCase() !== 'checkbox')">
+                        <div  class="col-6" data-bind="if:(type && type.toLowerCase() !== 'select') && (type && type.toLowerCase() !== 'radio') && (type && type.toLowerCase() !== 'checkbox')">
                             <p id="data">
                                 <span data-bind="if:title && title.toUpperCase() === 'WRITE COMMENT'">
                                     <label data-bind="text: title + ' (' + container+')'"></label>
@@ -268,7 +233,7 @@ form input {
                             </p>
                         </div>
 
-                        <div data-bind="if: !type">
+                        <div class="col-6" data-bind="if: !type">
                             <p>
                                 <label for="result-text" data-bind="text: title"></label>
                                 <input class="result-text" type="text"

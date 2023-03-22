@@ -40,6 +40,25 @@ public class LocationTags {
 			return "Visits are only allowed to happen at locations tagged with this location tag or at locations that descend from a location tagged with this tag.";
 		}
 		
-	};	
-	
+	};
+
+	public static LocationTagDescriptor MAIN_PHARMACY = new LocationTagDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "89a80c4d-2899-11ed-bdcb-507b9dea1806";
+		}
+
+		@Override
+		public String name() {
+			return "Main Pharmacy";
+		}
+
+		@Override
+		public String description() {
+			return "Main pharmacy location.";
+		}
+
+	};
+
 }

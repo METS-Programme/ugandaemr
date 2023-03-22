@@ -9,6 +9,10 @@ public class PharmacyMapper extends PatientQueueMapper implements Serializable {
 
     Integer visitId;
 
+    private String patientQueueUuid;
+
+    private String encounterUuid;
+
     Set<DrugOrderMapper> drugOrderMappers;
 
     public PharmacyMapper() {
@@ -28,5 +32,21 @@ public class PharmacyMapper extends PatientQueueMapper implements Serializable {
 
     public void setVisitId(Integer visitId) {
         this.visitId = visitId;
+    }
+
+    public String getPatientQueueUuid() {
+        return patientQueueUuid;
+    }
+
+    public void setPatientQueueUuid(String patientQueueUuid) {
+        this.patientQueueUuid = patientQueueUuid;
+    }
+
+    public String getEncounterUuid() {
+        return encounterUuid;
+    }
+
+    public void setEncounterUuid(String encounterUuid) {
+        this.encounterUuid = encounterUuid;
     }
 }
