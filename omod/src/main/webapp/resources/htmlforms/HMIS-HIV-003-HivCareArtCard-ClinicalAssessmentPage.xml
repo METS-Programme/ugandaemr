@@ -1631,32 +1631,9 @@
                                     isValid  = false;
                                 }
                         });
-
                     }
-                    <!--Not to book on a public holiday-->
-                    var publicHolidayURL = window.location.origin + '/' + OPENMRS_CONTEXT_PATH + '/ws/rest/v1/ugandaemr/publicHoliday?date=' + formattedDate ;
-
-                    jq.ajax({
-                    type: 'GET',
-                    url: publicHolidayURL,
-                    async:false,
-                    success: function(response){
-                    if(response.results.length){
-                    getField('returndate.error').html('The patient cannot be scheduled on ' + formattedDate + ' which is a public holiday, ' + response.results[0].name).show();
-                    jq().toastmessage('showErrorToast', 'The patient cannot be scheduled on ' + formattedDate + ' which is a public holiday, ' + response.results[0].name);
-                    isValid = false;
-                }
-                },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                    getField('returndate.error').html('Unable to determine if ' + formattedDate + ' is a public Holiday').show();
-                    jq().toastmessage('showErrorToast', 'Unable to determine if ' + formattedDate + ' is a public Holiday');
-                    isValid  = false;
-                }
-                });
-
                     // check the appointment dates on public holiday
                     return isValid;
-                }
                 </includeIf>
 
                 <restrictByRole exclude="Data Clerk,System Developer,Organizational: System Administrator">

@@ -636,6 +636,8 @@ VALUES
 		<sql>
 			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
 			('General CDDP Cohort Type','2023-01-27',1,'da964ff0-648e-440b-a219-d2aeba3670d0');
+		</sql>
+	</changeSet>
 
 
 	<changeSet author="slubwama" id="order-obs-202303081017-1">
