@@ -526,14 +526,17 @@
 
                 disable_fields("viral-load-accession-number");
                 disable_fields("viral-load-specimen-source");
+                disable_fields("indication-for-viral-load-testing");
 
                 jq("#order-viral-load-test").change(function () {
                     if(jq(this).find(':checkbox').prop('checked')){
                         enable_fields("viral-load-accession-number");
                         enable_fields("viral-load-specimen-source");
+                        enable_fields("indication-for-viral-load-testing");
                     } else {
                         disable_fields("viral-load-accession-number");
                         disable_fields("viral-load-specimen-source");
+                        disable_fields("indication-for-viral-load-testing");
                     }
                 });
 
@@ -2743,6 +2746,12 @@
                                                                 <obs id="viral-load-specimen-source" conceptId="162476" answerConceptSetIds="162476"/>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>Indication for viral load testing</label>
+                                                                <obs id="indication-for-viral-load-testing" conceptId="168689" style="checkbox"/>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3364,6 +3373,19 @@
                                                             </repeat>
                                                         </span>
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <label>Viral Load other information</label>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <label>Indication for viral load testing</label>
+                                                            <obs conceptId="168689" style="checkbox"/>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
