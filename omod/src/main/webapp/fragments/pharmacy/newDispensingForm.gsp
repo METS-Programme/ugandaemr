@@ -41,7 +41,7 @@
     });
 
     function showEditPrescriptionForm(encounter, queueId, position) {
-        getEditPrescriptionTempLate(pharmacyData, encounter, position);
+        getEditPrescriptionTempLate(queueId, encounter);
         editPrescriptionForm.find("#edit-prescription-id").val(encounter);
         editPrescriptionForm.find("#edit-queue-id").val(queueId);
 
@@ -113,25 +113,24 @@
     }
 
     function getEditPrescriptionTempLate(queue_id, encounterId) {
-        var pharmacyData = {};
-        jq.get('${ ui.actionLink("getPharmacyMapper") }', {
+        jq.get('${ ui.actionLink("ugandaemr","pharmacyQueueList","getPharmacyMapper") }', {
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response) {
-                var responseData = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
-                pharmacyData = responseData;
+            if (response!==null || response!=="") {
+                var pharmacyQueueList = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
+                if(pharmacyQueueList.patientPharmacyQueueList.length>0) {
+                    var editPrescriptionParameterOptions = getDrugOrderData(pharmacyQueueList, encounterId, 0);
+                    jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
+                        editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
+                    });
+
+                    editPrescriptionDialog.show();
+                }
             }
         });
 
-        if(pharmacyData.length>0){
-        var editPrescriptionParameterOptions = getDrugOrderData(pharmacyData, encounterId, 0);
-        jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
-            editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
-        });
 
-        editPrescriptionDialog.show();
-        }
     }
 
     function saveEditResult() {
@@ -540,19 +539,10 @@ form input {
                 </table>
             </div>
             <footer style="margin-top: 50px">
-                <div style="text-align: left;font-size: 10px"><img width="40px"
-                                                                   src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
+                <div style="text-align: left;font-size: 10px"><img width="40px" src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
                 </div>
             </footer>
         </div>
     </center>
 
 </div>
-
-
-
-
-
-
-
-

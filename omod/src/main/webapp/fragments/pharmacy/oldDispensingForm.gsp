@@ -56,7 +56,7 @@
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response) {
+            if (response!==null || response!=="") {
                 var pharmacyQueueList = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
 
                 if(pharmacyQueueList.patientPharmacyQueueList.length>0) {

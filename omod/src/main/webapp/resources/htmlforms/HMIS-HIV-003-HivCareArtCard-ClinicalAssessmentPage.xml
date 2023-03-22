@@ -526,17 +526,14 @@
 
                 disable_fields("viral-load-accession-number");
                 disable_fields("viral-load-specimen-source");
-                disable_fields("indication-for-viral-load-testing");
 
                 jq("#order-viral-load-test").change(function () {
                     if(jq(this).find(':checkbox').prop('checked')){
                         enable_fields("viral-load-accession-number");
                         enable_fields("viral-load-specimen-source");
-                        enable_fields("indication-for-viral-load-testing");
                     } else {
                         disable_fields("viral-load-accession-number");
                         disable_fields("viral-load-specimen-source");
-                        disable_fields("indication-for-viral-load-testing");
                     }
                 });
 
