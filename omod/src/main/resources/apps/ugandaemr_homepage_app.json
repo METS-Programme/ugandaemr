@@ -253,21 +253,6 @@
       "requiredPrivilege": "App: coreapps.systemAdministration"
     }
   ]
-},
-  {
-    "id": "ugandaemr.facility.dashboard.link",
-    "description": "Facility Dashboard",
-    "order": 511,
-    "extensions": [
-      {
-        "id": "ugandaemr.facility.emrdashboard.homepageLink",
-        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-        "type": "link",
-        "label": "Facility Dashboard",
-        "url": "ugandaemrreports/dashboard.page",
-        "icon": "icon-bar-chart",
-        "requiredPrivilege": ""
-      }
-    ]
-  }
+}
+
 ]
