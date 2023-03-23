@@ -253,6 +253,21 @@
       "requiredPrivilege": "App: coreapps.systemAdministration"
     }
   ]
+},{
+  "id": "ugandaemr.smsDegistration",
+  "description": "SMS Patient Deregistration",
+  "order": 41,
+  "extensions": [
+    {
+      "id": "coreapps.activeVisitsHomepageLink",
+      "extensionPointId": "systemAdministration.apps",
+      "type": "link",
+      "label": "Exist from SMS Program",
+      "url": "ugandaemr/SMSPatientExitGroup.page",
+      "icon": " icon-cog",
+      "requiredPrivilege": "App: coreapps.systemAdministration"
+    }
+  ]
 },
   {
     "id": "ugandaemr.facility.dashboard.link",
