@@ -78,6 +78,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         install(EncounterTypes.SMS_ENROLLMENT);
         install(EncounterTypes.SMC_FOLLOWUP);
+        install(EncounterTypes.LAB_REQUEST_ENCOUNTER);
 
         //installing programs metadata
         log.info("Installing Programs");
