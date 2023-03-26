@@ -205,7 +205,7 @@
                     });
 
                     jq("#drug_strength_isoniazid_select").change(function () {
-                        jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_strength_isoniazid_id input').val(jq(this).find(":selected").attr("strength"))
                         jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
                         jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
                         jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
@@ -237,7 +237,7 @@
                         getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
                     });
 
-                    jq("#drug_strength_fluconazole_select").change(function () {
+                    jq("#drug_strength_99413_select").change(function () {
                         jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
                         jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
                         jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))
