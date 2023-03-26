@@ -35,11 +35,28 @@
         });
 
 
+        function getPatientData(uri){
+            var person;
+            jq.ajax({
+                type: "GET",
+                url: uri+"?v=custom:(person)",
+                dataType: "json",
+                async: false,
+                contentType: "application/json",
+                accept: "application/json",
+                success: function (data) {
+                    person = data.person;
+                }
+            });
+            return person;
+        }
+
         function getPatientInSMSCohort(){
             jq.ajax({
                 type: "GET",
                 url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+appointmentCohortUuid+"?v=custom:(cohortMembers)",
                 dataType: "json",
+                async: false,
                 contentType: "application/json",
                 accept: "application/json",
                 success: function (data) {
@@ -49,27 +66,20 @@
                     if(members.length>0){
                         for (var i = 0; i < members.length; i++) {
                             var member = members[i];
-                            var uri = member.patient.links[0].uri;
-                            jq.ajax({
-                                type: "GET",
-                                url: uri+"?v=custom:(person)",
-                                dataType: "json",
-                                contentType: "application/json",
-                                accept: "application/json",
-                                success: function (data) {
-                                    person = data.person;
-                                    var row = "<tr id=\""+member.uuid+"\">" +
-                                        "<td>"+ person.display +"</td>" +
-                                        "<td>"+ person.age +"</td>" +
-                                        "<td>"+ person.birthdate +"</td>" +
-                                        "<td>"+ person.gender +"</td>" +
-                                        "<td>"+ member.startDate.trim() +"</td>" +
-                                        "<td>" +
-                                        "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"deletePatientFromCohort('"+member.links[0].uri+"')\"></i></td>" +
-                                        "</tr>";
-                                    container.append(row);
-                                }
-                            });
+                            if(member.voided==false){
+                                var uri = member.patient.links[0].uri;
+                                person =getPatientData(uri)
+                                var row = "<tr id=\""+member.uuid+"\">" +
+                                    "<td>"+ person.display +"</td>" +
+                                    "<td>"+ person.age +"</td>" +
+                                    "<td>"+ person.birthdate +"</td>" +
+                                    "<td>"+ person.gender +"</td>" +
+                                    "<td>"+ member.startDate +"</td>" +
+                                    "<td>" +
+                                    "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"deletePatientFromCohort('"+member.uuid+"')\"></i></td>" +
+                                    "</tr>";
+                                container.append(row);
+                            }
                         }
                     }
 
@@ -77,7 +87,7 @@
             });
         }
 
-        function deletePatientFromCohort(uri){
+        function deletePatientFromCohort(uuid){
             const today = new Date();
             const yyyy = today.getFullYear();
             let mm = today.getMonth() + 1; // Months start at 0!
@@ -91,7 +101,7 @@
 
             jq.ajax({
                 type: "POST",
-                url: uri,
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/"+uuid,
                 dataType: "json",
                 contentType: "application/json",
                 accept: "application/json",
@@ -103,6 +113,7 @@
                     jq().toastmessage('showErrorToast',"Member does not exist in group");
                 }
             });
+            window.location.reload();
         }
 
 
