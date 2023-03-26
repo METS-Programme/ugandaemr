@@ -49,15 +49,6 @@
                     });
             }
 
-            disable_fields("166567");
-
-            jq("#166566").click(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == "90003") {
-                enable_fields("166567");
-            } else {
-                disable_fields("166567");
-            }
-            });
 
             beforeSubmit.push(function () {
                 <!-- verify that phone number is valid     -->
@@ -69,9 +60,6 @@
                         jq().toastmessage('showErrorToast', "Please specify a valid mobile number without any spaces like 256712345678");
                         return false;
                     }
-                }else if( getValue('166566' + '.value')!== 90003){
-                    jq().toastmessage('showErrorToast', "Phone number is required");
-                    return false;
                 }
 
 <!--  assign cohorts to client depending on the types of reminders they have chosen  -->
@@ -161,26 +149,6 @@
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <div id="exit" class="card">
-                    <div class="card-header">
-                        Exit of Program
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>Exit SMS Program:</label>
-                                <obs id="166566" conceptId="166566" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Date of Exit:</label>
-                                <span>
-                                    <i class=" icon-calendar small family-date-icon"></i>
-                                    <obs id="166567" conceptId="166567" allowFutureDates="true"/>
-                                </span>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
