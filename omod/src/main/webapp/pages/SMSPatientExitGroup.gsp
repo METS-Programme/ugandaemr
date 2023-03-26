@@ -1,7 +1,9 @@
 <%
     ui.includeFragment("appui", "standardEmrIncludes")
     ui.includeCss("appui","bootstrap.min.css")
-    ui.includeCss("appui","bootstrap.min.js")
+    ui.includeJavascript("appui", "popper.min.js")
+    ui.includeJavascript("uicommons", "datatables/jquery.dataTables.min.js")
+
 
     ui.decorateWith("appui", "standardEmrPage", [ title: ui.message("SMS Patients") ])
 
@@ -23,6 +25,7 @@
         {icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm'},
         {label: "${ ui.escapeJs(ui.message("SMS Patients")) }"}
     ]
+
 </script>
 
 <script type="text/javascript">
@@ -31,6 +34,7 @@
         var exiting=false;
         jq(document).ready(function () {
             getPatientInSMSCohort();
+            var table = jq('#example').DataTable();
 
         });
 
@@ -69,12 +73,14 @@
                             if(member.voided==false){
                                 var uri = member.patient.links[0].uri;
                                 person =getPatientData(uri)
+                                var dob = new Date(person.birthdate).toLocaleDateString();
+                                var startDate = new Date(member.startDate).toLocaleDateString();
                                 var row = "<tr id=\""+member.uuid+"\">" +
                                     "<td>"+ person.display +"</td>" +
                                     "<td>"+ person.age +"</td>" +
-                                    "<td>"+ person.birthdate +"</td>" +
+                                    "<td>"+ dob +"</td>" +
                                     "<td>"+ person.gender +"</td>" +
-                                    "<td>"+ member.startDate +"</td>" +
+                                    "<td>"+ startDate +"</td>" +
                                     "<td>" +
                                     "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"deletePatientFromCohort('"+member.uuid+"')\"></i></td>" +
                                     "</tr>";
