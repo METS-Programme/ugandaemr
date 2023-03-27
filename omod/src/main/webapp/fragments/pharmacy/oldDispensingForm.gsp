@@ -36,7 +36,7 @@
     });
 
     function showEditPrescriptionForm(encounter, queueId, position) {
-        getEditPrescriptionTempLate(encounter,queueId, position);
+        getEditPrescriptionTempLate(queueId,encounter);
         editPrescriptionForm.find("#edit-prescription-id").val(encounter);
         editPrescriptionForm.find("#edit-queue-id").val(queueId);
 
@@ -50,7 +50,7 @@
         return orderedTestsRows;
     }
 
-    function getEditPrescriptionTempLate(encounterId,queue_id, position) {
+    function getEditPrescriptionTempLate(queue_id,encounterId) {
         var pharmacyData = {};
         jq.get('${ ui.actionLink("ugandaemr","pharmacyQueueList","getPharmacyMapper") }', {
             queue_id: queue_id,
@@ -60,7 +60,7 @@
                 var pharmacyQueueList = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
 
                 if(pharmacyQueueList.patientPharmacyQueueList.length>0) {
-                    var editPrescriptionParameterOptions = getDrugOrderData(pharmacyQueueList, encounterId, position);
+                    var editPrescriptionParameterOptions = getDrugOrderData(pharmacyQueueList, encounterId, 0);
                     jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
                         editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
                     });
