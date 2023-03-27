@@ -125,7 +125,7 @@
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 		<stockmanagementVersion>1.0.0</stockmanagementVersion>
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.36_alpha</ugandaemrReportsVersion>
+		<ugandaemrReportsVersion>2.0.36-SNAPSHOT</ugandaemrReportsVersion>
 
 
 	</properties>

@@ -2,12 +2,12 @@
           formDescription="A request for Lab test to Lab"
           formEncounterType="cbf01392-ca29-11e9-a32f-2a2ae2dbcce4"
           formUuid="14f82cc8-ca2a-11e9-a32f-2a2ae2dbcce4"
-          formVersion="3.7.10"
+          formVersion="3.7.11"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="2"
           formIcon="icon-medkit"
-          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp;"
+          formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard">
     <div>
         <div class="headers" style="text-align: center;">

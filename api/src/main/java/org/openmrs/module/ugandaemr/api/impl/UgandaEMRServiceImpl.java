@@ -1501,6 +1501,14 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#dispenseMedication(org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper, org.openmrs.Provider, org.openmrs.Location)
      */
     public SimpleObject dispenseMedication(DispensingModelWrapper resultWrapper, Provider provider, Location location) {
+        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
+
+        if (enableStockManagement) {
+            SimpleObject simpleObject = validateStock(resultWrapper);
+            if (simpleObject.get("errors") != null) {
+                return simpleObject;
+            }
+        }
 
         EncounterService encounterService = Context.getEncounterService();
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
@@ -1551,8 +1559,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         encounter.setObs(obs);
 
-        boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
-
 
         try {
             if (enableStockManagement) {
@@ -1583,21 +1589,55 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         return simpleObject;
     }
 
+    private SimpleObject validateStock(DispensingModelWrapper dispensingModelWrapper) {
+        SimpleObject simpleObject = SimpleObject.create("status", "failed", "message", "failed", "errors", null);
+        new SimpleObject();
+        ObjectMapper objectMapper = new ObjectMapper();
+        List<Object> errors = new ArrayList<>();
+
+        dispensingModelWrapper.getDrugOrderMappers().forEach(drugOrderMapper -> {
+            if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() > 0 && (drugOrderMapper.getMaxDispenseValue() == null || drugOrderMapper.getMaxDispenseValue().equals(""))) {
+                errors.add("Max Dispensing Value is null for Drug " + drugOrderMapper.getConceptName());
+            } else if (drugOrderMapper.getMaxDispenseValue() != null && drugOrderMapper.getQuantity() != null && drugOrderMapper.getMaxDispenseValue() < drugOrderMapper.getQuantity()) {
+                errors.add("The quantity dispensed is greater than max dispensing Value: "+drugOrderMapper.getMaxDispenseValue() + " for drug " + drugOrderMapper.getConceptName());
+            }else if(drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() < 0 ){
+                errors.add("Negative Dispensing Value is not allowed for Drug " + drugOrderMapper.getConceptName());
+            }
+
+            if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() > 0 && StringUtils.isBlank(drugOrderMapper.getStockBatchNo())) {
+                errors.add("BatchNo is Empty for Drug " + drugOrderMapper.getConceptName());
+            }
+        });
+        try {
+            if (errors.size() > 0) {
+                simpleObject.put("errors", objectMapper.writeValueAsString(errors));
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return simpleObject;
+    }
+
     private void reduceStockBalances(DispensingModelWrapper resultWrapper) {
         List<DispenseRequest> dispenseRequests = new ArrayList<>();
         resultWrapper.getDrugOrderMappers().forEach(drugOrderMapper1 -> {
-            DispenseRequest dispenseRequest = new DispenseRequest();
-            dispenseRequest.setEncounterId(drugOrderMapper1.getEncounterId());
-            dispenseRequest.setOrderId(drugOrderMapper1.getOrderId());
-            dispenseRequest.setLocationUuid(drugOrderMapper1.getDispensingLocation());
-            dispenseRequest.setPatientId(drugOrderMapper1.getPatientId());
-            dispenseRequest.setStockItemUuid(drugOrderMapper1.getStockItem());
-            dispenseRequest.setStockBatchUuid(drugOrderMapper1.getStockBatchNo());
-            dispenseRequest.setQuantity(BigDecimal.valueOf(drugOrderMapper1.getQuantity()));
-            dispenseRequest.setStockItemPackagingUOMUuid(drugOrderMapper1.getStockQuantityUnitUuid());
-            dispenseRequests.add(dispenseRequest);
+            if (StringUtils.isNotBlank(drugOrderMapper1.getStockBatchNo()) && drugOrderMapper1.getQuantity() != null && drugOrderMapper1.getQuantity() > 0) {
+                DispenseRequest dispenseRequest = new DispenseRequest();
+                dispenseRequest.setEncounterId(drugOrderMapper1.getEncounterId());
+                dispenseRequest.setOrderId(drugOrderMapper1.getOrderId());
+                dispenseRequest.setLocationUuid(drugOrderMapper1.getDispensingLocation());
+                dispenseRequest.setPatientId(drugOrderMapper1.getPatientId());
+                dispenseRequest.setStockItemUuid(drugOrderMapper1.getStockItem());
+                dispenseRequest.setStockBatchUuid(drugOrderMapper1.getStockBatchNo());
+                dispenseRequest.setQuantity(BigDecimal.valueOf(drugOrderMapper1.getQuantity()));
+                dispenseRequest.setStockItemPackagingUOMUuid(drugOrderMapper1.getStockQuantityUnitUuid());
+                dispenseRequests.add(dispenseRequest);
+            }
         });
-        Context.getService(StockManagementService.class).dispenseStockItems(dispenseRequests);
+        if (dispenseRequests.size() > 0) {
+            Context.getService(StockManagementService.class).dispenseStockItems(dispenseRequests);
+        }
     }
 
     /**

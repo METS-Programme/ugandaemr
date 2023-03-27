@@ -404,4 +404,20 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor LAB_REQUEST_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Lab Request Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Lab Request Encounter";
+        }
+
+        public String uuid() {
+            return "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4";
+        }
+    };
+
 }
