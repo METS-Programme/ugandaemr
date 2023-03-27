@@ -118,8 +118,6 @@
                         hideContainer("#cddp_category");
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
-                    }else {
-                        setValue('refill_point_id.value','');
                     } else {
                         setValue('refill_point_id.value', '');
                         jq("#refill_point_select_id  option").prop("selected", false);
@@ -127,7 +125,7 @@
                         disable_fields("cddp_category");
                     }
                 });
-        });
+
 
                 if (enableStockManagement) {
                     jq("#drug_strength_art_select").removeClass("hidden");
