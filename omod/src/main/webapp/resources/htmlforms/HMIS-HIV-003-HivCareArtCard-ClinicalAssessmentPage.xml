@@ -111,8 +111,13 @@
                 });
 
                 jq("#165143 select").change(function () {
-                    if (jq("#165143").find("select").find(":selected").val() === "165142") {
+                    var model= jq("#165143").find("select").find(":selected").val();
+                    if (model === "165142") {
                         enable_fields("cddp_category");
+                    }else if (model === "165141"){
+                        hideContainer("#cddp_category");
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
                     } else {
                         setValue('refill_point_id.value', '');
                         jq("#refill_point_select_id  option").prop("selected", false);
@@ -120,6 +125,7 @@
                         disable_fields("cddp_category");
                     }
                 });
+
 
                 if (enableStockManagement) {
                     jq("#drug_strength_art_select").removeClass("hidden");
@@ -205,7 +211,7 @@
                     });
 
                     jq("#drug_strength_isoniazid_select").change(function () {
-                        jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                        jq(this).parent().find('#drug_strength_isoniazid_id input').val(jq(this).find(":selected").attr("strength"))
                         jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
                         jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
                         jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
@@ -237,7 +243,7 @@
                         getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
                     });
 
-                    jq("#drug_strength_fluconazole_select").change(function () {
+                    jq("#drug_strength_99413_select").change(function () {
                         jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
                         jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
                         jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))

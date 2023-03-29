@@ -49,6 +49,8 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     private String stockBatchNo;
 
+    private Integer maxDispenseValue;
+
     public Double getDose() {
         return dose;
     }
@@ -223,5 +225,13 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     public void setStockQuantityUnitUuid(String stockQuantityUnitUuid) {
         this.stockQuantityUnitUuid = stockQuantityUnitUuid;
+    }
+
+    public Integer getMaxDispenseValue() {
+        return maxDispenseValue;
+    }
+
+    public void setMaxDispenseValue(Integer maxDispenseValue) {
+        this.maxDispenseValue = maxDispenseValue;
     }
 }
