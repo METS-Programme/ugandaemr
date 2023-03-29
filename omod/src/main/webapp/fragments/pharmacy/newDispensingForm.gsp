@@ -25,7 +25,6 @@
             actions: {
                 confirm: function () {
                     saveEditResult();
-                    editPrescriptionDialog.close();
                 },
                 cancel: function () {
                     editPrescriptionDialog.close();
@@ -85,12 +84,18 @@
 
     function addExpiryMothAndYear(stock) {
         for (let i = 0; i < stock.length; i++) {
+            var expiryYear = null;
+            var expiryMonth = null;
+            if (stock[i].expiration !== null) {
+                expiryYear = new Date(stock[i].expiration).getFullYear();
+                expiryMonth = new Date(stock[i].expiration).getMonth();
+            }
             Object.defineProperty(stock[i], "expiryYear", {
-                value: new Date(stock[i].expiration).getFullYear(),
+                value: expiryYear,
                 writable: false
             })
             Object.defineProperty(stock[i], "expiryMonth", {
-                value: new Date(stock[i].expiration).getMonth(),
+                value: expiryMonth,
                 writable: false
             })
         }
@@ -101,7 +106,7 @@
         var stockIventoryItems = []
         jq.ajax({
             type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "&dispenseAtLocation=1",
             dataType: "json",
             async: false,
             success: function (data) {
@@ -141,11 +146,18 @@
             data: dataString,
             dataType: "json",
             success: function (data) {
-                if (data.status === "success") {
+                if (data.status === "failed") {
+                    var errors = JSON.parse(data.errors);
+                    jq.each(errors, function (index, error) {
+                        jq().toastmessage('showErrorToast', error);
+                    });
+                } else if (data.status === "success") {
+                    editPrescriptionDialog.close();
                     jq().toastmessage('showSuccessToast', data.message);
                     editPrescriptionDialog.close();
                     window.location.reload();
                 } else if (data.referredOutPrescriptions !== "") {
+                    editPrescriptionDialog.close();
                     var dataToPrint = JSON.parse(data.referredOutPrescriptions);
                     printPrescription(dataToPrint);
                 }
@@ -415,8 +427,10 @@ form input {
 
                             <input type="hidden"
                                    data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].encounterId', value : encounterId }">
-                            <!--Other Input Types-->
 
+                            <input type="hidden"
+                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].maxDispenseValue', value : maxDispenseValue }">
+                            <!--Other Input Types-->
                             <td data-bind="">
                                 <div id="data">
                                     <span data-bind="if:drug && drug.toUpperCase() === 'WRITE COMMENT'">
