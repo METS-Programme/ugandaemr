@@ -5,7 +5,7 @@
     ui.includeJavascript("uicommons", "datatables/jquery.dataTables.min.js")
 
 
-    ui.decorateWith("appui", "standardEmrPage", [ title: ui.message("SMS Patients") ])
+    ui.decorateWith("appui", "standardEmrPage", [ title: ui.message("Patients in Cohorts") ])
 
     def htmlSafeId = { extension ->
         "${ extension.id.replace(".", "-") }-${ extension.id.replace(".", "-") }-extension"
@@ -23,18 +23,25 @@
     var OPENMRS_CONTEXT_PATH = '${ ui.contextPath() }';
     var breadcrumbs = [
         {icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm'},
-        {label: "${ ui.escapeJs(ui.message("SMS Patients")) }"}
+        {label: "${ ui.escapeJs(ui.message("Exist patients from cohort  group")) }"}
     ]
 
 </script>
 
 <script type="text/javascript">
     if (jQuery) {
-        var appointmentCohortUuid= "c418984c-fe55-431a-90be-134da0a5ec67";
-        var exiting=false;
+        var cohortType;
         jq(document).ready(function () {
-            getPatientInSMSCohort();
-            var table = jq('#example').DataTable();
+
+            jq("#loading").hide();
+            getCohortTypes();
+            jq('#cohort-type').change(function (){
+                jq('#loading').show();
+                cohortType = jq('#cohort-type option:selected').val();
+                getCohort(cohortType);
+
+                jq('#loading').hide();
+            });
 
         });
 
@@ -55,18 +62,47 @@
             return person;
         }
 
-        function getPatientInSMSCohort(){
+        function getCohortTypes(){
             jq.ajax({
                 type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort/"+appointmentCohortUuid+"?v=custom:(cohortMembers)",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohorttype?v=default",
                 dataType: "json",
-                async: false,
                 contentType: "application/json",
-                accept: "application/json",
+                async: false,
                 success: function (data) {
-                    var person;
-                    var container = jq('#mybody');
-                    var members = data.cohortMembers;
+                    var types = data.results;
+
+                    for (var i = 0; i<types.length; i++) {
+                        jq('#cohort-type').append("<option value='"+ types[i].uuid+"'>"+ types[i].name+ "</option>");
+                    }
+
+                }
+            });
+        }
+
+        function getCohort(type){
+            jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohort?v=custom:(name,cohortMembers,voided)&cohortType="+type,
+                dataType: "json",
+                contentType: "application/json",
+                async: false,
+                success: function (data) {
+                    var cohorts = data.results;
+                    jq('#mybody').empty();
+                    displayCohortDetails(cohorts);
+                    var table = jq('#example').DataTable();
+                }
+            });
+        }
+
+        function displayCohortDetails(data){
+            var container = jq('#mybody');
+            for (var i = 0; i <data.length; i++) {
+                if(data[i].voided==false){
+                    var cohort = data[i];
+                    var cohortName = cohort.name;
+                    var members = cohort.cohortMembers;
                     if(members.length>0){
                         for (var i = 0; i < members.length; i++) {
                             var member = members[i];
@@ -80,6 +116,7 @@
                                     "<td>"+ person.age +"</td>" +
                                     "<td>"+ dob +"</td>" +
                                     "<td>"+ person.gender +"</td>" +
+                                    "<td>"+ cohortName +"</td>" +
                                     "<td>"+ startDate +"</td>" +
                                     "<td>" +
                                     "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"deletePatientFromCohort('"+member.uuid+"')\"></i></td>" +
@@ -90,7 +127,8 @@
                     }
 
                 }
-            });
+
+            }
         }
 
         function deletePatientFromCohort(uuid){
@@ -109,23 +147,39 @@
                 type: "POST",
                 url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/cohortm/cohortmember/"+uuid,
                 dataType: "json",
+                async:false,
                 contentType: "application/json",
                 accept: "application/json",
                 data:dataToPost,
                 success: function (data) {
                     jq().toastmessage('showSuccessToast', "Client Removed from Group");
+                    getCohort(cohortType)
                 },
                 error: function (response) {
                     jq().toastmessage('showErrorToast',"Member does not exist in group");
                 }
             });
-            window.location.reload();
+
+
         }
-
-
-
     }
 </script>
+<div class="row">
+    <div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Group Type</label>
+                <select class="form-control" name="cohortType" id="cohort-type">
+                    <option value="">Select ---</option>
+                </select>
+            </div>
+        </div>
+        <div id="loading" class="col-6">
+            <img src="/openmrs/ms/uiframework/resource/uicommons/images/spinner.gif">
+        </div>
+    </div>
+</div>
+
 <div>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -134,6 +188,7 @@
             <th>Age</th>
             <th>Birthdate</th>
             <th>Gender</th>
+            <th>Group</th>
             <th>Date Enrolled on Program</th>
             <th>Action</th>
         </tr>
