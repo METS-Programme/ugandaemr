@@ -718,15 +718,15 @@
             }
         });
 
-<!--        jq('#indication-for-viral-load').hide();-->
+        jq('#indication-for-viral-load').hide();
 
-<!--        jq(".investigations").find('#165412').change(function () {-->
-<!--        if (jq(this).find('#165412').find(':checkbox').prop('checked')) {-->
-<!--                jq('#indication-for-viral-load').show();-->
-<!--        } else {-->
-<!--                jq('#indication-for-viral-load').hide();-->
-<!--        }-->
-<!--        });-->
+        jq(".investigations").find('#165412').change(function () {
+        if ( jq(".investigations").find('#165412').find(':checkbox').prop('checked')) {
+                jq('#indication-for-viral-load').show();
+        } else {
+                jq('#indication-for-viral-load').hide();
+        }
+        });
 
         disable_fields("viral-load-accession-number");
         disable_fields("viral-load-specimen-source");
@@ -744,7 +744,6 @@
             }
         });
 
-        jq("#
 
 
         jq("#99413").change(function () {
