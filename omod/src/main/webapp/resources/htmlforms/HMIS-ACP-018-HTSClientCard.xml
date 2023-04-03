@@ -88,7 +88,21 @@
               if(jq("#165184").find("input[type$='text']").val()==''){
                     jq("#165184").find("input[type$='text']").attr("disabled",true);
               }
+
+                if(jq("#856").find("input[type$='text']").val()==''){
+                jq("#856").find("input[type$='text']").attr("disabled",true);
+                }
+                if(jq("#1305").find("input[type$='radio']").val()==''){
+                jq("#1305").find("input[type$='radio']").attr("disabled",true);
+                }
+                if(jq("#165845").find("input[type$='text']").val()==''){
+                jq("#165845").find("input[type$='text']").attr("disabled",true);
+                }
             </ifMode>
+
+                disable_fields(856);
+                disable_fields(1305);
+                disable_fields(165845);
 
                 disable_fields(165160);
                 disable_fields(162925);
@@ -166,6 +180,28 @@
                         disable_fields(90211);
                 });
 
+                <!-- Enable Viral Load Recency  -->
+                jq('#99481').change(function () {
+                    if(getValue('99481' + '.value')== 1065)
+                        enable_fields(856);
+                    else
+                        disable_fields(856);
+                });
+
+                <!-- Enable Vl undetectable  -->
+                jq('#99481').change(function () {
+                    if(getValue('99481' + '.value')== 1065)
+                        enable_fields(1305);
+                    else
+                        disable_fields(1305);
+                });
+                <!-- Enable Recency Sample ID  -->
+                jq('#99481').change(function () {
+                    if(getValue('99481' + '.value')== 1065)
+                        enable_fields(165845);
+                    else
+                        disable_fields(165845);
+                });
                 <!-- Enable HIV Test date -->
                 jq('#165180').change(function () {
                     if(getValue('165180' + '.value')== 90004) {
@@ -271,15 +307,27 @@
                         enable_fields('165182');
                         if( getValue('99481' + '.value')== 1065){
                             enable_fields(141520);
+                            enable_fields(856);
+                            enable_fields(1305);
+                            enable_fields(165845);
                         }
                         else if( getValue('99481' + '.value')== 1066){
                             disable_fields(141520);
+        disable_fields(856);
+        disable_fields(1305);
+        disable_fields(165845);
                         }else{
                             disable_fields(141520);
+        disable_fields(856);
+        disable_fields(1305);
+        disable_fields(165845);
                         }
                     }else{
                         disable_fields(141520);
                         disable_fields('165182');
+        disable_fields(856);
+        disable_fields(1305);
+        disable_fields(165845);
                     }
                 });
 
@@ -717,6 +765,24 @@
                                         <div class="col-md-4">
                                             <label>HIV recency test result</label>
                                             <obs id="141520" conceptId="141520" answerConceptIds="141519,141518" answerLabels="1 - Long term infection ,2 - Recent infection"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>HIV Recency Viral Load Result</label>
+                                            <obs id="856"
+                                                 conceptId="168690"/>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label></label>
+                                            <obs id="1305" conceptId="168694" answerConceptIds="168691" answerLabels="VL undetectable" style="radio" class="horizontal"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Recency Sample ID</label>
+                                            <obs id="165845" conceptId="168692"/>
                                         </div>
 
                                     </div>

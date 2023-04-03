@@ -718,18 +718,32 @@
             }
         });
 
+        jq('#indication-for-viral-load').hide();
+
+        jq(".investigations").find('#165412').change(function () {
+        if ( jq(".investigations").find('#165412').find(':checkbox').prop('checked')) {
+                jq('#indication-for-viral-load').show();
+        } else {
+                jq('#indication-for-viral-load').hide();
+        }
+        });
+
         disable_fields("viral-load-accession-number");
         disable_fields("viral-load-specimen-source");
+        disable_fields("indication-for-viral-load-testing");
 
         jq("#order-viral-load-test").change(function () {
             if (jq(this).find(':checkbox').prop('checked')) {
                 enable_fields("viral-load-accession-number");
                 enable_fields("viral-load-specimen-source");
+                enable_fields("indication-for-viral-load-testing");
             } else {
                 disable_fields("viral-load-accession-number");
                 disable_fields("viral-load-specimen-source");
+                disable_fields("indication-for-viral-load-testing");
             }
         });
+
 
 
         jq("#99413").change(function () {
@@ -3029,6 +3043,12 @@
                                                                      answerConceptSetIds="162476"/>
                                                             </div>
                                                         </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <label>Indication for viral load testing</label>
+                                                                <obs id="indication-for-viral-load-testing" conceptId="168689" style="checkbox"/>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -3702,6 +3722,12 @@
                                                                          answerLabel="{1}" style="checkbox"/>
                                                                 </div>
                                                             </repeat>
+                                                        </div>
+                                                        <div class="row" id="indication-for-viral-load">
+                                                            <div class="col-md-12">
+                                                                <label>Indication for viral load testing</label>
+                                                                <obs conceptId="168689" id="168689" style="checkbox"/>
+                                                            </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-12">

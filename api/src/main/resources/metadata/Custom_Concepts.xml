@@ -417,7 +417,7 @@
     <concept  concept_id="165915"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 09:47:22"  version="1.0" uuid="66816c43-88e2-466b-9364-c09e771488f7"/>
     <concept  concept_id="165916"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 09:50:03"  version="1.0" uuid="dd4dea1a-725e-4a2f-be2c-55e11b40c35c"/>
     <concept  concept_id="165917"  retired="0" datatype_id="1"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 09:54:19"  version="1.0" uuid="4287fd0e-7cec-4cd3-91b4-8dc9b064b3cb"/>
-    <concept  concept_id="165918"  retired="0" datatype_id="1"  class_id="7"  is_set="0"  creator="1"  date_created="2020-08-20 09:56:33" changed_by="1"  date_changed="2023-03-23 13:51:24" uuid="bf038497-df07-417d-9767-983e59983760"/>
+    <concept  concept_id="165918"  retired="0" datatype_id="1"  class_id="7"  is_set="0"  creator="1"  date_created="2020-08-20 09:56:33"  version="1.0" uuid="bf038497-df07-417d-9767-983e59983760"/>
     <concept  concept_id="165919"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 10:07:26"  version="1.0" uuid="5b437607-eb6c-4b22-85d4-a0d96c2179ba"/>
     <concept  concept_id="165920"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 10:07:48"  version="1.0" uuid="89639df6-25a9-450b-bcb3-85ecc741a25e"/>
     <concept  concept_id="165921"  retired="0" datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-08-20 10:08:08"  version="1.0" uuid="e12944a7-35ad-4c49-9064-dad6620d9a1a"/>
@@ -2469,6 +2469,12 @@
     <concept  concept_id="168688"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2023-03-20 18:10:41"  changed_by="1"  date_changed="2023-03-20 18:10:41"  uuid="68b58a80-af4e-43a5-a70d-113747a6cbb7"/>
     <concept  concept_id="168689"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2023-03-21 22:50:40"  changed_by="1"  date_changed="2023-03-21 22:50:40"  uuid="59f36196-3ebe-4fea-be92-6fc9551c3a11"/>
 
+    <concept  concept_id="168690"  retired="0" datatype_id="1"  class_id="1"  is_set="0"  creator="1"  date_created="2023-03-29 10:36:29"  changed_by="1"  date_changed="2023-03-29 10:36:29"  uuid="5fd38584-21a7-4145-be4b-c126c5fb3d73"/>
+    <concept  concept_id="168691"  retired="0" datatype_id="4"  class_id="11" is_set="0"  creator="1"  date_created="2023-03-29 10:38:03"  changed_by="1"  date_changed="2023-03-29 10:38:03"  uuid="5684822b-c2ea-4e03-8293-415e2370f763"/>
+    <concept  concept_id="168692"  retired="0" datatype_id="3"  class_id="7"  is_set="0"  creator="1"  date_created="2023-03-29 10:40:27"  changed_by="1"  date_changed="2023-03-29 10:40:27"  uuid="a0a6545b-8383-4235-a74f-417db2b580f3"/>
+    <concept  concept_id="168693"  retired="0" datatype_id="4"  class_id="11" is_set="0"  creator="1"  date_created="2023-03-29 11:00:29"  changed_by="1"  date_changed="2023-03-29 11:00:29"  uuid="4f4134d9-6792-4cfd-9257-54c52952fa59"/>
+    <concept  concept_id="168694"  retired="0" datatype_id="2"  class_id="1"  is_set="0"  creator="1"  date_created="2023-03-29 11:05:06"  changed_by="1"  date_changed="2023-03-29 11:05:06"  uuid="0787cd66-0816-46f1-ade4-eb75b166144e"/>
+
 
 
     <!--CONCEPT NUMERIC-->
@@ -3304,6 +3310,11 @@
     <concept_description  concept_description_id="18732"  concept_id="168689"  description="Indication for viral load testing"  locale="en"  creator="1"  date_created="2023-03-21 22:50:40"  uuid="c53e2fd3-abe0-4efa-b46f-6c4ee8c38dc3"/>
 
     <concept_description  concept_description_id="18733"  concept_id="165918"  description="NUMBER OF MONTHS SINCE FIRST HIV/AIDS SYMPTOMS"  locale="en"  creator="1"  date_created="2023-03-23 13:51:24"  changed_by="1"  date_changed="2023-03-23 13:51:24"  uuid="5cfe8690-e555-4e72-8947-cfe588213b39"/>
+    <concept_description  concept_description_id="18734"  concept_id="168690"  description="HIV RECENCY VIRAL LOAD RESULTS"  		locale="en"  creator="1"  date_created="2023-03-29 10:36:29"  uuid="f7fdcadc-5cab-447f-be4e-83d22fe1a0a2"/>
+    <concept_description  concept_description_id="18735"  concept_id="168691"  description="HIV recency viral load undetectable"  	locale="en"  creator="1"  date_created="2023-03-29 10:38:03"  uuid="540987b4-e8d6-4687-802f-3a125f2ca42f"/>
+    <concept_description  concept_description_id="18736"  concept_id="168692"  description="HIV RECENCY SAMPLE ID"  				locale="en"  creator="1"  date_created="2023-03-29 10:40:27"  uuid="03e7fb92-6e2b-4612-979b-84f8d0ce3cc0"/>
+    <concept_description  concept_description_id="18737"  concept_id="168693"  description="HIV Recency viral load detected"  		locale="en"  creator="1"  date_created="2023-03-29 11:00:29"  uuid="f4694bae-ddb7-4202-b089-0c838ea1bc86"/>
+    <concept_description  concept_description_id="18738"  concept_id="168694"  description="HIV recency viral load qualitative      This is a qualitative result for the number of copies/ml"  locale="en"  creator="1"  date_created="2023-03-29 11:05:06"  uuid="eaf137ab-be4f-4549-b15a-4a840da3a8f5"/>
 
 
     <!--CONCEPT NAME-->
@@ -7389,6 +7400,12 @@
      <concept_name  concept_name_id="181099"  concept_id="168688"  name="Routine"                            locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-20 18:10:41"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f9572563-1317-49c5-ba39-5476caf71643"/>
      <concept_name  concept_name_id="181100"  concept_id="168689"  name="Indication for viral load testing"  locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-21 22:50:40"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="dfa08ba7-21bd-4fa9-bc13-3d3439fb154c"/>
 
+    <concept_name  concept_name_id="181103"  concept_id="168690"  name="HIV RECENCY VIRAL LOAD RESULTS"  		 locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-29 10:36:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="e8921038-d2b1-463f-a7b0-ccfed0570b06"/>
+    <concept_name  concept_name_id="181104"  concept_id="168691"  name="HIV RECENCY VIRAL LOAD UNDETECTABLE"  	 locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-29 10:38:03"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="91e9319b-5a67-423b-95a7-ad4fbf13e583"/>
+    <concept_name  concept_name_id="181105"  concept_id="168692"  name="HIV RECENCY SAMPLE ID"  				 locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-29 10:40:27"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="939efd70-bdd9-4961-a09c-90ceae916332"/>
+    <concept_name  concept_name_id="181106"  concept_id="168693"  name="HIV RECENCY VIRAL DETECTED"  			 locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-29 11:00:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="feb49ecf-4469-4a35-9a1c-bcb6cc513801"/>
+    <concept_name  concept_name_id="181107"  concept_id="168694"  name="HIV RECENCY VIRAL LOAD QUALITATIVE"  	 locale="en"  locale_preferred="1"  creator="1"  date_created="2023-03-29 11:05:06"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="514504fb-8161-4ad6-88f4-f648e9573c56"/>
+
 
     <!--CONCEPT ANSWERS-->
     <!--MCH-->
@@ -10112,6 +10129,9 @@
     <concept_answer  concept_answer_id="7368429"  concept_id="168689"  answer_concept="168685"  creator="1"  date_created="2023-03-21 22:50:40"  sort_weight="3"  uuid="9c3997ed-739a-4e3d-9441-96abd5220e1a"/>
     <concept_answer  concept_answer_id="7368430"  concept_id="168689"  answer_concept="168687"  creator="1"  date_created="2023-03-21 22:50:40"  sort_weight="5"  uuid="0a505fdf-b225-494b-a1a0-8705ea346526"/>
     <concept_answer  concept_answer_id="7368431"  concept_id="168689"  answer_concept="168684"  creator="1"  date_created="2023-03-21 22:50:40"  sort_weight="2"  uuid="6506f48e-796a-4845-b6ce-39b7ebde7556"/>
+
+    <concept_answer  concept_answer_id="7368432"  concept_id="168694"  answer_concept="168693"  creator="1"  date_created="2023-03-29 11:05:06"  sort_weight="2"  uuid="995e4ee2-53b4-4d10-82ed-b6c308858cff"/>
+    <concept_answer  concept_answer_id="7368433"  concept_id="168694"  answer_concept="168691"  creator="1"  date_created="2023-03-29 11:05:06"  sort_weight="1"  uuid="9c374ad8-4f50-47fc-927a-1e9d2f32d955"/>
 
 
     <!--CONCEPT SET-->
