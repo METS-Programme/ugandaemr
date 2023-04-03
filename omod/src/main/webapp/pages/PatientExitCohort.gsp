@@ -119,7 +119,7 @@
                                     "<td>"+ cohortName +"</td>" +
                                     "<td>"+ startDate +"</td>" +
                                     "<td>" +
-                                    "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"deletePatientFromCohort('"+member.uuid+"')\"></i></td>" +
+                                    "<i style=\"font-size: 25px\"  class=\"delete-item icon-remove\" title=\"Delete\" onclick=\"ConfirmDelete('"+member.uuid+"')\"></i></td>" +
                                     "</tr>";
                                 container.append(row);
                             }
@@ -161,6 +161,13 @@
             });
 
 
+        }
+
+        function ConfirmDelete(uuid) {
+            if(confirm("Are you sure to want to Delete?")==true)
+                deletePatientFromCohort(uuid);
+            else
+                return false;
         }
     }
 </script>
