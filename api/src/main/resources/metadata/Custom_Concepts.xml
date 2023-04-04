@@ -10133,6 +10133,8 @@
     <concept_answer  concept_answer_id="7368432"  concept_id="168694"  answer_concept="168693"  creator="1"  date_created="2023-03-29 11:05:06"  sort_weight="2"  uuid="995e4ee2-53b4-4d10-82ed-b6c308858cff"/>
     <concept_answer  concept_answer_id="7368433"  concept_id="168694"  answer_concept="168691"  creator="1"  date_created="2023-03-29 11:05:06"  sort_weight="1"  uuid="9c374ad8-4f50-47fc-927a-1e9d2f32d955"/>
 
+    <!-- NEW CONCEPT ANSWER FOR FAMILY MEMBER HIV STATUS -->
+    <concept_answer  concept_answer_id="7368434"  concept_id="165275"  answer_concept="90001"  creator="1"  date_created="2023-04-04 11:54:36"  sort_weight="3"  uuid="6c227039-7f3f-40a9-857b-3d81cbcf2f77"/>
 
     <!--CONCEPT SET-->
     <!--MCH-->
