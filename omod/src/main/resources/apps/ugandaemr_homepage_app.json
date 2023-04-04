@@ -253,6 +253,20 @@
       "requiredPrivilege": "App: coreapps.systemAdministration"
     }
   ]
+},{
+  "id": "ugandaemr.cohortExist",
+  "description": "Patient Exist Cohort Page",
+  "order": 41,
+  "extensions": [
+    {
+      "id": "coreapps.activeVisitsHomepageLink",
+      "extensionPointId": "systemAdministration.apps",
+      "type": "link",
+      "label": "Exist from Cohort Group",
+      "url": "ugandaemr/PatientExitCohort.page",
+      "icon": " icon-cog",
+      "requiredPrivilege": "App: coreapps.systemAdministration"
+    }
+  ]
 }
-
 ]

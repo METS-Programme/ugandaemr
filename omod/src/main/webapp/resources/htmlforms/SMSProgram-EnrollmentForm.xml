@@ -49,15 +49,6 @@
                     });
             }
 
-            disable_fields("166567");
-
-            jq("#166566").click(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == "90003") {
-                enable_fields("166567");
-            } else {
-                disable_fields("166567");
-            }
-            });
 
             beforeSubmit.push(function () {
                 <!-- verify that phone number is valid     -->
@@ -69,9 +60,6 @@
                         jq().toastmessage('showErrorToast', "Please specify a valid mobile number without any spaces like 256712345678");
                         return false;
                     }
-                }else if( getValue('166566' + '.value')!== 90003){
-                    jq().toastmessage('showErrorToast', "Phone number is required");
-                    return false;
                 }
 
 <!--  assign cohorts to client depending on the types of reminders they have chosen  -->
@@ -163,27 +151,19 @@
 
                     </div>
                 </div>
-                <div id="exit" class="card">
-                    <div class="card-header">
-                        Exit of Program
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <label>Exit SMS Program:</label>
-                                <obs id="166566" conceptId="166566" answerConceptIds="90003,90004" answerLabels="Yes,No" style="radio"/>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Date of Exit:</label>
-                                <span>
-                                    <i class=" icon-calendar small family-date-icon"></i>
-                                    <obs id="166567" conceptId="166567" allowFutureDates="true"/>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+    <ifMode mode="EDIT" include="false">
+        <lookup complexExpression="
+            #set( $encounter = 0 )
+            #set( $encounter = $fn.latestEncounter('05fa932f-4203-43c9-8985-60f2bea8a773'))
+            #if( $encounter != 0 )
+                &lt;script type=&quot;text/javascript&quot;>
+                        if (window.location.href.indexOf('/module/htmlformentry/htmlForm.form') == -1) {
+                            window.location.href = window.location.protocol + &quot;//&quot; + window.location.host + &quot;/&quot;+ OPENMRS_CONTEXT_PATH + &quot;/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?visitId=$encounter.visit.visitId&amp;formUuid=c2ec62ba-3897-4244-8062-c1c8bd2c0dce&amp;patientId=$patient.patientId&amp;encounterId=$encounter.encounterId&amp;returnUrl=%2F&quot; + OPENMRS_CONTEXT_PATH + &quot;%2Fcoreapps%2Fclinicianfacing%2Fpatient.page%3FpatientId%3D$patient.patientId&quot;;
+                        }
+                &lt;/script>
+            #end"/>
+    </ifMode>
 </htmlform>
