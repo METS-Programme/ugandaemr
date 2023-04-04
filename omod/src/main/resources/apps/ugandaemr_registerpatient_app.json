@@ -148,9 +148,6 @@
                     "providerName": "registrationapp",
                     "fragmentId": "field/personAddressWithHierarchy",
                     "config": {
-                      "manualFields": [
-                        "address4","address5"
-                      ]
                     }
                   }
                 }
