@@ -690,6 +690,7 @@ VALUES
 			replace into order_obs (encounter_id, order_id, obs_id, date_created, creator, uuid) (select encounter_id, order_id, obs_id, date_created, creator, uuid() from obs where order_id is not null);
 		</sql>
 	</changeSet>
+
 	<changeSet id="ugandaemr-20230127-2345" author="daphinenalule">
 		<comment>
 			Insert General CDDP Cohort type for CDDP Group
@@ -698,6 +699,14 @@ VALUES
 			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
 			('General CDDP Cohort Type','2023-01-27',1,'da964ff0-648e-440b-a219-d2aeba3670d0');
 		</sql>
+	</changeSet>
+
+	<changeSet id="20230404-1001" author="iakileng">
+		<preConditions onFail="MARK_RAN">
+			<tableExists tableName="obs"/>
+		</preConditions>
+		<comment> Updating family member's hiv unknown status concept id in obs table </comment>
+		<sql> UPDATE obs SET value_coded = 90001 where value_coded = 165165 and concept_id = 165275; </sql>
 	</changeSet>
 </databaseChangeLog>
 
