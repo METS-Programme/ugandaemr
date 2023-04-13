@@ -288,7 +288,7 @@
 																</div>
 																<div class="col-md-3">
 																	<label>Follow Up Outcome</label>
-																	<obs id="165104" conceptId="165104" answerConceptIds="165334,165335,1363,165486,160034,165368,165369,165370,165371" answerLabels="1 - Returned to care, 2 - Self transferred, 3 - Stopped/Refused, 4 - Migrated/Relocated, 5 - Died, 6 - Unable to be traced, 7 - Tracing attempts initiated but incomplete, 8 - No attempt to trace, 9 - Misclassified as Missed Appointment" class="long-value-select"/>
+																	<obs id="165104" conceptId="165104" answerConceptIds="165334,165335,1363,165486,160034,165368,165369,165370,165371,166437" answerLabels="1 - Returned to care, 2 - Self transferred, 3 - Stopped/Refused, 4 - Migrated/Relocated, 5 - Died, 6 - Unable to be traced, 7 - Tracing attempts initiated but incomplete, 8 - No attempt to trace, 9 - Misclassified as Missed Appointment, 10 - Promised to Return" class="long-value-select"/>
 																</div>
 																<div class="col-md-3">
 																	<label>ART Clinic</label>
