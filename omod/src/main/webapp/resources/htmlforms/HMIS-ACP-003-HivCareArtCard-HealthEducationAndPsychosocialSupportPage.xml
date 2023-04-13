@@ -141,10 +141,23 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <label>ART Preparation, Readiness, Adherence and Support</label>
-                                <obs conceptId="165207" answerConceptIds="165202,165203,99186,165204,165206,165205"
-                                     answerLabels="1 - ART literacy,2 - Adherence preparation and plan,3 - Ready to start and Initiate,4 - Not ready to start,5 - Ongoing Adherence counselling and support,
-                     6 - Intensive Adherence counselling and support" style="dropdown"/>
                             </div>
+                        </div>
+                        <div class="row">
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="165202"
+                                 answerLabels="1 - ART literacy" style="checkbox"/>
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="165203"
+                                 answerLabels="2 - Adherence preparation and plan" style="checkbox"/>
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="99186"
+                                 answerLabels="3 - Ready to start and Initiate" style="checkbox"/>
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="165204"
+                                 answerLabels="4 - Not ready to start" style="checkbox"/>
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="165206"
+                                 answerLabels="5 - Ongoing Adherence counselling and support" style="checkbox"/>
+                            <obs class="col-md-4" conceptId="165207" answerConceptId="165205"
+                                 answerLabels="6 - Intensive Adherence counselling and support" style="checkbox"/>
+                        </div>
+                        <div class="row">
                             <div class="col-md-8">
                                 <label>Depression Status</label>
                                 <obs conceptId="165194" answerConceptId="165186" answerLabels="1 - No Signs"
@@ -156,14 +169,14 @@
                                      answerLabels="3 - More than 2 weeks of feeling down" style="checkbox"
                                      class="horizontal"/>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <label>GBV/VAC</label>
                                 <obs conceptId="165302" answerConceptIds="165186,165187,165189,1490,165262"
                                      answerLabels="1 - No Signs, 2 - Emotional or Psyschosocial Harm, 3 - Physical Harm, 4 - Inappropriately touched/fondled, 5 - Forced Sexual Intercourse"
                                      style="dropdown"/>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <obs conceptId="99175" answerConceptIds="90003,90004" answerLabels="Yes,No"
                                      labelText="Disclosed Relationship" style="radio" class="horizontal"/>
@@ -175,22 +188,45 @@
                                      answerLabels="1 - No signs, 2 - Had less than 1 meal a day, 3 - Not in School, 4 - Malnourished, 5 - Caregiver unemployed/Casual labourer, 6 - Non Suppressed VL, 7 - Missed Appointment, 8 - Has signs of abuse/exploitation or neglect"
                                      style="dropdown"/>
                             </div>
-                        </div>
-                        <div class="row">
                             <div class="col-md-4">
                                 <label>OVC Assessment</label>
                                 <obs conceptId="165212" answerConceptIds="160737,165208,165209,165210,165211"
                                      answerLabels="1 - Not assessed, 2 - Assessed Eligible not yet enrolled,
                      3 - Assessed and Not Eligible, 4 - Enrolled,5 - Graduated" style="dropdown"/>
                             </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <label>PHDP Components</label>
-                                <obs id="165218" conceptId="165218"
-                                     answerConceptIds="165213,99296,374,165214,165215,90012,1167,165216,99052,165217,90002"
-                                     answerLabels="1 - STI Screening And Treatment,
-                     2 - FP Counselling, 3 - FP Method provided,4 - Alcohol and Substance abuse reduction, 5 - Risk Reduction Counselling,6 - PMTCT, 7 - Disclosure Counselling,
-                     8 - Mgt of Stigma and Discrimination, 9 - Nutritional Counselling, 10 - Basic care package, 11 - Others Specify"/>
                             </div>
+                        </div>
+                        <div class="row">
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="165213"
+                                     answerLabels="1 - STI Screening And Treatment" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="99296"
+                                     answerLabels="2 - FP Counselling" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="374"
+                                     answerLabels="3 - FP Method provided" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="165214"
+                                     answerLabels="4 - Alcohol and Substance abuse reduction" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="165215"
+                                     answerLabels="5 - Risk Reduction Counselling" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="90012"
+                                     answerLabels="6 - PMTCT" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="1167"
+                                     answerLabels="7 - Disclosure Counselling" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="165216"
+                                     answerLabels="8 - Mgt of Stigma and Discrimination" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="99052"
+                                     answerLabels="9 - Nutritional Counselling" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="165217"
+                                     answerLabels="10 - Basic care package" style="checkbox"/>
+                                <obs class="col-md-4" conceptId="165218" answerConceptId="90002"
+                                     answerLabels="11 - Others Specify" style="checkbox"/>
+                            <div class="col-md-4">
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col-md-4">
                                 <label>Others Specify</label>
                                 <obs id="165265" conceptId="165265" class="otherpdhpcomponents"/>

@@ -416,8 +416,6 @@
                             <td>
                         <span class="ArtCareEnableDisable2">
                             <obs id="90315" conceptId="90315"
-                                 answerConceptIds="99015,99016,99005,99006,164979,99039,99040,99041,99042,164977,99884,99885,164978,163017,99143"
-                                 answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-FTC-NVP,TDF-FTC-EFV,TDF-3TC-DTG,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3CT-LPV/r,Other"
                                  label="Current Regimen"/>
                                 </span>
                                 <span class="ArtCareEnableDisableChild2">
