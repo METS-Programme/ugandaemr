@@ -716,6 +716,15 @@ VALUES
 			ALTER TABLE htmlformentry_html_form CONVERT TO CHARACTER SET UTF8;
 		</sql>
 	</changeSet>
+	<changeSet id="ugandaemr-20230425-1730" author="dbaluku">
+		<comment>
+			next gen reports uuids for exchange
+		</comment>
+		<sql>
+			UPDATE global_property SET property_value = '214fb8ef-6219-43f3-b20b-023261c0dec6,8dafdc32-97b7-4f49-828e-475cd4f09669,65fec0844-1970-43c5-bf77-b296415daa34,e7102e5c-b90d-4a4a-b763-20518eadbae5' WHERE property = 'ugandaemrsync.sendNextGenReports.server.reportuuids';
+			UPDATE global_property SET property_value = '27f4804f-ec6f-466e-b4ea-21f9ca584880,072b526a-4140-4c43-9f5c-6d1fa74d7c42,0e3bdfde-3ee0-4f94-b105-bff844feba30,a2d6170e-1930-4f21-920c-6106e39058e8,ac1b2145-54aa-4ed8-9590-db7c47fe51e4' WHERE property = 'ugandaemrsync.sendHMISReports.server.reportuuids';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
