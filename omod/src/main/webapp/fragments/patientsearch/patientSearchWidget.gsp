@@ -186,7 +186,30 @@ body {
         document.getElementById("myDiv").style.display = "block";
     }
 
+    function checkProfileEnabled(uuid) {
+        var profileEnabled;
+        jQuery.ajax({
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/"+uuid+"?v=full",
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            type: 'GET',
+            async: false
+        }).success(function (data) {
+            var profile = data;
+            profileEnabled = profile.profileEnabled;
+        })
+        return profileEnabled;
+    }
+
     jq(document).ready(function () {
+
+        jq('#nhcr').hide();
+        if(checkProfileEnabled("84242661-aadf-42e4-9431-bf8afefb4433")){
+            jq('#nhcr').show();
+        }
+
         jq('#add_patient_to_queue_dialog').on('show.bs.modal', function (event) {
             var button = jq(event.relatedTarget);
             var patientId = button.data('patientid');
@@ -661,12 +684,14 @@ body {
             </div>
         </div>
 
-        <p>
+        <div class="row">
+            <div id="nhcr" class="col-7">
             <a data-toggle="collapse" style="width: 10px" href="#collapseExample" role="button" aria-expanded="false"
                aria-controls="collapseExample">
                 Search National Health Client Registry
             </a>
-        </p>
+            </div>
+        </div>
 
         <div class="collapse" id="collapseExample">
             <div class="card card-body" id="search-client-registry">
