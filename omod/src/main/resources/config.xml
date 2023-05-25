@@ -280,6 +280,12 @@
         <description>This is a facility SMS Template used by the SMS Program</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemr.showNationalIDPatientIdentifier</property>
+        <defaultValue>true</defaultValue>
+        <description>This enables or disables the use of the National ID to be used in the search widget </description>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>
