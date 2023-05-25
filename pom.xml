@@ -69,7 +69,7 @@
 		<openMRSVersion>2.5.5</openMRSVersion>
 		<openmrsTestutilsVersion>1.3</openmrsTestutilsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<webservices.restModuleVersion>2.39.0-SNAPSHOT</webservices.restModuleVersion>
+		<webservices.restModuleVersion>2.39.0</webservices.restModuleVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
@@ -77,7 +77,7 @@
 		<adminuiVersion>1.6.0</adminuiVersion>
 		<addresshierarchyVersion>2.14.2</addresshierarchyVersion>
 		<allergyuiVersion>1.8.4</allergyuiVersion>
-		<appframeworkVersion>2.16.0</appframeworkVersion>
+		<appframeworkVersion>2.17.0</appframeworkVersion>
 		<appuiVersion>1.14.0</appuiVersion>
 		<appointmentschedulingVersion>1.16.0</appointmentschedulingVersion>
 		<appointmentschedulinguiVersion>1.12.0</appointmentschedulinguiVersion>
@@ -86,10 +86,10 @@
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
 		<dataEntryStatisticsVersion>1.7.0</dataEntryStatisticsVersion>
 		<dataexchangeVersion>1.3.7</dataexchangeVersion>
-		<dataintegrityVersion>4.4.4-SNAPSHOT</dataintegrityVersion>
+		<dataintegrityVersion>4.4.4</dataintegrityVersion>
 		<emrapiVersion>1.32.0</emrapiVersion>
 		<eventVersion>2.10.0</eventVersion>
-		<fhir2Version>1.8.0-SNAPSHOT</fhir2Version>
+		<fhir2Version>1.9.0</fhir2Version>
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.3.0</formfilterVersion>
 		<htmlformentryuiVersion>2.0.0</htmlformentryuiVersion>
@@ -104,7 +104,7 @@
 		<metadatasharingVersion>1.8.0</metadatasharingVersion>
 		<openconceptlabVersion>1.2.9</openconceptlabVersion>
 		<openwebappsVersion>1.13.0</openwebappsVersion>
-		<patientFlagsVersion>3.0.3-SNAPSHOT</patientFlagsVersion>
+		<patientFlagsVersion>3.0.4-SNAPSHOT</patientFlagsVersion>
 		<providermanagementVersion>2.13.0</providermanagementVersion>
 		<referenceapplicationVersion>2.12.2</referenceapplicationVersion>
 		<referencemetadataVersion>2.12.0</referencemetadataVersion>
@@ -112,7 +112,7 @@
 		<registrationcoreVersion>1.11.0</registrationcoreVersion>
 		<reportingRestVersion>1.12.0</reportingRestVersion>
 		<reportingVersion>1.23.0</reportingVersion>
-		<reportingCompatibilityVersion>2.0.8</reportingCompatibilityVersion>
+		<reportingCompatibilityVersion>2.0.9</reportingCompatibilityVersion>
 		<reportingUIVersion>1.8.0</reportingUIVersion>
 		<serializationxstreamVersion>0.2.15</serializationxstreamVersion>
 		<uicommonsVersion>2.19.0</uicommonsVersion>
@@ -120,18 +120,16 @@
 		<uilibraryVersion>2.0.7</uilibraryVersion>
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.2.0</patientqueueingVersion>
-		<ugandaemrSyncVersion>1.1.7</ugandaemrSyncVersion>
-		<ugandaemrfingerprintVersion>1.0.11</ugandaemrfingerprintVersion>
+		<ugandaemrSyncVersion>1.1.11-SNAPSHOT</ugandaemrSyncVersion>
+		<ugandaemrfingerprintVersion>1.1.0</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
-		<stockmanagementVersion>1.0.0</stockmanagementVersion>
+		<stockmanagementVersion>1.0.1</stockmanagementVersion>
 		<spaModuleVersion>1.0.8</spaModuleVersion>
 		<queueModuleVersion>1.0.0-SNAPSHOT</queueModuleVersion>
 		<spa.version>latest</spa.version>
 
 		<!-- core configuration library -->
-		<ugandaemrReportsVersion>2.0.36_alpha</ugandaemrReportsVersion>
-
-
+		<ugandaemrReportsVersion>2.0.37</ugandaemrReportsVersion>
 	</properties>
 
 	<dependencyManagement>
