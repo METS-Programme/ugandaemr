@@ -100,6 +100,7 @@
                         <span id="headertittle">U</span>GANDA</span><span id="headertittle">EMR</span>
                     </div>
                     <span id="headersubtittle">Electronic Medical Records System</span>
+                    <span id="nfhr">${uniqueId} </span>
                 </div>
             </div>
         </div>

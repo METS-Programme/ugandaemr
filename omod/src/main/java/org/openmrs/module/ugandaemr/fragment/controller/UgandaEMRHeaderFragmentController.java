@@ -47,6 +47,13 @@ public class UgandaEMRHeaderFragmentController {
 					AppUiExtensions.HEADER_USER_ACCOUNT_MENU_ITEMS_EXTENSION);
 			fragmentModel.addAttribute("userAccountMenuItems", userAccountMenuItems);
 			fragmentModel.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("ugandaemr.healthCenterName"));
+			String healthFacilityUniqueidentifier ="";
+			healthFacilityUniqueidentifier = Context.getAdministrationService().getGlobalProperty("ugandaemrsync.national.health.facility.registry.identifier");
+			if(healthFacilityUniqueidentifier !=null){
+				fragmentModel.addAttribute("uniqueId", "UUID: "+healthFacilityUniqueidentifier);
+
+			}
+
 		}
 		finally {
 			Context.removeProxyPrivilege(GET_LOCATIONS);
