@@ -51,7 +51,8 @@ public class UgandaEMRHeaderFragmentController {
 			healthFacilityUniqueidentifier = Context.getAdministrationService().getGlobalProperty("ugandaemrsync.national.health.facility.registry.identifier");
 			if(healthFacilityUniqueidentifier !=null){
 				fragmentModel.addAttribute("uniqueId", "UUID: "+healthFacilityUniqueidentifier);
-
+			}else{
+				fragmentModel.addAttribute("uniqueId", "ID: no identifier set");
 			}
 
 		}
