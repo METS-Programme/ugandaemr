@@ -89,7 +89,7 @@
 		<dataintegrityVersion>4.4.4</dataintegrityVersion>
 		<emrapiVersion>1.32.0</emrapiVersion>
 		<eventVersion>2.10.0</eventVersion>
-		<fhir2Version>1.2.2</fhir2Version>
+		<fhir2Version>1.9.0</fhir2Version>
 		<formentryappVersion>1.4.2</formentryappVersion>
 		<formfilterVersion>1.3.0</formfilterVersion>
 		<htmlformentryuiVersion>2.0.0</htmlformentryuiVersion>
