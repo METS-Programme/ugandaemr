@@ -546,12 +546,7 @@
 									</span>
                                     </p>
                                 </td>
-                                <td>
-                                    <p>
-                                        <label>Serial Number </label>
-                                        <obs conceptId="1646"/>
-                                    </p>
-                                </td>
+                                <td></td>
                             </tr>
                         </table>
                     </fieldset>

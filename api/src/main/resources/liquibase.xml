@@ -725,6 +725,20 @@ VALUES
 			UPDATE global_property SET property_value = '27f4804f-ec6f-466e-b4ea-21f9ca584880,072b526a-4140-4c43-9f5c-6d1fa74d7c42,0e3bdfde-3ee0-4f94-b105-bff844feba30,a2d6170e-1930-4f21-920c-6106e39058e8,ac1b2145-54aa-4ed8-9590-db7c47fe51e4' WHERE property = 'ugandaemrsync.sendHMISReports.server.reportuuids';
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-25-07-2023-0010" author="iakileng">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM
+				metadatamapping_metadata_set_member WHERE uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
+			</sqlCheck>
+		</preConditions>
+		<comment> Enabling OPD Number to be displayed in UgandaEMR on a patient dashboard </comment>
+		<sql>
+			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
+			SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2, NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

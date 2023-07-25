@@ -331,4 +331,21 @@ public class PatientIdentifierTypes {
         }
     };
 
+    public static PatientIdentifierTypeDescriptor PATIENT_OPD_IDENTIFICATION_NUMBER = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "OPD No.";
+        }
+
+        @Override
+        public String description() {
+            return "Unique OPD Number that is generated on creation of the first OPD encounter";
+        }
+
+        public String uuid() {
+            return "be8f222a-3751-4f93-8c74-3aff399c19b6";
+        }
+    };
+
 }
