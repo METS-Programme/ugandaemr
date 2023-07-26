@@ -319,6 +319,13 @@
     </globalProperty>
 
 
+    <globalProperty>
+        <property>ugandaemr.patientqueue.averageWaitingTime</property>
+        <defaultValue>30</defaultValue>
+        <description>The average waiting time for a patient in a queue in minutes</description>
+    </globalProperty>
+
+
 
     <privilege>
         <name>Task: HIV Clinic Access</name>
