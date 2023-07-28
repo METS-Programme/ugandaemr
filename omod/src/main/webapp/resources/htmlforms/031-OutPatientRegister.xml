@@ -72,23 +72,19 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function (jq) {
+            disable_fields("otherSpecify");
 
             //Block Multiple encounter entry on same date
             blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"), "block");
 
-            var $othersField = jq('span.has-comment input[type=checkbox]');
+            jq('#othersCheckBox').on("click", function () {
+                if (jq('#othersCheckBox').is(':checked')) {
+                    enable_fields("otherSpecify");
+                } else {
+                    disable_fields("otherSpecify");
+                }
+            });
 
-            var toggleOtherSpecify = function () {
-                $othersField.each(function () {
-                    var $specifyField = jq(this).siblings('input[type=text]');
-                    if (jq(this).attr('checked') == 'checked') {
-                        fieldHelper.removeReadonly($specifyField);
-                    } else {
-                        fieldHelper.makeReadonly($specifyField);
-                        $specifyField.val('');
-                    }
-                });
-            };
 
             var isOtherSelectedAndSpecified = function () {
                 var valid = true;
@@ -141,10 +137,6 @@
 
                 return !dirty;
             }
-
-            $othersField.change(toggleOtherSpecify);
-
-            toggleOtherSpecify();
 
             beforeSubmit.push(function () {
                 var valid = true;
@@ -594,8 +586,8 @@
                                 <td>
                                     <p>
                                         <label>Other Diagnosis</label>
-                                        <obs conceptId="163149" answerConceptId="5622" answerLabel=""
-                                             class="has-comment" commentFieldLabel=""/>
+                                        <input type="checkbox" id="othersCheckBox"></input>
+                                        <obs conceptId="165939" id="otherSpecify"/>
                                     </p>
                                 </td>
                             </tr>
