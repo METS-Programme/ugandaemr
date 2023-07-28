@@ -737,7 +737,7 @@
       </table>
     </fieldset>
     <fieldset>
-      <legend>New Diagnosis</legend>
+      <legend>Patient Diagnosis</legend>
       <table width="100%" class="multi" id="diagnosis">
       	<tbody>
 	 		<repeat>
