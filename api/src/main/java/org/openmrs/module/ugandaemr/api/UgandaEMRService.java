@@ -389,5 +389,4 @@ public interface UgandaEMRService extends OpenmrsService {
     @Transactional(readOnly = true)
     public OrderObs getOrderObsByObs(Obs obs);
 
-    public Visit getPatientCurrentVisit(Patient patient);
 }

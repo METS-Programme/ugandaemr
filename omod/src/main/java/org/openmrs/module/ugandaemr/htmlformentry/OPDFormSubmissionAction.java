@@ -48,11 +48,11 @@ public class OPDFormSubmissionAction implements CustomFormSubmissionAction {
         PatientIdentifier OPDPatientIdentifer = patient.getPatientIdentifier(opdpatientIdentifierType);
 
         if(OPDPatientIdentifer == null) {
-            Integer CurrentVisitNumber = ugandaEMRService.getPatientCurrentVisit(patient).getVisitId();
+            String currentVisitNumber = Context.getService(PatientQueueingService.class).getMostRecentQueue(patient).getVisitNumber().replace("Rec-","").replace("/","");
 
             PatientIdentifier newIdentifier = new PatientIdentifier();
             newIdentifier.setIdentifierType(opdpatientIdentifierType);
-            newIdentifier.setIdentifier(CurrentVisitNumber.toString());
+            newIdentifier.setIdentifier(currentVisitNumber);
             patient.addIdentifier(newIdentifier);
 
             Context.getPatientService().savePatient(patient);
