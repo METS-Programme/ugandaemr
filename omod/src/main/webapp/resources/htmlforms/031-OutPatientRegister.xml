@@ -72,8 +72,6 @@
 
     <script type="text/javascript">
         jQuery(document).ready(function (jq) {
-            disable_fields("otherSpecify");
-
             //Block Multiple encounter entry on same date
             blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"), "block");
 
@@ -88,19 +86,16 @@
 
             var isOtherSelectedAndSpecified = function () {
                 var valid = true;
-                $othersField.each(function () {
-                    var $specifyField = jq(this).siblings('input[type=text]');
-                    var $errorField = jq(this).siblings('span.error');
-                    if (jq(this).attr('checked') == 'checked' &amp;&amp; $specifyField.val() == '') {
-                        $errorField.html('Please specify').show();
-                        $specifyField.addClass('error');
-                        valid = false;
-                    } else {
-                        $errorField.html('').hide();
-                        $specifyField.removeClass('error');
-                    }
-
-                });
+                var $specifyField = jq(this).siblings('input[type=text]');
+                var $errorField = jq(this).siblings('span.error');
+                if (jq(this).attr('checked') == 'checked' &amp;&amp; $specifyField.val() == '') {
+                    $errorField.html('Please specify').show();
+                    $specifyField.addClass('error');
+                    valid = false;
+                } else {
+                    $errorField.html('').hide();
+                    $specifyField.removeClass('error');
+                }
 
                 return valid;
             };
@@ -191,6 +186,8 @@
             $otherRows = jq('table.multi tbody tr:not(:first-of-type)');
 
             <ifMode mode="ENTER">
+                disable_fields("otherSpecify");
+
                 $otherRows.hide(); //Hide all rows apart from first row if adding new form
                 $firstRow.find('.remove').hide(); //Hide the remove button from the first row
             </ifMode>
