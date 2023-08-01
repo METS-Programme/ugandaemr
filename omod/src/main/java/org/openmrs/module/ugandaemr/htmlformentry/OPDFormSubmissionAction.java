@@ -48,14 +48,17 @@ public class OPDFormSubmissionAction implements CustomFormSubmissionAction {
         PatientIdentifier OPDPatientIdentifer = patient.getPatientIdentifier(opdpatientIdentifierType);
 
         if(OPDPatientIdentifer == null) {
-            String currentVisitNumber = Context.getService(PatientQueueingService.class).getMostRecentQueue(patient).getVisitNumber().replace("Rec-","").replace("/","");
+            PatientQueue patientQueue = Context.getService(PatientQueueingService.class).getMostRecentQueue(patient);
+            if(patientQueue != null){
+                String currentVisitNumber = patientQueue.getVisitNumber().replace("Rec-","").replace("/","");
 
-            PatientIdentifier newIdentifier = new PatientIdentifier();
-            newIdentifier.setIdentifierType(opdpatientIdentifierType);
-            newIdentifier.setIdentifier(currentVisitNumber);
-            patient.addIdentifier(newIdentifier);
+                PatientIdentifier newIdentifier = new PatientIdentifier();
+                newIdentifier.setIdentifierType(opdpatientIdentifierType);
+                newIdentifier.setIdentifier(currentVisitNumber);
+                patient.addIdentifier(newIdentifier);
 
-            Context.getPatientService().savePatient(patient);
+                Context.getPatientService().savePatient(patient);
+            }
         };
     }
 }
