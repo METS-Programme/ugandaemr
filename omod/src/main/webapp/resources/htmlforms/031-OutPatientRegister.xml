@@ -58,8 +58,8 @@
         }
 
         #medication fieldset select {
-             padding-top: 4px !important;
-         }
+            padding-top: 4px !important;
+        }
 
         .add-remove-style {
             margin-top: 35px;
@@ -188,8 +188,20 @@
             <ifMode mode="ENTER">
                 disable_fields("otherSpecify");
 
-                $otherRows.hide(); //Hide all rows apart from first row if adding new form
-                $firstRow.find('.remove').hide(); //Hide the remove button from the first row
+                $otherRows.hide();
+                $firstRow.find('.remove').hide();
+
+                jq(document).ready(function () {
+                $allRows = jq(this).find('.multi-drug');
+                $allRows.hide();
+                jq('#1-removeEntry').remove();
+                jq('#10-addEntry').remove();
+                jq('#1-toggleContainer').show();
+
+                jq('#11-removeEntry').remove();
+                jq('#20-addEntry').remove();
+                jq('#11-toggleContainer').show();
+            });
             </ifMode>
 
             <ifMode mode="EDIT">
@@ -202,7 +214,7 @@
                 return this.value.length &gt; 0;
             });
 
-            if ($nonEmptyBoxes.length &gt; 0 ) {
+                if ($nonEmptyBoxes.length &gt; 0 ) {
                 $nonEmptyBoxes.each(function() {
                 $thisRow = jq(this).parents('tr:first');
                 $thisRow.show();
@@ -230,17 +242,21 @@
                 jq('#20-addEntry').remove();
                 jq('#11-toggleContainer').show();
                 for (let x = 0; x&lt;= 10; x++) {
-                if (jq(this).find('#' +x+ '-drug').find("input[type$='text']").val()!='') {
-                    jq(this).find('#' +x+ '-toggleContainer').show();
-                    jq(this).find('#' +x+ '-addEntry').hide();
-                }
+                if (jq(this).find('#other-meds-trigger-' + x).find("input[type$='text']").val()!='') {
+                jq(this).find('#' + x + '-toggleContainer').show();
+                jq(this).find('#' + x + '-addEntry').hide();
+            }
                 else {
                 x-=1;
-                jq(this).find('#' +x+ '-addEntry').show();
+                jq(this).find('#' + x + '-addEntry').show();
                 break;
-                }
-                }
-                });
+            }
+            }
+            });
+
+                if (jq('#otherSpecify').find("input[type$='text']").val()!='') {
+                jq('#othersCheckBox').prop("checked", true);
+            }
             </ifMode>
 
             jq('.add').click(function (e) { //Handle add button event
@@ -267,19 +283,6 @@
                     });
                 }
             });
-
-            jq(document).ready(function () {
-                $allRows = jq(this).find('.multi-drug');
-                $allRows.hide();
-                jq('#1-removeEntry').remove();
-                jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
-
-                jq('#11-removeEntry').remove();
-                jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
-            });
-
 
             jq(document).ready(function () {
                 jq('.addEntry').on("click", function () {
@@ -614,71 +617,71 @@
                         <legend>Drugs / Treatment</legend>
                         <repeat>
                             <template>
-                                    <obsgroup groupingConceptId="160741">
-                                        <div class="card multi-drug" id="{id}-toggleContainer">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <label>Drug</label>
-                                                    <obs id="other-meds-trigger-{id}"
-                                                         conceptId="1282"
-                                                         answerClasses="Drug" style="autocomplete"
-                                                         class="drug-other"/>
-                                                </div>
-                                                <div class="col-md-3 drug_strength hidden"
-                                                     id="drug_strength_select_{id}">
-                                                    <label>Strength | Stock Qty</label>
-                                                    <select class="form-control"
-                                                            name="drug_strength_select_{id}"
-                                                            onselect="this">
-                                                        <option value="">Select Strength</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-3 drug_strength hidden"
-                                                     id="drug_strength_{id}">
-                                                    <label>Strength</label>
-                                                    <obs id="drug_strength_{id}"
-                                                         class="drug-strength" conceptId="1444" />
-                                                </div>
-                                                <div class="col-md-3 hidden">
-                                                    <obs id="drug_stock_item_{id}"
-                                                         conceptId="166969"
-                                                         labelText="Stock Item Id"/>
-                                                    <obs id="drug_dispensing_location_{id}"
-                                                         conceptId="166968"
-                                                         labelText="dispensing Location ID"/>
-                                                    <obs id="drug_{id}" conceptId="166970"
-                                                         labelText="Drug ID"/>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Quantity</label>
-                                                    <obs id="other-meds-quantity" conceptId="160856"/>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Quantity Unit</label>
-                                                    <obs conceptId="165791" answerConceptSetIds="162402,162384"/>
-                                                </div>
-                                                <div class="col-md-3 duration">
-                                                    <label>Duration</label>
-                                                    <obs conceptId="159368"/>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Duration Unit</label>
-                                                    <obs conceptId="1732" />
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="add-entry add-remove-style">
-                                                        <a href="#" id="{id}-addEntry"
-                                                           class="addEntry add-more-link "><i class="icon-plus-sign"/> Add</a>
-                                                         <a href="#"
-                                                           class="removeEntry remove-more-link"
-                                                           id="{id}-removeEntry"><i class="icon-minus"/> Remove</a>
-                                                    </div>
+                                <obsgroup groupingConceptId="160741">
+                                    <div class="card multi-drug" id="{id}-toggleContainer">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Drug</label>
+                                                <obs id="other-meds-trigger-{id}"
+                                                     conceptId="1282"
+                                                     answerClasses="Drug" style="autocomplete"
+                                                     class="drug-other"/>
+                                            </div>
+                                            <div class="col-md-3 drug_strength hidden"
+                                                 id="drug_strength_select_{id}">
+                                                <label>Strength | Stock Qty</label>
+                                                <select class="form-control"
+                                                        name="drug_strength_select_{id}"
+                                                        onselect="this">
+                                                    <option value="">Select Strength</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3 drug_strength hidden"
+                                                 id="drug_strength_{id}">
+                                                <label>Strength</label>
+                                                <obs id="drug_strength_{id}"
+                                                     class="drug-strength" conceptId="1444" />
+                                            </div>
+                                            <div class="col-md-3 hidden">
+                                                <obs id="drug_stock_item_{id}"
+                                                     conceptId="166969"
+                                                     labelText="Stock Item Id"/>
+                                                <obs id="drug_dispensing_location_{id}"
+                                                     conceptId="166968"
+                                                     labelText="dispensing Location ID"/>
+                                                <obs id="drug_{id}" conceptId="166970"
+                                                     labelText="Drug ID"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Quantity</label>
+                                                <obs id="other-meds-quantity" conceptId="160856"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Quantity Unit</label>
+                                                <obs conceptId="165791" answerConceptSetIds="162402,162384"/>
+                                            </div>
+                                            <div class="col-md-3 duration">
+                                                <label>Duration</label>
+                                                <obs conceptId="159368"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Duration Unit</label>
+                                                <obs conceptId="1732" />
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="add-entry add-remove-style">
+                                                    <a href="#" id="{id}-addEntry"
+                                                       class="addEntry add-more-link "><i class="icon-plus-sign"/> Add</a>
+                                                    <a href="#"
+                                                       class="removeEntry remove-more-link"
+                                                       id="{id}-removeEntry"><i class="icon-minus"/> Remove</a>
                                                 </div>
                                             </div>
-
-
                                         </div>
-                                    </obsgroup>
+
+
+                                    </div>
+                                </obsgroup>
                             </template>
                             <render id="1"/>
                             <render id="2"/>
