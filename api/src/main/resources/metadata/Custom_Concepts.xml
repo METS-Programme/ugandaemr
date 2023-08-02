@@ -2116,7 +2116,7 @@
     <concept  concept_id="166503"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-08 10:26:23" changed_by="1"  date_changed="2021-09-08 10:26:23" uuid="d0d97e19-4955-4dc8-93bb-d29084f48d4e"/>
     <concept  concept_id="166504"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-08 10:29:44" changed_by="1"  date_changed="2021-09-08 10:29:44" uuid="b86c8e18-2c4e-4b0f-b7a4-9442c6a90102"/>
     <concept  concept_id="166505"  retired="0" datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2021-09-08 10:32:37" changed_by="1"  date_changed="2021-09-08 10:32:37" uuid="2fdad88f-23a2-45f1-8e16-618e28ea2d83"/>
-    
+
     <concept  concept_id="166738"  retired="0"  datatype_id="4"  class_id="9"  is_set="1"  creator="1"  date_created="2022-06-16 15:31:57"  changed_by="1"  date_changed="2022-06-16 15:31:57"  uuid="0ff172ad-7d38-4875-b44a-96cf4ad94190"/>
     <concept  concept_id="166739"  retired="0"  datatype_id="3"  class_id="11"  is_set="0"  creator="1"  date_created="2022-06-16 15:45:45"  changed_by="1"  date_changed="2022-06-16 15:45:45"  uuid="70cffa6b-7a8f-427d-ae84-f523544307aa"/>
 
@@ -2755,14 +2755,11 @@
     <concept_numeric  concept_id="1331" units="10^3/Ã¯Â¿Â½L" allow_decimal="1" />
     <concept_numeric  concept_id="1332" units="10^3/Ã¯Â¿Â½L" allow_decimal="1" />
     <concept_numeric  concept_id="1334" units="10^3/Ã¯Â¿Â½L" allow_decimal="1" />
-
-
     <concept_numeric  concept_id="166597"    allow_decimal="1"/>
     <concept_numeric  concept_id="166631"    allow_decimal="1"/>
     <concept_numeric  concept_id="166632"    allow_decimal="1"/>
     <concept_numeric  concept_id="166651"    allow_decimal="0"/>
     <concept_numeric  concept_id="166693"    allow_decimal="0"/>
-
     <concept_numeric  concept_id="99327"    allow_decimal="0"/>
     <concept_numeric  concept_id="99328"    allow_decimal="0"/>
     <concept_numeric  concept_id="99329"    allow_decimal="0"/>
@@ -2782,11 +2779,12 @@
     <concept_numeric  concept_id="99883"    allow_decimal="0"/>
     <concept_numeric  concept_id="159497"    allow_decimal="0"/>
     <concept_numeric  concept_id="159643"    allow_decimal="0"/>
-    <concept_numeric  concept_id="159644"    allow_decimal="0"/>
+
     <concept_numeric  concept_id="160922"    allow_decimal="0"/>
-    <concept_numeric  concept_id="161153"    allow_decimal="0"/>
+
     <concept_numeric  concept_id="161505"    allow_decimal="0"/>
-    <concept_numeric  concept_id="163598"    allow_decimal="0"/>
+
+
     <concept_numeric  concept_id="164969"    allow_decimal="0"/>
     <concept_numeric  concept_id="164990"    allow_decimal="0"/>
     <concept_numeric  concept_id="165004"    allow_decimal="0"/>
@@ -2808,7 +2806,6 @@
     <concept_numeric  concept_id="165916"    allow_decimal="0"/>
     <concept_numeric  concept_id="165917"    allow_decimal="0"/>
     <concept_numeric  concept_id="165918"    allow_decimal="0"/>
-    <concept_numeric  concept_id="165927"    allow_decimal="0"/>
     <concept_numeric  concept_id="166128"    allow_decimal="0"/>
     <concept_numeric  concept_id="166140"    allow_decimal="0"/>
     <concept_numeric  concept_id="166180"    allow_decimal="0"/>
@@ -2848,65 +2845,6 @@
     <concept_numeric  concept_id="166952"    allow_decimal="0"/>
     <concept_numeric  concept_id="166953"    allow_decimal="0"/>
     <concept_numeric  concept_id="166990"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167609"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167610"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167611"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167644"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167649"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167650"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167651"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167658"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167717"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167718"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167719"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167720"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167747"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167748"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167783"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167814"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167815"    allow_decimal="0"/>
-    <concept_numeric  concept_id="167888"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168003"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168004"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168020"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168021"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168022"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168023"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168072"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168141"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168172"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168174"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168175"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168176"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168180"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168220"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168234"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168272"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168286"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168287"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168288"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168306"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168329"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168361"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168372"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168462"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168463"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168467"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168479"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168480"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168498"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168499"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168501"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168510"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168511"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168512"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168514"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168516"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168518"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168527"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168528"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168611"    allow_decimal="0"/>
-    <concept_numeric  concept_id="168612"    allow_decimal="0"/>
     <concept_numeric  concept_id="168690"    allow_decimal="0"/>
 
 
@@ -3529,7 +3467,7 @@
     <concept_description concept_description_id="18548" concept_id="166506" description="Social Network Strategy (SNS) is an evidence-supported approach to engage and motivate a person to accept HIV testing. This approach is based on the underlying principle that persons within the same social network who know, trust, and can exert influence on each other share similar HIV risk behaviors. SNS is particularly useful to recruit marginalized and/or hidden persons at risk for HIV." locale="en" creator="1" date_created="2021-10-20 13:16:42" uuid="d1a35025-895b-4be3-b5e1-b4292ba900e6"/>
 
     <concept_description  concept_description_id="18710"  concept_id="166794"  description="Total household contacts above or equal to 5 years old"  locale="en"  creator="1"  date_created="2022-08-13 17:47:48"  changed_by="1"  date_changed="2022-08-13 17:50:07"  uuid="de842073-596a-4463-b82b-4b762442b2ed"/>
-    
+
     <concept_description  concept_description_id="18711"  concept_id="166904"  description="Bupivicaine batch number for SMC" locale="en"  creator="1"  date_created="2022-09-15 15:48:20"  uuid="dccf795f-2222-4477-bf9f-431cd6c36fc2"/>
 
 
@@ -4157,7 +4095,7 @@
     <concept_name  concept_name_id="160165"  concept_id="165136"  name="OTHER OCCUPATION"  locale="en"  locale_preferred="1"  creator="1"  date_created="2018-08-13 21:31:27"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="8a4e2069-2d3a-4cc2-aae5-d0b3bc435404"/>
     <concept_name  concept_name_id="160949"  concept_id="165809"  name="Split into drugs"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-05-12 08:58:31"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="7cb364f6-5cf5-4b1b-92e5-51f728af4a61"/>
     <concept_name  concept_name_id="160950"  concept_id="165809"  name="Split regimen into drugs"  locale="en"  locale_preferred="0"  creator="1"  date_created="2020-05-12 08:58:31"   voided="0" uuid="57212706-37a1-4e36-9568-afba1bba69ce"/>
-    
+
 
     <!--OPD-->
     <concept_name concept_id="1090" name="Never" locale="en" creator="1" date_created="2005-01-12 00:00:00.0" concept_name_id="151164" voided="false" uuid="1164BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" concept_name_type="FULLY_SPECIFIED" locale_preferred="true"/>
@@ -6110,7 +6048,7 @@
     <concept_name  concept_name_id="162775"  concept_id="166515"  name="9th ANC visit"     locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-28 14:38:46"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="265bb044-3e56-4a0a-811c-91bebaff2c70"/>
     <concept_name  concept_name_id="162776"  concept_id="166516"  name="10th ANC visit"    locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-28 14:41:24"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="6dde0082-ac87-4d35-a385-7c98c8633062"/>
     <concept_name  concept_name_id="162777"  concept_id="166517"  name="ANC Visit Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-10-28 15:22:25"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4f40df0e-72a3-4218-9b6e-e648da20f4b3"/>
-    
+
     <!--LAB-->
     <concept_name  concept_id="1429"  name="RH TYPE"  locale="en"  creator="1"  date_created="2006-12-17 11:49:51"  concept_name_id="1600"  voided="0"  voided_by="1" uuid="1600BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
     <concept_name  concept_id="1429"  name="Facteur Rhesus (Rh)"  locale="fr"  creator="1"  date_created="2007-09-06 09:02:05"  concept_name_id="1601"  voided="0"  voided_by="1" uuid="1601BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"/>
@@ -6228,7 +6166,7 @@
     <concept_name  concept_name_id="160234"  concept_id="165184"  name="Other Special Classification"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-08-07 10:30:03"  concept_name_type="SHORT"  voided="0" uuid="c4bd0105-700f-4253-8f1d-d15d2b3b1493"/>
 
     <concept_name concept_name_id="162765" concept_id="166506" name="SNS" locale="en" locale_preferred="0" creator="1" date_created="2021-10-20 13:16:42" concept_name_type="SHORT" voided="0" uuid="18ca8bd8-1925-4996-b360-cdebd4859ca8"/>
-    <concept_name concept_name_id="162766" concept_id="166506" name="Social Network Strategy (SNS)" locale="en" locale_preferred="1" creator="1" date_created="2021-10-20 13:16:42" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="723bb0c7-8673-42d7-9bbb-b34ce3147e8e"/> 
+    <concept_name concept_name_id="162766" concept_id="166506" name="Social Network Strategy (SNS)" locale="en" locale_preferred="1" creator="1" date_created="2021-10-20 13:16:42" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="723bb0c7-8673-42d7-9bbb-b34ce3147e8e"/>
 
     <!-- CONCEPT NAME FOR HEALTH EDUCAITON-->
     <concept_name  concept_name_id="160275"  concept_id="165223"  name="Had less than one meal a day"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-08-29 10:45:01"  concept_name_type="FULLY_SPECIFIED"  voided="0"       uuid="7381006e-5572-4e95-9fd4-f3ae842ba75f"/>
@@ -6483,7 +6421,7 @@
     <concept_name  concept_name_id="160490"  concept_id="165410"  name="MEASLES TWO"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="f96ceefe-69c4-447f-9094-1c03f9384993"/>
     <concept_name  concept_name_id="160491"  concept_id="165410"  name="MR2"  locale="en"  locale_preferred="0"  creator="1"  date_created="2019-11-05 08:58:26"  concept_name_type="SHORT"  voided="0"  uuid="3dd11273-e2f4-4e9c-8b29-1c45c78c90f2"/>
     <concept_name  concept_name_id="160501"  concept_id="165419"  name="Malaria Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2019-11-12 10:40:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="91fc9430-d52f-49d8-a1d8-eb1af9b3a1b2"/>
-    
+
     <!-- 2019 tools -->
 
     <concept_name concept_name_id="160525" concept_id="165440" name="Treatment given to baby" locale="en" locale_preferred="1" creator="1" date_created="2020-02-06 09:32:01" concept_name_type="FULLY_SPECIFIED" voided="0" uuid="a2243ddd-2abd-4f92-b7a1-b46d94586a61" />
@@ -6846,7 +6784,7 @@
     <concept_name  concept_name_id="161577"  concept_id="166239"  name="Physical Examination"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-02-16 21:25:06"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="e6d7bbe4-d59d-4388-b057-2517c0138c17"  />
     <concept_name  concept_name_id="161578"  concept_id="166240"  name="Pelvic Examination set"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-02-16 21:44:39"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="26ad1227-f430-46bd-a738-b6d2abfb78a7"  />
     <concept_name  concept_name_id="161579"  concept_id="166241"  name="Abortion"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-02-21 18:02:39"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="79c19b19-036a-4425-ac93-19c3a841147f"  />
-    <concept_name  concept_name_id="161580"  concept_id="166242"  name="Length of menses"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-02-23 16:28:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"  
+    <concept_name  concept_name_id="161580"  concept_id="166242"  name="Length of menses"  locale="en"  locale_preferred="1"  creator="1"  date_created="2021-02-23 16:28:26"  concept_name_type="FULLY_SPECIFIED"  voided="0"
     uuid="8128512a-1f05-4cf3-948a-93de833e1c4b"  />
 
 
@@ -7498,7 +7436,7 @@
     <concept_name  concept_name_id="163172"  concept_id="166906"  name="Cervical cancer Screen Date"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-09-17 15:15:20"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="3da642cd-7094-4cf2-a1f7-71b124f66939"/>
     <concept_name  concept_name_id="163171"  concept_id="166905"  name="Screened for Cervical Cancer"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-09-17 15:12:24"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="a678267d-bab8-476d-8edd-0b9399728652"/>
 
-    
+
     <concept_name  concept_name_id="163187"  concept_id="166916"  name="Non lactating but with child less than 6 months"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-10-11 15:09:38"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="c26192a2-65ac-4199-be14-1c347b414cbd"  date_changed="2022-10-11 15:09:38"  changed_by="1"/>
     <concept_name  concept_name_id="163188"  concept_id="166917"  name="Pregnancy/Lactating Status"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-10-11 15:18:12"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="abf8bd23-7170-4d8a-9989-2775c5df4c9e" />
     <concept_name  concept_name_id="163189"  concept_id="166918"  name="Other Pregnancy/Lactating Status"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-10-11 15:19:32"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="1c303e39-3672-43fa-8bbc-c5414a8ea965" />
@@ -7626,7 +7564,7 @@
     <concept_name  concept_name_id="163311"  concept_id="167037"  name="Injectables"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-11-02 13:35:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a8915d25-1b26-4241-b47d-0d61beb475b5"/>
     <concept_name  concept_name_id="163312"  concept_id="167038"  name="Other injectables"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-11-02 13:43:49"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a0d7017a-d364-4a1d-8161-fa7400835714"/>
     <concept_name  concept_name_id="163313"  concept_id="167039"  name="Implants"  locale="en"  locale_preferred="1"  creator="1"  date_created="2022-11-02 13:49:26"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="bb5d1a7d-54da-4f1f-a108-498b701502cd"/>
-    
+
 
     <!-- NEW STOCK CONCEPT NAMES-->
     <concept_name  concept_name_id="163314"  concept_id="167040"  name="Piece"  	          locale="en"  locale_preferred="1"  creator="1"  date_created="2023-01-17 11:59:03"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d2d556ea-5612-49aa-9784-9592231bd512"/>
@@ -8870,7 +8808,7 @@
     <concept_answer  concept_answer_id="7259"  concept_id="165302"  answer_concept="165189"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="3"  uuid="b3bbe231-1bfc-4bd2-9c7e-258e52643304"/>
     <concept_answer  concept_answer_id="7260"  concept_id="165302"  answer_concept="1490"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="4"  uuid="762af5aa-4a11-424f-ae7c-377b0947fd3c"/>
     <concept_answer  concept_answer_id="7261"  concept_id="165302"  answer_concept="165262"    creator="1"  date_created="2019-09-23 09:14:28"  sort_weight="5"  uuid="49e7c2a8-26d7-44a6-a7a1-c2e58652c3a4"/>
-    <concept_answer  concept_answer_id="7251"  concept_id="165244 "  answer_concept="165260"    creator="1"  date_created="2019-09-16 17:02:01"  sort_weight="15"  uuid="5018fda8-4025-4e43-b06a-717dea7d425a"/>
+    <concept_answer  concept_answer_id="7251"  concept_id="165244"  answer_concept="165260"    creator="1"  date_created="2019-09-16 17:02:01"  sort_weight="15"  uuid="5018fda8-4025-4e43-b06a-717dea7d425a"/>
     <concept_answer  concept_answer_id="7270"  concept_id="165200"  answer_concept="165273"    creator="1"  date_created="2019-09-24 08:35:33"  sort_weight="8"  uuid="431218b2-7d52-4899-82b2-cd98e43441e1"/>
     <concept_answer  concept_answer_id="7345"  concept_id="165316"  answer_concept="1065"  creator="1"  date_created="2019-10-07 17:46:34"  sort_weight="1"  uuid="ae9dddcf-e9ed-40e7-9bb4-81a6bf9bd693"/>
     <concept_answer  concept_answer_id="7346"  concept_id="165316"  answer_concept="1066"  creator="1"  date_created="2019-10-07 17:46:34"  sort_weight="2"  uuid="0b36057a-79c5-4b64-a546-cec8f5357f72"/>
@@ -10049,7 +9987,7 @@
     <concept_answer  concept_answer_id="7367849"  concept_id="165169"  answer_concept="166462"  creator="1"  date_created="2021-07-20 22:04:56"  sort_weight="14"  uuid="2d6039b0-37e7-489b-916d-7fc515346437"/>
     <concept_answer  concept_answer_id="7367850"  concept_id="165169"  answer_concept="166463"  creator="1"  date_created="2021-07-20 22:04:56"  sort_weight="15"  uuid="5d4afa4b-b5e6-4f84-a638-38a2c49b3f0c"/>
 
-    
+
     <!-- PNC Concepts-->
     <concept_answer  concept_answer_id="7367859"  concept_id="166479"  answer_concept="1065"   creator="1"  date_created="2021-08-20 11:20:34"  sort_weight="1"  uuid="d558a342-5ed0-47de-95a4-31f64aa8c7d4"/>
     <concept_answer  concept_answer_id="7367860"  concept_id="166479"  answer_concept="1066"   creator="1"  date_created="2021-08-20 11:20:34"  sort_weight="2"  uuid="f33e00a7-0440-4e0c-a4a7-7ef14e965713"/>
@@ -10084,7 +10022,7 @@
     <concept_answer  concept_answer_id="7367889"  concept_id="166493"  answer_concept="1065"   creator="1"  date_created="2021-08-20 13:36:51"  sort_weight="1"  uuid="fcc38fa5-51bb-44ef-a1aa-0a2587f118fb"/>
     <concept_answer  concept_answer_id="7367890"  concept_id="166493"  answer_concept="1066"   creator="1"  date_created="2021-08-20 13:36:51"  sort_weight="2"  uuid="b3411578-38b0-4e18-933f-93a1b7f34329"/>
     <concept_answer  concept_answer_id="7367891"  concept_id="166494"  answer_concept="1065"   creator="1"  date_created="2021-08-20 13:37:13"  sort_weight="1"  uuid="6a846516-8d29-482b-89e4-b33a366fc7b1"/>
-    <concept_answer  concept_answer_id="7367892"  concept_id="166494"  answer_concept="1066"   creator="1"  date_created="2021-08-20 13:37:13"  sort_weight="2"  uuid="17107ffb-f769-4784-b58c-85bc78cc9f98"/>   
+    <concept_answer  concept_answer_id="7367892"  concept_id="166494"  answer_concept="1066"   creator="1"  date_created="2021-08-20 13:37:13"  sort_weight="2"  uuid="17107ffb-f769-4784-b58c-85bc78cc9f98"/>
     <concept_answer  concept_answer_id="7367896"  concept_id="166501"  answer_concept="165462" creator="1"  date_created="2021-09-07 14:25:27"  sort_weight="1"  uuid="6bcc82b7-1082-49e3-9f8c-0d214dd59557"/>
     <concept_answer  concept_answer_id="7367897"  concept_id="166501"  answer_concept="165463" creator="1"  date_created="2021-09-07 14:25:27"  sort_weight="2"  uuid="0355786b-87c8-469b-80e0-12ff82a8d66f"/>
     <concept_answer  concept_answer_id="7367898"  concept_id="166502"  answer_concept="165463" creator="1"  date_created="2021-09-07 14:27:50"  sort_weight="2"  uuid="d8dfef03-68bd-424b-aace-2724bd76033e"/>
@@ -10092,12 +10030,12 @@
     <concept_answer  concept_answer_id="7367900"  concept_id="166502"  answer_concept="166503" creator="1"  date_created="2021-09-08 10:54:21"  sort_weight="3"  uuid="a0c869c8-92fa-40df-bcda-6826129921f5"/>
     <concept_answer  concept_answer_id="7367901"  concept_id="166502"  answer_concept="166504" creator="1"  date_created="2021-09-08 10:54:21"  sort_weight="4"  uuid="23b44b80-e1cc-4e86-95ed-182e7096e539"/>
     <concept_answer  concept_answer_id="7367902"  concept_id="166502"  answer_concept="166505" creator="1"  date_created="2021-09-08 10:54:21"  sort_weight="5"  uuid="f58be15c-cf9c-43e1-8076-b0f57a3679e7"/>
-    
+
 
     <!-- ART Access-->
     <concept_answer  concept_answer_id="7367893"  concept_id="166495"  answer_concept="166496" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="1"  uuid="f0af02de-4268-422a-b50f-6e2086e37014"/>
     <concept_answer  concept_answer_id="7367894"  concept_id="166495"  answer_concept="166497" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="2"  uuid="411ad462-fe64-4078-9845-636ef3cbbb9a"/>
-    <concept_answer  concept_answer_id="7367895"  concept_id="166495"  answer_concept="166498" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="3"  uuid="28e15cb8-14e6-4b15-9ce5-881c0ea9aaa8"/>    
+    <concept_answer  concept_answer_id="7367895"  concept_id="166495"  answer_concept="166498" creator="1"  date_created="2021-09-07 06:55:22"  sort_weight="3"  uuid="28e15cb8-14e6-4b15-9ce5-881c0ea9aaa8"/>
 
     <!-- Prior ARV Regimen -->
     <concept_answer  concept_answer_id="7367903"  concept_id="166039"  answer_concept="99015" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="1"  uuid="64d95f26-b0f8-493d-9f33-6b022c39f03c"/>
@@ -10131,7 +10069,7 @@
     <concept_answer  concept_answer_id="7367931"  concept_id="166039"  answer_concept="163017" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="29" uuid="e0bad3c1-0701-4991-a5d5-da5c5e063420"/>
     <concept_answer  concept_answer_id="7367932"  concept_id="166039"  answer_concept="99887" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="30" uuid="e71ba0e2-5f6f-45dd-b667-1763576581ff"/>
     <concept_answer  concept_answer_id="7367933"  concept_id="166039"  answer_concept="90002" creator="1"  date_created="2021-10-20 11:54:06"  sort_weight="31" uuid="5f2ad029-6699-490e-883e-cd0a2ebb2502"/>
-    
+
     <!-- Making Transfer IN Regimen consistent with the Current Regimen -->
 
     <concept_answer concept_answer_id="7367946" concept_id="90315" answer_concept="99002" creator="1" date_created="2021-11-11 00:00:00" sort_weight="34" uuid="cf4571de-42ab-11ec-be7c-105c9dfe22af"/>
@@ -10606,7 +10544,6 @@
     <concept_answer  concept_answer_id="7368538"  concept_id="168769"  answer_concept="168768"  creator="1"  date_created="2023-05-18 12:45:41"  sort_weight="4"  uuid="cde812e5-c74a-40c7-adfe-c62687a23c55"/>
     <concept_answer  concept_answer_id="7368539"  concept_id="168771"  answer_concept="102"  creator="1"  date_created="2023-05-18 12:51:36"  sort_weight="2"  uuid="0667c555-62d2-4033-ab3c-a62ba16d85e0"/>
     <concept_answer  concept_answer_id="7368540"  concept_id="168771"  answer_concept="90049"  creator="1"  date_created="2023-05-18 12:51:36"  sort_weight="3"  uuid="b1253562-0019-4c71-8726-9a111b2f1cd6"/>
-    <concept_answer  concept_answer_id="7368541"  concept_id="168771"  answer_concept="168340"  creator="1"  date_created="2023-05-18 12:51:36"  sort_weight="1"  uuid="f4da1849-a7db-42ff-9254-32c639ee0048"/>
     <concept_answer  concept_answer_id="7368542"  concept_id="168775"  answer_concept="168774"  creator="1"  date_created="2023-05-18 13:00:54"  sort_weight="3"  uuid="b34a946a-49f9-4fca-a295-dc9c2966a01f"/>
     <concept_answer  concept_answer_id="7368543"  concept_id="168775"  answer_concept="168772"  creator="1"  date_created="2023-05-18 13:00:54"  sort_weight="1"  uuid="d9d9a5fc-5899-4878-abda-1c5f35de561d"/>
     <concept_answer  concept_answer_id="7368544"  concept_id="168775"  answer_concept="168773"  creator="1"  date_created="2023-05-18 13:00:54"  sort_weight="2"  uuid="2fbbe649-ae24-43f7-8e25-ee1d29db9c16"/>

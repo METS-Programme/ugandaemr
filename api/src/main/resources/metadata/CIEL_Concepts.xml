@@ -758,7 +758,7 @@
      <concept_name  concept_id="163707"  name="Glucose tolerance 4 hours panel"  locale="en"  creator="1"  date_created="2022-04-07 20:36:01"  concept_name_id="147279"  voided="0"  voided_by="1" void_reason=""  uuid="147279BBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="1" changed_by="1"/>
      <concept_name  concept_id="1458"  name="Serum glucose (mmol)"  locale="en"  creator="1"  date_created="2007-05-29 08:23:52"  concept_name_id="163413"  voided="0"  voided_by="1" uuid="a3b86cf8-a1fd-11ed-a8fc-0242ac120002"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
 
-     
+
      <concept_name  concept_id="576"     name="Diffuse"  locale="en"  creator="1"  date_created="2004-01-01 00:00:00"  concept_name_id="608"  voided="0"  voided_by="1" uuid="608BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
      <concept_name  concept_id="916"     name="Trimethoprim and sulfamethoxazole"  locale="en"  creator="1"  date_created="2004-07-15 00:00:00"  concept_name_id="962"  voided="0"  voided_by="1" uuid="962BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
      <concept_name  concept_id="916"     name="Cotrimoxazole"  locale="en"  creator="1"  date_created="2005-01-12 00:00:00"  concept_name_id="90029"  voided="0"  voided_by="1" uuid="90029BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" locale_preferred="0" changed_by="1"/>
@@ -1647,4 +1647,8 @@
      <concept_numeric  concept_id="167175"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
      <concept_numeric  concept_id="167176"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
      <concept_numeric  concept_id="167177"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
+     <concept_numeric  concept_id="159644"    allow_decimal="0"/>
+     <concept_numeric  concept_id="161153"    allow_decimal="0"/>
+     <concept_numeric  concept_id="163598"    allow_decimal="0"/>
+     <concept_numeric  concept_id="165927"    allow_decimal="0"/>
 </dataset>
