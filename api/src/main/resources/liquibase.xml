@@ -727,8 +727,8 @@ VALUES
 	</changeSet>
 
 	<changeSet id="ugandaemr-25-07-2023-0010" author="iakileng">
-		<preConditions onFail="CONTINUE">
-			<sqlCheck expectedResult="1">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM
 				metadatamapping_metadata_set_member WHERE uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
 			</sqlCheck>
