@@ -91,7 +91,13 @@
     <privilege  privilege="Get Diagnoses"  description="Able to get diagnoses"  uuid="932bc6a2-c09b-4119-90e3-82a70c334606"/>
     <privilege  privilege="Task: patientqueueing.completePatientQueue"  description="Able to complete a patient queue"  uuid="a8b9eb25-9bb0-4bbf-a97a-cb04aa1641d9"/>
     <privilege  privilege="Task: patientqueueing.sendPatientToQueue"  description="Ability to send Patient To Queue"  uuid="c8e9aea2-eeff-453c-a0aa-e691120413d0"/>
-    <privilege  privilege="Task: patientqueueing.Task: patientqueueing.pickPatientQueue"  description="Ability to send Patient To Queue"  uuid="6eb2efd0-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="Task: patientqueueing.pickPatientQueue"  description="Ability to pick PatientQueue"  uuid="6eb2efd0-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="Get Conditions"  description="Able to get conditions"  uuid="b4cf2a62-1e95-4e0f-a375-06191ab9785c"/>
+    <privilege  privilege="Get Medication Dispense"  description="Able to get Medication Dispenses"  uuid="d3e83858-99e9-4f9e-8ea0-42c1fdadb708"/>
+    <privilege  privilege="Patient Dashboard - View Forms Section"  description="Allows user to view the Forms tab on the patient dashboard"  uuid="129aa538-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Allergies"  description="Able to view allergies in OpenMRS"  uuid="129aa68c-440a-11e6-a65c-00e04c680037"/>
+
+
 
 
     <!-- PRIVILEGES-->
