@@ -404,6 +404,70 @@ public class EncounterTypes {
         }
     };
 
+    public static EncounterTypeDescriptor FAMILY_PLANNING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Family Planning Encounter Type";
+        }
+
+        @Override
+        public String description() {
+            return "Family Planning Encounter Type";
+        }
+
+        public String uuid() {
+            return "1668ef2e-1aca-4b5d-931d-696b272eea0f";
+        }
+    };
+
+    public static EncounterTypeDescriptor NEW_BORN_INPATIENT_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "New Born In Patient Register";
+        }
+
+        @Override
+        public String description() {
+            return "This is an encounter for new borns admitted. ";
+        }
+
+        public String uuid() {
+            return "121ce4fe-1279-4443-b391-0f3fd5b2168d";
+        }
+    };
+
+    public static EncounterTypeDescriptor CHILD_HEALTH_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Child Health Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "This is an encounter assessing Children's Health";
+        }
+
+        public String uuid() {
+            return "87a0d5b1-53dc-4269-bf39-ada0d5d16c0c";
+        }
+    };
+
+    public static EncounterTypeDescriptor IN_PATIENT_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "In Patient Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "This is an encounter  for patients admitted into the hospital ";
+        }
+
+        public String uuid() {
+            return "5ef205bc-136a-469b-b074-5f39488db91a";
+        }
+    };
+
     public static EncounterTypeDescriptor LAB_REQUEST_ENCOUNTER = new EncounterTypeDescriptor() {
         @Override
         public String name() {
@@ -419,35 +483,5 @@ public class EncounterTypes {
             return "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4";
         }
     };
-    public static EncounterTypeDescriptor INTER_FACILITY_LINKAGE_ENCOUNTER = new EncounterTypeDescriptor() {
-        @Override
-        public String name() {
-            return "Facility Linkage Encounter";
-        }
 
-        @Override
-        public String description() {
-            return "Facility Linkage Encounter";
-        }
-
-        public String uuid() {
-            return "786c576b-b70f-4235-93ea-fbce1a3f38c4";
-        }
-    };
-
-    public static EncounterTypeDescriptor MOBILITY_SCREENING = new EncounterTypeDescriptor() {
-        @Override
-        public String name() {
-            return "Mobility Screening  Encounter";
-        }
-
-        @Override
-        public String description() {
-            return "Mobility Screening Encounter";
-        }
-
-        public String uuid() {
-            return "b57e1835-4ee2-47fa-9569-c700c39c169a";
-        }
-    };
 }
