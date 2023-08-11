@@ -208,7 +208,10 @@
     <privilege  privilege="App: ugandaemrpoc.findPatient"  description="find patient ugandaemrpoc app privilege"  uuid="c837c951-b7bb-456d-8f49-8d439c0e8822"/>
 
 
-
+    <!-- 4.x privileges -->
+    <!-- Checkin privilege -->
+    <privilege  privilege="App: checkin.button"  description="Access Checkin Button"  uuid="25fbec7e-2478-11ee-be56-0242ac120002"/>
+    <privilege  privilege="App: checkin.workspace"  description="Access to the checkin work space"  uuid="25fbf110-2478-11ee-be56-0242ac120002"/>
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -329,6 +332,8 @@
     <role_privilege  role="Reception"  privilege="App: fingerprint.addPatientFingerprint"/>
     <role_privilege  role="Reception"  privilege="App: fingerprint.fingerprintDetails"/>
     <role_privilege  role="Reception"  privilege="App: fingerprint.statistic"/>
+    <role_privilege  role="Reception"  privilege="App: checkin.button"/>
+    <role_privilege  role="Reception"  privilege="App: checkin.workspace"/>
 
 
     <!--* TRIAGE ROLE *-->
