@@ -123,6 +123,7 @@
 		<xformsVersion>4.3.12</xformsVersion>
 		<patientqueueingVersion>1.3.0-SNAPSHOT</patientqueueingVersion>
 		<ugandaemrSyncVersion>1.1.11-SNAPSHOT</ugandaemrSyncVersion>
+		<openmrsOwaVersion>1.14.0</openmrsOwaVersion>
 		<ugandaemrfingerprintVersion>1.1.0</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>2.2.1</cohortModuleVersion>
 		<stockmanagementVersion>1.0.1</stockmanagementVersion>
