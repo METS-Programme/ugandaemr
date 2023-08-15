@@ -91,6 +91,13 @@
     <privilege  privilege="Get Diagnoses"  description="Able to get diagnoses"  uuid="932bc6a2-c09b-4119-90e3-82a70c334606"/>
     <privilege  privilege="Task: patientqueueing.completePatientQueue"  description="Able to complete a patient queue"  uuid="a8b9eb25-9bb0-4bbf-a97a-cb04aa1641d9"/>
     <privilege  privilege="Task: patientqueueing.sendPatientToQueue"  description="Ability to send Patient To Queue"  uuid="c8e9aea2-eeff-453c-a0aa-e691120413d0"/>
+    <privilege  privilege="Task: patientqueueing.pickPatientQueue"  description="Ability to pick PatientQueue"  uuid="6eb2efd0-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="Get Conditions"  description="Able to get conditions"  uuid="b4cf2a62-1e95-4e0f-a375-06191ab9785c"/>
+    <privilege  privilege="Get Medication Dispense"  description="Able to get Medication Dispenses"  uuid="d3e83858-99e9-4f9e-8ea0-42c1fdadb708"/>
+    <privilege  privilege="Patient Dashboard - View Forms Section"  description="Allows user to view the Forms tab on the patient dashboard"  uuid="129aa538-440a-11e6-a65c-00e04c680037"/>
+    <privilege  privilege="View Allergies"  description="Able to view allergies in OpenMRS"  uuid="129aa68c-440a-11e6-a65c-00e04c680037"/>
+
+
 
 
     <!-- PRIVILEGES-->
@@ -212,6 +219,17 @@
     <!-- Checkin privilege -->
     <privilege  privilege="App: checkin.button"  description="Access Checkin Button"  uuid="25fbec7e-2478-11ee-be56-0242ac120002"/>
     <privilege  privilege="App: checkin.workspace"  description="Access to the checkin work space"  uuid="25fbf110-2478-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View serving"  description="Access to the checkin work space" uuid="974045d8-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View AverageWaitingTime"  description="Access to the checkin work space" uuid="97404858-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View PatientListTable"  description="Access to the checkin work space" uuid="97404d30-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View completedQueue"  description="Access to the checkin work space" uuid="97404e98-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View workLoad"  description="Access to the checkin work space" uuid="97404fd8-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View vitalsAndBiometrics"  description="Access to the checkin work space" uuid="97405104-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View patientSummary"  description="Access to the checkin work space" uuid="9740524e-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View appointments"  description="Access to the checkin work space" uuid="9740537a-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View forms"  description="Access to the checkin work space" uuid="974055e6-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View verticalMenu"  description="Access to the checkin work space" uuid="97405938-31d4-11ee-be56-0242ac120002"/>
+    <privilege  privilege="View attachments"  description="Access to the checkin work space"  uuid="97405adc-31d4-11ee-be56-0242ac120002"/>
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -334,6 +352,9 @@
     <role_privilege  role="Reception"  privilege="App: fingerprint.statistic"/>
     <role_privilege  role="Reception"  privilege="App: checkin.button"/>
     <role_privilege  role="Reception"  privilege="App: checkin.workspace"/>
+    <role_privilege  role="Reception"  privilege="View Serving"/>
+    <role_privilege  role="Reception"  privilege="View AverageWaitingTime"/>
+    <role_privilege  role="Reception"  privilege="View PatientListTable"/>
 
 
     <!--* TRIAGE ROLE *-->
@@ -342,6 +363,19 @@
 
     <!-- role privilege -->
     <role_privilege  role="Triage"  privilege="App: ugandaemrpoc.triage"/>
+    <role_privilege  role="Triage"  privilege="View Serving"/>
+    <role_privilege  role="Triage"  privilege="App: checkin.workspace"/>
+    <role_privilege  role="Triage"  privilege="View workLoad"/>
+    <role_privilege  role="Triage"  privilege="View completedQueue"/>
+    <role_privilege  role="Triage"  privilege="View AverageWaitingTime"/>
+    <role_privilege  role="Triage"  privilege="View vitalsAndBiometrics"/>
+
+
+
+
+
+
+
 
 
     <!--* CLINICIAN ROLE *-->
@@ -350,6 +384,20 @@
 
     <!-- role privilege -->
     <role_privilege  role="Organizational: Clinician"  privilege="App: patientqueueing.providerDashboard"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View Serving"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View completedQueue"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View workLoad"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View AverageWaitingTime"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View vitalsAndBiometrics"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="App: checkin.workspace"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View patientSummary"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View Allergies"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Get Medication Dispense"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Patient Dashboard - View Forms Section"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Get Conditions"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Get Patient Programs"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="View attachments"/>
+    <role_privilege  role="Organizational: Clinician"  privilege="Task: patientqueueing.pickPatientQueue"/>
 
 
     <!--* COUNSELOR ROLE *-->

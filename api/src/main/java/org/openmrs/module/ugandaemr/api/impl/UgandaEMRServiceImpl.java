@@ -23,7 +23,7 @@ import org.openmrs.module.ugandaemr.api.lab.mapper.LabQueueMapper;
 import org.openmrs.module.ugandaemr.api.lab.mapper.OrderMapper;
 import org.openmrs.module.ugandaemr.api.lab.util.LaboratoryUtil;
 import org.openmrs.module.ugandaemr.api.lab.util.TestResultModel;
-import org.openmrs.module.ugandaemr.metadata.core.Locations;
+import org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization;
 import org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.DrugOrderMapper;
@@ -203,7 +203,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 PatientIdentifier patientIdentifier = new PatientIdentifier();
                 patientIdentifier.setIdentifier(uniqueIdentifierCode);
                 patientIdentifier.setIdentifierType(patientIdentifierType);
-                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(Locations.PARENT.uuid()));
+                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(LocationOrganization.PARENT.uuid()));
                 patientIdentifier.setCreator(Context.getUserService().getUser(1));
                 patientIdentifier.setPreferred(false);
                 patientIdentifier.setDateCreated(new Date());
@@ -1473,7 +1473,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @param patient the patient whose current visit will be retrived.
      * @return Visit the active visit for a patient.
      */
-    private Visit getPatientCurrentVisit(Patient patient) {
+     private Visit getPatientCurrentVisit(Patient patient) {
         List<Visit> visitList = Context.getVisitService().getActiveVisitsByPatient(patient);
         for (Visit visit : visitList) {
             if (visit.getStartDatetime().after(OpenmrsUtil.firstSecondOfDay(new Date())) && visit.getStartDatetime().before(OpenmrsUtil.getLastMomentOfDay(new Date()))) {

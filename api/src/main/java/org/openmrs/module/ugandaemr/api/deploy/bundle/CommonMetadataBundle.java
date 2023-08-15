@@ -3,6 +3,8 @@ package org.openmrs.module.ugandaemr.api.deploy.bundle;
 import org.openmrs.module.ugandaemr.metadata.core.*;
 import org.openmrs.module.metadatadeploy.bundle.AbstractMetadataBundle;
 import static org.openmrs.module.metadatadeploy.bundle.CoreConstructors.encounterRole;
+
+import org.openmrs.module.ugandaemr.metadata.core.location.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -32,6 +34,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.REFUGEE_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.PATIENT_IUC_HEALTH_ID);
         install(PatientIdentifierTypes.PATIENT_ORGANIZATION_ID);
+        install(PatientIdentifierTypes.PATIENT_OPD_IDENTIFICATION_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -78,6 +81,14 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.COVID19_VACCINATION_TRACKING);
 
         install(EncounterTypes.SMS_ENROLLMENT);
+        install(EncounterTypes.FAMILY_PLANNING_ENCOUNTER);
+        install(EncounterTypes.NEW_BORN_INPATIENT_ENCOUNTER);
+        install(EncounterTypes.IN_PATIENT_ENCOUNTER);
+        install(EncounterTypes.CHILD_HEALTH_ENCOUNTER);
+
+
+
+
         install(EncounterTypes.SMC_FOLLOWUP);
         install(EncounterTypes.LAB_REQUEST_ENCOUNTER);
 
@@ -95,15 +106,42 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
 
         //install Locations
         log.info("Installing Locations");
-        install(Locations.TB_CLINIC);
-        install(Locations.OPD_CLINIC);
-        install(Locations.UNKNOWN);
-        install(Locations.PHARMACY);
-        install(Locations.RECEPTION);
-        install(Locations.TRIAGE);
-        install(Locations.COUNSELING_CENTER);
-        install(Locations.Community);
-        install(Locations.COVID19_CLINIC);
+
+        log.info("Installing LocationTags");
+        install(LocationTags.ORGANIZATION);
+        install(LocationTags.DEPARTMENT);
+        install(LocationTags.CLINIC);
+        install(LocationTags.LABORATORY);
+        install(LocationTags.MAIN_PHARMACY);
+        install(LocationTags.THEATER);
+        install(LocationTags.RADIOLOGY);
+        install(LocationTags.QUEUE_ROOM);
+
+        log.info("Installing Departments");
+        install(LocationDepartments.IPD);
+        install(LocationDepartments.OPD);
+        install(LocationDepartments.RADIOLOGY);
+
+        log.info("Installing Clinics");
+        install(LocationClinic.TB_CLINIC);
+        install(LocationClinic.ART_CLINIC);
+        install(LocationClinic.MCH_CLINIC);
+        install(LocationClinic.OPD_CLINIC);
+        install(LocationClinic.COVID19_CLINIC);
+
+        log.info("Installing Service Areas");
+        install(LocationServiceArea.RECEPTION);
+        install(LocationServiceArea.TRIAGE);
+        install(LocationServiceArea.COUNSELING_CENTER);
+
+        log.info("Installing Supportive Service areas");
+        install(LocationSupportService.PHARMACY);
+        install(LocationSupportService.LABORATORY);
+        install(LocationSupportService.MAIN_THEATER);
+
+        install(LocationOther.UNKNOWN);
+        install(LocationOther.Community);
+
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));

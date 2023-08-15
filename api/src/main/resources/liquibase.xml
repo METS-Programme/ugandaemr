@@ -600,12 +600,17 @@ VALUES
 			('CCLAD Cohort Type','2021-08-23',1,'5b7136fa-d207-4229-94a8-da6661ae00bf');
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-19-10-2-2021" author="odorajonathan">
+	<changeSet id="ugandaemr-11-08-2023" author="odorajonathan">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) from location WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
+			</sqlCheck>
+		</preConditions>
 		<comment>
 			Retire SMC Clinic
 		</comment>
 		<sql>
-			UPDATE location SET retired = 1 WHERE location_id = 4;
+			UPDATE location SET retired = 1 WHERE uuid = '8f96e239-8586-4ec6-9375-04c6e19628ae';
      </sql>
 	</changeSet>
 	<changeSet id="ugandaemr-01032022-1401" author="dbaluku">
@@ -723,6 +728,23 @@ VALUES
 		<sql>
 			UPDATE global_property SET property_value = '214fb8ef-6219-43f3-b20b-023261c0dec6,8dafdc32-97b7-4f49-828e-475cd4f09669,65fec0844-1970-43c5-bf77-b296415daa34,e7102e5c-b90d-4a4a-b763-20518eadbae5' WHERE property = 'ugandaemrsync.sendNextGenReports.server.reportuuids';
 			UPDATE global_property SET property_value = '27f4804f-ec6f-466e-b4ea-21f9ca584880,072b526a-4140-4c43-9f5c-6d1fa74d7c42,0e3bdfde-3ee0-4f94-b105-bff844feba30,a2d6170e-1930-4f21-920c-6106e39058e8,ac1b2145-54aa-4ed8-9590-db7c47fe51e4' WHERE property = 'ugandaemrsync.sendHMISReports.server.reportuuids';
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-25-07-2023-0010" author="iakileng">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM
+				metadatamapping_metadata_set_member WHERE uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM patient_identifier_type WHERE uuid="be8f222a-3751-4f93-8c74-3aff399c19b6";
+			</sqlCheck>
+		</preConditions>
+		<comment> Enabling OPD Number to be displayed in UgandaEMR on a patient dashboard </comment>
+		<sql>
+			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
+			SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2, NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
 		</sql>
 	</changeSet>
 </databaseChangeLog>
