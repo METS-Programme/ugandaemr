@@ -194,4 +194,42 @@ public class LocationTags {
 
 	};
 
+	public static LocationTagDescriptor ADMISSION = new LocationTagDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "1c783dca-fd54-4ea8-a0fc-2875374e9cb6";
+		}
+
+		@Override
+		public String name() {
+			return "Admission Location";
+		}
+
+		@Override
+		public String description() {
+			return "Patients may only be admitted to inpatient care in a location with this tag";
+		}
+
+	};
+
+	public static LocationTagDescriptor SUPPORTIVE_SERVICE = new LocationTagDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "50b2a204-4887-11ee-be56-0242ac120002";
+		}
+
+		@Override
+		public String name() {
+			return "Supportive Service";
+		}
+
+		@Override
+		public String description() {
+			return "Services that support patient care such as lab pharmacy";
+		}
+
+	};
+
 }

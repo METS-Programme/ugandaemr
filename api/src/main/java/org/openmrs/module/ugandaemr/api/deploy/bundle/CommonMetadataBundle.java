@@ -115,6 +115,8 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(LocationTags.MAIN_PHARMACY);
         install(LocationTags.THEATER);
         install(LocationTags.RADIOLOGY);
+        install(LocationTags.SUPPORTIVE_SERVICE);
+        install(LocationTags.ADMISSION);
         install(LocationTags.QUEUE_ROOM);
 
         log.info("Installing Departments");
@@ -128,6 +130,18 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(LocationClinic.MCH_CLINIC);
         install(LocationClinic.OPD_CLINIC);
         install(LocationClinic.COVID19_CLINIC);
+
+        log.info("Installing Wards");
+        install(LocationWard.ISOLATION_WARD);
+        install(LocationWard.PEAD_WARD);
+        install(LocationWard.PRIVATE_WAR);
+        install(LocationWard.TB_ARD);
+        install(LocationWard.GENERAL_WARD);
+        install(LocationWard.GENERAL_MEN_WARD);
+        install(LocationWard.GENERAL_WOMEN_WARD);
+        install(LocationWard.GENERAL_WARD);
+        install(LocationWard.CAUSALITY_WARD);
+
 
         log.info("Installing Service Areas");
         install(LocationServiceArea.RECEPTION);
