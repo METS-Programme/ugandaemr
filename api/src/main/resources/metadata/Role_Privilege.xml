@@ -528,6 +528,9 @@
     <privilege  privilege="View verticalMenu"  description="Access to the checkin work space" uuid="97405938-31d4-11ee-be56-0242ac120002"/>
     <privilege  privilege="View attachments"  description="Access to the checkin work space"  uuid="97405adc-31d4-11ee-be56-0242ac120002"/>
 
+    <!-- Administration privilege -->
+    <privilege  privilege="Update Facility Code"  description="Access to the checkin work space"  uuid="4bf067e2-55fc-11ee-8c99-0242ac120002"/>
+
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -552,6 +555,10 @@
     <role  role="Data Clerk"  description="This role allows access to the counseling center"  uuid="cda707f2-3c09-11ea-b77f-2e728ce88125"/>
     <role  role="Privilege Level: Full"  description="A role that has all API privileges"  uuid="ab2160f6-0941-430c-9752-6714353fbd3c"/>
     <role  role="Privilege Level: High"  description="A role that has all API privileges except administrative privileges with security implications"  uuid="f089471c-e00b-468e-96e8-46aea1b339af"/>
+    <role  role="Organizational: System Administrator"  description="System Administrator"  uuid="8534b39a-bbc8-4739-81b3-9602a382b603"/>
+
+
+
 
 
 
@@ -674,7 +681,14 @@
     <role_privilege  role="Privilege Level: High"  privilege="Run Chart Search commands"/>
     <role_privilege  role="Privilege Level: High"  privilege="Update Appointment"/>
     <role_privilege  role="Privilege Level: High"  privilege="View FHIR Client"/>
+
+
+
     <!--***** PERSON/LOCATION CENTERED ROLES *****-->
+
+    <!--* Organizational System Administrator ROle *-->
+    <role_privilege  role="Organizational: System Administrator"  privilege="Update Facility Code"/>
+
 
     <!--* RECEPTION ROLE *-->
     <!--role-role-->
