@@ -514,4 +514,20 @@ public class EncounterTypes {
             return "b57e1835-4ee2-47fa-9569-c700c39c169a";
         }
     };
+
+    public static EncounterTypeDescriptor FAMILY_TRACKING = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Card - Family Tracking";
+        }
+
+        @Override
+        public String description() {
+            return "This encounter supports tracking family members of a patient";
+        }
+
+        public String uuid() {
+            return "591cba6a-5c5f-11ee-8c99-0242ac120002";
+        }
+    };
 }

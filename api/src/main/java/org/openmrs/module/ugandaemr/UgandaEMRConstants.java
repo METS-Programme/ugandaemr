@@ -148,5 +148,6 @@ public class UgandaEMRConstants {
     public static final String TB_REGIMEN_PROGRAM_ATTRIBUTE_TYPE_UUID = "af9bb0c8-d245-11ea-87d0-0242ac130003";
     public static final int DR_TB_NUMBER_PROGRAM_CONCEPT_ID = 165843;
     public static final String DR_TB_NUMBER_PROGRAM_ATTRIBUTE_TYPE_UUID = "1628fa4e-fda2-11ea-adc1-0242ac120002";
+    public static final String CONCEPT_REASON_FOR_NEXT_APPOINTMENT = "160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
 
 }
