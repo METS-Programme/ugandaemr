@@ -142,6 +142,12 @@
             border: 0;
         }
 
+        form#htmlform div.poc-page-frame table th, form#htmlform div.poc-page-frame table td {
+            min-width: 10%;
+            width: 20;
+            vertical-align: top;
+        }
+
         .tab-content {
             margin-top: 10px;;
         }
@@ -310,6 +316,17 @@
                                                         </div>
                                                     </div>
                                                 </obsgroup>
+
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <label>Contact</label>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <obs id="159635_{n}" conceptId="159635"/>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td class="text-nowrap">
                                                 <a href="#" class="add  add-more-link"><i
