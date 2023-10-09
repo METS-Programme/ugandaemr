@@ -223,10 +223,19 @@
         });
     }
 
+    function identifierToDisplay(identifiers){
+        var identifierToDisplay="";
+        jq.each(identifiers, function (index, element) {
+            identifierToDisplay+=element.identifierTypeName+" : "+element.identifier+" <br/> "
+        });
+
+        return identifierToDisplay
+    }
+
     function displayLabData(response) {
         var content = "";
         var pendingCounter = 0;
-        content = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>TEST(S) ORDERED</th></tr></thead><tbody>";
+        content = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>TEST(S) ORDERED</th></tr></thead><tbody>";
 
 
         var dataToDisplay = [];
@@ -251,6 +260,7 @@
 
                     content += "<tr>";
                     content += "<td>" + visitNumber + "</td>";
+                    content += "<td>" + identifierToDisplay(patientQueueListElement.patientIdentifier) + "</td>";
                     content += "<td>" + patientQueueListElement.patientNames + "</td>";
                     content += "<td>" + patientQueueListElement.age + "</td>";
                     content += "<td>" + patientQueueListElement.providerNames + " - " + patientQueueListElement.locationFrom + "</td>";
