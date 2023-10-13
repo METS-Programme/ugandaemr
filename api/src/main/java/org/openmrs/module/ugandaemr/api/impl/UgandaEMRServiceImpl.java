@@ -151,8 +151,12 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             genderCode = "1";
         }
 
-        if (patient.getPerson().getPersonAddress() != null && !patient.getPerson().getPersonAddress().getCountry().isEmpty()) {
-            countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 1);
+        if (patient.getPerson().getPersonAddress() != null) {
+
+            String countryAddress = patient.getPerson().getPersonAddress().getCountry();
+            if(countryAddress!=null&& !countryAddress.isEmpty()){
+                countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 1);
+            }
         } else {
             countryCode = "X";
         }
