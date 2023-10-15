@@ -99,7 +99,7 @@
                             <!--  CLDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
-                        getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
                     } else if (cddpCategory === "1b9b83d4-eaca-40da-a7c6-53b8ea3436ad") {
                             <!--  General CDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('General CDDP Group Name');
