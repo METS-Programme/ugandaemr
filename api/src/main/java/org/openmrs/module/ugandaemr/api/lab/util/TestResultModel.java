@@ -54,7 +54,7 @@ public class TestResultModel implements Comparable<TestResultModel> {
 
 	private String level = LEVEL_TEST;
 
-	private Concept concept;
+	private String concept;
 
 	private Integer encounterId;
 
@@ -158,11 +158,11 @@ public class TestResultModel implements Comparable<TestResultModel> {
 		this.level = level;
 	}
 
-	public Concept getConcept() {
+	public String getConcept() {
 		return concept;
 	}
 
-	public void setConcept(Concept concept) {
+	public void setConcept(String concept) {
 		this.concept = concept;
 	}
 

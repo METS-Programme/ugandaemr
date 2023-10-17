@@ -683,7 +683,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                             TestResultModel trm = new TestResultModel();
                             trm.setInvestigation(test.getConcept().getDisplayString());
                             trm.setSet(obs.getConcept().getDisplayString());
-                            trm.setConcept(obs.getConcept());
+                            trm.setConcept(obs.getConcept().getUuid());
                             setTestResultModelValue(groupMemberObs, trm);
                             trms.add(trm);
                         }
@@ -691,7 +691,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                         TestResultModel trm = new TestResultModel();
                         trm.setInvestigation(test.getConcept().getName().getName());
                         trm.setSet(test.getConcept().getDatatype().getName());
-                        trm.setConcept(obs.getConcept());
+                        trm.setConcept(obs.getConcept().getUuid());
                         setTestResultModelValue(obs, trm);
                         trms.add(trm);
                     }
