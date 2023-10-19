@@ -253,7 +253,7 @@
                         jq(this).parent().find('#drug_99413_id input').val(jq(this).find(":selected").attr("drugUuid"))
                     });
 
-                    jq(".drug-other").change(function () {
+                    jq(".diagnosis-problem").change(function () {
                         getDrugByConcept(jq(this).find("input:hidden").val(), "drug_strength_select_" + jq(this).attr("id").match(/\d/g)[0] + "")
                     });
 
@@ -392,21 +392,21 @@
         });
 
         jq(document).ready(function () {
-            $allRows_other = jq(this).find('.multi-drug-other');
+            $allRows_other = jq(this).find('.visit-diagnosis-other');
             $allRows_other.hide();
             jq('#1-removeEntry-other').remove();
             jq('#10-addEntry-other').remove();
-            jq('#1-toggleContainer-other').show();
+            jq('#1-toggleDiagnosisContainer-other').show();
 
             jq('#11-removeEntry-other').remove();
             jq('#20-addEntry-other').remove();
-            jq('#11-toggleContainer-other').show();
+            jq('#11-toggleDiagnosisContainer-other').show();
         });
 
         jq(document).ready(function () {
             jq('.addEntry-other').on("click", function () {
                 var correctedAddButtonId = parseFloat(this.id) + 1;
-                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer-other";
+                var contentAddId = "#" + correctedAddButtonId + "-toggleDiagnosisContainer-other";
                 jq(contentAddId).toggle(true);
                 jq('#' + this.id).toggle(false);
                 jq('#' + parseFloat(this.id) + '-removeEntry-other').toggle(true);
@@ -417,7 +417,7 @@
         jq(document).ready(function () {
             jq('.removeEntry-other').on("click", function () {
                 var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer-other";
+                var contentAddId = "#" + parseFloat(this.id) + "-toggleDiagnosisContainer-other";
                 jq(contentAddId).toggle(false);
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry-other').toggle(true);
@@ -432,17 +432,17 @@
             $allRows.hide();
             jq('#1-removeEntry1-other').remove();
             jq('#10-addEntry1-other').remove();
-            jq('#1-toggleContainer1-other').show();
+            jq('#1-toggleDiagnosisContainer1-other').show();
 
             jq('#11-removeEntry').remove();
             jq('#20-addEntry1-other').remove();
-            jq('#11-toggleContainer1-other').show();
+            jq('#11-toggleDiagnosisContainer1-other').show();
         });
 
         jq(document).ready(function () {
             jq('.addEntry-other1').on("click", function () {
                 var correctedAddButtonId = parseFloat(this.id) + 1;
-                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer1-other";
+                var contentAddId = "#" + correctedAddButtonId + "-toggleDiagnosisContainer1-other";
                 jq(contentAddId).toggle(true);
                 jq('#' + this.id).toggle(false);
                 jq('#' + parseFloat(this.id) + '-removeEntry1-other').toggle(true);
@@ -453,7 +453,7 @@
         jq(document).ready(function () {
             jq('.removeEntry-other1').on("click", function () {
                 var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer1-other";
+                var contentAddId = "#" + parseFloat(this.id) + "-toggleDiagnosisContainer1-other";
                 jq(contentAddId).toggle(false);
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry1-other').toggle(true);
@@ -464,36 +464,21 @@
         });
 
         jq(document).ready(function () {
-            $allRows = jq(this).find('.multi-drug');
+            $allRows = jq(this).find('.visit-diagnosis');
             $allRows.hide();
             jq('#1-removeEntry').remove();
             jq('#10-addEntry').remove();
-            jq('#1-toggleContainer').show();
+            jq('#1-toggleDiagnosisContainer').show();
 
             jq('#11-removeEntry').remove();
             jq('#20-addEntry').remove();
-            jq('#11-toggleContainer').show();
-
-
+            jq('#11-toggleDiagnosisContainer').show();
         });
-
-            jq(document).ready(function () {
-                $allRows = jq(this).find('.visit-diagnosis');
-                $allRows.hide();
-                jq('#1-removeEntry').remove();
-                jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
-
-                jq('#11-removeEntry').remove();
-                jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
-            });
-
 
         jq(document).ready(function () {
             jq('.addEntry').on("click", function () {
                 var correctedAddButtonId = parseFloat(this.id) + 1;
-                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
+                var contentAddId = "#" + correctedAddButtonId + "-toggleDiagnosisContainer";
                 jq(contentAddId).toggle(true);
                 jq('#' + this.id).toggle(false);
                 jq('#' + parseFloat(this.id) + '-removeEntry').toggle(true);
@@ -504,7 +489,7 @@
         jq(document).ready(function () {
             jq('.removeEntry').on("click", function () {
                 var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
+                var contentAddId = "#" + parseFloat(this.id) + "-toggleDiagnosisContainer";
                 jq(contentAddId).toggle(false);
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true);
@@ -520,17 +505,17 @@
             $allRows.hide();
             jq('#1-removeEntry3').remove();
             jq('#10-addEntry3').remove();
-            jq('#1-toggleContainer3').show();
+            jq('#1-toggleDiagnosisContainer3').show();
 
             jq('#11-removeEntry').remove();
             jq('#20-addEntry3').remove();
-            jq('#11-toggleContainer3').show();
+            jq('#11-toggleDiagnosisContainer3').show();
         });
 
         jq(document).ready(function () {
             jq('.addEntry3').on("click", function () {
                 var correctedAddButtonId = parseFloat(this.id) + 1;
-                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer3";
+                var contentAddId = "#" + correctedAddButtonId + "-toggleDiagnosisContainer3";
                 jq(contentAddId).toggle(true);
                 jq('#' + this.id).toggle(false);
                 jq('#' + parseFloat(this.id) + '-removeEntry3').toggle(true);
@@ -541,7 +526,7 @@
         jq(document).ready(function () {
             jq('.removeEntry3').on("click", function () {
                 var correctedRemoveButtonId = parseFloat(this.id) - 1;
-                var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer3";
+                var contentAddId = "#" + parseFloat(this.id) + "-toggleDiagnosisContainer3";
                 jq(contentAddId).toggle(false);
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry3').toggle(true);
@@ -556,15 +541,15 @@
             $allRows.hide();
             jq('#1-removeEntry1').remove();
             jq('#10-addEntry1').remove();
-            jq('#1-toggleContainer1').show();
+            jq('#1-toggleDiagnosisContainer1').show();
 
             jq('#11-removeEntry').remove();
             jq('#20-addEntry1').remove();
-            jq('#11-toggleContainer1').show();
+            jq('#11-toggleDiagnosisContainer1').show();
 
             jq('.addEntry1').on("click", function () {
             var correctedAddButtonId = parseFloat(this.id) + 1;
-            var contentAddId = "#" + correctedAddButtonId + "-toggleContainer1";
+            var contentAddId = "#" + correctedAddButtonId + "-toggleDiagnosisContainer1";
             jq(contentAddId).toggle(true);
             jq('#' + this.id).toggle(false);
             jq('#' + parseFloat(this.id) + '-removeEntry1').toggle(true);
@@ -573,7 +558,7 @@
 
         jq('.removeEntry1').on("click", function () {
             var correctedRemoveButtonId = parseFloat(this.id) - 1;
-            var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer1";
+            var contentAddId = "#" + parseFloat(this.id) + "-toggleDiagnosisContainer1";
             jq(contentAddId).toggle(false);
             jq(':input:not(:button)', contentAddId).val([]);
             jq('#' + correctedRemoveButtonId + '-addEntry1').toggle(true);
@@ -586,17 +571,17 @@
 
         <ifMode mode="EDIT">
             jq(document).ready(function () {
-                $allRows = jq(this).find('.multi-drug');
+                $allRows = jq(this).find('.visit-diagnosis');
                 $allRows.hide();
                 jq('#1-removeEntry').remove();
                 jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
+                jq('#1-toggleDiagnosisContainer').show();
                 jq('#11-removeEntry').remove();
                 jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
+                jq('#11-toggleDiagnosisContainer').show();
                 for (let x = 0; x&lt;= 10; x++) {
                     if (jq(this).find('#' +x+ '-drug').find("input[type$='text']").val()!='') {
-                        jq(this).find('#' +x+ '-toggleContainer').show();
+                        jq(this).find('#' +x+ '-toggleDiagnosisContainer').show();
                         jq(this).find('#' +x+ '-addEntry').hide();
                     }
                     else {
@@ -608,40 +593,18 @@
             });
 
             jq(document).ready(function () {
-            $allRows = jq(this).find('.visit-diagnosis');
-            $allRows.hide();
-            jq('#1-removeEntry').remove();
-            jq('#10-addEntry').remove();
-            jq('#1-toggleContainer').show();
-            jq('#11-removeEntry').remove();
-            jq('#20-addEntry').remove();
-            jq('#11-toggleContainer').show();
-            for (let x = 0; x&lt;= 10; x++) {
-            if (jq(this).find('#' +x+ '-diagnosis').find("input[type$='text']").val()!='') {
-            jq(this).find('#' +x+ '-toggleContainer').show();
-            jq(this).find('#' +x+ '-addEntry').hide();
-        }
-            else {
-            x-=1;
-            jq(this).find('#' +x+ '-addEntry').show();
-            break;
-        }
-        }
-        });
-
-            jq(document).ready(function () {
-                $allRows_other = jq(this).find('.multi-drug-other');
+                $allRows_other = jq(this).find('.visit-diagnosis-other');
                 $allRows_other.hide();
                 jq('#1-removeEntry-other').remove();
                 jq('#10-addEntry-other').remove();
-                jq('#1-toggleContainer-other').show();
+                jq('#1-toggleDiagnosisContainer-other').show();
                 jq('#11-removeEntry-other').remove();
                 jq('#20-addEntry-other').remove();
-                jq('#11-toggleContainer-other').show();
+                jq('#11-toggleDiagnosisContainer-other').show();
                 for (let x = 0; x&lt;= 10; x++) {
                     if (jq(this).find('#' +x+ '-drugother').find("input[type$='text']").val()!='')
                     {
-                        jq(this).find('#' +x+ '-toggleContainer-other').show();
+                        jq(this).find('#' +x+ '-toggleDiagnosisContainer-other').show();
                         jq(this).find('#' +x+ '-addEntry-other').hide();
                     }
                     else {
@@ -1726,8 +1689,8 @@
                 return false;
             }
 
-            if ((getValue('other-meds-trigger.value') != ""  &amp;&amp; getValue('other-meds-trigger.value') != null) &amp;&amp; getValue('other-meds-quantity.value') == "") {
-                getField('other-meds-quantity.error').html('Quantity of ' + getValue('other-meds-trigger.value') + ' required').show();
+            if ((getValue('diagnosis-problem-trigger.value') != ""  &amp;&amp; getValue('diagnosis-problem-trigger.value') != null) &amp;&amp; getValue('other-meds-quantity.value') == "") {
+                getField('other-meds-quantity.error').html('Quantity of ' + getValue('diagnosis-problem-trigger.value') + ' required').show();
                 return false;
             }
         </restrictByRole>
@@ -2736,7 +2699,7 @@
                                                     <repeat>
                                                         <template>
                                                             <obsgroup groupingConceptId="160741">
-                                                                <div class="row multi-drug" id="{id}-toggleContainer">
+                                                                <div class="row visit-diagnosis" id="{id}-toggleDiagnosisContainer">
                                                                     <div class="col-2">
                                                                         <obs labelText="Drugs" id="{id}-drug"
                                                                              conceptId="1282" answerClasses="Drug"
@@ -2794,7 +2757,7 @@
                                                     <repeat>
                                                         <template>
                                                             <obsgroup groupingConceptId="165874">
-                                                                <div class="row multi-drug-other" id="{id}-toggleContainer-other">
+                                                                <div class="row visit-diagnosis-other" id="{id}-toggleContainer">
                                                                     <div class="col-2">
                                                                         <obs labelText="Drug" id="{id}-drugother" conceptId="99035" class="fullwidth"/>
                                                                     </div>
@@ -3105,7 +3068,7 @@
                                                                 <template>
                                                                     <obsgroup groupingConceptId="165877">
                                                                         <div class="row multi-test"
-                                                                             id="{id}-toggleContainer3">
+                                                                             id="{id}-toggleDiagnosisContainer3">
                                                                             <div class="col-md-3">
                                                                                 <obs labelText="Test Name"
                                                                                      conceptId="165875"/>
@@ -3948,63 +3911,91 @@
                         <div class="card" id="diagnosis-poc">
                             <div class="card-header">Diagnosis</div>
                             <div class="card-body">
-                                <div class="card-body diagnosis-poc">
-                                    <div>
-                                        <repeat>
-                                            <template>
-                                                <obsgroup groupingConceptId="159947">
-                                                    <div class="row visit-diagnosis" id="{id}-toggleContainer">
-                                                        <div class="col-md-3">
-                                                            <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
-                                                            <obs id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
-                                                        </div>
-                                                        <div class="col-md-3 diagnosis-certainty hidden" id="{id}-certainty">
-                                                            <label>Certainty</label>
-                                                            <obs conceptId="159394" labelText="certainty"/>
-                                                        </div>
+                                <div>
+                                    <repeat>
+                                        <template>
+                                            <obsgroup groupingConceptId="159947">
+                                                <div class="row visit-diagnosis" id="{id}-toggleDiagnosisContainer">
+                                                    <div class="col-md-3">
+                                                        <obs id="diagnosis-problem-trigger-{id}" labelText="Drug" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
+                                                    </div>
+                                                    <div class="col-md-3 drug_strength hidden"
+                                                         id="drug_strength_select_{id}">
+                                                        <label>Strength | Stock Qty</label>
+                                                        <select class="form-control"
+                                                                name="drug_strength_select_{id}"
+                                                                onselect="this">
+                                                            <option value="">Select Strength</option>
+                                                        </select>
+                                                    </div>
 
-                                                        <div class="col-md-3 diagnosis-order hidden" id="{id}-order">
-                                                            <label>Precedence</label>
-                                                            <obs conceptId="159946" labelText="Order"/>
-                                                        </div>
-
-                                                        <div class="col-md-3 diagnosis-date hidden" id="{id}-date">
-                                                            <label>Date of Diagnosis</label>
-                                                            <obs conceptId="159948" labelText="Date of Diagnosis"/>
-                                                        </div>
-
-                                                        <div class="col-md-3 diagnosis-severity hidden" id="{id}-severity">
-                                                            <label>Severity</label>
-                                                            <obs conceptId="159946" labelText="Severity"/>
-                                                        </div>
-
-                                                        <div class="col-md-3">
-                                                            <div class="addEntry">
-                                                                <a href="#" id="{id}-diagnosis-addEntry"
-                                                                   class="addEntry add-more-link"><i
-                                                                        class="icon-plus-sign"></i></a>
-                                                                <a href="#"
-                                                                   class="removeEntry remove-more-link"
-                                                                   id="{id}-diagnosis-removeEntry"><i
-                                                                        class="icon-minus"></i></a>
-                                                            </div>
+                                                    <div class="col-md-3 drug_strength hidden"
+                                                         id="drug_strength_{id}">
+                                                        <obs id="drug_strength_{id}"
+                                                             class="drug-strength" conceptId="1444"
+                                                             labelText="Strength"/>
+                                                    </div>
+                                                    <div class="hidden">
+                                                        <obs id="drug_stock_item_{id}"
+                                                             conceptId="166969"
+                                                             labelText="Stock Item Id"/>
+                                                        <obs id="drug_dispensing_location_{id}"
+                                                             conceptId="166968"
+                                                             labelText="dispensing Location ID"/>
+                                                        <obs id="drug_{id}" conceptId="166970"
+                                                             labelText="Drug ID"/>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <obs id="other-meds-quantity"
+                                                             labelText="Quantity" conceptId="160856"/>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <obs labelText="Qty unit" conceptId="165791"
+                                                             answerConceptSetIds="162402,162384"/>
+                                                    </div>
+                                                    <div class="col-md-3 duration">
+                                                        <label>Duration</label>
+                                                        <obs conceptId="159368"/>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <obs conceptId="1732"
+                                                             labelText="Duration unit"/>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="add-entry">
+                                                            <a href="#" id="{id}-addEntry"
+                                                               class="addEntry add-more-link"><i
+                                                                    class="icon-plus-sign"></i></a>
+                                                            <a href="#"
+                                                               class="removeEntry remove-more-link"
+                                                               id="{id}-removeEntry"><i
+                                                                    class="icon-minus"></i></a>
                                                         </div>
                                                     </div>
-                                                </obsgroup>
-                                            </template>
-                                            <render id="1-diagnosis"/>
-                                            <render id="2-diagnosis"/>
-                                            <render id="3-diagnosis"/>
-                                            <render id="4-diagnosis"/>
-                                            <render id="5-diagnosis"/>
-                                            <render id="6-diagnosis"/>
-                                            <render id="7-diagnosis"/>
-                                            <render id="8-diagnosis"/>
-                                            <render id="9-diagnosis"/>
-                                            <render id="10-diagnosis"/>
-                                        </repeat>
-                                    </div>
+                                                </div>
+                                            </obsgroup>
+                                        </template>
+                                        <render id="1"/>
+                                        <render id="2"/>
+                                        <render id="3"/>
+                                        <render id="4"/>
+                                        <render id="5"/>
+                                        <render id="6"/>
+                                        <render id="7"/>
+                                        <render id="8"/>
+                                        <render id="9"/>
+                                        <render id="10"/>
+                                    </repeat>
                                 </div>
+
+
+
+
+
+
+                                <encounterDiagnoses selectedDiagnosesTarget="#encounter-diagnoses-target"
+                                                    preferredCodingSource="ICD-10-WHO"
+                                                    diagnosisConceptClasses="Diagnosis"/>
                             </div>
                         </div>
 
@@ -4146,9 +4137,9 @@
                                                         <template>
                                                             <obsgroup groupingConceptId="160741">
                                                                 <div class="row multi-arv-drug"
-                                                                     id="{id}-toggleContainer1">
+                                                                     id="{id}-toggleDiagnosisContainer1">
                                                                     <div class="col-md-4">
-                                                                        <obs id="{id}_other-meds-trigger"
+                                                                        <obs id="{id}_diagnosis-problem-trigger"
                                                                              labelText="Drug" conceptId="1282"
                                                                              answerConceptSetIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
                                                                              style="autocomplete"
@@ -4426,60 +4417,36 @@
                                             <div class="card-header">
                                                 <label>Other Medications</label>
                                             </div>
-                                            <div class="card-body prescription-poc">
+                                            <div class="card-body diagnosis-poc">
                                                 <div>
                                                     <repeat>
                                                         <template>
                                                             <obsgroup groupingConceptId="160741">
-                                                                <div class="row multi-drug" id="{id}-toggleContainer">
+                                                                <div class="row visit-diagnosis" id="{id}-toggleContainer">
                                                                     <div class="col-md-3">
-                                                                        <obs id="other-meds-trigger-{id}"
-                                                                             labelText="Drug" conceptId="1282"
-                                                                             answerClasses="Drug" style="autocomplete"
-                                                                             class="fullwidth drug-other"/>
+                                                                        <obs id="diagnosis-problem-trigger-{id}" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
+                                                                        <obs id="diagnosis-problem-other_{id}" conceptId="161602" labelText="Specify Diagnosis"/>
                                                                     </div>
-                                                                    <div class="col-md-3 drug_strength hidden"
-                                                                         id="drug_strength_select_{id}">
-                                                                        <label>Strength | Stock Qty</label>
-                                                                        <select class="form-control"
-                                                                                name="drug_strength_select_{id}"
-                                                                                onselect="this">
-                                                                            <option value="">Select Strength</option>
-                                                                        </select>
+                                                                    <div class="col-md-3 diagnosis_certainty hidden" id="diagnosis_certainty_{id}">
+                                                                        <label>Certainty</label>
+                                                                        <obs conceptId="159394" labelText="certainty"/>
                                                                     </div>
 
-                                                                    <div class="col-md-3 drug_strength hidden"
-                                                                         id="drug_strength_{id}">
-                                                                        <obs id="drug_strength_{id}"
-                                                                             class="drug-strength" conceptId="1444"
-                                                                             labelText="Strength"/>
+                                                                    <div class="col-md-3 diagnosis_order hidden" id="diagnosis_order_{id}">
+                                                                        <label>Precedence</label>
+                                                                        <obs conceptId="159946" labelText="Order"/>
                                                                     </div>
-                                                                    <div class="hidden">
-                                                                        <obs id="drug_stock_item_{id}"
-                                                                             conceptId="166969"
-                                                                             labelText="Stock Item Id"/>
-                                                                        <obs id="drug_dispensing_location_{id}"
-                                                                             conceptId="166968"
-                                                                             labelText="dispensing Location ID"/>
-                                                                        <obs id="drug_{id}" conceptId="166970"
-                                                                             labelText="Drug ID"/>
+
+                                                                    <div class="col-md-3 diagnosis_date hidden" id="diagnosis_date_{id}">
+                                                                        <label>Date of Diagnosis</label>
+                                                                        <obs conceptId="159946" labelText="Date of Diagnosis"/>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <obs id="other-meds-quantity"
-                                                                             labelText="Quantity" conceptId="160856"/>
+
+                                                                    <div class="col-md-3 diagnosis_severity hidden" id="diagnosis_severity_{id}">
+                                                                        <label>Severity</label>
+                                                                        <obs conceptId="159946" labelText="Severity"/>
                                                                     </div>
-                                                                    <div class="col-md-3">
-                                                                        <obs labelText="Qty unit" conceptId="165791"
-                                                                             answerConceptSetIds="162402,162384"/>
-                                                                    </div>
-                                                                    <div class="col-md-3 duration">
-                                                                        <label>Duration</label>
-                                                                        <obs conceptId="159368"/>
-                                                                    </div>
-                                                                    <div class="col-md-4">
-                                                                        <obs conceptId="1732"
-                                                                             labelText="Duration unit"/>
-                                                                    </div>
+
                                                                     <div class="col-md-3">
                                                                         <div class="add-entry">
                                                                             <a href="#" id="{id}-addEntry"
