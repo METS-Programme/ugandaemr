@@ -2602,8 +2602,55 @@
                                             <div class="card-body">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <encounterDiagnoses required="false" selectedDiagnosesTarget=""
-                                                                            preferredCodingSource="ICD-10-WHO"/>
+                                                        <repeat>
+                                                            <template>
+                                                                <obsgroup groupingConceptId="159947">
+                                                                    <div class="row visit-diagnosis" id="{id}-toggleContainer">
+                                                                        <div class="col-md-3">
+                                                                            <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
+                                                                            <obs class="hidden" id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
+                                                                        </div>
+                                                                        <div class="col-md-2 diagnosis-certainty" id="{id}-certainty">
+                                                                            <obs conceptId="159394" labelText="Certainty"/>
+                                                                        </div>
+
+                                                                        <div class="col-md-2 diagnosis-order" id="{id}-order">
+                                                                            <obs conceptId="159946" labelText="Precedence"/>
+                                                                        </div>
+
+                                                                        <div class="col-md-2 diagnosis-date" id="{id}-date">
+                                                                            <obs conceptId="159948" labelText="Date of Diagnosis"/>
+                                                                        </div>
+
+                                                                        <div class="col-md-2 diagnosis-severity" id="{id}-severity">
+                                                                            <obs conceptId="162820" labelText="Severity"/>
+                                                                        </div>
+
+                                                                        <div class="col-md-1">
+                                                                            <div class="addEntry">
+                                                                                <a href="#" id="{id}-diagnosis-addEntry"
+                                                                                   class="addEntry add-more-link"><i
+                                                                                        class="icon-plus-sign"></i></a>
+                                                                                <a href="#"
+                                                                                   class="removeEntry remove-more-link"
+                                                                                   id="{id}-diagnosis-removeEntry"><i
+                                                                                        class="icon-minus"></i></a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </obsgroup>
+                                                            </template>
+                                                            <render id="1"/>
+                                                            <render id="2"/>
+                                                            <render id="3"/>
+                                                            <render id="4"/>
+                                                            <render id="5"/>
+                                                            <render id="6"/>
+                                                            <render id="7"/>
+                                                            <render id="8"/>
+                                                            <render id="9"/>
+                                                            <render id="10"/>
+                                                        </repeat>
                                                     </div>
                                                 </div>
                                             </div>
