@@ -607,6 +607,7 @@
                  }
             });
 
+
             jq(document).ready(function () {
             $allRows = jq(this).find('.visit-diagnosis');
             $allRows.hide();
@@ -617,7 +618,7 @@
             jq('#20-addEntry').remove();
             jq('#11-toggleContainer').show();
             for (let x = 0; x&lt;= 10; x++) {
-            if (jq(this).find('#' +x+ '-diagnosis').find("input[type$='text']").val()!='') {
+            if (jq(this).find('#' +x+ '-drug').find("input[type$='text']").val()!='') {
             jq(this).find('#' +x+ '-toggleContainer').show();
             jq(this).find('#' +x+ '-addEntry').hide();
         }
@@ -628,6 +629,7 @@
         }
         }
         });
+
 
             jq(document).ready(function () {
                 $allRows_other = jq(this).find('.multi-drug-other');
@@ -3956,29 +3958,25 @@
                                                     <div class="row visit-diagnosis" id="{id}-toggleContainer">
                                                         <div class="col-md-3">
                                                             <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
-                                                            <obs id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
+                                                            <obs class="hidden" id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
                                                         </div>
-                                                        <div class="col-md-3 diagnosis-certainty hidden" id="{id}-certainty">
-                                                            <label>Certainty</label>
-                                                            <obs conceptId="159394" labelText="certainty"/>
-                                                        </div>
-
-                                                        <div class="col-md-3 diagnosis-order hidden" id="{id}-order">
-                                                            <label>Precedence</label>
-                                                            <obs conceptId="159946" labelText="Order"/>
+                                                        <div class="col-md-2 diagnosis-certainty" id="{id}-certainty">
+                                                            <obs conceptId="159394" labelText="Certainty"/>
                                                         </div>
 
-                                                        <div class="col-md-3 diagnosis-date hidden" id="{id}-date">
-                                                            <label>Date of Diagnosis</label>
+                                                        <div class="col-md-2 diagnosis-order" id="{id}-order">
+                                                            <obs conceptId="159946" labelText="Precedence"/>
+                                                        </div>
+
+                                                        <div class="col-md-2 diagnosis-date" id="{id}-date">
                                                             <obs conceptId="159948" labelText="Date of Diagnosis"/>
                                                         </div>
 
-                                                        <div class="col-md-3 diagnosis-severity hidden" id="{id}-severity">
-                                                            <label>Severity</label>
-                                                            <obs conceptId="159946" labelText="Severity"/>
+                                                        <div class="col-md-2 diagnosis-severity" id="{id}-severity">
+                                                            <obs conceptId="162820" labelText="Severity"/>
                                                         </div>
 
-                                                        <div class="col-md-3">
+                                                        <div class="col-md-1">
                                                             <div class="addEntry">
                                                                 <a href="#" id="{id}-diagnosis-addEntry"
                                                                    class="addEntry add-more-link"><i
@@ -3992,16 +3990,16 @@
                                                     </div>
                                                 </obsgroup>
                                             </template>
-                                            <render id="1-diagnosis"/>
-                                            <render id="2-diagnosis"/>
-                                            <render id="3-diagnosis"/>
-                                            <render id="4-diagnosis"/>
-                                            <render id="5-diagnosis"/>
-                                            <render id="6-diagnosis"/>
-                                            <render id="7-diagnosis"/>
-                                            <render id="8-diagnosis"/>
-                                            <render id="9-diagnosis"/>
-                                            <render id="10-diagnosis"/>
+                                            <render id="1"/>
+                                            <render id="2"/>
+                                            <render id="3"/>
+                                            <render id="4"/>
+                                            <render id="5"/>
+                                            <render id="6"/>
+                                            <render id="7"/>
+                                            <render id="8"/>
+                                            <render id="9"/>
+                                            <render id="10"/>
                                         </repeat>
                                     </div>
                                 </div>
