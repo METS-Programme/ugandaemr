@@ -584,6 +584,7 @@
 
         });
 
+
         <ifMode mode="EDIT">
             jq(document).ready(function () {
                 $allRows = jq(this).find('.multi-drug');
@@ -618,7 +619,7 @@
             jq('#20-addEntry').remove();
             jq('#11-toggleContainer').show();
             for (let x = 0; x&lt;= 10; x++) {
-            if (jq(this).find('#' +x+ '-drug').find("input[type$='text']").val()!='') {
+            if (jq(this).find('#' +x+ '-problem-trigger').find("input[type$='text']").val()!='') {
             jq(this).find('#' +x+ '-toggleContainer').show();
             jq(this).find('#' +x+ '-addEntry').hide();
         }
