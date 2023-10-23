@@ -65,7 +65,7 @@
             margin-top: 35px;
         }
 
-        #examination-diagnosis fieldset label {
+        #examination fieldset label {
             padding-top: 10px !important;
         }
     </style>
@@ -540,9 +540,13 @@
                             Vitals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#examination-diagnosis">Diagnosis &amp;
-                            Investigations</a>
+                        <a class="nav-link" data-toggle="tab" href="#examination">Examination</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#diagnosis">Diagnosis</a>
+                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" data-toggle="tab" href="#investigation">Investigations Results</a>
                     </li>
@@ -583,7 +587,97 @@
                         <uiInclude provider="ugandaemr" fragment="vitals"/>
                     </fieldset>
                 </div>
-                <div class="tab-pane" id="examination-diagnosis">
+                <div class="tab-pane" id="examination">
+                    <div class="card">
+                        <div class="card-header">Examination</div>
+                        <div class="card-body">
+                            <obsgroup groupingConceptId="657">
+                                <div class="row">
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">HEENT</label>
+                                        <br/>
+                                        <repeat with="['861','HEARING DIFFICULTIES'],['873','OTORRHEA'],['873','EAR DISCHARGE'],['5244','ORAL SORES'],['5334','CANDIDIASIS',' ORAL'],['5334','THRUSH'],['5953','VISION DIFFICULTIES'],['5954','SWALLOWING DIFFICULTIES'],['6016','NASAL DISCHARGE']">
+                                            <obs id="{0}" conceptId="1070" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Cardiopulmonary/Resipitory</label>
+                                        <br/>
+                                        <repeat with="['58','TUBERCULOSIS'],['107','COUGH'],['136','CHEST PAIN'],['801','TACHYPNEA'],['801','FAST BREATHING'],['1145','HISTORY OF PNEUMONIA'],['5957','PRODUCTIVE COUGH'],['5960','SHORTNESS OF BREATH'],['5961','SHORTNESS OF BREATH AT REST'],['5963','SHORTNESS OF BREATH WITH EXERTION']">
+                                            <obs id="{0}" conceptId="1071" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">GASTROINTESTINAL</label>
+                                        <br/>
+                                        <repeat with="['16','DIARRHOEA'],['151','ABDOMINAL PAIN'],['5978','NAUSEA'],['5980','VOMITING'],['5986','HISTORY OF JAUNDICE'],['6017','REFUSAL TO FEED'],['6019','ABDOMINAL SWELLING'],['6031','POOR APPETITE'],['6032','HEPATIC DISEASE']">
+                                            <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">GENITOURINARY</label>
+                                        <br/>
+                                        <repeat with="['55','URINARY TRACT INFECTION'],['840','HEMATURIA'],['840','Hematuria'],['840','BLOODY URINE'],['5989','MENSTRUATING'],['5990','MENOPAUSAL'],['5993','VAGINAL DISCHARGE'],['5995','URETHRAL DISCHARGE'],['6020','DYSURIA'],['6021','OLIGURIA'],['6033','RENAL DISEASE']">
+                                            <obs id="{0}" conceptId="1080" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">MUSCULOSKELETAL</label>
+                                        <br/>
+                                        <repeat with="['80','JOINT PAIN'],['590','EDEMA, LEGS'],['590','LEG SWELLING'],['5312','JOINT SWELLING'],['6034','MUSCLE PAIN'],['6035','PAIN LOWER EXTREMITIES']">
+                                            <obs id="{0}" conceptId="1081" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">CENTRAL NERVOUS SYSTEM</label>
+                                        <br/>
+                                        <repeat with="['77','MENTAL DISORDERS'],['206','SEIZURE'],['207','DEPRESSION'],['620','HEADACHE'],['6004','PARESTHESIA'],['6005','FOCAL WEAKNESS'],['6006','CONFUSION'],['6037','MEMORY PROBLEMS']">
+                                            <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">DEVELOPMENTAL</label>
+                                        <br/>
+                                        <repeat with="['5550','LEARNING PROBLEMS '],['6022','DELAYED MILESTONES '],['6025','REGRESSED MILESTONES '],['6037','MEMORY PROBLEMS']">
+                                            <obs id="{0}" conceptId="1189" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Obstetrical/Pregnancy</label>
+                                        <br/>
+                                        <repeat with="['1452','No fetal movements'],['1452','No foetal movements'] ,['113377','Decreased fetal movements'] ,['113377','Decreased foetal movements'],['118246','Poor Fetal Growth'],['118256','Fetal Distress'],['147232','Vaginal bleeding'],['148989','Amenorrhea']">
+                                            <obs id="{0}" conceptId="159614" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4" id="trigger">
+                                        <obs id="enable-disable-signs-and-symptoms" conceptId="90251" answerConceptId="90002" answerLabel="Other specify"/>
+                                    </div>
+                                    <div class="col-4" id="disabled">
+                                        <obs id="signs-and-symptoms-enabled" conceptId="99032" size="17"/>
+                                    </div>
+                                    <div class="col-4">
+
+                                    </div>
+                                </div>
+                            </obsgroup>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="diagnosis">
                     <div class="card" >
                         <div class="card-header">Diagnosis</div>
                         <div class="card-body">
@@ -605,15 +699,11 @@
                                                         <obs conceptId="159946" labelText="Precedence"/>
                                                     </div>
 
-                                                    <div class="col-md-2 diagnosis-date" id="{id}-date">
-                                                        <obs conceptId="159948" labelText="Date of Diagnosis"/>
-                                                    </div>
-
                                                     <div class="col-md-2 diagnosis-severity" id="{id}-severity">
                                                         <obs conceptId="162820" labelText="Severity"/>
                                                     </div>
 
-                                                    <div class="col-md-1">
+                                                    <div class="col-md-2">
                                                         <div class="addEntry">
                                                             <a href="#" id="{id}-diagnosis-addEntry"
                                                                class="addEntry add-more-link"><i
@@ -642,7 +732,12 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="card" id="clinical-notes">
+                        <div class="card-header">Clinical Notes</div>
+                        <div class="card-body">
+                            <obs conceptId="159395" rows="6" cols="90"/>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane" id="investigation">
                     <div class="card" >

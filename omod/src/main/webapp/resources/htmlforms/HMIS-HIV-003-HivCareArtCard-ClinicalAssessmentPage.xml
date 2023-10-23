@@ -4087,10 +4087,6 @@
                                                             <obs conceptId="159946" labelText="Precedence"/>
                                                         </div>
 
-                                                        <div class="col-md-2 diagnosis-date" id="{id}-date">
-                                                            <obs conceptId="159948" labelText="Date of Diagnosis"/>
-                                                        </div>
-
                                                         <div class="col-md-2 diagnosis-severity" id="{id}-severity">
                                                             <obs conceptId="162820" labelText="Severity"/>
                                                         </div>
