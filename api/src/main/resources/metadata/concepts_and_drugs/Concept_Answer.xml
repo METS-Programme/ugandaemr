@@ -3107,6 +3107,16 @@
    <concept_answer concept_answer_id="7368760" concept_id="168861" answer_concept="168998" date_created="2023-08-30 09:59:54" creator="1" uuid="2ca22166-4718-11ee-be56-0242ac120002"/>
    <concept_answer concept_answer_id="7368761" concept_id="168861" answer_concept="168999" date_created="2023-08-30 09:59:54" creator="1" uuid="2ca222e2-4718-11ee-be56-0242ac120002"/>
    <concept_answer concept_answer_id="7368762" concept_id="168861" answer_concept="169000" date_created="2023-08-30 09:59:54" creator="1" uuid="2ca22404-4718-11ee-be56-0242ac120002"/>
+   <concept_answer  concept_answer_id="7368796"  concept_id="169005"  answer_concept="168404"  creator="1"  date_created="2023-11-01 11:36:37"  sort_weight="6"  uuid="a036e764-f37b-4500-ad9b-f4a69c7686ff"/>
+   <concept_answer  concept_answer_id="7368798"  concept_id="169005"  answer_concept="5622"  creator="1"  date_created="2023-11-01 11:36:37"  sort_weight="8"  uuid="5164ee6f-61f5-48d6-9e8e-473989654847"/>
+   <concept_answer  concept_answer_id="7368797"  concept_id="169005"  answer_concept="166322"  creator="1"  date_created="2023-11-01 11:36:37"  sort_weight="7"  uuid="5f9042c1-9f78-40b4-96ca-b10d01a5c129"/>
+   <concept_answer  concept_answer_id="7368795"  concept_id="169005"  answer_concept="169003"  creator="1"  date_created="2023-11-01 11:33:04"  sort_weight="4"  uuid="35eae6b7-bd58-4973-a954-d5c4297a5123"/>
+   <concept_answer  concept_answer_id="7368791"  concept_id="169005"  answer_concept="90147"  creator="1"  date_created="2023-11-01 11:33:04"  sort_weight="2"  uuid="e029fa85-a3df-459d-9c18-8bdd77698686"/>
+   <concept_answer  concept_answer_id="7368792"  concept_id="169005"  answer_concept="169001"  creator="1"  date_created="2023-11-01 11:33:04"  sort_weight="1"  uuid="c4e12d1e-ef62-4c12-8d61-3332fc3731b0"/>
+   <concept_answer  concept_answer_id="7368793"  concept_id="169005"  answer_concept="169004"  creator="1"  date_created="2023-11-01 11:33:04"  sort_weight="5"  uuid="733a9d9b-cd9a-4378-a14e-9dbfc7545c46"/>
+   <concept_answer  concept_answer_id="7368794"  concept_id="169005"  answer_concept="169002"  creator="1"  date_created="2023-11-01 11:33:04"  sort_weight="3"  uuid="f75abeb1-5cc3-4c58-a2fb-ef4d7344c51e"/>
+
+
 
 
     <!-- Imported from CIEL Concept Dic-->
