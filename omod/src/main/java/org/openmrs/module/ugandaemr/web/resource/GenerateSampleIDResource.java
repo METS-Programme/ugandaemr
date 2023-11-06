@@ -89,12 +89,12 @@ public class GenerateSampleIDResource extends DelegatingCrudResource<SampleId> {
 
     @Override
     protected PageableResult doSearch(RequestContext context) {
-        String orderNumber = context.getRequest().getParameter("orderNumber");
+        String orderNumber = context.getRequest().getParameter("uuid");
 
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         ObjectMapper objectMapper = new ObjectMapper();
         Order order = Context.getOrderService().getOrderByOrderNumber(orderNumber);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy                    -MM-dd");
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String date = sdf.format(new Date());
         String letter = order.getConcept().getConceptId().toString();
         String defaultSampleId = "";
