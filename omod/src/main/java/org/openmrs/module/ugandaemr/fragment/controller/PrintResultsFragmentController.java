@@ -28,6 +28,8 @@ public class PrintResultsFragmentController {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		String dateStr = sdf.format(new Date());
 		model.addAttribute("currentDate", dateStr);
+		model.put("currentProvider", sessionContext.getCurrentProvider());
+		model.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("ugandaemr.healthCenterName"));
 	}
 
 	/**
@@ -49,7 +51,7 @@ public class PrintResultsFragmentController {
 			    "hiNormal", "lowNormal", "lowAbsolute", "hiAbsolute", "hiCritical", "lowCritical", "unit", "level",
 			    "concept", "encounterId", "testId");
 
-			SimpleObject currentResults = SimpleObject.create("data", objectMapper.writeValueAsString(results));
+			SimpleObject currentResults = SimpleObject.create("data", objectMapper.writeValueAsString(results),"order",objectMapper.writeValueAsString(labTest.getUuid()));
 			return currentResults;
 		}
 		return null;

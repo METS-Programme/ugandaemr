@@ -1031,8 +1031,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @param test
      */
     public void addLaboratoryTestObservation(Encounter encounter, Concept testConcept, Concept testGroupConcept, String result, Order test) {
-        log.warn("testConceptId=" + testConcept);
-        log.warn("testGroupConceptId=" + testGroupConcept);
+        log.info("testConceptId=" + testConcept);
+        log.info("testGroupConceptId=" + testGroupConcept);
         Obs obs = null;
         obs = getObs(encounter, testConcept, testGroupConcept);
         setObsAttributes(obs, encounter);
@@ -1057,7 +1057,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 setObsAttributes(testGroupObs, encounter);
                 encounter.addObs(testGroupObs);
             }
-            log.warn("Adding obs[concept=" + obs.getConcept() + ",uuid=" + obs.getUuid() + "] to obsgroup[concept=" + testGroupObs.getConcept() + ", uuid=" + testGroupObs.getUuid() + "]");
+            log.info("Adding obs[concept=" + obs.getConcept() + ",uuid=" + obs.getUuid() + "] to obsgroup[concept=" + testGroupObs.getConcept() + ", uuid=" + testGroupObs.getUuid() + "]");
             testGroupObs.addGroupMember(obs);
         } else {
             encounter.addObs(obs);

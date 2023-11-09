@@ -111,24 +111,26 @@ public class LabQueueListFragmentController {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         Order order = orderService.getOrderByOrderNumber(orderNumber);
 
-        TestOrder testOrder = new TestOrder();
-        testOrder.setAccessionNumber(sampleId);
         if (referenceLab != "") {
+            TestOrder testOrder = new TestOrder();
+            testOrder.setAccessionNumber(sampleId);
             testOrder.setInstructions("REFER TO " + referenceLab);
+            testOrder.setConcept(order.getConcept());
+            testOrder.setEncounter(order.getEncounter());
+            testOrder.setOrderer(order.getOrderer());
+            testOrder.setPatient(order.getPatient());
+            testOrder.setUrgency(Order.Urgency.STAT);
+            testOrder.setCareSetting(order.getCareSetting());
+            testOrder.setOrderType(order.getOrderType());
+            testOrder.setPreviousOrder(order);
+            testOrder.setAction(Order.Action.REVISE);
+            testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
+            testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
+            orderService.saveOrder(testOrder, null);
+            orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
+        } else {
+            orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", sampleId);
         }
-        testOrder.setConcept(order.getConcept());
-        testOrder.setEncounter(order.getEncounter());
-        testOrder.setOrderer(order.getOrderer());
-        testOrder.setPatient(order.getPatient());
-        testOrder.setUrgency(Order.Urgency.STAT);
-        testOrder.setCareSetting(order.getCareSetting());
-        testOrder.setOrderType(order.getOrderType());
-        testOrder.setPreviousOrder(order);
-        testOrder.setAction(Order.Action.REVISE);
-        testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-        testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
-        orderService.saveOrder(testOrder, null);
-        orderService.updateOrderFulfillerStatus(order, null, null, "");
 
         if (unProcessedOrders.equals(1)) {
             patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueById(patientQueueId));
@@ -149,8 +151,12 @@ public class LabQueueListFragmentController {
         ObjectMapper objectMapper = new ObjectMapper();
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        List<OrderObs> orderObs = ugandaEMRService.getOrderObs(null, null, new Date(), null, null, false);
-        Set<Order> orders=new HashSet<>();
+        Date fromDate = new Date();
+        if (!asOfDate.isEmpty()) {
+            fromDate = getDateFromString(asOfDate, "yyyy-MM-dd");
+        }
+        List<OrderObs> orderObs = ugandaEMRService.getOrderObs(null, null, fromDate, null, null, false);
+        Set<Order> orders = new HashSet<>();
 
         orderObs.forEach(orderObs1 -> {
             orders.add(orderObs1.getOrder());
@@ -279,8 +285,7 @@ public class LabQueueListFragmentController {
 
         encounter = encounterService.saveEncounter(encounter);
         try {
-            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, "Completed with results: " + resultDisplay);
-            orderService.discontinueOrder(test, "Completed", new Date(), provider, test.getEncounter());
+            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.IN_PROGRESS, "Completed with results: " + resultDisplay);
             saveOrderObservations(encounter);
             sendPatientBackToClinician(encounter, encounter.getLocation(), sessionContext.getSessionLocation(), QUEUE_STATUS_SENT_TO_LAB);
         } catch (Exception e) {
@@ -288,6 +293,17 @@ public class LabQueueListFragmentController {
         }
         return SimpleObject.create("status", "success", "message", "Saved!");
     }
+
+
+    public SimpleObject approveResults(@RequestParam(value = "orders") List orderNumbers) {
+        OrderService orderService = Context.getOrderService();
+        for (Object orderNumber : orderNumbers) {
+            Order test = orderService.getOrderByOrderNumber(orderNumber.toString());
+            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, test.getFulfillerComment());
+        }
+        return SimpleObject.create("status", "success", "message", "Approved!");
+    }
+
 
     private void saveOrderObservations(Encounter encounter) {
         encounter.getAllObs().stream().filter(obs -> obs.getOrder() != null).forEach(obs -> {
@@ -344,5 +360,16 @@ public class LabQueueListFragmentController {
         }
 
         return patientQueue;
+    }
+
+    private Date getDateFromString(String dateString, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        try {
+            // Parse the string and convert it to a Date object
+            return dateFormat.parse(dateString);
+        } catch (Exception e) {
+            log.error(e);
+        }
+        return new Date();
     }
 }

@@ -131,6 +131,13 @@
                     }
                 });
             });
+            jq("#lab-results-tab").click(function () {
+                jq("#result-search").show();
+            });
+
+            jq("#search-results").click(function () {
+                getResults(jq("#asOfDate").val());
+            });
 
             jq('#add-order-to-lab-worklist-dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
@@ -158,18 +165,19 @@
             })
         });
 
-        function reloadPending(){
+        function reloadPending() {
             getPatientLabQueue();
         }
 
-        function reloadWorkList(){
+        function reloadWorkList() {
             getOrders();
         }
 
-        function reloadResults(){
+        function reloadResults() {
             getResults();
         }
-        function reloadReferred(){
+
+        function reloadReferred() {
             getResults();
         }
     }
@@ -212,9 +220,9 @@
     }
 
     // Gets Orders with results for The List of results
-    function getResults() {
+    function getResults(date) {
         jq.get('${ ui.actionLink("getOrderWithResult") }', {
-            date: (new Date()).toString()
+            date: date
         }, function (response) {
             if (response) {
                 var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
@@ -223,10 +231,10 @@
         });
     }
 
-    function identifierToDisplay(identifiers){
-        var identifierToDisplay="";
+    function identifierToDisplay(identifiers) {
+        var identifierToDisplay = "";
         jq.each(identifiers, function (index, element) {
-            identifierToDisplay+=element.identifierTypeName+" : "+element.identifier+" <br/> "
+            identifierToDisplay += element.identifierTypeName + " : " + element.identifier + " <br/> "
         });
 
         return identifierToDisplay
@@ -271,7 +279,7 @@
                         content += "<div class=\"collapse\" id=\"collapse-tab" + patientQueueListElement.patientQueueId + "\"><div class=\"card card-body\">" + orders + "</div></div>";
                     }
 
-                    if (!isPatientPicked  &&  "${enablePatientQueueSelection}".trim() === "true") {
+                    if (!isPatientPicked && "${enablePatientQueueSelection}".trim() === "true") {
                         content += "<i  style=\"font-size: 25px;\" class=\"icon-signin view-action\" title=\"Select Patient\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + patientQueueListElement.patientQueueId + "' data-url=\"\"></i>";
                     }
                     content += "</td>";
@@ -429,27 +437,41 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                         <h2>${currentProvider?.person?.personName?.fullName}</h2>
                     </div>
 
-                    <div class="vertical"></div>
+                    <div class="vertical" style="height: 100%"></div>
                 </div>
 
                 <div class="col-8">
                     <form method="get" id="patient-lab-search-form" onsubmit="return false">
-                        <input type="text" id="patient-lab-search" name="patient-lab-search"
-                               placeholder="${ui.message("coreapps.findPatient.search.placeholder")}"
-                               autocomplete="off" class="provider-dashboard-patient-search"/>
-
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" id="patient-lab-search" name="patient-lab-search"
+                                       placeholder="${ui.message("coreapps.findPatient.search.placeholder")}"
+                                       autocomplete="off" class="provider-dashboard-patient-search"/>
+                            </div>
+                        </div>
+                        <div class="hidden" id="result-search">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <input type="date" id="asOfDate" name="asOfDate" style="width: 100%;height: 50px;"/>
+                                </div>
+                                <div class="col-md-5">
+                                    <button type="submit" class="confirm" id="search-results" style="height: 50px; width: 150px">Search</button>
+                                </div>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card-body">
+    <div class="card-body hidden-print">
         <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-item nav-link active" id="pending-queue-lab-tab" data-toggle="tab"
                    href="#pending-queue-lab" role="tab"
-                   aria-controls="pending-queue-lab-tab" aria-selected="true">TESTS ORDERED   <span style="color:red" id="pending-queue-lab-number">0</span>
+                   aria-controls="pending-queue-lab-tab" aria-selected="true">TESTS ORDERED <span style="color:red"
+                                                                                                  id="pending-queue-lab-number">0</span>
                     <i class="icon-repeat" style="text-align: right" id="reload_pending" onclick="reloadPending()"></i>
                 </a>
             </li>
@@ -464,18 +486,26 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                 <a class="nav-link" id="referred-tests-tab" data-toggle="tab" href="#referred-tests" role="tab"
                    aria-controls="referred-tests-tab" aria-selected="false">REFFERED TESTS
                     <span style="color:red" id="referred-tests-number">0</span>
-                    <i class="icon-repeat" style="text-align: right" id="reload_referred" onclick="reloadReferred()"></i>
+                    <i class="icon-repeat" style="text-align: right" id="reload_referred"
+                       onclick="reloadReferred()"></i>
                 </a>
-
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" id="lab-results-tab" data-toggle="tab" href="#lab-results" role="tab"
-                   aria-controls="lab-results-number-tab" aria-selected="false">RESULTS
+                   aria-controls="lab-results-number-tab" aria-selected="false">REVIEW LIST
                     <span style="color:red" id="lab-results-number">0</span>
                     <i class="icon-repeat" style="text-align: right" id="reload_results" onclick="reloadResults()"></i>
                 </a>
-
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="lab-results-approved-tab" data-toggle="tab" href="#lab-results-approved"
+                   role="tab"
+                   aria-controls="lab-results-approved-number-tab" aria-selected="false">Approved
+                    <span style="color:red" id="lab-results-approved-number">0</span>
+                    <i class="icon-repeat" style="text-align: right" id="reload_results_approved"
+                       onclick="reloadResults()"></i>
+                </a>
             </li>
         </ul>
 
@@ -511,10 +541,17 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                     </div>
                 </div>
             </div>
+
+            <div class="tab-pane fade" id="lab-results-approved" role="tabpanel"
+                 aria-pharmacyelledby="lab-results-approved-tab">
+                <div class="info-body">
+                    <div id="lab-results-approved-list-table">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    ${
-            ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
+    ${ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
 </div>
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
