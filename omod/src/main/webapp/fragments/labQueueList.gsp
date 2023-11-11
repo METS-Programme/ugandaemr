@@ -210,13 +210,95 @@
             url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order?orderTypes=52a447d3-a64a-11e3-9aeb-50e549534c5e&&careSetting=6f0c9a92-6f24-11e3-af88-005056821db0&activatedOnOrAfterDate=" + date + "&isStopped=false&fulfillerStatus=IN_PROGRESS&v=full",
             dataType: "json",
             contentType: "application/json;",
+            async:false,
             success: function (response) {
                 if (response) {
-                    var responseData = response
-                    displayLabOrder(responseData)
+                    var responseData = response;
+                    displayLabOrderApproachA(groupOrdersByEncounter(responseData));
+                    //displayLabOrder(responseData)
                 }
             }
         });
+    }
+
+    function removeOrdersWithResults(payload) {
+        var orderids = [];
+        payload.results.forEach((item, index) => {
+            orderids.push(item.uuid);
+        });
+
+        var orderobs = null;
+
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/orderobs?order=" + orderids + "&v=full",
+            dataType: "json",
+            contentType: "application/json;",
+            async:false,
+            success: function (response) {
+                if (response) {
+                    orderobs = response;
+                }
+            }
+        });
+
+        payload.results.forEach((item, index) => {
+            orderobs.results.forEach((result) => {
+                if (item.uuid === result.order.uuid) {
+                    payload.results.splice(index, 1);
+                }
+            })
+        })
+        return payload
+
+    }
+
+    function groupOrdersByEncounter(data) {
+        const groupedData = {"results": []};
+        let itemNo = 0;
+        data.results.forEach((item, index) => {
+            const key = item.encounter.uuid;
+            let keyExists = false;
+
+            groupedData.results.forEach((groupItem, index) => {
+                if (groupItem.encounter && groupItem.encounter === key) {
+                    keyExists = true;
+                    groupItem.orders.push(item)
+                }
+            });
+
+            if (!keyExists) {
+                groupedData.results[itemNo] = {"encounter": "" + key + "", "orders": [], "patient": item.patient};
+                groupedData.results[itemNo].orders.push(item);
+                itemNo++;
+            }
+
+        });
+        return groupedData;
+    }
+
+    function groupOrderResultsByEncounter(data) {
+        const groupedData = {"ordersList": []};
+        let itemNo = 0;
+        data.ordersList.forEach((item, index) => {
+            const key = item.encounterId;
+            let keyExists = false;
+
+            groupedData.ordersList.forEach((groupItem, index) => {
+                if (groupItem.encounter && groupItem.encounter === key) {
+                    keyExists = true;
+                    groupItem.orders.push(item)
+                }
+            });
+
+            if (!keyExists) {
+                groupedData.ordersList[itemNo] = {"encounter":key, "orders": [], "patient": item.patient,};
+                groupedData.ordersList[itemNo].orders.push(item);
+                itemNo++;
+            }
+
+        });
+        return groupedData;
     }
 
     // Gets Orders with results for The List of results
@@ -226,7 +308,7 @@
         }, function (response) {
             if (response) {
                 var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
-                displayLabResult(responseData)
+                displayLabOrderApproachB(groupOrderResultsByEncounter(responseData));
             }
         });
     }
@@ -395,6 +477,97 @@
         jq("#referred-tests-number").append("   " + refferedCounter);
     }
 
+    function displayLabOrderApproachA(labOrder) {
+
+        var displayDivHeader = "<table> <thead> <tr><th></th> <th>Patient</th><th>Orders</th> </tr> </thead> <tbody>";
+        var displayDivFooter = "</tbody></table>"
+        var displayWorkListDiv = "";
+        var displayReferralListDiv = "";
+        var refferedCounter = 0;
+        var worklistCounter = 0;
+
+        labOrder.results.forEach((patientencounter, index) => {
+            var referedTests = "";
+            var workListTests = "";
+            var orderWithResult="";
+            var trOpenTag = "<tr data-toggle=\"collapse\" data-target=\"#order" + index + "\" class=\"accordion-toggle\">";
+            var tdOpenTag = "<td><i class=\" + icon-eye-open + \"/></td>";
+            var tdPatientNames = "<td>" + patientencounter.patient.display + "</td>";
+            var tdOrderSummary = "<td>" + patientencounter.orders.length + "</td>";
+            var trCloseTag = "</tr>";
+            var trCollapsedOpenTag = "<tr> <td colspan=\"12\" class=\"hiddenRow\"><div class=\"accordian-body collapse\" id=\"order" + index + "\">";
+            var trCollapsedCloseTag = "</div></td>"
+
+            var tableHeader = "<table><thead><tr><th>SAMPLE ID</th><th>DATE</th><th>TEST</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>";
+            var tableFooter = "</tbody></table>";
+
+            jq.each(patientencounter.orders, function (index, element) {
+                var orderedTestsRows = "";
+                var instructions = element.instructions;
+                var  fulfillerComment= element.fulfillerComment;
+                var actionIron = "";
+                var actionURL = "";
+                if (instructions != null && instructions.toLowerCase().indexOf("refer to") >= 0) {
+                    actionIron = "icon-tags edit-action";
+                    actionURL = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.uuid);
+                } else {
+                    actionIron = "icon-tags edit-action";
+                    actionURL = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.uuid);
+                }
+                orderedTestsRows += "<tr>";
+                orderedTestsRows += "<td>" + element.accessionNumber + "</td>";
+                orderedTestsRows += "<td>" + element.dateActivated + "</td>";
+                orderedTestsRows += "<td>" + element.concept.display + "</td>";
+                orderedTestsRows += "<td>" + element.fulfillerStatus + "</td>";
+                orderedTestsRows += "<td>";
+                orderedTestsRows += "<a title=\"Edit Result\" onclick='showEditResultForm(\"" + element.uuid + "\")'><i class=\"icon-list-ul small\"></i></a>";
+                orderedTestsRows += "<i class=\" + actionIron + \" title=\"Transfer To Another Provider\" onclick='urlTransferPatientToAnotherQueue'></i>".replace("urlTransferPatientToAnotherQueue", actionURL);
+                orderedTestsRows += "</td>";
+                orderedTestsRows += "</tr>";
+                if (element.accessionNumber !== null && (element.fulfillerStatus !== null && element.fulfillerStatus === "IN_PROGRESS")) {
+                    if (instructions != null && instructions.toLowerCase().indexOf("refer to") >= 0) {
+                        referedTests += orderedTestsRows;
+                        refferedCounter += 1;
+                    }else if(instructions === null && fulfillerComment != null && (fulfillerComment.toLowerCase().indexOf("has results") >= 0 || fulfillerComment.toLowerCase().indexOf("completed with results")>= 0)) {
+                        orderWithResult+=orderedTestsRows;
+                    }else {
+                        workListTests += orderedTestsRows;
+                        worklistCounter += 1;
+                    }
+                }
+            });
+            if (workListTests.length > 0) {
+                displayWorkListDiv += trOpenTag + tdOpenTag + tdPatientNames + tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + workListTests + trCollapsedCloseTag + tableFooter
+            }
+
+            if (referedTests.length > 0) {
+                displayReferralListDiv += trOpenTag + tdOpenTag + tdPatientNames + tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + referedTests + trCollapsedCloseTag + tableFooter
+            }
+
+        })
+
+
+        jq("#lab-work-list-table").html("");
+        jq("#referred-tests-list-table").html("");
+
+        if (displayWorkListDiv.length > 0) {
+            jq("#lab-work-list-table").append(displayDivHeader + displayWorkListDiv + displayDivFooter);
+        } else {
+            jq("#lab-work-list-table").append("No Data");
+        }
+
+        if (displayReferralListDiv.length > 0) {
+            jq("#referred-tests-list-table").append(displayDivHeader + displayReferralListDiv + displayDivFooter);
+        } else {
+            jq("#referred-tests-list-table").append("No Data ");
+        }
+
+        jq("#lab-work-list-number").html("");
+        jq("#lab-work-list-number").append("   " + worklistCounter);
+        jq("#referred-tests-number").html("");
+        jq("#referred-tests-number").append("   " + refferedCounter);
+    }
+
     //Sets the Specimen Source Options in the Select in the scheduleTestDialogue
     function setSpecimenSource() {
         jq("#error-specimen-source").html("");
@@ -449,13 +622,16 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
                                        autocomplete="off" class="provider-dashboard-patient-search"/>
                             </div>
                         </div>
+
                         <div class="hidden" id="result-search">
                             <div class="row">
                                 <div class="col-md-5">
                                     <input type="date" id="asOfDate" name="asOfDate" style="width: 100%;height: 50px;"/>
                                 </div>
+
                                 <div class="col-md-5">
-                                    <button type="submit" class="confirm" id="search-results" style="height: 50px; width: 150px">Search</button>
+                                    <button type="submit" class="confirm" id="search-results"
+                                            style="height: 50px; width: 150px">Search</button>
                                 </div>
                             </div>
                         </div>
@@ -551,12 +727,15 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
             </div>
         </div>
     </div>
-    ${ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
+    ${
+            ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 </div>
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
 ${ui.includeFragment("ugandaemr", "lab/scheduleTestDialogue")}
 </div>
+
+
 <% } %>
 
 

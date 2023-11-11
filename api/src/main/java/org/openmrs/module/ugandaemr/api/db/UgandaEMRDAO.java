@@ -46,15 +46,27 @@ public interface UgandaEMRDAO {
 	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#saveOrderObs(org.openmrs.module.ugandaemr.api.lab.OrderObs)
 	 */
-    OrderObs saveOrderObs(OrderObs orderObs);
+    public OrderObs saveOrderObs(OrderObs orderObs);
 
 	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObs(org.openmrs.Encounter, java.util.Date, java.util.Date, java.util.List, java.util.List,boolean)
 	 */
-    List<OrderObs> getOrderObs(Encounter encounter, Date onOrBefore, Date onOrAfter, List<Order> orders, List<Obs> obs,boolean includeVoided);
+    public List<OrderObs> getOrderObs(Encounter encounter, Date onOrBefore, Date onOrAfter, List<Order> orders, List<Obs> obs,boolean includeVoided);
 
 	/**
 	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsByObs(org.openmrs.Obs)
 	 */
-	OrderObs getOrderObsByObs(Obs obs);
+	public OrderObs getOrderObsByObs(Obs obs);
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsByUuid(String)
+	 */
+	public OrderObs getOrderObsByUuid(String uuid);
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsById(java.lang.Integer)
+	 */
+	public OrderObs getOrderObsById(Integer orderObsId);
+
+	public OrderObs getOrderObsByOrder(Order order);
 }

@@ -296,15 +296,148 @@
                                 <td data-bind="text: value" style="width: 25%"></td>
                                 <td style="width: 25%">
                                     <div data-bind="if: (lowNormal || hiNormal)">
-                                        <span data-bind="text: 'Adult/Male:' + lowNormal + '/' + hiNormal"></span>
+                                        <span data-bind="text: 'Normal:&nbsp;&nbsp;' + lowNormal + ' - ' + hiNormal"></span>
                                     </div>
 
                                     <div data-bind="if: (lowCritical || lowCritical)">
-                                        <span data-bind="text: 'Female:' + lowCritical + '/' + hiCritical"></span>
+                                        <span data-bind="text: 'Critical:&nbsp;&nbsp;' + lowCritical + ' - ' + hiCritical"></span>
                                     </div>
 
                                     <div data-bind="if: (lowAbsolute || hiAbsolute)">
-                                        <span data-bind="text: 'Child:' + lowAbsolute + '/' + hiAbsolute"></span>
+                                        <span data-bind="text: 'Absolute:&nbsp;&nbsp;' + lowAbsolute + ' - ' + hiAbsolute"></span>
+                                    </div>
+                                </td>
+                                <td data-bind="text: unit" style="width: 25%"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="provider-information">
+        <div class="row">
+            <div class="col-sm-4" style="font-weight: bold">Results Reviewed/Authorized by:</div>
+            <div class="col-sm-6" id="reviewer-name">${currentProvider?.person?.personName?.fullName}</div>
+        </div>
+        <br/><br/>
+        <div class="row">
+            <div class="col-sm-4" style="font-weight: bold">Sign: ..........................................</div>
+            <div class="col-sm-1" style="font-weight: bold">Date: </div><div class="col-sm-3" id="review-date"></div>
+        </div>
+
+    </div>
+</div>
+
+<div id="reviewSection" class="hidden">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="row">
+                <div class="headerimage col-sm-12">
+                    <div class="row">
+                        <table style="border: none">
+                            <tr style="border-color: transparent; border-width: 0">
+                                <td style="border-color: transparent; border-width: 0; width: 27%">
+                                    <img src="${ui.resourceLink("ugandaemr", "images/moh_logo_without_word.png")}"
+                                         width="50" height="50" class="logoimage-print"/>
+                                </td>
+                                <td style="border-color: transparent; border-width: 0">
+                                    <div class="row">
+                                        <span class="facility-code">Code: 1115558</span>
+                                    </div>
+
+                                    <div class="row">
+                                        <span class="facility-code">District: Kampala</span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr style="border-color: transparent; border-width: 0">
+                                <td colspan="2" style="border-color: transparent; border-width: 0;">
+                                    <div class="healthcentrename-print">${healthCenter}</div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-5">
+            <div class="row">
+                <div class="headerimage col-sm-12">
+                    <div class="row">
+                        <span class="patient_name_print" id="patient-name"
+                              style="font-size: 25px; font-weight: bolder; line-height:  1.4; letter-spacing:  0; margin-right: 0.25rem;"></span>&nbsp; &nbsp; &nbsp;
+                        <span class="patient-other-details"
+                              style="font-size:  1rem; font-weight:  400; line-height:  1.375; letter-spacing:  0; color: #525252; margin-top: 0.375rem;">
+                            <span id="patient-gender"></span> ·<span id="patient-dob"></span>
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="patient-other-identifier"
+                             style="display: flex; flex-direction: row; justify-content: space-between; align-items: baseline;">
+                            <span class="-esm-patient-banner__patient-banner__identifierTag___DGuqK"
+                                  id="patient-identifier">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="headerimage col-sm-12">
+                    <div class="row">
+                        <div style="font-size:  1rem; font-weight:  400; line-height:  1.375; letter-spacing:  0; color: #525252; margin-top: 0.375rem;">
+                            <span style="font-weight: bolder">Requested By:</span> <span id="requester"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div style="font-size:  1rem; font-weight:  400; line-height:  1.375; letter-spacing:  0; color: #525252; margin-top: 0.375rem;">
+                            <span style="font-weight: bolder">Date Requested:</span> <span id="request-date"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="patient-report" style="margin-top: 5px; table-layout: fixed;">
+        <table style="width: 100%">
+            <thead style="width: 100%">
+            <th style="width: 25%">Test</th>
+            <th style="width: 25%">Result</th>
+            <th style="width: 25%">Reference Range</th>
+            <th style="width: 25%">Units</th>
+            </thead>
+        </table>
+
+        <div class="card-body" data-bind="foreach: _items">
+            <div class="row">
+                <div class="col-md-12" data-bind="foreach: sets">
+                    <div class="card" style="table-layout:fixed;">
+                        <div class="card-header">
+                            <label data-bind="text: name" style="text-align: left; font-weight: bold"></label>
+                        </div>
+                        <table data-bind="foreach: data" style="width: 100%">
+                            <tr style="width: 100%">
+                                <td data-bind="text: '' + test" style="width: 25%"></td>
+                                <td data-bind="text: value" style="width: 25%"></td>
+                                <td style="width: 25%">
+                                    <div data-bind="if: (lowNormal || hiNormal)">
+                                        <span data-bind="text: 'Normal:&nbsp;&nbsp;' + lowNormal + ' - ' + hiNormal"></span>
+                                    </div>
+
+                                    <div data-bind="if: (lowCritical || lowCritical)">
+                                        <span data-bind="text: 'Critical:&nbsp;&nbsp;' + lowCritical + ' - ' + hiCritical"></span>
+                                    </div>
+
+                                    <div data-bind="if: (lowAbsolute || hiAbsolute)">
+                                        <span data-bind="text: 'Absolute:&nbsp;&nbsp;' + lowAbsolute + ' - ' + hiAbsolute"></span>
                                     </div>
                                 </td>
                                 <td data-bind="text: unit" style="width: 25%"></td>
