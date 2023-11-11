@@ -215,6 +215,9 @@ public class LabQueueListFragmentController {
 
     public List<SimpleObject> getResultTemplate(@RequestParam("testId") String testId, UiUtils ui) {
         Order test = Context.getOrderService().getOrderByUuid(testId);
+        if(test==null){
+            test=Context.getOrderService().getOrder(Integer.parseInt(testId));
+        }
         List<ParameterModel> parameters = new ArrayList<ParameterModel>();
         LaboratoryUtil.generateParameterModels(parameters, test.getConcept(), null, test);
         //Collections.sort(parameters);
