@@ -690,6 +690,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                         for (Obs groupMemberObs : obs.getGroupMembers()) {
                             TestResultModel trm = new TestResultModel();
                             trm.setInvestigation(test.getConcept().getDisplayString());
+                            trm.setTestId(obs.getOrder().getOrderId());
                             trm.setSet(obs.getConcept().getDisplayString());
                             trm.setConcept(obs.getConcept());
                             setTestResultModelValue(groupMemberObs, trm);
@@ -699,6 +700,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                         TestResultModel trm = new TestResultModel();
                         trm.setInvestigation(test.getConcept().getName().getName());
                         trm.setSet(test.getConcept().getDatatype().getName());
+                        trm.setTestId(obs.getOrder().getOrderId());
                         trm.setConcept(obs.getConcept());
                         setTestResultModelValue(obs, trm);
                         trms.add(trm);
@@ -817,6 +819,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderMapper.setOrderNumber(order.getOrderNumber());
             orderMapper.setPatientId(order.getPatient().getPatientId());
             orderMapper.setInstructions(order.getInstructions());
+            orderMapper.setFulfillerComment(order.getFulfillerComment());
+            if(order.getFulfillerStatus()!=null) {
+                orderMapper.setFulfillerStatus(order.getFulfillerStatus().name());
+            }
             orderMapper.setUrgency(order.getUrgency().name());
             orderMapper.setPatient(names.replace("null", ""));
             orderMapper.setOrderId(order.getOrderId());
@@ -824,6 +830,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             if (order.isActive()) {
                 orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
             }
+
             if (testOrderHasResults(order)) {
                 orderMapper.setStatus(QUEUE_STATUS_HAS_RESULTS);
             }

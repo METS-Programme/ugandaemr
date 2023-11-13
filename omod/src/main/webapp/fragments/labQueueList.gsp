@@ -131,6 +131,7 @@
                     }
                 });
             });
+
             jq("#lab-results-tab").click(function () {
                 jq("#result-search").show();
             });
@@ -165,19 +166,18 @@
             })
         });
 
-        function reloadPending() {
+        function reloadPending(){
             getPatientLabQueue();
         }
 
-        function reloadWorkList() {
+        function reloadWorkList(){
             getOrders();
         }
 
-        function reloadResults() {
+        function reloadResults(){
             getResults();
         }
-
-        function reloadReferred() {
+        function reloadReferred(){
             getResults();
         }
     }
@@ -219,38 +219,6 @@
                 }
             }
         });
-    }
-
-    function removeOrdersWithResults(payload) {
-        var orderids = [];
-        payload.results.forEach((item, index) => {
-            orderids.push(item.uuid);
-        });
-
-        var orderobs = null;
-
-        jq.ajax({
-            type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/orderobs?order=" + orderids + "&v=full",
-            dataType: "json",
-            contentType: "application/json;",
-            async:false,
-            success: function (response) {
-                if (response) {
-                    orderobs = response;
-                }
-            }
-        });
-
-        payload.results.forEach((item, index) => {
-            orderobs.results.forEach((result) => {
-                if (item.uuid === result.order.uuid) {
-                    payload.results.splice(index, 1);
-                }
-            })
-        })
-        return payload
-
     }
 
     function groupOrdersByEncounter(data) {
@@ -594,6 +562,22 @@
             }
         });
     }
+
+    function formatDateFromString(string_date) {
+        var date = new Date(string_date);
+        var monthNames = [
+            "January", "February", "March",
+            "April", "May", "June", "July",
+            "August", "September", "October",
+            "November", "December"
+        ];
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    }
 </script>
 ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
 
@@ -727,15 +711,13 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
             </div>
         </div>
     </div>
-    ${
-            ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
+    ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 </div>
+${ui.includeFragment("ugandaemr", "reviewResults")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
 ${ui.includeFragment("ugandaemr", "lab/scheduleTestDialogue")}
 </div>
-
-
 <% } %>
 
 

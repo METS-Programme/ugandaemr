@@ -297,11 +297,12 @@ public class LabQueueListFragmentController {
         return SimpleObject.create("status", "success", "message", "Saved!");
     }
 
-
-    public SimpleObject approveResults(@RequestParam(value = "orders") List orderNumbers) {
+    public SimpleObject approveResults(@RequestParam(value = "orders") String orders) {
         OrderService orderService = Context.getOrderService();
-        for (Object orderNumber : orderNumbers) {
-            Order test = orderService.getOrderByOrderNumber(orderNumber.toString());
+
+        String[] orderIds = orders.split(",");
+        for (Object orderNumber : orderIds) {
+            Order test = orderService.getOrder(Integer.parseInt(orderNumber.toString()));
             orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, test.getFulfillerComment());
         }
         return SimpleObject.create("status", "success", "message", "Approved!");
@@ -364,6 +365,8 @@ public class LabQueueListFragmentController {
 
         return patientQueue;
     }
+
+
 
     private Date getDateFromString(String dateString, String format) {
         SimpleDateFormat dateFormat = new SimpleDateFormat(format);
