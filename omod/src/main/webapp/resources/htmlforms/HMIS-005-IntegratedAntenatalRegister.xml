@@ -597,16 +597,21 @@
                                             </div>
                                             <div class="card-body">
                                                 <div class="row">
-                                                    <div class="col-md-4" id="encounter-date">
+                                                    <div class="col-md-3" id="encounter-date">
                                                         <label>Encounter Date</label>
                                                         <encounterDate default="today"
                                                                        disallowMultipleEncountersOnDate="block"/>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
+                                                        <label>Serial Number</label>
+                                                        <obs conceptId="1646" />
+                                                    </div>
+
+                                                    <div class="col-md-3">
                                                         <label>Client Number</label>
                                                         <obs conceptId="99727" />
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <label>Visit Number</label>
                                                         <obs conceptId="166517"
                                                              answerConceptIds="166508, 166509, 166507, 166510, 166511, 166512, 166513, 166514, 166515, 166516"

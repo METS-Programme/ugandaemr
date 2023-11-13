@@ -65,8 +65,18 @@ body {
     border-radius: 50px;
     width: 30%
 }
-#patientId{
+
+#patientId {
     width: 100%;
+}
+
+h5 {
+    color: #FFF;
+}
+.btn-secondary {
+    color: #5b0505;
+    background-color: #4f0c0c;
+    border-color: #950606;
 }
 
 </style>
@@ -75,6 +85,7 @@ body {
     var stompClient = null;
     var listableAttributeTypes = [];
     var patientTransferInData;
+    var patientToRegister;
     var patientTransferInObs;
     <% listingAttributeTypeNames.each { %>
     listableAttributeTypes.push('${ ui.encodeHtml(it) }');
@@ -93,8 +104,8 @@ body {
 
     var handlePatientRowSelection = new handlePatientRowSelection();
     var addPatientToQueueLink = "<a  data-toggle=\"modal\" data-target=\"#add_patient_to_queue_dialog\" data-patientid=\"patientIdPlaceHolder\" data-patientnames=\"patientNamsePlaceHolder\"><i style=\"font-size: 25px;\" data-target=\"#add_patient_to_queue_dialog\" class=\"icon-share\" title=\"Check In\"></i></a>";
-    var patientDashboardURL = "<i style=\"font-size: 25px;\" class=\"icon-file-alt\" title=\"Goto Patient Dashboard\" onclick=\" location.href = '/"+OPENMRS_CONTEXT_PATH+"/coreapps/clinicianfacing/patient.page?patientId=patientIdPlaceHolder'\"></i>";
-    var editPatientLink = "<i style=\"font-size: 25px;\" class=\"icon-edit\" title=\"Edit Demographics\" onclick=\"location.href = '/"+OPENMRS_CONTEXT_PATH+"/registrationapp/registrationSummary.page?patientId=patientIdPlaceHolder&sectionId=demographics&appId=ugandaemr.registrationapp.registerPatient&returnUrl=/"+OPENMRS_CONTEXT_PATH+"/ugandaemr/findpatient/findPatient.page?app=ugandaemr.findPatient'\"></i>";
+    var patientDashboardURL = "<i style=\"font-size: 25px;\" class=\"icon-file-alt\" title=\"Goto Patient Dashboard\" onclick=\" location.href = '/" + OPENMRS_CONTEXT_PATH + "/coreapps/clinicianfacing/patient.page?patientId=patientIdPlaceHolder'\"></i>";
+    var editPatientLink = "<i style=\"font-size: 25px;\" class=\"icon-edit\" title=\"Edit Demographics\" onclick=\"location.href = '/" + OPENMRS_CONTEXT_PATH + "/registrationapp/registrationSummary.page?patientId=patientIdPlaceHolder&sectionId=demographics&appId=ugandaemr.registrationapp.registerPatient&returnUrl=/" + OPENMRS_CONTEXT_PATH + "/ugandaemr/findpatient/findPatient.page?app=ugandaemr.findPatient'\"></i>";
     var patientSearchWidget = null;
     jq(function () {
         var widgetConfig = {
@@ -165,7 +176,7 @@ body {
         } else if (message.type === "local" && message.patient !== "") {
             patientSearchWidget.searchByFingerPrint(message.patient);
         } else if (message.type === "online" && message.patient !== "" && ${searchOnline} === true) {
-            window.location = "/"+OPENMRS_CONTEXT_PATH+"/ugandaemrfingerprint/patientInOtherFacility.page?patientId=" + message.patient;
+            window.location = "/" + OPENMRS_CONTEXT_PATH + "/ugandaemrfingerprint/patientInOtherFacility.page?patientId=" + message.patient;
         } else if (message.type === null && (message.patient === null || message.patient === "") && ${searchOnline} === true) {
             var message;
             message = '{"result":"Patient Not Found at Central Server"}';
@@ -186,30 +197,7 @@ body {
         document.getElementById("myDiv").style.display = "block";
     }
 
-    function checkProfileEnabled(uuid) {
-        var profileEnabled;
-        jQuery.ajax({
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/"+uuid+"?v=full",
-            dataType: 'json',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            type: 'GET',
-            async: false
-        }).success(function (data) {
-            var profile = data;
-            profileEnabled = profile.profileEnabled;
-        })
-        return profileEnabled;
-    }
-
     jq(document).ready(function () {
-
-        jq('#nhcr').hide();
-        if(checkProfileEnabled("84242661-aadf-42e4-9431-bf8afefb4433")){
-            jq('#nhcr').show();
-        }
-
         jq('#add_patient_to_queue_dialog').on('show.bs.modal', function (event) {
             var button = jq(event.relatedTarget);
             var patientId = button.data('patientid');
@@ -236,13 +224,11 @@ body {
             });
         });
     });
-</script>
 
-<script>
-    function getSearchConfigs() {
+    function getSearchConfigs(uuid) {
         var searchConfigs;
         jQuery.ajax({
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/84242661-aadf-42e4-9431-bf8afefb4433?v=full",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/" + uuid + "?v=full",
             dataType: 'json',
             headers: {
                 'Content-Type': 'application/json',
@@ -256,9 +242,26 @@ body {
         return searchConfigs;
     }
 
-    function generateSearchParams() {
+    function checkProfileEnabled(uuid) {
+        var profileEnabled;
+        jQuery.ajax({
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/" + uuid + "?v=full",
+            dataType: 'json',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            type: 'GET',
+            async: false
+        }).success(function (data) {
+            var profile = data;
+            profileEnabled = profile.profileEnabled;
+        })
+        return profileEnabled;
+    }
+
+    function generateSearchParams(id) {
         var data = {};
-        jq('#search-client-registry').find("input").each(function () {
+        jq("#" + id).find("input").each(function () {
             var inputtag = jq(this);
             var id = inputtag.attr("id");
             var value = inputtag.val();
@@ -279,28 +282,51 @@ body {
                 default:
                     break;
             }
-            if (value !== "" && value !== null && id !== "advanced-search") {
+            if (value !== "" && value !== null && id !== "advanced-search" && id !== "advanced-search-fshr") {
                 data[id] = value;
             }
         });
-
         return new URLSearchParams(data).toString();
     }
 
     function searchOnLineFhirServer(identifier, searchConfigs, searchParams) {
-        var query = "?" + searchParams;
-        query = query.replace("%s", searchParams);
-        var url = searchConfigs.url + query
-        jQuery.ajax({
-            url: url,
-            type: 'GET',
-            async: false,
-            headers: {
-                'Accept': '*/*',
-                'Authorization': "Basic " + btoa(searchConfigs.urlUserName + ":" + searchConfigs.urlPassword),
-            }
-        }).success(function (data) {
-            if (data.entry.length > 0) {
+        var query = "?"
+        var searchObject = "Patient";
+
+        if (searchConfigs.url.indexOf(searchObject) <= -1) {
+            query = "/" + searchObject + query
+        }
+
+        if (identifier !== null && identifier !== "") {
+            query = query + "identifier=" + identifier;
+        } else {
+            query = query + searchParams;
+            query = query.replace("%s", searchParams);
+        }
+
+        var url = searchConfigs.url + query;
+        var settings = null;
+
+        if (searchConfigs.urlUserName !== null && searchConfigs.urlUserName !== "") {
+            settings = {
+                "url": url,
+                "method": "GET",
+                "timeout": 0,
+                "async": false,
+                "headers": {
+                    'Authorization': "Basic " + btoa(searchConfigs.urlUserName + ":" + searchConfigs.urlPassword),
+                },
+            };
+        } else {
+            settings = {
+                "url": url,
+                "method": "GET",
+                "timeout": 0,
+                "async": false,
+            };
+        }
+        jQuery.ajax(settings).done(function (data) {
+            if (data.hasOwnProperty('resourceType') && data.resourceType === "Bundle" && data.total > 0) {
                 patientTransferInData = data;
                 displayFhirData(data);
             } else {
@@ -309,39 +335,58 @@ body {
             }
         }).error(function (data, status, err) {
             jq("#loading-model").modal("hide");
-            jq().toastmessage('showErrorToast', err);
+            jq().toastmessage('showErrorToast', data);
         });
     }
 
-    jQuery(document).ready(function (jq) {
-        jq("#transferIn").click(function () {
-            var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/fhir2/R4/Patient";
-            var patient = formatFHIRResults(patientTransferInData, 0);
-            jQuery.ajax({
-                url: url,
-                type: 'POST',
-                async: false,
-                contentType: "application/json",
-                data: JSON.stringify(patient)
-            }).success(function (response) {
-                var responseStatus = response;
-                transferPatientIn = true;
-                jq().toastmessage('showSuccessToast', "Patient Created Successfully");
-            }).error(function (data, status, err) {
-                jq.each(JSON.parse(data.responseText).issue, function (index, element) {
-                    jq().toastmessage('showErrorToast', element.diagnostics);
-                });
-                jq("#loading-model").modal("hide");
+    function transferPatientIn(position) {
+        patientToRegister = null;
+        patientToRegister = formatFHIRResults(patientTransferInData, position);
+        var patientData = patientTransferInData.entry[position].resource
+        jq("#patient_found").removeClass('hidden');
+        jq("patient_found").show();
+        var patientNames = "" + patientData.name[0].family + " " + patientData.name[0].given[0];
+        patientNames = patientNames.replace("null", "");
+        jq("#patientNamesToRegister").html(patientNames);
+        jq("#patientIdToRegister").html(patientData.id);
+        if (patientData.managingOrganization) {
+            jq("#facilityNameToRegister").html("At " + patientData.managingOrganization.display);
+            jq("#facilityIdToRegister").html(patientData.managingOrganization.identifier.value);
+        }
+        var dateOfBirth = formatDate(new Date(patientData.birthDate));
+        jq("#dateOfBirthToRegister").html(" " + dateOfBirth + "");
+        jq("#genderToRegister").html(" " + patientData.gender);
+        jq('#confirmRegistrationModel').modal('show');
+    }
 
+    function confirmRegistration() {
+        var url = '/' + OPENMRS_CONTEXT_PATH + "/ws/fhir2/R4/Patient";
+        jQuery.ajax({
+            url: url,
+            type: 'POST',
+            async: false,
+            contentType: "application/json",
+            data: JSON.stringify(patientToRegister)
+        }).success(function (response) {
+            var responseStatus = response;
+            transferPatientIn = true;
+            jq().toastmessage('showSuccessToast', "Patient Created Successfully");
+            jq('#mostRecentEncounterModel').modal('hide').data('bs.modal', null);
+            jq('#confirmRegistrationModel').modal('hide').data('bs.modal', null);
+        }).error(function (data, status, err) {
+            jq.each(JSON.parse(data.responseText).issue, function (index, element) {
+                jq().toastmessage('showErrorToast', element.diagnostics);
             });
+            jq("#loading-model").modal("hide");
         });
-    });
+    }
 
 
     function formatFHIRResults(resources, position) {
         var patientSystemIndentifier = JSON.parse("{\"use\":\"official\",\"type\":{\"coding\":[{\"system\":\"UgandaEMR\",\"code\":\"05a29f94-c0ed-11e2-94be-8c13b969e334\"}],\"text\":\"OpenMRS ID\"},\"system\":\"UgandaEMR\",\"value\":\"\",\"id\":\"\"}");
         var patientResource = resources.entry[position].resource;
         var identifiersToKeep = [];
+
         jQuery.ajax({
             url: '/' + OPENMRS_CONTEXT_PATH + "/ws/module/idgen/generateIdentifier.form?source=1",
             dataType: 'json',
@@ -352,7 +397,7 @@ body {
             async: false
         }).success(function (data) {
             patientSystemIndentifier.value = data.identifiers[0];
-            patientSystemIndentifier.id=patientResource.id;
+            patientSystemIndentifier.id = patientResource.id;
         })
 
         identifiersToKeep.push(patientSystemIndentifier);
@@ -360,14 +405,26 @@ body {
         //Delete logical ID from another facility
 
         // Check if patient has National ID and keep it if found
+
+        patientResource.identifier.forEach(function (identifier, index) {
+            patientResource.identifier[index].id = uuidv4();
+        });
+
         if (patientResource.hasOwnProperty("identifier")) {
             jq.each(patientResource.identifier, function (index, element) {
-                if (element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282") {
+                if (element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
                     identifiersToKeep.push(element)
                 }
             });
         }
 
+        patientResource.address.forEach(function (address, index) {
+            patientResource.address[index].id = uuidv4();
+        });
+
+        patientResource.name.forEach(function (name, index) {
+            patientResource.name[index].id = uuidv4();
+        });
 
         // Delete any logical ID in property telecom
         if (patientResource.hasOwnProperty("meta")) {
@@ -408,23 +465,90 @@ body {
     }
 
     function displayFhirData(response) {
-        var patientData = response.entry[0].resource;
+        populateDisplayTable(response);
         jq("#patient_found").removeClass('hidden');
         jq("patient_found").show();
-        var patientNames = "" + patientData.name[0].family + " " + patientData.name[0].given[0];
-        patientNames = patientNames.replace("null", "");
-        jq("#patientNames").html(patientNames);
-        jq("#patientId").html(patientData.id);
-        if (patientData.managingOrganization) {
-            jq("#facilityName").html(patientData.managingOrganization.display);
-            jq("#facilityNameHeader").html("At " + patientData.managingOrganization.display);
-            jq("#facilityId").html(patientData.managingOrganization.identifier.value);
-        }
-        var dateOfBirth = formatDate(new Date(patientData.birthDate));
-        jq("#dateOfBirth").html(" " + dateOfBirth + "");
-        jq("#gender").html(" " + patientData.gender);
+        jq('#mostRecentEncounterModel').modal('show');
+    }
+
+    function displayFhirRecords(response) {
+        populateDisplayTable(response);
+        jq("#patient_found").removeClass('hidden');
+        jq("patient_found").show();
+
         jq("#loading-model").modal("hide");
         jq('#mostRecentEncounterModel').modal('show');
+    }
+
+    function uuidv4() {
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+    }
+
+    function populateDisplayTable(response) {
+        var prDiv = document.getElementById("pr");
+        prDiv.innerHTML = "";
+        var tableDiv = document.createElement("table");
+        var patientHeaderRow = document.createElement("tr");
+        var patientNameHeader = document.createElement("th");
+        patientNameHeader.innerHTML = "Patient Name";
+        var patientDOBHeader = document.createElement("th");
+        patientDOBHeader.innerHTML = "Birth Date";
+        var patientGenderHeader = document.createElement("th");
+        patientGenderHeader.innerHTML = "Sex";
+        var patientTelecomHeader = document.createElement("th");
+        patientTelecomHeader.innerHTML = "Phone Number";
+        var patientActionHeader = document.createElement("th");
+        patientActionHeader.innerHTML = "Action";
+
+        patientHeaderRow.append(patientNameHeader);
+        patientHeaderRow.append(patientDOBHeader);
+        patientHeaderRow.append(patientGenderHeader);
+        patientHeaderRow.append(patientTelecomHeader);
+        patientHeaderRow.append(patientActionHeader);
+
+        tableDiv.appendChild(patientHeaderRow);
+
+        response.entry.forEach(function (entity, index) {
+                var patient = entity.resource;
+                var trElement = document.createElement("tr");
+                var tdPatientName = document.createElement("td");
+                tdPatientName.innerHTML = patient.name[0].family + " " + patient.name[0].given[0];
+                var tdPatientDOB = document.createElement("td");
+                tdPatientDOB.innerHTML = formatDate(new Date(patient.birthDate))
+                var tdPatientGender = document.createElement("td");
+                tdPatientGender.innerHTML = patient.gender;
+                var tdPatientTelecom = document.createElement("td");
+                var tdPatientAction = document.createElement("td");
+                if (patient.hasOwnProperty("telecom")) {
+                    patient.telecom.forEach(function (telecom, index) {
+                        tdPatientTelecom.innerHTML = tdPatientTelecom.innerHTML + " " + telecom.value
+                    });
+                }
+
+                var transferInButton = document.createElement("button");
+
+
+                transferInButton.innerHTML = " Register "
+
+                transferInButton.setAttribute("id", "transfer-" + index);
+                transferInButton.setAttribute("class", "icon-random confirm");
+                transferInButton.setAttribute("onclick", "transferPatientIn(" + index + ")");
+                transferInButton.setAttribute("onclick", "transferPatientIn(" + index + ")");
+
+                tdPatientAction.append(transferInButton);
+
+                trElement.append(tdPatientName);
+                trElement.append(tdPatientDOB);
+                trElement.append(tdPatientGender);
+                trElement.append(tdPatientTelecom);
+                trElement.append(tdPatientAction);
+                tableDiv.append(trElement);
+            }
+        )
+        ;
+        prDiv.appendChild(tableDiv);
     }
 
     function formatDate(date) {
@@ -441,21 +565,64 @@ body {
 
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
-</script>
 
-<script>
     jq(document).ready(function () {
+        jq('#fshr').hide();
+        jq('#nhcr').hide();
+        if (checkProfileEnabled("84242661-aadf-42e4-9431-bf8afefb4433")) {
+            // show the client registry search link
+            jq('#nhcr').show();
+        }
+        if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")) {
+            // show the facility shr search link
+            jq('#fshr').show();
+        }
         jq("#advanced-search").click(function () {
             var surName = jq("#sur-name").val();
             var middleName = jq("#middle-name").val();
             var givenName = jq("#given-name").val();
             var patientId = jq("#patientId").val();
-            var searchConfigs = getSearchConfigs();
-            var searchParams = generateSearchParams();
+            var searchConfigs = getSearchConfigs("84242661-aadf-42e4-9431-bf8afefb4433");
+            var searchParams = generateSearchParams("search-client-registry");
             var birthDate = null;
 
             if (jq("#birthdate").val() !== null && jq("#birthdate").val() !== "") {
-                birthDate = new Date(jq("#dob").val());
+                birthDate = new Date(jq("#birthdate").val());
+            }
+
+            var country = jq("#address-country").val();
+            var gender = jq("#search-gender").val();
+
+            var uic = "";
+
+            if (patientId === "") {
+                //uic = generateUIC(givenName, middleName, surName, null, null, birthDate, country, gender);
+            }
+
+            if (patientId !== "" && uic === "") {
+                patientSearchWidget.searchByIdentifiers(patientId);
+            } else {
+                patientSearchWidget.searchByIdentifiers(uic);
+            }
+
+            if (patientSearchWidget.getCountAfterSearch() === 0 && patientId !== "") {
+                searchOnLineFhirServer(patientId, searchConfigs, searchParams);
+            } else if (patientSearchWidget.getCountAfterSearch() === 0 && patientId === "" && uic !== "") {
+                searchOnLineFhirServer(uic, searchConfigs, searchParams);
+            }
+        });
+
+        jq("#advanced-search-fshr").click(function () {
+            var surName = jq("#sur-name").val();
+            var middleName = jq("#middle-name").val();
+            var givenName = jq("#given-name").val();
+            var patientId = jq("#patientId").val();
+            var searchConfigs = getSearchConfigs("0b7eb397-4488-4a88-9967-a054b3c26d6f");
+            var searchParams = generateSearchParams("search-fhsr");
+            var birthDate = null;
+
+            if (jq("#birthdate").val() !== null && jq("#birthdate").val() !== "") {
+                birthDate = new Date(jq("#birthdate").val());
             }
 
             var country = jq("#address-country").val();
@@ -468,15 +635,15 @@ body {
             }
 
             if (patientId !== "" && uic === "") {
-                patientSearchWidget.searchByIdentifiers(jq("#patientId").val());
-            }else{
-            patientSearchWidget.searchByIdentifiers(uic);
+                patientSearchWidget.searchByIdentifiers(patientId);
+            } else {
+                patientSearchWidget.searchByIdentifiers(uic);
             }
-            
+
             if (patientSearchWidget.getCountAfterSearch() === 0 && patientId !== "") {
                 searchOnLineFhirServer(patientId, searchConfigs, searchParams);
             } else if (patientSearchWidget.getCountAfterSearch() === 0 && patientId === "" && uic !== "") {
-                searchOnLineFhirServer(uic, searchConfigs, searchParams);
+                searchOnLineFhirServer(null, searchConfigs, searchParams);
             }
         });
     });
@@ -512,7 +679,7 @@ body {
         }
 
         if (country !== null && country !== "") {
-            countryCode = country.substring(0, 1);
+            countryCode = country.substring(0, 2).toUpperCase();
         } else {
             countryCode = "X";
         }
@@ -686,29 +853,87 @@ body {
 
         <div class="row">
             <div id="nhcr" class="col-7">
-            <a data-toggle="collapse" style="width: 10px" href="#collapseExample" role="button" aria-expanded="false"
-               aria-controls="collapseExample">
-                Search National Health Client Registry
-            </a>
+                <a data-toggle="collapse" style="width: 10px" href="#collapseExample" role="button"
+                   aria-expanded="false"
+                   aria-controls="collapseExample">
+                    Search NHCR (National Health Client Registry)
+                </a>
             </div>
+
+            <di id="fshr" class="col-5" style="text-align: right">
+                <a data-toggle="collapse" style="width: 10px;" href="#collapseFHSR" role="button" aria-expanded="false"
+                   aria-controls="collapseExample">
+                    Search FSHR (Facility Intergration Service)
+                </a>
         </div>
+    </div>
 
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body" id="search-client-registry">
-                <div class="row">
-
-                    <div class="col-8">
-                        <input type="text" id="patientId" placeholder="Patient Unique Identifier" value="" autocomplete="off"/>
-                    </div>
-
-                    <div class="col-4">
-                        <input type="submit" value="Search" class="submit" id="advanced-search" autocomplete="off"/>
-                    </div>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" id="search-client-registry">
+            <div class="row">
+                <div class="col-8">
+                    <input type="text" id="patientId" placeholder="Patient Unique Identifier" value=""
+                           autocomplete="off"/>
                 </div>
 
+                <div class="col-4">
+                    <input type="submit" value="Search" class="submit" id="advanced-search" autocomplete="off"/>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="collapse" id="collapseFHSR">
+        <div class="card card-body" id="search-fhsr">
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" id="sur-name" placeholder="First Name/Surname" autocomplete="off"/>
+                </div>
+
+                <div class="col-3">
+                    <input type="text" id="given-name" placeholder="Given Name" autocomplete="off"/>
+                </div>
+
+                <div class="col-3">
+                    <input type="text" id="middle-name" placeholder="Middle Name" autocomplete="off"/>
+                </div>
+
+                <div class="col-3">
+                    <input type="text" id="patientId" placeholder="Patient Id" value="" autocomplete="off"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <select id="search-gender">
+                        <option value="">Select Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <div class="col-3">
+                    <input type="date" id="birthdate" placeholder="Date Of Birth" autocomplete="off"/>
+                </div>
+
+                <div class="col-3">
+                    <input type="text" id="telecom" placeholder="Phone Number" autocomplete="off"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" id="address-country" placeholder="Country" autocomplete="off"/>
+                </div>
+
+                <div class="col-3">
+                    <input type="submit" value="Search" class="submit" id="advanced-search-fshr" autocomplete="off"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </div>
 
 
@@ -720,7 +945,34 @@ body {
     <div class="modal-dialog  modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="mostRecentEncounterModelLabel">Patient Details from NHCR</h5>
+                <h5 class="modal-title" id="mostRecentEncounterModelLabel">Potential Matches of Patients Found</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id="pr">
+
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="confirmRegistrationModel" tabindex="-1" role="dialog"
+     aria-labelledby="confirmRegistrationModelLabel"
+     aria-hidden="true">
+    <div class="modal-dialog  modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"
+                    id="confirmRegistrationModelLabel">Are You Sure you want to register this Patient <span
+                        id="patientIdNumber"></span></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -729,33 +981,32 @@ body {
             <div class="modal-body">
                 <div class="">
                     <div>
-                        <strong>Patient Names:</strong> <span style="" id="patientNames"></span>
+                        <strong>Patient Names:</strong> <span style="" id="patientNamesToRegister"></span>
                     </div>
 
                     <div>
-                        <strong>Sex:</strong><span id="gender"></span>
+                        <strong>Sex:</strong><span id="genderToRegister"></span>
                     </div>
 
                     <div>
-                        <strong>Date of Birth:</strong><span id="dateOfBirth"></span>
+                        <strong>Date of Birth:</strong><span id="dateOfBirthToRegister"></span>
                     </div>
 
                     <div>
-                        <strong>Facility Name:</strong><span id="facilityName"></span>
-                    </div>
-                    <div id="patient_text">
-
+                        <strong>Facility Name:</strong><span id="facilityNameToRegister"></span>
                     </div>
                 </div>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="confirm" id="transferIn">${ui.message("Create Patient")}</button>
+                <button type="submit" class="confirm" onclick="confirmRegistration()"
+                        id="confirmRegistration">${ui.message("Register Patient")}</button>
             </div>
         </div>
     </div>
 </div>
+
 ${ui.includeFragment("ugandaemr", "checkIn")}
 <div class="modal fade hide" id="loading-model" tabindex="-1" role="dialog"
      aria-labelledby="loadingModelLabel"

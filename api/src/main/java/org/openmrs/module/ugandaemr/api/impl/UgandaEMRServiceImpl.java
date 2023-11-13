@@ -15,7 +15,8 @@ import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.stockmanagement.api.dto.DispenseRequest;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
-import org.openmrs.module.ugandaemr.api.PatientQueueVisitMapper;
+import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
+import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.api.db.UgandaEMRDAO;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
@@ -152,9 +153,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         }
 
         if (patient.getPerson().getPersonAddress() != null && !patient.getPerson().getPersonAddress().getCountry().isEmpty()) {
-            countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 1);
+            countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 2).toUpperCase();
         } else {
-            countryCode = "X";
+            countryCode = "XX";
         }
 
         if (patient.getFamilyName() != null && !patient.getFamilyName().isEmpty()) {
@@ -641,6 +642,17 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             if (patientQueue.getDateChanged() != null) {
                 patientQueueVisitMapper.setDateChanged(patientQueue.getDateChanged().toString());
             }
+
+            List<Identifier> identifiers=new ArrayList<>();
+            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
+                Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
+                if(patientIdentifier.getLocation()!=null){
+                    identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                }
+               identifiers.add(identifier);
+            }
+            patientQueueVisitMapper.setPatientIdentifier(identifiers);
+
             patientQueueMappers.add(patientQueueVisitMapper);
         }
         return patientQueueMappers;
@@ -1084,6 +1096,18 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 if (patientQueue.getEncounter() != null) {
                     labQueueMapper.setOrderMapper(Context.getService(UgandaEMRService.class).processOrders(patientQueue.getEncounter().getOrders(), true));
                 }
+
+                List<Identifier> identifiers=new ArrayList<>();
+                for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
+                    Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
+                    if(patientIdentifier.getLocation()!=null){
+                        identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                    }
+                    identifiers.add(identifier);
+                }
+                labQueueMapper.setPatientIdentifier(identifiers);
+
+
                 patientQueueMappers.add(labQueueMapper);
             }
         }
@@ -1141,6 +1165,18 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                     pharmacyMapper.setDrugOrderMapper(processDrugOrders(patientQueue.getEncounter().getOrders()));
                 }
             }
+
+            List<Identifier> identifiers=new ArrayList<>();
+            for (PatientIdentifier patientIdentifier : patientQueue.getPatient().getIdentifiers()) {
+                Identifier identifier = new Identifier(patientIdentifier.getIdentifier(), patientIdentifier.getIdentifierType().getName(), patientIdentifier.getIdentifierType().getUuid());
+                if(patientIdentifier.getLocation()!=null){
+                    identifier.setIdentifierLocationUuid(patientIdentifier.getLocation().getUuid());
+                }
+                identifiers.add(identifier);
+            }
+            pharmacyMapper.setPatientIdentifier(identifiers);
+
+
             patientQueueMappers.add(pharmacyMapper);
         }
         return patientQueueMappers;
@@ -1250,8 +1286,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Set<Order> orders = new HashSet<>();
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
-
-        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && (obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))).collect(Collectors.toSet());
+        Concept reasonForNextAppointment = Context.getConceptService().getConceptByUuid(CONCEPT_REASON_FOR_NEXT_APPOINTMENT);
+        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && ((obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))) && !obs.getConcept().equals(reasonForNextAppointment)).collect(Collectors.toSet());
 
         for (Obs obs : obsList) {
             if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
@@ -1599,8 +1635,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() > 0 && (drugOrderMapper.getMaxDispenseValue() == null || drugOrderMapper.getMaxDispenseValue().equals(""))) {
                 errors.add("Max Dispensing Value is null for Drug " + drugOrderMapper.getConceptName());
             } else if (drugOrderMapper.getMaxDispenseValue() != null && drugOrderMapper.getQuantity() != null && drugOrderMapper.getMaxDispenseValue() < drugOrderMapper.getQuantity()) {
-                errors.add("The quantity dispensed is greater than max dispensing Value: "+drugOrderMapper.getMaxDispenseValue() + " for drug " + drugOrderMapper.getConceptName());
-            }else if(drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() < 0 ){
+                errors.add("The quantity dispensed is greater than max dispensing Value: " + drugOrderMapper.getMaxDispenseValue() + " for drug " + drugOrderMapper.getConceptName());
+            } else if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() < 0) {
                 errors.add("Negative Dispensing Value is not allowed for Drug " + drugOrderMapper.getConceptName());
             }
 

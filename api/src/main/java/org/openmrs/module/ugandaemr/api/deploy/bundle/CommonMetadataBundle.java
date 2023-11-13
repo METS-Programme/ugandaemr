@@ -32,6 +32,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.REFUGEE_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.PATIENT_IUC_HEALTH_ID);
         install(PatientIdentifierTypes.PATIENT_ORGANIZATION_ID);
+        install(PatientIdentifierTypes.PATIENT_OPD_IDENTIFICATION_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -78,8 +79,19 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.COVID19_VACCINATION_TRACKING);
 
         install(EncounterTypes.SMS_ENROLLMENT);
+        install(EncounterTypes.FAMILY_PLANNING_ENCOUNTER);
+        install(EncounterTypes.NEW_BORN_INPATIENT_ENCOUNTER);
+        install(EncounterTypes.IN_PATIENT_ENCOUNTER);
+        install(EncounterTypes.CHILD_HEALTH_ENCOUNTER);
+
+
+
+
         install(EncounterTypes.SMC_FOLLOWUP);
         install(EncounterTypes.LAB_REQUEST_ENCOUNTER);
+        install(EncounterTypes.INTER_FACILITY_LINKAGE_ENCOUNTER);
+        install(EncounterTypes.MOBILITY_SCREENING);
+        install(EncounterTypes.FAMILY_TRACKING);
 
         //installing programs metadata
         log.info("Installing Programs");

@@ -54,7 +54,7 @@ public class UgandaEMRServiceTest extends BaseModuleContextSensitiveTest {
         String uniqueIdentifierCode= null;
         uniqueIdentifierCode = ugandaemrService.generatePatientUIC(patient);
 
-        assertEquals("X-0117-1-01140411011213",uniqueIdentifierCode);
+        assertEquals("XX-0117-1-01140411011213",uniqueIdentifierCode);
 //        assertEquals("X-1017-1-10011311092319",uniqueIdentifierCode); for patient 10001
 
     }

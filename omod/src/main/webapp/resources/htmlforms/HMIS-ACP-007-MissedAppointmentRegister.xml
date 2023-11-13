@@ -28,6 +28,7 @@
 				disable_fields('99165');  //date self transferred
 				disable_fields('165485'); //outcome by end of next quarter
 				disable_fields('5002');   // cause of death
+				disable_fields('169006');   // cause of death
 
 
 
@@ -121,13 +122,12 @@
 				</ifMode>
 
 				<ifMode mode="EDIT">
-
 					enable_fields('165398'); //other specified service point
 					enable_fields('165483'); //other medication due for refill 
 					enable_fields('165378'); //date returned to care
 					enable_fields('165485'); //outcome by end of next quarter
 					enable_fields('5002');   // cause of death
-
+					enable_fields('169006');   // cause of death
 				</ifMode>
 
 				<!-- Enable the date of return to care if outcome by end of quarter is client returned to care --> 
@@ -160,6 +160,15 @@
 						enable_fields('165485');
 					else
 						disable_fields('165485');
+				});
+
+				<!-- Other reason for patient missing appointment  -->
+
+				jq('#169005').change(function () {
+					if (getValue('169005.value') == 5622)
+						enable_fields('169006');
+					else
+						disable_fields('169006');
 				});
 			});
 		}
@@ -260,7 +269,6 @@
                                             General Follow Up
                                         </div>
                                     	<div class="card-body">
-
 													<obsgroup groupingConceptId="165346">
 														<div class="follow-up">
 															<div class="row">
@@ -297,6 +305,15 @@
 																<div class="col-md-3">
 																	<label>ART No.</label>
 																	<obs id="99431" conceptId="99431" />
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-md-6">
+																	<label>Reason For Missing Appointment</label>
+																	<obs id="169005" conceptId="169005" answerConceptIds="169001,90147,169002,169003,169004,168404,166322,5622" answerLabels="No Transport,Forgetfulness,Wrong Date given,Lost documents,Still had medication,Work related issues,Traveled,Other" />
+																</div>
+																<div class="col-md-6">
+																	<obs id="169006" conceptId="169006" labelText="Other reason for missing appointment" />
 																</div>
 															</div>
 

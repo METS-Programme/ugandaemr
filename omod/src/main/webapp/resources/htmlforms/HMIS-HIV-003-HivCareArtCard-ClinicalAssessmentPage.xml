@@ -99,7 +99,7 @@
                             <!--  CLDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
-                        getCohortCategorizations("aa536e57-a3c3-453c-9413-cf70b5d2ad5d");
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
                     } else if (cddpCategory === "1b9b83d4-eaca-40da-a7c6-53b8ea3436ad") {
                             <!--  General CDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('General CDDP Group Name');
@@ -872,65 +872,65 @@
 
             /* enable disable side-effects-of-art */
             if(!jq(".hepB-status").find("input[type='radio']:checked")){
-                jq(".hepB-results").find("input[type$='radio']").attr('disabled', true);
-            }
+            jq(".hepB-results").find("input[type$='radio']").attr('disabled', true);
+        }
             else{
-                jq(".hepB-results").find("input[type$='radio']").attr('disabled', false);
-            }
+            jq(".hepB-results").find("input[type$='radio']").attr('disabled', false);
+        }
 
             /*enable disable Art adherence on edit */
 
             var adherence = jq("#art-adherence").find("input[type='radio']:checked").val();
             if (adherence == 90157 || adherence == 90158) {
-                jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', false);
-                jq(".fair-or-poor-art-adherence-reason").removeClass("html-form-entry-disabled-field");
-            } else {
-                jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").prop("checked", false);
-                jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', true);
-                jq(".fair-or-poor-art-adherence-reason").addClass("html-form-entry-disabled-field");
-            }
+            jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', false);
+            jq(".fair-or-poor-art-adherence-reason").removeClass("html-form-entry-disabled-field");
+        } else {
+            jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").prop("checked", false);
+            jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', true);
+            jq(".fair-or-poor-art-adherence-reason").addClass("html-form-entry-disabled-field");
+        }
             if (jq("#enable-disable-other-poor-art-adherence-reason").find(':checkbox').prop('checked')) {
-                jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", false);
-                jq("#other-poor-art-adherence-reason-enabled").removeClass("html-form-entry-disabled-field");
-            } else {
-                jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", true);
-                jq("#other-poor-art-adherence-reason-enabled").addClass("html-form-entry-disabled-field");
-            }
+            jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", false);
+            jq("#other-poor-art-adherence-reason-enabled").removeClass("html-form-entry-disabled-field");
+        } else {
+            jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", true);
+            jq("#other-poor-art-adherence-reason-enabled").addClass("html-form-entry-disabled-field");
+        }
 
             /* enable art prescription on edit */
             if (jq("#art-regimen").find("select").find(":selected").val() !== " ") {
-                enable_fields("no-of-art-pills");
-                enable_fields("no-of-art-pills-days");
-                enable_fields("split-regimen");
-            } else {
-                disable_fields("no-of-art-pills");
-                disable_fields("no-of-art-pills-days");
-                disable_fields("split-regimen");
-            }
+            enable_fields("no-of-art-pills");
+            enable_fields("no-of-art-pills-days");
+            enable_fields("split-regimen");
+        } else {
+            disable_fields("no-of-art-pills");
+            disable_fields("no-of-art-pills-days");
+            disable_fields("split-regimen");
+        }
 
             if (jq("#isoniazid").find("input[type='radio']:checked")) {
-                enable_fields("no-of-isoniazid");
-                enable_fields("duration-on-isoniazid");
-            } else {
-                disable_fields("no-of-isoniazid");
-                disable_fields("duration-on-isoniazid");
-            }
+            enable_fields("no-of-isoniazid");
+            enable_fields("duration-on-isoniazid");
+        } else {
+            disable_fields("no-of-isoniazid");
+            disable_fields("duration-on-isoniazid");
+        }
 
             if ( jq("#is-taking-dapsone").find("input[type='radio']:checked")) {
-                enable_fields("no-of-dapsone-pills");
-                enable_fields("no-of-dapsone-pills-days");
-            } else {
-                disable_fields("no-of-dapsone-pills");
-                disable_fields("no-of-dapsone-pills-days");
-            }
+            enable_fields("no-of-dapsone-pills");
+            enable_fields("no-of-dapsone-pills-days");
+        } else {
+            disable_fields("no-of-dapsone-pills");
+            disable_fields("no-of-dapsone-pills-days");
+        }
 
             if (jq("#vitamin-b6").find("input[type='radio']:checked").val() == "82912") {
-                enable_fields("no-of-vitamin-b6");
-                enable_fields("duration-on-vitamin-b6");
-            } else {
-                disable_fields("no-of-vitamin-b6");
-                disable_fields("duration-on-vitamin-b6");
-            }
+            enable_fields("no-of-vitamin-b6");
+            enable_fields("duration-on-vitamin-b6");
+        } else {
+            disable_fields("no-of-vitamin-b6");
+            disable_fields("duration-on-vitamin-b6");
+        }
 
             disable_enable_on_edit_mode("fluconazole-stop-date");
             disable_enable_on_edit_mode("no-of-fluconazole-pills");
@@ -946,490 +946,490 @@
             jq('.tpt-without-inh').show();
         </ifMode>
 
-        var tptInitiationDate = "<lookup expression="fn.latestObs('165226').valueDatetime"/>";
-        if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
-            jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
-        }
-
-        var tbRegNoFromTB = "<lookup expression="fn.latestObs('165826').valueText"/>";
-        var tbRegNoFromArt ="<lookup expression="fn.latestObs('99031').valueText"/>";
-        if(tbRegNoFromTB != '' || tbRegNoFromTB != null || tbRegNoFromTB != NULL || typeof tbRegNoFromTB != "undefined") {
-            jq("#district-tb-no").find("input").val(tbRegNoFromTB);
-        } else if(tbRegNoFromArt != '' || tbRegNoFromArt != null || tbRegNoFromArt != NULL || typeof tbRegNoFromArt != "undefined") {
-            jq("#district-tb-no").find("input").val(tbRegNoFromArt);
-        }
-
-        var tbStartDateFromTB = "<lookup expression="fn.latestObs('165838').valueDatetime"/>";
-        var tbStartDateFromArt = "<lookup expression="fn.latestObs('90217').valueDatetime"/>";
-        if(tbStartDateFromTB != '' || tbStartDateFromTB != null || tbStartDateFromTB != NULL || typeof tbStartDateFromTB != "undefined") {
-            jq("#tb-start-date").find("input").val(tbStartDateFromTB);
-        } else if(tbStartDateFromArt != '' || tbStartDateFromArt != null || tbStartDateFromArt != NULL || typeof tbStartDateFromArt != "undefined") {
-            jq("#tb-start-date").find("input").val(tbStartDateFromArt);
-        }
-
-        var treatmentOutcome = "<lookup expression="fn.latestObs('99423').valueCoded"/>";
-        if(treatmentOutcome) {
-            if(treatmentOutcome == 'Concept #159791' || treatmentOutcome == 'Concept #99421') {
-                jq("#tb-status").find("select").val("99421");
-            } else {
-                jq("#tb-status").find("select").val("90071");
-            }
-        }
-
-        var tbStopDateFromTB = "<lookup expression="fn.latestObs('165872').valueDatetime"/>";
-        var tbStopDateFromArt = "<lookup expression="fn.latestObs('90310').valueDatetime"/>";
-        if(tbStopDateFromTB != '' || tbStopDateFromTB != null || tbStopDateFromTB != NULL || typeof tbStopDateFromTB != "undefined") {
-            jq("#tb-stop-date").find("input").val(tbStopDateFromTB);
-        } else if(tbStopDateFromArt != '' || tbStopDateFromArt != null || tbStopDateFromArt != NULL || typeof tbStopDateFromArt != "undefined") {
-            jq("#tb-stop-date").find("input").val(tbStopDateFromArt);
-        }
-
-        /* enable the edd,age in months and ANC no. fields in case the client is pregnant */
-
-        jq(".pregnancy").change(function () {
-            if (jq(this).find('#pregnant').find(':checkbox').prop('checked')) {
-                enable_fields("edd");
-                enable_fields("age-in-months");
-                enable_fields("anc_no");
-            } else {
-                disable_fields("edd");
-                disable_fields("age-in-months");
-                disable_fields("anc_no");
-            }
-        });
-
-        jq("#transfer_out").change(function () {
-            if (jq(this).find(':checkbox').prop('checked')) {
-                enable_fields("transfer_out_date");
-                enable_fields("transfer_out_location");
-
-            } else {
-                disable_fields("transfer_out_date");
-                disable_fields("transfer_out_location");
-            }
-        });
-
-        jq(".pregnancy").change(function () {
-            if (jq(this).find('#not-pregnant-not-breast-feeding').find(':checkbox').prop('checked')) {
-                jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
-                jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
-                disable_fields("edd");
-                disable_fields("162983");
-                disable_fields("anc_no");
-                disable_fields("162983");
-                disable_fields("age-in-months");
-            }
-        });
-
-        jq(".pregnancy").change(function () {
-            if (jq(this).find('#not-pregnant-not-applicable').find(':checkbox').prop('checked')) {
-                jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
-                jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
-                jq("#not-pregnant-not-breast-feeding").find("input[type$='checkbox']").prop("checked", false);
-                disable_fields("edd");
-                disable_fields("162983");
-                disable_fields("anc_no");
-            }
-        });
-        hideContainer("#split_regimen_container");
-        jq("#split-regimen").change(function () {
-            if (jq(this).find(':checkbox').prop('checked')) {
-                disable_fields("no-of-art-pills");
-                disable_fields("no-of-art-pills-days");
-                disable_fields("drug_strength_art_select");
-                showContainer("#split_regimen_container");
-
-            } else {
-                enable_fields("no-of-art-pills");
-                enable_fields("no-of-art-pills-days");
-                enable_fields("no-of-art-pills-days");
-                enable_fields("no-of-art-pills-days_div");
-                hideContainer("#split_regimen_container");
-            }
-        });
-
-        /*enable disable family planning options*/
-
-        jq("#enable-disable-family-planning-methods").change(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == 90082) {
-                jq(".family-planning-methods").find("input[type$='checkbox']").attr('disabled', false);
-                jq(".family-planning-methods").removeClass("html-form-entry-disabled-field");
-            } else {
-                jq(".family-planning-methods").find("input[type$='checkbox']").attr('disabled', true);
-                jq(".family-planning-methods").find("input[type$='checkbox']").prop("checked", false);
-                jq(".family-planning-methods").addClass("html-form-entry-disabled-field");
-            }
-        });
-
-        //enable start date and district number if client is on TbRx
-        jq("#tb-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300" ) {
-                enable_fields("tb-start-date");
-                enable_fields("district-tb-no");
-            } else {
-                disable_fields("tb-start-date");
-                disable_fields("district-tb-no");
-            }
-        });
-
-        jq("#tb-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "99421") {
-                enable_fields("tb-stop-date");
-            } else {
-                disable_fields("tb-stop-date");
-            }
-        });
-
-        //enable tpt treatment if patient is has no signs of TB
-        jq("#tb-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "90079") {
-                jq("#tpt-status").find('select option:nth-child(3)').show();
-            } else {
-                jq("#tpt-status").find('select option:nth-child(3)').hide();
-            }
-        });
-
-        jq("#tb-status").each(function () {
-            if (jq(this).find("select").find(":selected").val() == "90079") {
-                jq("#tpt-status").find('select option:nth-child(3)').show();
-            } else {
-                jq("#tpt-status").find('select option:nth-child(3)').hide();
-            }
-        });
-
-        jq("#tpt-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "90072") {
-                enable_fields("tpt-initiation-date");
-            } else {
-                disable_fields("tpt-initiation-date");
-            }
-        });
-
-        jq("#tpt-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "160035") {
-                enable_fields("tpt-completion-date");
-            } else {
-                disable_fields("tpt-completion-date");
-            }
-        });
-
-        jq("#tpt-status").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "90040") {
-                enable_fields("tpt-side-effects");
-            } else {
-                disable_fields("tpt-side-effects");
-            }
-        });
-
-        /*enable disable dapsone prescription*/
-
-        jq("#is-taking-dapsone").change(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == "1065") {
-                enable_fields("no-of-dapsone-pills");
-                enable_fields("no-of-dapsone-pills-days");
-            } else {
-                disable_fields("no-of-dapsone-pills");
-                disable_fields("no-of-dapsone-pills-days");
-            }
-        });
-
-        /*enable disable isoniazid prescription*/
-
-
-        jq("#isoniazid").click(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == "78280") {
-                enable_fields("no-of-isoniazid");
-                enable_fields("duration-on-isoniazid");
-            } else {
-                disable_fields("no-of-isoniazid");
-                disable_fields("duration-on-isoniazid");
-            }
-        });
-
-        /*enable disable vitamin-b6 prescription*/
-
-
-        jq("#vitamin-b6").click(function () {
-            if (jq(this).find("input[type='radio']:checked").val() == "82912") {
-                enable_fields("no-of-vitamin-b6");
-                enable_fields("duration-on-vitamin-b6");
-            } else {
-                disable_fields("no-of-vitamin-b6");
-                disable_fields("duration-on-vitamin-b6");
-            }
-        });
-
-        /*disable fluconazole prescription*/
-
-
-        // enable number of fluconazole stop date if fluconazole start date is defined
-        jq("#fluconazole-start-date").change(function () {
-            if (jq(this).find("input[type=hidden]").val() != "") {
-                enable_fields("fluconazole-stop-date");
-                enable_fields("no-of-fluconazole-pills");
-                enable_fields("no-of-fluconazole-pills-days");
-            } else {
-                disable_fields("fluconazole-stop-date");
-                disable_fields("no-of-fluconazole-pills");
-                disable_fields("no-of-fluconazole-pills-days");
-            }
-        });
-
-        /* enable or disable other art regimens */
-
-        jq("#art-regimen").change(function () {
-            if (jq(this).find("select").find(":selected").val() == "90002") {
-                enable_fields("other-regimen");
-            } else {
-                disable_fields("other-regimen");
-            }
-        });
-
-
-        /* enable art prescription */
-        jq("#art-regimen").change(function () {
-            if (jq(this).find("select").find(":selected").val() !== " " &amp;&amp; jq(this).find("select").find(":selected").val() !== "") {
-                enable_fields("no-of-art-pills");
-                enable_fields("no-of-art-pills-days");
-                enable_fields("split-regimen");
-                enable_fields("drug_strength_art_select")
-            } else {
-                disable_fields("no-of-art-pills");
-                disable_fields("no-of-art-pills-days");
-                disable_fields("split-regimen");
-                disable_fields("drug_strength_art_select")
-            }
-        });
-
-        /* enable viral load copies field */
-        jq("#viral-load-results-qualitative").change(function () {
-            var viral_load_status = getValue('viral-load-results-qualitative.value');
-            if (viral_load_status == "") {
-                jq("#viral-load-status").hide();
+            var tptInitiationDate = "<lookup expression="fn.latestObs('165226').valueDatetime"/>";
+            if(tptInitiationDate != '' || tptInitiationDate != null || tptInitiationDate != NULL || typeof tptInitiationDate != "undefined") {
+                jq("#tpt-initiation-date").find("input").val(tptInitiationDate);
             }
 
-            if (viral_load_status == 1301) {
-                /* Detected */
-                <ifMode mode="ENTER">
-                    setValue('viral-load-results-copies.value', '');
-                </ifMode>
+            var tbRegNoFromTB = "<lookup expression="fn.latestObs('165826').valueText"/>";
+            var tbRegNoFromArt ="<lookup expression="fn.latestObs('99031').valueText"/>";
+            if(tbRegNoFromTB != '' || tbRegNoFromTB != null || tbRegNoFromTB != NULL || typeof tbRegNoFromTB != "undefined") {
+                jq("#district-tb-no").find("input").val(tbRegNoFromTB);
+            } else if(tbRegNoFromArt != '' || tbRegNoFromArt != null || tbRegNoFromArt != NULL || typeof tbRegNoFromArt != "undefined") {
+                jq("#district-tb-no").find("input").val(tbRegNoFromArt);
+            }
 
-        var viral_load_copies = getValue('viral-load-results-copies.value');
-        if (viral_load_copies == 1) {
-        jq("#viral-load-status").hide();
-        setValue('viral-load-results-copies.value', '');
-        }
-        }
-        if (viral_load_status == 1306) {
-        /* Not Detected */
-        jq("#viral-load-status").hide();
-        setValue('viral-load-results-copies.value', 1);
-        }
-        });
+            var tbStartDateFromTB = "<lookup expression="fn.latestObs('165838').valueDatetime"/>";
+            var tbStartDateFromArt = "<lookup expression="fn.latestObs('90217').valueDatetime"/>";
+            if(tbStartDateFromTB != '' || tbStartDateFromTB != null || tbStartDateFromTB != NULL || typeof tbStartDateFromTB != "undefined") {
+                jq("#tb-start-date").find("input").val(tbStartDateFromTB);
+            } else if(tbStartDateFromArt != '' || tbStartDateFromArt != null || tbStartDateFromArt != NULL || typeof tbStartDateFromArt != "undefined") {
+                jq("#tb-start-date").find("input").val(tbStartDateFromArt);
+            }
 
-        jq("#viral-load-results-copies").change(function () {
-        previousVl = jq("#viral-load-results-copies").find("input").val();
-        DSDMStabilityCheck();
-        });
+            var treatmentOutcome = "<lookup expression="fn.latestObs('99423').valueCoded"/>";
+            if(treatmentOutcome) {
+                if(treatmentOutcome == 'Concept #159791' || treatmentOutcome == 'Concept #99421') {
+                    jq("#tb-status").find("select").val("99421");
+                } else {
+                    jq("#tb-status").find("select").val("90071");
+                }
+            }
 
-        // trigger a change when the form loads
-        jq("#viral-load-results-qualitative").change();
+            var tbStopDateFromTB = "<lookup expression="fn.latestObs('165872').valueDatetime"/>";
+            var tbStopDateFromArt = "<lookup expression="fn.latestObs('90310').valueDatetime"/>";
+            if(tbStopDateFromTB != '' || tbStopDateFromTB != null || tbStopDateFromTB != NULL || typeof tbStopDateFromTB != "undefined") {
+                jq("#tb-stop-date").find("input").val(tbStopDateFromTB);
+            } else if(tbStopDateFromArt != '' || tbStopDateFromArt != null || tbStopDateFromArt != NULL || typeof tbStopDateFromArt != "undefined") {
+                jq("#tb-stop-date").find("input").val(tbStopDateFromArt);
+            }
 
-        /*determine viral load status*/
-        jq("#viral-load-results-copies").change(function () {
-        jq("#viral-load-status").show();
-        var vl_copies = jq(this).find("input").val();
-        if (vl_copies == " " || vl_copies == 0) {
-        jq("#viral-load-status").hide();
-        }
-        if (vl_copies &lt; 1000) {
-        jq("#viral-load-status").html("Suppressed");
-        } else if (vl_copies &gt;= 1000) {
-        jq("#viral-load-status").html("Non-suppressed");
-        } else {
-        jq("#viral-load-status").hide();
-        }
-        });
+            /* enable the edd,age in months and ANC no. fields in case the client is pregnant */
 
-        /*enable disable Art adherence*/
+            jq(".pregnancy").change(function () {
+                if (jq(this).find('#pregnant').find(':checkbox').prop('checked')) {
+                    enable_fields("edd");
+                    enable_fields("age-in-months");
+                    enable_fields("anc_no");
+                } else {
+                    disable_fields("edd");
+                    disable_fields("age-in-months");
+                    disable_fields("anc_no");
+                }
+            });
 
-        jq("#art-adherence").change(function () {
-        var adherence = jq(this).find("input[type='radio']:checked").val();
-        if (adherence == 90157 || adherence == 90158) {
-        jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', false);
-        jq(".fair-or-poor-art-adherence-reason").removeClass("html-form-entry-disabled-field");
-        } else {
-        jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").prop("checked", false);
-        jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', true);
-        jq(".fair-or-poor-art-adherence-reason").addClass("html-form-entry-disabled-field");
-        }
-        });
+            jq("#transfer_out").change(function () {
+                if (jq(this).find(':checkbox').prop('checked')) {
+                    enable_fields("transfer_out_date");
+                    enable_fields("transfer_out_location");
 
-        /*enable disable Hepatitis B status*/
+                } else {
+                    disable_fields("transfer_out_date");
+                    disable_fields("transfer_out_location");
+                }
+            });
 
-        jq(".hepB-status").change(function () {
-        var hepStatus = jq(this).find("input[type='radio']:checked").val();
-        if (hepStatus == 159971) {
-        jq(".hepB-results").find("input[type$='radio']").attr('disabled', false);
-        } else {
-        jq(".hepB-results").find("input[type$='radio']").attr('disabled', true);
-        }
-        });
+            jq(".pregnancy").change(function () {
+                if (jq(this).find('#not-pregnant-not-breast-feeding').find(':checkbox').prop('checked')) {
+                    jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
+                    jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
+                    disable_fields("edd");
+                    disable_fields("162983");
+                    disable_fields("anc_no");
+                    disable_fields("162983");
+                    disable_fields("age-in-months");
+                }
+            });
 
-        jq("#bmi").find("input[type$='text']").attr('disabled', true);
+            jq(".pregnancy").change(function () {
+                if (jq(this).find('#not-pregnant-not-applicable').find(':checkbox').prop('checked')) {
+                    jq("#pregnant").find("input[type$='checkbox']").prop("checked", false);
+                    jq("#breast-feeding").find("input[type$='checkbox']").prop("checked", false);
+                    jq("#not-pregnant-not-breast-feeding").find("input[type$='checkbox']").prop("checked", false);
+                    disable_fields("edd");
+                    disable_fields("162983");
+                    disable_fields("anc_no");
+                }
+            });
+            hideContainer("#split_regimen_container");
+            jq("#split-regimen").change(function () {
+                if (jq(this).find(':checkbox').prop('checked')) {
+                    disable_fields("no-of-art-pills");
+                    disable_fields("no-of-art-pills-days");
+                    disable_fields("drug_strength_art_select");
+                    showContainer("#split_regimen_container");
 
-        //This function checks if patient is stable or unstable given the patient`s viral load
-        function DSDMStabilityCheck() {
+                } else {
+                    enable_fields("no-of-art-pills");
+                    enable_fields("no-of-art-pills-days");
+                    enable_fields("no-of-art-pills-days");
+                    enable_fields("no-of-art-pills-days_div");
+                    hideContainer("#split_regimen_container");
+                }
+            });
 
-        stableArray = [];
-        instabilityCause = "";
-        var pageCurrentRegimen = jq("#art-regimen").find("select").find(":selected").val();
-        var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
-        var dsdmRegimenCoceptsIds = "164976,164977,164978,164979";
+            /*enable disable family planning options*/
 
-        var allowedCurrentRegimenDuration = <lookup
-            expression="fn.globalProperty('ugandaemr.dsdm.currentRegimenDurationRequirementInMonths')"/>;
-        var allowedDurationOnTB = <lookup
-            expression="fn.globalProperty('ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired')"/>;
-        var viralLoadSuppressionCopies = <lookup
-            expression="fn.globalProperty('ugandaemr.dsdm.viralloadSuppressionCopies')"/>;
-        var validPeriodInMothsForViralLoad = <lookup
-            expression="fn.globalProperty('ugandaemr.dsdm.validPeriodInMothsForViralLoad')"/>;
+            jq("#enable-disable-family-planning-methods").change(function () {
+                if (jq(this).find("input[type='radio']:checked").val() == 90082) {
+                    jq(".family-planning-methods").find("input[type$='checkbox']").attr('disabled', false);
+                    jq(".family-planning-methods").removeClass("html-form-entry-disabled-field");
+                } else {
+                    jq(".family-planning-methods").find("input[type$='checkbox']").attr('disabled', true);
+                    jq(".family-planning-methods").find("input[type$='checkbox']").prop("checked", false);
+                    jq(".family-planning-methods").addClass("html-form-entry-disabled-field");
+                }
+            });
 
-        if (previousVl === "") {
-        stableArray.push(false);
-        instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found\n ";
-        } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &gt; validPeriodInMothsForViralLoad) {
-        stableArray.push(false);
-        instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found. The last Viral Load was collected on " + (new Date(previousVlDate)) + "\n";
-        } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt; validPeriodInMothsForViralLoad &amp;&amp; previousVl &gt; viralLoadSuppressionCopies) {
-        stableArray.push(false);
-        instabilityCause = instabilityCause + "The patient has a viral load of " + previousVl + " copies per mil which is regarded as non suppressed.\n ";
-        } else if (previousVl !== "" &amp;&amp; previousVl &lt;= viralLoadSuppressionCopies &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt;= validPeriodInMothsForViralLoad) {
-        stableArray.push(true);
-        }
+            //enable start date and district number if client is on TbRx
+            jq("#tb-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "90071" || jq(this).find("select").find(":selected").val() == "165295" || jq(this).find("select").find(":selected").val() == "165296" || jq(this).find("select").find(":selected").val() == "165297" || jq(this).find("select").find(":selected").val() == "165298" || jq(this).find("select").find(":selected").val() == "165299" || jq(this).find("select").find(":selected").val() == "165300" ) {
+                    enable_fields("tb-start-date");
+                    enable_fields("district-tb-no");
+                } else {
+                    disable_fields("tb-start-date");
+                    disable_fields("district-tb-no");
+                }
+            });
 
-        /* Third Line*/
-        if (onThirdLine !== "true") {
-        stableArray.push(true);
-        } else {
-        stableArray.push(false);
-        instabilityCause += "Current regimen is a third line regimen \n "
-        }
+            jq("#tb-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "99421") {
+                    enable_fields("tb-stop-date");
+                } else {
+                    disable_fields("tb-stop-date");
+                }
+            });
 
-        /* Adherence Check*/
-        if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
-        stableArray.push(false);
-        instabilityCause += "Adherence is not Good \n "
-        } else {
-        stableArray.push(true);
-        }
+            //enable tpt treatment if patient is has no signs of TB
+            jq("#tb-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "90079") {
+                    jq("#tpt-status").find('select option:nth-child(3)').show();
+                } else {
+                    jq("#tpt-status").find('select option:nth-child(3)').hide();
+                }
+            });
 
-        /* Clinic staging */
-        if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
-        stableArray.push(true);
-        } else {
-        stableArray.push(false);
-        instabilityCause += "Clinic stage is neither 1 or 2 \n";
-        }
+            jq("#tb-status").each(function () {
+                if (jq(this).find("select").find(":selected").val() == "90079") {
+                    jq("#tpt-status").find('select option:nth-child(3)').show();
+                } else {
+                    jq("#tpt-status").find('select option:nth-child(3)').hide();
+                }
+            });
 
+            jq("#tpt-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "90072") {
+                    enable_fields("tpt-initiation-date");
+                } else {
+                    disable_fields("tpt-initiation-date");
+                }
+            });
 
-        if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen || dsdmRegimenCoceptsIds.trim().includes(pageCurrentRegimen)) &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; allowedCurrentRegimenDuration) {
+            jq("#tpt-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "160035") {
+                    enable_fields("tpt-completion-date");
+                } else {
+                    disable_fields("tpt-completion-date");
+                }
+            });
 
-        stableArray.push(true);
-        } else {
-        stableArray.push(false);
-        instabilityCause += "Patient has not spent more than" + allowedCurrentRegimenDuration + " months on current Regimen \n "
-        }
+            jq("#tpt-status").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "90040") {
+                    enable_fields("tpt-side-effects");
+                } else {
+                    disable_fields("tpt-side-effects");
+                }
+            });
 
-        if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; periodBetweenDates(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; allowedDurationOnTB) {
-        stableArray.push(false);
-        instabilityCause += "Patient has not been on treatment for TB for at least 2 months"
-        } else {
-        stableArray.push(true);
-        }
-        instabilityCause.trim().replace()
+            /*enable disable dapsone prescription*/
 
-        if (stableArray.indexOf(false) != -1) {
-        jq("#patient-categorization select").val("90004");
-        } else {
-        jq("#patient-categorization select").val("90003");
-        }
-        }
+            jq("#is-taking-dapsone").change(function () {
+                if (jq(this).find("input[type='radio']:checked").val() == "1065") {
+                    enable_fields("no-of-dapsone-pills");
+                    enable_fields("no-of-dapsone-pills-days");
+                } else {
+                    disable_fields("no-of-dapsone-pills");
+                    disable_fields("no-of-dapsone-pills-days");
+                }
+            });
 
-        /* enabling and disabling other signs and symptoms */
-
-        jq("#enable-disable-signs-and-symptoms").change(function () {
-        if (jq(this).find(':checkbox').prop('checked')) {
-        enable_fields("signs-and-symptoms-enabled");
-        } else {
-        disable_fields("signs-and-symptoms-enabled");
-        }
-        });
-
-        /* enabling and disabling other side effects of art*/
-        jq("#enable-disable-side-effects-of-art").change(function () {
-        if (jq('#enable-disable-side-effects-of-art').find(':checkbox').prop('checked')) {
-        enable_fields("side-effects-of-art-enabled");
-        } else {
-        disable_fields("side-effects-of-art-enabled");
-        }
-        });
+            /*enable disable isoniazid prescription*/
 
 
-        jq("#enable-disable-other-poor-art-adherence-reason").change(function () {
-        if (jq(this).find(':checkbox').prop('checked')) {
-        jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", false);
-        jq("#other-poor-art-adherence-reason-enabled").removeClass("html-form-entry-disabled-field");
-        } else {
-        jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", true);
-        jq("#other-poor-art-adherence-reason-enabled").addClass("html-form-entry-disabled-field");
-        }
-        });
+            jq("#isoniazid").click(function () {
+                if (jq(this).find("input[type='radio']:checked").val() == "78280") {
+                    enable_fields("no-of-isoniazid");
+                    enable_fields("duration-on-isoniazid");
+                } else {
+                    disable_fields("no-of-isoniazid");
+                    disable_fields("duration-on-isoniazid");
+                }
+            });
 
-        jq("#encounter-card-poc").show();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
+            /*enable disable vitamin-b6 prescription*/
 
-        jq("#clinical-encounter-menu-poc").click(function () {
 
-        jq("#encounter-card-poc").show();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
+            jq("#vitamin-b6").click(function () {
+                if (jq(this).find("input[type='radio']:checked").val() == "82912") {
+                    enable_fields("no-of-vitamin-b6");
+                    enable_fields("duration-on-vitamin-b6");
+                } else {
+                    disable_fields("no-of-vitamin-b6");
+                    disable_fields("duration-on-vitamin-b6");
+                }
+            });
 
-        });
+            /*disable fluconazole prescription*/
 
-        jq("#investigations-menu-poc").click(function () {
 
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").show();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
+            // enable number of fluconazole stop date if fluconazole start date is defined
+            jq("#fluconazole-start-date").change(function () {
+                if (jq(this).find("input[type=hidden]").val() != "") {
+                    enable_fields("fluconazole-stop-date");
+                    enable_fields("no-of-fluconazole-pills");
+                    enable_fields("no-of-fluconazole-pills-days");
+                } else {
+                    disable_fields("fluconazole-stop-date");
+                    disable_fields("no-of-fluconazole-pills");
+                    disable_fields("no-of-fluconazole-pills-days");
+                }
+            });
 
-        });
+            /* enable or disable other art regimens */
 
-        jq("#diagnosis-menu-poc").click(function () {
+            jq("#art-regimen").change(function () {
+                if (jq(this).find("select").find(":selected").val() == "90002") {
+                    enable_fields("other-regimen");
+                } else {
+                    disable_fields("other-regimen");
+                }
+            });
 
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").show();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
 
-        });
+            /* enable art prescription */
+            jq("#art-regimen").change(function () {
+                if (jq(this).find("select").find(":selected").val() !== " " &amp;&amp; jq(this).find("select").find(":selected").val() !== "") {
+                    enable_fields("no-of-art-pills");
+                    enable_fields("no-of-art-pills-days");
+                    enable_fields("split-regimen");
+                    enable_fields("drug_strength_art_select")
+                } else {
+                    disable_fields("no-of-art-pills");
+                    disable_fields("no-of-art-pills-days");
+                    disable_fields("split-regimen");
+                    disable_fields("drug_strength_art_select")
+                }
+            });
+
+            /* enable viral load copies field */
+            jq("#viral-load-results-qualitative").change(function () {
+                var viral_load_status = getValue('viral-load-results-qualitative.value');
+                if (viral_load_status == "") {
+                    jq("#viral-load-status").hide();
+                }
+
+                if (viral_load_status == 1301) {
+                    /* Detected */
+                    <ifMode mode="ENTER">
+                        setValue('viral-load-results-copies.value', '');
+                    </ifMode>
+
+                    var viral_load_copies = getValue('viral-load-results-copies.value');
+                    if (viral_load_copies == 1) {
+                        jq("#viral-load-status").hide();
+                        setValue('viral-load-results-copies.value', '');
+                    }
+                }
+                if (viral_load_status == 1306) {
+                    /* Not Detected */
+                    jq("#viral-load-status").hide();
+                    setValue('viral-load-results-copies.value', 1);
+                }
+            });
+
+            jq("#viral-load-results-copies").change(function () {
+                previousVl = jq("#viral-load-results-copies").find("input").val();
+                DSDMStabilityCheck();
+            });
+
+            // trigger a change when the form loads
+            jq("#viral-load-results-qualitative").change();
+
+            /*determine viral load status*/
+            jq("#viral-load-results-copies").change(function () {
+                jq("#viral-load-status").show();
+                var vl_copies = jq(this).find("input").val();
+                if (vl_copies == " " || vl_copies == 0) {
+                    jq("#viral-load-status").hide();
+                }
+                if (vl_copies &lt; 1000) {
+                    jq("#viral-load-status").html("Suppressed");
+                } else if (vl_copies &gt;= 1000) {
+                    jq("#viral-load-status").html("Non-suppressed");
+                } else {
+                    jq("#viral-load-status").hide();
+                }
+            });
+
+            /*enable disable Art adherence*/
+
+            jq("#art-adherence").change(function () {
+                var adherence = jq(this).find("input[type='radio']:checked").val();
+                if (adherence == 90157 || adherence == 90158) {
+                    jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', false);
+                    jq(".fair-or-poor-art-adherence-reason").removeClass("html-form-entry-disabled-field");
+                } else {
+                    jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").prop("checked", false);
+                    jq(".fair-or-poor-art-adherence-reason").find("input[type$='checkbox']").attr('disabled', true);
+                    jq(".fair-or-poor-art-adherence-reason").addClass("html-form-entry-disabled-field");
+                }
+            });
+
+            /*enable disable Hepatitis B status*/
+
+            jq(".hepB-status").change(function () {
+                var hepStatus = jq(this).find("input[type='radio']:checked").val();
+                if (hepStatus == 159971) {
+                    jq(".hepB-results").find("input[type$='radio']").attr('disabled', false);
+                } else {
+                    jq(".hepB-results").find("input[type$='radio']").attr('disabled', true);
+                }
+            });
+
+            jq("#bmi").find("input[type$='text']").attr('disabled', true);
+
+            //This function checks if patient is stable or unstable given the patient`s viral load
+            function DSDMStabilityCheck() {
+
+                stableArray = [];
+                instabilityCause = "";
+                var pageCurrentRegimen = jq("#art-regimen").find("select").find(":selected").val();
+                var pageEncounterDate = jq("#encounterDate").find("input[type=hidden]").val();
+                var dsdmRegimenCoceptsIds = "164976,164977,164978,164979";
+
+                var allowedCurrentRegimenDuration = <lookup
+                    expression="fn.globalProperty('ugandaemr.dsdm.currentRegimenDurationRequirementInMonths')"/>;
+                var allowedDurationOnTB = <lookup
+                    expression="fn.globalProperty('ugandaemr.dsdm.minmunNoOfMonthsOnTBTreatmentRequired')"/>;
+                var viralLoadSuppressionCopies = <lookup
+                    expression="fn.globalProperty('ugandaemr.dsdm.viralloadSuppressionCopies')"/>;
+                var validPeriodInMothsForViralLoad = <lookup
+                    expression="fn.globalProperty('ugandaemr.dsdm.validPeriodInMothsForViralLoad')"/>;
+
+                if (previousVl === "") {
+                    stableArray.push(false);
+                    instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found\n ";
+                } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &gt; validPeriodInMothsForViralLoad) {
+                    stableArray.push(false);
+                    instabilityCause = instabilityCause + "Patient does not have any Viral Load Record found. The last Viral Load was collected on " + (new Date(previousVlDate)) + "\n";
+                } else if (previousVl !== "" &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt; validPeriodInMothsForViralLoad &amp;&amp; previousVl &gt; viralLoadSuppressionCopies) {
+                    stableArray.push(false);
+                    instabilityCause = instabilityCause + "The patient has a viral load of " + previousVl + " copies per mil which is regarded as non suppressed.\n ";
+                } else if (previousVl !== "" &amp;&amp; previousVl &lt;= viralLoadSuppressionCopies &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(previousVlDate)) &lt;= validPeriodInMothsForViralLoad) {
+                    stableArray.push(true);
+                }
+
+                /* Third Line*/
+                if (onThirdLine !== "true") {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                    instabilityCause += "Current regimen is a third line regimen \n "
+                }
+
+                /* Adherence Check*/
+                if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
+                    stableArray.push(false);
+                    instabilityCause += "Adherence is not Good \n "
+                } else {
+                    stableArray.push(true);
+                }
+
+                /* Clinic staging */
+                if (clinicStaging === "90033" || clinicStaging === "90034" || clinicStaging === "90293" || clinicStaging === "90294") {
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                    instabilityCause += "Clinic stage is neither 1 or 2 \n";
+                }
+
+
+                if (currentRegimen !== "" &amp;&amp; (currentRegimen === pageCurrentRegimen || dsdmRegimenCoceptsIds.trim().includes(pageCurrentRegimen)) &amp;&amp; periodBetweenDates(new Date(pageEncounterDate), new Date(regimenStartedDate)) &gt; allowedCurrentRegimenDuration) {
+
+                    stableArray.push(true);
+                } else {
+                    stableArray.push(false);
+                    instabilityCause += "Patient has not spent more than" + allowedCurrentRegimenDuration + " months on current Regimen \n "
+                }
+
+                if (sputumValue !== "" &amp;&amp; sputumValue !== "664" &amp;&amp; periodBetweenDates(new Date(jq("#encounterDate").find("input[type=hidden]").val()), new Date(teatmentStartDate)) &lt; allowedDurationOnTB) {
+                    stableArray.push(false);
+                    instabilityCause += "Patient has not been on treatment for TB for at least 2 months"
+                } else {
+                    stableArray.push(true);
+                }
+                instabilityCause.trim().replace()
+
+                if (stableArray.indexOf(false) != -1) {
+                    jq("#patient-categorization select").val("90004");
+                } else {
+                    jq("#patient-categorization select").val("90003");
+                }
+            }
+
+            /* enabling and disabling other signs and symptoms */
+
+            jq("#enable-disable-signs-and-symptoms").change(function () {
+                if (jq(this).find(':checkbox').prop('checked')) {
+                    enable_fields("signs-and-symptoms-enabled");
+                } else {
+                    disable_fields("signs-and-symptoms-enabled");
+                }
+            });
+
+            /* enabling and disabling other side effects of art*/
+            jq("#enable-disable-side-effects-of-art").change(function () {
+                if (jq('#enable-disable-side-effects-of-art').find(':checkbox').prop('checked')) {
+                    enable_fields("side-effects-of-art-enabled");
+                } else {
+                    disable_fields("side-effects-of-art-enabled");
+                }
+            });
+
+
+            jq("#enable-disable-other-poor-art-adherence-reason").change(function () {
+                if (jq(this).find(':checkbox').prop('checked')) {
+                    jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", false);
+                    jq("#other-poor-art-adherence-reason-enabled").removeClass("html-form-entry-disabled-field");
+                } else {
+                    jq("#other-poor-art-adherence-reason-enabled").find("input[type$='text']").attr("disabled", true);
+                    jq("#other-poor-art-adherence-reason-enabled").addClass("html-form-entry-disabled-field");
+                }
+            });
+
+            jq("#encounter-card-poc").show();
+            jq("#investigation-reports-poc").hide();
+            jq("#diagnosis-poc").hide();
+            jq("#medication-poc").hide();
+            jq("#programing-dsdm-poc").hide();
+            jq("#next-course-of-action").hide();
+            jq("#clinical-notes-poc").hide();
+
+            jq("#clinical-encounter-menu-poc").click(function () {
+
+                jq("#encounter-card-poc").show();
+                jq("#investigation-reports-poc").hide();
+                jq("#diagnosis-poc").hide();
+                jq("#medication-poc").hide();
+                jq("#programing-dsdm-poc").hide();
+                jq("#next-course-of-action").hide();
+                jq("#clinical-notes-poc").hide();
+
+            });
+
+            jq("#investigations-menu-poc").click(function () {
+
+                jq("#encounter-card-poc").hide();
+                jq("#investigation-reports-poc").show();
+                jq("#diagnosis-poc").hide();
+                jq("#medication-poc").hide();
+                jq("#programing-dsdm-poc").hide();
+                jq("#next-course-of-action").hide();
+                jq("#clinical-notes-poc").hide();
+
+            });
+
+            jq("#diagnosis-menu-poc").click(function () {
+
+                jq("#encounter-card-poc").hide();
+                jq("#investigation-reports-poc").hide();
+                jq("#diagnosis-poc").show();
+                jq("#medication-poc").hide();
+                jq("#programing-dsdm-poc").hide();
+                jq("#next-course-of-action").hide();
+                jq("#clinical-notes-poc").hide();
+
+            });
 
         jq("#clinical-notes-menu-poc").click(function () {
         jq("#clinical-notes-poc").show();
@@ -1442,19 +1442,19 @@
 
         });
 
-        jq("#medication-menu-poc").click(function () {
+            jq("#medication-menu-poc").click(function () {
 
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").show();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
+                jq("#encounter-card-poc").hide();
+                jq("#investigation-reports-poc").hide();
+                jq("#diagnosis-poc").hide();
+                jq("#medication-poc").show();
+                jq("#programing-dsdm-poc").hide();
+                jq("#next-course-of-action").hide();
+                jq("#clinical-notes-poc").hide();
 
-        });
+            });
 
-        jq("#dsdm-menu-poc").click(function () {
+            jq("#dsdm-menu-poc").click(function () {
 
         jq("#encounter-card-poc").hide();
         jq("#investigation-reports-poc").hide();
@@ -1465,34 +1465,34 @@
         jq("#clinical-notes-poc").hide();
         });
 
-        jq("#course-of-action-menu-poc").click(function () {
+            jq("#course-of-action-menu-poc").click(function () {
 
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").show();
-        jq("#clinical-notes-poc").hide();
+                jq("#encounter-card-poc").hide();
+                jq("#investigation-reports-poc").hide();
+                jq("#diagnosis-poc").hide();
+                jq("#medication-poc").hide();
+                jq("#programing-dsdm-poc").hide();
+                jq("#next-course-of-action").show();
+                jq("#clinical-notes-poc").hide();
+
+            });
 
         });
 
-        });
+            beforeSubmit.push(function () {
+                <!-- clear the previous errors -->
+                setValue('returndate.error', '');
+                setValue('viral-load-results-copies.error', '');
+                setValue('date-viral-load-taken.error', '');
 
-        beforeSubmit.push(function () {
-        <!-- clear the previous errors -->
-        setValue('returndate.error', '');
-        setValue('viral-load-results-copies.error', '');
-        setValue('date-viral-load-taken.error', '');
-
-        <restrictByRole exclude="Data Clerk,System Developer,Organizational: System Administrator">
-            setValue('no-of-art-pills.error','');
-            setValue('isoniazid-pills.error','');
-            setValue('vitamin-b6-pills.error','');
-            setValue('160856.error','');
-            setValue('fluconazole-pills.error','');
-            setValue('other-meds-quantity.error','');
-        </restrictByRole>
+                <restrictByRole exclude="Data Clerk,System Developer,Organizational: System Administrator">
+                    setValue('no-of-art-pills.error','');
+                    setValue('isoniazid-pills.error','');
+                    setValue('vitamin-b6-pills.error','');
+                    setValue('160856.error','');
+                    setValue('fluconazole-pills.error','');
+                    setValue('other-meds-quantity.error','');
+                </restrictByRole>
 
         var encounterDate = new Date((getValue('encounterDate.value')));
         var appointment = new Date((jq("#returndate").find('input[type=hidden]').val()));
@@ -1502,13 +1502,13 @@
         var returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
         var returnDatePocClassLength = jq('.return-date-poc').length;
 
-        if (returnDatePocClassLength &gt; 0) {
-        returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
-        }
+                if (returnDatePocClassLength &gt; 0) {
+                    returnDatePoc = jq('.return-date-poc').find("input[type$='text']").val();
+                }
 
-        if (getValue('provider.value') == "") {
-        jq().toastmessage('showErrorToast', "Attending clinician is required");
-        }
+                if (getValue('provider.value') == "") {
+                    jq().toastmessage('showErrorToast', "Attending clinician is required");
+                }
 
         if (encounterDate &gt;= appointment) {
         getField('returndate.error').html('The return date must be after the date of this visit ' +
@@ -1836,7 +1836,7 @@
                 while (m = re.exec(queryString)) {
                     queryParameters[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                 }
-            ''
+                ''
                 location.href = window.location.protocol + "//" + window.location.host +
                     '/' + OPENMRS_CONTEXT_PATH + '/coreapps/clinicianfacing/patient.page?patientId='
                     + queryParameters['patientId']; // Causes page to reload
@@ -2047,10 +2047,10 @@
                                                     <div class="col-md-3">
                                                         <label>Attending Clinician</label>
                                                         <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
-                                                                                    required="required" id="provider"/>
+                                                                                  required="required" id="provider"/>
                                                         <span class="required">*</span><span style="display: none;">
                                                             <encounterLocation default="629d78e9-93e5-43b0-ad8a-48313fd99117"
-                                                                                order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
+                                                                               order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -3481,28 +3481,99 @@
                                     <div class="tab-pane fade" id="nav-contact">
                                         <div class="assesment">
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-12">
                                                     <div class="card">
                                                         <div class="card-header">Presenting Signs and Symptoms</div>
                                                         <div class="card-body">
-                                                            <span class="lablex2">
-                                                                <repeat with="['90139','Oral or anal ulcers'],['206',' New seizure'],['165285','Weak arms or legs'],['90094','Headache'],['16','Diarrhea'],['165286',' Acting unusual'],['90135','Weight loss in last month'],['165287','Difficulty walking'],['5953','Double or Blurry vision'],['861','Decreased hearing'],['90130','Whites spots/thrush in mouth'],['118789','Difficulty or painful swallowing'],['90116','Fever, chills or night sweats'],['79','Red/purple or dark spots on skin'],['122936 ','Unable to walk without assisstance'],['90132','Cough or shortness of breath > 1 week']">
-                                                                    <obs id="{0}" conceptId="90251" answerConceptId="{0}"
-                                                                         answerLabel="{1}" style="checkbox"/>
-                                                                </repeat>
-                                                                <span id="trigger">
-                                                                    <obs id="enable-disable-signs-and-symptoms"
-                                                                         conceptId="90251"
-                                                                         answerConceptId="90002"
-                                                                         answerLabel="Other specify"/>
-                                                                </span>
-                                                                <span id="disabled">
-                                                                    <obs id="signs-and-symptoms-enabled" conceptId="99032"
-                                                                         size="17"/>
-                                                                </span>
-                                                            </span>
+                                                           <obsgroup groupingConceptId="657">
+                                                            <div class="row">
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">HEENT</label>
+                                                                    <br/>
+                                                                    <repeat with="['861','HEARING DIFFICULTIES'],['873','OTORRHEA'],['873','EAR DISCHARGE'],['5244','ORAL SORES'],['5334','CANDIDIASIS',' ORAL'],['5334','THRUSH'],['5953','VISION DIFFICULTIES'],['5954','SWALLOWING DIFFICULTIES'],['6016','NASAL DISCHARGE']">
+                                                                        <obs id="{0}" conceptId="1070" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">Cardiopulmonary/Resipitory</label>
+                                                                    <br/>
+                                                                    <repeat with="['58','TUBERCULOSIS'],['107','COUGH'],['136','CHEST PAIN'],['801','TACHYPNEA'],['801','FAST BREATHING'],['1145','HISTORY OF PNEUMONIA'],['5957','PRODUCTIVE COUGH'],['5960','SHORTNESS OF BREATH'],['5961','SHORTNESS OF BREATH AT REST'],['5963','SHORTNESS OF BREATH WITH EXERTION']">
+                                                                        <obs id="{0}" conceptId="1071" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">GASTROINTESTINAL</label>
+                                                                    <br/>
+                                                                    <repeat with="['16','DIARRHOEA'],['151','ABDOMINAL PAIN'],['5978','NAUSEA'],['5980','VOMITING'],['5986','HISTORY OF JAUNDICE'],['6017','REFUSAL TO FEED'],['6019','ABDOMINAL SWELLING'],['6031','POOR APPETITE'],['6032','HEPATIC DISEASE']">
+                                                                        <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">GENITOURINARY</label>
+                                                                    <br/>
+                                                                    <repeat with="['55','URINARY TRACT INFECTION'],['840','HEMATURIA'],['840','Hematuria'],['840','BLOODY URINE'],['5989','MENSTRUATING'],['5990','MENOPAUSAL'],['5993','VAGINAL DISCHARGE'],['5995','URETHRAL DISCHARGE'],['6020','DYSURIA'],['6021','OLIGURIA'],['6033','RENAL DISEASE']">
+                                                                        <obs id="{0}" conceptId="1080" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+
+
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">MUSCULOSKELETAL</label>
+                                                                    <br/>
+                                                                    <repeat with="['80','JOINT PAIN'],['590','EDEMA, LEGS'],['590','LEG SWELLING'],['5312','JOINT SWELLING'],['6034','MUSCLE PAIN'],['6035','PAIN LOWER EXTREMITIES']">
+                                                                        <obs id="{0}" conceptId="1081" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">CENTRAL NERVOUS SYSTEM</label>
+                                                                    <br/>
+                                                                    <repeat with="['77','MENTAL DISORDERS'],['206','SEIZURE'],['207','DEPRESSION'],['620','HEADACHE'],['6004','PARESTHESIA'],['6005','FOCAL WEAKNESS'],['6006','CONFUSION'],['6037','MEMORY PROBLEMS']">
+                                                                        <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">DEVELOPMENTAL</label>
+                                                                    <br/>
+                                                                    <repeat with="['5550','LEARNING PROBLEMS '],['6022','DELAYED MILESTONES '],['6025','REGRESSED MILESTONES '],['6037','MEMORY PROBLEMS']">
+                                                                        <obs id="{0}" conceptId="1189" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+
+                                                                <div class="col-4 lablex2">
+                                                                    <label style="width: 100%; background-color: #e5e2e2">Obstetrical/Pregnancy</label>
+                                                                    <br/>
+                                                                    <repeat with="['1452','No fetal movements'],['1452','No foetal movements'] ,['113377','Decreased fetal movements'] ,['113377','Decreased foetal movements'],['118246','Poor Fetal Growth'],['118256','Fetal Distress'],['147232','Vaginal bleeding'],['148989','Amenorrhea']">
+                                                                        <obs id="{0}" conceptId="159614" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="row">
+                                                                <div class="col-4" id="trigger">
+                                                                    <obs id="enable-disable-signs-and-symptoms" conceptId="90251" answerConceptId="90002" answerLabel="Other specify"/>
+                                                                </div>
+                                                                <div class="col-4" id="disabled">
+                                                                    <obs id="signs-and-symptoms-enabled" conceptId="99032" size="17"/>
+                                                                </div>
+                                                                <div class="col-4">
+
+                                                                </div>
+                                                            </div>
+                                                           </obsgroup>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
                                                     <div class="card">
                                                         <div class="card-header">Side Effects of ART</div>
                                                         <div class="card-body">
@@ -4013,6 +4084,11 @@
                                                                  answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,165797,165796,165795,165808,165807,165806,165805,165804,165803,165802,165801,165800,165799,165798,90002"
                                                                  answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,AZT/3TC/RAL,ABC/3TC/AZT,TDF/3TC/AZT,DRV/RTV/RAL/ABC/3TC,DRV/RTV/ETV/ABC/3TC,DRV/RTV/RAL/TDF/3TC,DRV/RTV/RAL/AZT/3TC,DRV/RTV/RAL,DRV/RTV/ETV/TDF/3TC,DRV/RTV/ETV/AZT/3TC,DRV/RTV/ETV,DRV/RTV/DTG/TDF/3TC,DRV/RTV/DTG/AZT/3TC,DRV/RTV/DTG,Other"
                                                                  class="regimen-given"/>
+
+                                                            <div id="">
+                                                                <label>Other Regimen</label>
+                                                                <obs id="other-regimen" conceptId="99126"/>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-2">
                                                             <br/>
