@@ -76,6 +76,26 @@
                     }
                 });
 
+                beforeSubmit.push(function () {
+                    var submitVal = true;
+                    <!-- Validation rules -->
+                    var submitValStage = [];
+                    submitValStage.push(validateRequiredField("99725_1", "99074_1", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_2", "99074_2", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_3", "99074_3", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_4", "99074_4", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_5", "99074_5", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_6", "99074_6", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_7", "99074_7", "Please pick an age unit", "text"));
+                    submitValStage.push(validateRequiredField("99725_8", "99074_8", "Please pick an age unit", "text"));
+                    if (submitValStage.indexOf(false) != -1) {
+                        submitVal = false;
+                        jq().toastmessage('showErrorToast', "  There are errors during the validation of the data on the form. Please correct them and submit again");
+                    }
+
+                    return submitVal;
+                });
+
             });
         }
         <ifMode mode="ENTER">

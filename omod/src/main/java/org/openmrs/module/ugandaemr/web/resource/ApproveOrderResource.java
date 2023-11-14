@@ -1,5 +1,6 @@
 package org.openmrs.module.ugandaemr.web.resource;
 
+import org.junit.Assert;
 import org.openmrs.Order;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.context.Context;
@@ -53,6 +54,10 @@ public class ApproveOrderResource extends DelegatingCrudResource<ApproveOrder> {
         ApproveOrder delegate = new ApproveOrder();
 
         delegate.setOrder(orders);
+        if(orders.size()>0){
+            delegate.setUuid(orders.get(0).getEncounter().getUuid());
+        }
+
 
         ValidateUtil.validate(delegate);
         SimpleObject ret = (SimpleObject) ConversionUtil.convertToRepresentation(delegate, context.getRepresentation());

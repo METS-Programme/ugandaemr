@@ -17,4 +17,12 @@ public class ApproveOrder implements Serializable {
     public void setOrder(List<Order> order) {
         this.order = order;
     }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 }

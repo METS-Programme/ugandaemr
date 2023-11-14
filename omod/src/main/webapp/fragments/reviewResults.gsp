@@ -20,13 +20,13 @@
                 contentType: "application/json;",
                 data: dataToPost,
                 async: false,
-                success: function (data) {
-                    serverResponse = data.results;
+                success: function (response) {
+                    serverResponse = response.results;
                     navigateToURL(jq("#goToURL").val())
 
                 },
                 error: function (response) {
-                    console.log(response);
+                    console.log(response.responseJSON.error.message);
                 }
             });
         });
