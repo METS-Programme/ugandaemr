@@ -79,7 +79,7 @@
                                     <div class="col-4 lablex2">
                                         <label style="width: 100%; background-color: #e5e2e2">Hematology</label>
                                         <br/>
-                                        <repeat with="['1019','CBC'],['21','HBG'],['885','PAP SMEAR'],['161520','PSA Test'],['161152','Prothrombin Time (with INR)'],['855','ERYTHROCYTE SEDIMENTATION RATE'],['161436','Clotting Time Test'],['161434','Bleeding Time Test'],['163702','Clotting Panel'],['160225','Sickle Cell],['161499','Coombs'],['161473','Blood Grouping Test'],['161500','CRP'],['163436','Coagulation Profile']">
+                                        <repeat with="['1019','CBC'],['21','HBG'],['657','Cd4'],['885','PAP SMEAR'],['161520','PSA Test'],['161152','Prothrombin Time (with INR)'],['855','ESR'],['161436','Clotting Time Test'],['161434','Bleeding Time Test'],['163702','Clotting Panel'],['160225','Sickle Cell],['161499','Coombs'],['161473','Blood Grouping Test'],['161500','CRP'],['163436','Coagulation Profile']">
                                                 <obs id="{0}" conceptId="1271" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
                                         </repeat>
                                     </div>
@@ -99,15 +99,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-4 lablex2">
-                                        <label style="width: 100%; background-color: #e5e2e2">Immunological</label>
-                                        <br/>
-                                        <repeat with="['657','Cd4']">
-                                            <obs id="{0}" conceptId="1080" answerConceptId="{0}" answerLabel="{1}"
-                                                 style="checkbox"/>
-                                        </repeat>
-                                    </div>
-
 
                                     <div class="col-4 lablex2">
                                         <label style="width: 100%; background-color: #e5e2e2">Microbiology</label>
@@ -124,16 +115,6 @@
                                         <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['161474','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
                                             <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}"
                                                  style="checkbox"/>
-                                        </repeat>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="row investigations">
-                                        <repeat with="['161533','TORCHS Panel']">
-                                            <div class="col-3">
-                                                <obs id="{0}" conceptId="1271" answerConceptId="{0}" answerLabel="{1}"
-                                                     style="checkbox"/>
-                                            </div>
                                         </repeat>
                                     </div>
                                 </div>
