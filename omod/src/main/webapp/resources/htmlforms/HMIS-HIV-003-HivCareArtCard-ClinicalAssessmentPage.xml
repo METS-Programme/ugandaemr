@@ -3897,7 +3897,7 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Molecular</label>
                                                                 <br/>
-                                                                <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA']">
+                                                                <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
                                                                     <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
                                                                 </repeat>
                                                             </div>
