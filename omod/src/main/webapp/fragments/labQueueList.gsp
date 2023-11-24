@@ -147,20 +147,17 @@
                     success: function (response) {
                         serverResponse = response.results;
                         jq().toastmessage('showSuccessToast', "Successfuly rejected " + response.results.length + " Orders");
-                        jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
-                        jq('#review-lab-test-dialog').modal("dispose");
+                        jq('#reject-order-dialog').modal('hide').data('bs.modal', null);
+                        jq('#reject-order-dialog').modal("dispose");
                     },
                     error: function (response) {
                         if ((response.status == 200 || response.status == 201) && response.statusText === "Created") {
                             jq().toastmessage('showSuccessToast', response.statusText);
-                            jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
-                            jq('#review-lab-test-dialog').modal("dispose");
-                            window.location.reload();
                         } else {
                             jq().toastmessage('showErrorToast', response.responseJSON.error.message);
-                            jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
-                            jq('#review-lab-test-dialog').modal("dispose");
                         }
+                        jq('#reject-order-dialog').modal('hide').data('bs.modal', null);
+                        jq('#reject-order-dialog').modal("dispose");
                     }
                 });
 
