@@ -22,8 +22,9 @@
                 async: false,
                 success: function (response) {
                     serverResponse = response.results;
-                    navigateToURL(jq("#goToURL").val())
-
+                    jq().toastmessage('showSuccessToast', "Successfuly approved "+response.results.length+" Orders");
+                    jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
+                    jq('#review-lab-test-dialog').modal("dispose");
                 },
                 error: function (response) {
                     console.log(response.responseJSON.error.message);

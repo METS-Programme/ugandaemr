@@ -132,6 +132,53 @@
                 });
             });
 
+            jq("#submit-order-reject").click(function () {
+                var orderuuid = jq("#reject_order_id").val().trim().toLowerCase();
+                var rejectComment = jq("#order_reject_comment").val().trim().toLowerCase();
+                var dataToPost = "{\"fulfillerStatus\":\"EXCEPTION\",\"fulfillerComment\":\"" + rejectComment + "\"}";
+
+                jq.ajax({
+                    type: "POST",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order/" + orderuuid + "/fulfillerdetails",
+                    dataType: "json",
+                    contentType: "application/json;",
+                    data: dataToPost,
+                    async: false,
+                    success: function (response) {
+                        serverResponse = response.results;
+                        jq().toastmessage('showSuccessToast', "Successfuly rejected " + response.results.length + " Orders");
+                        jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
+                        jq('#review-lab-test-dialog').modal("dispose");
+                    },
+                    error: function (response) {
+                        if ((response.status == 200 || response.status == 201) && response.statusText === "Created") {
+                            jq().toastmessage('showSuccessToast', response.statusText);
+                            jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
+                            jq('#review-lab-test-dialog').modal("dispose");
+                            window.location.reload();
+                        } else {
+                            jq().toastmessage('showErrorToast', response.responseJSON.error.message);
+                            jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
+                            jq('#review-lab-test-dialog').modal("dispose");
+                        }
+                    }
+                });
+
+                jq.get('${ ui.actionLink("scheduleTest") }', {
+                    orderNumber: jq("#order_id").val().trim().toLowerCase(),
+                    sampleId: jq("#sample_id").val().trim().toLowerCase(),
+                    referTest: jq("#refer_test").val().trim().toLowerCase(),
+                    referenceLab: jq("#reference_lab").val().trim().toLowerCase(),
+                    specimenSourceId: jq("#specimen_source_id").val().trim().toLowerCase(),
+                    patientQueueId: jq("#patient-queue-id").val().trim().toLowerCase(),
+                    unProcessedOrders: jq("#unprocessed-orders").val().trim().toLowerCase()
+                }, function (response) {
+                    if (!response) {
+                        ${ ui.message("coreapps.none ") }
+                    }
+                });
+            });
+
             jq("#lab-results-tab").click(function () {
                 jq("#result-search").show();
             });
@@ -157,6 +204,14 @@
                 modal.find("#refer_test input[type=checkbox]").prop('checked', false);
             });
 
+            jq('#reject-order-dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget);
+                var orderuuid = button.data('order-id');
+                var modal = jq(this)
+                modal.find("#reject_order_id").val(orderuuid);
+                modal.find("#order_reject_comment").value = "";
+            });
+
 
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
@@ -166,18 +221,19 @@
             })
         });
 
-        function reloadPending(){
+        function reloadPending() {
             getPatientLabQueue();
         }
 
-        function reloadWorkList(){
+        function reloadWorkList() {
             getOrders();
         }
 
-        function reloadResults(){
+        function reloadResults() {
             getResults();
         }
-        function reloadReferred(){
+
+        function reloadReferred() {
             getResults();
         }
     }
@@ -204,13 +260,14 @@
 
     // Gets Orders of List of WorkList and Refered Tests
     function getOrders() {
+
         var date = "${labWorkListBackLogDaysToDisplay}";
         jq.ajax({
             type: "GET",
             url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order?orderTypes=52a447d3-a64a-11e3-9aeb-50e549534c5e&&careSetting=6f0c9a92-6f24-11e3-af88-005056821db0&activatedOnOrAfterDate=" + date + "&isStopped=false&fulfillerStatus=IN_PROGRESS&v=full",
             dataType: "json",
             contentType: "application/json;",
-            async:false,
+            async: false,
             success: function (response) {
                 if (response) {
                     var responseData = response;
@@ -260,7 +317,7 @@
             });
 
             if (!keyExists) {
-                groupedData.ordersList[itemNo] = {"encounter":key, "orders": [], "patient": item.patient,};
+                groupedData.ordersList[itemNo] = {"encounter": key, "orders": [], "patient": item.patient,};
                 groupedData.ordersList[itemNo].orders.push(item);
                 itemNo++;
             }
@@ -352,12 +409,13 @@
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active") {
+            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null) {
                 var urlTransferPatientToAnotherQueue = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.orderNumber);
                 orderedTestsRows += "<tr>";
                 orderedTestsRows += "<td>" + element.conceptName + "</td>";
                 orderedTestsRows += "<td>";
                 orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
+                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#reject-order-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\" icon-remove-sign\" title=\"Reject Order\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderUuid).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
                 orderedTestsRows += "</td>";
                 orderedTestsRows += "</tr>";
             }
@@ -374,7 +432,7 @@
     function noOfTests(labQueueList) {
         var orderCount = 0;
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active") {
+            if (element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null) {
                 orderCount += 1;
             }
         });
@@ -457,7 +515,7 @@
         labOrder.results.forEach((patientencounter, index) => {
             var referedTests = "";
             var workListTests = "";
-            var orderWithResult="";
+            var orderWithResult = "";
             var trOpenTag = "<tr data-toggle=\"collapse\" data-target=\"#order" + index + "\" class=\"accordion-toggle\">";
             var tdOpenTag = "<td><i class=\" + icon-eye-open + \"/></td>";
             var tdPatientNames = "<td>" + patientencounter.patient.display + "</td>";
@@ -472,7 +530,7 @@
             jq.each(patientencounter.orders, function (index, element) {
                 var orderedTestsRows = "";
                 var instructions = element.instructions;
-                var  fulfillerComment= element.fulfillerComment;
+                var fulfillerComment = element.fulfillerComment;
                 var actionIron = "";
                 var actionURL = "";
                 if (instructions != null && instructions.toLowerCase().indexOf("refer to") >= 0) {
@@ -489,6 +547,7 @@
                 orderedTestsRows += "<td>" + element.fulfillerStatus + "</td>";
                 orderedTestsRows += "<td>";
                 orderedTestsRows += "<a title=\"Edit Result\" onclick='showEditResultForm(\"" + element.uuid + "\")'><i class=\"icon-list-ul small\"></i></a>";
+                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#reject-order-dialog\" data-order-id=\"orderId\"><i style=\"font-size: 25px;\" class=\" icon-remove-sign\" title=\"Reject Order\"></i></a>".replace("orderId", element.uuid);
                 orderedTestsRows += "<i class=\" + actionIron + \" title=\"Transfer To Another Provider\" onclick='urlTransferPatientToAnotherQueue'></i>".replace("urlTransferPatientToAnotherQueue", actionURL);
                 orderedTestsRows += "</td>";
                 orderedTestsRows += "</tr>";
@@ -496,9 +555,9 @@
                     if (instructions != null && instructions.toLowerCase().indexOf("refer to") >= 0) {
                         referedTests += orderedTestsRows;
                         refferedCounter += 1;
-                    }else if(instructions === null && fulfillerComment != null && (fulfillerComment.toLowerCase().indexOf("has results") >= 0 || fulfillerComment.toLowerCase().indexOf("completed with results")>= 0)) {
-                        orderWithResult+=orderedTestsRows;
-                    }else {
+                    } else if (instructions === null && fulfillerComment != null && (fulfillerComment.toLowerCase().indexOf("has results") >= 0 || fulfillerComment.toLowerCase().indexOf("completed with results") >= 0)) {
+                        orderWithResult += orderedTestsRows;
+                    } else {
                         workListTests += orderedTestsRows;
                         worklistCounter += 1;
                     }
@@ -711,9 +770,11 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
             </div>
         </div>
     </div>
-    ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
+    ${
+            ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
 </div>
 ${ui.includeFragment("ugandaemr", "reviewResults")}
+${ui.includeFragment("ugandaemr", "lab/rejectTestDialogue")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
 ${ui.includeFragment("ugandaemr", "lab/scheduleTestDialogue")}
