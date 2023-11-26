@@ -2,6 +2,7 @@ package org.openmrs.module.ugandaemr.htmlformentry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.ConceptClass;
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;
@@ -15,6 +16,8 @@ import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.metadata.core.Programs;
 
+import java.util.List;
+
 /**
  * Enrolls patients into the ANC MCH program
  */
@@ -27,6 +30,7 @@ public class AntenatalEncounterPostSubmissionAction implements CustomFormSubmiss
 		if (!(mode.equals(FormEntryContext.Mode.ENTER) || mode.equals(FormEntryContext.Mode.EDIT))) {
 			return;
 		}
+
 		if (ugandaEMRService.getPreviousQueue(session.getPatient(), session.getEncounter().getLocation(), PatientQueue.Status.PENDING) != null) {
 			ugandaEMRService.processLabTestOrdersFromEncounterObs(session, true);
 

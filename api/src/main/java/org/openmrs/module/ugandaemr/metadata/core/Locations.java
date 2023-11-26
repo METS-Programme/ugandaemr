@@ -334,4 +334,35 @@ public class Locations {
 
 	};
 
+	public static LocationDescriptor RADIOLOGY = new LocationDescriptor(){
+
+		@Override
+		public String uuid() {
+			return "f586757c-3846-11ee-be56-0242ac120002";
+		}
+
+		@Override
+		public String description() {
+			return "The Overall department for Imaging Center and Radiology Services";
+		}
+
+		@Override
+		public String name() {
+			return "Radiology";
+		}
+
+		@Override
+		public LocationDescriptor parent() {
+			return PARENT;
+		}
+
+		@Override
+		public List<LocationTagDescriptor> tags() {
+			return Arrays.asList(
+					LocationTags.LOGIN_LOCATION
+			);
+		}
+
+	};
+
 }

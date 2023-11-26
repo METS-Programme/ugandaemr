@@ -820,7 +820,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderMapper.setPatientId(order.getPatient().getPatientId());
             orderMapper.setInstructions(order.getInstructions());
             orderMapper.setFulfillerComment(order.getFulfillerComment());
-            if(order.getFulfillerStatus()!=null) {
+            if (order.getFulfillerStatus() != null) {
                 orderMapper.setFulfillerStatus(order.getFulfillerStatus().name());
             }
             orderMapper.setUrgency(order.getUrgency().name());
@@ -1294,8 +1294,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
         Concept reasonForNextAppointment = Context.getConceptService().getConceptByUuid(CONCEPT_REASON_FOR_NEXT_APPOINTMENT);
-        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && ((obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))) && !obs.getConcept().equals(reasonForNextAppointment)).collect(Collectors.toSet());
-
+        Set<Obs> obsList = obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && ((obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test") || obs.getValueCoded().getConceptClass().getName().equals("Radiology/Imaging Procedure"))) && !obs.getConcept().equals(reasonForNextAppointment)).collect(Collectors.toSet());
         for (Obs obs : obsList) {
             if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
                 TestOrder testOrder = new TestOrder();
@@ -1312,8 +1311,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         if (!orders.isEmpty()) {
             encounter.setOrders(orders);
             encounterService.saveEncounter(encounter);
-            if (!session.getEncounter().getOrders().isEmpty()) {
+
+            List<Order> labOrder = session.getEncounter().getOrders().stream().filter(order -> (order.getConcept().getConceptClass().getName().equals("LabSet") || order.getConcept().getConceptClass().getName().equals("Test"))).collect(Collectors.toList());
+            List<Order> radiologyOrder = session.getEncounter().getOrders().stream().filter(order -> order.getConcept().getConceptClass().getName().equals("Radiology/Imaging Procedure")).collect(Collectors.toList());
+            if (!labOrder.isEmpty()) {
                 sendPatientToNextLocation(session, LAB_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+            }
+
+            if (!radiologyOrder.isEmpty()) {
+                sendPatientToNextLocation(session, RADIOLOGY_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
             }
         }
         return encounter;
@@ -1907,7 +1913,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsById(java.lang.Integer)
      */
     public OrderObs getOrderObsById(Integer orderObsId) {
-       return dao.getOrderObsById(orderObsId);
+        return dao.getOrderObsById(orderObsId);
     }
 
     /**

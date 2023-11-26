@@ -67,6 +67,7 @@ public class UgandaEMRConstants {
     public static final String TRIAGE_LOCATION_UUID = "ff01eaab-561e-40c6-bf24-539206b521ce";
     public static final String PHARMACY_LOCATION_UUID = "3ec8ff90-3ec1-408e-bf8c-22e4553d6e17";
     public static final String LAB_LOCATION_UUID = "ba158c33-dc43-4306-9a4a-b4075751d36c";
+    public static final String RADIOLOGY_LOCATION_UUID = "f586757c-3846-11ee-be56-0242ac120002";
 
     public static final String DRUG_SET_CLASS = "Drug";
     public static final String LAB_SET_CLASS = "LabSet";
