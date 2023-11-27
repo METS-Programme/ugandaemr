@@ -159,7 +159,9 @@ public class LabQueueListFragmentController {
         Set<Order> orders = new HashSet<>();
 
         orderObs.forEach(orderObs1 -> {
-            orders.add(orderObs1.getOrder());
+            if (orderObs1.getOrder().getConcept().getConceptClass().getName().equals(LAB_SET_CLASS) || orderObs1.getOrder().getConcept().getConceptClass().getName().equals(TEST_SET_CLASS)) {
+                orders.add(orderObs1.getOrder());
+            }
         });
 
         simpleObject.put("ordersList", objectMapper.writeValueAsString(ugandaEMRService.processOrders(orders, true)));
@@ -215,8 +217,8 @@ public class LabQueueListFragmentController {
 
     public List<SimpleObject> getResultTemplate(@RequestParam("testId") String testId, UiUtils ui) {
         Order test = Context.getOrderService().getOrderByUuid(testId);
-        if(test==null){
-            test=Context.getOrderService().getOrder(Integer.parseInt(testId));
+        if (test == null) {
+            test = Context.getOrderService().getOrder(Integer.parseInt(testId));
         }
         List<ParameterModel> parameters = new ArrayList<ParameterModel>();
         LaboratoryUtil.generateParameterModels(parameters, test.getConcept(), null, test);
@@ -263,8 +265,8 @@ public class LabQueueListFragmentController {
 
         Order test = orderService.getOrderByUuid(resultWrapper.getTestId());
 
-        if(test==null){
-            test=orderService.getOrder(Integer.parseInt(resultWrapper.getTestId()));
+        if (test == null) {
+            test = orderService.getOrder(Integer.parseInt(resultWrapper.getTestId()));
         }
 
         Encounter encounter = test.getEncounter();
@@ -369,7 +371,6 @@ public class LabQueueListFragmentController {
 
         return patientQueue;
     }
-
 
 
     private Date getDateFromString(String dateString, String format) {

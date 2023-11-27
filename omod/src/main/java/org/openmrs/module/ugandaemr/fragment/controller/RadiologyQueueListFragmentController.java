@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 
@@ -150,7 +151,9 @@ public class RadiologyQueueListFragmentController {
         Set<Order> orders = new HashSet<>();
 
         orderObs.forEach(orderObs1 -> {
-            orders.add(orderObs1.getOrder());
+            if(orderObs1.getOrder().getConcept().getConceptClass().getName().equals(RADIOLOGY_SET_CLASS)) {
+                orders.add(orderObs1.getOrder());
+            }
         });
 
         simpleObject.put("ordersList", objectMapper.writeValueAsString(ugandaEMRService.processOrders(orders, true)));
@@ -206,8 +209,8 @@ public class RadiologyQueueListFragmentController {
 
     public List<SimpleObject> getResultTemplate(@RequestParam("testId") String testId, UiUtils ui) {
         Order test = Context.getOrderService().getOrderByUuid(testId);
-        if(test==null){
-            test=Context.getOrderService().getOrder(Integer.parseInt(testId));
+        if (test == null) {
+            test = Context.getOrderService().getOrder(Integer.parseInt(testId));
         }
         List<ParameterModel> parameters = new ArrayList<ParameterModel>();
         LaboratoryUtil.generateParameterModels(parameters, test.getConcept(), null, test);
@@ -356,7 +359,6 @@ public class RadiologyQueueListFragmentController {
 
         return patientQueue;
     }
-
 
 
     private Date getDateFromString(String dateString, String format) {

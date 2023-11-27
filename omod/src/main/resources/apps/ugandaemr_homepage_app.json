@@ -42,7 +42,7 @@
         "type": "link",
         "label": "ugandaemr.radiology.app.label",
         "url": "patientqueueing/providerDashboard.page?locationId=f586757c-3846-11ee-be56-0242ac120002",
-        "icon": "fas fa-diagnoses",
+        "icon": "fas fa-x-ray",
         "requiredPrivilege": "App: ugandaemrpoc.outpatient"
       }
     ]
