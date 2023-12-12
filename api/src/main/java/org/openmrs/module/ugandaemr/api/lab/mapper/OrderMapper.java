@@ -11,6 +11,8 @@ public class OrderMapper implements Serializable {
 
 	private Integer orderId;
 
+	private String OrderUuid;
+
 	private String patient;
 
 	private Integer patientAge;
@@ -46,6 +48,10 @@ public class OrderMapper implements Serializable {
 	private String orderNumber;
 
 	private String commentToFulfiller;
+
+	private String fulfillerStatus;
+
+	private String fulfillerComment;
 
 	private String careSetting;
 
@@ -235,5 +241,30 @@ public class OrderMapper implements Serializable {
 
 	public void setPatientAge(Integer patientAge) {
 		this.patientAge = patientAge;
+	}
+
+	public String getFulfillerStatus() {
+		return fulfillerStatus;
+	}
+
+	public void setFulfillerStatus(String fulfillerStatus) {
+		this.fulfillerStatus = fulfillerStatus;
+	}
+
+	public String getFulfillerComment() {
+		return fulfillerComment;
+	}
+
+	public void setFulfillerComment(String fulfillerComment) {
+		this.fulfillerComment = fulfillerComment;
+	}
+
+
+	public String getOrderUuid() {
+		return OrderUuid;
+	}
+
+	public void setOrderUuid(String orderUuid) {
+		OrderUuid = orderUuid;
 	}
 }

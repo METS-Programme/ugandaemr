@@ -387,4 +387,37 @@ public interface UgandaEMRService extends OpenmrsService {
     @Transactional(readOnly = true)
     public OrderObs getOrderObsByObs(Obs obs);
 
+
+    /**
+     * Gets all OrderObs
+     * @return List<OrderObs
+     */
+    @Transactional(readOnly = true)
+    public List<OrderObs> getAllOrderObs();
+
+    /**
+     * Get OrderObs List By search Obs
+     * @param orderObsId The obs to search in the list
+     * @return OrderObs A list of orderObs that meet the parameters
+     */
+    @Transactional(readOnly = true)
+    public OrderObs getOrderObsById(Integer orderObsId);
+
+    /**
+     * Get OrderObs List By search Obs
+     * @param uuid The obs to search in the list
+     * @return OrderObs A list of orderObs that meet the parameters
+     */
+    @Transactional(readOnly = true)
+    public OrderObs getOrderObsByUuid(String uuid);
+
+
+    /**
+     * Get OrderObs List By search Obs
+     * @param order The obs to search in the list
+     * @return OrderObs A list of orderObs that meet the parameters
+     */
+    @Transactional(readOnly = true)
+    public OrderObs getOrderObsByOrder(Order order);
+
 }

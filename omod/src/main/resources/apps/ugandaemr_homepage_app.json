@@ -1,21 +1,21 @@
 [
-
-    {
-      "id": "ugandaemr.triage",
-      "description": "Linkages to the Traige section section",
-      "order": 1,
-      "extensions": [
-        {
-          "id": "ugandaemr.traige",
-          "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-          "type": "link",
-          "label": "ugandaemr.form.section.triage.label",
-          "url": "patientqueueing/providerDashboard.page?locationId=ff01eaab-561e-40c6-bf24-539206b521ce",
-          "icon": "fas fa-user-md",
-          "requiredPrivilege": "App: ugandaemrpoc.triage"
-        }
-      ]
-    },{
+  {
+    "id": "ugandaemr.triage",
+    "description": "Linkages to the Traige section section",
+    "order": 1,
+    "extensions": [
+      {
+        "id": "ugandaemr.traige",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "ugandaemr.form.section.triage.label",
+        "url": "patientqueueing/providerDashboard.page?locationId=ff01eaab-561e-40c6-bf24-539206b521ce",
+        "icon": "fas fa-user-md",
+        "requiredPrivilege": "App: ugandaemrpoc.triage"
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.outpatient",
     "description": "Linkages to the OPD section section",
     "order": 1,
@@ -30,7 +30,24 @@
         "requiredPrivilege": "App: ugandaemrpoc.outpatient"
       }
     ]
-  },{
+  },
+  {
+    "id": "ugandaemr.radiology",
+    "description": "Linkages to the Radiology section section",
+    "order": 1,
+    "extensions": [
+      {
+        "id": "ugandaemr.radiology",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "ugandaemr.radiology.app.label",
+        "url": "patientqueueing/providerDashboard.page?locationId=f586757c-3846-11ee-be56-0242ac120002",
+        "icon": "fas fa-x-ray",
+        "requiredPrivilege": "App: ugandaemrpoc.outpatient"
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.mch.clinic.homepageLink",
     "description": "Linkages to the MCH section section",
     "order": 1,
@@ -46,24 +63,23 @@
       }
     ]
   },
-    {
-      "id": "ugandaemr.counselling.clinic.homepageLink",
-      "description": "Linkages to the counselling section",
-      "order": 1,
-      "extensions": [
-        {
-          "id": "ugandaemr.counselling.homepageLink",
-          "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
-          "type": "link",
-          "label": "ugandaemr.counseling.center.label",
-          "url": "patientqueueing/providerDashboard.page?locationId=7c231e1a-1db5-11ea-978f-2e728ce88125",
-          "icon": "fas fa-user-friends",
-          "requiredPrivilege": "App: ugandaemrpoc.counselingCenter"
-        }
-      ]
-    }
-
-  ,{
+  {
+    "id": "ugandaemr.counselling.clinic.homepageLink",
+    "description": "Linkages to the counselling section",
+    "order": 1,
+    "extensions": [
+      {
+        "id": "ugandaemr.counselling.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "ugandaemr.counseling.center.label",
+        "url": "patientqueueing/providerDashboard.page?locationId=7c231e1a-1db5-11ea-978f-2e728ce88125",
+        "icon": "fas fa-user-friends",
+        "requiredPrivilege": "App: ugandaemrpoc.counselingCenter"
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.art.clinic.homepageLink",
     "description": "Linkages to the ART Clinic",
     "order": 1,
@@ -78,7 +94,8 @@
         "requiredPrivilege": "App: ugandaemrpoc.artclinic"
       }
     ]
-  },{
+  },
+  {
     "id": "ugandaemr.tb.clinic.homepageLink",
     "description": "Linkages to the TB Clinic",
     "order": 1,
@@ -93,7 +110,8 @@
         "requiredPrivilege": "App: ugandaemrpoc.tbclinic"
       }
     ]
-  },{
+  },
+  {
     "id": "ugandaemr.Laboratory",
     "description": "Linkages to the Laboratory section",
     "order": 1,
@@ -108,7 +126,8 @@
         "requiredPrivilege": "App: ugandaemrpoc.laboratory"
       }
     ]
-  },{
+  },
+  {
     "id": "ugandaemr.dispensing",
     "description": "Linkages to the Dispensary",
     "order": 1,
@@ -123,7 +142,8 @@
         "requiredPrivilege": "App: ugandaemrpoc.pharmacy"
       }
     ]
-  },{
+  },
+  {
     "id": "ugandaemr.findPatient",
     "instanceOf": "coreapps.template.findPatient",
     "description": "Basic patient search that goes to the patient dashboard",
@@ -203,19 +223,19 @@
     ]
   },
   {
-  "id": "ugandaemr.configs",
-  "description": "Configurations for Health Center",
-  "order": 5,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "Health Center Configurations",
-      "url": "admin/maintenance/settings.list?show=Ugandaemr",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
-    }
+    "id": "ugandaemr.configs",
+    "description": "Configurations for Health Center",
+    "order": 5,
+    "extensions": [
+      {
+        "id": "coreapps.activeVisitsHomepageLink",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Health Center Configurations",
+        "url": "admin/maintenance/settings.list?show=Ugandaemr",
+        "icon": " icon-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
     ]
   },
   {
@@ -239,34 +259,35 @@
     }
   },
   {
-  "id": "ugandaemr.cohortTypeConfigs",
-  "description": "DSD SubGroup Registration",
-  "order": 40,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "DSD SubGroup Configurations",
-      "url": "ugandaemr/CohortRegistration.page",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
-    }
-  ]
-},{
-  "id": "ugandaemr.cohortExist",
-  "description": "Patient Exist Cohort Page",
-  "order": 41,
-  "extensions": [
-    {
-      "id": "coreapps.activeVisitsHomepageLink",
-      "extensionPointId": "systemAdministration.apps",
-      "type": "link",
-      "label": "Exist from Cohort Group",
-      "url": "ugandaemr/PatientExitCohort.page",
-      "icon": " icon-cog",
-      "requiredPrivilege": "App: coreapps.systemAdministration"
-    }
-  ]
-}
+    "id": "ugandaemr.cohortTypeConfigs",
+    "description": "DSD SubGroup Registration",
+    "order": 40,
+    "extensions": [
+      {
+        "id": "coreapps.activeVisitsHomepageLink",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "DSD SubGroup Configurations",
+        "url": "ugandaemr/CohortRegistration.page",
+        "icon": " icon-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
+    ]
+  },
+  {
+    "id": "ugandaemr.cohortExist",
+    "description": "Patient Exist Cohort Page",
+    "order": 41,
+    "extensions": [
+      {
+        "id": "coreapps.activeVisitsHomepageLink",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Exist from Cohort Group",
+        "url": "ugandaemr/PatientExitCohort.page",
+        "icon": " icon-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
+    ]
+  }
 ]

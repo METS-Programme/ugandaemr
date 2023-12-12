@@ -116,6 +116,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(Locations.COUNSELING_CENTER);
         install(Locations.Community);
         install(Locations.COVID19_CLINIC);
+        install(Locations.RADIOLOGY);
 
         // Install Encounter Role
         install(encounterRole(EncounterRoles.ASSISTANT_CIRCUMCISER_NAME,EncounterRoles.ASSISTANT_CIRCUMCISER_DESCRIPTION,EncounterRoles.ASSISTANT_CIRCUMCISER_UUID));

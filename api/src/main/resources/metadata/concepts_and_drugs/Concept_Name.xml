@@ -6514,4 +6514,12 @@
     <concept_name  concept_id="118256"  name="Fetal Distress"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="18590"  voided="0"  voided_by="1" uuid="18590BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
     <concept_name  concept_id="147232"  name="Vaginal bleeding"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="46857"  voided="0"  voided_by="1" uuid="46857BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
     <concept_name  concept_id="148989"  name="Amenorrhea"  locale="en"  creator="1"  date_created="2007-10-18 04:28:24"  concept_name_id="48607"  voided="0"  voided_by="1" uuid="48607BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
+
+    <concept_name  concept_id="163620"  name="Helicobacter Pylori Ab presence in serum by immunofluorescence test"  locale="en"  creator="1"  date_created="2016-07-28 01:31:16"  concept_name_id="138260"  voided="0"  voided_by="1"  uuid="138260BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"    changed_by="1"/>
+    <concept_name  concept_id="163620"  name="H pylori test"  locale="en"  creator="1"  date_created="2016-07-28 01:31:16"  concept_name_id="138262"  voided="0"   uuid="138262BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"    locale_preferred="0"   changed_by="1"/>
+
+
+    <concept_name  concept_id="159859"  name="Polymerase chain reaction, human papilloma virus, qualitative"  locale="en"  creator="1"  date_created="2010-11-22 14:07:39"  concept_name_id="107346"  voided="0"  voided_by="1" uuid="107346BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
+    <concept_name  concept_id="159859"  name="PCR HPV, qualitative"  locale="en"  creator="1"  date_created="2010-11-22 14:07:39"  concept_name_id="107347"  voided="0"  voided_by="1" uuid="107347BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="SHORT"  locale_preferred="0" changed_by="1"/>
+    <concept_name  concept_id="159859"  name="HPV status"  locale="en"  creator="1"  date_created="2021-08-31 15:50:32"  concept_name_id="146000"  voided="0"  voided_by="1"  uuid="146000BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  locale_preferred="0" changed_by="1"/>
 </dataset>

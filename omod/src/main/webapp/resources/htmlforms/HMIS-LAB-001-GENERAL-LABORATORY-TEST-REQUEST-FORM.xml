@@ -11,7 +11,9 @@
           formDisplayStyle="Standard">
     <div>
         <div class="headers" style="text-align: center;">
-            <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS LAB 001:GENERAL LABORATORY TEST REQUEST FORM</h3>
+            <h3 style="background: #c0c0c0; padding: 10px; color: #1f2121;">HMIS LAB 001:GENERAL LABORATORY TEST REQUEST
+                FORM
+            </h3>
         </div>
 
         <ul class="nav nav-tabs nav-fill card-header-tabs">
@@ -38,12 +40,15 @@
                                         <div class="row">
                                             <div class="col-12">
                                                 <label>Date</label>
-                                                <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
+                                                <encounterDate default="today"
+                                                               disallowMultipleEncountersOnDate="block"/>
                                                 <span style="display: none">
-                                                    <encounterLocation default="SessionAttribute:emrContext.sessionLocationId"
-                                                                       restrictToCurrentVisitLocation="true"/>
-                                                    <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
-                                                                              required="required" default="currentUser"/>
+                                                    <encounterLocation
+                                                            default="SessionAttribute:emrContext.sessionLocationId"
+                                                            restrictToCurrentVisitLocation="true"/>
+                                                    <encounterProviderAndRole
+                                                            encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                            required="required" default="currentUser"/>
                                                 </span>
                                             </div>
                                         </div>
@@ -71,13 +76,45 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="row investigations">
-                                        <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT'],['647','FULL HEMOGRAM'],['652','LFTS'],['953','LIVER FUNCTION TESTS'],['1010','LIPID Panel'],['1026','DIFFERENTIAL'],['5473','SERUM ELECTROLYTES'],['99145','BASELINE CD4 PERCENTAGE'],['159645','CSF Examination'],['159981','TB Culture Construct'],['161152','Prothrombin Time (with INR)'],['161199','Cytology'],['161422','HBG With Electrophoresis'],['161424','RBC Morphology Test'],['161425','Sedimentation Test'],['161426','Malarial Parasites Smear'],['161428','Microfilaria Test'],['161429','Hemoglobin Only'],['161430','Routine Blood Panel'],['161431','Sickling Test Only'],['161432','Absolute Eosinophil Count Test'],['161434','Bleeding Time Test'],['161436','Clotting Time Test'],['161437','Anemia Panel'],['161446','Routine Urine'],['161451','Stool Test'],['161458','Vaginal Fluid Examination'],['161461','Ziehl-Neelsen Stain Test'],['161463','Skin Fungal Test'],['161464','Skin Mycobacterial Test'],['161468','Semen Analysis Test'],['161473','Blood Grouping Test'],['161474','Hepatitis C Serological Test'],['161475','Hepatitis B Serological Test'],['161476','Syphilis serological Panel'],['161477','Typhoid serological Test'],['161478','Anti-Streptolysin O Test'],['161479','Rheumatoid Factor Test'],['161480','HIV Serological Test'],['161483','Serum Chemistry Panel'],['161486','Culture Panel'],['161487','Diabetes Panel'],['161488','Renal Function Panel'],['161491','FSH Panel'],['161492','Leutinizing Hormone Panel'],['161493','Alpha Fetoprotein Test'],['161495','ANA'],['161496','Bone Marrow Test'],['161497','Cancer Marker Panel'],['161498','CPK Measurement'],['161499','Coombs Test'],['161501','C-reactive Protein Test'],['161506','Thyroid Panel'],['161508','Ceruloplasmin Test'],['161509','Serum HCG'],['161510','Carcinoembryonic Antigen'],['161512','Serum Iron Profile'],['161514','G6PD'],['161515','Lipase Test'],['161517','Prolactin Test'],['161518','Cardiac Enzyme Test'],['161520','PSA Test'],['161532','TORCH Panel'],['161533','TORCHS Panel'],['162630','Basic Metabolic Panel'],['163436','Coagulation Profile'],['163602','Arterial Blood Gas Panel'],['163625','Toxoplasma Panel'],['163628','VTC Panel'],['163631','Tuberculin skin test Panel'],['163652','Urethral fluid examination Panel'],['163679','Bacterial culture Panel'],['163697','Urine microscopy Panel'],['163700','CBC (auto)'],['163701','CBC With Manual Differential'],['163702','Clotting Panel'],['163708','GTT  (75g)'],['165419','Malaria Test'],['165824','HIVDR'],['166284','Covid test type'],['166405','Blood gas done'],['166429','ALT/SGOT'],['167178','PPG'],['163342','HIV p24 antigen'],['163610','HIV drug-resistance'],['163722','Rapid test for HIV'],['167441','HIV PCR, DBS']">
-                                            <div class="col-3">
-                                                <obs id="{0}" conceptId="1271"
-                                                     answerConceptId="{0}"
-                                                     answerLabel="{1}" style="checkbox"/>
-                                            </div>
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Hematology</label>
+                                        <br/>
+                                        <repeat with="['1019','CBC'],['21','HBG'],['657','Cd4'],['885','PAP SMEAR'],['161520','PSA Test'],['161152','Prothrombin Time (with INR)'],['855','ESR'],['161436','Clotting Time Test'],['161434','Bleeding Time Test'],['163702','Clotting Panel'],['160225','Sickle Cell],['161499','Coombs'],['161473','Blood Grouping Test'],['161500','CRP'],['163436','Coagulation Profile']">
+                                                <obs id="{0}" conceptId="1271" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Chemistry</label>
+                                        <br/>
+                                        <repeat with="['165850','FBS'],['165849','RBS'],['166522','LFT'],['166529','RFT'],['5473','SERUM ELECTROLYTES'],['1010','LIPID Profile'],['159644','HgbA1c'],['1013','Lipase'],['162630','Basic Metabolic Panel'],['160917','Alpha Fetoprotein'],['161518','Cardiac Profile'],['166405','Blood gas'],['161491','FSH'],['161506','Thyroid'],['160915','CEA'],['161512','Serum Iron'],['160226','G6PD'],['161516','Prolactin']">
+                                                <obs id="{0}" conceptId="1071" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Molecular</label>
+                                        <br/>
+                                        <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
+                                            <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                        </repeat>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Microbiology</label>
+                                        <br/>
+                                        <repeat with="['161461','ZN STAIN'],['302','URINALYSIS'],['161451','Stool Test'],['32','Blood Slide'],['163625','Toxoplasma Panel'],['165416','TB LAM'],['161468','Semen Analysis'],['165414','TB Microscopy'],['161199','Cytology'],['32','Malarial Smear'],['159645','CSF Analysis'],['159981','TB Culture Construct'],['161458','Vaginal Swab'],['163722','Rapid test for HIV'],['161462','Skin snip'],['163652','Urethral fluid examination']">
+                                            <obs id="{0}" conceptId="1081" answerConceptId="{0}" answerLabel="{1}"
+                                                 style="checkbox"/>
+                                        </repeat>
+                                    </div>
+
+                                    <div class="col-4 lablex2">
+                                        <label style="width: 100%; background-color: #e5e2e2">Serology</label>
+                                        <br/>
+                                        <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['161474','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
+                                            <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}"
+                                                 style="checkbox"/>
                                         </repeat>
                                     </div>
                                 </div>
@@ -85,16 +122,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-12">
-                        <submit class="confirm" submitLabel="SAVE"/>
-                        <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.LabOrderSubmissionAction"/>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <submit class="confirm" submitLabel="SAVE"/>
+                    <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.LabOrderSubmissionAction"/>
                 </div>
             </div>
-            <div class="tab-pane" id="lab-results-section">
+        </div>
+        <div class="tab-pane" id="lab-results-section">
 
-            </div>
         </div>
     </div>
 </htmlform>

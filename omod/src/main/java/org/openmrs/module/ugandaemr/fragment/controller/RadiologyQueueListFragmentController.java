@@ -26,40 +26,32 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Set;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.GregorianCalendar;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 
-public class LabQueueListFragmentController {
+public class RadiologyQueueListFragmentController {
 
-    protected final Log log = LogFactory.getLog(LabQueueListFragmentController.class);
+    protected final Log log = LogFactory.getLog(RadiologyQueueListFragmentController.class);
 
-    public LabQueueListFragmentController() {
+    public RadiologyQueueListFragmentController() {
     }
 
     public void controller(@SpringBean FragmentModel pageModel, UiSessionContext uiSessionContext) {
-
-        pageModel.put("specimenSource", Context.getOrderService().getTestSpecimenSources());
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String labWorkListBackLogDaysToDisplay = Context.getAdministrationService().getGlobalProperty("ugandaemr.labWorkListBackLogDaysToDisplay");
         String labReferenceListBackLogDaysToDisplay = Context.getAdministrationService().getGlobalProperty("ugandaemr.labReferenceListBackLogDaysToDisplay");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dateStr = sdf.format(new Date());
         List<String> list = new ArrayList();
-        list.add("ba158c33-dc43-4306-9a4a-b4075751d36c");
+        list.add("f586757c-3846-11ee-be56-0242ac120002");
         pageModel.addAttribute("currentDate", dateStr);
+        pageModel.put("labReferenceListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labReferenceListBackLogDaysToDisplay)));
+        pageModel.put("labWorkListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labWorkListBackLogDaysToDisplay)));
         pageModel.addAttribute("locationSession", uiSessionContext.getSessionLocation().getUuid());
         pageModel.put("clinicianLocation", list);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
-        pageModel.put("labReferenceListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labReferenceListBackLogDaysToDisplay)));
-        pageModel.put("labWorkListBackLogDaysToDisplay", getDateDaysBack(new Date(), Integer.parseInt(labWorkListBackLogDaysToDisplay)));
     }
 
     private String getDateDaysBack(Date date, int daysBack) {
@@ -159,7 +151,7 @@ public class LabQueueListFragmentController {
         Set<Order> orders = new HashSet<>();
 
         orderObs.forEach(orderObs1 -> {
-            if (orderObs1.getOrder().getConcept().getConceptClass().getName().equals(LAB_SET_CLASS) || orderObs1.getOrder().getConcept().getConceptClass().getName().equals(TEST_SET_CLASS)) {
+            if(orderObs1.getOrder().getConcept().getConceptClass().getName().equals(RADIOLOGY_SET_CLASS)) {
                 orders.add(orderObs1.getOrder());
             }
         });
@@ -264,10 +256,6 @@ public class LabQueueListFragmentController {
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
         Order test = orderService.getOrderByUuid(resultWrapper.getTestId());
-
-        if (test == null) {
-            test = orderService.getOrder(Integer.parseInt(resultWrapper.getTestId()));
-        }
 
         Encounter encounter = test.getEncounter();
         for (ResultModel resultModel : resultWrapper.getResults()) {

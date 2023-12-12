@@ -7,7 +7,7 @@
         jq.get('${ ui.actionLink("ugandaemr","displayResultListOnEncounter","getOrderWithResultForEncounter") }', {
             encounterId: ${encounterId}
         }, function (response) {
-            if (response.trim()!=="{}") {
+            if (response.trim() !== "{}") {
                 var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
                 displayLabResult(responseData)
             }
@@ -81,7 +81,7 @@
 <section sectionTag="section" id="lab-results-tab" headerTag="h1">
     <div id="printSection" class="print-only">
         <center>
-            <table style="table-layout: fixed; margin-top: 5px;">
+            <table class="table table-striped">
                 <thead>
                 <tr>
                     <th width="50%" style="text-align: left">Test</th>
@@ -90,10 +90,6 @@
                     <th width="15%" style="text-align: left">Reference Range</th>
                 </tr>
                 </thead>
-                <tbody></tbody>
-            </table>
-
-            <table id="patient-report" style="margin-top: 5px; table-layout: fixed;">
                 <tbody data-bind="foreach: _items">
                 <tr>
                     <td data-bind="foreach: sets">

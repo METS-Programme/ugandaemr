@@ -2,6 +2,7 @@ package org.openmrs.module.ugandaemr.htmlformentry;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openmrs.OrderType;
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
 import org.openmrs.Program;

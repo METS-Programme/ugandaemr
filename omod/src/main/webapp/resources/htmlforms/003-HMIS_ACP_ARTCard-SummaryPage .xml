@@ -47,14 +47,6 @@
             submitValStage.push(validateRequiredField("99165", "90306", "Can Not Be Null", "check_box"));
             //Validation for Lost to follow-up Date
             submitValStage.push(validateRequiredField("90209", "5240", "Can Not Be Null", "check_box"));
-            submitValStage.push(validateRequiredField("99725_1", "99074_1", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_2", "99074_2", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_3", "99074_3", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_4", "99074_4", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_5", "99074_5", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_6", "99074_6", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_7", "99074_7", "Please pick an age unit", "text"));
-            submitValStage.push(validateRequiredField("99725_8", "99074_8", "Please pick an age unit", "text"));
 
             if ((getValue("99161" + '.value') == "" &amp;&amp; getValue("99160" + '.value') == "") &amp;&amp; (submitValStageART.indexOf(false) != -1)) {
                 getField("99161" + '.error').html(message7).show();

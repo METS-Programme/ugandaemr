@@ -1,21 +1,24 @@
 <style>
-.lab-button{
+.lab-button {
     background: none;
     border: none;
     text-align: left;
     min-width: 100%;
 }
-.accordion>.card .card-header {
+
+.accordion > .card .card-header {
     margin-bottom: -0.74px;
 }
+
 .card {
     margin-bottom: 0px;
 }
+
 .card-header {
     padding: 0px 0px;
     margin-bottom: 0;
-    background-color: rgba(0,0,0,.03);
-    border-bottom: 0px solid rgba(0,0,0,.125);
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 0px solid rgba(0, 0, 0, .125);
 }
 </style>
 <script>
@@ -24,19 +27,24 @@
     });
 
     function getResults() {
-        jq.get('${ ui.actionLink("ugandaemr","displayLabResults","getOrderWithResult") }', {
-            patientId: ${patientId}
-        }, function (response) {
-            if (response.trim() !== "{}") {
-                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
-                displayLabResult(responseData)
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order?patient=${patientUuid}&orderTypes=52a447d3-a64a-11e3-9aeb-50e549534c5e&&careSetting=6f0c9a92-6f24-11e3-af88-005056821db0&fulfillerStatus=COMPLETED&v=full",
+            dataType: "json",
+            contentType: "application/json;",
+            async: false,
+            success: function (response) {
+                if (response) {
+                    var responseData = response;
+                    displayLabResultApproachC(groupOrdersByEncounter(responseData));
+                }
             }
         });
     }
 
-    function displayLabResult(labQueueList) {
-        jq.each(labQueueList.ordersList, function (index, element) {
-            printresult(element.orderId, element.patientId);
+    function displayLabResultApproachC(labQueueList) {
+        jq.each(labQueueList.results, function (index, element) {
+            printresult(element.orders[0].uuid, element.patient.uuid);
         });
     }
 </script>
@@ -87,6 +95,30 @@
         });
     }
 
+    function groupOrdersByEncounter(data) {
+        const groupedData = {"results": []};
+        let itemNo = 0;
+        data.results.forEach((item, index) => {
+            const key = item.encounter.uuid;
+            let keyExists = false;
+
+            groupedData.results.forEach((groupItem, index) => {
+                if (groupItem.encounter && groupItem.encounter === key) {
+                    keyExists = true;
+                    groupItem.orders.push(item)
+                }
+            });
+
+            if (!keyExists) {
+                groupedData.results[itemNo] = {"encounter": "" + key + "", "orders": [], "patient": item.patient};
+                groupedData.results[itemNo].orders.push(item);
+                itemNo++;
+            }
+
+        });
+        return groupedData;
+    }
+
     function printresult(testId, patientId) {
         jq.get('${ ui.actionLink("ugandaemr","printResults","getResults") }', {
             patientId: patientId,
@@ -94,7 +126,7 @@
             async: false
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").trim());
+                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
                 organize(responseData.data);
             } else if (!response) {
             }
@@ -129,12 +161,13 @@
                                 <div class="card-header" id="headingOne">
                                     <h5 class="mb-0">
                                         <button class="btn btn-link lab-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                           <span data-bind="text: name">
+                                            <span data-bind="text: name" style="width: 45%"></span>&nbsp;&nbsp;&nbsp;<span data-bind="{'text' : data[0].orderdate}" style="width: 45%;text-align: right"></span>
                                         </button>
                                     </h5>
                                 </div>
 
-                                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
                                     <div class="card-body">
                                         <table style="table-layout:fixed;">
                                             <tbody data-bind="foreach: data">
