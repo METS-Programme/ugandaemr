@@ -463,17 +463,16 @@
 
         });
 
-        jq(document).ready(function () {
-            $allRows = jq(this).find('.multi-drug');
-            $allRows.hide();
-            jq('#1-removeEntry').remove();
-            jq('#10-addEntry').remove();
-            jq('#1-toggleContainer').show();
+            jq(document).ready(function () {
+                $allRows = jq(this).find('.multi-drug');
+                $allRows.hide();
+                jq('#1-removeEntry').remove();
+                jq('#10-addEntry').remove();
+                jq('#1-toggleContainer').show();
 
-            jq('#11-removeEntry').remove();
-            jq('#20-addEntry').remove();
-            jq('#11-toggleContainer').show();
-
+                jq('#11-removeEntry').remove();
+                jq('#20-addEntry').remove();
+                jq('#11-toggleContainer').show();
 
         });
 
@@ -482,7 +481,7 @@
                 $allRows.hide();
                 jq('#1-removeEntry').remove();
                 jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
+                jq('#1-toggleDiagnosisContainer').show();
 
                 jq('#11-removeEntry').remove();
                 jq('#20-addEntry').remove();
@@ -609,27 +608,27 @@
             });
 
 
-            jq(document).ready(function () {
-            $allRows = jq(this).find('.visit-diagnosis');
-            $allRows.hide();
-            jq('#1-removeEntry').remove();
-            jq('#10-addEntry').remove();
-            jq('#1-toggleContainer').show();
-            jq('#11-removeEntry').remove();
-            jq('#20-addEntry').remove();
-            jq('#11-toggleContainer').show();
-            for (let x = 0; x&lt;= 10; x++) {
-            if (jq(this).find('#' +x+ '-problem-trigger').find("input[type$='text']").val()!='') {
-            jq(this).find('#' +x+ '-toggleContainer').show();
-            jq(this).find('#' +x+ '-addEntry').hide();
-        }
-            else {
-            x-=1;
-            jq(this).find('#' +x+ '-addEntry').show();
-            break;
-        }
-        }
-        });
+                jq(document).ready(function () {
+                $allRows = jq(this).find('.visit-diagnosis');
+                $allRows.hide();
+                jq('#1-removeEntry').remove();
+                jq('#10-addEntry').remove();
+                jq('#1-toggleDiagnosisContainer').show();
+                jq('#11-removeEntry').remove();
+                jq('#20-addEntry').remove();
+                jq('#11-toggleContainer').show();
+                for (let x = 0; x&lt;= 10; x++) {
+                if (jq(this).find('#' +x+ '-problem-trigger').find("input[type$='text']").val()!='') {
+                jq(this).find('#' +x+ '-toggleContainer').show();
+                jq(this).find('#' +x+ '-addEntry').hide();
+            }
+                else {
+                x-=1;
+                jq(this).find('#' +x+ '-addEntry').show();
+                break;
+            }
+            }
+            });
 
 
             jq(document).ready(function () {
@@ -1426,16 +1425,6 @@
                 }
             });
 
-            jq("#encounter-card-poc").show();
-            jq("#investigation-reports-poc").hide();
-            jq("#diagnosis-poc").hide();
-            jq("#medication-poc").hide();
-            jq("#programing-dsdm-poc").hide();
-            jq("#next-course-of-action").hide();
-            jq("#clinical-notes-poc").hide();
-
-            jq("#clinical-encounter-menu-poc").click(function () {
-
                 jq("#encounter-card-poc").show();
                 jq("#investigation-reports-poc").hide();
                 jq("#diagnosis-poc").hide();
@@ -1444,79 +1433,79 @@
                 jq("#next-course-of-action").hide();
                 jq("#clinical-notes-poc").hide();
 
+                jq("#clinical-encounter-menu-poc").click(function () {
+                    jq("#encounter-card-poc").show();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#next-course-of-action").hide();
+                    jq("#clinical-notes-poc").hide();
+                });
+
+                jq("#investigations-menu-poc").click(function () {
+                    jq("#investigation-reports-poc").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#next-course-of-action").hide();
+                    jq("#clinical-notes-poc").hide();
+                });
+
+                jq("#diagnosis-menu-poc").click(function () {
+                    jq("#diagnosis-poc").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#next-course-of-action").hide();
+                    jq("#clinical-notes-poc").hide();
+                });
+
+                jq("#medication-menu-poc").click(function () {
+                    jq("#medication-poc").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#next-course-of-action").hide();
+                    jq("#clinical-notes-poc").hide();
+
+                });
+
+                jq("#dsdm-menu-poc").click(function () {
+                    jq("#programing-dsdm-poc").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#next-course-of-action").hide();
+                    jq("#clinical-notes-poc").hide();
+                });
+
+                jq("#course-of-action-menu-poc").click(function () {
+                    jq("#next-course-of-action").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#clinical-notes-poc").hide();
+
+                });
+
+                jq("#clinical-notes-menu-poc").click(function () {
+                    jq("#clinical-notes-poc").show();
+                    jq("#encounter-card-poc").hide();
+                    jq("#investigation-reports-poc").hide();
+                    jq("#diagnosis-poc").hide();
+                    jq("#medication-poc").hide();
+                    jq("#programing-dsdm-poc").hide();
+                    jq("#next-course-of-action").hide();
+                });
+
             });
-
-            jq("#investigations-menu-poc").click(function () {
-
-                jq("#encounter-card-poc").hide();
-                jq("#investigation-reports-poc").show();
-                jq("#diagnosis-poc").hide();
-                jq("#medication-poc").hide();
-                jq("#programing-dsdm-poc").hide();
-                jq("#next-course-of-action").hide();
-                jq("#clinical-notes-poc").hide();
-
-            });
-
-            jq("#diagnosis-menu-poc").click(function () {
-
-                jq("#encounter-card-poc").hide();
-                jq("#investigation-reports-poc").hide();
-                jq("#diagnosis-poc").show();
-                jq("#medication-poc").hide();
-                jq("#programing-dsdm-poc").hide();
-                jq("#next-course-of-action").hide();
-                jq("#clinical-notes-poc").hide();
-
-            });
-
-        jq("#clinical-notes-menu-poc").click(function () {
-        jq("#clinical-notes-poc").show();
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").hide();
-        jq("#next-course-of-action").hide();
-
-        });
-
-            jq("#medication-menu-poc").click(function () {
-
-                jq("#encounter-card-poc").hide();
-                jq("#investigation-reports-poc").hide();
-                jq("#diagnosis-poc").hide();
-                jq("#medication-poc").show();
-                jq("#programing-dsdm-poc").hide();
-                jq("#next-course-of-action").hide();
-                jq("#clinical-notes-poc").hide();
-
-            });
-
-            jq("#dsdm-menu-poc").click(function () {
-
-        jq("#encounter-card-poc").hide();
-        jq("#investigation-reports-poc").hide();
-        jq("#diagnosis-poc").hide();
-        jq("#medication-poc").hide();
-        jq("#programing-dsdm-poc").show();
-        jq("#next-course-of-action").hide();
-        jq("#clinical-notes-poc").hide();
-        });
-
-            jq("#course-of-action-menu-poc").click(function () {
-
-                jq("#encounter-card-poc").hide();
-                jq("#investigation-reports-poc").hide();
-                jq("#diagnosis-poc").hide();
-                jq("#medication-poc").hide();
-                jq("#programing-dsdm-poc").hide();
-                jq("#next-course-of-action").show();
-                jq("#clinical-notes-poc").hide();
-
-            });
-
-        });
 
             beforeSubmit.push(function () {
                 <!-- clear the previous errors -->
@@ -2605,7 +2594,8 @@
                                                         <repeat>
                                                             <template>
                                                                 <obsgroup groupingConceptId="159947">
-                                                                    <div class="row visit-diagnosis" id="{id}-toggleContainer">
+                                                                    <div class="row visit-diagnosis"
+                                                                         id="{id}-toggleDiagnosisContainer">
                                                                         <div class="col-md-3">
                                                                             <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
                                                                             <obs class="hidden" id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
