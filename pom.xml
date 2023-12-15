@@ -224,7 +224,6 @@
 				<version>${addresshierarchyVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>appframework-api</artifactId>
