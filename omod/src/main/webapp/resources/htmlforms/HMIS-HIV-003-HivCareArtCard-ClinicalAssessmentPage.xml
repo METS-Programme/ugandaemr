@@ -485,7 +485,7 @@
 
                 jq('#11-removeEntry').remove();
                 jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
+                jq('#11-toggleDiagnosisContainer').show();
             });
 
 
@@ -616,10 +616,10 @@
                 jq('#1-toggleDiagnosisContainer').show();
                 jq('#11-removeEntry').remove();
                 jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
+                jq('#11-toggleDiagnosisContainer').show();
                 for (let x = 0; x&lt;= 10; x++) {
                 if (jq(this).find('#' +x+ '-problem-trigger').find("input[type$='text']").val()!='') {
-                jq(this).find('#' +x+ '-toggleContainer').show();
+                jq(this).find('#' +x+ '-toggleDiagnosisContainer').show();
                 jq(this).find('#' +x+ '-addEntry').hide();
             }
                 else {
@@ -4080,7 +4080,7 @@
                                         <repeat>
                                             <template>
                                                 <obsgroup groupingConceptId="159947">
-                                                    <div class="row visit-diagnosis" id="{id}-toggleContainer">
+                                                    <div class="row visit-diagnosis" id="{id}-toggleDiagnosisContainer">
                                                         <div class="col-md-3">
                                                             <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
                                                             <obs class="hidden" id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
