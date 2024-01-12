@@ -492,7 +492,10 @@
         jq(document).ready(function () {
             jq('.addEntry').on("click", function () {
                 var correctedAddButtonId = parseFloat(this.id) + 1;
-                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer";
+                var contentAddId = "#" + correctedAddButtonId + "-toggleContainer"
+                if (this.parentNode.parentNode.parentNode.classList.contains("visit-diagnosis")) {
+                    contentAddId= "#" + correctedAddButtonId + "-toggleDiagnosisContainer";
+                }
                 jq(contentAddId).toggle(true);
                 jq('#' + this.id).toggle(false);
                 jq('#' + parseFloat(this.id) + '-removeEntry').toggle(true);
@@ -504,6 +507,10 @@
             jq('.removeEntry').on("click", function () {
                 var correctedRemoveButtonId = parseFloat(this.id) - 1;
                 var contentAddId = "#" + parseFloat(this.id) + "-toggleContainer";
+
+                if (this.parentNode.parentNode.parentNode.classList.contains("visit-diagnosis")) {
+                    contentAddId= "#" + correctedAddButtonId + "-toggleDiagnosisContainer";
+                }
                 jq(contentAddId).toggle(false);
                 jq(':input:not(:button)', contentAddId).val([]);
                 jq('#' + correctedRemoveButtonId + '-addEntry').toggle(true);
@@ -4552,7 +4559,7 @@
                                                             <obsgroup groupingConceptId="160741">
                                                                 <div class="row multi-drug" id="{id}-toggleContainer">
                                                                     <div class="col-md-3">
-                                                                        <obs id="other-meds-trigger-{id}"
+                                                                        <obs id="{id}-drug"
                                                                              labelText="Drug" conceptId="1282"
                                                                              answerClasses="Drug" style="autocomplete"
                                                                              class="fullwidth drug-other"/>
