@@ -768,9 +768,10 @@
 
         jq('#indication-for-viral-load').hide();
 
-        jq(".investigations").find('#165412').change(function () {
-        if ( jq(".investigations").find('#165412').find(':checkbox').prop('checked')) {
+        jq(".molecular-investigation").find('#165412').change(function () {
+        if ( jq(".molecular-investigation").find('#165412').find(':checkbox').prop('checked')) {
                 jq('#indication-for-viral-load').show();
+                jq('date-viral-load-taken').find("input[type=hidden]").val(jq("#encounterDate").find("input[type=hidden]").val())
         } else {
                 jq('#indication-for-viral-load').hide();
         }
@@ -3894,9 +3895,18 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Molecular</label>
                                                                 <br/>
-                                                                <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
-                                                                    <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
-                                                                </repeat>
+                                                                <div class="row molecular-investigation">
+                                                                    <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
+                                                                        <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
+                                                                    </repeat>
+                                                                </div>
+
+                                                                <div class="row" id="indication-for-viral-load">
+                                                                    <div class="col-md-12">
+                                                                        <label>Indication for viral load testing</label>
+                                                                        <obs conceptId="168689" id="168689" style="checkbox"/>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
