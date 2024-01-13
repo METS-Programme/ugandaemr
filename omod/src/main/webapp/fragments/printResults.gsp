@@ -13,6 +13,11 @@
     });
 
     function organize(data) {
+        data.filter(function (d) {
+            if(["Numeric", "Coded", "Text","N/A"].includes(d["set"])){
+                return d["set"]=d["test"];
+            }
+        })
         var final = [];
         var investigations = data.map(function (d) {
             return d['investigation'];

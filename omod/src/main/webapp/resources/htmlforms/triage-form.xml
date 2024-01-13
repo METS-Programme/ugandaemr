@@ -426,7 +426,7 @@
             </div>
 
             <div class="col-4">
-                <div class="card" id="clinical-notes-poc">
+                <div class="card" id="clinical-notes-triage">
                     <div class="card-header">Clinical Notes</div>
                     <div class="card-body">
                         <obs conceptId="159395" rows="6" cols="60"/>
