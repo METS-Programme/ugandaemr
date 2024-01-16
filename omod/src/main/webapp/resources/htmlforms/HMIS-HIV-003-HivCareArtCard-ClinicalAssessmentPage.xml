@@ -771,7 +771,6 @@
         jq(".molecular-investigation").find('#165412').change(function () {
         if ( jq(".molecular-investigation").find('#165412').find(':checkbox').prop('checked')) {
                 jq('#indication-for-viral-load').show();
-                jq('date-viral-load-taken').find("input[type=hidden]").val(jq("#encounterDate").find("input[type=hidden]").val())
         } else {
                 jq('#indication-for-viral-load').hide();
         }
