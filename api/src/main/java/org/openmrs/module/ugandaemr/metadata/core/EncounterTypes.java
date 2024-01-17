@@ -530,4 +530,20 @@ public class EncounterTypes {
             return "591cba6a-5c5f-11ee-8c99-0242ac120002";
         }
     };
+    public static EncounterTypeDescriptor DEATH_NOTIFICATION = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "DEATH AND CERTIFICATION";
+        }
+
+        @Override
+        public String description() {
+            return "Notification of Death and Certification of Cause of Death";
+        }
+
+        public String uuid() {
+            return "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c";
+        }
+    };
+
 }

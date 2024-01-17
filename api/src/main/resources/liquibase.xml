@@ -230,7 +230,7 @@
 	</changeSet>
 	<changeSet id="ugandaemr-2023-12-13-1316" author="slubwama">
         <preConditions onFail="CONTINUE">
-            <sqlCheck expectedResult="1">
+            <sqlCheck expectedResult="0">
                 SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
             </sqlCheck>
 			<sqlCheck expectedResult="0">
