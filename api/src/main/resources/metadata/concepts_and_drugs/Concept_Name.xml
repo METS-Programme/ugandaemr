@@ -12881,4 +12881,8 @@
     <concept_name  concept_name_id="1719"  concept_id="5346"  name="HIV WASTING SYNDROME"  locale="en"  locale_preferred="0"  creator="1"  date_created="2004-08-12 00:00:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="df31e568-30ab-102d-86b0-7a5022ba4115" date_changed="2024-01-17 16:00:00"  changed_by="1"/>
     <concept_name  concept_name_id="1721"  concept_id="5348"  name="LYMPHOMA"  locale="en"  locale_preferred="0"  creator="1"  date_created="2004-08-12 00:00:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="df31eced-30ab-102d-86b0-7a5022ba4115" date_changed="2024-01-17 16:00:00"  changed_by="1"/>
     <concept_name  concept_name_id="1722"  concept_id="5349"  name="DISSEMINATED ATYPICAL MYCOBACTERIOSIS"  locale="en"  locale_preferred="0"  creator="1"  date_created="2004-08-12 00:00:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="df31f0d5-30ab-102d-86b0-7a5022ba4115" date_changed="2024-01-17 16:00:00"  changed_by="1"/>
+
+    <!--Void concept nanes of diagnosis-->
+    <concept_name  concept_name_id="3570"  concept_id="123"  name="FUNTIME"  locale="en"  locale_preferred="0"  creator="1"  date_created="2006-02-16 01:00:04" voided="0"  voided_by="1"  date_voided="2024-01-17 12:00:00"  void_reason="Not a diagnosis name"  uuid="df711ccd-30ab-102d-86b0-7a5022ba4115"  date_changed="2024-01-17 12:00:00"  changed_by="1"/>
+    <concept_name  concept_name_id="3870"  concept_id="123"  name="PRESUMED"  locale="en"  locale_preferred="0"  creator="1"  date_created="2006-02-16 01:00:04"  voided="0"  voided_by="1"  date_voided="2024-01-17 12:00:00" void_reason="Not a diagnosis name"  uuid="df7d98ba-30ab-102d-86b0-7a5022ba4115"  date_changed="2024-01-17 12:00:00"  changed_by="1"/>
 </dataset>
