@@ -225,10 +225,10 @@
                     return false;
                 }
 
-                var message1 = "Viral load copies can not be less than 1000";
+                var message1 = "Viral load copies can not be less than 200";
 
-                // Validate if Viral Load at Initiation not less than 1000
-                if (getValue("856_1" + '.value') &lt; 1000) {
+                // Validate if Viral Load at Initiation not less than 200
+                if (getValue("856_1" + '.value') &lt; 200) {
                     submitValStage.push(false);
                     getField("856_1" + '.error').html(message1).show();
                 }
