@@ -22,9 +22,18 @@
                 async: false,
                 success: function (response) {
                     serverResponse = response.results;
-                    jq().toastmessage('showSuccessToast', "Successfuly approved "+response.results.length+" Orders");
+
+                    if(response.orders && response.orders.length>0){
+                        response.orders.forEach(function (order){
+                            jq().toastmessage('showSuccessToast', "Successfuly approved "+order.concept.display);
+                        })
+
+                    }
                     jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
                     jq('#review-lab-test-dialog').modal("dispose");
+                    setTimeout(function(){
+                        window.location.reload();
+                    }, 6000);
                 },
                 error: function (response) {
                     console.log(response.responseJSON.error.message);
@@ -34,6 +43,11 @@
     });
 
     function organiseLabTest(data) {
+        data.filter(function (d) {
+            if(["Numeric", "Coded", "Text","N/A"].includes(d["set"])){
+                return d["set"]=d["test"];
+            }
+        })
         var final = [];
         var investigations = data.map(function (d) {
             return d['investigation'];

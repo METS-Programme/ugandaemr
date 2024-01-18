@@ -8,7 +8,7 @@
             encounterId: ${encounterId}
         }, function (response) {
             if (response.trim() !== "{}") {
-                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
+                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").replace("order=", "\"order\":").trim());
                 displayLabResult(responseData)
             }
         });
@@ -28,6 +28,11 @@
     });
 
     function organize(data) {
+        data.filter(function (d) {
+            if(["Numeric", "Coded", "Text","N/A"].includes(d["set"])){
+                return d["set"]=d["test"];
+            }
+        })
         var final = [];
         var investigations = data.map(function (d) {
             return d['investigation'];
@@ -71,7 +76,7 @@
             testId: testId
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").trim());
+                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
                 organize(responseData.data);
             } else if (!response) {
             }
@@ -79,49 +84,47 @@
     }
 </script>
 <section sectionTag="section" id="lab-results-tab" headerTag="h1">
-    <div id="printSection" class="print-only">
-        <center>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th width="50%" style="text-align: left">Test</th>
-                    <th width="15%" style="text-align: left">Result</th>
-                    <th width="15%" style="text-align: left">Units</th>
-                    <th width="15%" style="text-align: left">Reference Range</th>
-                </tr>
-                </thead>
-                <tbody data-bind="foreach: _items">
-                <tr>
-                    <td data-bind="foreach: sets">
-                        <table style="table-layout:fixed;">
-                            <thead>
-                            <th data-bind="text: name" style="text-align: left"></th>
-                            </thead>
-                            <tbody data-bind="foreach: data">
-                            <td width="50%"
-                                data-bind="text: '' + test" style="text-align: left"></td>
-                            <td width="15%" data-bind="text: value" style="text-align: left"></td>
-                            <td width="15%" data-bind="text: unit" style="text-align: left"></td>
-                            <td width="15%" style="text-align: left">
-                                <div data-bind="if: (lowNormal || hiNormal)">
-                                    <span data-bind="text: 'Adult/Male:' + lowNormal + '/' + hiNormal"></span>
-                                </div>
+    <div class="card" id="patient-report" style="margin-top: 5px; table-layout: fixed;">
+        <table style="width: 100%">
+            <thead style="width: 100%">
+            <th style="width: 25%">Test</th>
+            <th style="width: 25%">Result</th>
+            <th style="width: 25%">Reference Range</th>
+            <th style="width: 20%">Units</th>
+            </thead>
+        </table>
 
-                                <div data-bind="if: (lowCritical || lowCritical)">
-                                    <span data-bind="text: 'Female:' + lowCritical + '/' + hiCritical"></span>
-                                </div>
+        <div class="card-body" data-bind="foreach: _items">
+            <div class="row">
+                <div class="col-md-12" data-bind="foreach: sets">
+                    <div class="card" style="table-layout:fixed;">
+                        <div class="card-header">
+                                <label class="form-check-label" style="font-weight: bold" data-bind="attr : { 'for' : data[0].testId}"><span data-bind="text: name"></span></label>
+                        </div>
+                        <table data-bind="foreach: data" style="width: 100%">
+                            <tr style="width: 100%">
+                                <td data-bind="text: '' + test" style="width: 25%"></td>
+                                <td data-bind="text: value" style="width: 25%"></td>
+                                <td style="width: 25%">
+                                    <div data-bind="if: (lowNormal || hiNormal)">
+                                        <span data-bind="text: 'Normal:&nbsp;&nbsp;' + lowNormal + ' - ' + hiNormal"></span>
+                                    </div>
 
-                                <div data-bind="if: (lowAbsolute || hiAbsolute)">
-                                    <span data-bind="text: 'Child:' + lowAbsolute + '/' + hiAbsolute"></span>
-                                </div>
-                            </td>
-                            </tbody>
+                                    <div data-bind="if: (lowCritical || lowCritical)">
+                                        <span data-bind="text: 'Critical:&nbsp;&nbsp;' + lowCritical + ' - ' + hiCritical"></span>
+                                    </div>
+
+                                    <div data-bind="if: (lowAbsolute || hiAbsolute)">
+                                        <span data-bind="text: 'Absolute:&nbsp;&nbsp;' + lowAbsolute + ' - ' + hiAbsolute"></span>
+                                    </div>
+                                </td>
+                                <td data-bind="text: unit" style="width: 25%"></td>
+                            </tr>
                         </table>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 
