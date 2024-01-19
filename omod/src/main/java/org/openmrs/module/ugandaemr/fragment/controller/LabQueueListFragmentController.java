@@ -280,8 +280,8 @@ public class LabQueueListFragmentController {
                 Concept testGroupConcept = Context.getConceptService().getConcept(parentChildConceptIds[0]);
                 Concept testConcept = Context.getConceptService().getConcept(parentChildConceptIds[1]);
                 ugandaEMRService.addLaboratoryTestObservation(encounter, testConcept, testGroupConcept, result, test);
-                if (StringUtils.isNumeric(result)) {
-                    resultDisplay += testConcept.getName().getName() + "\t" + Context.getConceptService().getConcept(result).getName().getName() + "\n";
+                if (testConcept.getDatatype().isCoded()) {
+                    resultDisplay += testConcept.getName().getName() + "\t" + Context.getConceptService().getConcept(resultModel.getSelectedOption()).getDisplayString() + "\n";
                 } else {
                     resultDisplay += testConcept.getName().getName() + "\t" + result + "\n";
                 }

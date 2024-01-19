@@ -94,8 +94,8 @@
     <concept_numeric concept_id="165488" allow_decimal="1" />
 
     <!--TB-->
-    <concept_numeric  concept_id="165849" allow_decimal="0"/>
-    <concept_numeric  concept_id="165850" allow_decimal="0"/>
+    <concept_numeric  concept_id="165849" allow_decimal="1"/>
+    <concept_numeric  concept_id="165850" allow_decimal="1"/>
 
     <concept_numeric  concept_id="165880" allow_decimal="0"/>
     <concept_numeric  concept_id="165885" allow_decimal="0"/>
@@ -116,7 +116,7 @@
     <concept_numeric  concept_id="166205" units="mg/dL"  allow_decimal="1" />
     <concept_numeric  concept_id="166208" units="mg/dL"  allow_decimal="1" />
     <concept_numeric  concept_id="166209" units="mg/dL"  allow_decimal="1" />
-    <concept_numeric  concept_id="166202"  hi_absolute="14"  low_absolute="0"  units="pH" />
+    <concept_numeric  concept_id="166202"  hi_absolute="14"  allow_decimal="1" low_absolute="0"  units="pH" />
     <concept_numeric  concept_id="166211"  units="grav"  allow_decimal="0" />
 
 
