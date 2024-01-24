@@ -6520,5 +6520,11 @@
     <concept_name  concept_name_id="181433"  concept_id="169014"  name="Verification HIV Test"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-16 12:21:03"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="feb86d21-ba75-44bc-9df4-998296e11ed6"  date_changed="2024-01-16 12:27:17"  changed_by="1"/>
     <concept_name  concept_name_id="181434"  concept_id="169015"  name="Verification HIV Test Results"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-16 12:26:42"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="ce9623c7-5fd6-4975-b75d-f1736ce769d3"/>
 
+    <concept_name  concept_name_id="181435"  concept_id="169016"  name="Uganda Virus Rsearch Institute"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-23 08:27:18"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="99572d47-d16f-4fef-a96e-63e968438252"/>
+    <concept_name  concept_name_id="181436"  concept_id="169017"  name="Central Public Health Laboratory"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-23 08:28:21"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="33b0460c-bbe3-41e0-84a4-4dcad13df886"/>
+    <concept_name  concept_name_id="181437"  concept_id="169018"  name="HUB"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-23 08:30:00"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="3878734d-4fe0-4f98-8909-a28b5fa17a19"/>
+    <concept_name  concept_name_id="181438"  concept_id="169019"  name="Other Reference lab"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-23 08:31:38"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d25f87d9-d52f-4713-8e1d-76f2a9947d93"/>
+    <concept_name  concept_name_id="181439"  concept_id="169020"  name="Reference Laboratory"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-01-23 08:33:38"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="3266815c-415d-4209-a4c9-16aadf49ea3e"/>
+
 
 </dataset>
