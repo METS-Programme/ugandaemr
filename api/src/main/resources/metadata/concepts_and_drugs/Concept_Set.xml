@@ -5928,4 +5928,7 @@
     <concept_set  concept_set_id="6779"  concept_id="175255"  concept_set="175279"  sort_weight="6255"  creator="1"  date_created="2024-01-10 13:18:43"  uuid="674d136b-1665-4717-9c5a-64e534914019"/>
     <concept_set  concept_set_id="6780"  concept_id="175256"  concept_set="175279"  sort_weight="6256"  creator="1"  date_created="2024-01-10 13:18:43"  uuid="674d136b-1665-4717-9c5a-64e534914020"/>
 
+
+    <!--add Swab to samples types-->
+    <concept_set  concept_set_id="6782"  concept_id="166618"  concept_set="162476"  sort_weight="9"  creator="1"  date_created="2024-02-01 14:47:07"  uuid="c9d781f8-4d22-48b3-ae4e-a4c9e0937986"/>
 </dataset>

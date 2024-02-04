@@ -117,6 +117,11 @@
             });
 
             jq("#submit-schedule").click(function () {
+                if (jq("#refer_test").val() !== "" && jq("#reference_lab").val() === "") {
+                    jq().toastmessage('showErrorToast', "Specify the the Lab you are referring the  test to");
+                    return;
+                }
+
                 jq.get('${ ui.actionLink("scheduleTest") }', {
                     orderNumber: jq("#order_id").val().trim().toLowerCase(),
                     sampleId: jq("#sample_id").val().trim().toLowerCase(),
@@ -201,6 +206,7 @@
                 modal.find("#refer_test input[type=checkbox]").prop('checked', false);
             });
 
+
             jq('#reject-order-dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
                 var orderuuid = button.data('order-id');
@@ -217,6 +223,39 @@
                 modal.find("#goToURL").val(button.data('url'));
             })
         });
+
+        jq(".schedule-lab-orders-bulk").on(function () {
+            var parentElement = jq(this).parent();
+
+        });
+
+        function scheduleBulkOrders(queueId) {
+            var selectedOrders = []
+            jq("#schedule-lab-orders-bulk" + queueId).find("input[type=checkbox]:checked").each(function () {
+                selectedOrders.push(getOrderByOrderUuid(jq(this).val()));
+            });
+            getEditScheduleBulkTempLate(selectedOrders)
+        }
+
+        function getOrderByOrderUuid(uuid) {
+            var order = {};
+
+            jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order/" + uuid,
+                dataType: "json",
+                contentType: "application/json;",
+                async: false,
+                success: function (response) {
+                    if (response) {
+                      order = response;
+                    }
+                }
+            }).error(function (data, status, err) {
+                jq().toastmessage('showErrorToast', err);
+            });
+            return order;
+        }
 
         function reloadPending() {
             getPatientLabQueue();
@@ -359,7 +398,7 @@
         }
 
         jq.each(dataToDisplay, function (index, element) {
-                var orders = displayLabOrderData(element, true);
+                var orders = displayLabOrderData(element, element.patientQueueId, true);
                 if (orders !== null) {
                     var isPatientPicked = element.status === "PICKED";
                     var patientQueueListElement = element;
@@ -399,9 +438,10 @@
         jq("#pending-queue-lab-number").append("   " + pendingCounter);
     }
 
-    function displayLabOrderData(labQueueList, removeProccesedOrders) {
-        var header = "<table><thead></thead><tbody>";
-        var footer = "</tbody></table>";
+    function displayLabOrderData(labQueueList, queueId, removeProccesedOrders) {
+        var header = "<div id='schedule-lab-orders-bulk" + queueId + "'" + "><table><thead></thead><tbody>";
+        var footer = "</tbody></table>" +
+            "<br/><button onclick='scheduleBulkOrders(" + queueId + ")' class='confirm'>Schedule Selected</button>";
         var orderedTestsRows = "";
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 
@@ -409,6 +449,7 @@
             if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null) {
                 var urlTransferPatientToAnotherQueue = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.orderNumber);
                 orderedTestsRows += "<tr>";
+                orderedTestsRows += "<td><input type='checkbox' name='test-to-accession' value='" + element.orderUuid + "'/></td>";
                 orderedTestsRows += "<td>" + element.conceptName + "</td>";
                 orderedTestsRows += "<td>";
                 orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
@@ -619,6 +660,17 @@
         });
     }
 
+    function generateLabNumber(orderUuid) {
+        jq.get('${ ui.actionLink("generateLabNumber") }', {
+            orderUuid: orderUuid
+        }, function (response) {
+            if (response) {
+                var responseData = response.replace("{defaultSampleId=\"", "").replace("\"}", "").trim();
+                jq(".accession-number").val(responseData);
+            }
+        });
+    }
+
     function formatDateFromString(string_date) {
         var date = new Date(string_date);
         var monthNames = [
@@ -775,6 +827,7 @@ ${ui.includeFragment("ugandaemr", "lab/rejectTestDialogue")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
 ${ui.includeFragment("ugandaemr", "lab/scheduleTestDialogue")}
+${ui.includeFragment("ugandaemr", "lab/scheduleBulkTestDialogue")}
 </div>
 <% } %>
 
