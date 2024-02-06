@@ -3887,7 +3887,7 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Chemistry</label>
                                                                 <br/>
-                                                                <repeat with="['165850','FBS'],['165849','RBS'],['166522','LFT'],['166529','RFT'],['5473','SERUM ELECTROLYTES'],['1010','LIPID Profile'],['159644','HgbA1c'],['1013','Lipase'],['162630','Basic Metabolic Panel'],['160917','Alpha Fetoprotein'],['161518','Cardiac Profile'],['166405','Blood gas'],['161491','FSH'],['161506','Thyroid'],['160915','CEA'],['161512','Serum Iron'],['160226','G6PD'],['161516','Prolactin']">
+                                                                <repeat with="['165850','FBS'],['165849','RBS'],['166522','LFT'],['166529','RFT'],['5473','SERUM ELECTROLYTES'],['1010','LIPID Profile'],['159644','HBA1C'],['1013','Lipase'],['162630','Basic Metabolic Panel'],['160917','Alpha Fetoprotein'],['161518','Cardiac Profile'],['166405','Blood gas'],['161491','FSH'],['161506','Thyroid'],['160915','CEA'],['161512','Serum Iron'],['160226','G6PD'],['161516','Prolactin']">
                                                                     <obs id="{0}" conceptId="1071" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
                                                                 </repeat>
                                                             </div>
@@ -3913,7 +3913,7 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Microbiology</label>
                                                                 <br/>
-                                                                <repeat with="['161461','ZN STAIN'],['302','URINALYSIS'],['161451','Stool Test'],['32','Blood Slide'],['163625','Toxoplasma Panel'],['165416','TB LAM'],['161468','Semen Analysis'],['165414','TB Microscopy'],['161199','Cytology'],['32','Malarial Smear'],['159645','CSF Analysis'],['159981','TB Culture Construct'],['161458','Vaginal Swab'],['163722','Rapid test for HIV'],['161462','Skin snip'],['163652','Urethral fluid examination']">
+                                                                <repeat with="['161461','ZN STAIN'],['302','URINALYSIS'],['161451','Stool Analysis'],['32','Blood Slide'],['163625','Toxoplasma Panel'],['165416','TB LAM'],['161468','Semen Analysis'],['165414','TB Microscopy'],['161199','Cytology'],['32','Malarial Smear'],['159645','CSF Analysis'],['159981','TB Culture Construct'],['161458','Vaginal Swab'],['163722','Rapid test for HIV'],['161462','Skin snip'],['163652','Urethral fluid examination']">
                                                                     <obs id="{0}" conceptId="1081" answerConceptId="{0}" answerLabel="{1}"
                                                                          style="checkbox"/>
                                                                 </repeat>
@@ -3922,7 +3922,7 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Serology</label>
                                                                 <br/>
-                                                                <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['161474','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
+                                                                <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['1325','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
                                                                     <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}"
                                                                          style="checkbox"/>
                                                                 </repeat>

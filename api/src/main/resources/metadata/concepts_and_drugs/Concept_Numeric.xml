@@ -94,8 +94,8 @@
     <concept_numeric concept_id="165488" allow_decimal="1" />
 
     <!--TB-->
-    <concept_numeric  concept_id="165849" allow_decimal="1"/>
-    <concept_numeric  concept_id="165850" allow_decimal="1"/>
+    <concept_numeric  concept_id="165849" allow_decimal="1" hi_normal="5.6" low_normal="3.9" units="mmol/L"/>
+    <concept_numeric  concept_id="165850" allow_decimal="1" hi_normal="5.6" low_normal="3.9"  units="mmol/L"/>
 
     <concept_numeric  concept_id="165880" allow_decimal="0"/>
     <concept_numeric  concept_id="165885" allow_decimal="0"/>
@@ -388,8 +388,11 @@
     <concept_numeric  concept_id="167175"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
     <concept_numeric  concept_id="167176"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
     <concept_numeric  concept_id="167177"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
-    <concept_numeric  concept_id="159644"    allow_decimal="0"/>
-    <concept_numeric  concept_id="161153"    allow_decimal="0"/>
-    <concept_numeric  concept_id="163598"    allow_decimal="0"/>
-    <concept_numeric  concept_id="165927"    allow_decimal="0"/>
+    <concept_numeric  concept_id="159644"    allow_decimal="1"/>
+    <concept_numeric  concept_id="161153"    allow_decimal="1"/>
+    <concept_numeric  concept_id="163598"    allow_decimal="1"/>
+    <concept_numeric  concept_id="165927"    allow_decimal="1"/>
+
+
+    <concept_numeric  concept_id="5497"  hi_absolute="4000"    low_absolute="0"   units="Cells/ul"  allow_decimal="1"/>
 </dataset>

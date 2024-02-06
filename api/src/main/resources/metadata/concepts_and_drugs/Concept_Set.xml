@@ -623,6 +623,7 @@
     <concept_set  concept_set_id="1025"  concept_id="1031"  concept_set="161476"  sort_weight="2"  creator="1"  date_created="2012-12-28 19:22:12"  uuid="1025AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set  concept_set_id="1026"  concept_id="1029"  concept_set="161476"  sort_weight="0"  creator="1"  date_created="2012-12-28 19:22:12"  uuid="1026AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set  concept_set_id="1027"  concept_id="1619"  concept_set="161476"  sort_weight="1"  creator="1"  date_created="2012-12-28 19:22:12"  uuid="1027AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+
     <concept_set  concept_set_id="1028"  concept_id="1032"  concept_set="161476"  sort_weight="3"  creator="1"  date_created="2012-12-28 19:22:12"  uuid="1028AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set  concept_set_id="1093"  concept_id="160922"  concept_set="161509"  sort_weight="0"  creator="1"  date_created="2012-12-31 15:16:19"  uuid="1093AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
     <concept_set  concept_set_id="2834"  concept_id="165875"  concept_set="165877"  sort_weight="0"  creator="1"  date_created="2020-07-15 10:10:22"  uuid="b11a2518-eb7a-4316-b342-99e01a1c985a"/>
@@ -5928,6 +5929,9 @@
     <concept_set  concept_set_id="6779"  concept_id="175255"  concept_set="175279"  sort_weight="6255"  creator="1"  date_created="2024-01-10 13:18:43"  uuid="674d136b-1665-4717-9c5a-64e534914019"/>
     <concept_set  concept_set_id="6780"  concept_id="175256"  concept_set="175279"  sort_weight="6256"  creator="1"  date_created="2024-01-10 13:18:43"  uuid="674d136b-1665-4717-9c5a-64e534914020"/>
 
+    <concept_set  concept_set_id="6785"  concept_id="168137"  concept_set="175317"  sort_weight="1"  creator="1"  date_created="2024-02-05 22:10:32"  uuid="2f447ae7-1df7-4b07-9480-c385c83d167b"/>
+    <concept_set  concept_set_id="6784"  concept_id="168136"  concept_set="175317"  sort_weight="0"  creator="1"  date_created="2024-02-05 22:10:32"  uuid="3e61d2ec-5ab2-48e1-a633-9b9e843ad9de"/>
+    <concept_set  concept_set_id="6786"  concept_id="168564"  concept_set="175317"  sort_weight="2"  creator="1"  date_created="2024-02-05 22:10:32"  uuid="073df330-7f93-4508-a4ba-ef18f24935b7"/>
 
     <!--add Swab to samples types-->
     <concept_set  concept_set_id="6782"  concept_id="166618"  concept_set="162476"  sort_weight="9"  creator="1"  date_created="2024-02-01 14:47:07"  uuid="c9d781f8-4d22-48b3-ae4e-a4c9e0937986"/>

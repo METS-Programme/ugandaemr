@@ -224,11 +224,6 @@
             })
         });
 
-        jq(".schedule-lab-orders-bulk").on(function () {
-            var parentElement = jq(this).parent();
-
-        });
-
         function scheduleBulkOrders(queueId) {
             var selectedOrders = []
             jq("#schedule-lab-orders-bulk" + queueId).find("input[type=checkbox]:checked").each(function () {
