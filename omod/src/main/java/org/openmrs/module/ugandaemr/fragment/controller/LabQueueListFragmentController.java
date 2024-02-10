@@ -127,9 +127,8 @@ public class LabQueueListFragmentController {
             testOrder.setPreviousOrder(order);
             testOrder.setAction(Order.Action.REVISE);
             testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-            testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
+            testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceId));
             orderService.saveOrder(testOrder, null);
-            orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
         } else {
             orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", sampleId);
         }
