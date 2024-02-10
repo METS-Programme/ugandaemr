@@ -422,7 +422,7 @@
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null) {
+            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null && (element.orderClass==="LabSet" || element.orderClass==="Test") ) {
                 var urlTransferPatientToAnotherQueue = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.orderNumber);
                 orderedTestsRows += "<tr>";
                 orderedTestsRows += "<td><input type='checkbox' name='test-to-accession' value='" + element.orderUuid + "'/></td>";
@@ -446,7 +446,7 @@
     function noOfTests(labQueueList) {
         var orderCount = 0;
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null) {
+            if (element.accessionNumber === null && element.status === "active" && element.fulfillerStatus === null && (element.orderClass==="LabSet" || element.orderClass==="Test")) {
                 orderCount += 1;
             }
         });

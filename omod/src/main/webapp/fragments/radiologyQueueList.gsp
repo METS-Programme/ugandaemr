@@ -348,7 +348,7 @@
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active") {
+            if (removeProccesedOrders !== false && element.accessionNumber === null && element.status === "active" && element.orderClass==="Radiology/Imaging Procedure") {
                 var urlTransferPatientToAnotherQueue = 'patientqueue.showAddOrderToLabWorkLIstDialog("patientIdElement")'.replace("patientIdElement", element.orderNumber);
                 orderedTestsRows += "<tr>";
                 orderedTestsRows += "<td><input type='checkbox' value='" + element.orderId + "'/></td>";
@@ -373,7 +373,7 @@
     function noOfTests(labQueueList) {
         var orderCount = 0;
         jq.each(labQueueList.orderMapper, function (index, element) {
-            if (element.accessionNumber === null && element.status === "active") {
+            if (element.accessionNumber === null && element.status === "active" && element.orderClass==="Radiology/Imaging Procedure" ) {
                 orderCount += 1;
             }
         });

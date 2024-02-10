@@ -830,6 +830,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderMapper.setPatient(names.replace("null", ""));
             orderMapper.setOrderId(order.getOrderId());
             orderMapper.setEncounterId(order.getEncounter().getEncounterId());
+            orderMapper.setOrderClass(order.getConcept().getConceptClass().getName());
             if (order.isActive()) {
                 orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
             }
