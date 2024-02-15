@@ -112,10 +112,13 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
         Location location = Context.getLocationService().getLocationByUuid(locationParam);
 
         List<PatientQueueStatistic> statistics = new ArrayList<>();
-        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null, before, after, false);
-        getServiceAreaTags().forEach(locationTag -> {
+        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null, before, after, true);
+
+        for (LocationTag locationTag : getServiceAreaTags()) {
+
             PatientQueueStatistic patientQueueStatistic = new PatientQueueStatistic();
             patientQueueStatistic.setLocationTag(locationTag);
+            patientQueueStatistic.setUuid(locationTag.getUuid());
             patientQueueStatistic.setPending(0);
             patientQueueStatistic.setServing(0);
             patientQueueStatistic.setCompleted(0);
@@ -133,7 +136,7 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
                 }
             });
             statistics.add(patientQueueStatistic);
-        });
+        }
 
         return new NeedsPaging<PatientQueueStatistic>(statistics, context);
     }
@@ -176,6 +179,7 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
 
     /**
      * gets  a list of location tags which represent service areas
+     *
      * @return a list of tags of service locations
      */
     private List<LocationTag> getServiceAreaTags() {
@@ -183,7 +187,10 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
         List<String> locationTagUuid = Arrays.asList(Context.getAdministrationService()
                 .getGlobalProperty("patientqueueing.locationTagPatientQueueCategory").split(","));
         locationTagUuid.forEach(uuid -> {
-            locationTags.add(Context.getLocationService().getLocationTagByUuid(uuid));
+            LocationTag locationTag = Context.getLocationService().getLocationTagByUuid(uuid);
+            if (locationTag != null) {
+                locationTags.add(locationTag);
+            }
         });
         return locationTags;
     }

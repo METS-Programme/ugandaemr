@@ -8,11 +8,20 @@ import java.io.Serializable;
 import java.util.List;
 
 public class PatientQueueStatistic implements Serializable {
-    LocationTag locationTag;
 
+    String uuid;
+    LocationTag locationTag;
     Integer pending;
     Integer serving;
     Integer completed;
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public LocationTag getLocationTag() {
         return locationTag;
