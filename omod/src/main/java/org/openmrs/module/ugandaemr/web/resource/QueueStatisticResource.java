@@ -105,7 +105,7 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
             before = getDateFromString(context.getParameter("before"), "yyyy-MM-dd");
         }
 
-        if (context.getParameter("before") != null) {
+        if (context.getParameter("after") != null) {
             after = getDateFromString(context.getParameter("after"), "yyyy-MM-dd");
         }
 
