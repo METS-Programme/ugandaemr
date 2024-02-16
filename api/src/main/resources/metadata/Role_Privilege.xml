@@ -709,7 +709,6 @@
     <role_privilege  role="Reception"  privilege="Manage Laboratory"/>
     <role_privilege  role="Reception"  privilege="Queue Patients"/>
 
-
     <!--* TRIAGE ROLE *-->
     <!--role-role-->
     <role_role  parent_role="Base Role"  child_role="Triage"/>
@@ -722,8 +721,6 @@
     <role_privilege  role="Triage"  privilege="View completedQueue"/>
     <role_privilege  role="Triage"  privilege="View AverageWaitingTime"/>
     <role_privilege  role="Triage"  privilege="View vitalsAndBiometrics"/>
-
-
 
     <!--* CLINICIAN ROLE *-->
     <!--role-role-->
@@ -809,7 +806,6 @@
     <role_privilege  role="OPD Clinic"  privilege="Task: coreapps.markPatientDead"/>
     <role_privilege  role="OPD Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
     <role_privilege  role="OPD Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
-
 
     <!--* MCH Clinic *-->
     <!--role-role-->

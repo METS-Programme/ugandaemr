@@ -53,7 +53,7 @@ public class ApproveOrderResource extends DelegatingCrudResource<ApproveOrder> {
 
         ApproveOrder delegate = new ApproveOrder();
 
-        delegate.setOrder(orders);
+        delegate.setOrders(orders);
         if(orders.size()>0){
             delegate.setUuid(orders.get(0).getEncounter().getUuid());
         }

@@ -73,7 +73,6 @@ body {
 h5 {
     color: #FFF;
 }
-
 .btn-secondary {
     color: #5b0505;
     background-color: #4f0c0c;
@@ -216,8 +215,7 @@ h5 {
                 patientStatus: jq("#patient_status").val().trim().toLowerCase(),
                 visitComment: jq("#visit_comment").val().trim().toLowerCase()
             }, function (response) {
-                var responseData = JSON.parse(response.replace("patientTriageQueue=", "\"patientTriageQueue\":").trim())
-                printTriageRecord("printSection", responseData);
+                printTriageRecord("printSection", response);
                 jq("#add_patient_to_queue_dialog").modal('hide');
                 if (!response) {
                     ${ ui.message("coreapps.none ") }
