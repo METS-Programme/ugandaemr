@@ -326,7 +326,7 @@ h5 {
             };
         }
         jQuery.ajax(settings).done(function (data) {
-            if (data.hasOwnProperty('resourceType') && data.resourceType === "Bundle" && data.total > 0) {
+            if (data.hasOwnProperty('resourceType') && data.resourceType === "Bundle" && data.entry && data.entry.length>=0) {
                 patientTransferInData = data;
                 displayFhirData(data);
             } else {
@@ -412,7 +412,7 @@ h5 {
 
         if (patientResource.hasOwnProperty("identifier")) {
             jq.each(patientResource.identifier, function (index, element) {
-                if (element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
+                if (element.type && element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
                     identifiersToKeep.push(element)
                 }
             });
@@ -573,10 +573,28 @@ h5 {
             // show the client registry search link
             jq('#nhcr').show();
         }
-        if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")) {
-            // show the facility shr search link
+        function getEnabledUUID() {
+            var facility_shr = "0b7eb397-4488-4a88-9967-a054b3c26d6f";
+            var crossborder = "f2190cf4-2236-11ee-be56-0242ac120002";
+
+            if (checkProfileEnabled(facility_shr)) {
+                return facility_shr;
+            } else if (checkProfileEnabled(crossborder)) {
+                return crossborder;
+            } else {
+                return null; // Return null or some other value if neither is enabled
+            }
+        }
+        var selectedUUID = getEnabledUUID();
+        if (selectedUUID !== null) {
+            // Show the facility shr search link based on the selected UUID
             jq('#fshr').show();
         }
+
+        // if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")||checkProfileEnabled("f2190cf4-2236-11ee-be56-0242ac120002")) {
+        //     // show the facility shr search link
+        //     jq('#fshr').show();
+        // }
         jq("#advanced-search").click(function () {
             var surName = jq("#sur-name").val();
             var middleName = jq("#middle-name").val();
@@ -617,7 +635,8 @@ h5 {
             var middleName = jq("#middle-name").val();
             var givenName = jq("#given-name").val();
             var patientId = jq("#patientId").val();
-            var searchConfigs = getSearchConfigs("0b7eb397-4488-4a88-9967-a054b3c26d6f");
+            var searchConfigs = getSearchConfigs(getEnabledUUID());
+            console.log(searchConfigs)
             var searchParams = generateSearchParams("search-fhsr");
             var birthDate = null;
 
@@ -887,7 +906,7 @@ h5 {
         <div class="card card-body" id="search-fhsr">
             <div class="row">
                 <div class="col-3">
-                    <input type="text" id="sur-name" placeholder="First Name/Surname" autocomplete="off"/>
+                    <input type="text" id="sur-name" placeholder="Surname" autocomplete="off"/>
                 </div>
 
                 <div class="col-3">
