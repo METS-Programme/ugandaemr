@@ -311,6 +311,11 @@
         <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>patientqueueing.locationTagPatientQueueCategory</property>
+        <defaultValue>3e525526-cd66-46ad-96b3-224d46e75676,96be1b53-e65c-494b-be41-b36899cb5d09,c0e1d1d8-c97d-4869-ba16-68d351d3d5f5,303ab6e0-3844-11ee-be56-0242ac120002,7984dc1e-3848-11ee-be56-0242ac120002,fe7c970f-2aba-11ed-ba4a-507b9dea1806,89a80c4d-2899-11ed-bdcb-507b9dea1806</defaultValue>
+        <description>A comma separated list of location uuids for location tags where patients are served from</description>
+    </globalProperty>
 
     <globalProperty>
         <property>ugandaemr.labReferenceListBackLogDaysToDisplay</property>
