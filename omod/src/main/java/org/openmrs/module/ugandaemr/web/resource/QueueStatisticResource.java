@@ -98,7 +98,7 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
     @Override
     protected PageableResult doSearch(RequestContext context) {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        String locationParam = context.getParameter("parent");
+        String locationParam = context.getParameter("parentLocation");
         Date before = null;
         Date after = null;
         if (context.getParameter("before") != null) {
