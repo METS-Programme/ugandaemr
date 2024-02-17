@@ -110,9 +110,8 @@
             testId: testId
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
-                getPatientDetails(responseData.order);
-                organiseLabTest(responseData.data);
+                getPatientDetails(JSON.parse(response.order));
+                organiseLabTest(JSON.parse(response.data));
             } else if (!response) {
             }
         });

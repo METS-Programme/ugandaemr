@@ -244,7 +244,7 @@
     function groupOrderResultsByEncounter(data) {
         const groupedData = {"ordersList": []};
         let itemNo = 0;
-        data.ordersList.forEach((item, index) => {
+        data.forEach((item, index) => {
             const key = item.encounterId;
             let keyExists = false;
 
@@ -271,8 +271,7 @@
             date: date
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
-                displayLabOrderApproachB(groupOrderResultsByEncounter(responseData));
+                displayLabOrderApproachB(groupOrderResultsByEncounter(JSON.parse(response.ordersList)));
             }
         });
     }

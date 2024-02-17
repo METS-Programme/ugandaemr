@@ -317,7 +317,7 @@
     function groupOrderResultsByEncounter(data) {
         const groupedData = {"ordersList": []};
         let itemNo = 0;
-        data.ordersList.forEach((item, index) => {
+        data.forEach((item, index) => {
             const key = item.encounterId;
             let keyExists = false;
 
@@ -344,8 +344,7 @@
             date: date
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
-                displayLabOrderApproachB(groupOrderResultsByEncounter(responseData));
+                displayLabOrderApproachB(groupOrderResultsByEncounter(JSON.parse(response.ordersList)));
             }
         });
     }
@@ -374,7 +373,7 @@
         }
 
         jq.each(dataToDisplay, function (index, element) {
-                var orders = displayLabOrderData(element, true);
+                var orders = displayLabOrderData(element, element.patientQueueId, true);
                 if (orders !== null) {
                     var isPatientPicked = element.status === "PICKED";
                     var patientQueueListElement = element;
@@ -644,8 +643,7 @@
             orderUuid: orderUuid
         }, function (response) {
             if (response) {
-                var responseData = response.replace("{defaultSampleId=\"", "").replace("\"}", "").trim();
-                jq(".accession-number").val(responseData);
+                jq(".accession-number").val(JSON.parse(response.defaultSampleId));
             }
         });
     }

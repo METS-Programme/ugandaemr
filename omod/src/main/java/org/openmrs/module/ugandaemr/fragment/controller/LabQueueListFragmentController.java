@@ -13,6 +13,8 @@ import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderMapper;
+import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderModel;
 import org.openmrs.module.ugandaemr.api.lab.util.*;
 import org.openmrs.module.ugandaemr.utils.DateFormatUtil;
 import org.openmrs.ui.framework.SimpleObject;
@@ -125,9 +127,8 @@ public class LabQueueListFragmentController {
             testOrder.setPreviousOrder(order);
             testOrder.setAction(Order.Action.REVISE);
             testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-            testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
+            testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceId));
             orderService.saveOrder(testOrder, null);
-            orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
         } else {
             orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", sampleId);
         }
@@ -382,5 +383,42 @@ public class LabQueueListFragmentController {
             log.error(e);
         }
         return new Date();
+    }
+
+    public void scheduleTestOrderBulk(@BindParams("wrap") TestOrderModel testOrderMapper, UiSessionContext sessionContext) {
+        OrderService orderService = Context.getOrderService();
+        testOrderMapper.getTestOrderMappers().forEach(orderMapper -> {
+            Order order = orderService.getOrderByUuid(orderMapper.getOrderId());
+            if (!orderMapper.getInstructions().equals("")) {
+                TestOrder testOrder = new TestOrder();
+                testOrder.setAccessionNumber(orderMapper.getAccessionNumber());
+                testOrder.setInstructions("REFER TO " + orderMapper.getInstructions());
+                testOrder.setConcept(order.getConcept());
+                testOrder.setEncounter(order.getEncounter());
+                testOrder.setOrderer(order.getOrderer());
+                testOrder.setPatient(order.getPatient());
+                testOrder.setUrgency(Order.Urgency.STAT);
+                testOrder.setCareSetting(order.getCareSetting());
+                testOrder.setOrderType(order.getOrderType());
+                testOrder.setPreviousOrder(order);
+                testOrder.setAction(Order.Action.REVISE);
+                testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
+                testOrder.setSpecimenSource(Context.getConceptService().getConcept(orderMapper.getSpecimenSourceId()));
+                orderService.saveOrder(testOrder, null);
+                orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
+            } else {
+                orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", orderMapper.getAccessionNumber());
+            }
+        });
+    }
+
+    public SimpleObject generateLabNumber(@RequestParam(value = "orderUuid", required = false) String orderUuid) throws ParseException, IOException {
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("-","").replace("/","");
+        return SimpleObject.create("defaultSampleId", objectMapper.writeValueAsString(defaultSampleId));
     }
 }

@@ -126,8 +126,7 @@
             async: false
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
-                organize(responseData.data);
+                organize(response.data);
             } else if (!response) {
             }
         });

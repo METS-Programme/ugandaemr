@@ -105,8 +105,8 @@
             testId: testId
         }, function (response) {
             if (response) {
-                organizePatient(response);
-                organize(response);
+                organizePatient(JSON.parse(response.order));
+                organize(JSON.parse(response.data));
             } else if (!response) {
             }
         });
