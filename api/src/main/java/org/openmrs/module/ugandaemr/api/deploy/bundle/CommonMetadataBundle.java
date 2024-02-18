@@ -116,6 +116,9 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(LocationTags.ORGANIZATION);
         install(LocationTags.DEPARTMENT);
         install(LocationTags.CLINIC);
+        install(LocationTags.RECEPTION);
+        install(LocationTags.TRIAGE);
+        install(LocationTags.CLINICAL_ROOM);
         install(LocationTags.LABORATORY);
         install(LocationTags.MAIN_PHARMACY);
         install(LocationTags.THEATER);
