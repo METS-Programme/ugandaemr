@@ -97,7 +97,7 @@ public class LocationClinic {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
