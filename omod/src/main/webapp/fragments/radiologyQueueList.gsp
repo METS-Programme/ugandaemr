@@ -190,8 +190,7 @@
             labSearchFilter: jq("#patient-lab-search").val().trim().toLowerCase()
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("patientLabQueueList=", "\"patientLabQueueList\":").trim());
-                displayLabData(responseData);
+                displayLabData(response);
             } else if (!response) {
                 jq("#pending-queue-lab-table").append(${ ui.message("coreapps.none ") });
             }

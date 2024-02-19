@@ -129,9 +129,9 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
                     if (queue.getStatus().equals(PatientQueue.Status.PENDING)) {
                         patientQueueStatistic.setPending(patientQueueStatistic.getPending() + 1);
                     } else if (queue.getStatus().equals(PatientQueue.Status.PICKED)) {
-                        patientQueueStatistic.setPending(patientQueueStatistic.getServing() + 1);
+                        patientQueueStatistic.setServing(patientQueueStatistic.getServing() + 1);
                     } else if (queue.getStatus().equals(PatientQueue.Status.COMPLETED)) {
-                        patientQueueStatistic.setPending(patientQueueStatistic.getCompleted() + 1);
+                        patientQueueStatistic.setCompleted(patientQueueStatistic.getCompleted() + 1);
                     }
                 }
             });
