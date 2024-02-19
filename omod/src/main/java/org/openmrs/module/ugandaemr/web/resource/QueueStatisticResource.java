@@ -104,11 +104,11 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
         Date fromDate = null;
         Date toDate = null;
         if (context.getParameter("fromDate") != null) {
-            fromDate = OpenmrsUtil.getLastMomentOfDay(getDateFromString( context.getParameter("fromDate"), "yyyy-MM-dd"));
+            fromDate = OpenmrsUtil.firstSecondOfDay(getDateFromString( context.getParameter("fromDate"), "yyyy-MM-dd"));
         }
 
         if (context.getParameter("toDate") != null) {
-            toDate = OpenmrsUtil.firstSecondOfDay(getDateFromString(context.getParameter("toDate"), "yyyy-MM-dd"));
+            toDate = OpenmrsUtil.getLastMomentOfDay(getDateFromString(context.getParameter("toDate"), "yyyy-MM-dd"));
         }
 
         Location location = Context.getLocationService().getLocationByUuid(locationParam);
