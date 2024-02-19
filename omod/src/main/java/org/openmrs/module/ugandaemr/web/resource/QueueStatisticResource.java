@@ -112,7 +112,7 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
         Location location = Context.getLocationService().getLocationByUuid(locationParam);
 
         List<PatientQueueStatistic> statistics = new ArrayList<>();
-        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null, before, after, true);
+        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null,after, before, true);
 
         for (LocationTag locationTag : getServiceAreaTags()) {
 
@@ -123,18 +123,19 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
             patientQueueStatistic.setServing(0);
             patientQueueStatistic.setCompleted(0);
             patientQueueStatistic.setLocationTag(locationTag);
-
-            patientQueues.forEach(queue -> {
-                if (queue.getQueueRoom().getTags().contains(locationTag)) {
-                    if (queue.getStatus().equals(PatientQueue.Status.PENDING)) {
-                        patientQueueStatistic.setPending(patientQueueStatistic.getPending() + 1);
-                    } else if (queue.getStatus().equals(PatientQueue.Status.PICKED)) {
-                        patientQueueStatistic.setServing(patientQueueStatistic.getServing() + 1);
-                    } else if (queue.getStatus().equals(PatientQueue.Status.COMPLETED)) {
-                        patientQueueStatistic.setCompleted(patientQueueStatistic.getCompleted() + 1);
+            if (patientQueues != null) {
+                patientQueues.forEach(queue -> {
+                    if (queue.getQueueRoom().getTags().contains(locationTag)) {
+                        if (queue.getStatus().equals(PatientQueue.Status.PENDING)) {
+                            patientQueueStatistic.setPending(patientQueueStatistic.getPending() + 1);
+                        } else if (queue.getStatus().equals(PatientQueue.Status.PICKED)) {
+                            patientQueueStatistic.setServing(patientQueueStatistic.getServing() + 1);
+                        } else if (queue.getStatus().equals(PatientQueue.Status.COMPLETED)) {
+                            patientQueueStatistic.setCompleted(patientQueueStatistic.getCompleted() + 1);
+                        }
                     }
-                }
-            });
+                });
+            }
             statistics.add(patientQueueStatistic);
         }
 
