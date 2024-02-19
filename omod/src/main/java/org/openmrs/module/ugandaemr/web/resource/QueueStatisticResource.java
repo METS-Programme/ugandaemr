@@ -23,6 +23,8 @@ import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceD
 import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
+import org.openmrs.util.DateUtil;
+import org.openmrs.util.OpenmrsUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -99,20 +101,20 @@ public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueS
     protected PageableResult doSearch(RequestContext context) {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         String locationParam = context.getParameter("parentLocation");
-        Date before = null;
-        Date after = null;
-        if (context.getParameter("before") != null) {
-            before = getDateFromString(context.getParameter("before"), "yyyy-MM-dd");
+        Date fromDate = null;
+        Date toDate = null;
+        if (context.getParameter("fromDate") != null) {
+            fromDate = OpenmrsUtil.getLastMomentOfDay(getDateFromString( context.getParameter("fromDate"), "yyyy-MM-dd"));
         }
 
-        if (context.getParameter("after") != null) {
-            after = getDateFromString(context.getParameter("after"), "yyyy-MM-dd");
+        if (context.getParameter("toDate") != null) {
+            toDate = OpenmrsUtil.firstSecondOfDay(getDateFromString(context.getParameter("toDate"), "yyyy-MM-dd"));
         }
 
         Location location = Context.getLocationService().getLocationByUuid(locationParam);
 
         List<PatientQueueStatistic> statistics = new ArrayList<>();
-        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null,after, before, true);
+        List<PatientQueue> patientQueues = patientQueueingService.getPatientQueueByParentLocation(location, null,fromDate, toDate, true);
 
         for (LocationTag locationTag : getServiceAreaTags()) {
 
