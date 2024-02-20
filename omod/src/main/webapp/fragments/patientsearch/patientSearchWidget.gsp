@@ -73,6 +73,7 @@ body {
 h5 {
     color: #FFF;
 }
+
 .btn-secondary {
     color: #5b0505;
     background-color: #4f0c0c;
@@ -404,14 +405,15 @@ h5 {
         //Delete logical ID from another facility
 
         // Check if patient has National ID and keep it if found
-
-        patientResource.identifier.forEach(function (identifier, index) {
-            patientResource.identifier[index].id = uuidv4();
-        });
+        if (patientResource.identifier) {
+            patientResource.identifier.forEach(function (identifier, index) {
+                patientResource.identifier[index].id = uuidv4();
+            });
+        }
 
         if (patientResource.hasOwnProperty("identifier")) {
             jq.each(patientResource.identifier, function (index, element) {
-                if (element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
+                if (element.type && element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
                     identifiersToKeep.push(element)
                 }
             });
@@ -439,10 +441,12 @@ h5 {
             delete patientResource['text'];
         }
 
-        var numberOfIdentifiers = patientResource.identifier.length
-
-        patientResource.identifier.splice(0, numberOfIdentifiers);
-        patientResource.identifier = identifiersToKeep;
+        var numberOfIdentifiers = 0;
+        if (patientResource.identifier) {
+            numberOfIdentifiers = patientResource.identifier.length
+            patientResource.identifier.splice(0, numberOfIdentifiers);
+            patientResource.identifier = identifiersToKeep;
+        }
 
         return patientResource;
     }
@@ -573,10 +577,30 @@ h5 {
             // show the client registry search link
             jq('#nhcr').show();
         }
-        if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")) {
-            // show the facility shr search link
+
+        function getEnabledUUID() {
+            var facility_shr = "0b7eb397-4488-4a88-9967-a054b3c26d6f";
+            var crossborder = "f2190cf4-2236-11ee-be56-0242ac120002";
+
+            if (checkProfileEnabled(facility_shr)) {
+                return facility_shr;
+            } else if (checkProfileEnabled(crossborder)) {
+                return crossborder;
+            } else {
+                return null; // Return null or some other value if neither is enabled
+            }
+        }
+
+        var selectedUUID = getEnabledUUID();
+        if (selectedUUID !== null) {
+            // Show the facility shr search link based on the selected UUID
             jq('#fshr').show();
         }
+
+        // if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")||checkProfileEnabled("f2190cf4-2236-11ee-be56-0242ac120002")) {
+        //     // show the facility shr search link
+        //     jq('#fshr').show();
+        // }
         jq("#advanced-search").click(function () {
             var surName = jq("#sur-name").val();
             var middleName = jq("#middle-name").val();
@@ -617,7 +641,8 @@ h5 {
             var middleName = jq("#middle-name").val();
             var givenName = jq("#given-name").val();
             var patientId = jq("#patientId").val();
-            var searchConfigs = getSearchConfigs("0b7eb397-4488-4a88-9967-a054b3c26d6f");
+            var searchConfigs = getSearchConfigs(getEnabledUUID());
+            console.log(searchConfigs)
             var searchParams = generateSearchParams("search-fhsr");
             var birthDate = null;
 
