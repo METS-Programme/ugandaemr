@@ -404,7 +404,7 @@ h5 {
         //Delete logical ID from another facility
 
         // Check if patient has National ID and keep it if found
-        if (patientResource.identifier) {
+        if (patientResource.hasOwnProperty("identifier")) {
             patientResource.identifier.forEach(function (identifier, index) {
                 patientResource.identifier[index].id = uuidv4();
             });
@@ -412,11 +412,17 @@ h5 {
 
         if (patientResource.hasOwnProperty("identifier")) {
             jq.each(patientResource.identifier, function (index, element) {
-                if (element.type && element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
+                if (element.type && element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115" || element.type.coding[0].code === "e5e9a994-12e2-42c3-9c02-5abdc0fe40e8") {
                     identifiersToKeep.push(element)
                 }
             });
+            patientResource.identifier.splice(0, numberOfIdentifiers);
+            patientResource.identifier = identifiersToKeep;
+        }else {
+            patientResource['identifier']=identifiersToKeep;
+            patientResource.identifier.length;
         }
+
         if (patientResource.address) {
             patientResource.address.forEach(function (address, index) {
                 patientResource.address[index].id = uuidv4();
@@ -438,13 +444,6 @@ h5 {
 
         if (patientResource.hasOwnProperty("text")) {
             delete patientResource['text'];
-        }
-
-        var numberOfIdentifiers = 0;
-        if (patientResource.identifier) {
-            numberOfIdentifiers = patientResource.identifier.length
-            patientResource.identifier.splice(0, numberOfIdentifiers);
-            patientResource.identifier = identifiersToKeep;
         }
 
         return patientResource;
@@ -639,19 +638,10 @@ h5 {
         jq('#fshr').hide();
         jq('#nhcr').hide();
        var searchSource = getEnabledSearchableProfiles();
-        var selectedUUID = getEnabledUUID();
 
         setSearchSource(searchSource);
-       /*
-        if (checkProfileEnabled("84242661-aadf-42e4-9431-bf8afefb4433")) {
-             show the client registry search link
-         jq('#nhcr').show();
-        }
-        */
-
 
         if (searchSource.length>0) {
-            // Show the facility shr search link based on the selected UUID
             jq('#fshr').show();
         }
 
