@@ -416,11 +416,10 @@ h5 {
                     identifiersToKeep.push(element)
                 }
             });
-            patientResource.identifier.splice(0, numberOfIdentifiers);
+            patientResource.identifier.splice(0, patientResource.identifier.length);
             patientResource.identifier = identifiersToKeep;
         }else {
             patientResource['identifier']=identifiersToKeep;
-            patientResource.identifier.length;
         }
 
         if (patientResource.address) {
