@@ -293,7 +293,7 @@ h5 {
         var query = "?"
         var searchObject = "Patient";
 
-        if (searchConfigs.url.indexOf(searchObject) <= -1) {
+        if (searchConfigs.searchURL.indexOf(searchObject) <= -1) {
             query = "/" + searchObject + query
         }
 
@@ -304,7 +304,7 @@ h5 {
             query = query.replace("%s", searchParams);
         }
 
-        var url = searchConfigs.url + query;
+        var url = searchConfigs.searchURL + query;
         var settings = null;
 
         if (searchConfigs.urlUserName !== null && searchConfigs.urlUserName !== "") {
