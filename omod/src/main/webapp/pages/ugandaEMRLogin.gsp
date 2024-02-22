@@ -223,6 +223,7 @@
         background: #FFFFFB;
     }
     </style>
+    <script src="/${ui.contextPath()}/csrfguard" type="text/javascript"></script>
 </head>
 
 <body>
