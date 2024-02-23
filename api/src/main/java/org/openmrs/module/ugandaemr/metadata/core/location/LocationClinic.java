@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.openmrs.module.ugandaemr.metadata.core.location.LocationDepartments.OPD;
+import static org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization.PARENT;
 
 public class LocationClinic {
 
@@ -29,7 +30,7 @@ public class LocationClinic {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -62,7 +63,7 @@ public class LocationClinic {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -70,7 +71,8 @@ public class LocationClinic {
 
 			return Arrays.asList(
 					LocationTags.VISIT_LOCATION,
-					LocationTags.CLINIC
+					LocationTags.CLINIC,
+					LocationTags.LOGIN_LOCATION
 			);
 
 		}
@@ -95,7 +97,7 @@ public class LocationClinic {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -103,7 +105,8 @@ public class LocationClinic {
 
 			return Arrays.asList(
 					LocationTags.VISIT_LOCATION,
-					LocationTags.CLINIC
+					LocationTags.CLINIC,
+					LocationTags.LOGIN_LOCATION
 			);
 
 		}
@@ -128,7 +131,7 @@ public class LocationClinic {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -136,7 +139,8 @@ public class LocationClinic {
 
 			return Arrays.asList(
 					LocationTags.VISIT_LOCATION,
-					LocationTags.CLINIC
+					LocationTags.CLINIC,
+					LocationTags.LOGIN_LOCATION
 			);
 
 		}

@@ -25,6 +25,7 @@ public class DisplayLabResultsFragmentController {
 
     public void controller(@SpringBean FragmentModel pageModel, @RequestParam(value = "patientId", required = false) Patient patient) {
         pageModel.put("patientId", patient.getPatientId());
+        pageModel.put("patientUuid", patient.getUuid());
 
     }
 

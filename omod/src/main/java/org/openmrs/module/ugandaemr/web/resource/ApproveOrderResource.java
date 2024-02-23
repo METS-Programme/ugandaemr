@@ -46,14 +46,14 @@ public class ApproveOrderResource extends DelegatingCrudResource<ApproveOrder> {
         List<Order> orders=new ArrayList<>();
 
         String[] orderIds = propertiesToCreate.get("orders").toString().split(",");
-        for (Object orderNumber : orderIds) {
-            Order test = orderService.getOrder(Integer.parseInt(orderNumber.toString()));
+        for (String uuid : orderIds) {
+            Order test = orderService.getOrderByUuid(uuid);
             orders.add(orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, test.getFulfillerComment()));
         }
 
         ApproveOrder delegate = new ApproveOrder();
 
-        delegate.setOrder(orders);
+        delegate.setOrders(orders);
         if(orders.size()>0){
             delegate.setUuid(orders.get(0).getEncounter().getUuid());
         }

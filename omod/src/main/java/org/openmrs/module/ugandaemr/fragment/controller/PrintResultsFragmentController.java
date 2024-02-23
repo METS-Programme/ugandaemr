@@ -16,44 +16,56 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * Created by Francis on 2/3/2016.
  */
 public class PrintResultsFragmentController {
 
-	public void controller(UiSessionContext sessionContext, FragmentModel model) {
+    public void controller(UiSessionContext sessionContext, FragmentModel model) {
 
-		sessionContext.requireAuthentication();
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		String dateStr = sdf.format(new Date());
-		model.addAttribute("currentDate", dateStr);
-		model.put("currentProvider", sessionContext.getCurrentProvider());
-		model.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("ugandaemr.healthCenterName"));
-	}
+        sessionContext.requireAuthentication();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String dateStr = sdf.format(new Date());
+        model.addAttribute("currentDate", dateStr);
+        model.put("currentProvider", sessionContext.getCurrentProvider());
+        model.addAttribute("healthCenter", Context.getAdministrationService().getGlobalProperty("ugandaemr.healthCenterName"));
+    }
 
-	/**
-	 * Getting Results
-	 *
-	 * @param testId
-	 * @param ui
-	 * @return
-	 */
-	public SimpleObject getResults(@RequestParam(value = "testId") Integer testId, UiUtils ui) throws IOException {
-		if (testId != null) {
-			Order labTest = Context.getOrderService().getOrder(testId);
-			UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+    /**
+     * Getting Results
+     *
+     * @param testId
+     * @param ui
+     * @return
+     */
+    public SimpleObject getResults(@RequestParam(value = "testId") String testId, UiUtils ui) throws IOException {
+        if (testId != null) {
+            Order labTest = null;
 
-			ObjectMapper objectMapper = new ObjectMapper();
-			Set<TestResultModel> trms = ugandaEMRService.renderTests(labTest);
+            if (isInteger(testId)) {
+                labTest = Context.getOrderService().getOrder(Integer.parseInt(testId));
+            } else {
+                labTest = Context.getOrderService().getOrderByUuid(testId);
+            }
 
-			List<SimpleObject> results = SimpleObject.fromCollection(trms, ui, "investigation", "set", "test", "value",
-			    "hiNormal", "lowNormal", "lowAbsolute", "hiAbsolute", "hiCritical", "lowCritical", "unit", "level",
-			    "concept", "encounterId", "testId");
+            ObjectMapper objectMapper = new ObjectMapper();
+            Set<TestResultModel> trms =Context.getService(UgandaEMRService.class).renderTests(labTest);
 
-			SimpleObject currentResults = SimpleObject.create("data", objectMapper.writeValueAsString(results),"order",objectMapper.writeValueAsString(labTest.getUuid()));
-			return currentResults;
-		}
-		return null;
-	}
+            List<SimpleObject> results = SimpleObject.fromCollection(trms, ui, "investigation", "set", "test", "value",
+                    "hiNormal", "lowNormal", "lowAbsolute", "hiAbsolute", "hiCritical", "lowCritical", "unit", "level",
+                    "concept", "encounterId", "testId","orderdate");
+
+            SimpleObject currentResults = SimpleObject.create("data", objectMapper.writeValueAsString(results), "order", objectMapper.writeValueAsString(labTest.getUuid()));
+            return currentResults;
+        }
+        return null;
+    }
+
+    public static boolean isInteger(String s) {
+        String regex = "^-?\\d+$";
+        Pattern pattern = Pattern.compile(regex);
+        return pattern.matcher(s).matches();
+    }
 }
