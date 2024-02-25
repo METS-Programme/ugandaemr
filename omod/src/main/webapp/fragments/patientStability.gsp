@@ -4,7 +4,7 @@ img {
     height: auto;
 }
 </style>
-
+<% if (enableCliniciansMakeStabilityDecisions == "false") { %>
 <div>
     <div class="stability">
         <div id="vl">${vlObs?.valueNumeric ?: ""}</div>
@@ -48,4 +48,5 @@ img {
     </div>
     <obs class="horizontal" conceptId="5090" labelText="Height"
          showUnits="uicommons.units.centimeters" unitsCssClass="append-to-value"/>
+    <% } %>
 </div>
