@@ -1,7 +1,7 @@
 DROP PROCEDURE IF EXISTS `generateRandomNames`;
 
 DROP FUNCTION IF EXISTS openmrs.randomString;
-CREATE DEFINER=`root`@`localhost` FUNCTION `randomString`($length int) RETURNS varchar(128) CHARSET utf8
+CREATE DEFINER=`openmrs`@`localhost` FUNCTION `randomString`($length int) RETURNS varchar(128) CHARSET utf8
   BEGIN
 
     SET @chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -18,7 +18,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `randomString`($length int) RETURNS v
 
 
 DELIMITER $$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `generateRandomNames`()
+CREATE DEFINER=`openmrs`@`localhost` PROCEDURE `generateRandomNames`()
   BEGIN
 
     DROP  table if exists names ;
