@@ -14,12 +14,15 @@ jobs:
 
       # Check out the code
       - uses: actions/checkout@v2
-      
-      - name: Set up Maven
-        uses: s4u/setup-maven-action@v1.2.1
+
+        # Enable caching of Maven dependencies to speed up job execution.  See https://github.com/actions/cache
+      - uses: actions/cache@v1
         with:
-          java-version: 8
-          maven-version: 3.8.7
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+        # Set up Java 1.8 with Maven including a .m2/settings.xml file.  See https://github.com/actions/setup-java
       - name: Set up JDK 1.8 and Maven settings file
         uses: actions/setup-java@v1
         with:

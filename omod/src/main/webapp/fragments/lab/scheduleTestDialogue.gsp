@@ -15,7 +15,6 @@
                 var button = jq(event.relatedTarget);
                 var orderNumber = button.data('order-number');
                 var orderId = button.data('orderId');
-                var orderUuid = button.data('orderId');
                 var order;
                 if (orderId !== "") {
                     order = getOrderByOrderUuid(orderId)
@@ -26,7 +25,7 @@
                 modal.find("#order_id").val(orderNumber);
                 modal.find("#patient-queue-id").val(patientQueueId);
                 modal.find("#unprocessed-orders").val(unProcessed);
-                if (order !== null && Object.keys(order).length > 0 && order.constructor === Object) {
+                if (order !== null) {
                     modal.find("#sample_id").val(order.accessionNumber);
                     if (order.specimenSource != null) {
                         modal.find("#specimen_source_id").val(order.specimenSource.uuid);

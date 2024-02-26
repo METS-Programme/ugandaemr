@@ -129,12 +129,8 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
             // install concepts
             DataImporter dataImporter = Context.getRegisteredComponent("dataImporter", DataImporter.class);
 
-            log.info("Start import of Custom Concepts");
-            dataImporter.importData("metadata/Custom_Concepts.xml");
-            dataImporter.importData("metadata/CIEL_Concepts.xml");
-            dataImporter.importData("metadata/Drug_Concepts.xml");
-            dataImporter.importData("metadata/Concept_Mbarara.xml");
-            log.info("Custom Concepts imported");
+            log.info("Start import of Concepts");
+            importConcepts(dataImporter);
 
             log.info("Start import of person attributes");
             // TODO: Replace this with metadata deploy to be consistent with other person attribute types
@@ -201,6 +197,44 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         }
 
 
+    }
+
+    private void importConcepts(DataImporter dataImporter){
+        log.info("import  to Concept Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept.xml");
+        log.info("import to Concept Table  Successful");
+
+        log.info("import  to Concept Name Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Name.xml");
+        log.info("import to Concept Name Table  Successful");
+
+        log.info("import  to Concept_Description Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Description.xml");
+        log.info("import to Concept_Description Table  Successful");
+
+        log.info("import  to Concept_Numeric Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Numeric.xml");
+        log.info("import to Concept_Numeric Table  Successful");
+
+        log.info("import  to Concept_Answer Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Answer.xml");
+        log.info("import to Concept_Answer Table  Successful");
+
+        log.info("import  to Concept_Set Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Set.xml");
+        log.info("import to Concept_Set Table  Successful");
+
+        log.info("import  to Concept_Reference Table  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Reference.xml");
+        log.info("import to Concept_Reference Table  Successful");
+
+        log.info("import  of  Concept Modifications Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Concept_Modifications.xml");
+        log.info("import to Concept Modifications Table  Successful");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/Drug.xml");
+        log.info("import of Drugs  Successful");
     }
 
     /**

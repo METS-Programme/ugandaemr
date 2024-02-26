@@ -483,5 +483,67 @@ public class EncounterTypes {
             return "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4";
         }
     };
+    public static EncounterTypeDescriptor INTER_FACILITY_LINKAGE_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Facility Linkage Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Facility Linkage Encounter";
+        }
+
+        public String uuid() {
+            return "786c576b-b70f-4235-93ea-fbce1a3f38c4";
+        }
+    };
+
+    public static EncounterTypeDescriptor MOBILITY_SCREENING = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Mobility Screening  Encounter";
+        }
+
+        @Override
+        public String description() {
+            return "Mobility Screening Encounter";
+        }
+
+        public String uuid() {
+            return "b57e1835-4ee2-47fa-9569-c700c39c169a";
+        }
+    };
+
+    public static EncounterTypeDescriptor FAMILY_TRACKING = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "ART Card - Family Tracking";
+        }
+
+        @Override
+        public String description() {
+            return "This encounter supports tracking family members of a patient";
+        }
+
+        public String uuid() {
+            return "591cba6a-5c5f-11ee-8c99-0242ac120002";
+        }
+    };
+    public static EncounterTypeDescriptor DEATH_NOTIFICATION = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "DEATH AND CERTIFICATION";
+        }
+
+        @Override
+        public String description() {
+            return "Notification of Death and Certification of Cause of Death";
+        }
+
+        public String uuid() {
+            return "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c";
+        }
+    };
 
 }

@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="row">
                                    <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Date</label>
                             <encounterDate default="today" disallowMultipleEncountersOnDate="block"/>
                             <span style="display: none;">
@@ -51,93 +51,19 @@
                                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                             </span>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Nationality:</label>
                             <obs id="166280" conceptId="166280" />
                         </div>
-                                       <div class="col-md-3">
-                                           <label>Place of Residence:</label> <obs id="90265" conceptId="90265" />
-                                       </div>
-
-                                       <div class="col-md-3">
+                        <div class="col-md-4">
                             <label>Service:</label> <obs id="160288" conceptId="160288" />
                         </div>
 
-
                     </div>
 
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">Target Population</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="162277"
-                                         answerLabel="1 - Prisoners" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="160666" answerLabel="2 - PWIDs"
-                                         style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="165125"
-                                         answerLabel="3 - Uniformed Men" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="165126"
-                                         answerLabel="4 - Migrant workers" style="checkbox"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="162198"
-                                         answerLabel="5 - Truckers" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="159674"
-                                         answerLabel="6 - Fisher Folks" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="165127"
-                                         answerLabel="7 - Refugees" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="90041"
-                                         answerLabel="8 - Pregnant" style="checkbox"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="99601"
-                                         answerLabel="9 - Breastfeeding" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="165132" answerLabel="10 - AGYW"
-                                         style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" answerConceptId="162558"
-                                         answerLabel="11 - People with Disabilities" style="checkbox"/>
-                                </div>
-                                <div class="col-md-3">
-                                    <obs conceptId="165169" id="165169" answerConceptId="90002"
-                                         answerLabel="12 - Others (specify)" style="checkbox"/>
-
-                                    <obs id="165184" conceptId="165184"
-                                         class="ARTSpecialCateogryEnableDisableChild1"/>
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="row">
                 <div class="col-md-12">
@@ -158,6 +84,9 @@
 
                             </div>
                             <div class="row">
+                                <div class="col-md-4">
+                                    <label>Target Population:</label> <obs id="165169" conceptId="165169" />
+                                </div>
                                 <div class="col-md-4">
                                     <label>Days Spent in another Country:</label><obs id="168766" conceptId="168766" />
                                 </div>

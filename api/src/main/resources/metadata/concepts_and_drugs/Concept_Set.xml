@@ -5935,4 +5935,13 @@
 
     <!--add Swab to samples types-->
     <concept_set  concept_set_id="6782"  concept_id="166618"  concept_set="162476"  sort_weight="9"  creator="1"  date_created="2024-02-01 14:47:07"  uuid="c9d781f8-4d22-48b3-ae4e-a4c9e0937986"/>
+
+    <!--merge-->
+    <concept_set  concept_set_id="6802"  concept_id="1343"  concept_set="1114"  sort_weight="2"  creator="1"  date_created="2023-09-29 07:08:55"  uuid="53588689-701a-4250-8cf7-6ae8fba33112"/>
+    <concept_set  concept_set_id="6803"  concept_id="5085"  concept_set="1114"  sort_weight="2"  creator="1"  date_created="2023-09-29 06:52:36"  uuid="32948426-aace-4a28-bb52-8e01019abb6d"/>
+    <!-- Vitals concept set -->
+    <concept_set  concept_set_id="6804"  concept_id="163597"  concept_set="1114"  sort_weight="14"  creator="1"  date_created="2023-11-03 12:29:09"  uuid="04909ed8-7bd4-43a2-b03a-ed5bdd3573e0"/>
+
+    <concept_set  concept_set_id="6805"  concept_id="141520"  concept_set="175332"  sort_weight="1"  creator="1"  date_created="2024-01-16 11:35:31"  uuid="e014d78e-1954-412b-9d7c-9d2d410c058b"/>
+    <concept_set  concept_set_id="6806"  concept_id="169015"  concept_set="175332"  sort_weight="0"  creator="1"  date_created="2024-01-16 12:27:17"  uuid="189a646b-6d02-4f94-897d-fb2ac8a68e6d"/>
 </dataset>

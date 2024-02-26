@@ -8,6 +8,7 @@ import java.util.List;
 
 import static org.openmrs.module.ugandaemr.metadata.core.location.LocationClinic.ART_CLINIC;
 import static org.openmrs.module.ugandaemr.metadata.core.location.LocationDepartments.OPD;
+import static org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization.PARENT;
 
 public class LocationServiceArea {
 	public static LocationDescriptor TRIAGE = new LocationDescriptor(){
@@ -29,7 +30,7 @@ public class LocationServiceArea {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -64,7 +65,7 @@ public class LocationServiceArea {
 
 		@Override
 		public LocationDescriptor parent() {
-			return OPD;
+			return PARENT;
 		}
 
 		@Override
@@ -99,7 +100,7 @@ public class LocationServiceArea {
 
 		@Override
 		public LocationDescriptor parent() {
-			return ART_CLINIC;
+			return PARENT;
 		}
 
 		@Override
@@ -107,7 +108,8 @@ public class LocationServiceArea {
 
 			return Arrays.asList(
 					LocationTags.VISIT_LOCATION,
-					LocationTags.QUEUE_ROOM
+					LocationTags.QUEUE_ROOM,
+					LocationTags.LOGIN_LOCATION
 			);
 
 		}

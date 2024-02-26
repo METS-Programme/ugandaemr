@@ -1,13 +1,17 @@
 package org.openmrs.module.ugandaemr.pharmacy.mapper;
 
 import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
+import org.openmrs.module.ugandaemr.api.queuemapper.Identifier;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 public class PharmacyMapper extends PatientQueueMapper implements Serializable {
 
     Integer visitId;
+
+    List<Identifier> patientIdentifier;
 
     private String patientQueueUuid;
 
@@ -48,5 +52,13 @@ public class PharmacyMapper extends PatientQueueMapper implements Serializable {
 
     public void setEncounterUuid(String encounterUuid) {
         this.encounterUuid = encounterUuid;
+    }
+
+    public List<Identifier> getPatientIdentifier() {
+        return patientIdentifier;
+    }
+
+    public void setPatientIdentifier(List<Identifier> patientIdentifier) {
+        this.patientIdentifier = patientIdentifier;
     }
 }

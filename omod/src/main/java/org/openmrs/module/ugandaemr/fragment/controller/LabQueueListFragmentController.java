@@ -13,6 +13,8 @@ import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
+import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderMapper;
+import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderModel;
 import org.openmrs.module.ugandaemr.api.lab.util.*;
 import org.openmrs.module.ugandaemr.utils.DateFormatUtil;
 import org.openmrs.ui.framework.SimpleObject;
@@ -111,24 +113,25 @@ public class LabQueueListFragmentController {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
         Order order = orderService.getOrderByOrderNumber(orderNumber);
 
-        TestOrder testOrder = new TestOrder();
-        testOrder.setAccessionNumber(sampleId);
         if (referenceLab != "") {
+            TestOrder testOrder = new TestOrder();
+            testOrder.setAccessionNumber(sampleId);
             testOrder.setInstructions("REFER TO " + referenceLab);
+            testOrder.setConcept(order.getConcept());
+            testOrder.setEncounter(order.getEncounter());
+            testOrder.setOrderer(order.getOrderer());
+            testOrder.setPatient(order.getPatient());
+            testOrder.setUrgency(Order.Urgency.STAT);
+            testOrder.setCareSetting(order.getCareSetting());
+            testOrder.setOrderType(order.getOrderType());
+            testOrder.setPreviousOrder(order);
+            testOrder.setAction(Order.Action.REVISE);
+            testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
+            testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceId));
+            orderService.saveOrder(testOrder, null);
+        } else {
+            orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", sampleId);
         }
-        testOrder.setConcept(order.getConcept());
-        testOrder.setEncounter(order.getEncounter());
-        testOrder.setOrderer(order.getOrderer());
-        testOrder.setPatient(order.getPatient());
-        testOrder.setUrgency(Order.Urgency.STAT);
-        testOrder.setCareSetting(order.getCareSetting());
-        testOrder.setOrderType(order.getOrderType());
-        testOrder.setPreviousOrder(order);
-        testOrder.setAction(Order.Action.REVISE);
-        testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-        testOrder.setSpecimenSource(Context.getConceptService().getConcept(specimenSourceId));
-        orderService.saveOrder(testOrder, null);
-        orderService.updateOrderFulfillerStatus(order, null, null, "");
 
         if (unProcessedOrders.equals(1)) {
             patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueById(patientQueueId));
@@ -149,11 +152,17 @@ public class LabQueueListFragmentController {
         ObjectMapper objectMapper = new ObjectMapper();
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
 
-        List<OrderObs> orderObs = ugandaEMRService.getOrderObs(null, null, new Date(), null, null, false);
-        Set<Order> orders=new HashSet<>();
+        Date fromDate = new Date();
+        if (!asOfDate.isEmpty()) {
+            fromDate = getDateFromString(asOfDate, "yyyy-MM-dd");
+        }
+        List<OrderObs> orderObs = ugandaEMRService.getOrderObs(null, null, fromDate, null, null, false);
+        Set<Order> orders = new HashSet<>();
 
         orderObs.forEach(orderObs1 -> {
-            orders.add(orderObs1.getOrder());
+            if (orderObs1.getOrder().getConcept().getConceptClass().getName().equals(LAB_SET_CLASS) || orderObs1.getOrder().getConcept().getConceptClass().getName().equals(TEST_SET_CLASS)) {
+                orders.add(orderObs1.getOrder());
+            }
         });
 
         simpleObject.put("ordersList", objectMapper.writeValueAsString(ugandaEMRService.processOrders(orders, true)));
@@ -209,6 +218,9 @@ public class LabQueueListFragmentController {
 
     public List<SimpleObject> getResultTemplate(@RequestParam("testId") String testId, UiUtils ui) {
         Order test = Context.getOrderService().getOrderByUuid(testId);
+        if (test == null) {
+            test = Context.getOrderService().getOrder(Integer.parseInt(testId));
+        }
         List<ParameterModel> parameters = new ArrayList<ParameterModel>();
         LaboratoryUtil.generateParameterModels(parameters, test.getConcept(), null, test);
         //Collections.sort(parameters);
@@ -254,6 +266,10 @@ public class LabQueueListFragmentController {
 
         Order test = orderService.getOrderByUuid(resultWrapper.getTestId());
 
+        if (test == null) {
+            test = orderService.getOrder(Integer.parseInt(resultWrapper.getTestId()));
+        }
+
         Encounter encounter = test.getEncounter();
         for (ResultModel resultModel : resultWrapper.getResults()) {
             result = resultModel.getSelectedOption() == null ? resultModel.getValue() : resultModel.getSelectedOption();
@@ -265,8 +281,8 @@ public class LabQueueListFragmentController {
                 Concept testGroupConcept = Context.getConceptService().getConcept(parentChildConceptIds[0]);
                 Concept testConcept = Context.getConceptService().getConcept(parentChildConceptIds[1]);
                 ugandaEMRService.addLaboratoryTestObservation(encounter, testConcept, testGroupConcept, result, test);
-                if (StringUtils.isNumeric(result)) {
-                    resultDisplay += testConcept.getName().getName() + "\t" + Context.getConceptService().getConcept(result).getName().getName() + "\n";
+                if (testConcept.getDatatype().isCoded()) {
+                    resultDisplay += testConcept.getName().getName() + "\t" + Context.getConceptService().getConcept(resultModel.getSelectedOption()).getDisplayString() + "\n";
                 } else {
                     resultDisplay += testConcept.getName().getName() + "\t" + result + "\n";
                 }
@@ -279,8 +295,7 @@ public class LabQueueListFragmentController {
 
         encounter = encounterService.saveEncounter(encounter);
         try {
-            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, "Completed with results: " + resultDisplay);
-            orderService.discontinueOrder(test, "Completed", new Date(), provider, test.getEncounter());
+            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.IN_PROGRESS, "Completed with results: " + resultDisplay);
             saveOrderObservations(encounter);
             sendPatientBackToClinician(encounter, encounter.getLocation(), sessionContext.getSessionLocation(), QUEUE_STATUS_SENT_TO_LAB);
         } catch (Exception e) {
@@ -288,6 +303,18 @@ public class LabQueueListFragmentController {
         }
         return SimpleObject.create("status", "success", "message", "Saved!");
     }
+
+    public SimpleObject approveResults(@RequestParam(value = "orders") String orders) {
+        OrderService orderService = Context.getOrderService();
+
+        String[] orderIds = orders.split(",");
+        for (Object orderNumber : orderIds) {
+            Order test = orderService.getOrder(Integer.parseInt(orderNumber.toString()));
+            orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.COMPLETED, test.getFulfillerComment());
+        }
+        return SimpleObject.create("status", "success", "message", "Approved!");
+    }
+
 
     private void saveOrderObservations(Encounter encounter) {
         encounter.getAllObs().stream().filter(obs -> obs.getOrder() != null).forEach(obs -> {
@@ -344,5 +371,54 @@ public class LabQueueListFragmentController {
         }
 
         return patientQueue;
+    }
+
+
+    private Date getDateFromString(String dateString, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
+        try {
+            // Parse the string and convert it to a Date object
+            return dateFormat.parse(dateString);
+        } catch (Exception e) {
+            log.error(e);
+        }
+        return new Date();
+    }
+
+    public void scheduleTestOrderBulk(@BindParams("wrap") TestOrderModel testOrderMapper, UiSessionContext sessionContext) {
+        OrderService orderService = Context.getOrderService();
+        testOrderMapper.getTestOrderMappers().forEach(orderMapper -> {
+            Order order = orderService.getOrderByUuid(orderMapper.getOrderId());
+            if (!orderMapper.getInstructions().equals("")) {
+                TestOrder testOrder = new TestOrder();
+                testOrder.setAccessionNumber(orderMapper.getAccessionNumber());
+                testOrder.setInstructions("REFER TO " + orderMapper.getInstructions());
+                testOrder.setConcept(order.getConcept());
+                testOrder.setEncounter(order.getEncounter());
+                testOrder.setOrderer(order.getOrderer());
+                testOrder.setPatient(order.getPatient());
+                testOrder.setUrgency(Order.Urgency.STAT);
+                testOrder.setCareSetting(order.getCareSetting());
+                testOrder.setOrderType(order.getOrderType());
+                testOrder.setPreviousOrder(order);
+                testOrder.setAction(Order.Action.REVISE);
+                testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
+                testOrder.setSpecimenSource(Context.getConceptService().getConcept(orderMapper.getSpecimenSourceId()));
+                orderService.saveOrder(testOrder, null);
+                orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
+            } else {
+                orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", orderMapper.getAccessionNumber());
+            }
+        });
+    }
+
+    public SimpleObject generateLabNumber(@RequestParam(value = "orderUuid", required = false) String orderUuid) throws ParseException, IOException {
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("-","").replace("/","");
+        return SimpleObject.create("defaultSampleId", objectMapper.writeValueAsString(defaultSampleId));
     }
 }

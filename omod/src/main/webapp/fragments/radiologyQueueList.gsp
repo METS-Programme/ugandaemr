@@ -190,8 +190,7 @@
             labSearchFilter: jq("#patient-lab-search").val().trim().toLowerCase()
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("patientLabQueueList=", "\"patientLabQueueList\":").trim());
-                displayLabData(responseData);
+                displayLabData(response);
             } else if (!response) {
                 jq("#pending-queue-lab-table").append(${ ui.message("coreapps.none ") });
             }
@@ -244,7 +243,7 @@
     function groupOrderResultsByEncounter(data) {
         const groupedData = {"ordersList": []};
         let itemNo = 0;
-        data.ordersList.forEach((item, index) => {
+        data.forEach((item, index) => {
             const key = item.encounterId;
             let keyExists = false;
 
@@ -271,8 +270,7 @@
             date: date
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("ordersList=", "\"ordersList\":").trim());
-                displayLabOrderApproachB(groupOrderResultsByEncounter(responseData));
+                displayLabOrderApproachB(groupOrderResultsByEncounter(JSON.parse(response.ordersList)));
             }
         });
     }
@@ -666,8 +664,7 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
             </div>
         </div>
     </div>
-    ${
-            ui.includeFragment ( "ugandaemr", "pickPatientFromQueue", [ provider: currentProvider, currentLocation: currentLocation ] )}
+    ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 </div>
 ${ui.includeFragment("ugandaemr", "reviewResults")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}

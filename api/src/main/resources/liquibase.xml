@@ -228,16 +228,19 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-01-10-2018-1200" author="slubwama">
+	<changeSet id="ugandaemr-2023-12-13-1316" author="slubwama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
+            </sqlCheck>
+			<sqlCheck expectedResult="0">
+				SELECT (id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
             </sqlCheck>
         </preConditions>
 		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
 		<sql>
 			INSERT INTO patient_program (patient_id, program_id, date_enrolled, location_id, creator, date_created, voided, uuid)
-			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,encounter_datetime AS date_enrolled,location_id,encounter.creator,NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
+			SELECT patient_id,(SELECT program.program_id FROM program WHERE program.uuid='de5d54ae-c304-11e8-9ad0-529269fb1459') AS program,MAX(encounter_datetime) AS date_enrolled,MAX(location_id),MAX(encounter.creator),NOW(),0,UUID() AS uuid FROM encounter INNER JOIN encounter_type ON(encounter_type.encounter_type_id=encounter.encounter_type) WHERE  encounter_type.uuid='8d5b27bc-c2cc-11de-8d13-0010c6dffd0f' GROUP BY patient_id;
 		</sql>
 	</changeSet>
 
@@ -731,7 +734,7 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-25-07-2023-0010" author="iakileng">
+	<changeSet id="ugandaemr-01-01-2024-0010" author="iakileng">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM
@@ -745,6 +748,18 @@ VALUES
 		<sql>
 			INSERT INTO metadatamapping_metadata_set_member (metadata_set_id, metadata_class, metadata_uuid, sort_weight, name, description, creator, date_created, changed_by, date_changed, retired, date_retired, retired_by, retire_reason, uuid)
 			SELECT 1, 'org.openmrs.PatientIdentifierType', 'be8f222a-3751-4f93-8c74-3aff399c19b6',null, null, null, 2, NOW(), null, null, 0, null, null, null,'2fcc3a81-0500-47df-88bd-c0a56d113662';
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-2023-08-30-0828" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM concept_name WHERE concept_name_id> 7000000 limit 1;
+			</sqlCheck>
+		</preConditions>
+		<comment> Change concept names from a big number to a normal increment number</comment>
+		<sql>
+			update concept_name set concept_name_id=(concept_name_id-7187255) where concept_name_id>7000000;
 		</sql>
 	</changeSet>
 </databaseChangeLog>

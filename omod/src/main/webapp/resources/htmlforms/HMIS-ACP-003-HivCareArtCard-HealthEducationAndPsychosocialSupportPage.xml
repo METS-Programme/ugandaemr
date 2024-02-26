@@ -144,18 +144,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="165202"
-                                 answerLabels="1 - ART literacy" style="checkbox"/>
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="165203"
-                                 answerLabels="2 - Adherence preparation and plan" style="checkbox"/>
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="99186"
-                                 answerLabels="3 - Ready to start and Initiate" style="checkbox"/>
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="165204"
-                                 answerLabels="4 - Not ready to start" style="checkbox"/>
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="165206"
-                                 answerLabels="5 - Ongoing Adherence counselling and support" style="checkbox"/>
-                            <obs class="col-md-4" conceptId="165207" answerConceptId="165205"
-                                 answerLabels="6 - Intensive Adherence counselling and support" style="checkbox"/>
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="165202" answerLabel="1 - ART literacy" style="checkbox"/>
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="175321" answerLabel="2 - Adherence preparation and plan" style="checkbox"/>
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="99186" answerLabel="3 - Ready to start and Initiate" style="checkbox"/>
+                        </div>
+                        <div class="row">
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="175320" answerLabel="4 - Not ready to start" style="checkbox"/>
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="165206" answerLabel="5 - Ongoing Adherence counselling and support" style="checkbox"/>
+                            <obs class="col-md-3" conceptId="165207" answerConceptId="175319" answerLabel="6 - Intensive Adherence counselling and support" style="checkbox"/>
                         </div>
                         <div class="row">
                             <div class="col-md-8">
@@ -221,7 +217,7 @@
                                      answerLabels="9 - Nutritional Counselling" style="checkbox"/>
                                 <obs class="col-md-4" conceptId="165218" answerConceptId="165217"
                                      answerLabels="10 - Basic care package" style="checkbox"/>
-                                <obs class="col-md-4" conceptId="165218" answerConceptId="90002"
+                                <obs class="col-md-4" id="165218" conceptId="165218" answerConceptId="90002"
                                      answerLabels="11 - Others Specify" style="checkbox"/>
                             <div class="col-md-4">
                             </div>

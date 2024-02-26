@@ -22,12 +22,12 @@
                 async: false,
                 success: function (response) {
                     serverResponse = response.results;
+                    navigateToURL(jq("#goToURL").val())
 
                     if(response.orders && response.orders.length>0){
                         response.orders.forEach(function (order){
                             jq().toastmessage('showSuccessToast', "Successfuly approved "+order.concept.display);
                         })
-
                     }
                     jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);
                     jq('#review-lab-test-dialog').modal("dispose");
@@ -109,9 +109,8 @@
             testId: testId
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
-                getPatientDetails(responseData.order);
-                organiseLabTest(responseData.data);
+                getPatientDetails(JSON.parse(response.order));
+                organiseLabTest(JSON.parse(response.data));
             } else if (!response) {
             }
         });
@@ -121,7 +120,6 @@
     jq(function () {
         jq('#date').datepicker("option", "dateFormat", "dd/mm/yy");
     });
-
 </script>
 <style>
 h2 {
@@ -137,8 +135,6 @@ h2 {
                 <h2>Review Lab Report for <span id="patient-name-review"></span>&nbsp;&nbsp;<span
                         id="patient-identifier"></span></h2>
             </div>
-
-            <form>
                 <div class="modal-body">
 
                     <div class="card" id="patient-review-report" style="margin-top: 5px; table-layout: fixed;">
@@ -159,9 +155,9 @@ h2 {
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input  orders-to-approve"
                                                        name="orders-to-approve"
-                                                       data-bind="attr : {'value' : data[0].testId,'id': data[0].testId }">
+                                                       data-bind="attr : {'value' : data[0].testUuid,'id': data[0].testUuid }">
                                                 <label class="form-check-label" style="font-weight: bold"
-                                                       data-bind="attr : { 'for' : data[0].testId}"><span
+                                                       data-bind="attr : { 'for' : data[0].testUuid}"><span
                                                         data-bind="text: name"></span></label>
                                             </div>
 
@@ -198,7 +194,6 @@ h2 {
                     <button type="button" class="cancel" data-dismiss="modal">Cancel</button>
                     <button type="button" class="confirm" id="approve-results">Approve</button>
                 </div>
-            </form>
         </div>
     </div>
 </div>

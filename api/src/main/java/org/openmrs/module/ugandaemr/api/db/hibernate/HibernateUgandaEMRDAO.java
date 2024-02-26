@@ -97,12 +97,12 @@ public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 			crit.add(Restrictions.eq("encounter", encounter));
 		}
 
-		if (encounter != null) {
+		if (orders != null) {
 			crit.add(Restrictions.in("order", orders));
 		}
 
-		if (encounter != null) {
-			crit.add(Restrictions.in("order", obs));
+		if (obs != null) {
+			crit.add(Restrictions.in("obs", obs));
 		}
 
 		if (onOrAfter != null) {
@@ -128,6 +128,26 @@ public class HibernateUgandaEMRDAO implements UgandaEMRDAO {
 	@Override
 	public OrderObs getOrderObsByObs(Obs obs) {
 		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("obs", obs)).uniqueResult();
+	}
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsByObs(org.openmrs.Obs)
+	 */
+	@Override
+	public OrderObs getOrderObsByUuid(String uuid) {
+		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("uuid", uuid)).uniqueResult();
+	}
+
+	/**
+	 * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsById(java.lang.Integer)
+	 */
+	@Override
+	public OrderObs getOrderObsById(Integer orderObsId) {
+		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("orderObsId", orderObsId)).uniqueResult();
+	}
+
+	public OrderObs getOrderObsByOrder(Order order){
+		return (OrderObs) sessionFactory.getCurrentSession().createCriteria(OrderObs.class).add(Restrictions.eq("order", order)).uniqueResult();
 	}
 
 

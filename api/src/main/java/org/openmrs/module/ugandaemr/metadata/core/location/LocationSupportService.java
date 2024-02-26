@@ -39,7 +39,8 @@ public class LocationSupportService {
 					LocationTags.LOGIN_LOCATION,
 					LocationTags.VISIT_LOCATION,
 					LocationTags.MAIN_PHARMACY,
-					LocationTags.QUEUE_ROOM
+					LocationTags.QUEUE_ROOM,
+					LocationTags.SUPPORTIVE_SERVICE
 			);
 
 		}
@@ -75,7 +76,8 @@ public class LocationSupportService {
 					LocationTags.LOGIN_LOCATION,
 					LocationTags.VISIT_LOCATION,
 					LocationTags.LABORATORY,
-					LocationTags.QUEUE_ROOM
+					LocationTags.QUEUE_ROOM,
+					LocationTags.SUPPORTIVE_SERVICE
 			);
 
 		}
@@ -111,7 +113,8 @@ public class LocationSupportService {
 					LocationTags.LOGIN_LOCATION,
 					LocationTags.VISIT_LOCATION,
 					LocationTags.THEATER,
-					LocationTags.QUEUE_ROOM
+					LocationTags.QUEUE_ROOM,
+					LocationTags.SUPPORTIVE_SERVICE
 			);
 
 		}

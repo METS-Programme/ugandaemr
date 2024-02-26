@@ -48,7 +48,8 @@
 
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
-        jq.each(pharmacyQueueList.patientPharmacyQueueList[position].orderMapper, function (index, element) {
+        var pharmacyQueueList=JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
+        jq.each(pharmacyQueueList[position].orderMapper, function (index, element) {
             if (element.encounterId === encounterId && element.dispensingLocation === currentLocationUUID) {
                 let stockItemInventorys = getStockItemInventory(element.drugUUID)
                 stockItemInventorys = addExpiryMothAndYear(stockItemInventorys);
