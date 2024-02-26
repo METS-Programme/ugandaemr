@@ -73,6 +73,7 @@ body {
 h5 {
     color: #FFF;
 }
+
 .btn-secondary {
     color: #5b0505;
     background-color: #4f0c0c;
@@ -215,8 +216,7 @@ h5 {
                 patientStatus: jq("#patient_status").val().trim().toLowerCase(),
                 visitComment: jq("#visit_comment").val().trim().toLowerCase()
             }, function (response) {
-                var responseData = JSON.parse(response.replace("patientTriageQueue=", "\"patientTriageQueue\":").trim())
-                printTriageRecord("printSection", responseData);
+                printTriageRecord("printSection", response);
                 jq("#add_patient_to_queue_dialog").modal('hide');
                 if (!response) {
                     ${ ui.message("coreapps.none ") }
@@ -381,7 +381,6 @@ h5 {
         });
     }
 
-
     function formatFHIRResults(resources, position) {
         var patientSystemIndentifier = JSON.parse("{\"use\":\"official\",\"type\":{\"coding\":[{\"system\":\"UgandaEMR\",\"code\":\"05a29f94-c0ed-11e2-94be-8c13b969e334\"}],\"text\":\"OpenMRS ID\"},\"system\":\"UgandaEMR\",\"value\":\"\",\"id\":\"\"}");
         var patientResource = resources.entry[position].resource;
@@ -405,22 +404,30 @@ h5 {
         //Delete logical ID from another facility
 
         // Check if patient has National ID and keep it if found
-
-        patientResource.identifier.forEach(function (identifier, index) {
-            patientResource.identifier[index].id = uuidv4();
-        });
-
         if (patientResource.hasOwnProperty("identifier")) {
-            jq.each(patientResource.identifier, function (index, element) {
-                if (element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115") {
-                    identifiersToKeep.push(element)
-                }
+            patientResource.identifier.forEach(function (identifier, index) {
+                patientResource.identifier[index].id = uuidv4();
             });
         }
 
-        patientResource.address.forEach(function (address, index) {
-            patientResource.address[index].id = uuidv4();
-        });
+        if (patientResource.hasOwnProperty("identifier")) {
+            jq.each(patientResource.identifier, function (index, element) {
+                if (element.type && element.type.coding[0].code === "f0c16a6d-dc5f-4118-a803-616d0075d282" || element.type.coding[0].code === "e1731641-30ab-102d-86b0-7a5022ba4115" || element.type.coding[0].code === "e5e9a994-12e2-42c3-9c02-5abdc0fe40e8") {
+                    identifiersToKeep.push(element)
+                }
+            });
+            patientResource.identifier.splice(0, numberOfIdentifiers);
+            patientResource.identifier = identifiersToKeep;
+        }else {
+            patientResource['identifier']=identifiersToKeep;
+            patientResource.identifier.length;
+        }
+
+        if (patientResource.address) {
+            patientResource.address.forEach(function (address, index) {
+                patientResource.address[index].id = uuidv4();
+            });
+        }
 
         patientResource.name.forEach(function (name, index) {
             patientResource.name[index].id = uuidv4();
@@ -439,14 +446,8 @@ h5 {
             delete patientResource['text'];
         }
 
-        var numberOfIdentifiers = patientResource.identifier.length
-
-        patientResource.identifier.splice(0, numberOfIdentifiers);
-        patientResource.identifier = identifiersToKeep;
-
         return patientResource;
     }
-
 
     function displayData(response) {
         jq("#patient_found").removeClass('hidden');
@@ -566,17 +567,84 @@ h5 {
         return day + ' ' + monthNames[monthIndex] + ' ' + year;
     }
 
+    function setSearchSource(searchSource) {
+        jq("#error-search-source").html("");
+        jq("#search-source").html("");
+        var content = "";
+        content += "<option value=\"\">" + "${ui.message("Select Service to search")}" + "</option>";
+        jq.each(searchSource, function (index, element) {
+            content += "<option value=" + element.uuid + ">" + element.name + "</option>";
+        });
+
+        jq("#error-search-source").append("${ui.message("patientqueueing.select.error")}");
+        jq("#search-source").append(content);
+    }
+
+    function getEnabledSearchableProfiles() {
+        var enabledSearchableProfiles = [];
+        var searchableProfileUuids = [];
+
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/systemsetting?q=ugandaemrsync.searchableProfileList&v=full",
+            dataType: "json",
+            contentType: "application/json;",
+            async: false,
+            success: function (response) {
+                if (response) {
+                    searchableProfileUuids = response.results[0].value.split(",");
+                }
+            }
+        }).error(function (data, status, err) {
+            jq().toastmessage('showErrorToast', err);
+        });
+
+        jq.each(searchableProfileUuids, function (index, element) {
+            jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/syncfhirprofile/" + element + "?v=full",
+                dataType: "json",
+                contentType: "application/json;",
+                async: false,
+                success: function (response) {
+                    if (response) {
+                        if (response.profileEnabled) {
+                            enabledSearchableProfiles.push(response);
+                        }
+                    }
+                }
+            }).error(function (data, status, err) {
+                jq().toastmessage('showErrorToast', err);
+            });
+
+        });
+        return enabledSearchableProfiles;
+    }
+
+    function getEnabledUUID() {
+        var facility_shr = "0b7eb397-4488-4a88-9967-a054b3c26d6f";
+        var crossborder = "f2190cf4-2236-11ee-be56-0242ac120002";
+
+        if (checkProfileEnabled(facility_shr)) {
+            return facility_shr;
+        } else if (checkProfileEnabled(crossborder)) {
+            return crossborder;
+        } else {
+            return null; // Return null or some other value if neither is enabled
+        }
+    }
+
     jq(document).ready(function () {
         jq('#fshr').hide();
         jq('#nhcr').hide();
-        if (checkProfileEnabled("84242661-aadf-42e4-9431-bf8afefb4433")) {
-            // show the client registry search link
-            jq('#nhcr').show();
-        }
-        if (checkProfileEnabled("0b7eb397-4488-4a88-9967-a054b3c26d6f")) {
-            // show the facility shr search link
+        var searchSource = getEnabledSearchableProfiles();
+
+        setSearchSource(searchSource);
+
+        if (searchSource.length>0) {
             jq('#fshr').show();
         }
+
         jq("#advanced-search").click(function () {
             var surName = jq("#sur-name").val();
             var middleName = jq("#middle-name").val();
@@ -617,7 +685,9 @@ h5 {
             var middleName = jq("#middle-name").val();
             var givenName = jq("#given-name").val();
             var patientId = jq("#patientId").val();
-            var searchConfigs = getSearchConfigs("0b7eb397-4488-4a88-9967-a054b3c26d6f");
+            var searchSourceId = jq("#search-source").val();
+            var searchConfigs = getSearchConfigs(searchSourceId);
+            console.log(searchConfigs)
             var searchParams = generateSearchParams("search-fhsr");
             var birthDate = null;
 
@@ -860,80 +930,87 @@ h5 {
                 </a>
             </div>
 
-            <di id="fshr" class="col-5" style="text-align: right">
-                <a data-toggle="collapse" style="width: 10px;" href="#collapseFHSR" role="button" aria-expanded="false"
+            <div id="fshr" class="col-5">
+                <a data-toggle="collapse" style="width: 10px;" href="#collapseAdvancedSearch" role="button" aria-expanded="false"
                    aria-controls="collapseExample">
-                    Search FSHR (Facility Intergration Service)
+                    Advanced Search
                 </a>
-        </div>
-    </div>
-
-    <div class="collapse" id="collapseExample">
-        <div class="card card-body" id="search-client-registry">
-            <div class="row">
-                <div class="col-8">
-                    <input type="text" id="patientId" placeholder="Patient Unique Identifier" value=""
-                           autocomplete="off"/>
-                </div>
-
-                <div class="col-4">
-                    <input type="submit" value="Search" class="submit" id="advanced-search" autocomplete="off"/>
-                </div>
             </div>
         </div>
-    </div>
 
-    <div class="collapse" id="collapseFHSR">
-        <div class="card card-body" id="search-fhsr">
-            <div class="row">
-                <div class="col-3">
-                    <input type="text" id="sur-name" placeholder="First Name/Surname" autocomplete="off"/>
-                </div>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body" id="search-client-registry">
+                <div class="row">
+                    <div class="col-8">
+                        <input type="text" id="patientId" placeholder="Patient Unique Identifier" value=""
+                               autocomplete="off"/>
+                    </div>
 
-                <div class="col-3">
-                    <input type="text" id="given-name" placeholder="Given Name" autocomplete="off"/>
-                </div>
-
-                <div class="col-3">
-                    <input type="text" id="middle-name" placeholder="Middle Name" autocomplete="off"/>
-                </div>
-
-                <div class="col-3">
-                    <input type="text" id="patientId" placeholder="Patient Id" value="" autocomplete="off"/>
+                    <div class="col-4">
+                        <input type="submit" value="Search" class="submit" id="advanced-search" autocomplete="off"/>
+                    </div>
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-3">
-                    <select id="search-gender">
-                        <option value="">Select Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+        <div class="collapse" id="collapseAdvancedSearch">
+            <div class="card card-body" id="search-fhsr">
+                <div class="row">
+                    <div class="col-3">
+                        <input type="text" id="sur-name" placeholder="First Name/Surname" autocomplete="off"/>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" id="given-name" placeholder="Given Name" autocomplete="off"/>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" id="middle-name" placeholder="Middle Name" autocomplete="off"/>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" id="patientId" placeholder="Patient Id" value="" autocomplete="off"/>
+                    </div>
                 </div>
 
-                <div class="col-3">
-                    <input type="date" id="birthdate" placeholder="Date Of Birth" autocomplete="off"/>
+                <div class="row">
+                    <div class="col-3">
+                        <select id="search-gender">
+                            <option value="">Select Gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="date" id="birthdate" placeholder="Date Of Birth" autocomplete="off"/>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" id="telecom" placeholder="Phone Number" autocomplete="off"/>
+                    </div>
+
+                    <div class="col-3">
+                        <input type="text" id="address-country" placeholder="Country" autocomplete="off"/>
+                    </div>
                 </div>
 
-                <div class="col-3">
-                    <input type="text" id="telecom" placeholder="Phone Number" autocomplete="off"/>
+                <div class="row">
+                    <div class="col-3">
+                        <select id="search-source">
+                        </select>
+                    </div>
+
+                    <div class="col-3">
+
+                        <input type="submit" value="Search" class="submit" id="advanced-search-fshr"
+                               autocomplete="off"/>
+                    </div>
                 </div>
+
             </div>
-
-            <div class="row">
-                <div class="col-3">
-                    <input type="text" id="address-country" placeholder="Country" autocomplete="off"/>
-                </div>
-
-                <div class="col-3">
-                    <input type="submit" value="Search" class="submit" id="advanced-search-fshr" autocomplete="off"/>
-                </div>
-            </div>
-
         </div>
     </div>
-</div>
 </div>
 
 

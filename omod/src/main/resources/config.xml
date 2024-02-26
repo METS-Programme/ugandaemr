@@ -298,6 +298,12 @@
         <description>The number of months for tests backlog to display in the lab worklist and referred tests</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>ugandaemrsync.searchableProfileList</property>
+        <defaultValue>84242661-aadf-42e4-9431-bf8afefb4433,0b7eb397-4488-4a88-9967-a054b3c26d6f,f2190cf4-2236-11ee-be56-0242ac120002</defaultValue>
+        <description>A list of profiles that should appear in the search list on the patient search</description>
+    </globalProperty>
+
     <privilege>
         <name>Task: HIV Clinic Access</name>
         <description>Able to access HIV patient clinic information</description>
