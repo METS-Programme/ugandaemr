@@ -42,7 +42,6 @@ public class HIVClinicalAssessmentSubmissionAction implements CustomFormSubmissi
 
         if (ugandaEMRService.getPreviousQueue(session.getPatient(), session.getEncounter().getLocation(), PatientQueue.Status.PENDING) != null) {
             ugandaEMRService.processLabTestOrdersFromEncounterObs(session, true);
-
             ugandaEMRService.processDrugOrdersFromEncounterObs(session, true);
 
             completeClinicianQueue(session.getEncounter());

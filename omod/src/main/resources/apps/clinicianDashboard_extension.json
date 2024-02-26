@@ -8,7 +8,16 @@
       "fragment": "labQueueList",
       "requiredPrivilege": "App: ugandaemr.laboratory"
     }
-  },{
+  },  {
+  "id": "ugandaemr.radiologyQueueList.providerDashboardRightColumn",
+  "extensionPointId": "providerDashboard.rightColumnFragments",
+  "order": 2,
+  "extensionParams": {
+    "provider": "ugandaemr",
+    "fragment": "radiologyQueueList",
+    "requiredPrivilege": "App: ugandaemr.radiology"
+  }
+},{
     "id": "ugandaemr.triageQueueList.providerDashboardRightColumn",
     "extensionPointId": "providerDashboard.rightColumnFragments",
     "order": 1,

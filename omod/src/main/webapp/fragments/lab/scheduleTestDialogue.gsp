@@ -1,3 +1,59 @@
+<script>
+    if (jQuery) {
+        jq(document).ready(function () {
+            jq("#reference-lab-container").addClass('hidden');
+
+            jq("#refer_test").change(function () {
+                if (jq("#refer_test").is(":checked")) {
+                    jq("#reference-lab-container").removeClass('hidden');
+                } else {
+                    jq("#reference-lab-container").addClass('hidden');
+                }
+            });
+
+            jq('#add-order-to-lab-worklist-dialog').on('show.bs.modal', function (event) {
+                var button = jq(event.relatedTarget);
+                var orderNumber = button.data('order-number');
+                var orderId = button.data('orderId');
+                var orderUuid = button.data('orderId');
+                var order;
+                if (orderId !== "") {
+                    order = getOrderByOrderUuid(orderId)
+                }
+                var patientQueueId = button.data('patientqueueid');
+                var unProcessed = button.data('unprocessed-orders');
+                var modal = jq(this)
+                modal.find("#order_id").val(orderNumber);
+                modal.find("#patient-queue-id").val(patientQueueId);
+                modal.find("#unprocessed-orders").val(unProcessed);
+                if (order !== null && Object.keys(order).length > 0 && order.constructor === Object) {
+                    modal.find("#sample_id").val(order.accessionNumber);
+                    if (order.specimenSource != null) {
+                        modal.find("#specimen_source_id").val(order.specimenSource.uuid);
+                    } else {
+                        modal.find("#specimen_source_id").val("");
+                    }
+
+                    if (order.instructions !== null && order.instructions.includes("REFER TO")) {
+                        modal.find("#refer_test").prop('checked', true);
+                        jq("#reference-lab-container").removeClass('hidden');
+                        modal.find("#reference_lab").val(order.instructions.replace("REFER TO","").replace(" ",""));
+                    } else {
+                        modal.find("#refer_test").prop('checked', false);
+                    }
+                } else {
+                    modal.find("#sample_id").val("");
+                    modal.find("#sample_generator").html("");
+                    modal.find("#sample_generator").append("<a onclick=\"generateSampleId('" + orderNumber + "')\"><i class=\" icon-barcode\">Generate Sample Id</i></a>");
+                    modal.find("#reference_lab").prop('selectedIndex', 0);
+                    modal.find("#specimen_source_id").prop('selectedIndex', 0);
+                    modal.find("#refer_test").prop('checked', false);
+                }
+            });
+        });
+    }
+</script>
+
 <div class="modal fade bd-order-modal-lg" id="add-order-to-lab-worklist-dialog" tabindex="-1" role="dialog"
      aria-labelledby="scheduleOrderModalLabel"
      aria-hidden="true">
@@ -7,6 +63,7 @@
                 <div class="modal-header">
                     <h3>${ui.message("SCHEDULE TEST")}</h3>
                 </div>
+
                 <div class="modal-body">
 
                     <span id="add_to_queue-container">
@@ -50,8 +107,7 @@
                                 </label>
 
                                 <div class="form-group">
-                                    <input type="checkbox" name="refer_test" id="refer_test">
-
+                                    <input type="checkbox" name="refer_test" id="refer_test" value="refer">
                                     <div class="field-error"
                                          style="display: none;">${ui.message("patientqueueing.select.error")}</div>
                                 </div>
@@ -73,6 +129,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="modal-footer">
                         <button class="cancel" data-dismiss="modal"
                                 id="">${ui.message("patientqueueing.close.label")}</button>

@@ -59,6 +59,15 @@ button, input {
         });
     }
 
+    function identifierToDisplay(identifiers){
+        var identifierToDisplay="";
+        jq.each(identifiers, function (index, element) {
+            identifierToDisplay+=element.identifierTypeName+" : "+element.identifier+" <br/> "
+        });
+
+        return identifierToDisplay
+    }
+
     function displaypharmacyData(response) {
         jq("#pharmacy-pending-list-table").val("");
         var prescriptions = "";
@@ -67,9 +76,9 @@ button, input {
         var prescriptionCount = 0;
         var drugRefillCount = 0;
         var completedCount = 0;
-        prescriptions = "<table><thead><tr><th>Visit No.</th><th>Names</th><th>Age</th><th>ORDER FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        drugRefill = "<table><thead><tr><th>Visit No.</th><th>Names</th><th>Age</th><th>FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        completed = "<table><thead><tr><th>Visit No.</th><th>Names</th><th>Age</th><th>ACTION</th></tr></thead><tbody>";
+        prescriptions = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>ORDER FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        drugRefill = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        completed = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>ACTION</th></tr></thead><tbody>";
 
        var dataToDisplay=[];
 
@@ -98,6 +107,7 @@ button, input {
                 if (patientQueueListElement.encounterId !==null && patientQueueListElement.status !== "COMPLETED") {
                     prescriptions += "<tr>";
                     prescriptions += "<td>" + visitNumber + "</td>";
+                    prescriptions += "<td>" + identifierToDisplay(patientQueueListElement.patientIdentifier) + "</td>";
                     prescriptions += "<td>" + patientQueueListElement.patientNames + "</td>";
                     prescriptions += "<td>" + patientQueueListElement.age + "</td>";
                     prescriptions += "<td>" + patientQueueListElement.providerNames + " - " + patientQueueListElement.locationFrom + "</td>";
