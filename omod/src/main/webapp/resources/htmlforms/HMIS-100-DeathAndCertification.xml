@@ -54,12 +54,12 @@
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Place of Death</label>
-                                                    <obs id="167798" conceptId="167798"  class="horizontal" style="autocomplete"/>
+                                                    <obs id="167798" conceptId="167798"  class="horizontal" style="autocomplete" required="true" />
                                                 </div>
 
                                                 <div class="col-md-3">
                                                     <label>Date of Death</label>
-                                                    <obs id="90272" conceptId="90272" class="horizontal" style="autocomplete"/>
+                                                    <obs id="90272" conceptId="90272" class="horizontal" style="autocomplete" required="true"/>
                                                 </div>
                                             </div>
 
@@ -73,7 +73,7 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <label>Primary Cause of Death</label>
-                                                    <obs id="175280" conceptId="175281"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/>
+                                                    <obs id="175280" conceptId="175280"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/>
                                                 </div>
                                                 <div class="col-md-1">
                                                     <label>Time Interval</label>
@@ -93,7 +93,7 @@
                                                     <obs id="175285" conceptId="175285"  style="dropdown"/>
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <label>Time Interval</label>
+                                                    <label>Duration</label>
                                                     <obs id="1732" conceptId="1732" style="dropdown"/>
                                                 </div>
 
@@ -229,10 +229,12 @@
                                                 <label>Hours Survived</label>
                                                 <obs id="159616" conceptId="159616" />
                                             </div>
+                                            <includeIf velocityTest="$patient.gender == 'F'">
                                             <div class="col-md-3">
                                                 <label>Number of Weeks Pregnant</label>
                                                 <obs id="1279" conceptId="1279" />
                                             </div>
+                                            </includeIf>
                                         </div>
                                     </div>
 
