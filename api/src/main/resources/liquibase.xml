@@ -766,6 +766,46 @@ VALUES
 			update concept_name set concept_name_id=(concept_name_id-7187255) where concept_name_id>7000000;
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-20240228-1031" author="mmwanje">
+		<comment>Insert Cohort type for Eligibility Cohort and eligible Cohorts </comment>
+		<sql>
+			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+			('Eligibility Cohort Type','2024-02-28',1,'1345c89c-8463-41e9-9cd0-8c14aa255ba8');
+
+			REPLACE INTO cohort(name,description, date_created,creator,uuid,cohort_type_id)VALUES
+			('HIV Program','Eligible', '2024-02-28', 1, '56b082f8-f956-499d-a8c2-d9b32a067e65',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('TB Program','Eligible','2024-02-28',1,'0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('MCH Program','Eligible', '2024-02-28', 1, 'd861187f-e25a-493b-81b1-b2a4c4679b7a',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('Nutrition Program','Eligible', '2024-02-28',1,'2827e1b5-be8a-4c1d-afc7-f6afcc4f2537',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8'));
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-28022024-1032" author="mmwanje">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask'
+			</sqlCheck>
+		</preConditions>
+		<sql>DELETE FROM scheduler_task_config where uuid='3b8355ba-1f6e-4773-b95a-6101974ed462'</sql>
+		<comment>Inserting Eligibility Cohort Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Eligibility Cohort Task" />
+			<column name="description" value="Identify and add eligible members into the cohort" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2024-02-28T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="3b8355ba-1f6e-4773-b95a-6101974ed462" />
+		</insert>
+	</changeSet>
+
+
 </databaseChangeLog>
 
 
