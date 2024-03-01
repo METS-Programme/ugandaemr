@@ -1,0 +1,626 @@
+{
+  "name": "HIV Enrolment Form",
+  "version": "4.0.0",
+  "description": "Summary entry form for patients enrolled for ART",
+  "encounterType": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f",
+  "encounter": "ART Card - Summary",
+  "uuid": "fa318404-2ab9-4135-9361-0a56d85c58e7",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "HIV Enrolment Form",
+      "sections": [
+        {
+          "label": "CARE ENTRY",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Enrollment into HIV Care Transfer in from",
+              "type": "encounterDatetime",
+              "required": true,
+              "id": "hiv-care-transfer-in-from",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "31c5c7aa-4948-473e-890b-67fe2fbbd71a",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Date verification HIV test",
+              "type": "encounterDatetime",
+              "required": false,
+              "id": "hiv-test-date",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "cbbc0bfc-a7e2-11ed-afa1-0242ac120002",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Test type",
+              "type": "obs",
+              "required": false,
+              "id": "test-type",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ddcd8aad-9085-4a88-a411-f19521be4785",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "6d7a7a98-2c57-4318-9961-8e61fb427781",
+                    "label": "Ab"
+                  },
+                  {
+                    "concept": "57c357ea-b4de-491e-99aa-962a62ff368f",
+                    "label": "PCR"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Where",
+              "type": "obs",
+              "required": false,
+              "id": "txt-where",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "89d3ee61-7c74-4537-b199-4026bd6a3f67",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Care Entry Point",
+              "type": "obs",
+              "required": true,
+              "id": "care-entry-point",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd9f59f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "ADOLESCENT OUTREACH"
+                  },
+                  {
+                    "concept": "dcd9fdf8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "COMMUNITY BASED ORGANIZATION"
+                  },
+                  {
+                    "concept": "872139fa-9820-4fde-87fd-f00df9ddcbd6",
+                    "label": "EXPOSED INFANT"
+                  },
+                  {
+                    "concept": "dcd9ecc2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "IDU OUTREACH"
+                  },
+                  {
+                    "concept": "f8c4d125-caba-485d-8561-1dcb22ad715e",
+                    "label": "KP Clinic"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MEDICAL INPATIENT"
+                  },
+                  {
+                    "concept": "dcd87b79-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MEDICAL OUTPATIENT"
+                  },
+                  {
+                    "concept": "dcda021b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "MILITARY RECRUITEMENT"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  },
+                  {
+                    "concept": "dcd94c69-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PEDIATRIC OUTPATIENT"
+                  },
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT"
+                  },
+                  {
+                    "concept": "dcda084b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "POLICE RECRUITEMENT"
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Postnatal Clinic"
+                  },
+                  {
+                    "concept": "dcd99ca1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PRIVATE PROVIDER"
+                  },
+                  {
+                    "concept": "dcd9f15d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "SEX WORKER OUTREACH"
+                  },
+                  {
+                    "concept": "7d24a93f-73a9-4e7c-a722-ebc3e35809b4",
+                    "label": "SMC care entry"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI OUTPATIENT"
+                  },
+                  {
+                    "concept": "dcd9939d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "TB TREATMENT CENTER"
+                  },
+                  {
+                    "concept": "c8d71c2c-95e3-4ce2-b8c4-095a7160f8f7",
+                    "label": "UNDER 5 "
+                  },
+                  {
+                    "concept": "dcd9f9cd-30ab-102d-86b0-7a5022ba4115",
+                    "label": "VCT"
+                  },
+                  {
+                    "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
+                    "label": "YCC-Young child clinic"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Special Categories",
+              "type": "obs",
+              "required": false,
+              "id": "special-categories",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast feeding"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Current drug user"
+                  },
+                  {
+                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Disability"
+                  },
+                  {
+                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Fisherman"
+                  },
+                  {
+                    "concept": "2ab8849a-8f4a-49f4-9e8b-cd84f40162cf",
+                    "label": "General ART Client"
+                  },
+                  {
+                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "In prison"
+                  },
+                  {
+                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Long distance truck driver"
+                  },
+                  {
+                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Migrant Worker"
+                  },
+                  {
+                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
+                    "label": "Non IDU"
+                  },
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PREGNANT"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Refugee Camp"
+                  },
+                  {
+                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Uniformed Officer"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "ART CARE",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "At Start ART",
+              "type": "obs",
+              "required": false,
+              "id": "art-start-date",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Start ART 1st Line Initial Regimen",
+              "type": "obs",
+              "required": false,
+              "id": "initial-regimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c3332e8d-2548-4ad6-931d-6855692694a3",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "583a954b-0cd5-4b69-aef6-87c281e03a55",
+                    "label": "ABC-3TC-EFV"
+                  },
+                  {
+                    "concept": "14c56659-3d4e-4b88-b3ff-e2d43dbfb865",
+                    "label": "ABC-3TC-LPV/r"
+                  },
+                  {
+                    "concept": "6cdbfee8-87bf-406c-8dc3-3a22d95e952c",
+                    "label": "ABC-3TC-NVP"
+                  },
+                  {
+                    "concept": "6cc36637-596a-4426-92cf-170f76ea437d",
+                    "label": "ABC/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b3eee-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b361c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AZT-3TC-NVP"
+                  },
+                  {
+                    "concept": "a779d984-9ccf-4424-a750-47506bf8212b",
+                    "label": "AZT/3TC/DTG"
+                  },
+                  {
+                    "concept": "dd2b8b27-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-EFV"
+                  },
+                  {
+                    "concept": "dd2b84c5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "D4T-3TC-NVP"
+                  },
+                  {
+                    "concept": "25b0b83c-a7b8-4663-b727-0c03c982bab2",
+                    "label": "TDF-3TC-EFV"
+                  },
+                  {
+                    "concept": "012a1378-b005-4793-8ea0-d01fceea769d",
+                    "label": "TDF-3TC-NVP"
+                  },
+                  {
+                    "concept": "20bcbf56-2784-4bf0-a6b4-23ba43764163",
+                    "label": "TDF-FTC-EFV"
+                  },
+                  {
+                    "concept": "f99ef0fa-b299-4573-ae31-f4d09b1b69d5",
+                    "label": "TDF-FTC-NVP"
+                  },
+                  {
+                    "concept": "a58d12c5-abc2-4575-8fdb-f30960f348fc",
+                    "label": "TDF/3TC/DTG"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "BASELINE ASSESSMENT",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Weight(Kg)",
+              "type": "obs",
+              "id": "weight",
+              "required": "true",
+              "questionOptions": {
+                "concept": "900b8fd9-2039-4efc-897b-9b8ce37396f5",
+                "rendering": "number",
+                "min": "0"
+              }
+            },
+            {
+              "label": "Height(cm)",
+              "type": "obs",
+              "id": "height",
+              "required": "true",
+              "questionOptions": {
+                "concept": "7f7e9c9a-2fda-4de8-98a7-aad538b8a2b4",
+                "rendering": "number",
+                "min": "0"
+              }
+            },
+            {
+              "label": "BMI",
+              "type": "obs",
+              "id": "bodyMassIndex",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dca1f717-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "calcBMI(height,weight)"
+                }
+              }
+            },
+            {
+              "label": "MUAC",
+              "type": "obs",
+              "id": "muac",
+              "questionOptions": {
+                "concept": "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "number",
+                "min": "0"
+              }
+            },
+            {
+              "label": "WHO Clinical Stage",
+              "type": "obs",
+              "required": true,
+              "id": "who-clinical-stage",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "39243cef-b375-44b1-9e79-cbf21bd10878",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dc9b8cd1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO STAGE 1 ADULT"
+                  },
+                  {
+                    "concept": "dc9b9113-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO STAGE 2 ADULT"
+                  },
+                  {
+                    "concept": "dc9b9549-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO STAGE 3 ADULT"
+                  },
+                  {
+                    "concept": "dc9b999b-30ab-102d-86b0-7a5022ba4115",
+                    "label": "WHO STAGE 4 ADULT"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "CD4",
+              "type": "obs",
+              "required": false,
+              "id": "cd4",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "c17bd9df-23e6-4e65-ba42-eb6d9250ca3f",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Preg",
+              "type": "obs",
+              "required": false,
+              "id": "preg",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b253be65-0155-4b43-ad15-88bc797322c9",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ],
+                "hide": {
+                  "hideWhenExpression": "sex !== 'F'"
+                }
+              }
+            },
+            {
+              "label": "Lactating",
+              "type": "obs",
+              "required": false,
+              "id": "lac",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ab7bb4db-1a54-4225-b71c-d8e138b471e9",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "PRIOR ART",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Prior ARV/ART",
+              "type": "obs",
+              "required": false,
+              "id": "encART",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "902e30a1-2d10-4e92-8f77-784b6677109a",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "PEP",
+              "type": "obs",
+              "id": "pepChecked",
+              "questionOptions": {
+                "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
+                "rendering": "checkbox",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PEP"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "encART !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "PEP Regimen Start Date",
+              "type": "obs",
+              "id": "regimenStartDatePEP",
+              "questionOptions": {
+                "concept": "999dea3b-ad8b-45b4-b858-d7ab98de486c",
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pepChecked) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], pepChecked)"
+              }
+            },
+            {
+              "label": "Duration in Months",
+              "type": "obs",
+              "required": false,
+              "id": "duration-in-months",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "0b5fa454-0757-4f6d-b376-fefd60ae42ba",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pepChecked) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], pepChecked)"
+              }
+            },
+            {
+              "label": "PreP",
+              "type": "obs",
+              "id": "prepChecked",
+              "questionOptions": {
+                "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                "rendering": "checkbox",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PreP"
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(encART) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], perpChecked)"
+              }
+            },
+            {
+              "label": "PreP Regimen Start Date",
+              "type": "obs",
+              "id": "regimenStartDatePreP",
+              "questionOptions": {
+                "concept": "999dea3b-ad8b-45b4-b858-d7ab98de486c",
+                "rendering": "date"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(prepChecked) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], perpChecked)"
+              }
+            },
+            {
+              "label": "Duration in Months",
+              "type": "obs",
+              "required": false,
+              "id": "duration-in-months",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "d11d4ad1-4aa2-4f90-8f2c-83f52155f0fc",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(prepChecked) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], prepChecked)"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referencedForms": [],
+  "postSubmissionActions": [
+    {
+      "actionId": "ProgramEnrollmentSubmissionAction",
+      "config": {
+        "enrollmentDate": "hiv-care-transfer-in-from",
+        "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741"
+      }
+    }
+  ]
+}
