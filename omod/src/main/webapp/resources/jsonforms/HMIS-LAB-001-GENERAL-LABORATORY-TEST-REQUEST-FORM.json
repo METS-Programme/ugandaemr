@@ -4,7 +4,7 @@
   "description": "A request for Lab test to Lab",
   "encounterType": "214e27a1-606a-4b1e-a96e-d736c87069d5",
   "encounter": "LAB Encounter",
-  "uuid": "c6f3b5ad-b7eb-44ad-b212-fb26456e155b",
+  "uuid": "14f82cc8-ca2a-11e9-a32f-2a2ae2dbcce4",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,

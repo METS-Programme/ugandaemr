@@ -4,7 +4,7 @@
   "description": "This is enrollment page of the DR TB Treatment program",
   "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f",
   "encounter": "DR TB Summary (Enrollment)",
-  "uuid": "29510181-61d0-45c5-83ef-a60ab36643d7",
+  "uuid": "4929f668-f8d0-11ea-adc1-0242ac120002",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,

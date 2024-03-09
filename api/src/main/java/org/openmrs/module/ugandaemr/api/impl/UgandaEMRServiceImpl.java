@@ -606,6 +606,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             String names = patientQueue.getPatient().getFamilyName() + " " + patientQueue.getPatient().getGivenName() + " " + patientQueue.getPatient().getMiddleName();
             PatientQueueVisitMapper patientQueueVisitMapper = new PatientQueueVisitMapper();
             patientQueueVisitMapper.setId(patientQueue.getId());
+            patientQueueVisitMapper.setPatientQueueUuid(patientQueue.getUuid());
             patientQueueVisitMapper.setPatientNames(names.replace("null", ""));
             patientQueueVisitMapper.setPatientId(patientQueue.getPatient().getPatientId());
             patientQueueVisitMapper.setLocationFrom(patientQueue.getLocationFrom().getName());

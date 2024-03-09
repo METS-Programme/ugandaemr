@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+
+  <appointment_speciality  speciality_id="1"  name="Doctor"  date_created="2024-03-05 02:43:09"  creator="1"  date_changed="2024-03-10 02:43:14"  uuid="6c0400f4-66b7-4731-81c7-7e9da911d279"  voided="0"/>
+
   <appointment_service  appointment_service_id="1"  name="Cardiology Consultation"  date_created="2024-03-05 02:37:22"  creator="1"  voided="0"  uuid="45d4fd92-ba27-4e3f-b237-79640cb25e54"  initial_appointment_status="Requested"/>
   <appointment_service  appointment_service_id="2"  name="ART Refill" start_time="09:00:00"  end_time="17:30:00"  location_id="7"  speciality_id="1"  max_appointments_limit="30"  duration_mins="30"  color="#0000ff"  date_created="2024-03-05 02:46:31"  creator="1" voided="0"  uuid="c976c610-ac0a-4b44-ae37-e676408b410e" />
   <appointment_service  appointment_service_id="3"  name="Viral Load" start_time="09:00:00"  end_time="17:30:00"  location_id="7"  speciality_id="1"  max_appointments_limit="30"  duration_mins="30"  color="#0000ff"  date_created="2024-03-05 02:46:51"  creator="1" voided="0"  uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f" />

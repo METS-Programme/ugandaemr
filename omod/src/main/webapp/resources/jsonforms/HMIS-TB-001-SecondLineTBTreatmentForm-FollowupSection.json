@@ -4,7 +4,7 @@
   "description": "This form captures return visits/followup data of the DR TB Treatment program",
   "encounterType": "41f8609d-e13b-4dff-8379-47ac5876512e",
   "encounter": "DR TB Encounter (Followup)",
-  "uuid": "14468477-dfe7-48e7-affb-82d1dfa9603d",
+  "uuid": "5f69626e-fbe2-11ea-adc1-0242ac120002",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,

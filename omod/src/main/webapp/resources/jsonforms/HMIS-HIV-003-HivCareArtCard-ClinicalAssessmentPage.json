@@ -4,7 +4,7 @@
   "description": "A visit for a client for clinical assessment",
   "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
   "encounter": "ART Card - Encounter",
-  "uuid": "6e59d6fd-3f37-4de2-b2c5-e1ef7a32b41c",
+  "uuid": "12de5bc5-352e-4faf-9961-a2125085a75c",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
