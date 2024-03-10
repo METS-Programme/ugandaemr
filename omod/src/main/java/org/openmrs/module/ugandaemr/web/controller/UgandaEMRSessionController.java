@@ -15,10 +15,8 @@ import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.webservices.rest.SimpleObject;
 import org.openmrs.module.webservices.rest.web.ConversionUtil;
 import org.openmrs.module.webservices.rest.web.RestConstants;
-import org.openmrs.module.webservices.rest.web.api.RestService;
 import org.openmrs.module.webservices.rest.web.representation.CustomRepresentation;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,9 +41,7 @@ public class UgandaEMRSessionController extends BaseRestController {
 	public static final String USER_CUSTOM_REP = "(uuid,display,username,systemId,person:(uuid,names:(display,givenName,middleName,familyName,familyName2)),roles:(uuid,name,privileges:(uuid,name)))";
 
 	public static final String PROVIDER_CUSTOM_REP = "(uuid)";
-	
-	@Autowired
-	RestService restService;
+
 	
 	/**
 	 * Tells the user their sessionId, and whether or not they are authenticated.

@@ -6,21 +6,15 @@ import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.node.ArrayNode;
 import org.codehaus.jackson.node.JsonNodeFactory;
 import org.codehaus.jackson.node.ObjectNode;
-import org.joda.time.DateTime;
-import org.joda.time.Weeks;
+
 import org.openmrs.*;
 import org.openmrs.api.context.Context;
-import org.openmrs.calculation.patient.PatientCalculationService;
-import org.openmrs.calculation.result.CalculationResult;
-import org.openmrs.module.metadatadeploy.MetadataUtils;
-import org.openmrs.module.metadatadeploy.descriptor.ProgramDescriptor;
 import org.openmrs.module.ugandaemr.UgandaEMRConstants;
 import org.openmrs.module.ugandaemr.utils.EncounterBasedRegimenUtils;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
 import org.openmrs.ui.framework.SimpleObject;
-import org.openmrs.ui.framework.annotation.SpringBean;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +26,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 
-import static org.apache.http.client.utils.DateUtils.formatDate;
 
 @Controller
 @RequestMapping(value = "/rest/" + RestConstants.VERSION_1)
@@ -43,8 +37,6 @@ public class CareProgramResource extends BaseRestController {
     protected final Log log = LogFactory.getLog(getClass());
     static SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
 
-    @Autowired
-    //private ProgramManager programManager;
 
     public static String HIV_PROGRAM_UUID = "dfdc6d40-2f2f-463d-ba90-cc97350441a8";
     public static String MCH_CHILD_PROGRAM_UUID = "c2ecdf11-97cd-432a-a971-cfd9bd296b83";
