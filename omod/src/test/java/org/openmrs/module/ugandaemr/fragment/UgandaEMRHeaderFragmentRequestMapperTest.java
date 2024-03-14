@@ -1,10 +1,12 @@
 package org.openmrs.module.ugandaemr.fragment;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.openmrs.ui.framework.fragment.FragmentRequest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by ssmusoke on 18/02/2016.

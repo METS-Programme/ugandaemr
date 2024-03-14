@@ -3,9 +3,9 @@ package org.openmrs.module.ugandaemr.tasks;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.Encounter;
 import org.openmrs.Patient;
 import org.openmrs.PatientProgram;
@@ -15,13 +15,13 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.ugandaemr.metadata.core.Programs;
 import org.openmrs.module.ugandaemr.tasks.ExitMCHProgramASLostToFollowUpTask;
 import org.openmrs.util.LocaleUtility;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;;import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ExitMCHProgramASLostToFollowUpTaskTest extends BaseModuleWebContextSensitiveTest {
 	
 	protected static final String UGANDAEMR_STANDARD_DATASET_XML = "org/openmrs/module/ugandaemr/include/standardTestDataset.xml";
 
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		executeDataSet(UGANDAEMR_STANDARD_DATASET_XML);
 	}
@@ -35,13 +35,13 @@ public class ExitMCHProgramASLostToFollowUpTaskTest extends BaseModuleWebContext
 		
 		//should be enrolled in the mch program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
+		assertEquals(1, patientPrograms.size());
 		
 		new ExitMCHProgramASLostToFollowUpTask().execute();
 		
 		//should not be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		assertEquals(0, patientPrograms.size());
 	}
 	
 	@Test
@@ -53,7 +53,7 @@ public class ExitMCHProgramASLostToFollowUpTaskTest extends BaseModuleWebContext
 		
 		//should be enrolled in the mch program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
+		assertEquals(1, patientPrograms.size());
 		
 		//adjust the latest encounter date to less than the lost to follow up days
 		List<Encounter> encounters = Context.getEncounterService().getEncountersByPatient(patient);
@@ -76,6 +76,6 @@ public class ExitMCHProgramASLostToFollowUpTaskTest extends BaseModuleWebContext
 		
 		//should still be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
+		assertEquals(1, patientPrograms.size());
 	}
 }

@@ -50,7 +50,7 @@ public class ReviewResultsFragmentController {
 
 			List<SimpleObject> results = SimpleObject.fromCollection(trms, ui, "investigation", "set", "test", "value",
 			    "hiNormal", "lowNormal", "lowAbsolute", "hiAbsolute", "hiCritical", "lowCritical", "unit", "level",
-			    "concept", "encounterId", "testId");
+			    "concept", "encounterId", "testId","testUuid");
 
 			SimpleObject currentResults = SimpleObject.create("data", objectMapper.writeValueAsString(results),"order",objectMapper.writeValueAsString(labTest.getUuid()));
 			return currentResults;

@@ -62,6 +62,8 @@ public class TestResultModel implements Comparable<TestResultModel> {
 
 	private Integer testId;
 
+	private String testUuid;
+
 	public String hiAbsolute;
 
 	public Date orderdate;
@@ -184,6 +186,14 @@ public class TestResultModel implements Comparable<TestResultModel> {
 
 	public void setTestId(Integer testId) {
 		this.testId = testId;
+	}
+
+	public String getTestUuid() {
+		return testUuid;
+	}
+
+	public void setTestUuid(String testUuid) {
+		this.testUuid = testUuid;
 	}
 
 	public int compareTo(TestResultModel o) {

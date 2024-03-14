@@ -862,4 +862,80 @@ public class Flags {
             return "c5cae7e7-d6e3-4d5f-b684-ea888b5a8a7c";
         }
     };
+
+    public static FlagDescriptor ELIGIBLE_FOR_HIV_PROGRAM = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "select person_id from obs  where concept_id=175333 and value_coded=703 and person_id not in (select person_id from obs  where concept_id=169015 and value_coded=703 and person_id not in (select cohort_member.patient_id from cohort_member where  obs.uuid='56b082f8-f956-499d-a8c2-d9b32a067e65') and person_id not in\n" +
+                    "             (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id)));";
+        }
+
+        @Override
+        public String message() {
+            return "Eligible for HIV program";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.GREEN.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Eligible for HIV program";
+        }
+
+        @Override
+        public String description() {
+            return "Patients who are eligible for enrollment into HIV Care";
+        }
+
+        @Override
+        public String uuid() {
+            return "2e9121fd-86f7-41a8-b87b-3132245c8c0f";
+        }
+    };
+
+    public static FlagDescriptor ELIGIBLE_FOR_TB_PROGRAM = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "select person_id from obs  where (concept_id=162202 OR concept_id=165291 OR concept_id=165414) and value_coded=703 and person_id not in (select cohort_member.patient_id from cohort_member where  obs.uuid='0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0') and person_id not in\n" +
+                    "             (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id));";
+        }
+
+        @Override
+        public String message() {
+            return "Eligible for TB program";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.GREEN.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Eligible for TB program";
+        }
+
+        @Override
+        public String description() {
+            return "Patients who are eligible for enrollment into TB Care";
+        }
+
+        @Override
+        public String uuid() {
+            return "e36b5fa8-fe48-4c8a-b993-0ca90c462aa2";
+        }
+    };
 }

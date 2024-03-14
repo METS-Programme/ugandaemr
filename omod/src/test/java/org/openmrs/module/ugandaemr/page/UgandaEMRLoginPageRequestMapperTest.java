@@ -1,17 +1,19 @@
 package org.openmrs.module.ugandaemr.page;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.openmrs.ui.framework.page.PageRequest;
 import org.openmrs.ui.framework.session.Session;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockHttpSession;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by ssmusoke on 18/02/2016.

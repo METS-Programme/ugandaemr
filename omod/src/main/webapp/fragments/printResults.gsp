@@ -13,6 +13,11 @@
     });
 
     function organize(data) {
+        data.filter(function (d) {
+            if(["Numeric", "Coded", "Text","N/A"].includes(d["set"])){
+                return d["set"]=d["test"];
+            }
+        })
         var final = [];
         var investigations = data.map(function (d) {
             return d['investigation'];
@@ -100,9 +105,8 @@
             testId: testId
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("data=", "\"data\":").replace("order=", "\"order\":").trim());
-                organizePatient(responseData.order);
-                organize(responseData.data);
+                organizePatient(JSON.parse(response.order));
+                organize(JSON.parse(response.data));
             } else if (!response) {
             }
         });

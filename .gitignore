@@ -98,3 +98,9 @@ local.properties
 /docker
 *.log
 *\\owa/
+
+node_modules/*
+package.json
+package-lock.json
+node/*
+

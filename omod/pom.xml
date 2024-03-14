@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.openmrs.module</groupId>
 		<artifactId>ugandaemr</artifactId>
-		<version>3.4.2-SNAPSHOT</version>
+		<version>4.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>ugandaemr-omod</artifactId>
@@ -163,6 +163,10 @@
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>patientflags-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>patientflags-api-metadata</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.openmrs.module</groupId>

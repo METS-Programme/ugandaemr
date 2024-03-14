@@ -1,13 +1,14 @@
 package org.openmrs.module.ugandaemr.htmlformentry;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.Encounter;
 import org.openmrs.Relationship;
 import org.openmrs.api.PatientService;
@@ -15,7 +16,7 @@ import org.openmrs.api.context.Context;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.FormSubmissionActions;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;;
 
 /**
  * Test linking of mothers to HIV exposed infants through the mother's ART number
@@ -31,7 +32,7 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 	
 	private PatientService mockPatientService;
 	
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		executeDataSet("org/openmrs/module/ugandaemr/include/standardTestDataset.xml");
 		executeDataSet("org/openmrs/module/ugandaemr/include/exposedInfantData.xml");
@@ -60,9 +61,9 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant linked to mother via ART number", 1, parents.size());
-		Assert.assertEquals("Mother ID is 7", 7, parents.get(0).getPersonA().getPersonId().longValue() );
-		Assert.assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
+		assertEquals(1, parents.size(),"Infant linked to mother via ART number");
+		assertEquals(7, parents.get(0).getPersonA().getPersonId().longValue(),"Mother ID is 7");
+		assertEquals( parents.get(0).getRelationshipType().getUuid(),"8d91a210-c2cc-11de-8d13-0010c6dffd0f");
 	}
 	
 	@Test
@@ -75,9 +76,9 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant already linked should not link again", parents.size(), 1);
-		Assert.assertEquals("Mother ID is 8", 8, parents.get(0).getPersonA().getPersonId().longValue() );
-		Assert.assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
+		assertEquals(parents.size(), 1,"Infant already linked should not link again");
+		assertEquals(8, parents.get(0).getPersonA().getPersonId().longValue(),"Mother ID is 8");
+		assertEquals("8d91a210-c2cc-11de-8d13-0010c6dffd0f", parents.get(0).getRelationshipType().getUuid());
 	}
 	
 	@Test
@@ -90,7 +91,7 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant with linked to man as mother", parents.size(), 0);
+		assertEquals(parents.size(), 0,"Infant with linked to man as mother");
 	}
 	
 	@Test
@@ -103,7 +104,7 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant with mother below 12 years", parents.size(), 0);
+		assertEquals(parents.size(), 0,"Infant with mother below 12 years");
 	}
 	
 	@Test
@@ -116,7 +117,7 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant with no mother ART number should not be linked", parents.size(), 0);
+		assertEquals(parents.size(), 0,"Infant with no mother ART number should not be linked");
 	}
 	
 	@Test
@@ -129,7 +130,7 @@ public class MotherToBabyPairLinkingPostSubmissionActionTest extends BaseModuleW
 		List<Relationship> parents = Context.getPersonService().getRelationshipsByPerson(e.getPatient().getPerson());
 		
 		
-		Assert.assertEquals("Infant with ART number not belonging to anyone in the system should not be linked", parents.size(), 0);
+		assertEquals(parents.size(), 0,"Infant with ART number not belonging to anyone in the system should not be linked");
 	}
 	
 }

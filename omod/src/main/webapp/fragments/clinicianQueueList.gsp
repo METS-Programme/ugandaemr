@@ -82,7 +82,7 @@
             searchfilter: jq("#patient-search").val().trim().toLowerCase()
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("patientClinicianQueueList=", "\"patientClinicianQueueList\":").trim());
+                var responseData = response;
                 displayClinicianData(responseData);
             } else if (!response) {
                 jq("#clinician-queue-list-table").append(${ ui.message("coreapps.none ") });
@@ -136,7 +136,7 @@
         var dataToDisplay = [];
 
         if (response.patientClinicianQueueList.length > 0) {
-            dataToDisplay = response.patientClinicianQueueList.sort(function (a, b) {
+            dataToDisplay = JSON.parse(response.patientClinicianQueueList).sort(function (a, b) {
                 return a.patientQueueId - b.patientQueueId;
             });
         }

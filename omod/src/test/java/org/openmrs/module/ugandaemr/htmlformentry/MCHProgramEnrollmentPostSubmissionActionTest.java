@@ -1,5 +1,7 @@
 package org.openmrs.module.ugandaemr.htmlformentry;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -8,10 +10,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.Encounter;
 import org.openmrs.EncounterType;
 import org.openmrs.Form;
@@ -24,7 +26,7 @@ import org.openmrs.module.ugandaemr.metadata.core.Programs;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.HtmlForm;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
 
@@ -44,12 +46,12 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
 			+ "<submit/>"
 			+ "</htmlform>";
 	
-	@Before
+	@BeforeEach
 	public void setup() throws Exception {
 		executeDataSet(UGANDAEMR_STANDARD_DATASET_XML);
 	}
 	
-	@After
+	@AfterEach
 	public void cleanup() throws Exception {
 		deleteAllData();
 	}
@@ -62,7 +64,7 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
 		
 		//should not be enrolled yet in the mch program
 		List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, patientPrograms.size());
+		assertEquals(0, patientPrograms.size());
 			
 		//prepare and submit an html form to enroll patient in mch program
 		HtmlForm htmlForm = new HtmlForm();
@@ -86,8 +88,8 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
         
         //should be enrolled in mch program
         patientPrograms = service.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, patientPrograms.size());
-		Assert.assertNull(patientPrograms.get(0).getDateCompleted());
+		assertEquals(1, patientPrograms.size());
+		assertNull(patientPrograms.get(0).getDateCompleted());
 	}
 	
 	@Test
@@ -111,31 +113,31 @@ public class MCHProgramEnrollmentPostSubmissionActionTest extends BaseModuleWebC
 		
 		List<PatientProgram> programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null,
 		    null, false);
-		Assert.assertEquals(0, programs.size());
+		assertEquals(0, programs.size());
 		
 		//try enroll in vew mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.VIEW);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, programs.size()); //should not enroll in view mode
+		assertEquals(0, programs.size()); //should not enroll in view mode
 		
 		//try enroll in edit mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.EDIT);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(0, programs.size()); //should not enroll in edit mode
+		assertEquals(0, programs.size()); //should not enroll in edit mode
 		
 		//try enroll in enter mode
 		when(formEntrySession.getContext().getMode()).thenReturn(FormEntryContext.Mode.ENTER);
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, programs.size()); //should enroll in enter mode
-		Assert.assertNull(programs.get(0).getDateCompleted());
+		assertEquals(1, programs.size()); //should enroll in enter mode
+		assertNull(programs.get(0).getDateCompleted());
 		
 		//try enroll again for the same patient and program in enter mode
 		postSubmissionAction.applyAction(formEntrySession);
 		programs = programWorkflowService.getPatientPrograms(patient, mchProgram, null, null, null, null, false);
-		Assert.assertEquals(1, programs.size()); //should not do duplicate enrollment
-		Assert.assertNull(programs.get(0).getDateCompleted());
+		assertEquals(1, programs.size()); //should not do duplicate enrollment
+		assertNull(programs.get(0).getDateCompleted());
 	}
 }

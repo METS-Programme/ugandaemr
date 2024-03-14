@@ -27,9 +27,7 @@
             url: "${ ui.actionLink("getCurrentDateTime") }",
             async: false,
             success: function (data) {
-                var responseData = JSON.parse(data.replace("currentDateTime=", "\"currentDateTime\":").trim());
-                currentDateTime = responseData.currentDateTime;
-
+                currentDateTime = JSON.parse(data.currentDateTime);
             },
             error: function (response) {
                 console.log(response);
@@ -58,9 +56,7 @@
             url: "${ ui.actionLink("getCurrentDateTime") }",
             async: false,
             success: function (data) {
-                var responseData = JSON.parse(data.replace("currentDateTime=", "\"currentDateTime\":").trim());
-                datePicked = responseData.currentDateTime;
-
+                datePicked = JSON.parse(data.currentDateTime);
             },
             error: function (response) {
                 console.log(response);

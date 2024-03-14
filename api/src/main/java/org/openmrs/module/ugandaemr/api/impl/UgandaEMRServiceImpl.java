@@ -24,7 +24,7 @@ import org.openmrs.module.ugandaemr.api.lab.mapper.LabQueueMapper;
 import org.openmrs.module.ugandaemr.api.lab.mapper.OrderMapper;
 import org.openmrs.module.ugandaemr.api.lab.util.LaboratoryUtil;
 import org.openmrs.module.ugandaemr.api.lab.util.TestResultModel;
-import org.openmrs.module.ugandaemr.metadata.core.Locations;
+import org.openmrs.module.ugandaemr.metadata.core.location.LocationOrganization;
 import org.openmrs.module.ugandaemr.metadata.core.PatientIdentifierTypes;
 import org.openmrs.module.ugandaemr.pharmacy.DispensingModelWrapper;
 import org.openmrs.module.ugandaemr.pharmacy.mapper.DrugOrderMapper;
@@ -204,7 +204,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 PatientIdentifier patientIdentifier = new PatientIdentifier();
                 patientIdentifier.setIdentifier(uniqueIdentifierCode);
                 patientIdentifier.setIdentifierType(patientIdentifierType);
-                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(Locations.PARENT.uuid()));
+                patientIdentifier.setLocation(Context.getLocationService().getLocationByUuid(LocationOrganization.PARENT.uuid()));
                 patientIdentifier.setCreator(Context.getUserService().getUser(1));
                 patientIdentifier.setPreferred(false);
                 patientIdentifier.setDateCreated(new Date());
@@ -691,6 +691,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                             TestResultModel trm = new TestResultModel();
                             trm.setInvestigation(test.getConcept().getDisplayString());
                             trm.setTestId(obs.getOrder().getOrderId());
+                            trm.setTestUuid(obs.getOrder().getUuid());
                             trm.setSet(obs.getConcept().getDisplayString());
                             trm.setOrderdate(obs.getOrder().getDateActivated());
                             trm.setConcept(obs.getConcept());
@@ -703,6 +704,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                         trm.setSet(test.getConcept().getDatatype().getName());
                         trm.setOrderdate(obs.getOrder().getDateActivated());
                         trm.setTestId(obs.getOrder().getOrderId());
+                        trm.setTestUuid(obs.getOrder().getUuid());
                         trm.setConcept(obs.getConcept());
                         setTestResultModelValue(obs, trm);
                         trms.add(trm);
@@ -764,7 +766,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @param query
      * @param encounterId
      * @return
-     * @throws ParseExceptionx
+     * @throws ParseException
      * @throws IOException
      */
     public SimpleObject getOrderResultsOnEncounter(String query, int encounterId, boolean includeProccesed) throws ParseException, IOException {
@@ -830,6 +832,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderMapper.setPatient(names.replace("null", ""));
             orderMapper.setOrderId(order.getOrderId());
             orderMapper.setEncounterId(order.getEncounter().getEncounterId());
+            orderMapper.setOrderClass(order.getConcept().getConceptClass().getName());
             if (order.isActive()) {
                 orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
             }

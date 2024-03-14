@@ -23,13 +23,14 @@
         var checkInData = "";
         jq("#check_in_receipt").html("");
         if (dataToPrint.patientTriageQueue !== "") {
+            var recordToPrint=JSON.parse(dataToPrint.patientTriageQueue);
             checkInData += "<table>";
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Check In Date:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.dateCreated);
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Patient Names:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.patientNames);
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Visit No.:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.visitNumber.substring(15));
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Gender:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.gender);
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Entry Point:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.locationFrom.substring(0, 3));
-            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Registration Attendant:</th><td>%s</td></tr>".replace("%s", dataToPrint.patientTriageQueue.creatorNames);
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Check In Date:</th><td>%s</td></tr>".replace("%s", recordToPrint.dateCreated);
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Patient Names:</th><td>%s</td></tr>".replace("%s", recordToPrint.patientNames);
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Visit No.:</th><td>%s</td></tr>".replace("%s", recordToPrint.visitNumber.substring(15));
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Gender:</th><td>%s</td></tr>".replace("%s", recordToPrint.gender);
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Entry Point:</th><td>%s</td></tr>".replace("%s", recordToPrint.locationFrom.substring(0, 3));
+            checkInData += "<tr><th width=\"50%\" style=\"text-align: left\">Registration Attendant:</th><td>%s</td></tr>".replace("%s", recordToPrint.creatorNames);
             checkInData += "</table>";
         }
         jq("#check_in_receipt").append(checkInData);

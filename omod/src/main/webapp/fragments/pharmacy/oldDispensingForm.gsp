@@ -57,10 +57,8 @@
             async: false
         }, function (response) {
             if (response!==null || response!=="") {
-                var pharmacyQueueList = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
-
-                if(pharmacyQueueList.patientPharmacyQueueList.length>0) {
-                    var editPrescriptionParameterOptions = getDrugOrderData(pharmacyQueueList, encounterId, 0);
+                if(response.patientPharmacyQueueList.length>0) {
+                    var editPrescriptionParameterOptions = getDrugOrderData(response, encounterId, 0);
                     jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
                         editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
                     });

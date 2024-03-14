@@ -1,9 +1,9 @@
 package org.openmrs.module.ugandaemr.htmlformentry;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.Encounter;
 import org.openmrs.EncounterType;
 import org.openmrs.Form;
@@ -17,7 +17,7 @@ import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.htmlformentry.HtmlForm;
 import org.openmrs.module.ugandaemr.metadata.core.Programs;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpSession;
 
@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -40,12 +41,12 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
 
     private String xml2 = "<htmlform formEncounterType=\"8d5b27bc-c2cc-11de-8d13-0010c6dffd0f\">\n" + "" + "Date: <encounterDate default='2015-02-10 00:00:00'/>\n" + "Location: <encounterLocation default='1'/>\n" + "Provider: <encounterProvider role='Provider' default='2'/>\n" + "<input type=\"hidden\" name=\"personId\" value=\"1393\"/>" + "<input type=\"hidden\" name=\"createVisit\" value=\"false\"/>\n" + "<input type=\"hidden\" name=\"encounterId\" value=\"31182\"/>\n" + "<input type=\"hidden\" name=\"visitId\" value=\"31165\"/>\n" + "<obs id=\"165143\" conceptId=\"165143\" answerConceptIds=\"165138,165140,165139,165142,165141\" answerLabels=\"FBIM,FBG,FTR,CDDP,CCLAD\" required=\"required\" labelText=\"DSDM Model\" defaultValue=\"165140\"/>\n" + "<postSubmissionAction class='org.openmrs.module.ugandaemr.htmlformentry.ARTEnrollmentSubmissionAction'/>\n" + "<submit/>" + "</htmlform>";
 
-    @Before
+    @BeforeEach
     public void setup() throws Exception {
         executeDataSet(UGANDAEMR_DSDM_DATASET_XML);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws Exception {
         deleteAllData();
     }
@@ -81,13 +82,13 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
 
         session1.applyActions();
 
-        List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, hivProgram,null, null, null,null,false);
-        Assert.assertEquals(1, patientPrograms.size());
-        Assert.assertEquals(Programs.HIV_PROGRAM.uuid(), patientPrograms.get(0).getProgram().getUuid());
-        Assert.assertNull(patientPrograms.get(0).getDateCompleted());
-        Assert.assertEquals(1, patientPrograms.get(0).getStates().size());
+        List<PatientProgram> patientPrograms = service.getPatientPrograms(patient, hivProgram, null, null, null, null, false);
+        assertEquals(1, patientPrograms.size());
+        assertEquals(Programs.HIV_PROGRAM.uuid(), patientPrograms.get(0).getProgram().getUuid());
+        assertNull(patientPrograms.get(0).getDateCompleted());
+        assertEquals(1, patientPrograms.get(0).getStates().size());
         PatientState firstLineRegimenState = patientPrograms.get(0).getStates().iterator().next();
-        Assert.assertEquals(90271, firstLineRegimenState.getState().getConcept().getConceptId().intValue());
+        assertEquals(90271, firstLineRegimenState.getState().getConcept().getConceptId().intValue());
     }
 
     /**
@@ -122,11 +123,11 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         session1.getSubmissionController().handleFormSubmission(session1, request);
 
         session1.applyActions();
-        List<PatientProgram> patientProgramList = getPatientPrograms(patient, null,null,null,false);
-        Assert.assertEquals(service.getProgramByName("FTR"), patientProgramList.get(1).getProgram());
-        Assert.assertEquals(service.getProgramByName("FBIM"), patientProgramList.get(0).getProgram());
-        Assert.assertEquals(session1.getEncounter().getEncounterDatetime(), patientProgramList.get(1).getDateEnrolled());
-        Assert.assertEquals(patientProgramList.get(1).getDateEnrolled(), patientProgramList.get(0).getDateCompleted());
+        List<PatientProgram> patientProgramList = getPatientPrograms(patient, null, null, null, false);
+        assertEquals(service.getProgramByName("FTR"), patientProgramList.get(1).getProgram());
+        assertEquals(service.getProgramByName("FBIM"), patientProgramList.get(0).getProgram());
+        assertEquals(session1.getEncounter().getEncounterDatetime(), patientProgramList.get(1).getDateEnrolled());
+        assertEquals(patientProgramList.get(1).getDateEnrolled(), patientProgramList.get(0).getDateCompleted());
 
     }
 
@@ -163,9 +164,9 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
 
         session1.applyActions();
         //Patient DSDM Patient Program Should remain active
-        Assert.assertTrue(service.getPatientProgram(2069).getActive());
-        Assert.assertEquals(service.getProgramByName("FBIM"),getPatientPrograms(patient,null,null,null,false).get(0).getProgram());
-        Assert.assertTrue(service.getPatientPrograms(Context.getPatientService().getPatient(1393), null, null, null, null, null, true).size() == 1);
+        assertTrue(service.getPatientProgram(2069).getActive());
+        assertEquals(service.getProgramByName("FBIM"), getPatientPrograms(patient, null, null, null, false).get(0).getProgram());
+        assertTrue(service.getPatientPrograms(Context.getPatientService().getPatient(1393), null, null, null, null, null, true).size() == 1);
     }
 
 
@@ -205,12 +206,12 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         session1.getSubmissionController().handleFormSubmission(session1, request);
 
         session1.applyActions();
-        List<PatientProgram> patientProgramList = getPatientPrograms(patient,null,null,null,false);
-        Assert.assertEquals(service.getProgramByName("CCLAD"), patientProgramList.get(0).getProgram());
-        Assert.assertTrue(patientProgramList.size() == 1);
-        Assert.assertTrue(getPatientPrograms(Context.getPatientService().getPatient(1393), null, null, null, true).size() == 2);
-        Assert.assertTrue(patientProgramList.get(0).getActive());
-        Assert.assertEquals(session1.getEncounter().getEncounterDatetime(), patientProgramList.get(0).getDateEnrolled());
+        List<PatientProgram> patientProgramList = getPatientPrograms(patient, null, null, null, false);
+        assertEquals(service.getProgramByName("CCLAD"), patientProgramList.get(0).getProgram());
+        assertTrue(patientProgramList.size() == 1);
+        assertTrue(getPatientPrograms(Context.getPatientService().getPatient(1393), null, null, null, true).size() == 2);
+        assertTrue(patientProgramList.get(0).getActive());
+        assertEquals(session1.getEncounter().getEncounterDatetime(), patientProgramList.get(0).getDateEnrolled());
     }
 
     /**
@@ -249,9 +250,9 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         session1.getSubmissionController().handleFormSubmission(session1, request);
 
         session1.applyActions();
-        List<PatientProgram> patientProgramList = getPatientPrograms(patient, null, null, null,false);
-        Assert.assertTrue(patientProgramList.size() == 0);
-        Assert.assertTrue(getPatientPrograms(patient, null, null, null,true).size()==1);
+        List<PatientProgram> patientProgramList = getPatientPrograms(patient, null, null, null, false);
+        assertTrue(patientProgramList.size() == 0);
+        assertTrue(getPatientPrograms(patient, null, null, null, true).size() == 1);
     }
 
     /**
@@ -290,11 +291,11 @@ public class ARTEnrollmentSubmissionActionTest extends BaseModuleWebContextSensi
         session1.getSubmissionController().handleFormSubmission(session1, request);
 
         session1.applyActions();
-        Assert.assertTrue(getPatientPrograms(patient,null,null,null,false).size() == 1);
-        Assert.assertTrue(getPatientPrograms(patient,null,null,null,false).get(0).getActive());
+        assertTrue(getPatientPrograms(patient, null, null, null, false).size() == 1);
+        assertTrue(getPatientPrograms(patient, null, null, null, false).get(0).getActive());
     }
 
-    private List<PatientProgram> getPatientPrograms(Patient patient,Program program, Date minEnrollmentDate, Date maxEnrollmentDate,boolean includeVoided) {
+    private List<PatientProgram> getPatientPrograms(Patient patient, Program program, Date minEnrollmentDate, Date maxEnrollmentDate, boolean includeVoided) {
         List<PatientProgram> patientPrograms = new ArrayList<PatientProgram>();
 
         patientPrograms = Context.getProgramWorkflowService().getPatientPrograms(patient, program, minEnrollmentDate, maxEnrollmentDate, null, null, includeVoided);

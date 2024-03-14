@@ -50,7 +50,7 @@ button, input {
             pharmacySearchFilter: jq("#patient-pharmacy-search").val().trim().toLowerCase()
         }, function (response) {
             if (response) {
-                var responseData = JSON.parse(response.replace("patientPharmacyQueueList=", "\"patientPharmacyQueueList\":").trim());
+                var responseData = response;
                 pharmacyData = responseData;
                 displaypharmacyData(responseData);
             } else if (!response) {
@@ -83,7 +83,7 @@ button, input {
        var dataToDisplay=[];
 
         if(response.patientPharmacyQueueList.length>0){
-            dataToDisplay=response.patientPharmacyQueueList.sort(function (a, b) {
+            dataToDisplay=JSON.parse(response.patientPharmacyQueueList).sort(function (a, b) {
                 return a.patientQueueId - b.patientQueueId;
             });
         }

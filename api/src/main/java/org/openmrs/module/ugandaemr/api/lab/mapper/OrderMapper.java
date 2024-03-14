@@ -21,6 +21,8 @@ public class OrderMapper implements Serializable {
 
 	private String orderType;
 
+	private String orderClass;
+
 	private String concept;
 
 	private String conceptName;
@@ -81,6 +83,15 @@ public class OrderMapper implements Serializable {
 
 	public void setPatient(String patient) {
 		this.patient = patient;
+	}
+
+
+	public String getOrderClass() {
+		return orderClass;
+	}
+
+	public void setOrderClass(String orderClass) {
+		this.orderClass = orderClass;
 	}
 
 	public String getOrderType() {

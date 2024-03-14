@@ -205,8 +205,7 @@ body {
                 patientStatus: jq("#patient_status").val().trim().toLowerCase(),
                 visitComment: jq("#visit_comment").val().trim().toLowerCase()
             }, function (response) {
-                var responseData = JSON.parse(response.replace("patientTriageQueue=", "\"patientTriageQueue\":").trim())
-                printTriageRecord("printSection", responseData);
+                printTriageRecord("printSection", response);
                 jq("#add_patient_to_queue_dialog").modal('hide');
                 if (!response) {
                     ${ ui.message("coreapps.none ") }
@@ -249,8 +248,7 @@ body {
                 patientDataFromRDS: JSON.stringify(patientTransferInData[0])
             }
             , function (response) {
-                var patientEncounterInfo = JSON.parse(response.replace("patientCaseInvesitigationEncounter=", "\"patientCaseInvesitigationEncounter\":").trim());
-                location.href = '/openmrs/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId='+patientEncounterInfo.patientCaseInvesitigationEncounter.patientId+'&encounterId='+patientEncounterInfo.patientCaseInvesitigationEncounter.encounterId;
+                location.href = '/openmrs/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId='+response.patientCaseInvesitigationEncounter.patientId+'&encounterId='+response.patientCaseInvesitigationEncounter.encounterId;
             });
         });
     });

@@ -1,25 +1,28 @@
 package org.openmrs.module.ugandaemr.fragment;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 import org.openmrs.Patient;
 import org.openmrs.module.ugandaemr.fragment.controller.PatientStabilityFragmentController;
-import org.openmrs.web.test.BaseModuleWebContextSensitiveTest;
+import org.openmrs.web.test.jupiter.BaseModuleWebContextSensitiveTest;
+
 
 import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class PatientStabilityFragmentControllerTest extends BaseModuleWebContextSensitiveTest {
 
     protected static final String UGANDAEMR_DSDM_DATASET_XML = "org/openmrs/module/ugandaemr/include/dsdmTestDataSet.xml";
 
-    @Before
+    @AfterEach
     public void setup() throws Exception {
         executeDataSet(UGANDAEMR_DSDM_DATASET_XML);
     }
 
-    @After
+    @AfterEach
     public void cleanup() throws Exception {
         deleteAllData();
     }
@@ -28,7 +31,7 @@ public class PatientStabilityFragmentControllerTest extends BaseModuleWebContext
     public void testDateSubtraction() {
         PatientStabilityFragmentController patientStabilityFragmentController = new PatientStabilityFragmentController();
 
-        patientStabilityFragmentController.getDateBefore(new Date(), -12,0);
+        patientStabilityFragmentController.getDateBefore(new Date(), -12, 0);
     }
 
     @Test
@@ -36,7 +39,7 @@ public class PatientStabilityFragmentControllerTest extends BaseModuleWebContext
         Patient patient = new Patient(1393);
         PatientStabilityFragmentController patientStabilityFragmentController = new PatientStabilityFragmentController();
         Date artStartDate = patientStabilityFragmentController.getArtStartDate(patient);
-        Assert.assertNotNull(artStartDate);
-        Assert.assertEquals(artStartDate.toString(),"2013-02-06 00:00:00.0");
+        assertNotNull(artStartDate);
+        assertEquals(artStartDate.toString(), "2013-02-06 00:00:00.0");
     }
 }
