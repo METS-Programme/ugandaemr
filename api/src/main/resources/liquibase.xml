@@ -806,19 +806,13 @@ VALUES
 	</changeSet>
 
 	<changeSet id="ugandaemr-20240314-1654" author="slubwama">
-		<preConditions onFail="MARK_RAN">
+		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
 				select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
 			</sqlCheck>
 		</preConditions>
 		<comment>Migrate patient appointments from observations to patient calender</comment>
 		<sql>
-			set foreign_key_checks =0;
-			truncate patient_appointment_audit;
-			truncate patient_appointment_provider;
-			truncate patient_appointment;
-			set foreign_key_checks =1;
-
 			INSERT INTO patient_appointment (appointment_number, patient_id, start_date_time, end_date_time, appointment_service_id, status, location_id, appointment_kind, uuid, date_created, creator,voided)
 			select '0000',person_id,value_datetime,value_datetime,2,'Requested',location_id,'Scheduled',uuid(),obs_datetime,1,0 from obs where concept_id=5096 and voided=false;
 
@@ -836,6 +830,8 @@ VALUES
 			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10 WHERE  b.concept_id=160288 and value_coded=164973;
 		</sql>
 	</changeSet>
+
+
 </databaseChangeLog>
 
 
