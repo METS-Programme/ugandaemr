@@ -811,6 +811,23 @@ VALUES
 	</changeSet>
 
 
+	<changeSet id="ugandaemr-20240314-1821" author="slubama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
+			</sqlCheck>
+
+			<sqlCheck expectedResult="1">
+				SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+			</sqlCheck>
+		</preConditions>
+		<comment>Default all users to the ART clinic except for the admin and demon. </comment>
+		<sql>
+			INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator, date_created,voided)
+			SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1, date_created,0 from provider where person_id not in (1);
+		</sql>
+	</changeSet>
+
 </databaseChangeLog>
 
 
