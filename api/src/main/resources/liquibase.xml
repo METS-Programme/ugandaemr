@@ -810,35 +810,62 @@ VALUES
 		</insert>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240314-1721" author="slubama">
-		<preConditions onFail="MARK_RAN">
-			<sqlCheck expectedResult="0">
-				SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
-			</sqlCheck>
-		</preConditions>
-		<comment>Create provider attribute default location in</comment>
-		<sql>
-			REPLACE INTO provider_attribute_type (name, description, datatype, preferred_handler, min_occurs, max_occurs, creator, date_created, retired, uuid) VALUES ('Default Location', 'The location which is assigned to a clinical provider', 'org.openmrs.customdatatype.datatype.LocationDatatype', 'org.openmrs.web.attribute.handler.LocationFieldGenDatatypeHandler', 0, 1, 1, '2023-08-10 14:14:27',  0, '13a721e4-68e5-4f7a-8aee-3cbcec127179');
-		</sql>
-	</changeSet>
-
-
-	<changeSet id="ugandaemr-20240314-1821" author="slubama">
+	<changeSet id="ugandaemr-20240314-1654" author="slubwama">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
-			</sqlCheck>
-
-			<sqlCheck expectedResult="1">
-				SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+				select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
 			</sqlCheck>
 		</preConditions>
-		<comment>Default all users to the ART clinic except for the admin and demon. </comment>
+		<comment>Migrate patient appointments from observations to patient calender</comment>
 		<sql>
-			INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator, date_created,voided)
-			SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1, date_created,0 from provider where person_id not in (1);
+			INSERT INTO patient_appointment (appointment_number, patient_id, start_date_time, end_date_time, appointment_service_id, status, location_id, appointment_kind, uuid, date_created, creator,voided)
+			select '0000',person_id,value_datetime,value_datetime,2,'Requested',location_id,'Scheduled',uuid(),obs_datetime,1,0 from obs where concept_id=5096 and voided=false;
+
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 3 WHERE  b.concept_id=160288 and value_coded=856;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 13 WHERE  b.concept_id=160288 and value_coded=903;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 5 WHERE  b.concept_id=160288 and value_coded=5484;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 12 WHERE  b.concept_id=160288 and value_coded=90012;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 6 WHERE  b.concept_id=160288 and value_coded=99324;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 4 WHERE  b.concept_id=160288 and value_coded=164968;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 9 WHERE  b.concept_id=160288 and value_coded=164970;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 11 WHERE  b.concept_id=160288 and value_coded=164971;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 2 WHERE  b.concept_id=160288 and value_coded=164972;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 8 WHERE  b.concept_id=160288 and value_coded=164974;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 7 WHERE  b.concept_id=160288 and value_coded=163153;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10 WHERE  b.concept_id=160288 and value_coded=164973;
 		</sql>
 	</changeSet>
+    <changeSet id="ugandaemr-20240314-1721" author="slubama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
+            </sqlCheck>
+        </preConditions>
+        <comment>Create provider attribute default location in</comment>
+        <sql>
+            REPLACE INTO provider_attribute_type (name, description, datatype, preferred_handler, min_occurs, max_occurs, creator, date_created, retired, uuid) VALUES ('Default Location', 'The location which is assigned to a clinical provider', 'org.openmrs.customdatatype.datatype.LocationDatatype', 'org.openmrs.web.attribute.handler.LocationFieldGenDatatypeHandler', 0, 1, 1, '2023-08-10 14:14:27',  0, '13a721e4-68e5-4f7a-8aee-3cbcec127179');
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="ugandaemr-20240314-1821" author="slubama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
+            </sqlCheck>
+
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+            </sqlCheck>
+        </preConditions>
+        <comment>Default all users to the ART clinic except for the admin and demon. </comment>
+        <sql>
+            INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator, date_created,voided)
+            SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1, date_created,0 from provider where person_id not in (1);
+        </sql>
+    </changeSet>
+
+
 
 </databaseChangeLog>
 
