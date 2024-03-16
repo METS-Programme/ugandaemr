@@ -837,7 +837,7 @@ VALUES
 	</changeSet>
 
 	<changeSet id="ugandaemr-20240316-1654" author="slubwama">
-		<preConditions onFail="CONTINUE">
+		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="1">
 				select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
 			</sqlCheck>
