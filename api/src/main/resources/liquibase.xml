@@ -842,7 +842,7 @@ VALUES
 				select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
 			</sqlCheck>
 		</preConditions>
-		<comment>Migrate patient appointments from observations to patient calender</comment>
+		<comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
 		<sql>
 			UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
 		</sql>
