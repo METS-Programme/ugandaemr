@@ -836,6 +836,18 @@ VALUES
 		</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-20240317-1406" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept_id=159959;
+			</sqlCheck>
+		</preConditions>
+		<comment>Move all obs of specimen source that have concept 162476 which is of data type N/A to  159959 of data type coded</comment>
+		<sql>
+			update obs set concept_id=159959 where concept_id=162476;
+		</sql>
+	</changeSet>
+
 
 </databaseChangeLog>
 
