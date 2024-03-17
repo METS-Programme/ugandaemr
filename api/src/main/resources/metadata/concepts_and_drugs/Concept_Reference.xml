@@ -555,6 +555,8 @@
     <concept_reference_term  concept_reference_term_id="284109"  concept_source_id="4"  name="Zinc Sulfate"  code="39954" creator="1"  date_created="2020-02-20 10:36:34" retired="0" uuid="6dd05225-2dfb-4aa5-9d38-f4833fba9d5d"/>
     <concept_reference_term  concept_reference_term_id="288177"  concept_source_id="21"  name="Immunization"  code="984"  creator="1"  date_created="2024-03-17 04:30:33" retired="0" uuid="6384cd15-9fdf-4159-a676-f6cfc2f1023c"/>
     <concept_reference_term  concept_reference_term_id="288176"  concept_source_id="21"  name="IMMUNIZATION HISTORY"  code="1421"  creator="1"  date_created="2024-03-16 23:31:07" retired="0" uuid="f9094d70-11af-454c-bcd4-6a9509f2f830"/>
+    <concept_reference_term  concept_reference_term_id="288178"  concept_source_id="21"  name="Immunization, non-coded"  code="166011" creator="1"  date_created="2024-03-17 06:39:42" retired="0"  uuid="2f26617e-d429-4fad-81c5-9d4fe6d0f34f"/>
+
 
     <concept_reference_map  concept_map_id="283698"  concept_reference_term_id="283700"  concept_map_type_id="1"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165507" uuid="fcd4a4a5-5b05-4c8b-be69-8dac50e22461"/>
     <concept_reference_map  concept_map_id="283699"  concept_reference_term_id="283701"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165508" uuid="74052127-6a67-48e8-aadc-4a404118887a"/>
@@ -964,4 +966,5 @@
     <concept_reference_map  concept_map_id="284103"  concept_reference_term_id="284109"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:36:34"  concept_id="165772" uuid="44706433-5ecd-4f7b-8a4b-562c42f44fb0"/>
     <concept_reference_map  concept_map_id="288162"  concept_reference_term_id="288177"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 04:30:47"  concept_id="984" uuid="fb4b778e-a683-4623-8613-520cd56313d0"/>
     <concept_reference_map  concept_map_id="288161"  concept_reference_term_id="288176"  concept_map_type_id="1"  creator="1"  date_created="2024-03-16 23:31:18"  concept_id="1421" uuid="446a5fbc-9cdc-4416-8d16-4e14564aa99c"/>
+    <concept_reference_map  concept_map_id="288163"  concept_reference_term_id="288178"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 06:39:59"  concept_id="175340" uuid="ea8c368f-7469-438e-93e2-e13c30e3dcc4"/>
 </dataset>

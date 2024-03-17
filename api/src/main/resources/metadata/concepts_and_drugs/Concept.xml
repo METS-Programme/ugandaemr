@@ -11070,5 +11070,5 @@
 
 
     <concept  concept_id="165907"  retired="0"  datatype_id="6"  class_id="5"  is_set="0"  creator="1"  date_created="2020-04-08 14:09:35"  version=""  changed_by="1"  date_changed="2020-04-08 14:10:10"  retired_by="1" uuid="165907AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"/>
-    <concept  concept_id="175340"  retired="0"  datatype_id="6"  class_id="5"  is_set="0"  creator="1"  date_created="2020-04-08 14:09:35"  version=""  changed_by="1"  date_changed="2020-04-08 14:10:10"  retired_by="1" uuid="a2c65360-79a5-4b5b-a7f0-a698121a83e1"/>
+    <concept  concept_id="175340"  retired="0"  datatype_id="3"  class_id="5"  is_set="0"  creator="1"  date_created="2020-04-08 14:09:35"  version=""  changed_by="1"  date_changed="2020-04-08 14:10:10"  retired_by="1" uuid="a2c65360-79a5-4b5b-a7f0-a698121a83e1"/>
 </dataset>
