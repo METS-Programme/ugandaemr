@@ -10,6 +10,8 @@ import org.openmrs.api.context.Context;
 import org.openmrs.scheduler.tasks.AbstractTask;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.openmrs.module.ugandaemr.UgandaEMRConstants.*;
 
@@ -44,17 +46,34 @@ public class IdentifyCohortMemberOfProgramsAndWorkflowsTask extends AbstractTask
         Cohort cohort = cohortService.getCohortByUuid(cohortUuid);
 
         for (List<Object> result : results) {
-            Integer patientId = Integer.parseInt(result.get(0).toString());
-            try {
-                Patient patient = Context.getPatientService().getPatient(patientId);
-                if (cohort.getActiveMemberships().isEmpty() || (!cohort.getActiveMemberships().isEmpty() && cohort.getActiveMembership(patient) == null)) {
-                    CohortMembership cohortMembership = new CohortMembership(patient.getPatientId());
-                    cohort.addMembership(cohortMembership);
-                    cohortMembership.setCreator(Context.getUserService().getUser(1));
-                    Context.getCohortService().saveCohort(cohort);
+            Optional<Object> firstElement = result.stream().findFirst(); // Using Optional to handle possible empty lists
+            if (firstElement.isPresent()) {
+                try {
+                    Integer patientId = Integer.parseInt(firstElement.get().toString());
+                    Patient patient = Context.getPatientService().getPatient(patientId);
+                    Boolean patientInCohort = false;
+                    if (cohort.getActiveMemberships().isEmpty()) {
+                        patientInCohort = false;
+                    } else {
+                        if (!cohort.getActiveMemberships().isEmpty()) {
+                            List<CohortMembership> memberships = cohort.getMemberships().stream().filter(cohortMembership -> cohortMembership.getPatientId().equals(patient.getPatientId())).collect(Collectors.toList());
+                            if (memberships.size() > 0) {
+                                patientInCohort = true;
+                            }
+                        }
+                    }
+
+                    if (!patientInCohort) {
+                        CohortMembership cohortMembership = new CohortMembership(patient.getPatientId());
+                        cohort.addMembership(cohortMembership);
+                        cohortMembership.setCreator(Context.getUserService().getUser(1));
+                        Context.getCohortService().saveCohort(cohort);
+                    }
+                } catch (Exception e) {
+                    log.error(e);
                 }
-            } catch (Exception e) {
-                log.error(e);
+            } else {
+                log.warn("Empty list encountered. Skipping processing.");
             }
         }
     }

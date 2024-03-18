@@ -866,7 +866,29 @@ VALUES
     </changeSet>
 
 
+	<changeSet id="ugandaemr-20240317-1406" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept_id=159959;
+			</sqlCheck>
+		</preConditions>
+		<comment>Move all obs of specimen source that have concept 162476 which is of data type N/A to  159959 of data type coded</comment>
+		<sql>
+			update obs set concept_id=159959 where concept_id=162476;
+		</sql>
+	</changeSet>
 
+	<changeSet id="ugandaemr-20240316-1654" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+			</sqlCheck>
+		</preConditions>
+		<comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
+		<sql>
+			UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

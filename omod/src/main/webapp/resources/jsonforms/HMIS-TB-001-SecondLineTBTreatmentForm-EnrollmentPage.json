@@ -8,10 +8,47 @@
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
   "pages": [
     {
       "label": "Case Summary/Patient Type",
       "sections": [
+        {
+          "label": "Visit details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date:",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Provider:",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider "
+            },
+            {
+              "label": "Location:",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encLocation"
+            }
+          ]
+        },
         {
           "label": "Case Summary/Patient Type",
           "isExpanded": "true",

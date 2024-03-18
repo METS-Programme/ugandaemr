@@ -8,10 +8,47 @@
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
+  "meta": {
+    "programs": {
+      "uuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
+      "isEnrollment": true,
+      "discontinuationDateQuestionId": ""
+    }
+  },
   "pages": [
     {
       "label": "HIV Enrolment Form",
       "sections": [
+        {
+          "label": "Visit details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date:",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Provider:",
+              "type": "encounterProvider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider "
+            },
+            {
+              "label": "Location:",
+              "type": "encounterLocation",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encLocation"
+            }
+          ]
+        },
         {
           "label": "CARE ENTRY",
           "isExpanded": "true",
@@ -613,14 +650,5 @@
       ]
     }
   ],
-  "referencedForms": [],
-  "postSubmissionActions": [
-    {
-      "actionId": "ProgramEnrollmentSubmissionAction",
-      "config": {
-        "enrollmentDate": "hiv-care-transfer-in-from",
-        "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741"
-      }
-    }
-  ]
+  "referencedForms": []
 }
