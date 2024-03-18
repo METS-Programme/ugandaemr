@@ -565,6 +565,20 @@
     <privilege  privilege="View Triage Metrics"  description="NULL"  uuid="db03213b-35b6-4697-8727-d4d10d17c356"/>
     <privilege  privilege="View Triage Queuelist"  description="View Triage Queuelist"  uuid="f6109181-d625-4ff3-8ffd-02b5bd923a31"/>
 
+    <privilege  privilege="Manage Patient Lab Orders"  description="Manage Patient Lab Orders"  uuid="a82a5a04-fcd7-4d5e-aa67-5ece7c205a2c"/>
+    <privilege  privilege="Start Visit Button"  description="Start Visit Button"  uuid="9c38dbf0-5d2b-400d-b69e-79b13d860191"/>
+    <privilege  privilege="Stop Visit Button"  description="Stop Visit Button"  uuid="bfd92414-e113-4ac3-8489-03138c183188"/>
+    <privilege  privilege="Cancel Visit Button"  description="Cancel Visit Button"  uuid="2d3f695e-c45f-44bd-a08e-58af490760ba"/>
+    <privilege  privilege="Mark Dead Button"  description="Mark Dead Button"  uuid="b85b632d-af61-4d50-a083-2b8b1b782953"/>
+    <privilege  privilege="Edit Patient Details Button"  description="Edit Patient Details Button"  uuid="3e63bb7d-91d9-4b89-992a-a585593ba1e6"/>
+    <privilege  privilege="Add Patient To List Button"  description="Add Patient To List Button"  uuid="9cff066d-5764-416f-a798-0c1c0975e7db"/>
+    <privilege  privilege="Move Patient To Next Service Point Button"  description="Move Patient To Next Service Point Button"  uuid="933de750-a2c3-43cb-b03d-5e510882d6c6"/>
+    <privilege  privilege="Manage Patient Banner End Visit Button"  description="Manage Patient Banner End Visit Button"  uuid="8ec2ca2a-1283-4ea9-b471-ff09b477927c"/>
+    <privilege  privilege="Manage Patient Test Summary"  description="Manage Patient Test Summary"  uuid="cf1743c6-a354-4d74-9254-2ee0dacce9ff"/>
+    <privilege  privilege="Manage Patient Immunization Orders"  description="Manage Patient Immunization Orders"  uuid="169a6cfa-0111-49bc-b69d-52c1a40ea031"/>
+    <privilege  privilege="Manage Patient Appointment Orders"  description="Manage Patient Appointment Orders"  uuid="2d675753-c388-461d-851f-6f12be3ec944"/>
+    <privilege  privilege="Manage Immunization Summary"  description="Manage Immunization Summary"  uuid="1c9a3eb6-9e13-4a5e-9a30-c19731a1b956"/>
+    <privilege  privilege="Manage Appointments Summary"  description="Manage Appointments Summary"  uuid="721a53aa-5d73-4fdb-9f61-54f8f981b02b"/>
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -591,11 +605,6 @@
     <role  role="Privilege Level: Full"  description="A role that has all API privileges"  uuid="ab2160f6-0941-430c-9752-6714353fbd3c"/>
     <role  role="Privilege Level: High"  description="A role that has all API privileges except administrative privileges with security implications"  uuid="f089471c-e00b-468e-96e8-46aea1b339af"/>
     <role  role="Organizational: System Administrator"  description="System Administrator"  uuid="8534b39a-bbc8-4739-81b3-9602a382b603"/>
-
-
-
-
-
 
 
     <!-- ROLE PRIVILEGES -->
@@ -829,7 +838,61 @@
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.regimenLinesSummary"/>
     <role_privilege  role="HIV Clinic"  privilege="App: ugandaemr.widget.regimenChangeList"/>
 
+    <role_privilege  role="HIV Clinic"  privilege="Access Offline Tools"/>
+    <role_privilege  role="HIV Clinic"  privilege="Add Allergies"/>
+    <role_privilege  role="HIV Clinic"  privilege="Add Attachments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Add Conditions"/>
     <role_privilege  role="HIV Clinic"  privilege="Add Visits"/>
+    <role_privilege  role="HIV Clinic"  privilege="Appointments: Invite Providers"/>
+    <role_privilege  role="HIV Clinic"  privilege="Edit conditions"/>
+    <role_privilege  role="HIV Clinic"  privilege="Edit Diagnoses"/>
+    <role_privilege  role="HIV Clinic"  privilege="Edit Notes"/>
+    <role_privilege  role="HIV Clinic"  privilege="Get Allergies"/>
+    <role_privilege  role="HIV Clinic"  privilege="Get conditions"/>
+    <role_privilege  role="HIV Clinic"  privilege="Get Forms"/>
+    <role_privilege  role="HIV Clinic"  privilege="Get Notes"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointment"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointment Services"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointment Specialities"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointment Types"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointments Settings"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Appointments Summary"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Care Panel"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage OrderTemplates"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Own Appointments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Allergies"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Appointment"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Conditions"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Investigation"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Medication"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Notes"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Program"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Queues"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Results"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Summary"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Visits"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Vital"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Programs"/>
+    <role_privilege  role="HIV Clinic"  privilege="Request Appointments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Reset Appointment Status"/>
+    <role_privilege  role="HIV Clinic"  privilege="Schedule Appointments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Squeezing Appointments"/>
+    <role_privilege  role="HIV Clinic"  privilege="Update Appointment"/>
+    <role_privilege  role="HIV Clinic"  privilege="Update Appointment Status"/>
+    <role_privilege  role="HIV Clinic"  privilege="View Appointment Services"/>
+    <role_privilege  role="HIV Clinic"  privilege="View attachments"/>
+    <role_privilege  role="HIV Clinic"  privilege="View completedQueue"/>
+    <role_privilege  role="HIV Clinic"  privilege="View Encounters"/>
+    <role_privilege  role="HIV Clinic"  privilege="View Patient Summary"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Immunization Summary"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Appointment Orders"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Immunization Orders"/>
+    <role_privilege  role="HIV Clinic"  privilege="Manage Patient Lab Orders"/>
+    <role_privilege  role="HIV Clinic"  privilege="Mark Dead Button"/>
+    <role_privilege  role="HIV Clinic"  privilege="Move Patient To Next Service Point Button"/>
+    <role_privilege  role="HIV Clinic"  privilege="Task: patientqueueing.sendPatientToQueue"/>
+
 
     <!--* OPD Clinic *-->
     <!--role-role-->
@@ -859,6 +922,58 @@
     <role_privilege  role="TB Clinic"  privilege="Task: coreapps.markPatientDead"/>
     <role_privilege  role="TB Clinic" privilege="Task: patientqueueing.completePatientQueue"/>
     <role_privilege  role="TB Clinic" privilege="Task: patientqueueing.sendPatientToQueue"/>
+
+    <role_privilege  role="TB Clinic"  privilege="Access Offline Tools"/>
+    <role_privilege  role="TB Clinic"  privilege="Add Allergies"/>
+    <role_privilege  role="TB Clinic"  privilege="Add Attachments"/>
+    <role_privilege  role="TB Clinic"  privilege="Add Conditions"/>
+    <role_privilege  role="TB Clinic"  privilege="Add Visits"/>
+    <role_privilege  role="TB Clinic"  privilege="Edit Diagnoses"/>
+    <role_privilege  role="TB Clinic"  privilege="Edit Notes"/>
+    <role_privilege  role="TB Clinic"  privilege="Get Allergies"/>
+    <role_privilege  role="TB Clinic"  privilege="Get conditions"/>
+    <role_privilege  role="TB Clinic"  privilege="Get Forms"/>
+    <role_privilege  role="TB Clinic"  privilege="Get Notes"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointment"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointment Services"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointment Specialities"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointment Types"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointments"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointments Settings"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Appointments Summary"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Care Panel"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Immunization Summary"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage OrderTemplates"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Own Appointments"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Allergies"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Appointment"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Appointment Orders"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Conditions"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Immunization Orders"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Investigation"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Lab Orders"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Medication"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Notes"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Program"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Queues"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Results"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Summary"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Visits"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Patient Vital"/>
+    <role_privilege  role="TB Clinic"  privilege="Manage Programs"/>
+    <role_privilege  role="TB Clinic"  privilege="Mark Dead Button"/>
+    <role_privilege  role="TB Clinic"  privilege="Move Patient To Next Service Point Button"/>
+    <role_privilege  role="TB Clinic"  privilege="Request Appointments"/>
+    <role_privilege  role="TB Clinic"  privilege="Reset Appointment Status"/>
+    <role_privilege  role="TB Clinic"  privilege="Schedule Appointments"/>
+    <role_privilege  role="TB Clinic"  privilege="Update Appointment"/>
+    <role_privilege  role="TB Clinic"  privilege="Update Appointment Status"/>
+    <role_privilege  role="TB Clinic"  privilege="View Allergies"/>
+    <role_privilege  role="TB Clinic"  privilege="View Appointment Services"/>
+    <role_privilege  role="TB Clinic"  privilege="View attachments"/>
+    <role_privilege  role="TB Clinic"  privilege="View Clinician Queuelist"/>
+    <role_privilege  role="TB Clinic"  privilege="View completedQueue"/>
+    <role_privilege  role="TB Clinic"  privilege="View Patient Summary"/>
 
     <!--***** REPORTING ROLES *****-->
     <!--* Base reporting *-->

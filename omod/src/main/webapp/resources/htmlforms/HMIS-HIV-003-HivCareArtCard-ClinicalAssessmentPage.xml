@@ -3129,7 +3129,7 @@
 
                                                             <div class="col-md-6">
                                                                 <label>Specimen Source</label>
-                                                                <obs id="viral-load-specimen-source" conceptId="162476"
+                                                                <obs id="viral-load-specimen-source" conceptId="159959"
                                                                      answerConceptSetIds="162476"/>
                                                             </div>
                                                         </div>

@@ -4,9 +4,38 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.openmrs.*;
-import org.openmrs.api.*;
+import org.openmrs.CareSetting;
+import org.openmrs.Concept;
+import org.openmrs.ConceptNumeric;
+import org.openmrs.DrugOrder;
+import org.openmrs.Encounter;
+import org.openmrs.EncounterType;
+import org.openmrs.EncounterRole;
+import org.openmrs.Location;
+import org.openmrs.Obs;
+import org.openmrs.Order;
+import org.openmrs.OrderType;
+import org.openmrs.Patient;
+import org.openmrs.Provider;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.PatientIdentifierType;
+import org.openmrs.PatientProgram;
+import org.openmrs.PatientProgramAttribute;
+import org.openmrs.ProgramAttributeType;
+import org.openmrs.Person;
+import org.openmrs.Relationship;
+import org.openmrs.TestOrder;
+import org.openmrs.Visit;
+import org.openmrs.User;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.AdministrationService;
+import org.openmrs.api.EncounterService;
+import org.openmrs.api.VisitService;
+import org.openmrs.api.PersonService;
+import org.openmrs.api.PatientService;
+import org.openmrs.api.ConceptService;
+import org.openmrs.api.OrderService;
+import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
@@ -35,7 +64,6 @@ import org.openmrs.parameter.EncounterSearchCriteria;
 import org.openmrs.parameter.EncounterSearchCriteriaBuilder;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.util.OpenmrsUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.openmrs.module.stockmanagement.api.StockManagementService;
 
 import java.io.IOException;
@@ -56,12 +84,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     private UgandaEMRDAO dao;
 
-    @Autowired
-    private PatientService patientService;
-
-    @Autowired
-    private PersonService personService;
-
     /**
      * @param dao the dao to set
      */
@@ -80,6 +102,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
+        PatientService patientService=Context.getPatientService();
+        PersonService personService=Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
         artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
@@ -606,6 +630,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             String names = patientQueue.getPatient().getFamilyName() + " " + patientQueue.getPatient().getGivenName() + " " + patientQueue.getPatient().getMiddleName();
             PatientQueueVisitMapper patientQueueVisitMapper = new PatientQueueVisitMapper();
             patientQueueVisitMapper.setId(patientQueue.getId());
+            patientQueueVisitMapper.setPatientQueueUuid(patientQueue.getUuid());
             patientQueueVisitMapper.setPatientNames(names.replace("null", ""));
             patientQueueVisitMapper.setPatientId(patientQueue.getPatient().getPatientId());
             patientQueueVisitMapper.setLocationFrom(patientQueue.getLocationFrom().getName());

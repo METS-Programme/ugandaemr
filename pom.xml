@@ -530,13 +530,6 @@
 
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
-				<artifactId>org.ict4h.openmrs.openmrs-atomfeed</artifactId>
-				<version>${openmrsAtomfeedVersion}</version>
-				<scope>provided</scope>
-			</dependency>
-
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
 				<artifactId>attachments</artifactId>
 				<version>${attachmentsVersion}</version>
 				<scope>provided</scope>

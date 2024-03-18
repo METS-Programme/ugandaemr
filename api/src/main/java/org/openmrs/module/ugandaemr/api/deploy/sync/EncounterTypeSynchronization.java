@@ -1,9 +1,8 @@
 package org.openmrs.module.ugandaemr.api.deploy.sync;
 
 import org.openmrs.EncounterType;
-import org.openmrs.api.EncounterService;
+import org.openmrs.api.context.Context;
 import org.openmrs.module.metadatadeploy.sync.ObjectSynchronization;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,8 +12,6 @@ import java.util.List;
  */
 @Component
 public class EncounterTypeSynchronization implements ObjectSynchronization<EncounterType> {
-    @Autowired
-    private EncounterService encounterService;
 
     /**
      * Fetches all existing encounter types
@@ -22,7 +19,7 @@ public class EncounterTypeSynchronization implements ObjectSynchronization<Encou
      * @return the existing encounter types
      */
     public List<EncounterType> fetchAllExisting() {
-        return encounterService.getAllEncounterTypes(true);
+        return Context.getEncounterService().getAllEncounterTypes(true);
     }
 
     /**

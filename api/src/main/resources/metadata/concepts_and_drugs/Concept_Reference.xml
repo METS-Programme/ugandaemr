@@ -553,6 +553,16 @@
     <concept_reference_term  concept_reference_term_id="284107"  concept_source_id="4"  name="Lamivudine and Nevirapine and Zidovudine"  code="687428" creator="1"  date_created="2020-02-20 10:36:34" retired="0" uuid="aacf4c48-2ee9-4b7e-a9fa-f2841243e0d6"/>
     <concept_reference_term  concept_reference_term_id="284108"  concept_source_id="4"  name="Lamivudine 150 MG and Nevirapine 200 MG and Zidovudine 300 MG Oral Tablet"  code="687064" creator="1"  date_created="2020-02-20 10:36:34" retired="0" uuid="b7d0a84b-302f-423a-b63b-14a5391ed594"/>
     <concept_reference_term  concept_reference_term_id="284109"  concept_source_id="4"  name="Zinc Sulfate"  code="39954" creator="1"  date_created="2020-02-20 10:36:34" retired="0" uuid="6dd05225-2dfb-4aa5-9d38-f4833fba9d5d"/>
+    <concept_reference_term  concept_reference_term_id="288177"  concept_source_id="21"  name="Immunization"  code="984"  creator="1"  date_created="2024-03-17 04:30:33" retired="0" uuid="6384cd15-9fdf-4159-a676-f6cfc2f1023c"/>
+    <concept_reference_term  concept_reference_term_id="288176"  concept_source_id="21"  name="IMMUNIZATION HISTORY"  code="1421"  creator="1"  date_created="2024-03-16 23:31:07" retired="0" uuid="f9094d70-11af-454c-bcd4-6a9509f2f830"/>
+    <concept_reference_term  concept_reference_term_id="288178"  concept_source_id="21"  name="Immunization, non-coded"  code="166011" creator="1"  date_created="2024-03-17 06:39:42" retired="0"  uuid="2f26617e-d429-4fad-81c5-9d4fe6d0f34f"/>
+    <concept_reference_term  concept_reference_term_id="288183"  concept_source_id="21"  name="Vaccine lot expiration date"  code="165907" creator="1"  date_created="2024-03-17 09:22:20"  retired="0" uuid="d6add63a-cd8f-4196-9a13-cf3707b3c9d3"/>
+    <concept_reference_term  concept_reference_term_id="288182"  concept_source_id="21"  name="Vaccince Lot Number"  code="1420" creator="1"  date_created="2024-03-17 09:17:31"  retired="0" uuid="7beb3151-d816-4a3b-b28a-01390074ae88"/>
+    <concept_reference_term  concept_reference_term_id="288181"  concept_source_id="21"  name="VACCINE MANUFACTURER"  code="1419" creator="1"  date_created="2024-03-17 09:13:45"  retired="0" uuid="2dc14523-5d6a-4e69-817b-b2dcfca3970c"/>
+    <concept_reference_term  concept_reference_term_id="288180"  concept_source_id="21"  name="Immunization sequence number"  code="1418" creator="1"  date_created="2024-03-17 09:10:19"  retired="0" uuid="7b644eb6-5f4e-4b99-9d1f-42836e31d6ae"/>
+    <concept_reference_term  concept_reference_term_id="288179"  concept_source_id="21"  name="Vaccination date"  code="1410" creator="1"  date_created="2024-03-17 09:06:38"  retired="0" uuid="c6e87750-c562-40ed-b1d6-d81faaa28da8"/>
+    <concept_reference_term  concept_reference_term_id="288178"  concept_source_id="21"  name="Immunization, non-coded"  code="166011" creator="1"  date_created="2024-03-17 06:39:42"  retired="0" uuid="2f26617e-d429-4fad-81c5-9d4fe6d0f34f"/>
+
 
     <concept_reference_map  concept_map_id="283698"  concept_reference_term_id="283700"  concept_map_type_id="1"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165507" uuid="fcd4a4a5-5b05-4c8b-be69-8dac50e22461"/>
     <concept_reference_map  concept_map_id="283699"  concept_reference_term_id="283701"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165508" uuid="74052127-6a67-48e8-aadc-4a404118887a"/>
@@ -960,4 +970,13 @@
     <concept_reference_map  concept_map_id="284101"  concept_reference_term_id="284107"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:36:34"  concept_id="165771" uuid="81b96500-efe8-4528-9598-5e6f483c1e56"/>
     <concept_reference_map  concept_map_id="284102"  concept_reference_term_id="284108"  concept_map_type_id="1"  creator="1"  date_created="2020-02-20 10:36:34"  concept_id="165771" uuid="59775ef2-be51-4095-a0ac-7297bf2478e2"/>
     <concept_reference_map  concept_map_id="284103"  concept_reference_term_id="284109"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:36:34"  concept_id="165772" uuid="44706433-5ecd-4f7b-8a4b-562c42f44fb0"/>
+    <concept_reference_map  concept_map_id="288162"  concept_reference_term_id="288177"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 04:30:47"  concept_id="984" uuid="fb4b778e-a683-4623-8613-520cd56313d0"/>
+    <concept_reference_map  concept_map_id="288161"  concept_reference_term_id="288176"  concept_map_type_id="1"  creator="1"  date_created="2024-03-16 23:31:18"  concept_id="1421" uuid="446a5fbc-9cdc-4416-8d16-4e14564aa99c"/>
+    <concept_reference_map  concept_map_id="288163"  concept_reference_term_id="288178"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 06:39:59"  concept_id="175340" uuid="ea8c368f-7469-438e-93e2-e13c30e3dcc4"/>
+    <concept_reference_map  concept_map_id="288168"  concept_reference_term_id="288183"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 09:30:17"  concept_id="165907" uuid="999de21f-23fd-4181-99cd-ea2c6c17adc5"/>
+    <concept_reference_map  concept_map_id="288167"  concept_reference_term_id="288182"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 09:17:51"  concept_id="1420" uuid="83fa1871-b6d7-4bd0-8ee4-63d7dc6b5874"/>
+    <concept_reference_map  concept_map_id="288166"  concept_reference_term_id="288181"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 09:14:01"  concept_id="1419" uuid="0575cc36-d62a-49b7-8d18-d5096d5a58ab"/>
+    <concept_reference_map  concept_map_id="288165"  concept_reference_term_id="288180"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 09:10:34"  concept_id="1418" uuid="ccab0dee-2619-40a7-ab69-897a01f57e7f"/>
+    <concept_reference_map  concept_map_id="288164"  concept_reference_term_id="288179"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 09:06:54"  concept_id="1410" uuid="b621f098-b954-409f-805d-819104a51b3d"/>
+    <concept_reference_map  concept_map_id="288163"  concept_reference_term_id="288178"  concept_map_type_id="1"  creator="1"  date_created="2024-03-17 06:39:59"  concept_id="175340" uuid="ea8c368f-7469-438e-93e2-e13c30e3dcc4"/>
 </dataset>
