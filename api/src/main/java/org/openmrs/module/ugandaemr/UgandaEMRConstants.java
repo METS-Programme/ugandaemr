@@ -160,11 +160,10 @@ public class UgandaEMRConstants {
 
     public static final String TB_ELIGIBILITY_COHORT_UUID= "0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0";
 
-    public static final String HIV_ELIGIBILITY_QUERY = "select person_id from obs  where concept_id=175333 and value_coded=703\n" +
-            "                           and person_id not in (select person_id from obs  where concept_id=169015 and value_coded=703 and\n" +
-            "                              person_id not in (select cm.patient_id from cohort_member cm inner join cohort ch on(cm.cohort_id = ch.cohort_id)\n" +
-            "                            where  ch.uuid='56b082f8-f956-499d-a8c2-d9b32a067e65') and person_id not in\n" +
-            "                                (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id)));";
+    public static final String HIV_ELIGIBILITY_QUERY = "select DISTINCT person_id from obs  where concept_id=175333 and value_coded=703 and\n" +
+            "            person_id not in (select cm.patient_id from cohort_member cm inner join cohort ch on(cm.cohort_id = ch.cohort_id)\n" +
+            "           where  ch.uuid='56b082f8-f956-499d-a8c2-d9b32a067e65') and person_id not in\n" +
+            "           (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id));";
 
     public static final String TB_ELIGIBILITY_QUERY = "select person_id from obs  where (concept_id=162202 OR concept_id=165291 OR concept_id=165414) and value_coded=703\n" +
             "        and person_id not in (select cm.patient_id from cohort_member cm inner join cohort ch on(cm.cohort_id = ch.cohort_id)\n" +
