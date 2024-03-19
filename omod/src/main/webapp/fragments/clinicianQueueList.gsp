@@ -127,10 +127,10 @@
         completedQueue = 0;
         servingQueue = 0;
         fromLabQueue = 0;
-        var headerPending = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerServing = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerCompleted = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerFromLab = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerPending = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerCompleted = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerFromLab = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
         var dataToDisplay = [];
@@ -193,7 +193,7 @@
 
 
                 if ("${enablePatientQueueSelection}".trim() === "true" && patientQueueListElement.status === "PENDING") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + urlToPatientDashBoard + "'></i>";
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueUuid + "' data-url='" + urlToPatientDashBoard + "'></i>";
                 } else {
                     dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
                 }

@@ -734,11 +734,15 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-25-07-2023-0010" author="iakileng">
+	<changeSet id="ugandaemr-01-01-2024-0010" author="iakileng">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="0">
 				SELECT COUNT(*) FROM
-				metadatamapping_metadata_set_member WHERE uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
+				metadatamapping_metadata_set_member WHERE metadata_uuid ='be8f222a-3751-4f93-8c74-3aff399c19b6';
+			</sqlCheck>
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM
+				metadatamapping_metadata_set_member WHERE uuid ='2fcc3a81-0500-47df-88bd-c0a56d113662';
 			</sqlCheck>
 			<sqlCheck expectedResult="1">
 				SELECT COUNT(*) FROM patient_identifier_type WHERE uuid="be8f222a-3751-4f93-8c74-3aff399c19b6";
@@ -760,6 +764,129 @@ VALUES
 		<comment> Change concept names from a big number to a normal increment number</comment>
 		<sql>
 			update concept_name set concept_name_id=(concept_name_id-7187255) where concept_name_id>7000000;
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240228-1080" author="mmwanje">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+			</sqlCheck>
+		</preConditions>
+		<comment>Insert Cohort type for Eligibility Cohort and eligible Cohorts </comment>
+		<sql>
+			REPLACE INTO cohort_type(name,date_created,creator,uuid)VALUES
+			('Eligibility Cohort Type','2024-02-28',1,'1345c89c-8463-41e9-9cd0-8c14aa255ba8');
+
+			REPLACE INTO cohort(name,description, date_created,creator,uuid,cohort_type_id)VALUES
+			('HIV Program','Eligible', '2024-02-28', 1, '56b082f8-f956-499d-a8c2-d9b32a067e65',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('TB Program','Eligible','2024-02-28',1,'0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('MCH Program','Eligible', '2024-02-28', 1, 'd861187f-e25a-493b-81b1-b2a4c4679b7a',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8')),
+			('Nutrition Program','Eligible', '2024-02-28',1,'2827e1b5-be8a-4c1d-afc7-f6afcc4f2537',(SELECT cohort_type_id from cohort_type where uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8'));
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-28022024-1032" author="mmwanje">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="0">
+				SELECT COUNT(*) FROM scheduler_task_config
+				WHERE schedulable_class = 'org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask'
+			</sqlCheck>
+		</preConditions>
+		<sql>DELETE FROM scheduler_task_config where uuid='3b8355ba-1f6e-4773-b95a-6101974ed462'</sql>
+		<comment>Inserting Eligibility Cohort Task into 'schedule_task_config' table</comment>
+		<insert tableName="scheduler_task_config">
+			<column name="name" value="Eligibility Cohort Task" />
+			<column name="description" value="Identify and add eligible members into the cohort" />
+			<column name="schedulable_class" value="org.openmrs.module.ugandaemr.tasks.IdentifyCohortMemberOfProgramsAndWorkflowsTask" />
+			<column name="start_time_pattern" value="MM/dd/yyyy HH:mm:ss" />
+			<column name="start_time" valueDate="2024-02-28T05:59:59" />
+			<column name="repeat_interval" value="86400" />
+			<column name="date_created" valueDate="CURRENT_TIMESTAMP" />
+			<column name="created_by" value="1" />
+			<column name="start_on_startup" value="1"/>
+			<column name="started" value="1"/>
+			<column name="uuid" value="3b8355ba-1f6e-4773-b95a-6101974ed462" />
+		</insert>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240314-1654" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from appointment_service where uuid="348e1cba-ffd4-4994-be3d-cd409d190b9f";
+			</sqlCheck>
+		</preConditions>
+		<comment>Migrate patient appointments from observations to patient calender</comment>
+		<sql>
+			INSERT INTO patient_appointment (appointment_number, patient_id, start_date_time, end_date_time, appointment_service_id, status, location_id, appointment_kind, uuid, date_created, creator,voided)
+			select '0000',person_id,value_datetime,value_datetime,2,'Requested',location_id,'Scheduled',uuid(),obs_datetime,1,0 from obs where concept_id=5096 and voided=false;
+
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 3 WHERE  b.concept_id=160288 and value_coded=856;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 13 WHERE  b.concept_id=160288 and value_coded=903;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 5 WHERE  b.concept_id=160288 and value_coded=5484;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 12 WHERE  b.concept_id=160288 and value_coded=90012;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 6 WHERE  b.concept_id=160288 and value_coded=99324;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 4 WHERE  b.concept_id=160288 and value_coded=164968;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 9 WHERE  b.concept_id=160288 and value_coded=164970;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 11 WHERE  b.concept_id=160288 and value_coded=164971;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 2 WHERE  b.concept_id=160288 and value_coded=164972;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 8 WHERE  b.concept_id=160288 and value_coded=164974;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 7 WHERE  b.concept_id=160288 and value_coded=163153;
+			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10 WHERE  b.concept_id=160288 and value_coded=164973;
+		</sql>
+	</changeSet>
+    <changeSet id="ugandaemr-20240314-1721" author="slubama">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
+            </sqlCheck>
+        </preConditions>
+        <comment>Create provider attribute default location in</comment>
+        <sql>
+            REPLACE INTO provider_attribute_type (name, description, datatype, preferred_handler, min_occurs, max_occurs, creator, date_created, retired, uuid) VALUES ('Default Location', 'The location which is assigned to a clinical provider', 'org.openmrs.customdatatype.datatype.LocationDatatype', 'org.openmrs.web.attribute.handler.LocationFieldGenDatatypeHandler', 0, 1, 1, '2023-08-10 14:14:27',  0, '13a721e4-68e5-4f7a-8aee-3cbcec127179');
+        </sql>
+    </changeSet>
+
+
+    <changeSet id="ugandaemr-20240314-1821" author="slubama">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
+            </sqlCheck>
+
+            <sqlCheck expectedResult="1">
+                SELECT COUNT(*) FROM cohort_type WHERE uuid='1345c89c-8463-41e9-9cd0-8c14aa255ba8';
+            </sqlCheck>
+        </preConditions>
+        <comment>Default all users to the ART clinic except for the admin and demon. </comment>
+        <sql>
+            INSERT INTO provider_attribute ( provider_id, attribute_type_id, value_reference, uuid, creator, date_created,voided)
+            SELECT provider_id, (select provider_attribute_type_id from provider_attribute_type where uuid="13a721e4-68e5-4f7a-8aee-3cbcec127179"),'86863db4-6101-4ecf-9a86-5e716d6504e4', uuid(), 1, date_created,0 from provider where person_id not in (1);
+        </sql>
+    </changeSet>
+
+
+	<changeSet id="ugandaemr-20240317-1406" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept_id=159959;
+			</sqlCheck>
+		</preConditions>
+		<comment>Move all obs of specimen source that have concept 162476 which is of data type N/A to  159959 of data type coded</comment>
+		<sql>
+			update obs set concept_id=159959 where concept_id=162476;
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240316-1654" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				select count(*) from patient_identifier_type where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+			</sqlCheck>
+		</preConditions>
+		<comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
+		<sql>
+			UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
 		</sql>
 	</changeSet>
 </databaseChangeLog>

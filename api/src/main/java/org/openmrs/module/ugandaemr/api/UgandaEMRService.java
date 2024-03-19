@@ -22,8 +22,6 @@ import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
 import org.openmrs.module.ugandaemr.api.queuemapper.PatientQueueVisitMapper;
 import org.springframework.transaction.annotation.Transactional;
-import org.openmrs.api.OpenmrsService;
-import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.patientqueueing.mapper.PatientQueueMapper;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.lab.mapper.OrderMapper;

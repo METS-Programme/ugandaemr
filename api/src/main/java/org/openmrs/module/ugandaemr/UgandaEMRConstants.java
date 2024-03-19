@@ -67,9 +67,11 @@ public class UgandaEMRConstants {
     public static final String TRIAGE_LOCATION_UUID = "ff01eaab-561e-40c6-bf24-539206b521ce";
     public static final String PHARMACY_LOCATION_UUID = "3ec8ff90-3ec1-408e-bf8c-22e4553d6e17";
     public static final String LAB_LOCATION_UUID = "ba158c33-dc43-4306-9a4a-b4075751d36c";
+    public static final String RADIOLOGY_LOCATION_UUID = "f586757c-3846-11ee-be56-0242ac120002";
 
     public static final String DRUG_SET_CLASS = "Drug";
     public static final String LAB_SET_CLASS = "LabSet";
+    public static final String RADIOLOGY_SET_CLASS = "Radiology/Imaging Procedure";
     public static final String TEST_SET_CLASS = "Test";
 
     public static final String ORDER_TYPE_DRUG_UUID = "131168f4-15f5-102d-96e4-000c29c2a5d7";
@@ -125,7 +127,7 @@ public class UgandaEMRConstants {
 
     public static final String PROCESSED_ORDER_WITH_RESULT_OF_ENCOUNTER_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.accession_number!=\"\" and specimen_source!=\"\" AND orders.encounter_id=%s";
 
-    public static final String PROCESSED_ORDER_WITH_RESULT_FOR_PATIENT_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.accession_number!=\"\" and specimen_source!=\"\" AND orders.patient_id=%s";
+    public static final String PROCESSED_ORDER_WITH_RESULT_FOR_PATIENT_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.fulfiller_status=\"COMPLETED\" AND orders.patient_id=%s";
 
     public static final String PROCESSED_ORDER_WITHOUT_RESULT_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) where accession_number!=\"\" and specimen_source!=\"\" AND orders.date_created BETWEEN \"%s\" AND \"%s\"";
 
@@ -154,4 +156,32 @@ public class UgandaEMRConstants {
 
     public static final String GP_DEFAULT_LOCATION = MODULE_ID + ".defaultLocation";
 
+    public static final String HIV_ELIGIBILITY_COHORT_UUID= "56b082f8-f956-499d-a8c2-d9b32a067e65";
+
+    public static final String TB_ELIGIBILITY_COHORT_UUID= "0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0";
+
+    public static final String HIV_ELIGIBILITY_QUERY = "select DISTINCT person_id from obs  where concept_id=175333 and value_coded=703 and\n" +
+            "            person_id not in (select cm.patient_id from cohort_member cm inner join cohort ch on(cm.cohort_id = ch.cohort_id)\n" +
+            "           where  ch.uuid='56b082f8-f956-499d-a8c2-d9b32a067e65') and person_id not in\n" +
+            "           (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id));";
+
+    public static final String TB_ELIGIBILITY_QUERY = "select person_id from obs  where (concept_id=162202 OR concept_id=165291 OR concept_id=165414) and value_coded=703\n" +
+            "        and person_id not in (select cm.patient_id from cohort_member cm inner join cohort ch on(cm.cohort_id = ch.cohort_id)\n" +
+            "            where  ch.uuid='0aa9ba5f-d44a-4b31-aff1-3a046bd8e5e0') and person_id not in\n" +
+            "    (select patient_id from patient_program inner join program on(patient_program.program_id = program.program_id));";
+
+    public static final String HIV_PROGRAM = "HIV Program";
+    public static final String HIV_PROGRAM_UUID = "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741";
+    public static final String HIV_DISCONTINUATION_FORM_NAME = "HIV Discontinuation";
+    public static final String HIV_DISCONTINUATION_FORM_UUID ="1c7baac0-87cf-4d12-a938-81ea0d6f6448";
+    public static final String HIV_ENROLLMENT_FORM_NAME ="HIV Enrollment";
+    public static final String HIV_ENROLLMENT_FORM_UUID ="4d933e88-27fb-320e-9323-14c5d35ea1ee";
+
+    public static final String TB_PROGRAM = "TB Program";
+    public static final String TB_PROGRAM_UUID="9dc21a72-0971-11e7-8037-507b9dc4c741";
+    public static final String TB_DISCONTINUATION_FORM_NAME = "TB Discontinuation";
+    public static final String TB_DISCONTINUATION_FORM_UUID ="7d0dd4eb-3ff7-412c-97e4-808ac8251a83";
+    public static final String TB_ENROLLMENT_FORM_NAME ="TB Enrollment";
+    public static final String DR_TB_ENROLLMENT_FORM_UUID ="4929f668-f8d0-11ea-adc1-0242ac120002";
+    public static final String DS_TB_ENROLLMENT_FORM_UUID ="261721d5-1f2e-351b-9159-b25882a6811d";
 }

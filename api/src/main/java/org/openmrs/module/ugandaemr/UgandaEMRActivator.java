@@ -27,6 +27,7 @@ import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.ugandaemr.activator.AppConfigurationInitializer;
 import org.openmrs.module.ugandaemr.activator.HtmlFormsInitializer;
 import org.openmrs.module.ugandaemr.activator.Initializer;
+import org.openmrs.module.ugandaemr.activator.JsonFormsInitializer;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.CommonMetadataBundle;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaAddressMetadataBundle;
 import org.openmrs.module.ugandaemr.api.deploy.bundle.UgandaEMRPatientFlagMetadataBundle;
@@ -234,6 +235,10 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
 
         log.info("import  of  Drugs  Starting");
         dataImporter.importData("metadata/concepts_and_drugs/Drug.xml");
+        log.info("import of Drugs  Successful");
+
+        log.info("import  of  Drugs  Starting");
+        dataImporter.importData("metadata/appointment.xml");
         log.info("import of Drugs  Successful");
     }
 
@@ -450,6 +455,7 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         List<Initializer> l = new ArrayList<Initializer>();
         l.add(new AppConfigurationInitializer());
         l.add(new HtmlFormsInitializer(UgandaEMRConstants.MODULE_ID));
+        l.add(new JsonFormsInitializer(UgandaEMRConstants.MODULE_ID));
         return l;
     }
 }

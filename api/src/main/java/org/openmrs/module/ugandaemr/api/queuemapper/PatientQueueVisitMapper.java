@@ -7,6 +7,8 @@ import java.util.List;
 
 public class PatientQueueVisitMapper extends PatientQueueMapper implements Serializable {
     Integer visitId;
+
+    private String patientQueueUuid;
     List<Identifier> patientIdentifier;
 
     public Integer getVisitId() {
@@ -23,6 +25,14 @@ public class PatientQueueVisitMapper extends PatientQueueMapper implements Seria
 
     public void setPatientIdentifier(List<Identifier> patientIdentifier) {
         this.patientIdentifier = patientIdentifier;
+    }
+
+    public String getPatientQueueUuid() {
+        return patientQueueUuid;
+    }
+
+    public void setPatientQueueUuid(String patientQueueUuid) {
+        this.patientQueueUuid = patientQueueUuid;
     }
 }
 

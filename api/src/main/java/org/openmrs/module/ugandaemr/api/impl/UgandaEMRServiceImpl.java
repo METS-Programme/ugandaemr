@@ -4,9 +4,38 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.openmrs.*;
-import org.openmrs.api.*;
+import org.openmrs.CareSetting;
+import org.openmrs.Concept;
+import org.openmrs.ConceptNumeric;
+import org.openmrs.DrugOrder;
+import org.openmrs.Encounter;
+import org.openmrs.EncounterType;
+import org.openmrs.EncounterRole;
+import org.openmrs.Location;
+import org.openmrs.Obs;
+import org.openmrs.Order;
+import org.openmrs.OrderType;
+import org.openmrs.Patient;
+import org.openmrs.Provider;
+import org.openmrs.PatientIdentifier;
+import org.openmrs.PatientIdentifierType;
+import org.openmrs.PatientProgram;
+import org.openmrs.PatientProgramAttribute;
+import org.openmrs.ProgramAttributeType;
+import org.openmrs.Person;
+import org.openmrs.Relationship;
+import org.openmrs.TestOrder;
+import org.openmrs.Visit;
+import org.openmrs.User;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.AdministrationService;
+import org.openmrs.api.EncounterService;
+import org.openmrs.api.VisitService;
+import org.openmrs.api.PersonService;
+import org.openmrs.api.PatientService;
+import org.openmrs.api.ConceptService;
+import org.openmrs.api.OrderService;
+import org.openmrs.api.APIException;
 import org.openmrs.api.impl.BaseOpenmrsService;
 import org.openmrs.module.htmlformentry.FormEntrySession;
 import org.openmrs.module.patientqueueing.api.PatientQueueingService;
@@ -35,7 +64,6 @@ import org.openmrs.parameter.EncounterSearchCriteria;
 import org.openmrs.parameter.EncounterSearchCriteriaBuilder;
 import org.openmrs.ui.framework.SimpleObject;
 import org.openmrs.util.OpenmrsUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.openmrs.module.stockmanagement.api.StockManagementService;
 
 import java.io.IOException;
@@ -56,12 +84,6 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     private UgandaEMRDAO dao;
 
-    @Autowired
-    private PatientService patientService;
-
-    @Autowired
-    private PersonService personService;
-
     /**
      * @param dao the dao to set
      */
@@ -80,6 +102,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
+        PatientService patientService=Context.getPatientService();
+        PersonService personService=Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
         artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
@@ -152,12 +176,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             genderCode = "1";
         }
 
-        if (patient.getPerson().getPersonAddress() != null) {
-
-            String countryAddress = patient.getPerson().getPersonAddress().getCountry();
-            if(countryAddress!=null&& !countryAddress.isEmpty()){
-                countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 1);
-            }
+        if (patient.getPerson().getPersonAddress() != null && !patient.getPerson().getPersonAddress().getCountry().isEmpty()) {
+            countryCode = patient.getPerson().getPersonAddress().getCountry().substring(0, 2).toUpperCase();
         } else {
             countryCode = "XX";
         }
@@ -610,6 +630,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             String names = patientQueue.getPatient().getFamilyName() + " " + patientQueue.getPatient().getGivenName() + " " + patientQueue.getPatient().getMiddleName();
             PatientQueueVisitMapper patientQueueVisitMapper = new PatientQueueVisitMapper();
             patientQueueVisitMapper.setId(patientQueue.getId());
+            patientQueueVisitMapper.setPatientQueueUuid(patientQueue.getUuid());
             patientQueueVisitMapper.setPatientNames(names.replace("null", ""));
             patientQueueVisitMapper.setPatientId(patientQueue.getPatient().getPatientId());
             patientQueueVisitMapper.setLocationFrom(patientQueue.getLocationFrom().getName());
@@ -688,16 +709,17 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Set<TestResultModel> trms = new HashSet<>();
         if (test.getEncounter() != null) {
             Encounter encounter = test.getEncounter();
-            List<Obs> listOfObs = encounter.getAllObs().stream().filter(obs -> obs.getOrder()!=null && obs.getOrder().equals(test)).collect(Collectors.toList());
-            for (Obs obs : listOfObs) {
+            for (Obs obs : encounter.getAllObs()) {
                 if (obs.getOrder() != null) {
                     if (obs.hasGroupMembers()) {
                         for (Obs groupMemberObs : obs.getGroupMembers()) {
                             TestResultModel trm = new TestResultModel();
                             trm.setInvestigation(test.getConcept().getDisplayString());
                             trm.setTestId(obs.getOrder().getOrderId());
+                            trm.setTestUuid(obs.getOrder().getUuid());
                             trm.setSet(obs.getConcept().getDisplayString());
-                            trm.setConcept(obs.getConcept().getName().getName());
+                            trm.setOrderdate(obs.getOrder().getDateActivated());
+                            trm.setConcept(obs.getConcept());
                             setTestResultModelValue(groupMemberObs, trm);
                             trms.add(trm);
                         }
@@ -705,8 +727,10 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                         TestResultModel trm = new TestResultModel();
                         trm.setInvestigation(test.getConcept().getName().getName());
                         trm.setSet(test.getConcept().getDatatype().getName());
+                        trm.setOrderdate(obs.getOrder().getDateActivated());
                         trm.setTestId(obs.getOrder().getOrderId());
-                        trm.setConcept(obs.getConcept().getName().getName());
+                        trm.setTestUuid(obs.getOrder().getUuid());
+                        trm.setConcept(obs.getConcept());
                         setTestResultModelValue(obs, trm);
                         trms.add(trm);
                     }
@@ -822,16 +846,18 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderMapper.setDateActivated(order.getDateActivated().toString());
             orderMapper.setOrderer(order.getOrderer().getName());
             orderMapper.setOrderNumber(order.getOrderNumber());
+            orderMapper.setOrderUuid(order.getUuid());
             orderMapper.setPatientId(order.getPatient().getPatientId());
             orderMapper.setInstructions(order.getInstructions());
             orderMapper.setFulfillerComment(order.getFulfillerComment());
-            if(order.getFulfillerStatus()!=null) {
+            if (order.getFulfillerStatus() != null) {
                 orderMapper.setFulfillerStatus(order.getFulfillerStatus().name());
             }
             orderMapper.setUrgency(order.getUrgency().name());
             orderMapper.setPatient(names.replace("null", ""));
             orderMapper.setOrderId(order.getOrderId());
             orderMapper.setEncounterId(order.getEncounter().getEncounterId());
+            orderMapper.setOrderClass(order.getConcept().getConceptClass().getName());
             if (order.isActive()) {
                 orderMapper.setStatus(QUEUE_STATUS_ACTIVE);
             }
@@ -1299,8 +1325,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         Encounter encounter = session.getEncounter();
         CareSetting careSetting = Context.getOrderService().getCareSettingByName(CARE_SETTING_OPD);
         Concept reasonForNextAppointment = Context.getConceptService().getConceptByUuid(CONCEPT_REASON_FOR_NEXT_APPOINTMENT);
-        Set<Obs> obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && ((obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test"))) && !obs.getConcept().equals(reasonForNextAppointment)).collect(Collectors.toSet());
-
+        Set<Obs> obsList = obsList = encounter.getObs().stream().filter(obs -> !obs.getConcept().getDatatype().getName().equals("Boolean") && obs.getValueCoded() != null && ((obs.getValueCoded().getConceptClass().getName().equals("LabSet") || obs.getValueCoded().getConceptClass().getName().equals("Test") || obs.getValueCoded().getConceptClass().getName().equals("Radiology/Imaging Procedure"))) && !obs.getConcept().equals(reasonForNextAppointment)).collect(Collectors.toSet());
         for (Obs obs : obsList) {
             if (!orderExists(obs.getValueCoded(), obs.getEncounter())) {
                 TestOrder testOrder = new TestOrder();
@@ -1317,8 +1342,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         if (!orders.isEmpty()) {
             encounter.setOrders(orders);
             encounterService.saveEncounter(encounter);
-            if (!session.getEncounter().getOrders().isEmpty()) {
+
+            List<Order> labOrder = session.getEncounter().getOrders().stream().filter(order -> (order.getConcept().getConceptClass().getName().equals("LabSet") || order.getConcept().getConceptClass().getName().equals("Test"))).collect(Collectors.toList());
+            List<Order> radiologyOrder = session.getEncounter().getOrders().stream().filter(order -> order.getConcept().getConceptClass().getName().equals("Radiology/Imaging Procedure")).collect(Collectors.toList());
+            if (!labOrder.isEmpty()) {
                 sendPatientToNextLocation(session, LAB_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
+            }
+
+            if (!radiologyOrder.isEmpty()) {
+                sendPatientToNextLocation(session, RADIOLOGY_LOCATION_UUID, encounter.getLocation().getUuid(), PatientQueue.Status.PENDING, completePreviousQueue);
             }
         }
         return encounter;
@@ -1521,7 +1553,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @param patient the patient whose current visit will be retrived.
      * @return Visit the active visit for a patient.
      */
-     private Visit getPatientCurrentVisit(Patient patient) {
+    private Visit getPatientCurrentVisit(Patient patient) {
         List<Visit> visitList = Context.getVisitService().getActiveVisitsByPatient(patient);
         for (Visit visit : visitList) {
             if (visit.getStartDatetime().after(OpenmrsUtil.firstSecondOfDay(new Date())) && visit.getStartDatetime().before(OpenmrsUtil.getLastMomentOfDay(new Date()))) {
@@ -1647,8 +1679,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() > 0 && (drugOrderMapper.getMaxDispenseValue() == null || drugOrderMapper.getMaxDispenseValue().equals(""))) {
                 errors.add("Max Dispensing Value is null for Drug " + drugOrderMapper.getConceptName());
             } else if (drugOrderMapper.getMaxDispenseValue() != null && drugOrderMapper.getQuantity() != null && drugOrderMapper.getMaxDispenseValue() < drugOrderMapper.getQuantity()) {
-                errors.add("The quantity dispensed is greater than max dispensing Value: "+drugOrderMapper.getMaxDispenseValue() + " for drug " + drugOrderMapper.getConceptName());
-            }else if(drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() < 0 ){
+                errors.add("The quantity dispensed is greater than max dispensing Value: " + drugOrderMapper.getMaxDispenseValue() + " for drug " + drugOrderMapper.getConceptName());
+            } else if (drugOrderMapper.getQuantity() != null && drugOrderMapper.getQuantity() < 0) {
                 errors.add("Negative Dispensing Value is not allowed for Drug " + drugOrderMapper.getConceptName());
             }
 
@@ -1912,7 +1944,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#getOrderObsById(java.lang.Integer)
      */
     public OrderObs getOrderObsById(Integer orderObsId) {
-       return dao.getOrderObsById(orderObsId);
+        return dao.getOrderObsById(orderObsId);
     }
 
     /**

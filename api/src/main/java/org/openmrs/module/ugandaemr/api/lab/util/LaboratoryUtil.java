@@ -54,8 +54,10 @@ public class LaboratoryUtil {
 
 		List<Concept> concepts = new ArrayList<Concept>();
 		for (ConceptSet cs : concept.getConceptSets()) {
-			Concept c = cs.getConcept();
-			concepts.add(c);
+			if(!cs.getConcept().getRetired()) {
+				Concept c = cs.getConcept();
+				concepts.add(c);
+			}
 		}
 		return concepts;
 	}

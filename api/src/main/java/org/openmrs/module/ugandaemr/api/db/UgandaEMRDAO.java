@@ -19,7 +19,6 @@ import java.util.List;
 import org.openmrs.Encounter;
 import org.openmrs.Obs;
 import org.openmrs.Order;
-import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.PublicHoliday;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;

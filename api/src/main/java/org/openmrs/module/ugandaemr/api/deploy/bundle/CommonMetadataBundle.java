@@ -94,6 +94,9 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.INTER_FACILITY_LINKAGE_ENCOUNTER);
         install(EncounterTypes.MOBILITY_SCREENING);
         install(EncounterTypes.FAMILY_TRACKING);
+        install(EncounterTypes.DEATH_NOTIFICATION);
+        install(EncounterTypes.REGISTRATION);
+
 
         //installing programs metadata
         log.info("Installing Programs");

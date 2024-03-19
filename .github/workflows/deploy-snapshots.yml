@@ -2,7 +2,7 @@ name: Deploy Snapshots
 
 on:
   push:
-    branches: [3.x]
+    branches: [master]
 
   repository_dispatch:
     types: ['deploy-snapshots']

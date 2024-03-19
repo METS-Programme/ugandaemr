@@ -10,19 +10,14 @@ import java.util.Map;
 import org.apache.commons.beanutils.MethodUtils;
 import org.apache.commons.io.IOUtils;
 import org.openmrs.api.APIException;
-import org.openmrs.api.SerializationService;
 import org.openmrs.api.context.Context;
 import org.openmrs.module.addresshierarchy.AddressHierarchyLevel;
 import org.openmrs.module.addresshierarchy.service.AddressHierarchyService;
 import org.openmrs.module.addresshierarchy.util.AddressHierarchyImportUtil;
 import org.openmrs.module.metadatadeploy.bundle.VersionedMetadataBundle;
 import org.openmrs.util.OpenmrsConstants;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
-
-    @Autowired
-    SerializationService serializationService;
 
     /**
      * @return the ordered list of address components that make up the address configuration
@@ -64,8 +59,9 @@ public abstract class AddressMetadataBundle extends VersionedMetadataBundle {
      * Install the appropriate address template
      */
     public void installAddressTemplate() throws Exception {
+
         log.info("Installing Address Template");
-        String template = serializationService.getDefaultSerializer().serialize(getAddressTemplate());
+        String template = Context.getSerializationService().getDefaultSerializer().serialize(getAddressTemplate());
         setGlobalProperty(OpenmrsConstants.GLOBAL_PROPERTY_ADDRESS_TEMPLATE, template);
     }
 

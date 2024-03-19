@@ -22,6 +22,8 @@ package org.openmrs.module.ugandaemr.api.lab.util;
 
 import org.openmrs.Concept;
 
+import java.util.Date;
+
 public class TestResultModel implements Comparable<TestResultModel> {
 
 	public static final String LEVEL_INVESTIGATION = "LEVEL_INVESTIGATION";
@@ -60,7 +62,11 @@ public class TestResultModel implements Comparable<TestResultModel> {
 
 	private Integer testId;
 
+	private String testUuid;
+
 	public String hiAbsolute;
+
+	public Date orderdate;
 
 	public String getHiAbsolute() {
 		return hiAbsolute;
@@ -182,6 +188,14 @@ public class TestResultModel implements Comparable<TestResultModel> {
 		this.testId = testId;
 	}
 
+	public String getTestUuid() {
+		return testUuid;
+	}
+
+	public void setTestUuid(String testUuid) {
+		this.testUuid = testUuid;
+	}
+
 	public int compareTo(TestResultModel o) {
 		if (o == null)
 			return 1;
@@ -201,5 +215,13 @@ public class TestResultModel implements Comparable<TestResultModel> {
 		} else {
 			return testCompare;
 		}
+	}
+
+	public Date getOrderdate() {
+		return orderdate;
+	}
+
+	public void setOrderdate(Date orderdate) {
+		this.orderdate = orderdate;
 	}
 }
