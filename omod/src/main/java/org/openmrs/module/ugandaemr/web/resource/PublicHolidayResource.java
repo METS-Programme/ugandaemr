@@ -26,8 +26,7 @@ import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOp
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 
 @Resource(name = RestConstants.VERSION_1 + "/" + UgandaEMRConstants.UGANDAEMR_MODULE_ID
-        + "/publicHoliday", supportedClass = PublicHoliday.class, supportedOpenmrsVersions = { "1.9.*", "1.10.*",
-                "1.11.*", "1.12.*", "2.0.*", "2.1.*", "2.2.*", "2.3.*", "2.4.*" })
+        + "/publicHoliday", supportedClass = PublicHoliday.class, supportedOpenmrsVersions = {"1.9.* - 9.*"})
 public class PublicHolidayResource extends DelegatingCrudResource<PublicHoliday> {
 
     @Override
