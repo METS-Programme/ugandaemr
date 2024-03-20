@@ -194,6 +194,21 @@
     ]
   },
   {
+    "id": "ugandaemr.referenceapplication.spa",
+    "extensions": [
+      {
+        "id": "ugandaemr.referenceapplication.spa.homepageLink",
+        "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+        "type": "link",
+        "label": "ugandaemr.app.spa.list.label",
+        "url": "spa/home",
+        "icon": "icon-cloud",
+        "order": 122,
+        "requiredPrivilege": "App: ugandaemr.spa"
+      }
+    ]
+  },
+  {
     "id": "ugandaemr.referenceapplication.support",
     "extensions": [
       {

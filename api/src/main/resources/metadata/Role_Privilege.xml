@@ -437,6 +437,8 @@
     <!--* HOME PAGE *-->
     <privilege  privilege="App: ugandaemr.report.cohortBuilder"  description="Access Link to Manage cohort builder reports"  uuid="515a0ce8-a4e5-4b7e-b210-3f64ad96302e"/>
     <privilege  privilege="App: ugandaemr.backup.backupDatabase"  description="Access App to the Backup"  uuid="96c5dbe1-2c73-4f95-9b37-b24277617f6d"/>
+    <privilege  privilege="App: ugandaemr.spa"  description="Access Spa"  uuid="f165fc95-f2d6-48a6-b4ab-9a21bc286552"/>
+
 
     <!--* UgandaEMR Reporting *-->
 
