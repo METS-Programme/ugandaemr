@@ -5947,4 +5947,48 @@
 
     <concept_set  concept_set_id="6805"  concept_id="141520"  concept_set="175332"  sort_weight="1"  creator="1"  date_created="2024-01-16 11:35:31"  uuid="e014d78e-1954-412b-9d7c-9d2d410c058b"/>
     <concept_set  concept_set_id="6806"  concept_id="169015"  concept_set="175332"  sort_weight="0"  creator="1"  date_created="2024-01-16 12:27:17"  uuid="189a646b-6d02-4f94-897d-fb2ac8a68e6d"/>
+
+    <!-- Imported from CIEL OpenMRS Drug Dispensing Collection -->
+    <concept_set  concept_set_id="6810"  concept_id="175346"  concept_set="175345"  sort_weight="16"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="93d9afd6-6187-40be-95d7-14bcea67a631"/>
+    <concept_set  concept_set_id="6811"  concept_id="175347"  concept_set="175345"  sort_weight="15"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="4a00acfd-bdca-468a-8302-3935f2cfd3dc"/>
+    <concept_set  concept_set_id="6812"  concept_id="175348"  concept_set="175345"  sort_weight="14"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="5c0bab26-0c43-4b1f-baa2-5002c243fd1e"/>
+    <concept_set  concept_set_id="6813"  concept_id="175349"  concept_set="175345"  sort_weight="13"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="8df59965-83b5-4f17-889e-0a4460c156c8"/>
+    <concept_set  concept_set_id="6816"  concept_id="175350"  concept_set="175345"  sort_weight="12"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="a36121d5-796e-44f1-b142-00abf711cdf1"/>
+    <concept_set  concept_set_id="6817"  concept_id="175342"  concept_set="175345"  sort_weight="11"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="151f22df-483b-4a23-8258-ddbdfe2d0bb8"/>
+    <concept_set  concept_set_id="6818"  concept_id="175351"  concept_set="175345"  sort_weight="10"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="fdd9a037-85b8-43d9-9dd5-99a4452cf362"/>
+    <concept_set  concept_set_id="6819"  concept_id="175343"  concept_set="175345"  sort_weight="9"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="17d832a6-8eec-465d-98da-0c1c8714ff0b"/>
+    <concept_set  concept_set_id="6820"  concept_id="175352"  concept_set="175345"  sort_weight="8"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="6b681bc5-df7a-4c5e-b5f9-9886424eb384"/>
+    <concept_set  concept_set_id="6821"  concept_id="175353"  concept_set="175345"  sort_weight="7"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="5004401f-0b7f-4d29-9481-d75e1ccb232b"/>
+    <concept_set  concept_set_id="6822"  concept_id="175354"  concept_set="175345"  sort_weight="6"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="d2c5c10f-1812-4802-94f7-44fce2177e3c"/>
+    <concept_set  concept_set_id="6823"  concept_id="175355"  concept_set="175345"  sort_weight="5"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="abbf2621-30c9-4bdc-8983-159417b61610"/>
+    <concept_set  concept_set_id="6824"  concept_id="175356"  concept_set="175345"  sort_weight="4"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="bf5a8e5f-f1dc-415e-ab39-9bf0ca61e5c2"/>
+    <concept_set  concept_set_id="6825"  concept_id="175344"  concept_set="175345"  sort_weight="3"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="88dc11d3-8aba-486e-9a9e-3d236ed00f59"/>
+    <concept_set  concept_set_id="6826"  concept_id="175357"  concept_set="175345"  sort_weight="2"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="b5b0fd9f-62f8-4ff1-add1-f9e2871aa53a"/>
+    <concept_set  concept_set_id="6827"  concept_id="175358"  concept_set="175345"  sort_weight="1"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="ccf29cd2-168a-4303-b90e-98c661dd95c9"/>
+    <concept_set  concept_set_id="6828"  concept_id="175359"  concept_set="175345"  sort_weight="0"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="fd89d12c-a475-476d-8cb1-0f0e001432b6"/>
+    <concept_set  concept_set_id="6829"  concept_id="175361"  concept_set="175360"  sort_weight="3"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="23c46c0e-690f-43f3-a480-c41815bdfe14"/>
+    <concept_set  concept_set_id="6830"  concept_id="175372"  concept_set="175360"  sort_weight="2"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="b8a34f33-23c9-416b-a18f-fd54133e28c2"/>
+    <concept_set  concept_set_id="6831"  concept_id="175362"  concept_set="175360"  sort_weight="1"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="62de30aa-7d6f-4f45-9e9c-4cb9f275bb04"/>
+    <concept_set  concept_set_id="6832"  concept_id="175373"  concept_set="175360"  sort_weight="0"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="d182a456-5b70-42b0-bca3-1f05de6e9e66"/>
+    <concept_set  concept_set_id="6830"  concept_id="175372"  concept_set="175360"  sort_weight="2"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="b8a34f33-23c9-416b-a18f-fd54133e28c2"/>
+    <concept_set  concept_set_id="6833"  concept_id="1107"  concept_set="175363"  sort_weight="8"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="7908aa2b-ec88-4edc-ada8-4c3be63b1b56"/>
+    <concept_set  concept_set_id="6834"  concept_id="175364"  concept_set="175363"  sort_weight="7"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="fdd47ea5-acb7-4389-b299-cdd3a3f8d6fc"/>
+    <concept_set  concept_set_id="6835"  concept_id="175365"  concept_set="175363"  sort_weight="6"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="e5553d49-4da3-4884-8725-2039733dca73"/>
+    <concept_set  concept_set_id="6836"  concept_id="175366"  concept_set="175363"  sort_weight="5"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="9868153c-ceca-4b6f-bdd9-88075f3df964"/>
+    <concept_set  concept_set_id="6837"  concept_id="175367"  concept_set="175363"  sort_weight="4"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="f234bcef-333f-46c6-af6a-4ceabe564ab4"/>
+    <concept_set  concept_set_id="6838"  concept_id="175368"  concept_set="175363"  sort_weight="3"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="6f94e0c5-5fab-41cc-af57-3916c1797064"/>
+    <concept_set  concept_set_id="6839"  concept_id="175369"  concept_set="175363"  sort_weight="2"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="d9a08842-7a90-4b68-a8fd-2b140ffc0728"/>
+    <concept_set  concept_set_id="6840"  concept_id="175370"  concept_set="175363"  sort_weight="1"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="b53a3b15-5f12-487b-b4ae-6334f9667dcd"/>
+    <concept_set  concept_set_id="6841"  concept_id="175371"  concept_set="175363"  sort_weight="0"  creator="1"  date_created="2024-03-22 05:34:04"  uuid="3ed86103-ec59-4fdb-a327-2d4376c31f92"/>
+    <concept_set  concept_set_id="6842"  concept_id="175379"  concept_set="175375"  sort_weight="0"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2912AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6843"  concept_id="1067"  concept_set="175375"  sort_weight="8"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2911AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6844"  concept_id="175380"  concept_set="175375"  sort_weight="2"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2910AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6845"  concept_id="175383"  concept_set="175375"  sort_weight="4"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2909AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6846"  concept_id="175382"  concept_set="175375"  sort_weight="5"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2908AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6847"  concept_id="175377"  concept_set="175375"  sort_weight="6"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2907AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6848"  concept_id="175376"  concept_set="175375"  sort_weight="7"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2906AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6849"  concept_id="175381"  concept_set="175375"  sort_weight="1"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2905AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6850"  concept_id="175378"  concept_set="175375"  sort_weight="3"  creator="1"  date_created="2024-03-22 05:34:05"  uuid="2904AEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"/>
+    <concept_set  concept_set_id="6851"  concept_id="167638"  concept_set="175345"  sort_weight="17"  creator="1"  date_created="2024-03-26 21:30:16"  uuid="fda8e019-76e4-4c89-96b2-efa27c7455e8"/>
+
 </dataset>

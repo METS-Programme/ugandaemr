@@ -96,6 +96,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.FAMILY_TRACKING);
         install(EncounterTypes.DEATH_NOTIFICATION);
         install(EncounterTypes.REGISTRATION);
+        install(EncounterTypes.MEDICATION_ORDER);
 
 
         //installing programs metadata
