@@ -818,6 +818,7 @@
     <role_privilege role="Organizational: Clinician" privilege="Manage Patient Appointment"/>
     <role_privilege role="Organizational: Clinician" privilege="Manage Patient Summary"/>
     <role_privilege role="Organizational: Clinician" privilege="Manage Patient Investigation"/>
+    <role_privilege role="Organizational: Clinician" privilege="View Clinical Room Menu"/>
 
 
     <!--* COUNSELOR ROLE *-->
