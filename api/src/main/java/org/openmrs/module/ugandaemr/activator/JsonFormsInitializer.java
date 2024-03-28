@@ -72,8 +72,6 @@ public class JsonFormsInitializer implements Initializer {
     }
 
     protected void load(File file) throws Exception {
-
-
         DatatypeService datatypeService = Context.getDatatypeService();
         FormService formService = Context.getFormService();
         EncounterService encounterService = Context.getEncounterService();
