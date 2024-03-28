@@ -20,8 +20,11 @@ import org.openmrs.util.OpenmrsUtil;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.stream.Collectors;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.UUID;
 
 public class JsonFormsInitializer implements Initializer {
 
