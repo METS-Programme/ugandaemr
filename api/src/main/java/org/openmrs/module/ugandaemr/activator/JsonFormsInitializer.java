@@ -25,6 +25,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.UUID;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public class JsonFormsInitializer implements Initializer {
 
@@ -39,6 +41,7 @@ public class JsonFormsInitializer implements Initializer {
     public JsonFormsInitializer(String newProviderName) {
         this.providerName = newProviderName;
     }
+
 
 
     @Override
@@ -66,7 +69,7 @@ public class JsonFormsInitializer implements Initializer {
             }
         }
 
-    }
+        }
 
 
     @Override
@@ -75,9 +78,11 @@ public class JsonFormsInitializer implements Initializer {
     }
 
     protected void load(File file) throws Exception {
-        DatatypeService datatypeService = Context.getDatatypeService();
-        FormService formService = Context.getFormService();
-        EncounterService encounterService = Context.getEncounterService();
+
+
+      DatatypeService datatypeService = Context.getDatatypeService();
+      FormService formService = Context.getFormService();
+      EncounterService encounterService=Context.getEncounterService();
 
         String jsonString = FileUtils.readFileToString(file, StandardCharsets.UTF_8.toString());
         Map<String, Object> jsonFile = new ObjectMapper().readValue(jsonString, Map.class);
@@ -115,15 +120,19 @@ public class JsonFormsInitializer implements Initializer {
             throw new Exception("Form Version is required");
         }
 
-        String uuid = jsonFile.get("uuid").toString();
+        String uuid = generateUuidFromObjects(AMPATH_FORMS_UUID, formName, formVersion);
         // Process Form
         // ISSUE-150 If form with uuid present then update it
-        Form form = formService.getFormByUuid(uuid);
-        if (form != null) {
-            boolean needToSaveForm = false;
-            if (OpenmrsUtil.nullSafeEquals(form.getUuid(), uuid)) {
-                FormResource formResource = formService.getFormResource(form, "JSON schema");
+        if (formService.getFormByUuid(uuid) != null) {
+            Form form = formService.getFormByUuid(uuid);
 
+            if (OpenmrsUtil.nullSafeEquals(form.getUuid(), uuid)) {
+                ClobDatatypeStorage clobData = datatypeService
+                        .getClobDatatypeStorageByUuid(formService.getFormResource(form, "JSON schema").getValueReference());
+                clobData.setValue(jsonString);
+                datatypeService.saveClobDatatypeStorage(clobData);
+
+                boolean needToSaveForm = false;
                 // Description
                 if (!OpenmrsUtil.nullSafeEquals(form.getDescription(), formDescription)) {
                     form.setDescription(formDescription);
@@ -155,21 +164,17 @@ public class JsonFormsInitializer implements Initializer {
                     needToSaveForm = true;
                 }
 
-                if (formResource != null){
-                    ClobDatatypeStorage clobData = datatypeService.getClobDatatypeStorageByUuid(formResource.getValueReference());
-
-                    clobData.setValue(jsonString);
-
-                    datatypeService.saveClobDatatypeStorage(clobData);
-                }else  {
-                    createFormResource(form, UUID.randomUUID().toString(), jsonString);
-                }
-
                 if (needToSaveForm) {
                     formService.saveForm(form);
                 }
             }
-        }  else {// ISSUE-150 Create new form
+        } else if (formService.getForm(formName) != null) { // ISSUE-150 If form with name present then retire it and
+            // create a new one
+            Form form = formService.getForm(formName);
+            formService.retireForm(form, "Replaced with new version by Iniz");
+            createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
+                    jsonString);
+        } else {// ISSUE-150 Create new form
             createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
                     jsonString);
         }
@@ -177,6 +182,7 @@ public class JsonFormsInitializer implements Initializer {
 
     private void createNewForm(String uuid, String formName, String formDescription, Boolean formPublished,
                                Boolean formRetired, EncounterType encounterType, String formVersion, String jsonString) {
+        DatatypeService datatypeService = Context.getDatatypeService();
         FormService formService = Context.getFormService();
         String clobUuid = UUID.randomUUID().toString();
         Form newForm = new Form();
@@ -187,25 +193,26 @@ public class JsonFormsInitializer implements Initializer {
         newForm.setRetired(formRetired);
         newForm.setPublished(formPublished);
         newForm.setEncounterType(encounterType);
+
         newForm = formService.saveForm(newForm);
-        createFormResource(newForm, clobUuid, jsonString);
-    }
-
-
-    private void createFormResource(Form form, String clobUuid, String jsonString) {
-        FormService formService = Context.getFormService();
-        DatatypeService datatypeService = Context.getDatatypeService();
         FormResource formResource;
         formResource = new FormResource();
         formResource.setName("JSON schema");
-        formResource.setForm(form);
+        formResource.setForm(newForm);
         formResource.setValueReferenceInternal(clobUuid);
         formResource.setDatatypeClassname("AmpathJsonSchema");
         formService.saveFormResource(formResource);
+
         ClobDatatypeStorage clobData = new ClobDatatypeStorage();
         clobData.setUuid(clobUuid);
         clobData.setValue(jsonString);
         datatypeService.saveClobDatatypeStorage(clobData);
+    }
+
+    private static String generateUuidFromObjects(Object... args) {
+        String seed = Arrays.stream(args).map(arg -> arg == null ? "null" : arg.toString()).collect(Collectors.joining("_"));
+        String uuid = UUID.nameUUIDFromBytes(seed.getBytes()).toString();
+        return uuid;
     }
 
     public String getProviderName() {
