@@ -203,8 +203,7 @@
         "label": "ugandaemr.app.spa.list.label",
         "url": "spa/home",
         "icon": "icon-cloud",
-        "order": 122,
-        "requiredPrivilege": "App: ugandaemr.spa"
+        "order": 122
       }
     ]
   },

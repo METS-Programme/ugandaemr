@@ -146,14 +146,13 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
             dataImporter.importData("metadata/VisitTypes.xml");
             log.info("UgandaEMR Visits Imported");
 
+            // install commonly used metadata
+            installCommonMetadata(deployService);
+
+
             log.info("Start import of UgandaEMR Relationship Types");
             dataImporter.importData("metadata/RelationshipTypes.xml");
             log.info("UgandaEMR Relationship Types Imported");
-
-
-
-            // install commonly used metadata
-            installCommonMetadata(deployService);
 
             log.info("Start import of Program related objects");
             dataImporter.importData("metadata/Programs.xml");
