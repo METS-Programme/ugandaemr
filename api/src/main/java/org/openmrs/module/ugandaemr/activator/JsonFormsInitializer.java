@@ -65,7 +65,7 @@ public class JsonFormsInitializer implements Initializer {
             try {
                 load(file);
             } catch (Exception e) {
-                throw new RuntimeException(e);
+                log.error(e);
             }
         }
 
@@ -101,9 +101,9 @@ public class JsonFormsInitializer implements Initializer {
                 || formProcessor.equalsIgnoreCase("EncounterFormProcessor");
 
         EncounterType encounterType = null;
-        String formEncounterType = (String) jsonFile.get("encounter");
+        String formEncounterType = (String) jsonFile.get("encounterType");
         if (formEncounterType != null) {
-            encounterType = encounterService.getEncounterType(formEncounterType);
+            encounterType = encounterService.getEncounterTypeByUuid(formEncounterType);
             if (encounterType == null) {
                 throw new Exception("Form Encounter type " + formEncounterType + " could not be found. Please ensure that "
                         + "this encountertype is either loaded by Iniz or loaded in the system before Iniz runs.");
@@ -123,54 +123,67 @@ public class JsonFormsInitializer implements Initializer {
         String uuid = generateUuidFromObjects(AMPATH_FORMS_UUID, formName, formVersion);
         // Process Form
         // ISSUE-150 If form with uuid present then update it
-        if (formService.getFormByUuid(uuid) != null) {
-            Form form = formService.getFormByUuid(uuid);
+        Form form = formService.getFormByUuid(uuid);
+        if (form != null) {
+            boolean needToSaveForm = false;
+            FormResource formResource = formService.getFormResource(form, "JSON schema");
 
-            if (OpenmrsUtil.nullSafeEquals(form.getUuid(), uuid)) {
-                ClobDatatypeStorage clobData = datatypeService
-                        .getClobDatatypeStorageByUuid(formService.getFormResource(form, "JSON schema").getValueReference());
-                clobData.setValue(jsonString);
+            // Description
+            if (!OpenmrsUtil.nullSafeEquals(form.getDescription(), formDescription)) {
+                form.setDescription(formDescription);
+                needToSaveForm = true;
+            }
+            // Version
+            if (!OpenmrsUtil.nullSafeEquals(form.getVersion(), formVersion)) {
+                form.setVersion(formVersion);
+                needToSaveForm = true;
+            }
+            // Add in schema
+            // Published
+            if (!OpenmrsUtil.nullSafeEquals(form.getPublished(), formPublished)) {
+                form.setPublished(formPublished);
+                needToSaveForm = true;
+            }
+            // Add to schema
+            // Retired
+            if (!OpenmrsUtil.nullSafeEquals(form.getRetired(), formRetired)) {
+                form.setRetired(formRetired);
+                if (formRetired && StringUtils.isBlank(form.getRetireReason())) {
+                    form.setRetireReason("Retired by Initializer");
+                }
+                needToSaveForm = true;
+            }
+            // Add encounter to schema
+            if (encounterType != null && !OpenmrsUtil.nullSafeEquals(form.getEncounterType(), encounterType)) {
+                form.setEncounterType(encounterType);
+                needToSaveForm = true;
+            }
+
+            if (formResource != null){
+                ClobDatatypeStorage clobData = datatypeService.getClobDatatypeStorageByUuid(formResource.getValueReference());
+
+                if(clobData!=null) {
+                    clobData.setValue(jsonString);
+                }else{
+                    clobData=new ClobDatatypeStorage();
+                    clobData.setValue(jsonString);
+                    clobData.setUuid(UUID.randomUUID().toString());
+                    formResource.setValueReferenceInternal(clobData.getUuid());
+                    formService.saveFormResource(formResource);
+                }
+
                 datatypeService.saveClobDatatypeStorage(clobData);
 
-                boolean needToSaveForm = false;
-                // Description
-                if (!OpenmrsUtil.nullSafeEquals(form.getDescription(), formDescription)) {
-                    form.setDescription(formDescription);
-                    needToSaveForm = true;
-                }
-                // Version
-                if (!OpenmrsUtil.nullSafeEquals(form.getVersion(), formVersion)) {
-                    form.setVersion(formVersion);
-                    needToSaveForm = true;
-                }
-                // Add in schema
-                // Published
-                if (!OpenmrsUtil.nullSafeEquals(form.getPublished(), formPublished)) {
-                    form.setPublished(formPublished);
-                    needToSaveForm = true;
-                }
-                // Add to schema
-                // Retired
-                if (!OpenmrsUtil.nullSafeEquals(form.getRetired(), formRetired)) {
-                    form.setRetired(formRetired);
-                    if (formRetired && StringUtils.isBlank(form.getRetireReason())) {
-                        form.setRetireReason("Retired by Initializer");
-                    }
-                    needToSaveForm = true;
-                }
-                // Add encounter to schema
-                if (encounterType != null && !OpenmrsUtil.nullSafeEquals(form.getEncounterType(), encounterType)) {
-                    form.setEncounterType(encounterType);
-                    needToSaveForm = true;
-                }
+            }else  {
+                createFormResource(form, UUID.randomUUID().toString(), jsonString);
+            }
 
-                if (needToSaveForm) {
-                    formService.saveForm(form);
-                }
+            if (needToSaveForm) {
+                formService.saveForm(form);
             }
         } else if (formService.getForm(formName) != null) { // ISSUE-150 If form with name present then retire it and
             // create a new one
-            Form form = formService.getForm(formName);
+           form = formService.getForm(formName);
             formService.retireForm(form, "Replaced with new version by Iniz");
             createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
                     jsonString);
@@ -195,10 +208,17 @@ public class JsonFormsInitializer implements Initializer {
         newForm.setEncounterType(encounterType);
 
         newForm = formService.saveForm(newForm);
+        createFormResource(newForm, clobUuid, jsonString);
+    }
+
+
+    private void createFormResource(Form form, String clobUuid, String jsonString) {
+        FormService formService = Context.getFormService();
+        DatatypeService datatypeService = Context.getDatatypeService();
         FormResource formResource;
         formResource = new FormResource();
         formResource.setName("JSON schema");
-        formResource.setForm(newForm);
+        formResource.setForm(form);
         formResource.setValueReferenceInternal(clobUuid);
         formResource.setDatatypeClassname("AmpathJsonSchema");
         formService.saveFormResource(formResource);
