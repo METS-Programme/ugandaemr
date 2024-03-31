@@ -38,9 +38,10 @@
         var bmi;
 
         if(height!==null && weight!==null){
-            bmi=(weight.value*10000)/(weight.value*height.value)
+            var computedValue=(weight.value*10000)/(weight.value*height.value)
+            bmi=Math.round(computedValue);
         }
-        return bmi (height.display +" | " +weight.display);
+        return bmi + "("+height.display +" | " +weight.display+")";
     }
 
 </script>
