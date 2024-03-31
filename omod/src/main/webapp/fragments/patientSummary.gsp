@@ -21,7 +21,7 @@
                 var weight;
                 for (var i = 0 in results) {
                     if (results[i].concept.uuid==="dcbcba2c-30ab-102d-86b0-7a5022ba4115") {
-                        jq('#patient_cd4').append(results[i].value+" on "+results.obsDatetime);
+                        jq('#patient_cd4').append(results[i].value+" on "+jq.datepicker.formatDate('dd.M.yy', new Date(results[i].obsDatetime)));
                     }else if(results[i].concept.uuid==="5090AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"){
                         height=results[i]
                     }else if(results[i].concept.uuid==="5089AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"){
