@@ -574,7 +574,7 @@
     <privilege  privilege="Mark Dead Button"  description="Mark Dead Button"  uuid="b85b632d-af61-4d50-a083-2b8b1b782953"/>
     <privilege  privilege="Edit Patient Details Button"  description="Edit Patient Details Button"  uuid="3e63bb7d-91d9-4b89-992a-a585593ba1e6"/>
     <privilege  privilege="Add Patient To List Button"  description="Add Patient To List Button"  uuid="9cff066d-5764-416f-a798-0c1c0975e7db"/>
-    <privilege  privilege="Next Service Point"  description="Move Patient To Next Service Point Button"  uuid="933de750-a2c3-43cb-b03d-5e510882d6c6"/>
+    <privilege  privilege="Next Service Point"  description="Move Patient To Next Service Point Button"  uuid="e9ce8fdb-cb3f-42e0-a9fd-d42cd8caec11"/>
     <privilege  privilege="Manage Patient Banner End Visit Button"  description="Manage Patient Banner End Visit Button"  uuid="8ec2ca2a-1283-4ea9-b471-ff09b477927c"/>
     <privilege  privilege="Manage Patient Test Summary"  description="Manage Patient Test Summary"  uuid="cf1743c6-a354-4d74-9254-2ee0dacce9ff"/>
     <privilege  privilege="Manage Patient Immunization Orders"  description="Manage Patient Immunization Orders"  uuid="169a6cfa-0111-49bc-b69d-52c1a40ea031"/>
