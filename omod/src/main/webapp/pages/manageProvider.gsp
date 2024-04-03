@@ -1,5 +1,4 @@
 <%
-    // although called "patientDashboard" this is actually the patient visits screen, and clinicianfacing/patient is the main patient dashboard
     ui.decorateWith("appui", "standardEmrPage")
     ui.includeJavascript("uicommons", "bootstrap-collapse.js")
     ui.includeJavascript("uicommons", "bootstrap-transition.js")
