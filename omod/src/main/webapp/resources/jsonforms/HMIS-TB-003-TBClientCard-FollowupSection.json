@@ -119,6 +119,38 @@
           ]
         },
         {
+          "label": "Treatment Model",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Treatment Model",
+              "type": "obs",
+              "required": "false",
+              "id": "treatment-model",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "9e4e93fc-dcc0-4d36-9738-c0a5a489baa1",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "f9cdc841-1901-407e-b3ca-65dd3762051d",
+                    "label": "Facility DOTS"
+                  },
+                  {
+                    "concept": "ad6416c2-ca66-45e7-bfa0-9c03df0ab761",
+                    "label": "Digital Community DOTS"
+                  },
+                  {
+                    "concept": "89753861-f946-4c2a-9aeb-e6cabbb2dc25",
+                    "label": "Non-Digital Community DOTS"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
           "label": "Adverse Event",
           "isExpanded": "true",
           "questions": [
