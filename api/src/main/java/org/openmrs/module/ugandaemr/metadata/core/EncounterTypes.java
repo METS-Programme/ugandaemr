@@ -562,4 +562,21 @@ public class EncounterTypes {
         }
     };
 
+
+    public static EncounterTypeDescriptor MEDICATION_ORDER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Medication Order";
+        }
+
+        @Override
+        public String description() {
+            return "The encounter for ordering drugs for patient";
+        }
+
+        public String uuid() {
+            return "dbe038cd-cad5-439d-a761-a6d6d680219c";
+        }
+    };
+
 }

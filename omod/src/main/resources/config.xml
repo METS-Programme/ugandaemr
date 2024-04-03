@@ -415,6 +415,11 @@
     </privilege>
 
     <privilege>
+        <name>App: ugandaemr.spa</name>
+        <description>Access Spa</description>
+    </privilege>
+
+    <privilege>
         <name>App: fingerprint.findPatient</name>
         <description>Privilege to allow access to find patient fingerprint app</description>
     </privilege>

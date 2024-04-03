@@ -29,8 +29,7 @@ import org.openmrs.util.OpenmrsUtil;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-@Resource(name = RestConstants.VERSION_1 + "/queuestatistics", supportedClass = PatientQueueStatistic.class, supportedOpenmrsVersions = {
-        "1.9.*", "1.10.*", "1.11.*", "1.12.*", "2.0.*", "2.1.*", "2.2.*", "2.3.*", "2.4.*", "2.5.*"})
+@Resource(name = RestConstants.VERSION_1 + "/queuestatistics", supportedClass = PatientQueueStatistic.class, supportedOpenmrsVersions = {"1.9.* - 9.*"})
 public class QueueStatisticResource extends DelegatingCrudResource<PatientQueueStatistic> {
 
     @Override

@@ -35,6 +35,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.PATIENT_IUC_HEALTH_ID);
         install(PatientIdentifierTypes.PATIENT_ORGANIZATION_ID);
         install(PatientIdentifierTypes.PATIENT_OPD_IDENTIFICATION_NUMBER);
+        install(PatientIdentifierTypes.DISTRICT_REG_TB_NUMBER);
         log.info("Patient IdentifierTypes installed");
 
         // install person attribute types
@@ -96,6 +97,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(EncounterTypes.FAMILY_TRACKING);
         install(EncounterTypes.DEATH_NOTIFICATION);
         install(EncounterTypes.REGISTRATION);
+        install(EncounterTypes.MEDICATION_ORDER);
 
 
         //installing programs metadata
