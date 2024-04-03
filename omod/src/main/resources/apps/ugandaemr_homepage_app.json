@@ -303,5 +303,20 @@
         "requiredPrivilege": "App: coreapps.systemAdministration"
       }
     ]
+  },{
+    "id": "ugandaemr.manageProviderAttribute",
+    "description": "Manage Provider Attribute",
+    "order": 50,
+    "extensions": [
+      {
+        "id": "coreapps.manageProviderAttributeLink",
+        "extensionPointId": "systemAdministration.apps",
+        "type": "link",
+        "label": "Manage Provider Attributes",
+        "url": "ugandaemr/ManageProvider.page",
+        "icon": "fas fa-users-cog",
+        "requiredPrivilege": "App: coreapps.systemAdministration"
+      }
+    ]
   }
 ]
