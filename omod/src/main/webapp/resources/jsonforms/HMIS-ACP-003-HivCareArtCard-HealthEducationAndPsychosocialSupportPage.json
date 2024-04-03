@@ -216,16 +216,28 @@
               "id": "gbv",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "5d26ffa1-8b58-45af-a534-bc3b469850cb",
+                "concept": "23a37400-f855-405b-9268-cb2d25b97f54",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "eae2bbc8-8f82-4241-9b26-0579bf57b833",
-                    "label": "Victim"
+                    "concept": "6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce",
+                    "label": "No Signs"
                   },
                   {
-                    "concept": "fd77a408-514b-4325-8777-77dcc9b4d4e8",
-                    "label": "Perpetrator"
+                    "concept": "c5160b00-0641-4742-8672-97081379a92d",
+                    "label": "Emotional or Psyschosocial Harm"
+                  },
+                  {
+                    "concept": "1490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Physical Harm"
+                  },
+                  {
+                    "concept": "e52d273e-48a8-4a20-a5a9-4679e752e841",
+                    "label": "Inappropriately touched/fondled"
+                  },
+                  {
+                    "concept": "6686c0f0-cf27-4b9b-8495-8cf80a7357ae",
+                    "label": "Forced Sexual Intercourse"
                   }
                 ]
               },
@@ -482,28 +494,71 @@
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "159937AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Maternal and child health program"
+                    "concept": "9ff95fa9-b91a-415e-967a-0c390d337794",
+                    "label": "Mental Health Care/Rehabilitation"
                   },
                   {
-                    "concept": "11c12455-2f54-4bb5-b051-0ecfd4a5fe96",
-                    "label": "Nutrition Unit"
+                    "concept": "137b7df8-4c31-45e0-ad31-40892962d1ff",
+                    "label": "Livelihood Support"
                   },
                   {
-                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PMTCT"
+                    "concept": "23a37400-f855-405b-9268-cb2d25b97f54",
+                    "label": "GBV/VAC care"
                   },
                   {
-                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Tuberculosis Clinic"
+                    "concept": "83e759bc-3254-40be-a65e-71e0a544a122",
+                    "label": "Legal Support"
                   },
                   {
-                    "concept": "c09c3d3d-d07d-4d34-84f0-89ea4fd5d6d5",
-                    "label": "Ward"
+                    "concept": "35813f5b-e487-4324-b616-5c0caf47e674",
+                    "label": "Education Support"
+                  },
+                  {
+                    "concept": "c2f9c9f3-3e46-456c-9f17-7bb23c473f1b",
+                    "label": "OVC Services"
+                  },
+                  {
+                    "concept": "1f4c3300-b44e-4f2a-99ad-de681c24edda",
+                    "label": "Spiritual care"
+                  },
+                  {
+                    "concept": "e6e1e8e2-5cd3-4e9d-ad6a-6f20af5ab426",
+                    "label": "Community Support"
+                  },
+                  {
+                    "concept": "e8fc9bfa-efa7-4b7f-92ba-1a7d0fc467b3",
+                    "label": "Peer Support"
+                  },
+                  {
+                    "concept": "f1229461-aa7e-4a4f-a916-e1188c1ce622",
+                    "label": "Counselling"
+                  },
+                  {
+                    "concept": "dcbc7b8e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Nutritional Support"
+                  },
+                  {
+                    "concept": "1885d5de-ae8e-43dc-b994-bc7932722b3d",
+                    "label": "Sexual Reproductive Health"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
                   }
                 ]
+              }
+            },
+            {
+              "label": "Other Linkages and Referrals",
+              "type": "obs",
+              "id": "other_linkages_and_referrals",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "609193dc-ea2a-4746-9074-675661c025d0"
               },
-              "validators": []
+              "hide": {
+                "hideWhenExpression": "!includes('linkages_and_referrals','dcd68a88-30ab-102d-86b0-7a5022ba4115')"
+              }
             },
             {
               "label": "Comments",
