@@ -46,16 +46,17 @@
           "isExpanded": "true",
           "questions": [
             {
-              "type": "patientIdentifier",
-              "label": "District TB Number",
-              "questionInfo": "",
+              "label": " District TB Number",
+              "type": "obs",
               "id": "districtRegNum",
               "required": "true",
-              "default": "",
               "questionOptions": {
                 "rendering": "text",
-                "identifierType": "8110f2d2-1f98-4c38-aef3-11b19bb0a589"
-              }
+                "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
             },
             {
               "label": " Unit TB No.",
