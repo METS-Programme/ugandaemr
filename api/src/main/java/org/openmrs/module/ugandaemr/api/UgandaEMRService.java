@@ -420,4 +420,14 @@ public interface UgandaEMRService extends OpenmrsService {
     @Transactional(readOnly = true)
     public OrderObs getOrderObsByOrder(Order order);
 
+    /**
+     * send patient back to previous location from Laboratory
+     * @param encounter
+     * @param locationTo
+     * @param locationFrom
+     * @param previousQueueStatus
+     * @return a new queue where the patient has been sent
+     */
+    public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus);
+
 }

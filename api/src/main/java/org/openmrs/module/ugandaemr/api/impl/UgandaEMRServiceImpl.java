@@ -102,8 +102,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
-        PatientService patientService=Context.getPatientService();
-        PersonService personService=Context.getPersonService();
+        PatientService patientService = Context.getPatientService();
+        PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
         artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
@@ -1958,5 +1958,66 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     @Override
     public OrderObs getOrderObsByOrder(Order order) {
         return dao.getOrderObsByOrder(order);
+    }
+
+
+    public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus) {
+        PatientQueue patientQueue = new PatientQueue();
+
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+        Provider provider = ugandaEMRService.getProviderFromEncounter(encounter);
+
+        SimpleObject simpleObject = new SimpleObject();
+        SimpleObject orders = null;
+        try {
+            simpleObject = ugandaEMRService.getProcessedOrders(PROCESSED_ORDER_WITHOUT_RESULT_QUERY.concat(" AND patient_id=" + encounter.getPatient().getPatientId()), encounter.getDateCreated(), false);
+            orders = (SimpleObject) simpleObject.get("ordersList");
+        } catch (ParseException | IOException e) {
+            log.error(e);
+        }
+
+        if (orders == null) {
+            ugandaEMRService.completePreviousQueue(encounter.getPatient(), encounter.getLocation(), PatientQueue.Status.PENDING);
+        }
+
+        List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(), null);
+
+        List<PatientQueue> fromLabQueue = new ArrayList<>();
+
+
+
+        for (PatientQueue potentialQueueFromLab : patientQueueList) {
+            Encounter labEncounter = potentialQueueFromLab.getEncounter();
+            PatientQueue.Status labStatus = potentialQueueFromLab.getStatus();
+            boolean queueStatus = labStatus.equals(PatientQueue.Status.PENDING) || labStatus.equals(PatientQueue.Status.PICKED);
+            if (labEncounter != null && labEncounter.equals(encounter) && queueStatus && potentialQueueFromLab.getLocationFrom() == locationFrom && potentialQueueFromLab.getLocationTo().equals(encounter.getLocation())) {
+                fromLabQueue.add(patientQueue);
+            }
+        }
+
+        boolean queueExists = false;
+        try {
+            queueExists = patientQueueExists(encounter, encounter.getLocation(), locationFrom, PatientQueue.Status.PENDING);
+        } catch (ParseException e) {
+            log.error(e);
+        }
+
+        if (!queueExists) {
+            if (fromLabQueue.isEmpty()) {
+                patientQueue.setLocationFrom(locationFrom);
+                patientQueue.setPatient(encounter.getPatient());
+                patientQueue.setLocationTo(encounter.getLocation());
+                patientQueue.setProvider(provider);
+                patientQueue.setEncounter(encounter);
+                patientQueue.setStatus(PatientQueue.Status.PENDING);
+                patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
+                patientQueue.setDateCreated(new Date());
+                patientQueueingService.assignVisitNumberForToday(patientQueue);
+                patientQueueingService.savePatientQue(patientQueue);
+            }
+        }
+
+        return patientQueue;
     }
 }
