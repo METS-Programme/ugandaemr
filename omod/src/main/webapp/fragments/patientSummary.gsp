@@ -17,8 +17,8 @@
             success: function (data) {
                 jq('#patient_cd4')
                 var results = data.results;
-                var height;
-                var weight;
+                var height=null;
+                var weight=null;
                 for (var i = 0 in results) {
                     if (results[i].concept.uuid==="dcbcba2c-30ab-102d-86b0-7a5022ba4115") {
                         jq('#patient_cd4').append(results[i].value+" on "+jq.datepicker.formatDate('dd.M.yy', new Date(results[i].obsDatetime)));
@@ -35,13 +35,24 @@
     }
     function renderBMI(height,weight) {
 
-        var bmi;
+        var bmi="";
+        var weightDisplay="";
+        var heightDisplay="";
+
+        if(weight!=null){
+            weightDisplay=weight.display
+        }
+
+        if(height!=null){
+            heightDisplay=height.display
+        }
 
         if(height!==null && weight!==null){
             var computedValue=(weight.value*10000)/(weight.value*height.value)
             bmi=Math.round(computedValue);
         }
-        return bmi + "("+height.display +" | " +weight.display+")";
+
+        return bmi + " ("+heightDisplay+" | " +weightDisplay+")";
     }
 
 </script>
