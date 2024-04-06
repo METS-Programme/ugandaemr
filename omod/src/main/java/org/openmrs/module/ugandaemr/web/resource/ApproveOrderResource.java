@@ -53,8 +53,8 @@ public class ApproveOrderResource extends DelegatingCrudResource<ApproveOrder> {
         Location queueRoom = null;
 
         String[] orderIds = propertiesToCreate.get("orders").toString().split(",");
-        String locationUuid = propertiesToCreate.get("location").toString();
-        String queueRoomUuid = propertiesToCreate.get("queueRoom").toString();
+        String locationUuid = propertiesToCreate.get("location");
+        String queueRoomUuid = propertiesToCreate.get("queueRoom");
 
         if (locationUuid != null) {
             location = Context.getLocationService().getLocationByUuid(locationUuid);

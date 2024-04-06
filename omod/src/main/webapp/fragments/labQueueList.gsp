@@ -798,7 +798,7 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
     </div>
     ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 </div>
-${ui.includeFragment("ugandaemr", "reviewResults")}
+${ui.includeFragment("ugandaemr", "reviewResults",[currentLocation: currentLocation])}
 ${ui.includeFragment("ugandaemr", "lab/rejectTestDialogue")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}
