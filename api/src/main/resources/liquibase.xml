@@ -228,13 +228,13 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-2023-12-13-1316" author="slubwama">
+	<changeSet id="ugandaemr-2024-04-07-0700" author="slubwama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
             </sqlCheck>
 			<sqlCheck expectedResult="0">
-				SELECT (id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
+				SELECT count(id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
             </sqlCheck>
         </preConditions>
 		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
