@@ -910,7 +910,7 @@ VALUES
 		</preConditions>
 		<comment>Change Abacavir sulfate Tablet 300 mg (Bisoprolol) CHANGE TO Abacavir 300mg</comment>
 		<sql>
-			UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814, WHERE drug_id = 3 and concept_id=165507;
+			UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814 WHERE drug_id = 3 and concept_id=165507;
 		</sql>
 	</changeSet>
 </databaseChangeLog>
