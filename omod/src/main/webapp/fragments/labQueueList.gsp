@@ -648,6 +648,17 @@
         });
     }
 
+    function generateLabNumber(orderUuid) {
+        jq.get('${ ui.actionLink("generateLabNumber") }', {
+            orderUuid: orderUuid
+        }, function (response) {
+            if (response) {
+                var responseData = JSON.parse(response.defaultSampleId)
+                jq(".accession-number").val(responseData);
+            }
+        });
+    }
+
     function formatDateFromString(string_date) {
         var date = new Date(string_date);
         var monthNames = [
