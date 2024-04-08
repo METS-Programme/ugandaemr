@@ -85,18 +85,36 @@
 
     function addExpiryMothAndYear(stock) {
         for (let i = 0; i < stock.length; i++) {
-            var expiryYear = null;
-            var expiryMonth = null;
+            var expiryYear = "";
+            var expiryMonth = "";
+            var expiryDate = null;
+            var batchNumber = "";
             if (stock[i].expiration !== null) {
                 expiryYear = new Date(stock[i].expiration).getFullYear();
-                expiryMonth = new Date(stock[i].expiration).getMonth();
+                expiryMonth = new Date(stock[i].expiration).getMonth()+1;
+                expiryDate = new Date(stock[i].expiration);
+            }
+
+            if(stock[i].batchNumber!=null){
+                batchNumber=stock[i].batchNumber
             }
             Object.defineProperty(stock[i], "expiryYear", {
                 value: expiryYear,
                 writable: false
             })
+
             Object.defineProperty(stock[i], "expiryMonth", {
                 value: expiryMonth,
+                writable: false
+            })
+
+            Object.defineProperty(stock[i], "batchNumber", {
+                value: batchNumber,
+                writable: false
+            })
+
+            Object.defineProperty(stock[i], "expiryDate", {
+                value: expiryDate,
                 writable: false
             })
         }
@@ -468,7 +486,7 @@ form input {
                             <td data-bind="">
                                 <div id="data">
                                     <select class="prescription-text"
-                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return 'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
+                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return item.batchNumber+' - '+'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
                                 </div>
                             </td>
                             <td data-bind="">

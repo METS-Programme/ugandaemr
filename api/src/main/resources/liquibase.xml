@@ -902,7 +902,7 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240406-1655" author="slubwama">
+	<changeSet id="ugandaemr-20240408-1655" author="slubwama">
 		<preConditions onFail="MARK_RAN">
 			<sqlCheck expectedResult="1">
 				select count(*) from drug where drug_id=3 and name ="Abacavir sulfate Tablet 300 mg" and concept_id=165507;
