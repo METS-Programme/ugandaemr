@@ -364,10 +364,7 @@ public class LabQueueListFragmentController {
     public SimpleObject generateLabNumber(@RequestParam(value = "orderUuid", required = false) String orderUuid) throws ParseException, IOException {
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         ObjectMapper objectMapper = new ObjectMapper();
-        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date = sdf.format(new Date());
-        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("/","-");
+        String defaultSampleId = ugandaEMRService.generateLabNumber(orderUuid);
         return SimpleObject.create("defaultSampleId", objectMapper.writeValueAsString(defaultSampleId));
     }
 }

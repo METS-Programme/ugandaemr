@@ -430,4 +430,11 @@ public interface UgandaEMRService extends OpenmrsService {
      */
     public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus);
 
+    /**
+     * Generates LabNumber for the day for the patient
+     * @param orderUuid the uuid of the order to be generated a lab number
+     * @return generated lab number as a string
+     */
+    public String generateLabNumber(String orderUuid);
+
 }

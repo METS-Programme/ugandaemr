@@ -14,10 +14,10 @@
             jq('#add-order-to-lab-worklist-dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
                 var orderNumber = button.data('order-number');
-                var orderId = button.data('orderId');
+                var orderUuid = button.data('orderuuid');
                 var order;
-                if (orderId !== "") {
-                    order = getOrderByOrderUuid(orderId)
+                if (orderUuid !== "") {
+                    order = getOrderByOrderUuid(orderUuid)
                 }
                 var patientQueueId = button.data('patientqueueid');
                 var unProcessed = button.data('unprocessed-orders');
@@ -25,7 +25,7 @@
                 modal.find("#order_id").val(orderNumber);
                 modal.find("#patient-queue-id").val(patientQueueId);
                 modal.find("#unprocessed-orders").val(unProcessed);
-                if (order !== null) {
+                if (order && ('accessionNumber' in order) && order.accessionNumber!=null) {
                     modal.find("#sample_id").val(order.accessionNumber);
                     if (order.specimenSource != null) {
                         modal.find("#specimen_source_id").val(order.specimenSource.uuid);
@@ -43,7 +43,7 @@
                 } else {
                     modal.find("#sample_id").val("");
                     modal.find("#sample_generator").html("");
-                    modal.find("#sample_generator").append("<a onclick=\"generateSampleId('" + orderNumber + "')\"><i class=\" icon-barcode\">Generate Sample Id</i></a>");
+                    modal.find("#sample_generator").append("<a onclick=\"generateLabNumber('" + orderUuid + "')\"><i class=\" icon-barcode\">Generate Sample Id</i></a>");
                     modal.find("#reference_lab").prop('selectedIndex', 0);
                     modal.find("#specimen_source_id").prop('selectedIndex', 0);
                     modal.find("#refer_test").prop('checked', false);

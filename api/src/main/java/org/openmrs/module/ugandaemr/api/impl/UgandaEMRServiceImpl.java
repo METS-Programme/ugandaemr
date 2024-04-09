@@ -2020,4 +2020,12 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
         return patientQueue;
     }
+
+    public String generateLabNumber(String orderUuid) {
+        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("/","-");
+        return defaultSampleId;
+    }
 }
