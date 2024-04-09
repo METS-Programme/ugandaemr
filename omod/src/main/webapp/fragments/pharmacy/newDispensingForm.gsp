@@ -48,7 +48,7 @@
 
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
-        var pharmacyQueueList=JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
+        var pharmacyQueueList = JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
         jq.each(pharmacyQueueList[position].orderMapper, function (index, element) {
             if (element.encounterId === encounterId && element.dispensingLocation === currentLocationUUID) {
                 let stockItemInventorys = getStockItemInventory(element.drugUUID)
@@ -60,7 +60,7 @@
                 })
 
                 Object.defineProperty(element, "maxDispenseValue", {
-                    value: getMaxDispenseValue(stockItemInventorys,element),
+                    value: getMaxDispenseValue(stockItemInventorys, element),
                     writable: false
                 })
                 orderedTestsRows.push(element);
@@ -91,12 +91,12 @@
             var batchNumber = "";
             if (stock[i].expiration !== null) {
                 expiryYear = new Date(stock[i].expiration).getFullYear();
-                expiryMonth = new Date(stock[i].expiration).getMonth()+1;
+                expiryMonth = new Date(stock[i].expiration).getMonth() + 1;
                 expiryDate = new Date(stock[i].expiration);
             }
 
-            if(stock[i].batchNumber!=null){
-                batchNumber=stock[i].batchNumber
+            if (stock[i].batchNumber != null) {
+                batchNumber = stock[i].batchNumber
             }
             Object.defineProperty(stock[i], "expiryYear", {
                 value: expiryYear,
@@ -141,8 +141,8 @@
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response!==null || response!=="") {
-                if(response.patientPharmacyQueueList.length>0) {
+            if (response !== null || response !== "") {
+                if (response.patientPharmacyQueueList.length > 0) {
                     var editPrescriptionParameterOptions = getDrugOrderData(response, encounterId, 0);
                     jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
                         editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
@@ -496,9 +496,23 @@ form input {
                                 </div>
                             </td>
                             <td data-bind="">
-                                <div id="data">
-                                    <input class="prescription-checkbox"
-                                           data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].orderReasonNonCoded', value : 'REFERREDOUT' }">
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>Refer Out</label>
+                                    </div>
+                                    <div id="data" class="col-5">
+                                        <input class="prescription-checkbox"
+                                               data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].orderReasonNonCoded', value : 'REFERREDOUT' }">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-5">
+                                        <label>Keep Prescription</label>
+                                    </div>
+                                    <div id="data" class="col-5">
+                                        <input class="prescription-checkbox"
+                                               data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].keepOrder', value : true }">
+                                    </div>
                                 </div>
                             </td>
                         </tr>
@@ -571,7 +585,8 @@ form input {
                 </table>
             </div>
             <footer style="margin-top: 50px">
-                <div style="text-align: left;font-size: 10px"><img width="40px" src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
+                <div style="text-align: left;font-size: 10px"><img width="40px"
+                                                                   src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
                 </div>
             </footer>
         </div>

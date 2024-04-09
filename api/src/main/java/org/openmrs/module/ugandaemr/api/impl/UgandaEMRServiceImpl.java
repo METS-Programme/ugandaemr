@@ -102,8 +102,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
-        PatientService patientService=Context.getPatientService();
-        PersonService personService=Context.getPersonService();
+        PatientService patientService = Context.getPatientService();
+        PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
         artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
@@ -1582,7 +1582,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      */
     public SimpleObject dispenseMedication(DispensingModelWrapper resultWrapper, Provider provider, Location location) {
         boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
-
+        List<Boolean> completePatientQueue = new ArrayList<>();
         if (enableStockManagement) {
             SimpleObject simpleObject = validateStock(resultWrapper);
             if (simpleObject.get("errors") != null) {
@@ -1629,7 +1629,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             }
 
             try {
-                Context.getOrderService().discontinueOrder(drugOrder, "Completed", new Date(), provider, previousEncounter);
+                if (!drugOrderMapper.getKeepOrder()) {
+                    Context.getOrderService().discontinueOrder(drugOrder, "Completed", new Date(), provider, previousEncounter);
+                } else {
+                    completePatientQueue.add(false);
+                }
             } catch (Exception e) {
                 log.error(e);
             }
@@ -1646,9 +1650,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             }
 
             encounterService.saveEncounter(encounter);
-            patientQueue.setEncounter(encounter);
-            patientQueueingService.savePatientQue(patientQueue);
-            patientQueueingService.completePatientQueue(patientQueue);
+            if (!completePatientQueue.contains(false)) {
+                patientQueue.setEncounter(encounter);
+                patientQueueingService.savePatientQue(patientQueue);
+                patientQueueingService.completePatientQueue(patientQueue);
+            }
         } catch (Exception e) {
             log.error(e);
         }
