@@ -134,7 +134,7 @@
     }
 
     function queryRestData(url,method,data) {
-        var responseDate = null;
+        var responseData = null;
         jq.ajax({
             type: method,
             url: '/' + OPENMRS_CONTEXT_PATH + url,
@@ -144,13 +144,13 @@
             async: false,
             data:data,
             success: function (response) {
-                responseDate = response;
+                responseData = response;
             },
             error: function (response) {
-                responseDate=response
+                responseData=response
             }
         });
-        return responseDate;
+        return responseData;
     }
 
     function getEditPrescriptionTempLate(queue_id, encounterId) {
