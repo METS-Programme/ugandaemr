@@ -12,7 +12,6 @@
         editPrescriptionForm,
         editPrescriptionParameterOpts = {editPrescriptionParameterOptions: ko.observableArray([])},
         printPrescriptionParameterOpts = {printPrescriptionParameterOptions: ko.observableArray([])};
-
     jq(function () {
         ko.applyBindings(editPrescriptionParameterOpts, jq("#edit-prescription-form")[0]);
 
@@ -49,6 +48,7 @@
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
         var pharmacyQueueList=JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
+        var dispenseAbovePrescription=getDispenseAbovePrescription();
         jq.each(pharmacyQueueList[position].orderMapper, function (index, element) {
             if (element.encounterId === encounterId && element.dispensingLocation === currentLocationUUID) {
                 let stockItemInventorys = getStockItemInventory(element.drugUUID)
@@ -60,7 +60,7 @@
                 })
 
                 Object.defineProperty(element, "maxDispenseValue", {
-                    value: getMaxDispenseValue(stockItemInventorys,element),
+                    value: getMaxDispenseValue(stockItemInventorys,element,dispenseAbovePrescription),
                     writable: false
                 })
                 orderedTestsRows.push(element);
@@ -69,14 +69,14 @@
         return orderedTestsRows;
     }
 
-    function getMaxDispenseValue(stock, prescription) {
+    function getMaxDispenseValue(stock, prescription,dispenseAbovePrescription) {
         var maxDispenseQty = 0;
         for (let i = 0; i < stock.length; i++) {
             if (stock[i].quantity > maxDispenseQty) {
-                maxDispenseQty = stock[i].quantity;
+                maxDispenseQty += stock[i].quantity;
             }
         }
-        if (maxDispenseQty >= prescription.quantity) {
+        if (maxDispenseQty >= prescription.quantity && !dispenseAbovePrescription) {
             maxDispenseQty = prescription.quantity;
         }
         return maxDispenseQty;
@@ -123,17 +123,34 @@
 
     function getStockItemInventory(druguuid) {
         var stockIventoryItems = []
-        jq.ajax({
-            type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "&dispenseAtLocation=1",
-            dataType: "json",
-            async: false,
-            success: function (data) {
-                stockIventoryItems = data.results;
+        var url="/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "&dispenseAtLocation=1";
+        return queryRestData(url,"GET",null).results
+    }
 
+    function getDispenseAbovePrescription() {
+        var stockIventoryItems = []
+        var url="/ws/rest/v1/systemsetting?q=ugandaemr.allowDispensingMoreThanPrescribed&v=custom:(uuid,property,value)";
+        return queryRestData(url,"GET",null).results[0].value
+    }
+
+    function queryRestData(url,method,data) {
+        var responseDate = null;
+        jq.ajax({
+            type: method,
+            url: '/' + OPENMRS_CONTEXT_PATH + url,
+            dataType: "json",
+            contentType: "application/json",
+            accept: "application/json",
+            async: false,
+            data:data,
+            success: function (response) {
+                responseDate = response;
+            },
+            error: function (response) {
+                responseDate=response
             }
         });
-        return stockIventoryItems
+        return responseDate;
     }
 
     function getEditPrescriptionTempLate(queue_id, encounterId) {
