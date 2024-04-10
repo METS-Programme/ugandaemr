@@ -333,7 +333,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Reg No.",
@@ -345,7 +348,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "TB Stop Date",
@@ -357,7 +363,10 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== '031d9b15-62d5-4f73-a374-5503f0421427'"
+              }
             },
             {
               "label": "TPT Status",
@@ -407,7 +416,9 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "hide": {
+                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== 'dcdaaae4-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "TPT Date Completed",
@@ -419,19 +430,23 @@
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "hide": {
+                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== '160035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "TPT Side Effects",
               "type": "obs",
-              "id": "tpt_date_completed",
+              "id": "tpt_side_effects",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "23a6dc6e-ac16-4fa6-8029-155522548d04",
                 "conceptMappings": [],
                 "answers": []
               },
-              "validators": []
+              "hide": {
+                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== 'dcda4d59-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Signs and Symptoms",
@@ -748,6 +763,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "hep_b_status !== '159971AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
@@ -783,9 +801,9 @@
               }
             },
             {
-              "label": "ART - adherence ",
+              "label": "ART Adherence ",
               "type": "obs",
-              "id": "art-adherence",
+              "id": "art_adherence",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
@@ -807,9 +825,9 @@
               "validators": []
             },
             {
-              "label": "Why Poor/Fair",
+              "label": "Why Poor/Fair Adherence",
               "type": "obs",
-              "id": "why-poor-fair",
+              "id": "why_poor_fair",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "dce045a4-30ab-102d-86b0-7a5022ba4115",
@@ -878,7 +896,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(art-adherence) || art-adherence != 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(art_adherence) || art_adherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]

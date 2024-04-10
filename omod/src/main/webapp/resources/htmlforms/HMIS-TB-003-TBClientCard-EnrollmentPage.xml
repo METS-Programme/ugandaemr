@@ -838,7 +838,7 @@
 											</div>
 											<div class="col-md-4">
 												<label>Patient Type</label>
-												<obs conceptId="99386" answerConceptIds="99380,99381,165833,165834,165835" 
+												<obs conceptId="99386" answerConceptIds="99380,99381,165833,165834,165835"
 													 answerLabels="New, Relapse, Treament after lost to follow up, Treament after failure, Treament history unknown" style="checkbox"/>
 											</div>
 										</div>
