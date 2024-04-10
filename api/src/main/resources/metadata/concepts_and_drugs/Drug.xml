@@ -518,14 +518,14 @@
     <drug drug_id="521" concept_id="165794" name="ABC/3TC 600/300mg" strength="600/300mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="7f265f53-55d4-460e-a2ac-301aeea7adda"/>
     <drug drug_id="522" concept_id="165794" name="AZT/3TC 60/30mg" strength="60/30mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="46fe2107-b541-4f5a-b91a-beb6d87719c1"/>
     <drug drug_id="523" concept_id="99005"	 name="AZT/3TC/NVP 60/30/50mg" strength="60mg/30mg/50mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="2e12fe21-a785-4685-973b-61e5c5256a2b"/>
-    <drug drug_id="524" concept_id="166907" name="Isoniazid/rifapentine (3HP) 300/300mg" strength="300/300mg" dosage_form="1513"  date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="267a60e9-1111-4b7d-b312-39f1b3114310"/>
-    <drug drug_id="525" concept_id="165730" name="Isoniazid/rifampicin 75/50mg" strength="75/50mg"  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="53ebd28f-8992-4f35-a0c8-0c33ee560e10"/>
-    <drug drug_id="526" concept_id="237" name="Metronidazole suspension" strength="200mg/5ml"  date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="d2714319-cb5a-4e54-b646-24b13e466dd3"/>
-    <drug drug_id="527" concept_id="737" name="Cefuroxime 500mg" strength="200mg/5ml"  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="e362fb63-6c8c-46a6-9d1a-1569c9e57033"/>
-    <drug drug_id="528" concept_id="165746" name="Spironolactone 25mg" strength="25mg"  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="59d14408-75d0-4b37-9ff9-9ec3622c78ed"/>
-    <drug drug_id="529" concept_id="175383" name="Caustic pencil" strength="40%"  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="3d0604b1-fb3a-4d56-8a03-ed2f36f5c04c"/>
-    <drug drug_id="530" concept_id="84764" name="Telmisartan 40mg" strength="40mg"  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="02f4fa58-5ad2-4763-9660-89ec5aaf0f70"/>
-    <drug drug_id="531" concept_id="163287" name="Water for injection" strength=""  dosage_form="1513" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="cfdd9e9c-860b-4050-a4ae-6fccc0edad04"/>
+    <drug drug_id="524" concept_id="166907" name="Isoniazid/rifapentine (3HP) 300/300mg" strength="300/300mg" dosage_form="1513"  creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="267a60e9-1111-4b7d-b312-39f1b3114310"/>
+    <drug drug_id="525" concept_id="165730" name="Isoniazid/rifampicin 75/50mg" strength="75/50mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="53ebd28f-8992-4f35-a0c8-0c33ee560e10"/>
+    <drug drug_id="526" concept_id="237" name="Metronidazole suspension" strength="200mg/5ml"  creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="d2714319-cb5a-4e54-b646-24b13e466dd3"/>
+    <drug drug_id="527" concept_id="737" name="Cefuroxime 500mg" strength="200mg/5ml"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="e362fb63-6c8c-46a6-9d1a-1569c9e57033"/>
+    <drug drug_id="528" concept_id="165746" name="Spironolactone 25mg" strength="25mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="59d14408-75d0-4b37-9ff9-9ec3622c78ed"/>
+    <drug drug_id="529" concept_id="175383" name="Caustic pencil" strength="40%"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="3d0604b1-fb3a-4d56-8a03-ed2f36f5c04c"/>
+    <drug drug_id="530" concept_id="84764" name="Telmisartan 40mg" strength="40mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="02f4fa58-5ad2-4763-9660-89ec5aaf0f70"/>
+    <drug drug_id="531" concept_id="163287" name="Water for injection" strength=""  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="cfdd9e9c-860b-4050-a4ae-6fccc0edad04"/>
     <!-- drug_id Gap to fill -->
 
 
