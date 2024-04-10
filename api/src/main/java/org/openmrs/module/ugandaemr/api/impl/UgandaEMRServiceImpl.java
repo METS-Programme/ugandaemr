@@ -102,8 +102,8 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
-        PatientService patientService=Context.getPatientService();
-        PersonService personService=Context.getPersonService();
+        PatientService patientService = Context.getPatientService();
+        PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
         List<PatientIdentifierType> artNumberPatientidentifierTypes = new ArrayList<>();
         artNumberPatientidentifierTypes.add(Context.getPatientService().getPatientIdentifierTypeByUuid(PatientIdentifierTypes.ART_PATIENT_NUMBER.uuid()));
@@ -1582,32 +1582,21 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
      */
     public SimpleObject dispenseMedication(DispensingModelWrapper resultWrapper, Provider provider, Location location) {
         boolean enableStockManagement = Boolean.parseBoolean(Context.getAdministrationService().getGlobalProperty("ugandaemr.enableStockManagement"));
-
+        List<Boolean> completePatientQueue = new ArrayList<>();
         if (enableStockManagement) {
             SimpleObject simpleObject = validateStock(resultWrapper);
             if (simpleObject.get("errors") != null) {
                 return simpleObject;
             }
         }
-
         EncounterService encounterService = Context.getEncounterService();
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
 
         Encounter previousEncounter = encounterService.getEncounter(resultWrapper.getEncounterId());
         PatientQueue patientQueue = patientQueueingService.getPatientQueueById(resultWrapper.getPatientQueueId());
-
-        Encounter encounter = new Encounter();
-        encounter.setEncounterType(encounterService.getEncounterTypeByUuid(ENCOUNTER_TYPE_DISPENSE_UUID));
-        encounter.setProvider(Context.getEncounterService().getEncounterRoleByUuid(ENCOUNTER_ROLE_PHARMACIST), provider);
-        encounter.setLocation(location);
-        encounter.setPatient(previousEncounter.getPatient());
-        encounter.setVisit(previousEncounter.getVisit());
-        encounter.setEncounterDatetime(previousEncounter.getEncounterDatetime());
-        encounter.setForm(Context.getFormService().getFormByUuid(DISPENSE_FORM_UUID));
-
+        Encounter encounter = getDispensingEncounter(previousEncounter, location, provider);
         List<DrugOrderMapper> referredOutPrescriptions = new ArrayList<>();
         Set<Obs> obs = new HashSet<>();
-
         for (DrugOrderMapper drugOrderMapper : resultWrapper.getDrugOrderMappers()) {
             DrugOrder drugOrder = (DrugOrder) Context.getOrderService().getOrder(drugOrderMapper.getOrderId());
 
@@ -1629,7 +1618,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             }
 
             try {
-                Context.getOrderService().discontinueOrder(drugOrder, "Completed", new Date(), provider, previousEncounter);
+                if (!drugOrderMapper.getKeepOrder()) {
+                    Context.getOrderService().discontinueOrder(drugOrder, "Completed", new Date(), provider, previousEncounter);
+                } else {
+                    completePatientQueue.add(false);
+                }
             } catch (Exception e) {
                 log.error(e);
             }
@@ -1646,9 +1639,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             }
 
             encounterService.saveEncounter(encounter);
-            patientQueue.setEncounter(encounter);
-            patientQueueingService.savePatientQue(patientQueue);
-            patientQueueingService.completePatientQueue(patientQueue);
+            if (!completePatientQueue.contains(false)) {
+                patientQueue.setEncounter(encounter);
+                patientQueueingService.savePatientQue(patientQueue);
+                patientQueueingService.completePatientQueue(patientQueue);
+            }
         } catch (Exception e) {
             log.error(e);
         }
@@ -1667,6 +1662,32 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             simpleObject = SimpleObject.create("status", "success", "message", "Saved!");
         }
         return simpleObject;
+    }
+
+    private Encounter getDispensingEncounter(Encounter previousEncounter, Location location, Provider provider) {
+        EncounterService encounterService = Context.getEncounterService();
+        Encounter encounter = null;
+        Collection<Visit> visits = new ArrayList<>();
+        visits.add(previousEncounter.getVisit());
+        Collection<EncounterType> encounterTypes = new ArrayList<>();
+        encounterTypes.add(Context.getEncounterService().getEncounterTypeByUuid(ENCOUNTER_TYPE_DISPENSE_UUID));
+        EncounterSearchCriteria encounterSearchCriteria = new EncounterSearchCriteriaBuilder().setEncounterTypes(encounterTypes).setVisits(visits).setFromDate(OpenmrsUtil.firstSecondOfDay(previousEncounter.getVisit().getStartDatetime())).setToDate(OpenmrsUtil.getLastMomentOfDay(previousEncounter.getVisit().getStartDatetime())).createEncounterSearchCriteria();
+
+        List<Encounter> dispensingEncounter = Context.getEncounterService().getEncounters(encounterSearchCriteria);
+
+        if (dispensingEncounter.size() > 0) {
+            encounter = dispensingEncounter.get(0);
+        } else {
+            encounter = new Encounter();
+            encounter.setEncounterType(encounterService.getEncounterTypeByUuid(ENCOUNTER_TYPE_DISPENSE_UUID));
+            encounter.setProvider(Context.getEncounterService().getEncounterRoleByUuid(ENCOUNTER_ROLE_PHARMACIST), provider);
+            encounter.setLocation(location);
+            encounter.setPatient(previousEncounter.getPatient());
+            encounter.setVisit(previousEncounter.getVisit());
+            encounter.setEncounterDatetime(previousEncounter.getEncounterDatetime());
+            encounter.setForm(Context.getFormService().getFormByUuid(DISPENSE_FORM_UUID));
+        }
+        return encounter;
     }
 
     private SimpleObject validateStock(DispensingModelWrapper dispensingModelWrapper) {
@@ -1958,5 +1979,74 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
     @Override
     public OrderObs getOrderObsByOrder(Order order) {
         return dao.getOrderObsByOrder(order);
+    }
+
+
+    public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus) {
+        PatientQueue patientQueue = new PatientQueue();
+
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+        Provider provider = ugandaEMRService.getProviderFromEncounter(encounter);
+
+        SimpleObject simpleObject = new SimpleObject();
+        SimpleObject orders = null;
+        try {
+            simpleObject = ugandaEMRService.getProcessedOrders(PROCESSED_ORDER_WITHOUT_RESULT_QUERY.concat(" AND patient_id=" + encounter.getPatient().getPatientId()), encounter.getDateCreated(), false);
+            orders = (SimpleObject) simpleObject.get("ordersList");
+        } catch (ParseException | IOException e) {
+            log.error(e);
+        }
+
+        if (orders == null) {
+            ugandaEMRService.completePreviousQueue(encounter.getPatient(), encounter.getLocation(), PatientQueue.Status.PENDING);
+        }
+
+        List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(), null);
+
+        List<PatientQueue> fromLabQueue = new ArrayList<>();
+
+
+
+        for (PatientQueue potentialQueueFromLab : patientQueueList) {
+            Encounter labEncounter = potentialQueueFromLab.getEncounter();
+            PatientQueue.Status labStatus = potentialQueueFromLab.getStatus();
+            boolean queueStatus = labStatus.equals(PatientQueue.Status.PENDING) || labStatus.equals(PatientQueue.Status.PICKED);
+            if (labEncounter != null && labEncounter.equals(encounter) && queueStatus && potentialQueueFromLab.getLocationFrom() == locationFrom && potentialQueueFromLab.getLocationTo().equals(encounter.getLocation())) {
+                fromLabQueue.add(patientQueue);
+            }
+        }
+
+        boolean queueExists = false;
+        try {
+            queueExists = patientQueueExists(encounter, encounter.getLocation(), locationFrom, PatientQueue.Status.PENDING);
+        } catch (ParseException e) {
+            log.error(e);
+        }
+
+        if (!queueExists) {
+            if (fromLabQueue.isEmpty()) {
+                patientQueue.setLocationFrom(locationFrom);
+                patientQueue.setPatient(encounter.getPatient());
+                patientQueue.setLocationTo(encounter.getLocation());
+                patientQueue.setProvider(provider);
+                patientQueue.setEncounter(encounter);
+                patientQueue.setStatus(PatientQueue.Status.PENDING);
+                patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
+                patientQueue.setDateCreated(new Date());
+                patientQueueingService.assignVisitNumberForToday(patientQueue);
+                patientQueueingService.savePatientQue(patientQueue);
+            }
+        }
+
+        return patientQueue;
+    }
+
+    public String generateLabNumber(String orderUuid) {
+        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String date = sdf.format(new Date());
+        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("/","-");
+        return defaultSampleId;
     }
 }

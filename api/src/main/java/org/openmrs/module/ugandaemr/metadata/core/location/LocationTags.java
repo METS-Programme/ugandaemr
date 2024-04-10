@@ -65,7 +65,7 @@ public class LocationTags {
 
 		@Override
 		public String uuid() {
-			return "c0e1d1d8-c97d-4869-ba16-68d351d3d5f5";
+			return "1e6acc3e-696d-47de-8f74-63ed7bbe6e81";
 		}
 
 		@Override

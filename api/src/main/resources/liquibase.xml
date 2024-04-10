@@ -228,13 +228,13 @@
 			DELETE FROM person_attribute WHERE value IS NULL OR value = '';
 		</sql>
 	</changeSet>
-	<changeSet id="ugandaemr-2023-12-13-1316" author="slubwama">
+	<changeSet id="ugandaemr-2024-04-07-0700" author="slubwama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
                 SELECT COUNT(program_id) FROM program  WHERE program.uuid = 'de5d54ae-c304-11e8-9ad0-529269fb1459';
             </sqlCheck>
 			<sqlCheck expectedResult="0">
-				SELECT (id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
+				SELECT count(id) FROM liquibasechangelog  WHERE id="ugandaemr-01-10-2018-1200";
             </sqlCheck>
         </preConditions>
 		<comment>Move all Patients Ever enrolled in Facility Based Individual Management DSDM </comment>
@@ -887,6 +887,30 @@ VALUES
 		<comment>Make UIC not unique to support the generation its generation in-spite of duplicates</comment>
 		<sql>
 			UPDATE patient_identifier_type set uniqueness_behavior="NON_UNIQUE" where uuid="877169c4-92c6-4cc9-bf45-1ab95faea242";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240406-1654" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				select count(*) from drug where drug_id=164;
+			</sqlCheck>
+		</preConditions>
+		<comment>change drugs Efavirenz from a capsule to a tablet</comment>
+		<sql>
+			UPDATE drug SET name = 'Efavirenz Tablet 200 mg', dosage_form = 1513 WHERE drug_id = 164
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240408-1655" author="slubwama">
+		<preConditions onFail="MARK_RAN">
+			<sqlCheck expectedResult="1">
+				select count(*) from drug where drug_id=3 and name ="Abacavir sulfate Tablet 300 mg" and concept_id=165507;
+			</sqlCheck>
+		</preConditions>
+		<comment>Change Abacavir sulfate Tablet 300 mg (Bisoprolol) CHANGE TO Abacavir 300mg</comment>
+		<sql>
+			UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814 WHERE drug_id = 3 and concept_id=165507;
 		</sql>
 	</changeSet>
 </databaseChangeLog>

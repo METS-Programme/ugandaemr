@@ -40,6 +40,7 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
     private String dispensingLocation;
 
     private Boolean dispenseAsWritten = Boolean.FALSE;
+    private Boolean keepOrder = Boolean.FALSE;
 
     private String drugNonCoded;
 
@@ -233,5 +234,13 @@ public class DrugOrderMapper extends OrderMapper implements Serializable {
 
     public void setMaxDispenseValue(Integer maxDispenseValue) {
         this.maxDispenseValue = maxDispenseValue;
+    }
+
+    public boolean getKeepOrder() {
+       return keepOrder;
+    }
+
+    public void setKeepOrder(Boolean keepOrder) {
+        this.keepOrder = keepOrder;
     }
 }

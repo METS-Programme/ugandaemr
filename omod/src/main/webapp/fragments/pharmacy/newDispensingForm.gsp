@@ -1,6 +1,6 @@
 <style>
 .modal-lg, .modal-xl {
-    max-width: 50%;
+    max-width: 70%;
 }
 </style>
 <script>
@@ -12,7 +12,6 @@
         editPrescriptionForm,
         editPrescriptionParameterOpts = {editPrescriptionParameterOptions: ko.observableArray([])},
         printPrescriptionParameterOpts = {printPrescriptionParameterOptions: ko.observableArray([])};
-
     jq(function () {
         ko.applyBindings(editPrescriptionParameterOpts, jq("#edit-prescription-form")[0]);
 
@@ -48,7 +47,8 @@
 
     function getDrugOrderData(pharmacyQueueList, encounterId, position) {
         var orderedTestsRows = [];
-        var pharmacyQueueList=JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
+        var pharmacyQueueList = JSON.parse(pharmacyQueueList.patientPharmacyQueueList)
+        var dispenseAbovePrescription = getDispenseAbovePrescription();
         jq.each(pharmacyQueueList[position].orderMapper, function (index, element) {
             if (element.encounterId === encounterId && element.dispensingLocation === currentLocationUUID) {
                 let stockItemInventorys = getStockItemInventory(element.drugUUID)
@@ -60,7 +60,7 @@
                 })
 
                 Object.defineProperty(element, "maxDispenseValue", {
-                    value: getMaxDispenseValue(stockItemInventorys,element),
+                    value: getMaxDispenseValue(stockItemInventorys, element, dispenseAbovePrescription),
                     writable: false
                 })
                 orderedTestsRows.push(element);
@@ -69,14 +69,14 @@
         return orderedTestsRows;
     }
 
-    function getMaxDispenseValue(stock, prescription) {
+    function getMaxDispenseValue(stock, prescription, dispenseAbovePrescription) {
         var maxDispenseQty = 0;
         for (let i = 0; i < stock.length; i++) {
             if (stock[i].quantity > maxDispenseQty) {
-                maxDispenseQty = stock[i].quantity;
+                maxDispenseQty += stock[i].quantity;
             }
         }
-        if (maxDispenseQty >= prescription.quantity) {
+        if (maxDispenseQty >= prescription.quantity && !dispenseAbovePrescription) {
             maxDispenseQty = prescription.quantity;
         }
         return maxDispenseQty;
@@ -85,18 +85,36 @@
 
     function addExpiryMothAndYear(stock) {
         for (let i = 0; i < stock.length; i++) {
-            var expiryYear = null;
-            var expiryMonth = null;
+            var expiryYear = "";
+            var expiryMonth = "";
+            var expiryDate = null;
+            var batchNumber = "";
             if (stock[i].expiration !== null) {
                 expiryYear = new Date(stock[i].expiration).getFullYear();
-                expiryMonth = new Date(stock[i].expiration).getMonth();
+                expiryMonth = new Date(stock[i].expiration).getMonth() + 1;
+                expiryDate = new Date(stock[i].expiration);
+            }
+
+            if (stock[i].batchNumber != null) {
+                batchNumber = stock[i].batchNumber
             }
             Object.defineProperty(stock[i], "expiryYear", {
                 value: expiryYear,
                 writable: false
             })
+
             Object.defineProperty(stock[i], "expiryMonth", {
                 value: expiryMonth,
+                writable: false
+            })
+
+            Object.defineProperty(stock[i], "batchNumber", {
+                value: batchNumber,
+                writable: false
+            })
+
+            Object.defineProperty(stock[i], "expiryDate", {
+                value: expiryDate,
                 writable: false
             })
         }
@@ -105,17 +123,42 @@
 
     function getStockItemInventory(druguuid) {
         var stockIventoryItems = []
-        jq.ajax({
-            type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "&dispenseAtLocation=1",
-            dataType: "json",
-            async: false,
-            success: function (data) {
-                stockIventoryItems = data.results;
+        var url = "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&limit=10&totalCount=true&drugUuid=" + druguuid + "&groupBy=LocationStockItemBatchNo&dispenseLocationUuid=" + currentLocationUUID + "&includeStrength=1&includeConceptRefIds=1&emptyBatch=1&emptyBatchLocationUuid=" + currentLocationUUID + "&dispenseAtLocation=1";
+        var invetoryResults = queryRestData(url, "GET", null)
+        if (invetoryResults && ("results" in invetoryResults)) {
+            invetoryResults.results.forEach((stockIventoryItem, index) => {
+                if (stockIventoryItem.quantity > 0) {
+                    stockIventoryItems.push(stockIventoryItem)
+                }
+            });
+        }
+        return stockIventoryItems
+    }
 
+    function getDispenseAbovePrescription() {
+        var stockIventoryItems = []
+        var url = "/ws/rest/v1/systemsetting?q=ugandaemr.allowDispensingMoreThanPrescribed&v=custom:(uuid,property,value)";
+        return queryRestData(url, "GET", null).results[0].value
+    }
+
+    function queryRestData(url, method, data) {
+        var responseData = null;
+        jq.ajax({
+            type: method,
+            url: '/' + OPENMRS_CONTEXT_PATH + url,
+            dataType: "json",
+            contentType: "application/json",
+            accept: "application/json",
+            async: false,
+            data: data,
+            success: function (response) {
+                responseData = response;
+            },
+            error: function (response) {
+                responseData = response
             }
         });
-        return stockIventoryItems
+        return responseData;
     }
 
     function getEditPrescriptionTempLate(queue_id, encounterId) {
@@ -123,8 +166,8 @@
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response!==null || response!=="") {
-                if(response.patientPharmacyQueueList.length>0) {
+            if (response !== null || response !== "") {
+                if (response.patientPharmacyQueueList.length > 0) {
                     var editPrescriptionParameterOptions = getDrugOrderData(response, encounterId, 0);
                     jq.each(editPrescriptionParameterOptions, function (index, editPrescriptionParameterOption) {
                         editPrescriptionParameterOpts.editPrescriptionParameterOptions.push(editPrescriptionParameterOption);
@@ -346,7 +389,7 @@ form input {
                         <th>Period</th>
                         <th>Batch No | Stock Qty</th>
                         <th>Dispense Qty</th>
-                        <th>Refer Out</th>
+                        <th>Action</th>
 
                         </thead>
                         <tbody class="container" data-bind="foreach: editPrescriptionParameterOptions">
@@ -468,7 +511,7 @@ form input {
                             <td data-bind="">
                                 <div id="data">
                                     <select class="prescription-text"
-                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return 'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
+                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return item.batchNumber+' - '+'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
                                 </div>
                             </td>
                             <td data-bind="">
@@ -478,10 +521,28 @@ form input {
                                 </div>
                             </td>
                             <td data-bind="">
-                                <div id="data">
-                                    <input class="prescription-checkbox"
-                                           data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].orderReasonNonCoded', value : 'REFERREDOUT' }">
-                                </div>
+                                <table>
+                                    <tbody class="container">
+                                    <tr>
+                                        <td>Refer Out</td>
+                                        <td>
+                                            <div id="data" class="col-5">
+                                                <input class="prescription-checkbox"
+                                                       data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].orderReasonNonCoded', value : 'REFERREDOUT' }">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Keep Prescription</td>
+                                        <td>
+                                            <div id="data" class="col-5">
+                                                <input class="prescription-checkbox"
+                                                       data-bind="attr : { 'type' : 'checkbox', 'name' : 'wrap.drugOrderMappers[' + \$index() + '].keepOrder', value : true }">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </td>
                         </tr>
                         </tbody>
@@ -553,7 +614,8 @@ form input {
                 </table>
             </div>
             <footer style="margin-top: 50px">
-                <div style="text-align: left;font-size: 10px"><img width="40px" src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
+                <div style="text-align: left;font-size: 10px"><img width="40px"
+                                                                   src="${ui.resourceLink("ugandaemr", "images/moh_logo_large.png")}"/><span>UgandaEMR. Powered By METS Programme (www.mets.or.ug)</span>
                 </div>
             </footer>
         </div>

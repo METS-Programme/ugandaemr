@@ -427,7 +427,7 @@
                 orderedTestsRows += "<td><input type='checkbox' name='test-to-accession' value='" + element.orderUuid + "'/></td>";
                 orderedTestsRows += "<td>" + element.conceptName + "</td>";
                 orderedTestsRows += "<td>";
-                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
+                orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#add-order-to-lab-worklist-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-orderuuid=\"patientorderuuid\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\"icon-share\" title=\"Check In\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderId).replace("patientorderuuid", element.orderUuid).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
                 orderedTestsRows += "<a  data-toggle=\"modal\" data-target=\"#reject-order-dialog\" data-order-number=\"orderNumber\" data-order-id=\"orderId\" data-unprocessed-orders=\"unProcessedOrders\" data-patientqueueid=\"patientQueueId\"><i style=\"font-size: 25px;\" class=\" icon-remove-sign\" title=\"Reject Order\"></i></a>".replace("orderNumber", element.orderNumber).replace("orderId", element.orderUuid).replace("unProcessedOrders", noOfTests(labQueueList)).replace("patientQueueId", labQueueList.patientQueueId);
                 orderedTestsRows += "</td>";
                 orderedTestsRows += "</tr>";
@@ -545,6 +545,7 @@
                     return;
                 }
                 var orderedTestsRows = "";
+                var orderedTestsRows = "";
                 var instructions = element.instructions;
                 var fulfillerComment = element.fulfillerComment;
                 var actionIron = "";
@@ -628,22 +629,13 @@
     }
 
     // Generates Sample ID for the Sample ID Field on the scheduleTestDialogue
-    function generateSampleId(orderId) {
-        jq.get('${ ui.actionLink("generateSampleID") }', {
-            orderId: orderId
-        }, function (response) {
-            if (response) {
-                jq("#sample_id").val(response);
-            }
-        });
-    }
-
     function generateLabNumber(orderUuid) {
         jq.get('${ ui.actionLink("generateLabNumber") }', {
             orderUuid: orderUuid
         }, function (response) {
             if (response) {
                 jq(".accession-number").val(JSON.parse(response.defaultSampleId));
+                jq("#sample_id").val(JSON.parse(response.defaultSampleId));
             }
         });
     }
@@ -798,7 +790,7 @@ ${ui.includeFragment("ugandaemr", "lab/displayResultList")}
     </div>
     ${ui.includeFragment("ugandaemr", "pickPatientFromQueue", [provider: currentProvider, currentLocation: currentLocation])}
 </div>
-${ui.includeFragment("ugandaemr", "reviewResults")}
+${ui.includeFragment("ugandaemr", "reviewResults",[currentLocation: currentLocation])}
 ${ui.includeFragment("ugandaemr", "lab/rejectTestDialogue")}
 ${ui.includeFragment("ugandaemr", "lab/resultForm")}
 ${ui.includeFragment("ugandaemr", "printResults")}

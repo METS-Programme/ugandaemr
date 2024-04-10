@@ -5491,7 +5491,6 @@
 
     <!-- Drug Concepts -->
     <concept_name  concept_name_id="160867"  concept_id="165506"  name="Dispersible tablet"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:50"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e30e4076-bc47-4ada-a957-d1df21857284"/>
-    <concept_name  concept_name_id="160868"  concept_id="165507"  name="Abacavir sulfate"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:51"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="602444fa-db27-44be-b150-3918cf1db16f"/>
     <concept_name  concept_name_id="160869"  concept_id="165508"  name="Abacavir and Lamivudine"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:51"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="cb27e9c3-dc7d-4237-ac45-ed5b561e9722"/>
     <concept_name  concept_name_id="160870"  concept_id="165509"  name="Acetic acid"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:51"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="82264721-b206-4a60-bc16-a48238cd1afe"/>
     <concept_name  concept_name_id="160871"  concept_id="165510"  name="Solution"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:52"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0908f10f-7100-45c7-a5fe-f6a12fcb34a2"/>
@@ -5507,7 +5506,7 @@
     <concept_name  concept_name_id="160881"  concept_id="165520"  name="Alcohol hand rub"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:54"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="68b1c562-15e0-4013-98d1-c1eae1febf15"/>
     <concept_name  concept_name_id="160882"  concept_id="165521"  name="Amiodarone"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:54"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="925328ef-4960-4754-ae9b-232e70909d8c"/>
     <concept_name  concept_name_id="160883"  concept_id="165522"  name="Sterile concentrate"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="fc5e2bf6-fe1d-4d31-853e-d5a4a62f1246"/>
-    <concept_name  concept_name_id="160884"  concept_id="165523"  name="Amitriptyline"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="6d582522-0e79-4ac7-84b8-b8c17b66a4ef"/>
+
     <concept_name  concept_name_id="160885"  concept_id="165524"  name="Amlodipine"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:55"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="410e1967-a104-4c70-aca0-be2f227cca7b"/>
     <concept_name  concept_name_id="160886"  concept_id="165525"  name="Clavulanic acid"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:56"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="82790a75-09e0-4d04-bd71-0850164ad59c"/>
     <concept_name  concept_name_id="160887"  concept_id="165773"  name="Amoxicillin and Clavulanic acid"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:34:57"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="43ae18e4-d353-4761-aca0-1c32dd6ebc2f"/>
@@ -13019,4 +13018,11 @@
     <concept_name  concept_name_id="187842"  concept_id="175372"  name="Supply stock out"  locale="en"  locale_preferred="0"  creator="1"  date_created="2024-03-22 05:34:03" voided="0" uuid="141957BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="187843"  concept_id="175372"  name="Out of stock"  locale="en"  locale_preferred="0"  creator="1"  date_created="2024-03-22 05:34:03"  concept_name_type="SHORT"  voided="0" uuid="2f9c78e0-7739-4893-bd5a-59c067688879"/>
     <concept_name  concept_name_id="187845"  concept_id="175372"  name="Insufficient supplies"  locale="en"  locale_preferred="0"  creator="1"  date_created="2024-03-22 05:34:03" voided="0" uuid="141956BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="187868"  concept_id="175383"  name="Caustic pencil"  locale="en"  creator="1"  date_created="2024-03-22 05:34:03" concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"   voided="0" uuid="afce28a6-f320-49ce-a222-e8666c5695c6"/>
+    <concept_name  concept_name_id="187869"  concept_id="175383"  name="Potassium/Silver Nitrate 40%"  locale="en"  locale_preferred="0"  creator="1"  date_created="2024-03-22 05:34:03" voided="0" uuid="9e94bc60-3e75-4026-a5ad-d9736ee2d4b2"/>
+
+    <concept_name  concept_name_id="135743" concept_id="163287" name="Sterile water for injection, 1 ml ampule"  locale="en"  creator="1"  date_created="2016-02-28 15:17:43"    voided="0"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" uuid="135743BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="8244"   concept_id="84764"  name="Telmisartan"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"  voided="0"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" uuid="8244BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
+    <concept_name  concept_name_id="7963"   concept_id="83919"  name="Silver nitrate"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"    voided="0" concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"  uuid="7963BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" />
+    <concept_name  concept_name_id="7529"   concept_id="82366"  name="Potassium nitrate"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"    voided="0"   concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" uuid="7529BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" />
 </dataset>

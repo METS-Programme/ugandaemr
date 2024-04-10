@@ -167,7 +167,7 @@
                 dataRowTable += "<td>" + patientQueueListElement.gender + "</td>";
                 dataRowTable += "<td>" + patientQueueListElement.age + "</td>";
 
-                if (element.status === "PENDING" && element.locationFrom !== "Lab") {
+                if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
                     if (patientQueueListElement.priorityComment != null) {
                         dataRowTable += "<td>" + patientQueueListElement.priorityComment + "</td>";
                     } else {
@@ -198,26 +198,26 @@
                     dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
                 }
 
-                if (element.status === "PENDING" && element.locationFrom !== "Lab") {
+                if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-external-link edit-action\" title=\"Send Patient To Another Location\" data-toggle=\"modal\" data-target=\"#add_patient_to_other_queue_dialog\" data-id=\"\" data-patient-id=\"%s\"></i>".replace("%s", element.patientId);
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab" && "${enablePatientQueueSelection}".trim() === "true") {
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory" && "${enablePatientQueueSelection}".trim() === "true") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + encounterUrl + "'></i>";
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab" && "${enablePatientQueueSelection}".trim() !== "true") {
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory" && "${enablePatientQueueSelection}".trim() !== "true") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"location.href = '" + encounterUrl + "'\"></i>";
                 }
 
                 dataRowTable += "</td></tr>";
 
-                if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Lab") {
+                if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory") {
                     fromLabQueue += 1;
                     fromLabDataRows += dataRowTable;
-                } else if (element.status === "PENDING" && element.locationFrom !== "Lab") {
+                } else if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
                     stillInQueue += 1;
                     stillInQueueDataRows += dataRowTable;
                 } else if (element.status === "PICKED") {
                     servingQueue += 1;
                     servingDataRows += dataRowTable;
-                } else if (element.status === "COMPLETED" && element.locationFrom !== "Lab") {
+                } else if (element.status === "COMPLETED" && element.locationFrom !== "Main Laboratory") {
                     completedQueue += 1;
                     completedDataRows += dataRowTable;
                 }

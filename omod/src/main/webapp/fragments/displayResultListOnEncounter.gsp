@@ -7,14 +7,16 @@
         jq.get('${ ui.actionLink("ugandaemr","displayResultListOnEncounter","getOrderWithResultForEncounter") }', {
             encounterId: ${encounterId}
         }, function (response) {
-            if (response.trim()!=="{}") {
-                displayLabResult(response)
-            }
+            displayLabResult(response)
         });
     }
 
     function displayLabResult(labQueueList) {
-        printresult(labQueueList.ordersList[0].orderId, labQueueList.ordersList[0].patientId);
+        if ('ordersList' in labQueueList) {
+            var ordersList=JSON.parse(labQueueList.ordersList)
+            printresult(ordersList[0].orderId, ordersList[0].patientId);
+        }
+
     }
 </script>
 
@@ -28,8 +30,8 @@
 
     function organize(data) {
         data.filter(function (d) {
-            if(["Numeric", "Coded", "Text","N/A"].includes(d["set"])){
-                return d["set"]=d["test"];
+            if (["Numeric", "Coded", "Text", "N/A"].includes(d["set"])) {
+                return d["set"] = d["test"];
             }
         })
         var final = [];
@@ -75,7 +77,7 @@
             testId: testId
         }, function (response) {
             if (response) {
-                organize(response.data);
+                organize(JSON.parse(response.data));
             } else if (!response) {
             }
         });
@@ -97,7 +99,9 @@
                 <div class="col-md-12" data-bind="foreach: sets">
                     <div class="card" style="table-layout:fixed;">
                         <div class="card-header">
-                                <label class="form-check-label" style="font-weight: bold" data-bind="attr : { 'for' : data[0].testId}"><span data-bind="text: name"></span></label>
+                            <label class="form-check-label" style="font-weight: bold"
+                                   data-bind="attr : { 'for' : data[0].testId}"><span data-bind="text: name"></span>
+                            </label>
                         </div>
                         <table data-bind="foreach: data" style="width: 100%">
                             <tr style="width: 100%">

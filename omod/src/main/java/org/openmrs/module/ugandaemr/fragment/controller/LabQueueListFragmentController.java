@@ -297,7 +297,6 @@ public class LabQueueListFragmentController {
         try {
             orderService.updateOrderFulfillerStatus(test, Order.FulfillerStatus.IN_PROGRESS, "Completed with results: " + resultDisplay);
             saveOrderObservations(encounter);
-            sendPatientBackToClinician(encounter, encounter.getLocation(), sessionContext.getSessionLocation(), QUEUE_STATUS_SENT_TO_LAB);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -321,56 +320,6 @@ public class LabQueueListFragmentController {
             OrderObs orderObs = new OrderObs(obs.getOrder(), obs, obs.getEncounter());
             Context.getService(UgandaEMRService.class).saveOrderObs(orderObs);
         });
-    }
-
-    private PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus) throws ParseException {
-        PatientQueue patientQueue = new PatientQueue();
-
-        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
-        Provider provider = ugandaEMRService.getProviderFromEncounter(encounter);
-
-        SimpleObject simpleObject = new SimpleObject();
-        SimpleObject orders = null;
-        try {
-            simpleObject = ugandaEMRService.getProcessedOrders(PROCESSED_ORDER_WITHOUT_RESULT_QUERY.concat(" AND patient_id=" + encounter.getPatient().getPatientId()), encounter.getDateCreated(), false);
-            orders = (SimpleObject) simpleObject.get("ordersList");
-        } catch (ParseException | IOException e) {
-            log.error(e);
-        }
-
-        if (orders == null) {
-            ugandaEMRService.completePreviousQueue(encounter.getPatient(), encounter.getLocation(), PatientQueue.Status.PENDING);
-        }
-
-        List<PatientQueue> patientQueueList = patientQueueingService.getPatientQueueList(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), null, null, encounter.getPatient(), null);
-
-        List<PatientQueue> fromLabQueue = new ArrayList<>();
-
-        for (PatientQueue potentialQueueFromLab : patientQueueList) {
-            if (potentialQueueFromLab.getEncounter() != null && potentialQueueFromLab.getEncounter().equals(encounter) && potentialQueueFromLab.getStatus() != null && potentialQueueFromLab.getStatus().equals(PatientQueue.Status.PENDING) && potentialQueueFromLab.getLocationFrom() == locationFrom && potentialQueueFromLab.getLocationTo().equals(encounter.getLocation())) {
-                fromLabQueue.add(patientQueue);
-            }
-        }
-
-        boolean queueExists = ugandaEMRService.patientQueueExists(encounter, encounter.getLocation(), locationFrom, PatientQueue.Status.PENDING);
-
-        if (!queueExists) {
-            if (fromLabQueue.isEmpty()) {
-                patientQueue.setLocationFrom(locationFrom);
-                patientQueue.setPatient(encounter.getPatient());
-                patientQueue.setLocationTo(encounter.getLocation());
-                patientQueue.setProvider(provider);
-                patientQueue.setEncounter(encounter);
-                patientQueue.setStatus(PatientQueue.Status.PENDING);
-                patientQueue.setCreator(Context.getUserService().getUsersByPerson(provider.getPerson(), false).get(0));
-                patientQueue.setDateCreated(new Date());
-                patientQueueingService.assignVisitNumberForToday(patientQueue);
-                patientQueueingService.savePatientQue(patientQueue);
-            }
-        }
-
-        return patientQueue;
     }
 
 
@@ -415,10 +364,7 @@ public class LabQueueListFragmentController {
     public SimpleObject generateLabNumber(@RequestParam(value = "orderUuid", required = false) String orderUuid) throws ParseException, IOException {
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         ObjectMapper objectMapper = new ObjectMapper();
-        Order order = Context.getOrderService().getOrderByUuid(orderUuid);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String date = sdf.format(new Date());
-        String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("-","").replace("/","");
+        String defaultSampleId = ugandaEMRService.generateLabNumber(orderUuid);
         return SimpleObject.create("defaultSampleId", objectMapper.writeValueAsString(defaultSampleId));
     }
 }

@@ -2,7 +2,7 @@
 <dataset>
     <drug  drug_id="1"  concept_id="814"  name="Abacavir Dispersible tablet 60 mg"  combination="0"  dosage_form="165506" creator="1"  date_created="2020-02-20 10:34:50"  retired="0" uuid="b6c01020-3cb3-4255-803c-ea483199be47"  strength="60 mg"/>
     <drug  drug_id="2"  concept_id="814"  name="Abacavir Dispersible tablet 600 mg"  combination="0"  dosage_form="165506" creator="1"  date_created="2020-02-20 10:34:50"  retired="0" uuid="b8bca046-ad82-4410-8355-42a7767abae8"  strength="600 mg"/>
-    <drug  drug_id="3"  concept_id="165507"  name="Abacavir sulfate Tablet 300 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:51"  retired="0" uuid="d2b02268-5bdb-44e3-a246-58d4953dd862"  strength="300 mg"/>
+    <drug  drug_id="3"  concept_id="814"  name="Abacavir 300 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:51"  retired="0" uuid="d2b02268-5bdb-44e3-a246-58d4953dd862"  strength="300 mg"/>
     <drug  drug_id="4"  concept_id="165508"  name="Abacavir and Lamivudine Dispersible tablet 120 mg and 60 mg"  combination="0"  dosage_form="165506" creator="1"  date_created="2020-02-20 10:34:51"  retired="0" uuid="7db8eff7-75cf-40b1-a740-a10ede40a267"  strength="120 mg and 60 mg"/>
     <drug  drug_id="5"  concept_id="165508"  name="Abacavir and lamivudine Tablet 600 mg and 300 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:51"  retired="0" uuid="d9805a29-c108-4417-9057-81f4baaef164"  strength="600 mg and 300 mg"/>
     <drug  drug_id="6"  concept_id="165509"  name="Acetic acid Solution 5%"  combination="0"  dosage_form="165510" creator="1"  date_created="2020-02-20 10:34:52"  retired="0" uuid="62556b18-0f92-4c41-880e-dc00cfb8014e"  strength="5%"/>
@@ -18,7 +18,7 @@
     <drug  drug_id="16"  concept_id="71060"  name="Amikacin Powder for injection 1 g"  combination="0"  dosage_form="165516" creator="1"  date_created="2020-02-20 10:34:54"  retired="0" uuid="898d40b9-b1b6-479a-84d4-8987e63356f1"  strength="1 g"/>
     <drug  drug_id="17"  concept_id="165521"  name="Amiodarone Tablet 200 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:54"  retired="0" uuid="21668be2-530e-40e2-9d17-278ad250a2f7"  strength="200 mg"/>
     <drug  drug_id="18"  concept_id="165521"  name="Amiodarone Sterile concentrate 50 mg per ml"  combination="0"  dosage_form="165522" creator="1"  date_created="2020-02-20 10:34:55"  retired="0" uuid="03c4ceaa-3fb8-46b2-848c-1b281b2e9d7b"  strength="50 mg per ml"/>
-    <drug  drug_id="19"  concept_id="165523"  name="Amitriptyline Tablet 25 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:55"  retired="0" uuid="dcde5c1f-b01c-43cb-8c89-ab9d1b42e39a"  strength="25 mg"/>
+    <drug  drug_id="19"  concept_id="931"  name="Amitriptyline Tablet 25 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:55"  retired="0" uuid="dcde5c1f-b01c-43cb-8c89-ab9d1b42e39a"  strength="25 mg"/>
     <drug  drug_id="20"  concept_id="165524"  name="Amlodipine Tablet 10 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:34:55"  retired="0" uuid="dc1905a9-eb77-41a5-8637-148c4afc947b"  strength="10 mg"/>
     <drug  drug_id="21"  concept_id="265"  name="Amoxicillin Dispersible tablet 250 mg"  combination="0"  dosage_form="165506" creator="1"  date_created="2020-02-20 10:34:56"  retired="0" uuid="9647d2c7-d5d2-4e59-90a2-b523d2f61512"  strength="250 mg"/>
     <drug  drug_id="22"  concept_id="265"  name="Amoxicillin Capsule 250 mg"  combination="0"  dosage_form="1608" creator="1"  date_created="2020-02-20 10:34:56"  retired="0" uuid="dcaa1ef9-882e-436c-8d3e-49d7db164553"  strength="250 mg"/>
@@ -163,7 +163,7 @@
     <drug  drug_id="161"  concept_id="165573"  name="Doxorubicin (adriamycin) Powder for injection 50 mg"  combination="0"  dosage_form="165516" creator="1"  date_created="2020-02-20 10:35:30"  retired="0" uuid="366a2627-5b79-4acb-84a0-ca5d0da44031"  strength="50 mg"/>
     <drug  drug_id="162"  concept_id="95"  name="Doxycycline Tablet 100 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:35:30"  retired="0" uuid="cc80c38d-bae8-41b6-be40-15c85a5ce7fe"  strength="100 mg"/>
     <drug  drug_id="163"  concept_id="165574"  name="Droperidol Injection 2.5 mg per ml"  combination="0"  dosage_form="165513" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="4d74e85d-b001-4b64-b982-cf1c2b4ad418"  strength="2.5 mg per ml"/>
-    <drug  drug_id="164"  concept_id="633"  name="Efavirenz Capsule 200 mg"  combination="0"  dosage_form="1608" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="5ebfbbfb-b63e-47bf-af17-2bfddcde847a"  strength="200 mg"/>
+    <drug  drug_id="164"  concept_id="633"  name="Efavirenz Tablet 200 mg"  combination="0"  dosage_form="1608" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="5ebfbbfb-b63e-47bf-af17-2bfddcde847a"  strength="200 mg"/>
     <drug  drug_id="165"  concept_id="633"  name="Efavirenz Tablet 600 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="93305411-2e96-4f57-b8f8-9cbe9351d0da"  strength="600 mg"/>
     <drug  drug_id="166"  concept_id="165575"  name="Eflornithine Injection 200 mg"  combination="0"  dosage_form="165513" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="fdef9efd-c8b5-448b-b045-19a16483ee31"  strength="200 mg"/>
     <drug  drug_id="167"  concept_id="1242"  name="Enalapril Tablet 5 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:35:31"  retired="0" uuid="12fdc823-2b41-4c18-8be3-f0b04fc6003e"  strength="5 mg"/>
@@ -191,7 +191,7 @@
     <drug  drug_id="190"  concept_id="256"  name="Ferrous sulphate Tablet 200 mg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="0ccad7b8-b844-49cf-84e9-8c75e4bfdf25"  strength="200 mg"/>
     <drug  drug_id="191"  concept_id="165598"  name="Ferrous sulphate and folic acid Tablet 200 mg and 500 µg"  combination="0"  dosage_form="1513" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="619ac66a-6a8a-4358-9be2-a0888bdf04a9"  strength="200 mg and 500 µg"/>
     <drug  drug_id="192"  concept_id="165599"  name="Filgrastim Injection 300 µg and ml"  combination="0"  dosage_form="165513" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="256669b2-f104-421d-b9ed-c04924819060"  strength="300 µg and ml"/>
-    <drug  drug_id="193"  concept_id="747"  name="Fluconazole Oral Suspension 50 mg and 5 ml (35 ml)"  combination="0"  dosage_form="165785" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="b2e2099f-a533-4e3b-9224-ba810189e6d0"  strength="50 mg and 5 ml (35 ml)"/>
+    <drug  drug_id="193"  concept_id="747"  name="Fluconazole Oral Suspension 50 mg per  5 ml (35 ml)"  combination="0"  dosage_form="165785" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="b2e2099f-a533-4e3b-9224-ba810189e6d0"  strength="50 mg and 5 ml (35 ml)"/>
     <drug  drug_id="194"  concept_id="747"  name="Fluconazole Suspension 50 mg per ml"  combination="0"  dosage_form="165571" creator="1"  date_created="2020-02-20 10:35:37"  retired="0" uuid="4c0e337e-0abd-4ce4-99f1-8baef4f8b38b"  strength="50 mg per ml"/>
     <drug  drug_id="195"  concept_id="747"  name="Fluconazole Injection 2 mg per ml (100 ml)"  combination="0"  dosage_form="165513" creator="1"  date_created="2020-02-20 10:35:38"  retired="0" uuid="de5ad6c4-4ad5-4a8e-99a5-34a498c7f500"  strength="2 mg per ml (100 ml)"/>
     <drug  drug_id="196"  concept_id="747"  name="Fluconazole Capsule 200 mg"  combination="0"  dosage_form="1608" creator="1"  date_created="2020-02-20 10:35:38"  retired="0" uuid="faea918a-5cb8-43c2-96c1-108bfa1baaab"  strength="200 mg"/>
@@ -517,11 +517,19 @@
     <drug drug_id="520" concept_id="165794" name="ABC/3TC 120/60mg" strength="120/60mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="ce94b80c-da34-4415-99d7-e759e796b84b"/>
     <drug drug_id="521" concept_id="165794" name="ABC/3TC 600/300mg" strength="600/300mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="7f265f53-55d4-460e-a2ac-301aeea7adda"/>
     <drug drug_id="522" concept_id="165794" name="AZT/3TC 60/30mg" strength="60/30mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="46fe2107-b541-4f5a-b91a-beb6d87719c1"/>
-    <drug drug_id="523" concept_id="99005"	 name="AZT/3TC/NVP 60/30/50mg" strength="60/30/50mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="2e12fe21-a785-4685-973b-61e5c5256a2b"/>
+    <drug drug_id="523" concept_id="99005"	 name="AZT/3TC/NVP 60/30/50mg" strength="60mg/30mg/50mg" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="1" uuid="2e12fe21-a785-4685-973b-61e5c5256a2b"/>
+    <drug drug_id="524" concept_id="166907" name="Isoniazid/rifapentine (3HP) 300/300mg" strength="300/300mg" dosage_form="1513"  creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="267a60e9-1111-4b7d-b312-39f1b3114310"/>
+    <drug drug_id="525" concept_id="165730" name="Isoniazid/rifampicin 75/50mg" strength="75/50mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="53ebd28f-8992-4f35-a0c8-0c33ee560e10"/>
+    <drug drug_id="526" concept_id="237" name="Metronidazole suspension" strength="200mg/5ml"  creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="d2714319-cb5a-4e54-b646-24b13e466dd3"/>
+    <drug drug_id="527" concept_id="737" name="Cefuroxime 500mg" strength="200mg/5ml"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="e362fb63-6c8c-46a6-9d1a-1569c9e57033"/>
+    <drug drug_id="528" concept_id="165746" name="Spironolactone 25mg" strength="25mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="59d14408-75d0-4b37-9ff9-9ec3622c78ed"/>
+    <drug drug_id="529" concept_id="175383" name="Caustic pencil" strength="40%"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="3d0604b1-fb3a-4d56-8a03-ed2f36f5c04c"/>
+    <drug drug_id="530" concept_id="84764" name="Telmisartan 40mg" strength="40mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="02f4fa58-5ad2-4763-9660-89ec5aaf0f70"/>
+    <drug drug_id="531" concept_id="163287" name="Water for injection" strength=""  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="cfdd9e9c-860b-4050-a4ae-6fccc0edad04"/>
     <!-- drug_id Gap to fill -->
 
 
-    <!-- Gap to fill ended -->
+    <!-- drug_id Gap to fill ended -->
     <drug drug_id="1030" concept_id="243" name="Quinine syrups 100mls" combination="0" dosage_form="165571" strength="100ml" creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="9ee17a46-3cb2-43a1-bd42-05d9a7ffe471"/>
     <drug drug_id="1031" concept_id="270" name="Tetracycline Hydrochloride Eye Oitment 1%" combination="0" dosage_form="165492" strength="1%" creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="947eaed9-1f07-492b-8850-4ef15d9b137a"/>
     <drug drug_id="1032" concept_id="329" name="Vitamin B complex" combination="0" dosage_form="1513"  creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="d7467f2b-ce4b-4990-8900-3485c8e438b4"/>
@@ -564,3 +572,5 @@
     <drug drug_id="1069" concept_id="279" name="Insulin Mixtard 30/70 100 IU/ml" combination="0" dosage_form="1513" strength="100 IU/ml" creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="9f500be3-68a8-4856-a628-88197af2e812"/>
     <drug drug_id="1070" concept_id="175331" name="Rilpivirine 25mg" combination="0" dosage_form="1513" strength="25mg" creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="39c0149d-6908-4c8c-a78e-e097378f5e8b"/>
 </dataset>
+
+

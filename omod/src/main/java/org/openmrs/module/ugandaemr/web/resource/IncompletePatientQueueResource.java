@@ -22,10 +22,12 @@ import org.openmrs.module.webservices.rest.web.resource.impl.DelegatingResourceD
 import org.openmrs.module.webservices.rest.web.resource.impl.NeedsPaging;
 import org.openmrs.module.webservices.rest.web.response.ResourceDoesNotSupportOperationException;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
+import org.openmrs.util.OpenmrsUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import java.util.Date;
 import java.util.List;
 
 @Resource(name = RestConstants.VERSION_1 + "/incompletequeue", supportedClass = IncompleteQueueDTO.class, supportedOpenmrsVersions = {"1.9.* - 9.*"})
@@ -71,7 +73,7 @@ public class IncompletePatientQueueResource extends DelegatingCrudResource<Incom
         if (rep instanceof DefaultRepresentation) {
             DelegatingResourceDescription description = new DelegatingResourceDescription();
             description.addProperty("uuid");
-            description.addProperty("patientQueue", Representation.REF);
+            description.addProperty("patientQueues", Representation.REF);
 
             description.addSelfLink();
 
@@ -79,14 +81,14 @@ public class IncompletePatientQueueResource extends DelegatingCrudResource<Incom
         } else if (rep instanceof FullRepresentation) {
             DelegatingResourceDescription description = new DelegatingResourceDescription();
             description.addProperty("uuid");
-            description.addProperty("patientQueue", Representation.FULL);
+            description.addProperty("patientQueues", Representation.FULL);
             description.addSelfLink();
             description.addLink("full", ".?v=" + RestConstants.REPRESENTATION_FULL);
             return description;
         } else if (rep instanceof RefRepresentation) {
             DelegatingResourceDescription description = new DelegatingResourceDescription();
             description.addProperty("uuid");
-            description.addProperty("patientQueue", Representation.FULL);
+            description.addProperty("patientQueues", Representation.FULL);
             description.addSelfLink();
             return description;
         }
@@ -101,42 +103,33 @@ public class IncompletePatientQueueResource extends DelegatingCrudResource<Incom
         Location queueRoom = null;
         List<IncompleteQueueDTO> incompleteQueueDTOS = new ArrayList<>();
         if (context.getParameter("queueRoom") != null) {
-            Context.getLocationService().getLocationByUuid((context.getParameter("queueRoom")));
+            queueRoom=Context.getLocationService().getLocationByUuid((context.getParameter("queueRoom")));
         }
         if (context.getParameter("patient") != null) {
             patient = Context.getPatientService().getPatientByUuid(context.getParameter("patient"));
         }
 
         if (context.getParameter("location") != null) {
-            Context.getLocationService().getLocationByUuid(context.getParameter("location"));
+            location=Context.getLocationService().getLocationByUuid(context.getParameter("location"));
         }
         if (patient != null) {
+            Date today = new Date();
             IncompleteQueueDTO incompleteQueueDTO = new IncompleteQueueDTO();
-            PatientQueue patientQueue = patientQueueingService.getIncompletePatientQueue(patient, location, queueRoom);
-            if (patientQueue != null) {
-                incompleteQueueDTO.setUuid(patientQueue.getUuid());
-                incompleteQueueDTO.setUuid(patientQueue.getUuid());
+            List<Patient> patients = new ArrayList<>();
+            patients.add(patient);
+            List<PatientQueue> possibleIncompleteQueues = new ArrayList<>();
+
+            if (location != null || queueRoom != null) {
+                possibleIncompleteQueues.addAll(patientQueueingService.getPatientQueueListBySearchParams(context.getParameter("patient"), OpenmrsUtil.firstSecondOfDay(today), OpenmrsUtil.getLastMomentOfDay(today), location, null, PatientQueue.Status.PENDING, queueRoom));
+                possibleIncompleteQueues.addAll(patientQueueingService.getPatientQueueListBySearchParams(context.getParameter("patient"), OpenmrsUtil.firstSecondOfDay(today), OpenmrsUtil.getLastMomentOfDay(today), location, null, PatientQueue.Status.PICKED, queueRoom));
+            }
+
+            if (!possibleIncompleteQueues.isEmpty()) {
+                incompleteQueueDTO.setUuid(possibleIncompleteQueues.get(0).getUuid());
+                incompleteQueueDTO.setPatientQueues(possibleIncompleteQueues);
                 incompleteQueueDTOS.add(incompleteQueueDTO);
             }
         }
         return new NeedsPaging<IncompleteQueueDTO>(incompleteQueueDTOS, context);
-    }
-
-    @Override
-    public Model getGETModel(Representation rep) {
-        ModelImpl model = (ModelImpl) super.getGETModel(rep);
-        if (rep instanceof DefaultRepresentation || rep instanceof FullRepresentation) {
-            model.property("uuid", new StringProperty())
-                    .property("patientQueue", new RefProperty("#/definitions/PatientQueueGetRef"));
-        }
-        if (rep instanceof DefaultRepresentation) {
-            model.property("uuid", new StringProperty())
-                    .property("patientQueue", new RefProperty("#/definitions/PatientQueueGetRef"));
-
-        } else if (rep instanceof FullRepresentation) {
-            model.property("uuid", new StringProperty())
-                    .property("patientQueue", new RefProperty("#/definitions/PatientQueueGetRef"));
-        }
-        return model;
     }
 }
