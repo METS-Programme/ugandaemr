@@ -1,5 +1,5 @@
 {
-  "name": "HMIS LAB 001:General Laboratory Test Request v2",
+  "name": "HMIS LAB 001:General Laboratory Test Request",
   "version": "4.0.0",
   "description": "A request for Lab test to Lab",
   "encounterType": "214e27a1-606a-4b1e-a96e-d736c87069d5",
