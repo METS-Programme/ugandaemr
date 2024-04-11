@@ -1,4 +1,4 @@
-<htmlform formName="HMIS OPD 002 - Outpatient Register" formDescription="Outpatient Register" formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab" formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf" formVersion="3.0.0" formAddMetadata="yes" formUILocation="patientDashboard.visitActions" formOrder="1" formIcon="icon-medkit" formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='11d5d2b8-0fdd-42e0-9f53-257c760bb9a3'" formDisplayStyle="Standard" formLabel="Outpatient(OPD) Form">
+<htmlform formName="HMIS OPD 002 - Outpatient Register" formDescription="Outpatient Register" formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab" formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf" formVersion="4.0.0" formAddMetadata="yes" formUILocation="patientDashboard.visitActions" formOrder="1" formIcon="icon-medkit" formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; sessionLocation.uuid=='11d5d2b8-0fdd-42e0-9f53-257c760bb9a3'" formDisplayStyle="Standard" formLabel="Outpatient(OPD) Form">
 
     <style type="text/css">
     </style>
@@ -30,7 +30,7 @@
         disableEncounterDate()
 
         //Disable linked to TB clinic option
-        disableContainer("#" + 164435)
+        disableContainer("#" + 175384)
 
         //Disable screened for HIV option
         disableContainer("#" + 99550)
@@ -72,7 +72,7 @@
         // In edit mode, enable linked to TB clinic and Unit TB Number if lab TB results were initially positive
         var labTBResultsValue = jq('#165291').find("select option:selected").val()
         if(labTBResultsValue === "703"){
-            enableContainer("#" + 164435)
+            enableContainer("#" + 175384)
             enable_fields(164955)
         }
         
@@ -142,10 +142,10 @@
     jq('#165291').find("select").change(function(){
         const selectedOption = $(this).children("option:selected").val()
         if(selectedOption === '703'){
-            enableContainer("#164435")
+            enableContainer("#175384")
             enableContainer("#164955")
         }else{
-            disableContainer("#164435")
+            disableContainer("#175384")
             disableContainer("#164955")
         }
 
@@ -429,7 +429,7 @@
                                             </td>
                                             <td>
                                                 <label>Linked to TB Clinic?</label>
-                                                <obs conceptId="164435" id="164435" style="radio" class="horizontal" answerLabels="Yes,No" />
+                                                <obs conceptId="175384" id="175384" style="radio" class="horizontal" answerLabels="Yes,No" />
                                             </td>
                                             <td>
                                                 <obs conceptId="164955" id="164955" labelText="Unit TB Number:" />

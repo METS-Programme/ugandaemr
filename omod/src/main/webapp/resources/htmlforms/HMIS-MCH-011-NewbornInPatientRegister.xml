@@ -1,7 +1,7 @@
 <htmlform formName="HMIS MCH 011 NEWBORN INPATIENT REGISTER"
           formDescription=" To maintain brief record of age, sex, diagnoses, interventions and final status of each inpatient who is 0-28 days old"
           formEncounterType="121ce4fe-1279-4443-b391-0f3fd5b2168d"
-          formUuid="cfd1dccf-462b-48aa-8ffa-87ab9e7e7520" formVersion="1.0.0"
+          formUuid="cfd1dccf-462b-48aa-8ffa-87ab9e7e7520" formVersion="4.0.0"
           formAddMetadata="yes" formUILocation="patientDashboard.visitActions" formOrder="16"
           formIcon="icon-medkit" formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; patient.person.gender=='F'"
           formDisplayStyle="Standard" formLabel="HMIS-MCH-011-NewBorn Form">

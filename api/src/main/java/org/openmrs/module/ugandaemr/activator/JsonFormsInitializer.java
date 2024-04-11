@@ -120,7 +120,7 @@ public class JsonFormsInitializer implements Initializer {
             throw new Exception("Form Version is required");
         }
 
-        String uuid = generateUuidFromObjects(AMPATH_FORMS_UUID, formName, formVersion);
+        String uuid = (String) jsonFile.get("uuid");
         // Process Form
         // ISSUE-150 If form with uuid present then update it
         Form form = formService.getFormByUuid(uuid);
@@ -181,13 +181,7 @@ public class JsonFormsInitializer implements Initializer {
             if (needToSaveForm) {
                 formService.saveForm(form);
             }
-        } else if (formService.getForm(formName) != null) { // ISSUE-150 If form with name present then retire it and
-            // create a new one
-           form = formService.getForm(formName);
-            formService.retireForm(form, "Replaced with new version by Iniz");
-            createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
-                    jsonString);
-        } else {// ISSUE-150 Create new form
+        }else {
             createNewForm(uuid, formName, formDescription, formPublished, formRetired, encounterType, formVersion,
                     jsonString);
         }
@@ -195,7 +189,6 @@ public class JsonFormsInitializer implements Initializer {
 
     private void createNewForm(String uuid, String formName, String formDescription, Boolean formPublished,
                                Boolean formRetired, EncounterType encounterType, String formVersion, String jsonString) {
-        DatatypeService datatypeService = Context.getDatatypeService();
         FormService formService = Context.getFormService();
         String clobUuid = UUID.randomUUID().toString();
         Form newForm = new Form();
@@ -206,7 +199,6 @@ public class JsonFormsInitializer implements Initializer {
         newForm.setRetired(formRetired);
         newForm.setPublished(formPublished);
         newForm.setEncounterType(encounterType);
-
         newForm = formService.saveForm(newForm);
         createFormResource(newForm, clobUuid, jsonString);
     }
@@ -222,17 +214,10 @@ public class JsonFormsInitializer implements Initializer {
         formResource.setValueReferenceInternal(clobUuid);
         formResource.setDatatypeClassname("AmpathJsonSchema");
         formService.saveFormResource(formResource);
-
         ClobDatatypeStorage clobData = new ClobDatatypeStorage();
         clobData.setUuid(clobUuid);
         clobData.setValue(jsonString);
         datatypeService.saveClobDatatypeStorage(clobData);
-    }
-
-    private static String generateUuidFromObjects(Object... args) {
-        String seed = Arrays.stream(args).map(arg -> arg == null ? "null" : arg.toString()).collect(Collectors.joining("_"));
-        String uuid = UUID.nameUUIDFromBytes(seed.getBytes()).toString();
-        return uuid;
     }
 
     public String getProviderName() {

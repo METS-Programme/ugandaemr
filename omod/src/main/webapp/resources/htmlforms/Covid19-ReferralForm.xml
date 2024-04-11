@@ -2,7 +2,7 @@
 formDescription="Covid-19: Referral Form"
 formEncounterType="afcdfcd8-defe-11eb-ba80-0242ac130004"
 formUuid="2004f5a4-f87c-465b-b627-e4f8817953a3"
-formVersion="3.0.0" formAddMetadata="yes"
+formVersion="4.0.0" formAddMetadata="yes"
 formUILocation="patientDashboard.visitActions"
 formOrder="1" formIcon="icon-medkit"
 formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false&amp;&amp; sessionLocation.uuid=='1748bd6f-b013-449f-8d38-91319b576f3f'" 

@@ -2,7 +2,7 @@
           formDescription="HMIS 031 Outpatient (OPD) Form"
           formEncounterType="ee4780f5-b5eb-423b-932f-00b5879df5ab"
           formUuid="8c2f8378-51c7-4407-85a0-cb2832accfcf"
-          formVersion="1.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="7"
@@ -170,11 +170,24 @@
             $allRows.hide();
             jq('#1-removeEntry').remove();
             jq('#10-addEntry').remove();
+            jq('#1-toggleDiagnosisContainer').show();
+
+            jq('#11-removeEntry').remove();
+            jq('#20-addEntry').remove();
+            jq('#11-toggleDiagnosisContainer').show();
+        });
+
+        jq(document).ready(function () {
+            $allRows = jq(this).find('.multi-drug');
+            $allRows.hide();
+            jq('#1-removeEntry').remove();
+            jq('#10-addEntry').remove();
             jq('#1-toggleContainer').show();
 
             jq('#11-removeEntry').remove();
             jq('#20-addEntry').remove();
             jq('#11-toggleContainer').show();
+
         });
 
         jQuery(document).ready(function (jq) {
@@ -244,6 +257,7 @@
             }
             });
 
+
                 jq(document).ready(function () {
                 $allRows = jq(this).find('.multi-drug');
                 $allRows.hide();
@@ -254,13 +268,13 @@
                 jq('#20-addEntry').remove();
                 jq('#11-toggleContainer').show();
                 for (let x = 0; x&lt;= 10; x++) {
-                if (jq(this).find('#other-meds-trigger-' + x).find("input[type$='text']").val()!='') {
-                jq(this).find('#' + x + '-toggleContainer').show();
-                jq(this).find('#' + x + '-addEntry').hide();
+                if (jq(this).find('#' +x+ '-drug').find("input[type$='text']").val()!='') {
+                jq(this).find('#' +x+ '-toggleContainer').show();
+                jq(this).find('#' +x+ '-addEntry').hide();
             }
                 else {
                 x-=1;
-                jq(this).find('#' + x + '-addEntry').show();
+                jq(this).find('#' +x+ '-addEntry').show();
                 break;
             }
             }
@@ -272,13 +286,13 @@
                 $allRows.hide();
                 jq('#1-removeEntry').remove();
                 jq('#10-addEntry').remove();
-                jq('#1-toggleContainer').show();
+                jq('#1-toggleDiagnosisContainer').show();
                 jq('#11-removeEntry').remove();
                 jq('#20-addEntry').remove();
-                jq('#11-toggleContainer').show();
+                jq('#11-toggleDiagnosisContainer').show();
                 for (let x = 0; x&lt;= 10; x++) {
                 if (jq(this).find('#' +x+ '-problem-trigger').find("input[type$='text']").val()!='') {
-                jq(this).find('#' +x+ '-toggleContainer').show();
+                jq(this).find('#' +x+ '-toggleDiagnosisContainer').show();
                 jq(this).find('#' +x+ '-addEntry').hide();
             }
                 else {
@@ -362,8 +376,6 @@
 
 
         var enableStockManagement = <lookup expression="fn.globalProperty('ugandaemr.enableStockManagement')"/>;
-
-
         jq(document).ready(function () {
 
             currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
@@ -474,7 +486,6 @@
             }
 
         });
-
         function getDrugByConcept(concept, drug_strength_id) {
             if (enableStockManagement) {
                 jq("#" + drug_strength_id + "").find("select").empty();
@@ -497,7 +508,6 @@
                 }
             }
         }
-
         function getLocationByName(locationName) {
             var locationUUID
             jq.ajax({
@@ -511,8 +521,6 @@
             });
             return locationUUID
         }
-
-
         function getEncountersByEncounterTypeUUID(patientUUID, encounterTypeUUID) {
             var serverResponse = [];
             jq.ajax({
@@ -686,7 +694,7 @@
                                     <repeat>
                                         <template>
                                             <obsgroup groupingConceptId="159947">
-                                                <div class="row visit-diagnosis" id="{id}-toggleContainer">
+                                                <div class="row visit-diagnosis" id="{id}-toggleDiagnosisContainer">
                                                     <div class="col-md-3">
                                                         <obs id="{id}-problem-trigger" labelText="Diagnosis" conceptId="1284" answerClasses="Diagnosis" style="autocomplete" class="fullwidth diagnosis-problem"/>
                                                         <obs class="hidden" id="{id}-problem-other" conceptId="161602" labelText="Specify Diagnosis"/>
@@ -771,68 +779,66 @@
                         <repeat>
                             <template>
                                 <obsgroup groupingConceptId="160741">
-                                    <div class="card multi-drug" id="{id}-toggleContainer">
-                                        <div class="row">
-                                            <div class="col-md-3">
-                                                <label>Drug</label>
-                                                <obs id="other-meds-trigger-{id}"
-                                                     conceptId="1282"
-                                                     answerClasses="Drug" style="autocomplete"
-                                                     class="drug-other"/>
-                                            </div>
-                                            <div class="col-md-3 drug_strength hidden"
-                                                 id="drug_strength_select_{id}">
-                                                <label>Strength | Stock Qty</label>
-                                                <select class="form-control"
-                                                        name="drug_strength_select_{id}"
-                                                        onselect="this">
-                                                    <option value="">Select Strength</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-3 drug_strength hidden"
-                                                 id="drug_strength_{id}">
-                                                <label>Strength</label>
-                                                <obs id="drug_strength_{id}"
-                                                     class="drug-strength" conceptId="1444" />
-                                            </div>
-                                            <div class="col-md-3 hidden">
-                                                <obs id="drug_stock_item_{id}"
-                                                     conceptId="166969"
-                                                     labelText="Stock Item Id"/>
-                                                <obs id="drug_dispensing_location_{id}"
-                                                     conceptId="166968"
-                                                     labelText="dispensing Location ID"/>
-                                                <obs id="drug_{id}" conceptId="166970"
-                                                     labelText="Drug ID"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>Quantity</label>
-                                                <obs id="other-meds-quantity" conceptId="160856"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>Quantity Unit</label>
-                                                <obs conceptId="165791" answerConceptSetIds="162402,162384"/>
-                                            </div>
-                                            <div class="col-md-3 duration">
-                                                <label>Duration</label>
-                                                <obs conceptId="159368"/>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label>Duration Unit</label>
-                                                <obs conceptId="1732" />
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="add-entry add-remove-style">
-                                                    <a href="#" id="{id}-addEntry"
-                                                       class="addEntry add-more-link "><i class="icon-plus-sign"/> Add</a>
-                                                    <a href="#"
-                                                       class="removeEntry remove-more-link"
-                                                       id="{id}-removeEntry"><i class="icon-minus"/> Remove</a>
-                                                </div>
-                                            </div>
+                                    <div class="row multi-drug" id="{id}-toggleContainer">
+                                        <div class="col-md-3">
+                                            <obs id="{id}-drug"
+                                                 labelText="Drug" conceptId="1282"
+                                                 answerClasses="Drug" style="autocomplete"
+                                                 class="fullwidth drug-other"/>
+                                        </div>
+                                        <div class="col-md-3 drug_strength hidden"
+                                             id="drug_strength_select_{id}">
+                                            <label>Strength | Stock Qty</label>
+                                            <select class="form-control"
+                                                    name="drug_strength_select_{id}"
+                                                    onselect="this">
+                                                <option value="">Select Strength</option>
+                                            </select>
                                         </div>
 
-
+                                        <div class="col-md-3 drug_strength hidden"
+                                             id="drug_strength_{id}">
+                                            <obs id="drug_strength_{id}"
+                                                 class="drug-strength" conceptId="1444"
+                                                 labelText="Strength"/>
+                                        </div>
+                                        <div class="hidden">
+                                            <obs id="drug_stock_item_{id}"
+                                                 conceptId="166969"
+                                                 labelText="Stock Item Id"/>
+                                            <obs id="drug_dispensing_location_{id}"
+                                                 conceptId="166968"
+                                                 labelText="dispensing Location ID"/>
+                                            <obs id="drug_{id}" conceptId="166970"
+                                                 labelText="Drug ID"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs id="other-meds-quantity"
+                                                 labelText="Quantity" conceptId="160856"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <obs labelText="Qty unit" conceptId="165791"
+                                                 answerConceptSetIds="162402,162384"/>
+                                        </div>
+                                        <div class="col-md-3 duration">
+                                            <label>Duration</label>
+                                            <obs conceptId="159368"/>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <obs conceptId="1732"
+                                                 labelText="Duration unit"/>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="add-entry">
+                                                <a href="#" id="{id}-addEntry"
+                                                   class="addEntry add-more-link"><i
+                                                        class="icon-plus-sign"></i></a>
+                                                <a href="#"
+                                                   class="removeEntry remove-more-link"
+                                                   id="{id}-removeEntry"><i
+                                                        class="icon-minus"></i></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </obsgroup>
                             </template>

@@ -2,7 +2,7 @@
           formDescription="Summary entry form for patients enrolled for ART"
           formEncounterType="591cba6a-5c5f-11ee-8c99-0242ac120002"
           formUuid="f2722150-5c5f-11ee-8c99-0242ac120002"
-          formVersion="3.4.2"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"

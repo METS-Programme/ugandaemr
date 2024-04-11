@@ -2,7 +2,7 @@
           formDescription="Captures demographic details for infants born to HIV positive mothers"
           formEncounterType="9fcfcc91-ad60-4d84-9710-11cc25258719"
           formUuid="860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="4"

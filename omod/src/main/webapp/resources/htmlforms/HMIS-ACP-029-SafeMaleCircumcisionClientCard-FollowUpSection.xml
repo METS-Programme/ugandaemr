@@ -2,7 +2,7 @@
           formDescription="Captures clients undergoing safe male circumcision follow up"
           formEncounterType="d0f9e0b7-f336-43bd-bf50-0a7243857fa6"
           formUuid="a4054e91-668f-4bc5-9ba5-6d40e446e2ac"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="10"

@@ -2,7 +2,7 @@
           formDescription="A visit for a client for clinical assessment "
           formEncounterType="8d5b2be0-c2cc-11de-8d13-0010c6dffd0f"
           formUuid="12de5bc5-352e-4faf-9961-a2125085a75c"
-          formVersion="3.2.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="0"
