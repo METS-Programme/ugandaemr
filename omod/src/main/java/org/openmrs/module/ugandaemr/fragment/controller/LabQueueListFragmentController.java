@@ -13,7 +13,6 @@ import org.openmrs.module.patientqueueing.api.PatientQueueingService;
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 import org.openmrs.module.ugandaemr.api.UgandaEMRService;
 import org.openmrs.module.ugandaemr.api.lab.OrderObs;
-import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderMapper;
 import org.openmrs.module.ugandaemr.api.lab.mapper.TestOrderModel;
 import org.openmrs.module.ugandaemr.api.lab.util.*;
 import org.openmrs.module.ugandaemr.utils.DateFormatUtil;
@@ -103,35 +102,15 @@ public class LabQueueListFragmentController {
      * This Method Schedules an Order basing on the Instructions eg (Test Order, Send to Reference
      * Lab .....)
      *
-     * @param orderNumber
+     * @param orderId
      * @param sampleId
      * @param referenceLab
      * @return
      */
-    public void scheduleTest(@RequestParam(value = "orderNumber") String orderNumber, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab, @RequestParam(value = "unProcessedOrders", required = false) Integer unProcessedOrders, @RequestParam(value = "patientQueueId", required = false) Integer patientQueueId) {
-        OrderService orderService = Context.getOrderService();
+    public void scheduleTest(@RequestParam(value = "orderId") String orderId, @RequestParam(value = "sampleId") String sampleId, @RequestParam(value = "specimenSourceId", required = false) String specimenSourceId, @RequestParam(value = "referenceLab", required = false) String referenceLab, @RequestParam(value = "unProcessedOrders", required = false) Integer unProcessedOrders, @RequestParam(value = "patientQueueId", required = false) Integer patientQueueId) {
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        Order order = orderService.getOrderByOrderNumber(orderNumber);
-
-        if (referenceLab != "") {
-            TestOrder testOrder = new TestOrder();
-            testOrder.setAccessionNumber(sampleId);
-            testOrder.setInstructions("REFER TO " + referenceLab);
-            testOrder.setConcept(order.getConcept());
-            testOrder.setEncounter(order.getEncounter());
-            testOrder.setOrderer(order.getOrderer());
-            testOrder.setPatient(order.getPatient());
-            testOrder.setUrgency(Order.Urgency.STAT);
-            testOrder.setCareSetting(order.getCareSetting());
-            testOrder.setOrderType(order.getOrderType());
-            testOrder.setPreviousOrder(order);
-            testOrder.setAction(Order.Action.REVISE);
-            testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-            testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceId));
-            orderService.saveOrder(testOrder, null);
-        } else {
-            orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", sampleId);
-        }
+        ugandaEMRService.accessionLabTest(orderId, sampleId, specimenSourceId, referenceLab);
 
         if (unProcessedOrders.equals(1)) {
             patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueById(patientQueueId));
@@ -335,29 +314,9 @@ public class LabQueueListFragmentController {
     }
 
     public void scheduleTestOrderBulk(@BindParams("wrap") TestOrderModel testOrderMapper, UiSessionContext sessionContext) {
-        OrderService orderService = Context.getOrderService();
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         testOrderMapper.getTestOrderMappers().forEach(orderMapper -> {
-            Order order = orderService.getOrderByUuid(orderMapper.getOrderId());
-            if (!orderMapper.getInstructions().equals("")) {
-                TestOrder testOrder = new TestOrder();
-                testOrder.setAccessionNumber(orderMapper.getAccessionNumber());
-                testOrder.setInstructions("REFER TO " + orderMapper.getInstructions());
-                testOrder.setConcept(order.getConcept());
-                testOrder.setEncounter(order.getEncounter());
-                testOrder.setOrderer(order.getOrderer());
-                testOrder.setPatient(order.getPatient());
-                testOrder.setUrgency(Order.Urgency.STAT);
-                testOrder.setCareSetting(order.getCareSetting());
-                testOrder.setOrderType(order.getOrderType());
-                testOrder.setPreviousOrder(order);
-                testOrder.setAction(Order.Action.REVISE);
-                testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-                testOrder.setSpecimenSource(Context.getConceptService().getConcept(orderMapper.getSpecimenSourceId()));
-                orderService.saveOrder(testOrder, null);
-                orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
-            } else {
-                orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", orderMapper.getAccessionNumber());
-            }
+            ugandaEMRService.accessionLabTest(orderMapper.getOrderId(), orderMapper.getAccessionNumber(), orderMapper.getSpecimenSourceId(), orderMapper.getInstructions());
         });
     }
 

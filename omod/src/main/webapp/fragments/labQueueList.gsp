@@ -123,7 +123,7 @@
                 }
 
                 jq.get('${ ui.actionLink("scheduleTest") }', {
-                    orderNumber: jq("#order_id").val(),
+                    orderId: jq("#order_id").val(),
                     sampleId: jq("#sample_id").val(),
                     referTest: jq("#refer_test").val(),
                     referenceLab: jq("#reference_lab").val(),

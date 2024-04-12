@@ -437,4 +437,14 @@ public interface UgandaEMRService extends OpenmrsService {
      */
     public String generateLabNumber(String orderUuid);
 
+
+    /**
+     * Supports the accession of a lab order
+     * @param orderUuid the id of the order to be accessioned
+     * @param accessionNumber the lab number or the accession number for the test
+     * @param specimenSourceUuid the specimen source uuid for the order
+     * @param instructions more instructions for the order
+     */
+    public TestOrder accessionLabTest(String orderUuid, String accessionNumber, String specimenSourceUuid, String instructions);
+
 }

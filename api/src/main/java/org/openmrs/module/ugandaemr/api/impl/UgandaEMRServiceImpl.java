@@ -2049,4 +2049,35 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         String defaultSampleId =  ("LAB"+"-"+order.getPatient().getPatientId()+"-"+date).replace("/","-");
         return defaultSampleId;
     }
+
+    /**
+     * @see org.openmrs.module.ugandaemr.api.UgandaEMRService#accessionLabTest(java.lang.String, java.lang.String, java.lang.String, java.lang.String)
+     */
+    @Override
+    public TestOrder accessionLabTest(String orderUuid, String accessionNumber, String specimenSourceUuid, String instructions) {
+        OrderService orderService = Context.getOrderService();
+        Order order = orderService.getOrderByUuid(orderUuid);
+        TestOrder testOrder = null;
+        if (!instructions.equals("")) {
+            testOrder = new TestOrder();
+            testOrder.setAccessionNumber(accessionNumber);
+            testOrder.setInstructions("REFER TO " + instructions);
+            testOrder.setConcept(order.getConcept());
+            testOrder.setEncounter(order.getEncounter());
+            testOrder.setOrderer(order.getOrderer());
+            testOrder.setPatient(order.getPatient());
+            testOrder.setUrgency(Order.Urgency.STAT);
+            testOrder.setCareSetting(order.getCareSetting());
+            testOrder.setOrderType(order.getOrderType());
+            testOrder.setPreviousOrder(order);
+            testOrder.setAction(Order.Action.REVISE);
+            testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
+            testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceUuid));
+            orderService.saveOrder(testOrder, null);
+            orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
+        } else {
+            testOrder = (TestOrder) orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", accessionNumber);
+        }
+        return testOrder;
+    }
 }

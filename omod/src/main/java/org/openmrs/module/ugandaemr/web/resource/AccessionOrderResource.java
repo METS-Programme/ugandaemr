@@ -51,30 +51,9 @@ public class AccessionOrderResource extends DelegatingCrudResource<AccessionOrde
     @Override
     public Object update(String uuid, SimpleObject propertiesToUpdate, RequestContext context) throws ResponseException {
         OrderService orderService = Context.getOrderService();
+        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        Order order = orderService.getOrderByUuid(uuid);
-
-        TestOrder testOrder = new TestOrder();
-        testOrder.setAccessionNumber(propertiesToUpdate.get("sampleId").toString());
-        if (propertiesToUpdate.get("referenceLab") != null) {
-            testOrder.setInstructions("REFER TO " + propertiesToUpdate.get("referenceLab").toString());
-        }
-        testOrder.setConcept(order.getConcept());
-        testOrder.setEncounter(order.getEncounter());
-        testOrder.setOrderer(order.getOrderer());
-        testOrder.setPatient(order.getPatient());
-        testOrder.setUrgency(Order.Urgency.STAT);
-        testOrder.setCareSetting(order.getCareSetting());
-        testOrder.setOrderType(order.getOrderType());
-        testOrder.setPreviousOrder(order);
-        testOrder.setAction(Order.Action.REVISE);
-        testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
-        testOrder.setSpecimenSource(Context.getConceptService().getConcept(propertiesToUpdate.get("specimenSourceId").toString()));
-        orderService.saveOrder(testOrder, null);
-
-        if (order.isActive()) {
-            orderService.voidOrder(order, "Revised with new order: " + testOrder.getOrderNumber());
-        }
+        TestOrder testOrder = ugandaEMRService.accessionLabTest(uuid, propertiesToUpdate.get("sampleId").toString(), propertiesToUpdate.get("specimenSourceId").toString(), propertiesToUpdate.get("referenceLab").toString());
 
         if (propertiesToUpdate.get("unProcessedOrders").toString().equals(1)) {
             patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueByUuid(propertiesToUpdate.get("patientQueueId").toString()));

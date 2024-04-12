@@ -13,7 +13,6 @@
 
             jq('#add-order-to-lab-worklist-dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget);
-                var orderNumber = button.data('order-number');
                 var orderUuid = button.data('orderuuid');
                 var order;
                 if (orderUuid !== "") {
@@ -22,7 +21,7 @@
                 var patientQueueId = button.data('patientqueueid');
                 var unProcessed = button.data('unprocessed-orders');
                 var modal = jq(this)
-                modal.find("#order_id").val(orderNumber);
+                modal.find("#order_id").val(orderUuid);
                 modal.find("#patient-queue-id").val(patientQueueId);
                 modal.find("#unprocessed-orders").val(unProcessed);
                 if (order && ('accessionNumber' in order) && order.accessionNumber!=null) {
