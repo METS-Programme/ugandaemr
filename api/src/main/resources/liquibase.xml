@@ -913,6 +913,18 @@ VALUES
 			UPDATE drug SET name = 'Abacavir 300 mg', dosage_form = 1513,concept_id = 814 WHERE drug_id = 3 and concept_id=165507;
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-20240411-1655" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept_id=175384;
+			</sqlCheck>
+		</preConditions>
+		<comment>Migrate data from other patient decision concept to rightful TB refferrall concept</comment>
+		<sql>
+			UPDATE obs SET concept_id = 175384 where concept_id=164435;
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
