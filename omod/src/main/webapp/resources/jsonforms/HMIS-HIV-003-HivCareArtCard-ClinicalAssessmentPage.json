@@ -29,7 +29,7 @@
               "label": "Provider:",
               "type": "encounterProvider",
               "questionOptions": {
-                "rendering": "encounter-provider"
+                "rendering": "ui-select-extended"
               },
               "id": "encProvider "
             },
@@ -37,7 +37,7 @@
               "label": "Location:",
               "type": "encounterLocation",
               "questionOptions": {
-                "rendering": "encounter-location"
+                "rendering": "ui-select-extended"
               },
               "id": "encLocation"
             }
