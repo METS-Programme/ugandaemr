@@ -2,7 +2,7 @@
           formDescription="Captures encounter details for infants born to HIV positive mothers"
           formEncounterType="4345dacb-909d-429c-99aa-045f2db77e2b"
           formUuid="6f6b4802-7642-4226-84dc-ea7db01924b6"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="5"
@@ -345,7 +345,152 @@
             }
         });
         </ifMode>
+        var enableStockManagement = <lookup expression="fn.globalProperty('ugandaemr.enableStockManagement')"/>;
+        jq(document).ready(function () {
 
+            currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
+            if (enableStockManagement) {
+                jq("#drug_strength_select_1").removeClass("hidden");
+                jq("#drug_strength_select_2").removeClass("hidden");
+                jq("#drug_strength_select_3").removeClass("hidden");
+                jq("#drug_strength_select_4").removeClass("hidden");
+                jq("#drug_strength_select_5").removeClass("hidden");
+                jq("#drug_strength_select_6").removeClass("hidden");
+                jq("#drug_strength_select_7").removeClass("hidden");
+                jq("#drug_strength_select_8").removeClass("hidden");
+                jq("#drug_strength_select_9").removeClass("hidden");
+                jq("#drug_strength_select_10").removeClass("hidden");
+
+            } else {
+                jq("#drug_strength_1").removeClass("hidden");
+                jq("#drug_strength_2").removeClass("hidden");
+                jq("#drug_strength_3").removeClass("hidden");
+                jq("#drug_strength_4").removeClass("hidden");
+                jq("#drug_strength_5").removeClass("hidden");
+                jq("#drug_strength_6").removeClass("hidden");
+                jq("#drug_strength_7").removeClass("hidden");
+                jq("#drug_strength_8").removeClass("hidden");
+                jq("#drug_strength_9").removeClass("hidden");
+                jq("#drug_strength_10").removeClass("hidden");
+            }
+
+            if (enableStockManagement) {
+                jq(".drug_strength").change(function () {
+                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
+                    jq('#drug_strength_' + objectPosition + ' input').val(jq(this).find(":selected").attr("strength"))
+                    jq('#drug_stock_item_' + objectPosition + ' input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq('#drug_dispensing_location_' + objectPosition + ' input').val(jq(this).find(":selected").attr("location"))
+                    jq('#drug_' + objectPosition + ' input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#art-regimen  select").change(function () {
+                    getDrugByConcept(jq(this).find(":selected").val(), "drug_strength_art_select")
+                });
+
+                jq("#drug_strength_art_select").change(function () {
+                    jq(this).parent().find('#drug_strength_art_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#isoniazid-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_isoniazid_select")
+                });
+
+                jq("#drug_strength_isoniazid_select").change(function () {
+                    jq(this).parent().find('#drug_strength_isoniazid_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#vitamin-b6-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_vitamin_b6_select")
+                });
+
+                jq("#drug_strength_vitamin_b6_select").change(function () {
+                    jq(this).parent().find('#drug_strength_vitamin_b6_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_vitamin_b6_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_vitamin_b6_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_vitamin_b6_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#fluconazole-trigger  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_fluconazole_select")
+                });
+
+                jq("#drug_strength_fluconazole_select").change(function () {
+                    jq(this).parent().find('#drug_strength_fluconazole_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_fluconazole_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_fluconazole_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_fluconazole_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq("#99413-target  input:radio").change(function () {
+                    getDrugByConcept(jq(this).val(), "drug_strength_99413_select")
+                });
+
+                jq("#drug_strength_99413_select").change(function () {
+                    jq(this).parent().find('#drug_strength_99413_id input').val(jq(this).find(":selected").attr("strength"))
+                    jq(this).parent().find('#drug_stock_item_99413_id input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq(this).parent().find('#drug_dispensing_location_99413_id input').val(jq(this).find(":selected").attr("location"))
+                    jq(this).parent().find('#drug_99413_id input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+
+                jq(".drug-other").change(function () {
+                    getDrugByConcept(jq(this).find("input:hidden").val(), "drug_strength_select_" + jq(this).attr("id").match(/\d/g)[0] + "")
+                });
+
+                jq(".arv-split").change(function () {
+                    getDrugByConcept(jq(this).find("input:hidden").val(), jq(this).attr("id").match(/\d/g)[0] + "_arv_split_strength_select")
+                });
+
+                jq(".arv_split-strength").change(function () {
+                    var objectPosition = jq(this).attr("id").match(/\d/g)[0]
+                    jq('#' + objectPosition + '_arv_split_strength input').val(jq(this).find(":selected").attr("strength"))
+                    jq('#' + objectPosition + '_arv_split_stock_item input').val(jq(this).find(":selected").attr("stockItemUUID"))
+                    jq('#' + objectPosition + '_arv_split_dispensing_location input').val(jq(this).find(":selected").attr("location"))
+                    jq('#' + objectPosition + '_arv_split input').val(jq(this).find(":selected").attr("drugUuid"))
+                });
+            }
+
+        });
+        function getDrugByConcept(concept, drug_strength_id) {
+            if (enableStockManagement) {
+                jq("#" + drug_strength_id + "").find("select").empty();
+                var stockItems = []
+                jq.ajax({
+                    type: "GET",
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                    dataType: "json",
+                    async: false,
+                    success: function (data) {
+                        stockItems = data.results;
+                    }
+                });
+                if (stockItems.length) {
+                    enable_fields(drug_strength_id)
+                }
+                jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
+                for (var i = 0; i &lt; stockItems.length; i++) {
+                    jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
+                }
+            }
+        }
+        function getLocationByName(locationName) {
+            var locationUUID
+            jq.ajax({
+                type: "GET",
+                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/location?q=" + locationName,
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    locationUUID = data.results[0].uuid
+                }
+            });
+            return locationUUID
+        }
     </script>
 
     <div>
@@ -597,58 +742,89 @@
                                         </div>
                                         <div class="card-body">
                                             <div>
-                                                <repeat>
-                                                    <template>
-                                                        <obsgroup groupingConceptId="160741">
-                                                            <div class="row multi-drug" id="{id}-toggleContainer">
-                                                                <div class="col-md-3">
-                                                                    <obs id="other-meds-trigger" labelText="Drug"
-                                                                         conceptId="1282" answerClasses="Drug"
-                                                                         style="autocomplete" class="fullwidth"/>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <obs class="drug-strength" conceptId="1444"
-                                                                         labelText="Strength"/>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <obs id="other-meds-quantity" labelText="Quantity"
-                                                                         conceptId="160856"/>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <obs labelText="Qty unit" conceptId="165791"
-                                                                         answerConceptSetIds="162402,162384"/>
-                                                                </div>
-                                                                <div class="col-md-3 duration">
-                                                                    <label>Duration</label>
-                                                                    <obs conceptId="159368"/>
-                                                                </div>
-                                                                <div class="col-md-4">
-                                                                    <obs conceptId="1732" labelText="Duration unit"/>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="add-entry">
-                                                                        <a href="#" id="{id}-addEntry"
-                                                                           class="addEntry add-more-link"><i
-                                                                                class="icon-plus-sign"></i></a>
-                                                                        <a href="#" class="removeEntry remove-more-link"
-                                                                           id="{id}-removeEntry"><i
-                                                                                class="icon-minus"></i></a>
+                                                <fieldset>
+                                                    <repeat>
+                                                        <template>
+                                                            <obsgroup groupingConceptId="160741">
+                                                                <div class="row multi-drug" id="{id}-toggleContainer">
+                                                                    <div class="col-md-3">
+                                                                        <obs id="{id}-drug"
+                                                                             labelText="Drug" conceptId="1282"
+                                                                             answerClasses="Drug" style="autocomplete"
+                                                                             class="fullwidth drug-other"/>
+                                                                    </div>
+                                                                    <div class="col-md-3 drug_strength hidden"
+                                                                         id="drug_strength_select_{id}">
+                                                                        <label>Strength | Stock Qty</label>
+                                                                        <select class="form-control"
+                                                                                name="drug_strength_select_{id}"
+                                                                                onselect="this">
+                                                                            <option value="">Select Strength</option>
+                                                                        </select>
+                                                                    </div>
+
+                                                                    <div class="col-md-3 drug_strength hidden"
+                                                                         id="drug_strength_{id}">
+                                                                        <obs id="drug_strength_{id}"
+                                                                             class="drug-strength" conceptId="1444"
+                                                                             labelText="Strength"/>
+                                                                    </div>
+                                                                    <div class="hidden">
+                                                                        <obs id="drug_stock_item_{id}"
+                                                                             conceptId="166969"
+                                                                             labelText="Stock Item Id"/>
+                                                                        <obs id="drug_dispensing_location_{id}"
+                                                                             conceptId="166968"
+                                                                             labelText="dispensing Location ID"/>
+                                                                        <obs id="drug_{id}" conceptId="166970"
+                                                                             labelText="Drug ID"/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <obs id="other-meds-quantity"
+                                                                             labelText="Quantity" conceptId="160856"/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <obs labelText="Qty unit" conceptId="165791"
+                                                                             answerConceptSetIds="162402,162384"/>
+                                                                    </div>
+                                                                    <div class="col-md-3 duration">
+                                                                        <label>Duration</label>
+                                                                        <obs conceptId="159368"/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <obs conceptId="1732"
+                                                                             labelText="Duration unit"/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <obs conceptId="160855"
+                                                                             labelText="Frequency"/>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="add-entry">
+                                                                            <a href="#" id="{id}-addEntry"
+                                                                               class="addEntry add-more-link"><i
+                                                                                    class="icon-plus-sign"></i></a>
+                                                                            <a href="#"
+                                                                               class="removeEntry remove-more-link"
+                                                                               id="{id}-removeEntry"><i
+                                                                                    class="icon-minus"></i></a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </obsgroup>
-                                                    </template>
-                                                    <render id="1"/>
-                                                    <render id="2"/>
-                                                    <render id="3"/>
-                                                    <render id="4"/>
-                                                    <render id="5"/>
-                                                    <render id="6"/>
-                                                    <render id="7"/>
-                                                    <render id="8"/>
-                                                    <render id="9"/>
-                                                    <render id="10"/>
-                                                </repeat>
+                                                            </obsgroup>
+                                                        </template>
+                                                        <render id="1"/>
+                                                        <render id="2"/>
+                                                        <render id="3"/>
+                                                        <render id="4"/>
+                                                        <render id="5"/>
+                                                        <render id="6"/>
+                                                        <render id="7"/>
+                                                        <render id="8"/>
+                                                        <render id="9"/>
+                                                        <render id="10"/>
+                                                    </repeat>
+                                                </fieldset>
                                             </div>
                                         </div>
                                     </div>

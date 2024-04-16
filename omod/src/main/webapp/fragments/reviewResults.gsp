@@ -1,6 +1,7 @@
 <script>
     var _reviewresults = {'_items': ko.observableArray([])};
     var reviewResults = {'items': ko.observableArray([])};
+    var currentLocationUUID = "${config?.currentLocation?.uuid}";
 
     jq(document).ready(function () {
         ko.applyBindings(_reviewresults, jq("#patient-review-report")[0]);
@@ -11,7 +12,7 @@
                 selectedForApproval.push(jq(this).val());
             });
 
-            var dataToPost = "{\"orders\":\"" + selectedForApproval + "\"}";
+            var dataToPost = "{\"orders\":\"" + selectedForApproval + "\",\"location\":\""+currentLocationUUID+"\"}";
 
             jq.ajax({
                 type: "POST",
@@ -26,7 +27,7 @@
 
                     if(response.orders && response.orders.length>0){
                         response.orders.forEach(function (order){
-                            jq().toastmessage('showSuccessToast', "Successfuly approved "+order.concept.display);
+                            jq().toastmessage('showSuccessToast', "Successfully approved "+order.concept.display);
                         })
                     }
                     jq('#review-lab-test-dialog').modal('hide').data('bs.modal', null);

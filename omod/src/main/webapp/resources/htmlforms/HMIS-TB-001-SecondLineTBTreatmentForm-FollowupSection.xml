@@ -3,7 +3,7 @@
 	formDescription="This form captures return visits/followup data of the DR TB Treatment program" 
 	formEncounterType="41f8609d-e13b-4dff-8379-47ac5876512e" 
 	formUuid="5f69626e-fbe2-11ea-adc1-0242ac120002" 
-	formVersion="3.0.0" 
+	formVersion="4.0.0"
 	formAddMetadata="yes" 
 	formUILocation="patientDashboard.visitActions" 
 	formOrder="4" 

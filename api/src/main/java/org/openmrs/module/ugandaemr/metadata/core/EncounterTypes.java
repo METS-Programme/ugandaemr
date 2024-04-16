@@ -562,4 +562,36 @@ public class EncounterTypes {
         }
     };
 
+
+    public static EncounterTypeDescriptor MEDICATION_ORDER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "Medication Order";
+        }
+
+        @Override
+        public String description() {
+            return "The encounter for ordering drugs for patient";
+        }
+
+        public String uuid() {
+            return "dbe038cd-cad5-439d-a761-a6d6d680219c";
+        }
+    };
+
+    public static EncounterTypeDescriptor TB_SCREENING_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Screening";
+        }
+
+        @Override
+        public String description() {
+            return "Encounter type for screening TB patient";
+        }
+
+        public String uuid() {
+            return "08478ad9-ccc1-4cbe-9e55-473447984158";
+        }
+    };
 }

@@ -2,7 +2,7 @@
           formDescription="Death Notification and Certification"
           formEncounterType="e75c856a-9e91-4ffb-bf43-1b0450b4ff8c"
           formUuid="bb282ac8-d8b6-4d76-88b9-86da83efec41"
-          formVersion="1.2"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="12"
@@ -27,7 +27,7 @@
     <div id="form-id">
         <div class="row">
             <div class="col-md-6">
-                <h1>HIV DEATH REVIEW FORM</h1>
+                <h1>HMIS FORM 100: Notification and Certification of Death </h1>
             </div>
             <div class="col-md-5"></div>
             <div class="col-md-1">
@@ -274,7 +274,6 @@
 
                                 </div>
                             </div>
-
                 </div>
             </div>
         </div>

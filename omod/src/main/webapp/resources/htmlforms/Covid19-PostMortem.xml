@@ -2,7 +2,7 @@
           formDescription="Covid-19: Case Investigation"
           formEncounterType="7f7f59dc-defe-11eb-ba80-0242ac130004"
           formUuid="9644a450-5027-4584-8e74-e64a4c7cd347" 
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"

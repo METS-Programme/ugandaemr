@@ -3,7 +3,7 @@
 	formDescription="This is a summary of the TB Treatment program" 
 	formEncounterType="334bf97e-28e2-4a27-8727-a5ce31c7cd66" 
 	formUuid="b00452b6-bb7c-11ea-b3de-0242ac130004" 
-	formVersion="3.1.0"
+	formVersion="4.0.0"
 	formAddMetadata="yes" 
 	formUILocation="patientDashboard.visitActions" 
 	formOrder="3" 
@@ -838,7 +838,7 @@
 											</div>
 											<div class="col-md-4">
 												<label>Patient Type</label>
-												<obs conceptId="99386" answerConceptIds="99380,99381,165833,165834,165835" 
+												<obs conceptId="99386" answerConceptIds="99380,99381,165833,165834,165835"
 													 answerLabels="New, Relapse, Treament after lost to follow up, Treament after failure, Treament history unknown" style="checkbox"/>
 											</div>
 										</div>

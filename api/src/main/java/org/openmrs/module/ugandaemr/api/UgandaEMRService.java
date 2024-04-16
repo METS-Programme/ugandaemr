@@ -420,4 +420,31 @@ public interface UgandaEMRService extends OpenmrsService {
     @Transactional(readOnly = true)
     public OrderObs getOrderObsByOrder(Order order);
 
+    /**
+     * send patient back to previous location from Laboratory
+     * @param encounter
+     * @param locationTo
+     * @param locationFrom
+     * @param previousQueueStatus
+     * @return a new queue where the patient has been sent
+     */
+    public PatientQueue sendPatientBackToClinician(Encounter encounter, Location locationTo, Location locationFrom, String previousQueueStatus);
+
+    /**
+     * Generates LabNumber for the day for the patient
+     * @param orderUuid the uuid of the order to be generated a lab number
+     * @return generated lab number as a string
+     */
+    public String generateLabNumber(String orderUuid);
+
+
+    /**
+     * Supports the accession of a lab order
+     * @param orderUuid the id of the order to be accessioned
+     * @param accessionNumber the lab number or the accession number for the test
+     * @param specimenSourceUuid the specimen source uuid for the order
+     * @param instructions more instructions for the order
+     */
+    public TestOrder accessionLabTest(String orderUuid, String accessionNumber, String specimenSourceUuid, String instructions);
+
 }

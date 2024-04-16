@@ -2,7 +2,7 @@
           formDescription="Safe Male Circumcision Client Form"
           formEncounterType="244da86d-f80e-48fe-aba9-067f241905ee"
           formUuid="9d9193e7-b038-4c44-a7a3-830baa288565"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="9"

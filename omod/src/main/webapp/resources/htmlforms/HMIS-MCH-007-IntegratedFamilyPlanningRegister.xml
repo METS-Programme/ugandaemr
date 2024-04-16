@@ -2,7 +2,7 @@
           formDescription="To register family planning clients and monitor the dispensing of Contraceptives"
           formEncounterType="1668ef2e-1aca-4b5d-931d-696b272eea0f"
           formUuid="77e3d601-6276-4472-946c-44cb1077ae1b"
-          formVersion="1.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="36"

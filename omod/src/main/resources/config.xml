@@ -281,6 +281,13 @@
     </globalProperty>
 
     <globalProperty>
+        <property>ugandaemr.allowDispensingMoreThanPrescribed</property>
+        <defaultValue>false</defaultValue>
+        <description>When true, the dispensers will be able to dispense more than the prescription</description>
+        <dataType>org.openmrs.customdatatype.datatype.BooleanDatatype</dataType>
+    </globalProperty>
+
+    <globalProperty>
         <property>ugandaemr.SMSTemplate</property>
         <defaultValue>Dear &lt;name&gt; this is to remind you of your appointment on &lt;date&gt; </defaultValue>
         <description>This is a facility SMS Template used by the SMS Program</description>
@@ -337,7 +344,17 @@
         <description>A list of profiles that should appear in the search list on the patient search</description>
     </globalProperty>
 
+    <globalProperty>
+        <property>fhir2.administeringEncounterRoleUuid</property>
+        <defaultValue>240b26f9-dd88-4172-823d-4a8bfeb7841f</defaultValue>
+        <description>The   encounter role uuid that supports immunization app</description>
+    </globalProperty>
 
+    <globalProperty>
+        <property>fhir2.immunizationsEncounterTypeUuid</property>
+        <defaultValue>87a0d5b1-53dc-4269-bf39-ada0d5d16c0c</defaultValue>
+        <description>The encounter type uuidthat supports immunization app</description>
+    </globalProperty>
 
     <privilege>
         <name>Task: HIV Clinic Access</name>
@@ -402,6 +419,11 @@
     <privilege>
         <name>App: ugandaemr.backup.backupDatabase</name>
         <description>Access App to the Backup</description>
+    </privilege>
+
+    <privilege>
+        <name>App: ugandaemr.spa</name>
+        <description>Access Spa</description>
     </privilege>
 
     <privilege>

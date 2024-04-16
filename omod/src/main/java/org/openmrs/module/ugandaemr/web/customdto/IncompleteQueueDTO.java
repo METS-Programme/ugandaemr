@@ -2,10 +2,12 @@ package org.openmrs.module.ugandaemr.web.customdto;
 
 import org.openmrs.module.patientqueueing.model.PatientQueue;
 
+import java.util.List;
+
 public class IncompleteQueueDTO {
     private String uuid;
 
-    private PatientQueue patientQueue;
+    private List<PatientQueue> patientQueues;
 
     public String getUuid() {
         return uuid;
@@ -15,11 +17,11 @@ public class IncompleteQueueDTO {
         this.uuid = uuid;
     }
 
-    public PatientQueue getPatientQueue() {
-        return patientQueue;
+    public List<PatientQueue> getPatientQueues() {
+        return patientQueues;
     }
 
-    public void setPatientQueue(PatientQueue patientQueue) {
-        this.patientQueue = patientQueue;
+    public void setPatientQueues(List<PatientQueue> patientQueues) {
+        this.patientQueues = patientQueues;
     }
 }

@@ -2,7 +2,7 @@
 formDescription="Covid-19: Vaccination Tracking Form"
 formEncounterType="c392cf0e-5024-4f47-9ed9-e10e307e942f"
 formUuid="00580bff-a366-4a5a-9f6b-99e23ec1b65b"
-formVersion="3.0.0" formAddMetadata="yes"
+formVersion="4.0.0" formAddMetadata="yes"
 formUILocation="patientDashboard.visitActions"
 formOrder="11" formIcon="icon-medkit"
 formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false&amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='1748bd6f-b013-449f-8d38-91319b576f3f' || sessionLocation.uuid=='11d5d2b8-0fdd-42e0-9f53-257c760bb9a3')" 

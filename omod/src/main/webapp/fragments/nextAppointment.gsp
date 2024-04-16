@@ -11,7 +11,7 @@
     function getNextAppointemt(patient) {
         jq.ajax({
             type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/obs?v=full&patient=" + patientUUID + "&concept=dcac04cf-30ab-102d-86b0-7a5022ba4115",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/obs?patient=" + patientUUID + "&concept=dcac04cf-30ab-102d-86b0-7a5022ba4115&v=custom:(uuid,display,concept:(name:(name),uuid),obsDatetime,location:(uuid,display),value)",
             dataType: "json",
             contentType: "application/json",
             async: false,

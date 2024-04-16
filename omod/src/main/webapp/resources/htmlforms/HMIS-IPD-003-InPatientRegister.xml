@@ -1,6 +1,6 @@
 <htmlform formName="HMIS IPD 003 - Inpatient Register" formDescription="Inpatient Register"
           formEncounterType="5ef205bc-136a-469b-b074-5f39488db91a"
-          formUuid="5ef205bc-136a-469b-b074-5f39488db91a" formVersion="1.0.0"
+          formUuid="5ef205bc-136a-469b-b074-5f39488db91a" formVersion="4.0.0"
           formAddMetadata="yes" formUILocation="patientDashboard.visitActions"
           formIcon="icon-medkit" formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false"
           formDisplayStyle="Standard" formLabel="Inpatient(IPD) Form">
@@ -32,7 +32,7 @@
         disableEncounterDate()
 
         //Disable linked to TB clinic option
-        disableContainer("#" + 164435)
+        disableContainer("#" + 175384)
 
         //Disable screened for HIV option
         disableContainer("#" + 99550)
@@ -74,7 +74,7 @@
             // In edit mode, enable linked to TB clinic and Unit TB Number if lab TB results were initially positive
             var labTBResultsValue = jq('#165291').find("select option:selected").val()
             if(labTBResultsValue === "703"){
-            enableContainer("#" + 164435)
+            enableContainer("#" + 175384)
             enable_fields(164955)
             }
 
@@ -117,10 +117,10 @@
         jq('#165291').find("select").change(function(){
         const selectedOption = $(this).children("option:selected").val()
         if(selectedOption === '703'){
-        enableContainer("#164435")
+        enableContainer("#175384")
         enableContainer("#164955")
         }else{
-        disableContainer("#164435")
+        disableContainer("#175384")
         disableContainer("#164955")
         }
 

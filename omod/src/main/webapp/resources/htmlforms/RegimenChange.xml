@@ -2,7 +2,7 @@
           formDescription="ART Regimen Change"
           formUuid="53a3850c-855a-11eb-8dcd-0242ac130003"
           formEncounterType="c11774c1-3b4a-4bdb-a847-6060895e006d"
-          formVersion="1.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"

@@ -2,7 +2,7 @@
           formEncounterType="786c576b-b70f-4235-93ea-fbce1a3f38c4"
           formDescription="Interfacility referral form"
           formUuid="e305d98a-dbb2-45ba-ba2a-682b497ce27c"
-          formVersion="1.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="1"

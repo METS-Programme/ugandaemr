@@ -3,7 +3,7 @@
 within the health unit service area to facilitate monitoring (defaulter tracking)"
         formEncounterType="87a0d5b1-53dc-4269-bf39-ada0d5d16c0c"
         formUuid="0f0ea87a-ef9e-4603-8789-3698d90b6a65"
-        formVersion="1.0.0"
+        formVersion="4.0.0"
         formAddMetadata="yes"
         formUILocation="patientDashboard.visitActions"
         formIcon="icon-medkit"

@@ -2,7 +2,7 @@
           formDescription="Covid-19: Discharge Form"
           formEncounterType="482e4b17-fb9c-4937-a1cf-9052d3e3be68"
           formUuid="e3832d41-77f3-4597-818f-0a0d0753da61"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="2"

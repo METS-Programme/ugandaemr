@@ -1,7 +1,7 @@
 <htmlform formName="Patient Transfers"
           formDescription=""
           formUuid="45d9db68-e4b5-11e7-80c1-9a214cf093ae"
-          formVersion="1.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.overallActions"
           formOrder="1"

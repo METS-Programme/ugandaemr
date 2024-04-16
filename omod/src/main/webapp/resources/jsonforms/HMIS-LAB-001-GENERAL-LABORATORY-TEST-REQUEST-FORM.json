@@ -1,8 +1,8 @@
 {
-  "name": "HMIS LAB 001:General Laboratory Test Request",
+  "name": "HMIS LAB 001:GENERAL LABORATORY TEST REQUEST FORM",
   "version": "4.0.0",
   "description": "A request for Lab test to Lab",
-  "encounterType": "214e27a1-606a-4b1e-a96e-d736c87069d5",
+  "encounterType": "cbf01392-ca29-11e9-a32f-2a2ae2dbcce4",
   "encounter": "LAB Encounter",
   "uuid": "14f82cc8-ca2a-11e9-a32f-2a2ae2dbcce4",
   "processor": "EncounterFormProcessor",
@@ -47,59 +47,16 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Choose Priority Level",
-              "type": "obs",
-              "required": false,
-              "id": "priority_level",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "ed593e94-9a9a-4a23-9e12-1408e5399be6",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "0ce58dab-e411-4bff-9980-3cc754b5df3f",
-                    "label": "Emergency",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "455a7b58-7e12-4711-8a32-9b9f0ea3cdb7",
-                    "label": "Urgent",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "0bd1650f-7d0d-40c7-be2a-2136eb3cd655",
-                    "label": "Not Urgent",
-                    "conceptMappings": []
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Clinical Notes",
-              "type": "obs",
-              "required": false,
-              "id": "clinical_notes",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "e7f0ed50-a83d-11ed-afa1-0242ac120002",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
               "type": "obsGroup",
               "label": "Test orders",
               "questionOptions": {
                 "concept": "dca07f4a-30ab-102d-86b0-7a5022ba4115",
                 "rendering": "group"
               },
-              "required": false,
               "questions": [
                 {
                   "label": "Tests Ordered",
-                  "id": "order1",
+                  "id": "tests_ordered",
                   "type": "testOrder",
                   "questionOptions": {
                     "rendering": "repeating",
@@ -134,11 +91,6 @@
                       {
                         "concept": "dc824b7b-30ab-102d-86b0-7a5022ba4115",
                         "label": "Cd4",
-                        "conceptMappings": []
-                      },
-                      {
-                        "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
-                        "label": "VL",
                         "conceptMappings": []
                       },
                       {
@@ -598,7 +550,7 @@
                       },
                       {
                         "concept": "df09f8d4-fb7a-45a9-b309-240e700e37d3",
-                        "label": "Verification HIV Tes",
+                        "label": "Verification HIV Test",
                         "conceptMappings": []
                       }
                     ]

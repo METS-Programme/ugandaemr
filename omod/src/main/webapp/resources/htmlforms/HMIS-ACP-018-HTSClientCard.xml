@@ -2,7 +2,7 @@
           formDescription="HIV Testing Services Client Card"
           formEncounterType="264daIZd-f80e-48fe-nba9-P37f2W1905Pv"
           formUuid="b5c62a98-84d3-43e8-a9be-972185070dd4"
-          formVersion="1.2"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="6"

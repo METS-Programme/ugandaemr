@@ -3,7 +3,7 @@
         formDescription="Immunization record and education document for mothers"
         formEncounterType="87a0d5b1-53dc-4269-bf39-ada0d5d16c0c"
         formUuid="0c18dfe5-4ac2-4755-8b09-462de8ebafba"
-        formVersion="1.0.0"
+        formVersion="4.0.0"
         formAddMetadata="yes"
         formUILocation="patientDashboard.visitActions"
         formIcon="icon-medkit"

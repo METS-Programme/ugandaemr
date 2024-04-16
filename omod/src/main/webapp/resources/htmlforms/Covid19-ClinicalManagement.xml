@@ -2,7 +2,7 @@
           formDescription="Covid-19: Clinical Management Form"
           formEncounterType="cd9a2698-206f-44f3-a888-f824544413b4"
           formUuid="3ed88d38-c76f-42f3-a938-29d2dbd4d1f6"
-          formVersion="3.0.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="2"

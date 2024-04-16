@@ -2,7 +2,7 @@
           formDescription="SMS Enrollment Form"
           formEncounterType="05fa932f-4203-43c9-8985-60f2bea8a773"
           formUuid="c2ec62ba-3897-4244-8062-c1c8bd2c0dce"
-          formVersion="1.0"
+          formVersion="4.0.0"
           formAddMetadata="yes"
           formUILocation="patientDashboard.overallActions"
           formOrder="20"

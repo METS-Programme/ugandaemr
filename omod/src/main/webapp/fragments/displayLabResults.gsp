@@ -126,7 +126,7 @@
             async: false
         }, function (response) {
             if (response) {
-                organize(response.data);
+                organize(JSON.parse(response.data));
             } else if (!response) {
             }
         });
