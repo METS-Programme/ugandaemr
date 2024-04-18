@@ -109,7 +109,7 @@
 		<metadatasharingVersion>1.9.0</metadatasharingVersion>
 		<openconceptlabModuleVersion>2.2.0-SNAPSHOT</openconceptlabModuleVersion>
 		<openwebappsVersion>1.13.0</openwebappsVersion>
-		<patientFlagsVersion>3.0.6-SNAPSHOT</patientFlagsVersion>
+		<patientFlagsVersion>3.0.7</patientFlagsVersion>
 		<providermanagementVersion>2.13.0</providermanagementVersion>
 		<referenceapplicationVersion>2.13.0</referenceapplicationVersion>
 		<referencemetadataVersion>2.12.0</referencemetadataVersion>
@@ -129,7 +129,7 @@
 		<openmrsOwaVersion>1.14.0</openmrsOwaVersion>
 		<ugandaemrfingerprintVersion>1.1.0</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>3.4.0</cohortModuleVersion>
-		<stockmanagementVersion>1.3.0</stockmanagementVersion>
+		<stockmanagementVersion>2.0.0</stockmanagementVersion>
 		<spaModuleVersion>1.0.10-SNAPSHOT</spaModuleVersion>
 		<o3formsVersion>2.2.0-SNAPSHOT</o3formsVersion>
 		<orderTemplatesVersion>1.0.3-SNAPSHOT</orderTemplatesVersion>
