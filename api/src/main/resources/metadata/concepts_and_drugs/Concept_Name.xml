@@ -13024,4 +13024,5 @@
     <concept_name  concept_name_id="8244"   concept_id="84764"  name="Telmisartan"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"  voided="0"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" uuid="8244BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"/>
     <concept_name  concept_name_id="7963"   concept_id="83919"  name="Silver nitrate"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"    voided="0" concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"  uuid="7963BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" />
     <concept_name  concept_name_id="7529"   concept_id="82366"  name="Potassium nitrate"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"    voided="0"   concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" uuid="7529BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" />
+    <concept_name  concept_name_id="187870"  concept_id="175385"  name="3HP Strength"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-19 09:06:07"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="da70de7c-f3c6-4e7a-ab8c-f8af89bd518a"/>
 </dataset>
