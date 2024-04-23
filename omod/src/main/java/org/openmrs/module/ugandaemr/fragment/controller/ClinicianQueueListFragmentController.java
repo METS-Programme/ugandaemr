@@ -31,7 +31,6 @@ public class ClinicianQueueListFragmentController {
     }
 
     public void controller(@SpringBean FragmentModel pageModel, @SpringBean("locationService") LocationService locationService,UiSessionContext uiSessionContext) {
-        List<String> list = new ArrayList();
 
         String locationUUIDS = Context.getAdministrationService()
                 .getGlobalProperty("ugandaemr.clinicianLocationUUIDS");
@@ -44,27 +43,5 @@ public class ClinicianQueueListFragmentController {
         pageModel.put("clinicianLocation", clinicianLocationUUIDList);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
-    }
-
-    public SimpleObject getPatientQueueList(@RequestParam(value = "searchfilter", required = false) String searchfilter, UiSessionContext uiSessionContext) {
-        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
-        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        SimpleObject simpleObject = new SimpleObject();
-
-        List<PatientQueue> patientQueueList = new ArrayList();
-        if (!searchfilter.equals("")) {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
-        } else {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
-        }
-        List<PatientQueueVisitMapper> patientQueueMappers = ugandaEMRService.mapPatientQueueToMapper(patientQueueList);
-        try {
-            simpleObject.put("patientClinicianQueueList", objectMapper.writeValueAsString(patientQueueMappers));
-        } catch (IOException e) {
-            log.error(e);
-        }
-        return simpleObject;
     }
 }

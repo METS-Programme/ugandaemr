@@ -58,17 +58,41 @@
     //GENERATION OF LISTS IN INTERFACE SUCH AS WORKLIST
     // Get Patients In Triage Queue
     function getPatientQueue() {
-        jq("#triage-queue-list-table").html("");
-        jq.get('${ ui.actionLink("getPatientQueueList") }', {
-            triageSearchFilter: jq("#patient-triage-search").val().trim().toLowerCase()
-        }, function (response) {
-            if (response) {
-                var responseData = JSON.parse(JSON.stringify(response));
-                displayTriageData(responseData);
-            } else if (!response) {
-                jq("#triage-queue-list-table").append(${ ui.message("coreapps.none ") });
+        var url = "patientqueue?location=${currentLocation.uuid}&v=custom:(uuid,creator:(uuid,person:(uuid,display)),dateCreated,dateChanged,voided,patient:(uuid,names:(display),display,gender,birthdate,identifiers:(voided,preferred,uuid,display,location:(uuid,display))),provider:(uuid,display,person:(uuid,display)),locationFrom:(uuid,display,tags:(uuid,display)),locationTo:(uuid,display,tags:(uuid,display)),queueRoom:(uuid,display,tags:(uuid,display)),encounter:(uuid,visit:(uuid)),status,priority,priorityComment,visitNumber,comment,datePicked,dateCompleted)"
+        var responseData = queryRestData(url, "GET", {})
+
+        displayTriageData(responseData);
+    }
+
+    function queryRestData(url, method, data) {
+        var responseData = null;
+        jq.ajax({
+            type: method,
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/" + url,
+            dataType: "json",
+            contentType: "application/json",
+            accept: "application/json",
+            async: false,
+            data: data,
+            success: function (response) {
+                responseData = response;
+            },
+            error: function (response) {
+                responseData = response
             }
         });
+        return responseData;
+    }
+
+    function identifierToDisplay(identifiers) {
+        var identifierToDisplay = "";
+        jq.each(identifiers, function (index, element) {
+            if (element.voided===false && element.preferred===true) {
+                identifierToDisplay += element.display.replace("=",":") + " <br/> "
+            }
+        });
+
+        return identifierToDisplay
     }
 
     function displayTriageData(response) {
@@ -79,16 +103,16 @@
         stillInQueue = 0;
         servingQueue = 0;
         completedQueue = 0;
-        var headerPending = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT STATUS</th><th>ENTRY POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerCompleted = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>COMPLETED TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerServing = "<table><thead><tr><th>VISIT ID</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT STATUS</th><th>PICKED POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerPending = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>ENTRY POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerCompleted = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>COMPLETED TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>PICKED POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
         var dataToDisplay = [];
 
-        if (response.patientTriageQueueList.length > 0) {
-            dataToDisplay = JSON.parse(response.patientTriageQueueList).sort(function (a, b) {
-                return a.patientQueueId - b.patientQueueId;
+        if (response.results.length > 0) {
+            dataToDisplay = response.results.sort(function (a, b) {
+                return a.dateCreated - b.dateCreated;
             });
         }
 
@@ -101,40 +125,44 @@
         }
 
         jq.each(dataToDisplay, function (index, element) {
-                var patientQueueListElement = element;
+                var patientQueue = element;
                 var dataRowTable = "";
                 var vitalsPageLocation = "";
-                if (element.status !== "COMPLETED") {
-                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueueListElement.patientId + "&visitId=" + patientQueueListElement.visitId + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
-                } else if (element.status !== "COMPLETED" && (element.encounterId !== null || element.encounterId !== "")) {
-                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patientQueueListElement.patientId + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&encounterId=" + patientQueueListElement.encounterId + "&visitId=" + patientQueueListElement.visitId + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                if (element.status !== "COMPLETED" && element.encounter == null) {
+                    var patientVisit=queryRestData("visit?patient="+element.patient.uuid+"&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)").results[0].uuid
+                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&visitId=" + patientVisit + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                } else if (element.status !== "COMPLETED" && element.encounter !== null) {
+                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid  + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&encounterId=" + patientQueue.encounter.uuid + "&visitId=" + patientQueue.encounter.visit.uuid + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
                 }
 
                 var action = "";
 
-                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueueListElement.status === "PENDING") {
-                    action += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + vitalsPageLocation + "'></i>";
+                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueue.status === "PENDING") {
+                    action += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-url='" + vitalsPageLocation + "'></i>";
                 } else {
                     action += "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" onclick=\" location.href = '" + vitalsPageLocation + "'\"></i>";
                 }
 
-
-                var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
+                var waitingTime = getWaitingTime(patientQueue.dateCreated, patientQueue.dateChanged);
                 dataRowTable += "<tr>";
-                dataRowTable += "<td>" + patientQueueListElement.visitNumber.substring(15) + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.patientNames + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.gender + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.age + "</td>";
+                if (patientQueue.visitNumber !== null) {
+                    dataRowTable += "<td> Token No: " + patientQueue.visitNumber.substring(15) + "<br/>"+identifierToDisplay(patientQueue.patient.identifiers)+"</td>";
+                } else {
+                    dataRowTable += "<td></td>";
+                }
+                dataRowTable += "<td>" + patientQueue.patient.names[0].display + "</td>";
+                dataRowTable += "<td>" + patientQueue.patient.gender + "</td>";
+                dataRowTable += "<td>" + jq.datepicker.formatDate('dd.M.yy', new Date(patientQueue.patient.birthdate)) + "</td>";
 
                 if (element.status !== "COMPLETED") {
 
-                    if (patientQueueListElement.priorityComment != null) {
-                        dataRowTable += "<td>" + patientQueueListElement.priorityComment + "</td>";
+                    if (patientQueue.status != null) {
+                        dataRowTable += "<td>" + patientQueue.status + "</td>";
                     } else {
                         dataRowTable += "<td></td>";
                     }
                 }
-                dataRowTable += "<td>" + patientQueueListElement.locationFrom.substring(0, 3) + "</td>";
+                dataRowTable += "<td>" + patientQueue.locationFrom.display.substring(0, 3) + "</td>";
                 dataRowTable += "<td>" + waitingTime + "</td>";
                 dataRowTable += "<td>" + action + "</td>";
                 dataRowTable += "</tr>";

@@ -35,8 +35,6 @@ public class TriageQueueListFragmentController {
     }
 
     public void controller(FragmentConfiguration config, @SpringBean FragmentModel pageModel, UiSessionContext uiSessionContext) {
-
-        pageModel.put("specimenSource", Context.getOrderService().getTestSpecimenSources());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String dateStr = sdf.format(new Date());
         pageModel.addAttribute("currentDate", dateStr);
@@ -44,41 +42,5 @@ public class TriageQueueListFragmentController {
         pageModel.addAttribute("triageLocation", TRIAGE_LOCATION_UUID);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
-    }
-
-    /**
-     * Get Patients in Lab Queue
-     *
-     * @param searchFilter
-     * @param uiSessionContext
-     * @return
-     * @throws IOException
-     * @throws ParseException
-     */
-    public SimpleObject getPatientQueueList(@RequestParam(value = "triageSearchFilter", required = false) String searchFilter, UiSessionContext uiSessionContext) throws IOException, ParseException {
-        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
-        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        ObjectMapper objectMapper = new ObjectMapper();
-        SimpleObject simpleObject = new SimpleObject();
-        List<PatientQueue> patientQueueList = new ArrayList();
-        if (!searchFilter.equals("")) {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchFilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
-        } else {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(null, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
-        }
-        simpleObject.put("patientTriageQueueList", objectMapper.writeValueAsString(ugandaEMRService.mapPatientQueueToMapper(patientQueueList)));
-        return simpleObject;
-    }
-
-    public SimpleObject getActiveVisit(@RequestParam(value = "patientId", required = false) Patient patient) throws ParseException, IOException {
-        VisitService visitService = Context.getVisitService();
-        List<Visit> visits = visitService.getActiveVisitsByPatient(patient);
-        ObjectMapper objectMapper = new ObjectMapper();
-        String visitId = null;
-
-        if (visits.size() > 0) {
-            visitId = visits.get(0).getUuid();
-        }
-        return SimpleObject.create("visitId", objectMapper.writeValueAsString(visitId));
     }
 }
