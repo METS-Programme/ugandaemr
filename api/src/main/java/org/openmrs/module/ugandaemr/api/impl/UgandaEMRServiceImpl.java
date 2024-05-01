@@ -1299,6 +1299,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setLocationFrom(session.getEncounter().getLocation());
                 patientQueue.setPatient(session.getEncounter().getPatient());
                 patientQueue.setLocationTo(locationTo);
+                patientQueue.setQueueRoom(locationTo);
                 patientQueue.setProvider(provider);
                 patientQueue.setEncounter(session.getEncounter());
                 patientQueue.setStatus(nextQueueStatus);
@@ -2032,6 +2033,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setLocationFrom(locationFrom);
                 patientQueue.setPatient(encounter.getPatient());
                 patientQueue.setLocationTo(encounter.getLocation());
+                patientQueue.setQueueRoom(encounter.getLocation());
                 patientQueue.setProvider(provider);
                 patientQueue.setEncounter(encounter);
                 patientQueue.setStatus(PatientQueue.Status.PENDING);

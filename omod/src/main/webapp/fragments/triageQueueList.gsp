@@ -87,8 +87,8 @@
     function identifierToDisplay(identifiers) {
         var identifierToDisplay = "";
         jq.each(identifiers, function (index, element) {
-            if (element.voided===false && element.preferred===true) {
-                identifierToDisplay += element.display.replace("=",":") + " <br/> "
+            if (element.voided === false && element.preferred === true) {
+                identifierToDisplay += element.display.replace("=", ":") + " <br/> "
             }
         });
 
@@ -129,10 +129,12 @@
                 var dataRowTable = "";
                 var vitalsPageLocation = "";
                 if (element.status !== "COMPLETED" && element.encounter == null) {
-                    var patientVisit=queryRestData("visit?patient="+element.patient.uuid+"&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)").results[0].uuid
-                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&visitId=" + patientVisit + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                    var patientVisits = queryRestData("visit?patient=" + element.patient.uuid + "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
+                    if (patientVisits !== null && patientVisits.results>0) {
+                        vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&visitId=" + patientVisits.results[0].uuid + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                    }
                 } else if (element.status !== "COMPLETED" && element.encounter !== null) {
-                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid  + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&encounterId=" + patientQueue.encounter.uuid + "&visitId=" + patientQueue.encounter.visit.uuid + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&encounterId=" + patientQueue.encounter.uuid + "&visitId=" + patientQueue.encounter.visit.uuid + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
                 }
 
                 var action = "";
@@ -146,7 +148,7 @@
                 var waitingTime = getWaitingTime(patientQueue.dateCreated, patientQueue.dateChanged);
                 dataRowTable += "<tr>";
                 if (patientQueue.visitNumber !== null) {
-                    dataRowTable += "<td> Token No: " + patientQueue.visitNumber.substring(15) + "<br/>"+identifierToDisplay(patientQueue.patient.identifiers)+"</td>";
+                    dataRowTable += "<td> Token No: " + patientQueue.visitNumber.substring(15) + "<br/>" + identifierToDisplay(patientQueue.patient.identifiers) + "</td>";
                 } else {
                     dataRowTable += "<td></td>";
                 }
