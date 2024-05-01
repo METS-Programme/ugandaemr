@@ -206,12 +206,12 @@
             })
         });
 
-        function scheduleBulkOrders(queueId) {
+        function scheduleBulkOrders(queueId,unprocessed) {
             var selectedOrders = []
             jq("#schedule-lab-orders-bulk" + queueId).find("input[type=checkbox]:checked").each(function () {
                 selectedOrders.push(getOrderByOrderUuid(jq(this).val()));
             });
-            getEditScheduleBulkTempLate(selectedOrders)
+            getEditScheduleBulkTempLate(selectedOrders,unprocessed)
         }
 
         function getOrderByOrderUuid(uuid) {
@@ -416,7 +416,7 @@
     function displayLabOrderData(labQueueList, queueId, removeProccesedOrders) {
         var header = "<div id='schedule-lab-orders-bulk" + queueId + "'" + "><table><thead></thead><tbody>";
         var footer = "</tbody></table>" +
-            "<br/><button onclick='scheduleBulkOrders(" + queueId + ")' class='confirm'>Schedule Selected</button>";
+            "<br/><button onclick='scheduleBulkOrders(" + queueId + ","+noOfTests(labQueueList)+")' class='confirm'>Schedule Selected</button>";
         var orderedTestsRows = "";
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 

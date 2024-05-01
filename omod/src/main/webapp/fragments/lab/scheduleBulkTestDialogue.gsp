@@ -34,8 +34,7 @@
         });
     });
 
-    function getEditScheduleBulkTempLate(orders) {
-
+    function getEditScheduleBulkTempLate(orders, unprocessed) {
         jq("#lab_number_generator").html("");
 
         jq("#lab_number_generator").append("<a onclick=\"generateLabNumber('" + orders[0].uuid + "')\"><i class=\" icon-barcode\">Generate Lab Number</i></a>");
@@ -46,48 +45,39 @@
 
         var referralLabs = {
             "options": [
-                {
-                    "value": "",
-                    "text": "Select Reference Lab"
-                },
-                {
-                    "value": "cphl",
-                    "text": "CPHL"
-                },
-                {
-                    "value": "uvri",
-                    "text": "UVRI"
-                },
-                {
-                    "value": "uvri",
-                    "text": "Other health center Lab"
-                },
-                {
-                    "value": "other-systems",
-                    "text": "Other Lab Systems"
-                }
+                { "value": "", "text": "Select Reference Lab" },
+                { "value": "cphl", "text": "CPHL" },
+                { "value": "uvri", "text": "UVRI" },
+                { "value": "uvri", "text": "Other health center Lab" },
+                { "value": "other-systems", "text": "Other Lab Systems" }
             ]
-        }
+        };
 
-        jq.each(orders, function (index, editScheduleBulkParameterOption) {
+        // Iterate over each order
+        ko.utils.arrayForEach(orders, function (editScheduleBulkParameterOption) {
+            // Add properties to each order
             Object.defineProperty(editScheduleBulkParameterOption, "specimenSource", {
                 value: specimen,
                 writable: false
-            })
+            });
 
             Object.defineProperty(editScheduleBulkParameterOption, "referenceLab", {
                 value: referralLabs,
                 writable: false
-            })
+            });
 
             if (editScheduleBulkParameterOption.instructions != null) {
                 editScheduleBulkParameterOption.instructions = editScheduleBulkParameterOption.instructions.replace("REFER TO ", "")
             }
-
+            // Push modified order to editScheduleBulkParameterOptions
             editScheduleBulkParameterOpts.editScheduleBulkParameterOptions.push(editScheduleBulkParameterOption);
         });
 
+        // Set unprocessedOrders to unprocessed
+        editScheduleBulkParameterOpts.unprocessedOrders(unprocessed);
+
         editScheduleBulkDialog.show();
+
         jq(".col-6").each(function () {
             if (jq(this).html() === "") {
                 jq(this).addClass("hidden");
