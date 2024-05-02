@@ -59,7 +59,7 @@
                 datePicked = JSON.parse(data.currentDateTime);
             },
             error: function (response) {
-                console.log(response);
+                jq().toastmessage('showErrorToast', response.responseJSON.error.message);
             }
         });
 
@@ -75,10 +75,9 @@
             success: function (data) {
                 serverResponse = data.results;
                 navigateToURL(jq("#goToURL").val())
-
             },
             error: function (response) {
-                console.log(response);
+                jq().toastmessage('showErrorToast', response.responseJSON.error.message);
             }
         });
 

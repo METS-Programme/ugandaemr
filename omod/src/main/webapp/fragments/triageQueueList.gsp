@@ -46,14 +46,25 @@
 
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget)
-                jq("#patientQueueId").val(button.data('patientqueueid'));
-                jq("#goToURL").val(button.data('url'));
+                var patientVisits = queryRestData("visit?patient=" + button.data('patientuuid')+ "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
+                if (patientVisits !== null && patientVisits.results.length>0) {
+                    jq("#patientQueueId").val(button.data('patientqueueid'));
+                    jq("#goToURL").val(button.data('url').replace("visitIdToReplace",patientVisits.results[0].uuid));
+                }
             })
         });
     }
     jq("form").submit(function (event) {
         alert("Handler for .submit() called.");
     });
+    function navigateToVisit(url,) {
+        var patientVisits = queryRestData("visit?patient=" + button.data('patientuuid')+ "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
+        if (patientVisits !== null && patientVisits.results.length>0) {
+            url.replace("visitIdToReplace",patientVisits.results[0].uuid)
+            window.location.href = url;
+        }
+    }
+
 
     //GENERATION OF LISTS IN INTERFACE SUCH AS WORKLIST
     // Get Patients In Triage Queue
@@ -129,10 +140,7 @@
                 var dataRowTable = "";
                 var vitalsPageLocation = "";
                 if (element.status !== "COMPLETED" && element.encounter == null) {
-                    var patientVisits = queryRestData("visit?patient=" + element.patient.uuid + "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
-                    if (patientVisits !== null && patientVisits.results>0) {
-                        vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&visitId=" + patientVisits.results[0].uuid + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
-                    }
+                    vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/enterHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&visitId=visitIdToReplace&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
                 } else if (element.status !== "COMPLETED" && element.encounter !== null) {
                     vitalsPageLocation = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + patientQueue.patient.uuid + "&formUuid=d514be1d-8a95-4f46-b8d8-9b8485679f47&encounterId=" + patientQueue.encounter.uuid + "&visitId=" + patientQueue.encounter.visit.uuid + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
                 }
@@ -140,7 +148,7 @@
                 var action = "";
 
                 if ("${enablePatientQueueSelection}".trim() === "true" && patientQueue.status === "PENDING") {
-                    action += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-url='" + vitalsPageLocation + "'></i>";
+                    action += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-patientuuid='" + element.patient.uuid + "' data-url='" + vitalsPageLocation + "'></i>";
                 } else {
                     action += "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Capture Vitals\" onclick=\" location.href = '" + vitalsPageLocation + "'\"></i>";
                 }
