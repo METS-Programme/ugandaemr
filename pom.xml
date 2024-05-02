@@ -536,13 +536,6 @@
 				<scope>provided</scope>
 			</dependency>
 
-			<dependency>
-				<groupId>org.openmrs.module</groupId>
-				<artifactId>billing-omod</artifactId>
-				<version>${billing.version}</version>
-				<scope>provided</scope>
-			  </dependency>
-
 		</dependencies>
 	</dependencyManagement>
 
