@@ -1425,6 +1425,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                             case MEDICATION_FREQUENCY:
                                 drugOrder.setFrequency(Context.getOrderService().getOrderFrequencyByConcept(groupMember.getValueCoded()));
                                 break;
+                            case MEDICATION_DOSE_INSTRUCTION:
+                                drugOrder.setDosingInstructions(groupMember.getValueText());
+                                break;
                             default:
                         }
                     }
