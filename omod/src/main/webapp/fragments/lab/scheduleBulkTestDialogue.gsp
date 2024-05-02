@@ -4,8 +4,11 @@
     });
 
     var editScheduleBulkDialog,
-        editScheduleBulkForm,
-        editScheduleBulkParameterOpts = {editScheduleBulkParameterOptions: ko.observableArray([])};
+        editScheduleBulkForm, unprocessedOrders,
+        editScheduleBulkParameterOpts = {
+            editScheduleBulkParameterOptions: ko.observableArray([]),
+            unprocessedOrders: null
+        };
 
     jq(function () {
         ko.applyBindings(editScheduleBulkParameterOpts, jq("#edit-schedule-bulk-form")[0]);
@@ -66,15 +69,15 @@
                 writable: false
             });
 
-            if (editScheduleBulkParameterOption.instructions != null) {
-                editScheduleBulkParameterOption.instructions = editScheduleBulkParameterOption.instructions.replace("REFER TO ", "")
+            if (editScheduleBulkParameterOption.instructions !== null) {
+                editScheduleBulkParameterOption.instructions = editScheduleBulkParameterOption.instructions.replace("REFER TO ", "");
             }
             // Push modified order to editScheduleBulkParameterOptions
             editScheduleBulkParameterOpts.editScheduleBulkParameterOptions.push(editScheduleBulkParameterOption);
         });
 
         // Set unprocessedOrders to unprocessed
-        editScheduleBulkParameterOpts.unprocessedOrders(unprocessed);
+        editScheduleBulkParameterOpts.unprocessedOrders = unprocessed;
 
         editScheduleBulkDialog.show();
 
@@ -85,7 +88,6 @@
                 jq(this).remove("hidden");
             }
         });
-
     }
 
     function getSpecimeSources() {
@@ -257,6 +259,7 @@ form input {
                                 <th>Referral Lab</th>
 
                                 </thead>
+                                <input type="hidden" data-bind="attr: { 'name' : 'wrap.unprocessedOrders' }, value: unprocessedOrders">
                                 <tbody class="container" data-bind="foreach: editScheduleBulkParameterOptions">
                                 <td><label data-bind="text: concept.display"></label>
                                     <input type="hidden"
