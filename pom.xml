@@ -137,6 +137,7 @@
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.38-SNAPSHOT</ugandaemrReportsVersion>
+		<billing.version>1.0.0-SNAPSHOT</billing.version>
 	</properties>
 
 	<dependencyManagement>
@@ -534,6 +535,13 @@
 				<version>${attachmentsVersion}</version>
 				<scope>provided</scope>
 			</dependency>
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>billing-omod</artifactId>
+				<version>${billing.version}</version>
+				<scope>provided</scope>
+			  </dependency>
 
 		</dependencies>
 	</dependencyManagement>
