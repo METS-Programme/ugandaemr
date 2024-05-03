@@ -17,6 +17,7 @@ import org.openmrs.util.OpenmrsUtil;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -43,5 +44,12 @@ public class ClinicianQueueListFragmentController {
         pageModel.put("clinicianLocation", clinicianLocationUUIDList);
         pageModel.put("currentProvider", uiSessionContext.getCurrentProvider());
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
+    }
+
+    public SimpleObject getEncounterId(@RequestParam(value = "patientQueueUuid", required = false) String patientQueueUuid) throws ParseException, IOException {
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        PatientQueue patientQueue=patientQueueingService.getPatientQueueByUuid(patientQueueUuid);
+        ObjectMapper objectMapper = new ObjectMapper();
+        return SimpleObject.create("encounterId", objectMapper.writeValueAsString(patientQueue.getEncounter().getEncounterId()));
     }
 }

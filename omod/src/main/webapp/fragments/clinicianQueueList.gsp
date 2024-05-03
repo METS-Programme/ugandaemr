@@ -70,8 +70,18 @@
 
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget)
-                jq("#patientQueueId").val(button.data('patientqueueid'));
-                jq("#goToURL").val(button.data('url'));
+
+
+                var enounterId = getEncounterId(button.data('patientqueueid'));
+                if (enounterId !== null) {
+                    jq("#patientQueueId").val(button.data('patientqueueid'));
+                    var url = button.data('url');
+                    url = url.replace("encounterIdToReplace", enounterId)
+                    jq("#goToURL").val(url);
+                } else {
+                    var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", button.data('patientuuid'));
+                    jq("#goToURL").val(urlToPatientDashBoard);
+                }
             })
         });
     }
@@ -120,12 +130,38 @@
     function identifierToDisplay(identifiers) {
         var identifierToDisplay = "";
         jq.each(identifiers, function (index, element) {
-            if (element.voided===false && element.preferred===true) {
-                identifierToDisplay += element.display.replace("=",":") + " <br/> "
+            if (element.voided === false && element.preferred === true) {
+                identifierToDisplay += element.display.replace("=", ":") + " <br/> "
             }
         });
 
         return identifierToDisplay
+    }
+
+    function navigateToVisit(url, patientuuid, patientqueueuuid) {
+        var enounterId = getEncounterId(patientqueueuuid);
+        if (enounterId !== null) {
+            url = url.replace("encounterIdToReplace", enounterId)
+            window.location.href = url;
+        } else {
+            url = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", button.data('patientuuid'));
+            window.location.href = url;
+        }
+    }
+
+    function getEncounterId(patientQueueUuid) {
+        var encounterId = null;
+        jq.ajax({
+            type: "GET",
+            url: "${ui.actionLink("getEncounterId")}" + "&patientQueueUuid=" + patientQueueUuid,
+            async: false,
+            success: function (response) {
+                encounterId = response.encounterId;
+            },
+            error: function (response) {
+            }
+        });
+        return encounterId
     }
 
     function displayClinicianData(response) {
@@ -166,9 +202,9 @@
                 var patientQueue = element;
                 var dataRowTable = "";
                 var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", element.patient.uuid);
-                var encounterUrl="";
+                var encounterUrl = "";
                 if (element.encounter !== null) {
-                    encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patient.uuid + "&encounterId=" + element.encounter.uuid + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                    encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patient.uuid + "&encounterId=encounterIdToReplace&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
                 }
                 var waitingTime = getWaitingTime(patientQueue.dateCreated, patientQueue.dateChanged);
                 dataRowTable += "<tr>";
@@ -219,7 +255,7 @@
                 } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom.display === "Main Laboratory" && "${enablePatientQueueSelection}".trim() === "true") {
                     dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-url='" + encounterUrl + "'></i>";
                 } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom.display === "Main Laboratory" && "${enablePatientQueueSelection}".trim() !== "true") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"location.href = '" + encounterUrl + "'\"></i>";
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"navigateToVisit('" + encounterUrl + "','" + patientQueue.patient.uuid + "','" + element.uuid + "')\"></i>";
                 }
 
                 dataRowTable += "</td></tr>";
