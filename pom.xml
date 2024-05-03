@@ -137,6 +137,7 @@
 
 		<!-- core configuration library -->
 		<ugandaemrReportsVersion>2.0.38-SNAPSHOT</ugandaemrReportsVersion>
+		<billing.version>1.0.0-SNAPSHOT</billing.version>
 	</properties>
 
 	<dependencyManagement>
