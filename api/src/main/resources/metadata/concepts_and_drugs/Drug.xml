@@ -524,8 +524,8 @@
     <drug drug_id="529" concept_id="175383" name="Caustic pencil" strength="40%"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="3d0604b1-fb3a-4d56-8a03-ed2f36f5c04c"/>
     <drug drug_id="530" concept_id="84764" name="Telmisartan 40mg" strength="40mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="02f4fa58-5ad2-4763-9660-89ec5aaf0f70"/>
     <drug drug_id="531" concept_id="163287" name="Water for injection" strength=""  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="cfdd9e9c-860b-4050-a4ae-6fccc0edad04"/>
+    <drug drug_id="532" concept_id="90182" name="Saquinavir  500mg" strength="500mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="05b0bcc0-0a0e-11ef-9be0-42632db81231"/>
     <!-- drug_id Gap to fill -->
-
 
     <!-- drug_id Gap to fill ended -->
     <drug drug_id="1030" concept_id="243" name="Quinine syrups 100mls" combination="0" dosage_form="165571" strength="100ml" creator="1" date_created="2024-02-10 10:34:54" retired="0" uuid="9ee17a46-3cb2-43a1-bd42-05d9a7ffe471"/>
