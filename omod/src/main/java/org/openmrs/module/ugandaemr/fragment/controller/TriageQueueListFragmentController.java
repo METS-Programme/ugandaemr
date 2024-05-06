@@ -46,8 +46,14 @@ public class TriageQueueListFragmentController {
 
     public SimpleObject getEncounterId(@RequestParam(value = "patientQueueUuid", required = false) String patientQueueUuid) throws ParseException, IOException {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        PatientQueue patientQueue=patientQueueingService.getPatientQueueByUuid(patientQueueUuid);
+        PatientQueue patientQueue = patientQueueingService.getPatientQueueByUuid(patientQueueUuid);
         ObjectMapper objectMapper = new ObjectMapper();
-        return SimpleObject.create("encounterId", objectMapper.writeValueAsString(patientQueue.getEncounter().getEncounterId()));
+        String encounterId = "";
+        if (patientQueue != null && patientQueue.getEncounter() != null) {
+            encounterId = objectMapper.writeValueAsString(patientQueue.getEncounter().getEncounterId());
+        } else {
+            encounterId = objectMapper.writeValueAsString("");
+        }
+        return SimpleObject.create("encounterId", encounterId);
     }
 }

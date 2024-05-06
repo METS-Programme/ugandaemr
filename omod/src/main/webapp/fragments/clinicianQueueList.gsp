@@ -71,9 +71,8 @@
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget)
 
-
                 var enounterId = getEncounterId(button.data('patientqueueid'));
-                if (enounterId !== null) {
+                if (enounterId !== "" && enounterId !== null) {
                     jq("#patientQueueId").val(button.data('patientqueueid'));
                     var url = button.data('url');
                     url = url.replace("encounterIdToReplace", enounterId)
@@ -140,7 +139,7 @@
 
     function navigateToVisit(url, patientuuid, patientqueueuuid) {
         var enounterId = getEncounterId(patientqueueuuid);
-        if (enounterId !== null) {
+        if (enounterId !== "" && enounterId !== null) {
             url = url.replace("encounterIdToReplace", enounterId)
             window.location.href = url;
         } else {

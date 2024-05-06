@@ -52,7 +52,9 @@
                     jq("#patientQueueId").val(button.data('patientqueueid'));
                     var url = button.data('url');
                     url = url.replace("visitIdToReplace", patientVisits.results[0].uuid)
-                    url = url.replace("encounterIdToReplace", enounterId)
+                    if (enounterId !== "" && enounterId !== null) {
+                        url = url.replace("encounterIdToReplace", enounterId)
+                    }
                     jq("#goToURL").val(url);
                 } else {
                     var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", button.data('patientuuid'));
@@ -70,7 +72,7 @@
         var patientVisits = queryRestData("visit?patient=" + patientuuid + "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
         if (patientVisits !== null && patientVisits.results.length > 0) {
             url = url.replace("visitIdToReplace", patientVisits.results[0].uuid)
-            if (enounterId != null) {
+            if (enounterId !== "" && enounterId !== null) {
                 url = url.replace("encounterIdToReplace", enounterId)
             }
             window.location.href = url;
