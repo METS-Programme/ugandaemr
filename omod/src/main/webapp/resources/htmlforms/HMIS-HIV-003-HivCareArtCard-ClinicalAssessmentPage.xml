@@ -1558,11 +1558,6 @@
         return false;
         }
 
-        if(returnDate=="") {
-        jq().toastmessage('showErrorToast', "The return visit date is required");
-        return false;
-        }
-
         //In case of a transfer out
         if (transferOut == 90003) {
         if (getValue('transfer_out_date.value') == "") {
@@ -4627,6 +4622,10 @@
                                                                     <div class="col-md-3">
                                                                         <obs conceptId="160855"
                                                                              labelText="Frequency"/>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <obs conceptId="175387"
+                                                                             labelText="Dose Instruction"  rows="2" cols="90"/>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <div class="add-entry">
