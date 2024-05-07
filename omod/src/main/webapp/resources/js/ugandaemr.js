@@ -368,12 +368,17 @@ function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
     var patientId = jq('[name=personId]').val();
 
     if (jq('[name=encounterId]').val() == null) {
-        jq.get(
-            getContextPath() + '/module/ugandaemr/lastEnteredForm.form',
-            {formId: formId, patientId: patientId, date: date, dateFormat: 'yyyy-MM-dd'},
-            function (responseText) {
-
-                if (responseText == "true") {
+        var url = "duplicateencounter?formId=" + formId + "&patient=" + patientId + "&dateFormat=" + date
+        jq.ajax({
+            type: "GET",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/" + url,
+            dataType: "json",
+            contentType: "application/json",
+            accept: "application/json",
+            async: false,
+            success: function (response) {
+                responseData = response;
+                if (response.results.length>0) {
                     if (instruction == "warn") {
 
                         // get the localized warning message and display it
@@ -406,8 +411,11 @@ function blockEncounterOnSameDateEncounter(encounterDate, instruction) {
                 } else {
                     //make sure everything is enabled
                 }
+            },
+            error: function (response) {
+                responseData = response
             }
-        );
+        });
     }
 }
 
