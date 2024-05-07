@@ -39,6 +39,8 @@
 
     function getEditScheduleBulkTempLate(orders, unprocessed) {
         jq("#lab_number_generator").html("");
+        jq("#unprocessedOrders").val("");
+        jq("#unprocessedOrders").val(unprocessed);
 
         jq("#lab_number_generator").append("<a onclick=\"generateLabNumber('" + orders[0].uuid + "')\"><i class=\" icon-barcode\">Generate Lab Number</i></a>");
 
@@ -259,7 +261,7 @@ form input {
                                 <th>Referral Lab</th>
 
                                 </thead>
-                                <input type="hidden" data-bind="attr: { 'name' : 'wrap.unprocessedOrders' }, value: unprocessedOrders">
+                                <input type="hidden" name="unprocessedOrders" id="unprocessedOrders" data-bind="attr: { 'name' : 'wrap.unprocessedOrders' }, value: unprocessedOrders">
                                 <tbody class="container" data-bind="foreach: editScheduleBulkParameterOptions">
                                 <td><label data-bind="text: concept.display"></label>
                                     <input type="hidden"
