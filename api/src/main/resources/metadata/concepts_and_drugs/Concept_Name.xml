@@ -13028,4 +13028,13 @@
     <concept_name  concept_name_id="187873"  concept_id="1306"    name="Target Not Detected"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-24 16:17:55"  voided="0" uuid="e0e37157-ac9b-4093-b458-3e9f9672a60b" />
     <concept_name  concept_name_id="187872"  concept_id="1675"    name="RHZE"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-24 16:13:21"   voided="0" uuid="d89abcdf-a0c8-43a1-a165-0e7a7d8010b3" />
     <concept_name  concept_name_id="187874"  concept_id="165733"  name="RHZ"  locale="en"  locale_preferred="1"  creator="1"  date_created="2020-02-20 10:36:22"    voided="0" uuid="810832c4-02cd-11ef-ae28-af7c5d60cad2" />
+
+    <concept_name  concept_id="80470"  name="Nebivolol"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"  concept_name_id="6914"  voided="0"  voided_by="1" uuid="6914BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"  changed_by="1"/>
+    <concept_name  concept_id="104834"  name="Hydrochlorothiazide / losartan"  locale="en"  creator="1"  date_created="2007-03-11 00:00:00"  concept_name_id="10299"  voided="0"  voided_by="1" uuid="10299BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1" changed_by="1"/>
+    <concept_name  concept_id="104843"  name="Hydrochlorothiazide / telmisartan"  locale="en"  creator="1"  date_created="2007-03-11 00:00:00"  concept_name_id="10308"  voided="0"  voided_by="1"  uuid="10308BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"   changed_by="1"/>
+    <concept_name  concept_id="86056"  name="Valsartan"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"  concept_name_id="8631"  voided="0"  voided_by="1"   uuid="8631BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"   changed_by="1"/>
+    <concept_name  concept_id="78060"  name="Insulin aspart"  locale="en"  creator="1"  date_created="2006-12-17 00:00:00"  concept_name_id="6116"  voided="0"  voided_by="1"  uuid="6116BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"  concept_name_type="FULLY_SPECIFIED"  locale_preferred="1"  changed_by="1"/>
+    <concept_name  concept_name_id="187876"  concept_id="175388"  name="Amlodipine/Losartan"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-04-28 08:05:24"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="1128170a-0c6c-11ef-9be0-42632db81231"/>
+
+
 </dataset>

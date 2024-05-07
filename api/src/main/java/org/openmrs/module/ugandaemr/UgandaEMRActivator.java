@@ -239,6 +239,10 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         log.info("import  of  Drugs  Starting");
         dataImporter.importData("metadata/appointment.xml");
         log.info("import of Drugs  Successful");
+
+        log.info("Retire Meta data");
+        dataImporter.importData("metadata/concepts_and_drugs/retire_meta_data.xml");
+        log.info("Retiring of meta data is Successful");
     }
 
     /**
