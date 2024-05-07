@@ -53,7 +53,7 @@
                 { "value": "", "text": "Select Reference Lab" },
                 { "value": "cphl", "text": "CPHL" },
                 { "value": "uvri", "text": "UVRI" },
-                { "value": "uvri", "text": "Other health center Lab" },
+                { "value": "other-health-center-lab", "text": "Other health center Lab" },
                 { "value": "other-systems", "text": "Other Lab Systems" }
             ]
         };
