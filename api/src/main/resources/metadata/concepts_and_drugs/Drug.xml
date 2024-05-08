@@ -525,6 +525,16 @@
     <drug drug_id="530" concept_id="84764" name="Telmisartan 40mg" strength="40mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="02f4fa58-5ad2-4763-9660-89ec5aaf0f70"/>
     <drug drug_id="531" concept_id="163287" name="Water for injection" strength=""  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="cfdd9e9c-860b-4050-a4ae-6fccc0edad04"/>
     <drug drug_id="532" concept_id="90182" name="Saquinavir  500mg" strength="500mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="05b0bcc0-0a0e-11ef-9be0-42632db81231"/>
+    <drug drug_id="533" concept_id="80470" name="Nebivolol 5mg" strength="5mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="e91523f2-0c3e-11ef-9be0-42632db81231"/>
+    <drug drug_id="534" concept_id="165653" name="Lisinopril 20mg" strength="20mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="09b7c172-0c40-11ef-9be0-42632db81231"/>
+    <drug drug_id="535" concept_id="1243" name="Hydrochlorothiazide 25mg" strength="25mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="b5a89d16-0c41-11ef-9be0-42632db81231"/>
+    <drug drug_id="536" concept_id="104834" name="Losartan/Hydrochlorothiazide 50/12.5mg" strength="50/12.5mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="10c0d5d8-0c60-11ef-9be0-42632db81231"/>
+    <drug drug_id="537" concept_id="104843" name="Telmisartan/Hydrochlorothiazide 40/12.5mg" strength="40/12.5mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="58e7dca2-0c43-11ef-9be0-42632db81231"/>
+    <drug drug_id="538" concept_id="86056" name="Valsartan 160mg" strength="160mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="320a9146-0c44-11ef-9be0-42632db81231"/>
+    <drug drug_id="539" concept_id="86056" name="Valsartan 80mg" strength="80mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="328d10e4-0c44-11ef-9be0-42632db81231"/>
+    <drug drug_id="540" concept_id="165670" name="Metformin 1000mg" strength="1000 mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="f1ff6c28-0c4a-11ef-9be0-42632db81231"/>
+    <drug drug_id="541" concept_id="78060" name="Insulin isophane aspart Injection 100 IU/ml" strength="100 IU/ml"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="b32ce604-0c51-11ef-9be0-42632db81231"/>
+    <drug drug_id="541" concept_id="175388" name="Amlodipine/Losartan 5/50mg" strength="5/50mg"  dosage_form="1513" creator="1" date_created="2024-03-21 19:00:00" retired="false" combination="0" uuid="8936b30a-0c6c-11ef-9be0-42632db81231"/>
     <!-- drug_id Gap to fill -->
 
     <!-- drug_id Gap to fill ended -->
