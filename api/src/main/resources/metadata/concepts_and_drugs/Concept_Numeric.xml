@@ -94,7 +94,7 @@
     <concept_numeric concept_id="165488" allow_decimal="1" />
 
     <!--TB-->
-    <concept_numeric  concept_id="165849" allow_decimal="1" hi_normal="5.6" low_normal="3.9" units="mmol/L"/>
+    <concept_numeric  concept_id="165849" low_normal="4.4"  hi_normal="6.6" units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="165850" allow_decimal="1" hi_normal="5.6" low_normal="3.9"  units="mmol/L"/>
 
     <concept_numeric  concept_id="165880" allow_decimal="0"/>
@@ -129,7 +129,7 @@
     <concept_numeric  concept_id="166333"  units="mg/L"    allow_decimal="0"/>
     <concept_numeric  concept_id="166332"  units="ng/mL"   allow_decimal="0"/>
     <concept_numeric  concept_id="166330"  units="seconds" allow_decimal="0"/>
-    <concept_numeric  concept_id="166328"  units="mg/L"    allow_decimal="0"/>
+    <concept_numeric  concept_id="166328" low_normal="0"  hi_normal="5" units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="166327"  units="mEq/L"   allow_decimal="1"/>
 
     <concept_numeric  concept_id="166405"  allow_decimal="0" />
@@ -150,12 +150,12 @@
     <concept_numeric  concept_id="166527"  units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="166526"  units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="166525"  units="mL/min"  allow_decimal="0"/>
-    <concept_numeric  concept_id="166524"  units="mmol/L"  allow_decimal="1"/>
-    <concept_numeric  concept_id="166523"  units="umol/L"  allow_decimal="1"/>
-    <concept_numeric  concept_id="166521"  units="U/L"     allow_decimal="0"/>
+    <concept_numeric  concept_id="166524"  low_normal="2.5"  hi_normal="8.0" units="mmol/L"  allow_decimal="1"/>
+    <concept_numeric concept_id="166523" low_normal="0.6" hi_normal="1.3" units="mg/dL" allow_decimal="1"/>
+    <concept_numeric concept_id="166521" low_normal="0" hi_normal="40" units="IU/L" allow_decimal="1"/>
     <concept_numeric  concept_id="166520"  units="U/L"     allow_decimal="0"/>
-    <concept_numeric  concept_id="166519"  units="g/dL"    allow_decimal="1"/>
-    <concept_numeric  concept_id="166518"  units="U/L"     allow_decimal="0"/>
+    <concept_numeric concept_id="166519" low_normal="35" hi_normal="52" units="g/l" allow_decimal="1"/>
+    <concept_numeric concept_id="166518" hi_critical="541" low_normal="40" hi_normal="130" units="U/L" allow_decimal="1"/>
     <concept_numeric  concept_id="21"   hi_normal="17.8" low_critical="7" low_normal="10.4" units="g/dL" allow_decimal="1"/>
     <concept_numeric  concept_id="678"  hi_normal="8.2" low_critical="1.4" low_normal="2.9" units="10^3/Ã¯Â¿Â½L" allow_decimal="1"/>
     <concept_numeric  concept_id="679"  hi_normal="6.1" low_critical="2.3" low_normal="4" units="10^6/Ã¯Â¿Â½L" allow_decimal="1"/>
@@ -360,7 +360,7 @@
     <concept_numeric  concept_id="161489"  low_absolute="0" units="mIU/ml"  allow_decimal="1"/>
     <concept_numeric  concept_id="161490"  low_absolute="0" units="mIU/ml"  allow_decimal="1"/>
     <concept_numeric  concept_id="161494"  low_absolute="0" units="IU/ml"  allow_decimal="1"/>
-    <concept_numeric  concept_id="161500"  low_absolute="0" units="mg/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="161500" low_normal="0"  hi_normal="5" units="mg/dL"  allow_decimal="1"/>
     <concept_numeric  concept_id="161503"  hi_normal="0.5"  low_absolute="0" low_normal="0.2"  units="mcg/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="161504"  low_absolute="0" units="mcg/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="161507"  low_absolute="0" units="mg/dL"  allow_decimal="1"/>
@@ -388,11 +388,23 @@
     <concept_numeric  concept_id="167175"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
     <concept_numeric  concept_id="167176"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
     <concept_numeric  concept_id="167177"  hi_absolute="450"  hi_normal="120"  low_absolute="20" low_normal="70"  units="mg/dL"  allow_decimal="0"/>
-    <concept_numeric  concept_id="159644"    allow_decimal="1"/>
+    <concept_numeric  concept_id="159644" hi_normal="5.7" units="%"  allow_decimal="1"/>
     <concept_numeric  concept_id="161153"    allow_decimal="1"/>
     <concept_numeric  concept_id="163598"    allow_decimal="1"/>
     <concept_numeric  concept_id="165927"    allow_decimal="1"/>
-
-
-    <concept_numeric  concept_id="5497"  hi_absolute="4000"    low_absolute="0"   units="Cells/ul"  allow_decimal="1"/>
+    <concept_numeric concept_id="5497" hi_absolute="4000" low_absolute="0" units="Cells/ul" allow_decimal="1"/>
+    <concept_numeric concept_id="1299" low_normal="53" hi_normal="123" units="IU/L" allow_decimal="1" />
+    <concept_numeric concept_id="1013" low_normal="10" hi_normal="150" units="IU/L" allow_decimal="1"/>
+    <concept_numeric concept_id="785" low_normal="40" hi_normal="130" hi_critical="541" units="U/L" allow_decimal="1" />
+    <concept_numeric concept_id="653" low_normal="0" hi_normal="40" units="IU/L" allow_decimal="1"/>
+    <concept_numeric concept_id="655" low_normal="2" hi_normal="20" units="μmol/L" allow_decimal="1"/>
+    <concept_numeric concept_id="1297" low_normal="0" hi_normal="6" units="μmol/L" allow_decimal="1"/>
+    <concept_numeric concept_id="717" low_normal="60" hi_normal="80" units="g/L" allow_decimal="1"/>
+    <concept_numeric concept_id="790" low_normal="1.3" hi_normal="0.6" units="mg/dL" allow_decimal="1"/>
+    <concept_numeric  concept_id="1134"  low_normal="98"  hi_normal="106"   units="mEq/L"  allow_decimal="1" />
+    <concept_numeric  concept_id="1133"   hi_critical="6.6"  hi_normal="5.5"   low_critical="2.4"  low_normal="3.5"  units="mEq/L"  allow_decimal="1" />
+    <concept_numeric  concept_id="1132"  hi_critical="156"  hi_normal="147"  low_absolute="null"  low_critical="123"  low_normal="135"  units="mEq/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="1007" low_normal="0.91"  hi_normal="1.3" units="mmol/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="1009" hi_normal="1.7" units="mmol/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="1006" hi_normal="5.6" units="mmol/L"  allow_decimal="1"/>
 </dataset>

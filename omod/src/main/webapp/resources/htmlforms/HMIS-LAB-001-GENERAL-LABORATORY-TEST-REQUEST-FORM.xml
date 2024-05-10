@@ -112,7 +112,7 @@
                                     <div class="col-4 lablex2">
                                         <label style="width: 100%; background-color: #e5e2e2">Serology</label>
                                         <br/>
-                                        <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['1325','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
+                                        <repeat with="['165417','RPR'],['161480','HIV Screening'],['168064','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['1325','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
                                             <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}"
                                                  style="checkbox"/>
                                         </repeat>

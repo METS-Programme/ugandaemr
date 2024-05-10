@@ -9,6 +9,7 @@ import org.openmrs.Provider;
 import org.openmrs.Visit;
 import org.openmrs.VisitType;
 import org.openmrs.Encounter;
+import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
@@ -55,6 +56,7 @@ public class CheckInFragmentController {
         ObjectMapper objectMapper = new ObjectMapper();
         SimpleObject simpleObject = new SimpleObject();
         Location currentLocation = new Location();
+
 
         if (locationFrom != null) {
             currentLocation = locationFrom;
