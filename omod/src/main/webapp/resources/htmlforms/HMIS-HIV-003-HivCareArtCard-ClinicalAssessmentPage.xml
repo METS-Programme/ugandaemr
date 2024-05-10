@@ -3059,12 +3059,14 @@
                                                     <div class="card-header">Gene Xpert</div>
                                                     <div class="card-body">
                                                         <div class="row">
-                                                            <obsgroup groupingConceptId="165413">
+                                                            <obsgroup groupingConceptId="162202">
                                                                 <div class="col-md-6">
-                                                                    <label>Gene xpert results</label>
-                                                                    <obs conceptId="162202"
-                                                                         answerConceptIds="703,664,1118"
-                                                                         answerLabels="Positive, Negative, Not Done"/>
+                                                                    <label>MTB PCR</label>
+                                                                    <obs conceptId="175391"/>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>RR</label>
+                                                                    <obs conceptId="175392"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -3899,7 +3901,7 @@
                                                                 <label style="width: 100%; background-color: #e5e2e2">Molecular</label>
                                                                 <br/>
                                                                 <div class="row molecular-investigation">
-                                                                    <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
+                                                                    <repeat with="['162202','GeneXpert MTB/RIF'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
                                                                         <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
                                                                     </repeat>
                                                                 </div>
@@ -4031,11 +4033,14 @@
                                                 <div class="card">
                                                     <div class="card-header">Gene Xpert</div>
                                                     <div class="card-body">
-                                                        <obsgroup groupingConceptId="165413">
-                                                            <div>
-                                                                <label>Gene xpert results</label>
-                                                                <obs conceptId="162202"
-                                                                     answerConceptIds="703,664,1118"/>
+                                                        <obsgroup groupingConceptId="162202">
+                                                            <div class="col-md-6">
+                                                                <label>MTB PCR</label>
+                                                                <obs conceptId="175391"/>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>RR</label>
+                                                                <obs conceptId="175392"/>
                                                             </div>
                                                         </obsgroup>
                                                     </div>
