@@ -13,7 +13,6 @@ import org.openmrs.module.htmlformentry.CustomFormSubmissionAction;
 import org.openmrs.module.htmlformentry.FormEntryContext;
 import org.openmrs.module.htmlformentry.FormEntryContext.Mode;
 import org.openmrs.module.htmlformentry.FormEntrySession;
-import org.openmrs.module.ugandaemr.fragment.controller.PatientSummaryFragmentController;
 import org.openmrs.module.ugandaemr.metadata.core.Programs;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ import static org.openmrs.module.ugandaemr.UgandaEMRConstants.GP_DSDM_PROGRAM_UU
  * 2. Adds the patient to the ART First Line Regimen workflow state of the HIV Care Program
  */
 public class ARTEnrollmentSubmissionAction implements CustomFormSubmissionAction {
-    private static final Log log = LogFactory.getLog(PatientSummaryFragmentController.class);
+    private static final Log log = LogFactory.getLog(ARTEnrollmentSubmissionAction.class);
 
     @Override
     public void applyAction(FormEntrySession session) {
