@@ -403,7 +403,7 @@
     <concept_numeric concept_id="790" low_normal="1.3" hi_normal="0.6" units="mg/dL" allow_decimal="1"/>
     <concept_numeric  concept_id="1134"  low_normal="98"  hi_normal="106"   units="mEq/L"  allow_decimal="1" />
     <concept_numeric  concept_id="1133"   hi_critical="6.6"  hi_normal="5.5"   low_critical="2.4"  low_normal="3.5"  units="mEq/L"  allow_decimal="1" />
-    <concept_numeric  concept_id="1132"  hi_critical="156"  hi_normal="147"  low_absolute="null"  low_critical="123"  low_normal="135"  units="mEq/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="1132"  hi_critical="156"  hi_normal="147" low_critical="123"  low_normal="135"  units="mEq/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="1007" low_normal="0.91"  hi_normal="1.3" units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="1009" hi_normal="1.7" units="mmol/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="1006" hi_normal="5.6" units="mmol/L"  allow_decimal="1"/>
