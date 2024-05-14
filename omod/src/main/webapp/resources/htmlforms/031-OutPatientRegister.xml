@@ -152,14 +152,6 @@
                     valid = false;
                 }
 
-
-                if (valid) {
-                    $errorMessageSpan.hide();
-                } else {
-                    $errorMessageSpan.show();
-                    jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
-                }
-
                 var noOfErrorsInPrescription=0;
                 jq(".multi-drug").each(function () {
                     var id= this.id.replace("-toggleContainer","")
@@ -168,7 +160,7 @@
                     var duration_unit=jq(element).find("#duration_unit_" + id+" select").find(":selected").val()
                     var drug=jq(element).find("#"+id+"-drug input").val();
                     var qty=jq(element).find("#quantity_" + id).find("input").val()
-                    var qty=jq(element).find("#drug_strength_" + id).find("input").val()
+                    var strength=jq(element).find("#drug_strength_" + id).find("input").val()
                     var duration=jq(element).find("#duration_"+id+" input").val();
 
                     if(drug!==null &amp;&amp; drug!==""){
@@ -190,7 +182,7 @@
                             noOfErrorsInPrescription+=1
                         }
 
-                        if(duration===null || duration===""){
+                        if(strength===null || strength===""){
                             jq('#drug_strength_' + id).find(".error").html('strength  is required').show();
                             jq().toastmessage('showErrorToast', "strength for drug "+drug+" is required");
                             noOfErrorsInPrescription+=1
@@ -200,10 +192,15 @@
 
                 if(noOfErrorsInPrescription>0){
                     jq().toastmessage('showErrorToast', "There are "+noOfErrorsInPrescription+" errors under medication that need to be resolved");
-                    return false
+                    valid=false;
                 }
 
-
+                if (valid) {
+                    $errorMessageSpan.hide();
+                } else {
+                    $errorMessageSpan.show();
+                    jq().toastmessage('showErrorToast', "Form Validation failed. Check for errors");
+                }
 
                 return valid;
             });
