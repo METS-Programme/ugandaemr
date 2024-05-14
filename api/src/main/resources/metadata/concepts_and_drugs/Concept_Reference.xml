@@ -623,7 +623,7 @@
     <concept_reference_term  concept_reference_term_id="288229"  concept_source_id="6"  name="Genotype HPV 16"  code="77399-4" creator="1"  date_created="2024-05-09 09:30:33"  retired="0" uuid="936395b9-d506-4e67-8901-6b56ce60a6c9"/>
     <concept_reference_term  concept_reference_term_id="288228"  concept_source_id="6"  name="Genotype HPV 18_45"  code="77400-0" creator="1"  date_created="2024-05-09 09:28:36"  retired="0" uuid="2f72c405-abf7-499e-9708-d850e3069349"/>
     <concept_reference_term  concept_reference_term_id="288227"  concept_source_id="1"  name="HPV DNA PCR"  code="35904009" creator="1"  date_created="2024-05-08 15:06:59"  retired="0" uuid="f2f8bc54-4422-43a6-a57c-a5d06787e047"/>
-
+    <concept_reference_term  concept_reference_term_id="288241"  concept_source_id="1"  name="RIF Resistance"  code="415345001" creator="1"  date_created="2024-05-13 20:31:25" retired="0" uuid="b6ead592-a2dd-401f-8ffe-e7b10b857e55"/>
 
     <concept_reference_map  concept_map_id="283698"  concept_reference_term_id="283700"  concept_map_type_id="1"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165507" uuid="fcd4a4a5-5b05-4c8b-be69-8dac50e22461"/>
     <concept_reference_map  concept_map_id="283701"  concept_reference_term_id="283703"  concept_map_type_id="3"  creator="1"  date_created="2020-02-20 10:34:51"  concept_id="165509" uuid="784f341f-0061-4bf5-9393-2dd1948b8a8e"/>
@@ -1094,4 +1094,5 @@
     <concept_reference_map  concept_map_id="288214"  concept_reference_term_id="288228"  concept_map_type_id="1"  creator="1"  date_created="2024-05-09 09:31:05"  concept_id="168137" uuid="a69753f3-eb14-41a9-b448-bc97ff8b209c"/>
     <concept_reference_map  concept_map_id="288213"  concept_reference_term_id="288229"  concept_map_type_id="1"  creator="1"  date_created="2024-05-09 09:30:50"  concept_id="168136" uuid="d098303c-5e3e-4c33-84fd-ffa29cb3a84e"/>
     <concept_reference_map  concept_map_id="288212"  concept_reference_term_id="288227"  concept_map_type_id="1"  creator="1"  date_created="2024-05-08 15:07:12"  concept_id="175317" uuid="605ed189-e243-4acd-af75-8cf74beb2fcf"/>
+    <concept_reference_map  concept_map_id="288226"  concept_reference_term_id="288241"  concept_map_type_id="1"  creator="1"  date_created="2024-05-13 20:31:34"  concept_id="175392" uuid="7322389d-b117-4d77-8843-6748a4c92816"/>
 </dataset>
