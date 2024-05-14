@@ -32,18 +32,37 @@
             console.log("Checking IF Reloading works");
             getPatientQueue();
         }, 3000);*/
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('patient-triage-search');
+            searchInput.addEventListener('keyup', function() {
+                var tableId=jq("#myTabContent").find(".active")[0].id;
+                var dataTable = document.getElementById(''+tableId+'').getElementsByTagName('tbody')[0];
+                var filter = searchInput[0].value.toLowerCase();
+                var rows = dataTable.getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    var rowText = '';
+                    for (var j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        });
+
         jq(document).ready(function () {
             jq(document).on('sessionLocationChanged', function () {
                 window.location.reload();
             });
             jq("#clinician-list").hide();
             getPatientQueue();
-            jq("#patient-triage-search").change(function () {
-                if (jq("#patient-triage-search").val().length >= 3) {
-                    getPatientQueue();
-                }
-            });
-
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget)
                 var patientVisits = queryRestData("visit?patient=" + button.data('patientuuid') + "&includeInactive=false&visitType=7b0f5697-27e3-40c4-8bae-f4049abfb4ed&v=custom:(uuid,dateCreated)")
@@ -147,9 +166,9 @@
         stillInQueue = 0;
         servingQueue = 0;
         completedQueue = 0;
-        var headerPending = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>ENTRY POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerCompleted = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>COMPLETED TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerServing = "<table><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>PICKED POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerPending = "<table id=\"pending\"><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>ENTRY POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerCompleted = "<table id=\"completed\"><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>COMPLETED TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table id=\"serving\"><thead><tr><th>TOKEN & ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT STATUS</th><th>PICKED POINT</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
         var dataToDisplay = [];
