@@ -1,9 +1,5 @@
 package org.openmrs.module.ugandaemr.web.resource;
 
-import org.json.JSONObject;
-import org.openmrs.Encounter;
-import org.openmrs.Order;
-import org.openmrs.Patient;
 import org.openmrs.TestOrder;
 import org.openmrs.api.OrderService;
 import org.openmrs.api.context.Context;
@@ -53,24 +49,27 @@ public class AccessionOrderResource extends DelegatingCrudResource<AccessionOrde
         OrderService orderService = Context.getOrderService();
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
-        TestOrder testOrder = ugandaEMRService.accessionLabTest(uuid, propertiesToUpdate.get("sampleId").toString(), propertiesToUpdate.get("specimenSourceId").toString(), propertiesToUpdate.get("referenceLab").toString());
+        if (propertiesToUpdate.get("sampleId") != null || propertiesToUpdate.get("sampleId") != "null" || propertiesToUpdate.get("sampleId") != "") {
+            TestOrder testOrder = ugandaEMRService.accessionLabTest(uuid, propertiesToUpdate.get("sampleId").toString(), propertiesToUpdate.get("specimenSourceId").toString(), propertiesToUpdate.get("referenceLab").toString());
 
-        if (propertiesToUpdate.get("unProcessedOrders").toString().equals(1)) {
-            patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueByUuid(propertiesToUpdate.get("patientQueueId").toString()));
+            if (propertiesToUpdate.get("unProcessedOrders").toString().equals(1)) {
+                patientQueueingService.completePatientQueue(patientQueueingService.getPatientQueueByUuid(propertiesToUpdate.get("patientQueueId").toString()));
+            }
+
+            AccessionOrder delegate = new AccessionOrder();
+
+            delegate.setOrder(testOrder);
+
+            ValidateUtil.validate(delegate);
+            SimpleObject ret = (SimpleObject) ConversionUtil.convertToRepresentation(testOrder, context.getRepresentation());
+            // add the 'type' discriminator if we support subclasses
+            if (hasTypesDefined()) {
+                ret.add(RestConstants.PROPERTY_FOR_TYPE, getTypeName(delegate));
+            }
+            return ret;
+        }else {
+            throw new ResourceDoesNotSupportOperationException("The accession number or the barcode or the sample id is required");
         }
-
-        AccessionOrder delegate = new AccessionOrder();
-
-        delegate.setOrder(testOrder);
-
-        ValidateUtil.validate(delegate);
-        SimpleObject ret = (SimpleObject) ConversionUtil.convertToRepresentation(testOrder, context.getRepresentation());
-        // add the 'type' discriminator if we support subclasses
-        if (hasTypesDefined()) {
-            ret.add(RestConstants.PROPERTY_FOR_TYPE, getTypeName(delegate));
-        }
-
-        return ret;
     }
 
     @Override
