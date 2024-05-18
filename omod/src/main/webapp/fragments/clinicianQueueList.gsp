@@ -30,6 +30,30 @@
             getPatientQueue();
         }, 1 * 60000);
 
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('patient-search');
+            searchInput.addEventListener('keyup', function() {
+                var tableId=jq("#myTabContent").find(".active")[0].id;
+                var dataTable = document.getElementById(''+tableId+'').getElementsByTagName('tbody')[0];
+                var filter = searchInput.value.toLowerCase();
+                var rows = dataTable.getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    var rowText = '';
+                    for (var j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        });
+
         jq(document).ready(function () {
             jq(document).on('sessionLocationChanged', function () {
                 window.location.reload();
@@ -43,14 +67,7 @@
             });
 
             setLocationsToSelect();
-
             getPatientQueue()
-
-            jq("#patient-search").change(function () {
-                if (jq("#patient-search").val().length >= 3) {
-                    getPatientQueue();
-                }
-            });
 
             jq('#exampleModal').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget) // Button that triggered the modal
@@ -175,10 +192,10 @@
         completedQueue = 0;
         servingQueue = 0;
         fromLabQueue = 0;
-        var headerPending = "<table><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerServing = "<table><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerCompleted = "<table><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerFromLab = "<table><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerPending = "<table id=\"pending_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table id=\"serving_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerCompleted = "<table id=\"completed_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerFromLab = "<table id=\"fromlab_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
         var dataToDisplay = [];

@@ -1515,6 +1515,50 @@
             });
 
             beforeSubmit.push(function () {
+
+                var noOfErrorsInPrescription=0;
+                jq(".multi-drug").each(function () {
+                    var id= this.id.replace("-toggleContainer","")
+                    var element= jq("#"+id+"-toggleContainer");
+                    var qty_unit=jq(element).find("#qty_unit_" + id+" select").find(":selected").val()
+                    var duration_unit=jq(element).find("#duration_unit_" + id+" select").find(":selected").val()
+                    var drug=jq(element).find("#"+id+"-drug input").val();
+                    var qty=jq(element).find("#quantity_" + id).find("input").val()
+                    var strength=jq(element).find("#drug_strength_" + id).find("input").val()
+                    var duration=jq(element).find("#duration_"+id+" input").val();
+
+                    if(drug!==null &amp;&amp; drug!==""){
+                        if(qty_unit===null || qty_unit===""){
+                            getField('qty_unit_'+id+".error").html('Qty unit is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+                        if(duration_unit===null|| duration_unit===""){
+                            getField('duration_unit_'+id+".error").html('duration  unit is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+                        if(qty===null || qty===""){
+                            jq('#quantity_' + id).find(".error").html('quantity  is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+
+                        if(duration===null || duration===""){
+                            jq('#duration_' + id).find(".error").html('duration  is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+
+                        if(strength===null || strength===""){
+                            jq('#drug_strength_' + id).find(".error").html('strength  is required').show();
+                            jq().toastmessage('showErrorToast', "strength for drug "+drug+" is required");
+                            noOfErrorsInPrescription+=1
+                        }
+                    }
+                });
+
+                if(noOfErrorsInPrescription>0){
+                    jq().toastmessage('showErrorToast', "There are "+noOfErrorsInPrescription+" errors under medication that need to be resolved");
+                    return false
+                }
+
                 <!-- clear the previous errors -->
                 setValue('returndate.error', '');
                 setValue('viral-load-results-copies.error', '');
@@ -1814,14 +1858,6 @@
                         jq('#hidden-calculated-bmi').val(bmi.toFixed(1));
                     }
                 };
-
-                jq(function () {
-                    jq('#calculated-bmi-wrapper').hide();
-                    getField('weight.value').change(updateBmi)
-                    getField('height.value').change(updateBmi);
-                    updateBmi();
-                });
-
             </ifMode>
 
             // set the blood pressure fields as "expected"
@@ -3059,12 +3095,14 @@
                                                     <div class="card-header">Gene Xpert</div>
                                                     <div class="card-body">
                                                         <div class="row">
-                                                            <obsgroup groupingConceptId="165413">
+                                                            <obsgroup groupingConceptId="162202">
                                                                 <div class="col-md-6">
-                                                                    <label>Gene xpert results</label>
-                                                                    <obs conceptId="162202"
-                                                                         answerConceptIds="703,664,1118"
-                                                                         answerLabels="Positive, Negative, Not Done"/>
+                                                                    <label>MTB PCR</label>
+                                                                    <obs conceptId="175391"/>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <label>RR</label>
+                                                                    <obs conceptId="175392"/>
                                                                 </div>
                                                             </obsgroup>
                                                         </div>
@@ -3899,7 +3937,7 @@
                                                                 <label style="width: 100%; background-color: #e5e2e2">Molecular</label>
                                                                 <br/>
                                                                 <div class="row molecular-investigation">
-                                                                    <repeat with="['165413','GeneXpert'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
+                                                                    <repeat with="['162202','GeneXpert MTB/RIF'],['165412','VL'],['1320','HEP B VL'],['844','DNA/PCR'],['161494','ANA'],['159859','HPV']">
                                                                         <obs id="{0}" conceptId="1078" answerConceptId="{0}" answerLabel="{1}" style="checkbox"/>
                                                                     </repeat>
                                                                 </div>
@@ -3926,7 +3964,7 @@
                                                             <div class="col-4 lablex2">
                                                                 <label style="width: 100%; background-color: #e5e2e2">Serology</label>
                                                                 <br/>
-                                                                <repeat with="['165417','RPR'],['161480','HIV Screening'],['161509','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['1325','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
+                                                                <repeat with="['165417','RPR'],['161480','HIV Screening'],['168064','HCG'],['161476','Syphilis'],['159430','HBsAg'],['163620','H Pylori Test'],['165418','CrAg'],['161477','Typhoid'],['161490','Leutinizing hormone'],['1325','Hepatitis C'],['161479','Rheumatoid Factor'],['1643','Malaria RDT']">
                                                                     <obs id="{0}" conceptId="1082" answerConceptId="{0}" answerLabel="{1}"
                                                                          style="checkbox"/>
                                                                 </repeat>
@@ -4031,11 +4069,14 @@
                                                 <div class="card">
                                                     <div class="card-header">Gene Xpert</div>
                                                     <div class="card-body">
-                                                        <obsgroup groupingConceptId="165413">
-                                                            <div>
-                                                                <label>Gene xpert results</label>
-                                                                <obs conceptId="162202"
-                                                                     answerConceptIds="703,664,1118"/>
+                                                        <obsgroup groupingConceptId="162202">
+                                                            <div class="col-md-6">
+                                                                <label>MTB PCR</label>
+                                                                <obs conceptId="175391"/>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <label>RR</label>
+                                                                <obs conceptId="175392"/>
                                                             </div>
                                                         </obsgroup>
                                                     </div>
@@ -4587,10 +4628,8 @@
                                                                         </select>
                                                                     </div>
 
-                                                                    <div class="col-md-3 drug_strength hidden"
-                                                                         id="drug_strength_{id}">
-                                                                        <obs id="drug_strength_{id}"
-                                                                             class="drug-strength" conceptId="1444"
+                                                                    <div class="col-md-3 drug_strength hidden" id="drug_strength_{id}">
+                                                                        <obs class="drug-strength" conceptId="1444"
                                                                              labelText="Strength"/>
                                                                     </div>
                                                                     <div class="hidden">
@@ -4603,20 +4642,21 @@
                                                                         <obs id="drug_{id}" conceptId="166970"
                                                                              labelText="Drug ID"/>
                                                                     </div>
-                                                                    <div class="col-md-3">
+                                                                    <div class="col-md-3" id="quantity_{id}">
                                                                         <obs id="other-meds-quantity"
                                                                              labelText="Quantity" conceptId="160856"/>
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <obs labelText="Qty unit" conceptId="165791"
+                                                                             id="qty_unit_{id}"
                                                                              answerConceptSetIds="162402,162384"/>
                                                                     </div>
                                                                     <div class="col-md-3 duration">
                                                                         <label>Duration</label>
-                                                                        <obs conceptId="159368"/>
+                                                                        <obs id="duration_{id}" conceptId="159368"/>
                                                                     </div>
                                                                     <div class="col-md-3">
-                                                                        <obs conceptId="1732"
+                                                                        <obs conceptId="1732" id="duration_unit_{id}"
                                                                              labelText="Duration unit"/>
                                                                     </div>
                                                                     <div class="col-md-3">

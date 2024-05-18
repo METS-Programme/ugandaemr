@@ -365,4 +365,38 @@ public class PatientIdentifierTypes {
         }
     };
 
+    public static PatientIdentifierTypeDescriptor PASSPORT = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "Passport No.";
+        }
+
+        @Override
+        public String description() {
+            return "A passport Number for a patient";
+        }
+
+        public String uuid() {
+            return "fd76e95a-9faa-42b8-8d88-5954fae77fba";
+        }
+    };
+
+    public static PatientIdentifierTypeDescriptor NHPI = new PatientIdentifierTypeDescriptor() {
+
+        @Override
+        public String name() {
+            return "National Patient Health Identifier";
+        }
+
+        @Override
+        public String description() {
+            return "Tha National Patient Health Identifier for identifying a patient uniquely across the health sector";
+        }
+
+        public String uuid() {
+            return "4c7d6bb2-c8a6-40d3-b70d-fffc062f3416";
+        }
+    };
+
 }

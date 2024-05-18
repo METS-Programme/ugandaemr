@@ -140,7 +140,48 @@
         if (jq('span.error.field-error:visible').length &gt; 0) {
         valid = false;
         }
+        var noOfErrorsInPrescription=0;
+        jq(".multi-drug").each(function () {
+            var id= this.id.replace("-toggleContainer","")
+            var element= jq("#"+id+"-toggleContainer");
+            var qty_unit=jq(element).find("#qty_unit_" + id+" select").find(":selected").val()
+            var duration_unit=jq(element).find("#duration_unit_" + id+" select").find(":selected").val()
+            var drug=jq(element).find("#"+id+"-drug input").val();
+            var qty=jq(element).find("#quantity_" + id).find("input").val()
+            var strength=jq(element).find("#drug_strength_" + id).find("input").val()
+            var duration=jq(element).find("#duration_"+id+" input").val();
 
+            if(drug!==null &amp;&amp; drug!==""){
+                if(qty_unit===null || qty_unit===""){
+                    getField('qty_unit_'+id+".error").html('Qty unit is required').show();
+                    noOfErrorsInPrescription+=1
+                }
+                if(duration_unit===null|| duration_unit===""){
+                    getField('duration_unit_'+id+".error").html('duration  unit is required').show();
+                    noOfErrorsInPrescription+=1
+                }
+                if(qty===null || qty===""){
+                    jq('#quantity_' + id).find(".error").html('quantity  is required').show();
+                    noOfErrorsInPrescription+=1
+                }
+
+                if(duration===null || duration===""){
+                    jq('#duration_' + id).find(".error").html('duration  is required').show();
+                    noOfErrorsInPrescription+=1
+                }
+
+                if(strength===null || strength===""){
+                    jq('#drug_strength_' + id).find(".error").html('strength  is required').show();
+                    jq().toastmessage('showErrorToast', "strength for drug "+drug+" is required");
+                    noOfErrorsInPrescription+=1
+                }
+            }
+        });
+
+        if(noOfErrorsInPrescription>0){
+                jq().toastmessage('showErrorToast', "There are "+noOfErrorsInPrescription+" errors under medication that need to be resolved");
+                valid=false;
+            }
 
         if (valid) {
         $errorMessageSpan.hide();
@@ -742,7 +783,7 @@
                         <div class="card-body">
                             <div class="card-body">
                                 <div class="row investigations">
-                                    <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT'],['953','LIVER FUNCTION TESTS'],['1010','LIPID Panel'],['1026','DIFFERENTIAL'],['5473','SERUM ELECTROLYTES'],['99145','BASELINE CD4 PERCENTAGE'],['159645','CSF Examination'],['159981','TB Culture Construct'],['161152','Prothrombin Time (with INR)'],['161199','Cytology'],['161422','HBG With Electrophoresis'],['161424','RBC Morphology Test'],['161425','Sedimentation Test'],['161426','Malarial Parasites Smear'],['161428','Microfilaria Test'],['161429','Hemoglobin Only'],['161430','Routine Blood Panel'],['161431','Sickling Test Only'],['161432','Absolute Eosinophil Count Test'],['161434','Bleeding Time Test'],['161436','Clotting Time Test'],['161437','Anemia Panel'],['161446','Routine Urine'],['161451','Stool Analysis'],['161458','Vaginal Swab'],['161461','Ziehl-Neelsen Stain Test'],['161463','Skin Fungal Test'],['161464','Skin Mycobacterial Test'],['161468','Semen Analysis Test'],['161473','Blood Grouping Test'],['1325','Hepatitis C Serological Test'],['161475','Hepatitis B Serological Test'],['161476','Syphilis serological Panel'],['161477','Typhoid serological Test'],['161478','Anti-Streptolysin O Test'],['161479','Rheumatoid Factor Test'],['161480','HIV Serological Test'],['161483','Serum Chemistry Panel'],['161486','Culture Panel'],['161487','Diabetes Panel'],['161488','Renal Function Panel'],['161491','FSH Panel'],['161492','Leutinizing Hormone Panel'],['161493','Alpha Fetoprotein Test'],['161495','ANA'],['161496','Bone Marrow Test'],['161497','Cancer Marker Panel'],['161498','CPK Measurement'],['161499','Coombs Test'],['161501','C-reactive Protein Test'],['161506','Thyroid Panel'],['161508','Ceruloplasmin Test'],['161509','HCG'],['161510','Carcinoembryonic Antigen'],['161512','Serum Iron Profile'],['161514','G6PD'],['161515','Lipase Test'],['161517','Prolactin Test'],['161518','Cardiac Enzyme Test'],['161520','PSA Test'],['161532','TORCH Panel'],['161533','TORCHS Panel'],['162630','Basic Metabolic Panel'],['163436','Coagulation Profile'],['163602','Arterial Blood Gas Panel'],['163625','Toxoplasma Panel'],['163628','VTC Panel'],['163631','Tuberculin skin test Panel'],['163652','Urethral fluid examination Panel'],['163679','Bacterial culture Panel'],['163697','Urine microscopy Panel'],['163700','CBC (auto)'],['163701','CBC With Manual Differential'],['163702','Clotting Panel'],['163708','GTT  (75g)'],['165419','Malaria Test'],['165824','HIVDR'],['166284','Covid test type'],['166405','Blood gas done'],['166429','ALT/SGOT'],['167178','PPG'],['163342','HIV p24 antigen'],['163610','HIV drug-resistance'],['163722','Rapid test for HIV'],['167441','HIV PCR, DBS']">
+                                    <repeat with="['165418','CrAg'],['165417','RPR'],['165416','TB LAM'],['165413','GeneXpert'],['165415','Microscopy'],['1019','CBC'],['657','Cd4'],['165412','VL'],['1643','Malaria RDT'],['302','URINALYSIS'],['166522','LFT'],['166529','RFT'],['953','LIVER FUNCTION TESTS'],['1010','LIPID Panel'],['1026','DIFFERENTIAL'],['5473','SERUM ELECTROLYTES'],['99145','BASELINE CD4 PERCENTAGE'],['159645','CSF Examination'],['159981','TB Culture Construct'],['161152','Prothrombin Time (with INR)'],['161199','Cytology'],['161422','HBG With Electrophoresis'],['161424','RBC Morphology Test'],['161425','Sedimentation Test'],['161426','Malarial Parasites Smear'],['161428','Microfilaria Test'],['161429','Hemoglobin Only'],['161430','Routine Blood Panel'],['161431','Sickling Test Only'],['161432','Absolute Eosinophil Count Test'],['161434','Bleeding Time Test'],['161436','Clotting Time Test'],['161437','Anemia Panel'],['161446','Routine Urine'],['161451','Stool Analysis'],['161458','Vaginal Swab'],['161461','Ziehl-Neelsen Stain Test'],['161463','Skin Fungal Test'],['161464','Skin Mycobacterial Test'],['161468','Semen Analysis Test'],['161473','Blood Grouping Test'],['1325','Hepatitis C Serological Test'],['161475','Hepatitis B Serological Test'],['161476','Syphilis serological Panel'],['161477','Typhoid serological Test'],['161478','Anti-Streptolysin O Test'],['161479','Rheumatoid Factor Test'],['161480','HIV Serological Test'],['161483','Serum Chemistry Panel'],['161486','Culture Panel'],['161487','Diabetes Panel'],['161488','Renal Function Panel'],['161491','FSH Panel'],['161492','Leutinizing Hormone Panel'],['161493','Alpha Fetoprotein Test'],['161495','ANA'],['161496','Bone Marrow Test'],['161497','Cancer Marker Panel'],['161498','CPK Measurement'],['161499','Coombs Test'],['161501','C-reactive Protein Test'],['161506','Thyroid Panel'],['161508','Ceruloplasmin Test'],['168064','HCG'],['161510','Carcinoembryonic Antigen'],['161512','Serum Iron Profile'],['161514','G6PD'],['161515','Lipase Test'],['161517','Prolactin Test'],['161518','Cardiac Enzyme Test'],['161520','PSA Test'],['161532','TORCH Panel'],['161533','TORCHS Panel'],['162630','Basic Metabolic Panel'],['163436','Coagulation Profile'],['163602','Arterial Blood Gas Panel'],['163625','Toxoplasma Panel'],['163628','VTC Panel'],['163631','Tuberculin skin test Panel'],['163652','Urethral fluid examination Panel'],['163679','Bacterial culture Panel'],['163697','Urine microscopy Panel'],['163700','CBC (auto)'],['163701','CBC With Manual Differential'],['163702','Clotting Panel'],['163708','GTT  (75g)'],['165419','Malaria Test'],['165824','HIVDR'],['166284','Covid test type'],['166405','Blood gas done'],['166429','ALT/SGOT'],['167178','PPG'],['163342','HIV p24 antigen'],['163610','HIV drug-resistance'],['163722','Rapid test for HIV'],['167441','HIV PCR, DBS']">
                                         <div class="col-3">
                                             <obs id="{0}" conceptId="1271"
                                                  answerConceptId="{0}"
@@ -785,10 +826,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-3 drug_strength hidden"
-                                             id="drug_strength_{id}">
-                                            <obs id="drug_strength_{id}"
-                                                 class="drug-strength" conceptId="1444"
+                                        <div class="col-md-3 drug_strength hidden" id="drug_strength_{id}">
+                                            <obs class="drug-strength" conceptId="1444"
                                                  labelText="Strength"/>
                                         </div>
                                         <div class="hidden">
@@ -801,20 +840,21 @@
                                             <obs id="drug_{id}" conceptId="166970"
                                                  labelText="Drug ID"/>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="quantity_{id}">
                                             <obs id="other-meds-quantity"
                                                  labelText="Quantity" conceptId="160856"/>
                                         </div>
                                         <div class="col-md-3">
                                             <obs labelText="Qty unit" conceptId="165791"
+                                                 id="qty_unit_{id}"
                                                  answerConceptSetIds="162402,162384"/>
                                         </div>
                                         <div class="col-md-3 duration">
                                             <label>Duration</label>
-                                            <obs conceptId="159368"/>
+                                            <obs id="duration_{id}" conceptId="159368"/>
                                         </div>
                                         <div class="col-md-3">
-                                            <obs conceptId="1732"
+                                            <obs conceptId="1732" id="duration_unit_{id}"
                                                  labelText="Duration unit"/>
                                         </div>
                                         <div class="col-md-3">
