@@ -859,7 +859,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <obs conceptId="160855"
-                                                 labelText="Frequency"/>
+                                                 labelText="Frequency" answerConceptIds="160862,162251,162250,1099"/>
                                         </div>
                                         <div class="col-md-6">
                                             <obs conceptId="175387"
