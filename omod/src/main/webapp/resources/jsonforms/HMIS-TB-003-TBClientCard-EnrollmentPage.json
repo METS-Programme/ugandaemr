@@ -6,7 +6,7 @@
   "encounter": "TB Summary (Enrollment)",
   "uuid": "b00452b6-bb7c-11ea-b3de-0242ac130004",
   "processor": "EncounterFormProcessor",
-  "published": false,
+  "published": true,
   "retired": false,
   "meta": {
     "programs": {

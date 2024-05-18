@@ -6,7 +6,7 @@
   "encounterType": "8d5b27bc-c2cc-11de-8d13-0010c6dffd0f",
   "uuid": "52653a60-8300-4c13-be4d-4b746da06fee",
   "processor": "EncounterFormProcessor",
-  "published": false,
+  "published": true,
   "retired": false,
   "meta": {
     "programs": {

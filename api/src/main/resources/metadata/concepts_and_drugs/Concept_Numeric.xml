@@ -360,7 +360,7 @@
     <concept_numeric  concept_id="161489"  low_absolute="0" units="mIU/ml"  allow_decimal="1"/>
     <concept_numeric  concept_id="161490"  low_absolute="0" units="mIU/ml"  allow_decimal="1"/>
     <concept_numeric  concept_id="161494"  low_absolute="0" units="IU/ml"  allow_decimal="1"/>
-    <concept_numeric  concept_id="161500"  low_absolute="0" units="mg/L"  allow_decimal="1"/>
+    <concept_numeric  concept_id="161500" low_normal="0"  hi_normal="5" units="mg/dL"  allow_decimal="1"/>
     <concept_numeric  concept_id="161503"  hi_normal="0.5"  low_absolute="0" low_normal="0.2"  units="mcg/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="161504"  low_absolute="0" units="mcg/L"  allow_decimal="1"/>
     <concept_numeric  concept_id="161507"  low_absolute="0" units="mg/dL"  allow_decimal="1"/>

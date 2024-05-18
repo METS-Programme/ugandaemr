@@ -152,6 +152,48 @@
                     valid = false;
                 }
 
+                var noOfErrorsInPrescription=0;
+                jq(".multi-drug").each(function () {
+                    var id= this.id.replace("-toggleContainer","")
+                    var element= jq("#"+id+"-toggleContainer");
+                    var qty_unit=jq(element).find("#qty_unit_" + id+" select").find(":selected").val()
+                    var duration_unit=jq(element).find("#duration_unit_" + id+" select").find(":selected").val()
+                    var drug=jq(element).find("#"+id+"-drug input").val();
+                    var qty=jq(element).find("#quantity_" + id).find("input").val()
+                    var strength=jq(element).find("#drug_strength_" + id).find("input").val()
+                    var duration=jq(element).find("#duration_"+id+" input").val();
+
+                    if(drug!==null &amp;&amp; drug!==""){
+                        if(qty_unit===null || qty_unit===""){
+                            getField('qty_unit_'+id+".error").html('Qty unit is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+                        if(duration_unit===null|| duration_unit===""){
+                            getField('duration_unit_'+id+".error").html('duration  unit is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+                        if(qty===null || qty===""){
+                            jq('#quantity_' + id).find(".error").html('quantity  is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+
+                        if(duration===null || duration===""){
+                            jq('#duration_' + id).find(".error").html('duration  is required').show();
+                            noOfErrorsInPrescription+=1
+                        }
+
+                        if(strength===null || strength===""){
+                            jq('#drug_strength_' + id).find(".error").html('strength  is required').show();
+                            jq().toastmessage('showErrorToast', "strength for drug "+drug+" is required");
+                            noOfErrorsInPrescription+=1
+                        }
+                    }
+                });
+
+                if(noOfErrorsInPrescription>0){
+                    jq().toastmessage('showErrorToast', "There are "+noOfErrorsInPrescription+" errors under medication that need to be resolved");
+                    valid=false;
+                }
 
                 if (valid) {
                     $errorMessageSpan.hide();
@@ -796,10 +838,8 @@
                                             </select>
                                         </div>
 
-                                        <div class="col-md-3 drug_strength hidden"
-                                             id="drug_strength_{id}">
-                                            <obs id="drug_strength_{id}"
-                                                 class="drug-strength" conceptId="1444"
+                                        <div class="col-md-3 drug_strength hidden" id="drug_strength_{id}">
+                                            <obs class="drug-strength" conceptId="1444"
                                                  labelText="Strength"/>
                                         </div>
                                         <div class="hidden">
@@ -812,20 +852,21 @@
                                             <obs id="drug_{id}" conceptId="166970"
                                                  labelText="Drug ID"/>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3" id="quantity_{id}">
                                             <obs id="other-meds-quantity"
                                                  labelText="Quantity" conceptId="160856"/>
                                         </div>
                                         <div class="col-md-3">
                                             <obs labelText="Qty unit" conceptId="165791"
+                                                 id="qty_unit_{id}"
                                                  answerConceptSetIds="162402,162384"/>
                                         </div>
                                         <div class="col-md-3 duration">
                                             <label>Duration</label>
-                                            <obs conceptId="159368"/>
+                                            <obs id="duration_{id}" conceptId="159368"/>
                                         </div>
                                         <div class="col-md-3">
-                                            <obs conceptId="1732"
+                                            <obs conceptId="1732" id="duration_unit_{id}"
                                                  labelText="Duration unit"/>
                                         </div>
                                         <div class="col-md-3">
