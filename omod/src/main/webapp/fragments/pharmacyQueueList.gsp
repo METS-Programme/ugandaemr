@@ -19,6 +19,31 @@ button, input {
         jq("#tabs").tabs();
     })
     if (jQuery) {
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('patient-pharmacy-search');
+            searchInput.addEventListener('keyup', function() {
+                var tableId=jq("#myTabContent").find(".active")[0].id;
+                var dataTable = document.getElementById(''+tableId+'').getElementsByTagName('tbody')[0];
+                var filter = searchInput.value.toLowerCase();
+                var rows = dataTable.getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    var rowText = '';
+                    for (var j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        });
+
         jq(document).ready(function () {
             jq(document).on('sessionLocationChanged', function () {
                 window.location.reload();
@@ -76,9 +101,9 @@ button, input {
         var prescriptionCount = 0;
         var drugRefillCount = 0;
         var completedCount = 0;
-        prescriptions = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>ORDER FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        drugRefill = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        completed = "<table><thead><tr><th>Visit No.</th><th>Patient No.</th><th>Names</th><th>Age</th><th>ACTION</th></tr></thead><tbody>";
+        prescriptions = "<table id=\"prescriptions\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        drugRefill = "<table id=\"drug-refill\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>AGE</th><th>FROM</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        completed = "<table id=\"completed\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>AGE</th><th>ACTION</th></tr></thead><tbody>";
 
        var dataToDisplay=[];
 
@@ -134,6 +159,7 @@ button, input {
                     var action = "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Dispense Medication\" onclick=\" location.href = '" + newDispensingFormURL + "'\"></i>";
                     drugRefill += "<tr>";
                     drugRefill += "<td>" + visitNumber + "</td>";
+                    prescriptions += "<td>" + identifierToDisplay(patientQueueListElement.patientIdentifier) + "</td>";
                     drugRefill += "<td>" + patientQueueListElement.patientNames + "</td>";
                     drugRefill += "<td>" + patientQueueListElement.age + "</td>";
                     drugRefill += "<td>" + patientQueueListElement.locationFrom + "</td>";
@@ -146,6 +172,7 @@ button, input {
                     var action = "<i style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Medication Dispensed\" onclick=\" location.href = '" + editDispensingFormURL + "'\"></i>";
                     completed += "<tr>";
                     completed += "<td>" + visitNumber + "</td>";
+                    completed += "<td>" + identifierToDisplay(patientQueueListElement.patientIdentifier) + "</td>";
                     completed += "<td>" + patientQueueListElement.patientNames + "</td>";
                     completed += "<td>" + patientQueueListElement.age + "</td>";
                     completed += "<td>" + action + "</td>";

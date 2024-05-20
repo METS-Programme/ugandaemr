@@ -904,6 +904,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             drugOrderMapper.setStrength(getDrugStrength(drugOrder));
             drugOrderMapper.setRoute(drugOrder.getRoute().getDisplayString());
             drugOrderMapper.setAccessionNumber(drugOrder.getAccessionNumber());
+            drugOrderMapper.setDosingInstructions(drugOrder.getDosingInstructions());
             drugOrderMapper.setCareSetting(drugOrder.getCareSetting().getName());
             drugOrderMapper.setConcept(drugOrder.getConcept().getConceptId().toString());
             drugOrderMapper.setConceptName(drugOrder.getConcept().getDisplayString());
@@ -1299,6 +1300,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setLocationFrom(session.getEncounter().getLocation());
                 patientQueue.setPatient(session.getEncounter().getPatient());
                 patientQueue.setLocationTo(locationTo);
+                patientQueue.setQueueRoom(locationTo);
                 patientQueue.setProvider(provider);
                 patientQueue.setEncounter(session.getEncounter());
                 patientQueue.setStatus(nextQueueStatus);
@@ -1423,6 +1425,9 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                                 break;
                             case MEDICATION_FREQUENCY:
                                 drugOrder.setFrequency(Context.getOrderService().getOrderFrequencyByConcept(groupMember.getValueCoded()));
+                                break;
+                            case MEDICATION_DOSE_INSTRUCTION:
+                                drugOrder.setDosingInstructions(groupMember.getValueText());
                                 break;
                             default:
                         }
@@ -2032,6 +2037,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
                 patientQueue.setLocationFrom(locationFrom);
                 patientQueue.setPatient(encounter.getPatient());
                 patientQueue.setLocationTo(encounter.getLocation());
+                patientQueue.setQueueRoom(encounter.getLocation());
                 patientQueue.setProvider(provider);
                 patientQueue.setEncounter(encounter);
                 patientQueue.setStatus(PatientQueue.Status.PENDING);

@@ -346,6 +346,7 @@ public class RadiologyQueueListFragmentController {
                 patientQueue.setLocationFrom(locationFrom);
                 patientQueue.setPatient(encounter.getPatient());
                 patientQueue.setLocationTo(encounter.getLocation());
+                patientQueue.setQueueRoom(encounter.getLocation());
                 patientQueue.setProvider(provider);
                 patientQueue.setEncounter(encounter);
                 patientQueue.setStatus(PatientQueue.Status.PENDING);

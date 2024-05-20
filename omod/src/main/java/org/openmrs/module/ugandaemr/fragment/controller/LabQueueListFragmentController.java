@@ -315,9 +315,24 @@ public class LabQueueListFragmentController {
 
     public void scheduleTestOrderBulk(@BindParams("wrap") TestOrderModel testOrderMapper, UiSessionContext sessionContext) {
         UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+        List<TestOrder> testOrders = new ArrayList<>();
         testOrderMapper.getTestOrderMappers().forEach(orderMapper -> {
-            ugandaEMRService.accessionLabTest(orderMapper.getOrderId(), orderMapper.getAccessionNumber(), orderMapper.getSpecimenSourceId(), orderMapper.getInstructions());
+            TestOrder testOrder = ugandaEMRService.accessionLabTest(orderMapper.getOrderId(), orderMapper.getAccessionNumber(), orderMapper.getSpecimenSourceId(), orderMapper.getInstructions());
+            testOrders.add(testOrder);
         });
+        if (!testOrders.isEmpty() && testOrderMapper.getUnprocessedOrders() <= testOrders.size()) {
+            completePatientQueueInLab(testOrders.get(0), sessionContext.getSessionLocation());
+        }
+
+    }
+
+    private void completePatientQueueInLab(TestOrder testOrder, Location location) {
+        PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        List<PatientQueue> patientQueues = new ArrayList<>();
+        patientQueues.addAll(patientQueueingService.getPatientQueueListBySearchParams(testOrder.getPatient().getPatientIdentifier().getIdentifier(), OpenmrsUtil.firstSecondOfDay(testOrder.getDateCreated()), OpenmrsUtil.getLastMomentOfDay(testOrder.getDateCreated()), location, null, PatientQueue.Status.PICKED));
+        patientQueues.addAll(patientQueueingService.getPatientQueueListBySearchParams(testOrder.getPatient().getPatientIdentifier().getIdentifier(), OpenmrsUtil.firstSecondOfDay(testOrder.getDateCreated()), OpenmrsUtil.getLastMomentOfDay(testOrder.getDateCreated()), location, null, PatientQueue.Status.PENDING));
+
+        patientQueues.forEach(patientQueueingService::completePatientQueue);
     }
 
     public SimpleObject generateLabNumber(@RequestParam(value = "orderUuid", required = false) String orderUuid) throws ParseException, IOException {
