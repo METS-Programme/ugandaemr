@@ -20,10 +20,11 @@
             {
               "label": "Date:",
               "type": "encounterDatetime",
+              "required": true,
+              "id": "encDate",
               "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
+                "rendering": "date"
+              }
             },
             {
               "label": "Provider:",
@@ -1073,39 +1074,59 @@
             },
             {
               "label": "Approach",
-              "type": "obs",
-              "id": "approach",
-              "required": "true",
+              "type": "programState",
+              "id": "dsdmApproach",
               "questionOptions": {
-                "rendering": "select",
                 "concept": "73312fee-c321-11e8-a355-529269fb1459",
                 "answers": [
                   {
-                    "concept": "733144c0-c321-11e8-a355-529269fb1459",
-                    "label": "FBIM - Facility Based Individual Management",
-                    "conceptMappings": []
+                    "value": "4eae684a-ee1f-4f62-87f3-e3e58c91f417",
+                    "label": "FBIM - Facility Based Individual Management"
                   },
                   {
-                    "concept": "73313c96-c321-11e8-a355-529269fb1459",
-                    "label": "FBG - Facility Based Group",
-                    "conceptMappings": []
+                    "value": "6b4906b1-388c-4984-974a-81e6f86f7737",
+                    "label": "FBG - Facility Based Group"
                   },
                   {
-                    "concept": "73313f20-c321-11e8-a355-529269fb1459",
-                    "label": "FTDR - Fast-Track Drug Refills",
-                    "conceptMappings": []
+                    "value": "5e122a20-3e23-4e65-bb1b-9f1324f97396",
+                    "label": "FTDR - Fast-Track Drug Refills"
                   },
                   {
-                    "concept": "73313728-c321-11e8-a355-529269fb1459",
-                    "label": "CDDP - Community Drug Distribution Point",
-                    "conceptMappings": []
+                    "value": "0ca3db87-567f-4159-acc0-0ec14d0b8036",
+                    "label": "CCLAD - Community Client-Led ART Delivery"
                   },
                   {
-                    "concept": "733139e4-c321-11e8-a355-529269fb1459",
-                    "label": "CCLAD - Community Client-Led ART Delivery",
-                    "conceptMappings": []
+                    "value": "7e2acb9c-25e9-4b8f-b012-8436051d5c32",
+                    "label": "CDDP - Community Drug Distribution Point"
                   }
-                ]
+                ],
+                "rendering": "fixed-value",
+                "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
+                "workflowUuid": "b8d44412-9d8a-422f-8952-7fe15997f8b6"
+              }
+            },{
+              "label": "Drug Pickup Model",
+              "type": "programState",
+              "id": "drugPickupModel",
+              "questionOptions": {
+                "concept": "73312fee-c321-11e8-a355-529269fb1459",
+                "answers": [
+                  {
+                    "value": "a6a0ab45-b7dc-43b2-b28c-45a91f968ebf",
+                    "label": "CRPDDP - Community Retail Pharmacy Drug Distribution Point"
+                  },
+                  {
+                    "value": "1b9b83d4-eaca-40da-a7c6-53b8ea3436ad",
+                    "label": "General CDDP"
+                  },
+                  {
+                    "value": "d77cc565-5e53-4633-8fc7-956cfc1831d9",
+                    "label": "CLDDP - Community Led Drug Distribution Point"
+                  }
+                ],
+                "rendering": "select",
+                "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
+                "workflowUuid": "306c02b7-198e-4066-8b2c-39e40a1bcc53"
               }
             },
             {

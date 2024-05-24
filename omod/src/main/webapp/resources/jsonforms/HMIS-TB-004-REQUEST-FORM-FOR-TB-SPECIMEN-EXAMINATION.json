@@ -20,7 +20,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended",
+                "rendering": "date",
                 "allowFutureDates": "false"
               },
               "id": "encDate"
