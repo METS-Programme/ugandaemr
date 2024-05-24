@@ -9,6 +9,7 @@ import org.openmrs.Provider;
 import org.openmrs.Visit;
 import org.openmrs.VisitType;
 import org.openmrs.Encounter;
+import org.openmrs.api.ConceptNameType;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.PatientService;
 import org.openmrs.api.context.Context;
@@ -56,6 +57,7 @@ public class CheckInFragmentController {
         SimpleObject simpleObject = new SimpleObject();
         Location currentLocation = new Location();
 
+
         if (locationFrom != null) {
             currentLocation = locationFrom;
 
@@ -77,6 +79,7 @@ public class CheckInFragmentController {
         patientQueue.setLocationFrom(currentLocation);
         patientQueue.setPatient(patient);
         patientQueue.setLocationTo(location);
+        patientQueue.setQueueRoom(location);
         patientQueue.setProvider(provider);
         patientQueue.setStatus(PatientQueue.Status.PENDING);
         patientQueue.setCreator(uiSessionContext.getCurrentUser());

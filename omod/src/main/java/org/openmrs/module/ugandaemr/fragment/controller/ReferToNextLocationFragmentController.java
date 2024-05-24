@@ -73,6 +73,7 @@ public class ReferToNextLocationFragmentController {
         patientQueue.setLocationFrom(currentLocation);
         patientQueue.setPatient(patient);
         patientQueue.setLocationTo(location);
+        patientQueue.setQueueRoom(location);
         patientQueue.setProvider(provider);
         patientQueue.setStatus(PatientQueue.Status.PENDING);
         patientQueue.setCreator(uiSessionContext.getCurrentUser());

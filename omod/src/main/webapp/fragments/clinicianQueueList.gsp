@@ -28,7 +28,31 @@
         setInterval(function () {
             console.log("Checking IF Reloading works");
             getPatientQueue();
-        }, 1*60000);
+        }, 1 * 60000);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('patient-search');
+            searchInput.addEventListener('keyup', function() {
+                var tableId=jq("#myTabContent").find(".active")[0].id;
+                var dataTable = document.getElementById(''+tableId+'').getElementsByTagName('tbody')[0];
+                var filter = searchInput.value.toLowerCase();
+                var rows = dataTable.getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    var rowText = '';
+                    for (var j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        });
 
         jq(document).ready(function () {
             jq(document).on('sessionLocationChanged', function () {
@@ -43,14 +67,7 @@
             });
 
             setLocationsToSelect();
-
             getPatientQueue()
-
-            jq("#patient-search").change(function () {
-                if (jq("#patient-search").val().length >= 3) {
-                    getPatientQueue();
-                }
-            });
 
             jq('#exampleModal').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget) // Button that triggered the modal
@@ -70,24 +87,46 @@
 
             jq('#pick_patient_queue_dialog').on('show.bs.modal', function (event) {
                 var button = jq(event.relatedTarget)
-                jq("#patientQueueId").val(button.data('patientqueueid'));
-                jq("#goToURL").val(button.data('url'));
+
+                var enounterId = getEncounterId(button.data('patientqueueid'));
+                if (enounterId !== "" && enounterId !== null) {
+                    jq("#patientQueueId").val(button.data('patientqueueid'));
+                    var url = button.data('url');
+                    url = url.replace("encounterIdToReplace", enounterId)
+                    jq("#goToURL").val(url);
+                } else {
+                    var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", button.data('patientuuid'));
+                    jq("#goToURL").val(urlToPatientDashBoard);
+                }
             })
         });
     }
 
-    function getPatientQueue() {
-        jq("#clinician-queue-list-table").html("");
-        jq.get('${ ui.actionLink("getPatientQueueList") }', {
-            searchfilter: jq("#patient-search").val().trim().toLowerCase()
-        }, function (response) {
-            if (response) {
-                var responseData = response;
-                displayClinicianData(responseData);
-            } else if (!response) {
-                jq("#clinician-queue-list-table").append(${ ui.message("coreapps.none ") });
+    function queryRestData(url, method, data) {
+        var responseData = null;
+        jq.ajax({
+            type: method,
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/" + url,
+            dataType: "json",
+            contentType: "application/json",
+            accept: "application/json",
+            async: false,
+            data: data,
+            success: function (response) {
+                responseData = response;
+            },
+            error: function (response) {
+                responseData = response
             }
         });
+        return responseData;
+    }
+
+    function getPatientQueue() {
+        var url = "patientqueue?location=${currentLocation.uuid}&v=custom:(uuid,creator:(uuid,person:(uuid,display)),dateCreated,dateChanged,voided,patient:(uuid,names:(display),display,gender,birthdate,identifiers:(voided,preferred,uuid,display,location:(uuid,display))),provider:(uuid,display,person:(uuid,display)),locationFrom:(uuid,display,tags:(uuid,display)),locationTo:(uuid,display,tags:(uuid,display)),queueRoom:(uuid,display,tags:(uuid,display)),encounter:(uuid,visit:(uuid)),status,priority,priorityComment,visitNumber,comment,datePicked,dateCompleted)"
+        var responseData = queryRestData(url, "GET", {})
+
+        displayClinicianData(responseData);
     }
 
     function setLocationsToSelect() {
@@ -104,15 +143,41 @@
         jq("#location_id").append(content);
     }
 
-    function identifierToDisplay(identifiers){
-        var identifierToDisplay="";
+    function identifierToDisplay(identifiers) {
+        var identifierToDisplay = "";
         jq.each(identifiers, function (index, element) {
-            if(element.identifierLocationUuid==="${currentLocation.uuid}"){
-                identifierToDisplay+=element.identifierTypeName+" : "+element.identifier+" <br/> "
+            if (element.voided === false && element.preferred === true) {
+                identifierToDisplay += element.display.replace("=", ":") + " <br/> "
             }
         });
 
         return identifierToDisplay
+    }
+
+    function navigateToVisit(url, patientuuid, patientqueueuuid) {
+        var enounterId = getEncounterId(patientqueueuuid);
+        if (enounterId !== "" && enounterId !== null) {
+            url = url.replace("encounterIdToReplace", enounterId)
+            window.location.href = url;
+        } else {
+            url = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", button.data('patientuuid'));
+            window.location.href = url;
+        }
+    }
+
+    function getEncounterId(patientQueueUuid) {
+        var encounterId = null;
+        jq.ajax({
+            type: "GET",
+            url: "${ui.actionLink("getEncounterId")}" + "&patientQueueUuid=" + patientQueueUuid,
+            async: false,
+            success: function (response) {
+                encounterId = response.encounterId;
+            },
+            error: function (response) {
+            }
+        });
+        return encounterId
     }
 
     function displayClinicianData(response) {
@@ -127,17 +192,17 @@
         completedQueue = 0;
         servingQueue = 0;
         fromLabQueue = 0;
-        var headerPending = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerServing = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerCompleted = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
-        var headerFromLab = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>GENDER</th><th>AGE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerPending = "<table id=\"pending_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerServing = "<table id=\"serving_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>VISIT TYPE</th><th>ATTENDING PROVIDER</th><th>STATUS</th><th>SERVING TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerCompleted = "<table id=\"completed_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>TIME</th><th>ACTION</th></tr></thead><tbody>";
+        var headerFromLab = "<table id=\"fromlab_table\"><thead><tr><th>TOKEN</th><th>PATIENT ID</th><th>NAMES</th><th>GENDER</th><th>DOB</th><th>ENTRY POINT</th><th>STATUS</th><th>WAITING TIME</th><th>ACTION</th></tr></thead><tbody>";
         var footer = "</tbody></table>";
 
         var dataToDisplay = [];
 
-        if (response.patientClinicianQueueList.length > 0) {
-            dataToDisplay = JSON.parse(response.patientClinicianQueueList).sort(function (a, b) {
-                return a.patientQueueId - b.patientQueueId;
+        if (response.results.length > 0) {
+            dataToDisplay = response.results.sort(function (a, b) {
+                return a.dateCreated - b.dateCreated;
             });
         }
 
@@ -150,74 +215,77 @@
         }
 
         jq.each(dataToDisplay, function (index, element) {
-                var patientQueueListElement = element;
+                var patientQueue = element;
                 var dataRowTable = "";
-                var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", element.patientId);
-                var encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patientId + "&encounterId=" + element.encounterId + "&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
-
-                var waitingTime = getWaitingTime(patientQueueListElement.dateCreated, patientQueueListElement.dateChanged);
+                var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", element.patient.uuid);
+                var encounterUrl = "";
+                if (element.encounter !== null) {
+                    encounterUrl = "/" + OPENMRS_CONTEXT_PATH + "/htmlformentryui/htmlform/editHtmlFormWithStandardUi.page?patientId=" + element.patient.uuid + "&encounterId=encounterIdToReplace&returnUrl=" + "/" + OPENMRS_CONTEXT_PATH + "/patientqueueing/providerDashboard.page";
+                }
+                var waitingTime = getWaitingTime(patientQueue.dateCreated, patientQueue.dateChanged);
                 dataRowTable += "<tr>";
-                if (patientQueueListElement.visitNumber !== null) {
-                    dataRowTable += "<td>" + patientQueueListElement.visitNumber.substring(15) + "</td>";
+                if (patientQueue.visitNumber !== null) {
+                    dataRowTable += "<td>" + patientQueue.visitNumber.substring(15) + "</td>";
                 } else {
                     dataRowTable += "<td></td>";
                 }
-                dataRowTable += "<td>" + identifierToDisplay(patientQueueListElement.patientIdentifier) + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.patientNames + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.gender + "</td>";
-                dataRowTable += "<td>" + patientQueueListElement.age + "</td>";
+                dataRowTable += "<td>" + identifierToDisplay(patientQueue.patient.identifiers) + "</td>";
+                dataRowTable += "<td>" + patientQueue.patient.names[0].display + "</td>";
+                dataRowTable += "<td>" + patientQueue.patient.gender + "</td>";
+                dataRowTable += "<td>" + jq.datepicker.formatDate('dd.M.yy', new Date(patientQueue.patient.birthdate)) + "</td>";
 
-                if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
-                    if (patientQueueListElement.priorityComment != null) {
-                        dataRowTable += "<td>" + patientQueueListElement.priorityComment + "</td>";
+
+                if (element.status === "PENDING" && element.locationFrom.display !== "Main Laboratory") {
+                    if (patientQueue.priorityComment != null) {
+                        dataRowTable += "<td>" + patientQueue.priorityComment + "</td>";
                     } else {
                         dataRowTable += "<td></td>";
                     }
                 }
 
 
-                dataRowTable += "<td>" + patientQueueListElement.locationFrom.substring(0, 3) + "</td>";
+                dataRowTable += "<td>" + patientQueue.locationFrom.display.substring(0, 3) + "</td>";
 
 
                 if (element.status === "PICKED") {
-                    if (element.providerNames != null) {
-                        dataRowTable += "<td>" + element.providerNames + "</td>";
+                    if (element.provider != null) {
+                        dataRowTable += "<td>" + element.provider.person.display + "</td>";
                     } else {
                         dataRowTable += "<td></td>";
                     }
                 }
 
-                dataRowTable += "<td>" + patientQueueListElement.status + "</td>";
+                dataRowTable += "<td>" + patientQueue.status + "</td>";
                 dataRowTable += "<td>" + waitingTime + "</td>";
                 dataRowTable += "<td>";
 
 
-                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueueListElement.status === "PENDING") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueUuid + "' data-url='" + urlToPatientDashBoard + "'></i>";
+                if ("${enablePatientQueueSelection}".trim() === "true" && patientQueue.status === "PENDING") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Capture Vitals\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-url='" + urlToPatientDashBoard + "'></i>";
                 } else {
                     dataRowTable += "<i style=\"font-size: 25px;\" class=\"icon-dashboard view-action\" title=\"Goto Patient's Dashboard\" onclick=\"location.href = '" + urlToPatientDashBoard + "'\"></i>";
                 }
 
-                if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-external-link edit-action\" title=\"Send Patient To Another Location\" data-toggle=\"modal\" data-target=\"#add_patient_to_other_queue_dialog\" data-id=\"\" data-patient-id=\"%s\"></i>".replace("%s", element.patientId);
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory" && "${enablePatientQueueSelection}".trim() === "true") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.patientQueueId + "' data-url='" + encounterUrl + "'></i>";
-                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory" && "${enablePatientQueueSelection}".trim() !== "true") {
-                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"location.href = '" + encounterUrl + "'\"></i>";
+                if (element.status === "PENDING" && element.locationFrom.display !== "Main Laboratory") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-external-link edit-action\" title=\"Send Patient To Another Location\" data-toggle=\"modal\" data-target=\"#add_patient_to_other_queue_dialog\" data-id=\"\" data-patient-id=\"%s\"></i>".replace("%s", element.patient.uuid);
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom.display === "Main Laboratory" && "${enablePatientQueueSelection}".trim() === "true") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" data-toggle=\"modal\" data-target=\"#pick_patient_queue_dialog\" data-id=\"\" data-patientqueueid='" + element.uuid + "' data-url='" + encounterUrl + "'></i>";
+                } else if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom.display === "Main Laboratory" && "${enablePatientQueueSelection}".trim() !== "true") {
+                    dataRowTable += "<i  style=\"font-size: 25px;\" class=\"icon-edit edit-action\" title=\"Edit Patient Encounter\" onclick=\"navigateToVisit('" + encounterUrl + "','" + patientQueue.patient.uuid + "','" + element.uuid + "')\"></i>";
                 }
 
                 dataRowTable += "</td></tr>";
 
-                if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom === "Main Laboratory") {
+                if ((element.status === "PENDING" || element.status === "from lab") && element.locationFrom.display === "Main Laboratory") {
                     fromLabQueue += 1;
                     fromLabDataRows += dataRowTable;
-                } else if (element.status === "PENDING" && element.locationFrom !== "Main Laboratory") {
+                } else if (element.status === "PENDING" && element.locationFrom.display !== "Main Laboratory") {
                     stillInQueue += 1;
                     stillInQueueDataRows += dataRowTable;
                 } else if (element.status === "PICKED") {
                     servingQueue += 1;
                     servingDataRows += dataRowTable;
-                } else if (element.status === "COMPLETED" && element.locationFrom !== "Main Laboratory") {
+                } else if (element.status === "COMPLETED" && element.locationFrom.display !== "Main Laboratory") {
                     completedQueue += 1;
                     completedDataRows += dataRowTable;
                 }

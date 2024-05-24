@@ -90,6 +90,7 @@ public class UgandaEMRConstants {
     public static final int ARV_MEDICATION_DURATION_CONCEPT_ID = 99036;
     public static final int MEDICATION_DURATION_UNIT_CONCEPT_ID = 1732;
     public static final int MEDICATION_FREQUENCY = 160855;
+    public static final int MEDICATION_DOSE_INSTRUCTION = 175387;
     public static final int CURRENTLY_TAKING_MEDICATION_CONCEPT_ID = 159367;
     public static final int MEDICATION_COMMENT_CONCEPT_ID = 160632;
 
@@ -175,14 +176,14 @@ public class UgandaEMRConstants {
     public static final String HIV_PROGRAM_UUID = "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741";
     public static final String HIV_DISCONTINUATION_FORM_NAME = "HIV Discontinuation";
     public static final String HIV_DISCONTINUATION_FORM_UUID ="1c7baac0-87cf-4d12-a938-81ea0d6f6448";
-    public static final String HIV_ENROLLMENT_FORM_NAME ="HIV Enrollment";
-    public static final String HIV_ENROLLMENT_FORM_UUID ="4d933e88-27fb-320e-9323-14c5d35ea1ee";
+    public static final String HIV_ENROLLMENT_FORM_NAME ="HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form";
+    public static final String HIV_ENROLLMENT_FORM_UUID ="52653a60-8300-4c13-be4d-4b746da06fee";
 
     public static final String TB_PROGRAM = "TB Program";
     public static final String TB_PROGRAM_UUID="9dc21a72-0971-11e7-8037-507b9dc4c741";
     public static final String TB_DISCONTINUATION_FORM_NAME = "TB Discontinuation";
     public static final String TB_DISCONTINUATION_FORM_UUID ="7d0dd4eb-3ff7-412c-97e4-808ac8251a83";
-    public static final String TB_ENROLLMENT_FORM_NAME ="TB Enrollment";
+    public static final String TB_ENROLLMENT_FORM_NAME ="DS TB: HMIS TB 003 - TB Client Card Enrollment Page";
     public static final String DR_TB_ENROLLMENT_FORM_UUID ="4929f668-f8d0-11ea-adc1-0242ac120002";
-    public static final String DS_TB_ENROLLMENT_FORM_UUID ="261721d5-1f2e-351b-9159-b25882a6811d";
+    public static final String DS_TB_ENROLLMENT_FORM_UUID ="b00452b6-bb7c-11ea-b3de-0242ac130004";
 }

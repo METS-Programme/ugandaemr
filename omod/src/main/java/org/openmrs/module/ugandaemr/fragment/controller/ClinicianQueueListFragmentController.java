@@ -17,6 +17,7 @@ import org.openmrs.util.OpenmrsUtil;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -31,7 +32,6 @@ public class ClinicianQueueListFragmentController {
     }
 
     public void controller(@SpringBean FragmentModel pageModel, @SpringBean("locationService") LocationService locationService,UiSessionContext uiSessionContext) {
-        List<String> list = new ArrayList();
 
         String locationUUIDS = Context.getAdministrationService()
                 .getGlobalProperty("ugandaemr.clinicianLocationUUIDS");
@@ -46,25 +46,16 @@ public class ClinicianQueueListFragmentController {
         pageModel.put("enablePatientQueueSelection", Context.getAdministrationService().getGlobalProperty("ugandaemr.enablePatientQueueSelection"));
     }
 
-    public SimpleObject getPatientQueueList(@RequestParam(value = "searchfilter", required = false) String searchfilter, UiSessionContext uiSessionContext) {
-        UgandaEMRService ugandaEMRService = Context.getService(UgandaEMRService.class);
+    public SimpleObject getEncounterId(@RequestParam(value = "patientQueueUuid", required = false) String patientQueueUuid) throws ParseException, IOException {
         PatientQueueingService patientQueueingService = Context.getService(PatientQueueingService.class);
+        PatientQueue patientQueue = patientQueueingService.getPatientQueueByUuid(patientQueueUuid);
         ObjectMapper objectMapper = new ObjectMapper();
-
-        SimpleObject simpleObject = new SimpleObject();
-
-        List<PatientQueue> patientQueueList = new ArrayList();
-        if (!searchfilter.equals("")) {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+        String encounterId = "";
+        if (patientQueue != null && patientQueue.getEncounter() != null) {
+            encounterId = objectMapper.writeValueAsString(patientQueue.getEncounter().getEncounterId());
         } else {
-            patientQueueList = patientQueueingService.getPatientQueueListBySearchParams(searchfilter, OpenmrsUtil.firstSecondOfDay(new Date()), OpenmrsUtil.getLastMomentOfDay(new Date()), uiSessionContext.getSessionLocation(), null, null);
+            encounterId = objectMapper.writeValueAsString("");
         }
-        List<PatientQueueVisitMapper> patientQueueMappers = ugandaEMRService.mapPatientQueueToMapper(patientQueueList);
-        try {
-            simpleObject.put("patientClinicianQueueList", objectMapper.writeValueAsString(patientQueueMappers));
-        } catch (IOException e) {
-            log.error(e);
-        }
-        return simpleObject;
+        return SimpleObject.create("encounterId", encounterId);
     }
 }

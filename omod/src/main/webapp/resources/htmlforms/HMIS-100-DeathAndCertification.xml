@@ -2,7 +2,7 @@
           formDescription="Death Notification and Certification"
           formEncounterType="e75c856a-9e91-4ffb-bf43-1b0450b4ff8c"
           formUuid="bb282ac8-d8b6-4d76-88b9-86da83efec41"
-          formVersion="4.0.0"
+          formVersion="1.2"
           formAddMetadata="yes"
           formUILocation="patientDashboard.visitActions"
           formOrder="12"
@@ -12,7 +12,6 @@
           formDisplayStyle="Standard"
           formLabel="Death Notification and Certification">
     <script type="text/javascript">
-        <!--          TODO: Investigate why the form only appears for alive clients and not dead-->
         if (jQuery) {
         jq(document).ready(function () {
 
@@ -59,7 +58,7 @@
 
                                                 <div class="col-md-3">
                                                     <label>Date of Death</label>
-                                                    <obs id="90272" conceptId="90272" class="horizontal"/>
+                                                    <obs id="90272" conceptId="90272" class="horizontal" allowfutureDates="false"/>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label>Time of Death</label>
@@ -77,62 +76,42 @@
                                     <div class="card">
                                         <div class="card-header">Cause of Death</div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <label>Primary Cause of Death</label>
-                                                    <obs id="175280" conceptId="175280"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Time Interval</label>
-                                                    <obs id="175284" conceptId="175284" />
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label>Duration</label>
-                                                    <obs id="1732" conceptId="1732"/>
-                                                </div>
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Disease or Condition</th>
+                                                        <th>Cause of Death</th>
+                                                        <th>Time Interval</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Disease or Condition Leading Directly to death</td>
+                                                        <td><obs id="175280" conceptId="175280"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/></td>
+                                                        <td><obs id="175284" conceptId="175284" /></td>
+                                                        <td><obs id="1732" conceptId="1732"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="2">Report Chain of Events in order</td>
+                                                        <td> <obs id="175281" conceptId="175281"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/></td>
+                                                        <td> <obs id="175285" conceptId="175285"  style="dropdown"/></td>
+                                                        <td> <obs id="1732" conceptId="1732" style="dropdown"/></td>
 
-                                                <div class="col-md-3">
-                                                    <label>Secondary Cause of Death</label>
-                                                    <obs id="175281" conceptId="175281"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Time Interval</label>
-                                                    <obs id="175285" conceptId="175285"  style="dropdown"/>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Duration</label>
-                                                    <obs id="1732" conceptId="1732" style="dropdown"/>
-                                                </div>
-
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <label>Tertiary Cause of Death</label>
-                                                    <obs id="175282" conceptId="175282"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Time Interval</label>
-                                                    <obs id="175286" conceptId="175286" />
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label>Duration</label>
-                                                    <obs id="1732" conceptId="1732"/>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <label>Other Cause of Death</label>
-                                                    <obs id="175287" conceptId="175287" answerConceptSetIds="175279" style="autocomplete"/>
-                                                </div>
-                                                <div class="col-md-1">
-                                                    <label>Time Interval</label>
-                                                    <obs id="175286" conceptId="175286" />
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <label>Duration</label>
-                                                    <obs id="1732" conceptId="1732"/>
-                                                </div>
-                                            </div>
-
-
+                                                    </tr>
+                                                    <tr>
+                                                        <td><obs id="175282" conceptId="175282"  answerConceptSetIds="175279" class="horizontal" style="autocomplete"/></td>
+                                                        <td> <obs id="175286" conceptId="175286" /></td>
+                                                        <td><obs id="1732" conceptId="1732"/></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>State the underlying Cause of death</td>
+                                                        <td><obs id="175287" conceptId="175287" answerConceptSetIds="175279" style="autocomplete"/></td>
+                                                        <td><obs id="175286" conceptId="175286" /></td>
+                                                        <td><obs id="1732" conceptId="1732"/></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -144,13 +123,11 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Surgery with 4 Weeks</label>
-<!--                                                   TODO  Create concepts for Surgery performed, date of surgery,reason for surgery(disease or condition), autopsy requested(yes,no),Finding used in the certifications(Yes, NO), -->
-<!--                                                    TODO-Manner of Death(Disease,)External Cause, Date of Injury, Placeof Occurance -->
                                                     <obs id="175263" conceptId="175263" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label>Date of Surgery</label>
-                                                    <obs id="175265" conceptId="175265" showTime="true"/>
+                                                    <obs id="175265" conceptId="175265" showTime="true" allowfutureDates="false"/>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label>Reason for Surgery</label>
@@ -214,45 +191,48 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Date of Injury</label>
-                                                <obs id="175272" conceptId="175272"/>
+                                                <obs id="175272" conceptId="175272" allowfutureDates="false"/>
                                             </div>
 
                                         </div>
 
                                     </div>
-
+                                    <includeIf velocityTest="$patient.age &lt; 1" >
                                     <div class="card">
                                         <div class="card-header">Fatal/Infant Death</div>
                                         <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Multiple Pregnancy</label>
-                                            <obs id="168059" conceptId="168059" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Still Birth</label>
-                                            <obs id="125872" conceptId="125872" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
-                                        </div>
+                                            <div class="col-md-3">
+                                                <label>Multiple Pregnancy</label>
+                                                <obs id="168059" conceptId="168059" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Still Birth</label>
+                                                <obs id="125872" conceptId="125872" answerConceptIds="90003,90004,90001" answerLabels="Yes,No,Unknown" class="horizontal" style="radio"/>
+                                            </div>
                                             <div class="col-md-3">
                                                 <label>Hours Survived</label>
                                                 <obs id="159616" conceptId="159616" />
                                             </div>
                                             <includeIf velocityTest="$patient.gender == 'F'">
-                                            <div class="col-md-3">
-                                                <label>Number of Weeks Pregnant</label>
-                                                <obs id="1279" conceptId="1279" />
-                                            </div>
+                                                <div class="col-md-3">
+                                                    <label>Number of Weeks Pregnant</label>
+                                                    <obs id="1279" conceptId="1279" />
+                                                </div>
                                             </includeIf>
                                         </div>
                                     </div>
 
-                                    <includeIf velocityTest="$patient.gender == 'F'">
+                                    </includeIf>
+
+                                    <includeIf velocityTest="$patient.gender == 'F'" >
+                                        <excludeIf velocityTest="$patient.age &lt; 10">
                                         <div class="card">
                                             <div class="card-header">Pregnancy</div>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <label>Pregnant at Death</label>
                                                     <obs id="90041" conceptId="90041" answerConceptIds="90003,90004,90001" class="horizontal"  style="radio"/>
-                                            </div>
+                                                </div>
                                                 <div class="col-md-3">
                                                     <label>Mode of Delivery</label>
                                                     <obs id="5630" conceptId="5630"  class="horizontal" />
@@ -269,14 +249,15 @@
 
                                             </div>
                                         </div>
+                                     </excludeIf>
                                     </includeIf>
                                 </div>
 
-                                </div>
                             </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </htmlform>

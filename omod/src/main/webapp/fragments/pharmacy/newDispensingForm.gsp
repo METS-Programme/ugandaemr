@@ -462,13 +462,6 @@ form input {
                                    data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].duration', value : duration }">
 
                             <input type="hidden"
-                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockItem', value : stockItemInventory[0].stockItemUuid }">
-                            <input type="hidden"
-                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].dispensingLocation', value : stockItemInventory[0].locationUuid }">
-                            <input type="hidden"
-                                   data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockQuantityUnitUuid', value : stockItemInventory[0].quantityUoMUuid }">
-
-                            <input type="hidden"
                                    data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].encounterId', value : encounterId }">
 
                             <input type="hidden"
@@ -481,7 +474,11 @@ form input {
                                     </span>
 
                                     <span data-bind="if:drug && drug.toUpperCase() !== 'WRITE COMMENT'">
-                                        <label data-bind="text: drug+' '+strength"></label>
+                                        <label data-bind="text: drug+' '+strength+' - '+frequency"></label>
+                                    </span>
+
+                                    <span data-bind="if:dosingInstructions!=null">
+                                        <label data-bind="text: 'Dose Instructions: '+dosingInstructions"></label>
                                     </span>
                                 </div>
                             </td>
@@ -510,8 +507,17 @@ form input {
 
                             <td data-bind="">
                                 <div id="data">
+                                    <span data-bind="if:stockItemInventory && stockItemInventory.length>0">
+                                        <input type="hidden"
+                                               data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockItem', value : stockItemInventory[0].stockItemUuid }">
+                                        <input type="hidden"
+                                               data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].dispensingLocation', value : stockItemInventory[0].locationUuid }">
+                                        <input type="hidden"
+                                               data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockQuantityUnitUuid', value : stockItemInventory[0].quantityUoMUuid }">
+                                    </span>
                                     <select class="prescription-text"
-                                            data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return item.batchNumber+' - '+'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
+                                                data-bind="attr : { 'name' : 'wrap.drugOrderMappers[' + \$index() + '].stockBatchNo'}, options: stockItemInventory, optionsText: function(item) { return item.batchNumber+' - '+'Expires '+item.expiryMonth+'/'+item.expiryYear+' | qty '+item.quantity+' '+item.quantityUoM}, optionsValue:function(item) { return item.stockBatchUuid},value: stockItemInventory.selectedStockItemInventory, optionsCaption: 'Choose Stock'">
+
                                 </div>
                             </td>
                             <td data-bind="">

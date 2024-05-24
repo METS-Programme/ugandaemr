@@ -574,7 +574,7 @@
                                     <obs conceptId="1271" answerConceptId="159497" answerLabel="Calcium" style="checkbox" class="col-md-2" />
                                     <obs conceptId="1271" answerConceptId="159982" answerLabel="Culture" style="checkbox" class="col-md-2" />
                                     <obs conceptId="1271" answerConceptId="90192" answerLabel="Creatinine" style="checkbox" class="col-md-2" />
-                                    <obs conceptId="1271" answerConceptId="161509" answerLabel="HCG" style="checkbox" class="col-md-2" />
+                                    <obs conceptId="1271" answerConceptId="168064" answerLabel="HCG" style="checkbox" class="col-md-2" />
                                 </div>
                                 <div class="row">
                                     <obs conceptId="1271" answerConceptId="99080" answerLabel="HIV Test" style="checkbox" class="col-md-2" />

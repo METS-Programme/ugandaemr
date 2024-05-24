@@ -90,6 +90,31 @@
         jq("#tabs").tabs();
     })
     if (jQuery) {
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchInput = document.getElementById('patient-lab-search');
+            searchInput.addEventListener('keyup', function() {
+                var tableId=jq("#myTabContent").find(".active")[0].id;
+                var dataTable = document.getElementById(''+tableId+'').getElementsByTagName('tbody')[0];
+                var filter = searchInput.value.toLowerCase();
+                var rows = dataTable.getElementsByTagName('tr');
+
+                for (var i = 0; i < rows.length; i++) {
+                    var cells = rows[i].getElementsByTagName('td');
+                    var rowText = '';
+                    for (var j = 0; j < cells.length; j++) {
+                        rowText += cells[j].textContent.toLowerCase();
+                    }
+
+                    if (rowText.indexOf(filter) > -1) {
+                        rows[i].style.display = '';
+                    } else {
+                        rows[i].style.display = 'none';
+                    }
+                }
+            });
+        });
+
         jq(document).ready(function () {
             jq(document).on('sessionLocationChanged', function () {
                 window.location.reload();
@@ -99,12 +124,6 @@
             getOrders();
             getResults();
             setSpecimenSource();
-
-            jq("#patient-lab-search").change(function () {
-                if (jq("#patient-lab-search").val().length >= 3) {
-                    getPatientLabQueue();
-                }
-            });
 
             jq("#submit-schedule").click(function () {
                 if (jq("#refer_test").is("checked") && jq("#reference_lab").val() === "") {
@@ -206,12 +225,12 @@
             })
         });
 
-        function scheduleBulkOrders(queueId) {
+        function scheduleBulkOrders(queueId,unprocessed) {
             var selectedOrders = []
             jq("#schedule-lab-orders-bulk" + queueId).find("input[type=checkbox]:checked").each(function () {
                 selectedOrders.push(getOrderByOrderUuid(jq(this).val()));
             });
-            getEditScheduleBulkTempLate(selectedOrders)
+            getEditScheduleBulkTempLate(selectedOrders,unprocessed)
         }
 
         function getOrderByOrderUuid(uuid) {
@@ -361,7 +380,7 @@
     function displayLabData(response) {
         var content = "";
         var pendingCounter = 0;
-        content = "<table><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>TEST(S) ORDERED</th></tr></thead><tbody>";
+        content = "<table id=\"test-ordered\"><thead><tr><th>VISIT ID</th><th>PATIENT NO.</th><th>NAMES</th><th>AGE</th><th>ORDER FROM</th><th>WAITING TIME</th><th>TEST(S) ORDERED</th></tr></thead><tbody>";
 
 
         var dataToDisplay = [];
@@ -416,7 +435,7 @@
     function displayLabOrderData(labQueueList, queueId, removeProccesedOrders) {
         var header = "<div id='schedule-lab-orders-bulk" + queueId + "'" + "><table><thead></thead><tbody>";
         var footer = "</tbody></table>" +
-            "<br/><button onclick='scheduleBulkOrders(" + queueId + ")' class='confirm'>Schedule Selected</button>";
+            "<br/><button onclick='scheduleBulkOrders(" + queueId + ","+noOfTests(labQueueList)+")' class='confirm'>Schedule Selected</button>";
         var orderedTestsRows = "";
         var urlToPatientDashBoard = '${ui.pageLink("coreapps","clinicianfacing/patient",[patientId: "patientIdElement"])}'.replace("patientIdElement", labQueueList.patientId);
 
@@ -456,7 +475,7 @@
         var referedTests = "";
         var workListTests = "";
 
-        var tableHeader = "<table><thead><tr><th>SAMPLE ID</th><th>PATIENT NAME</th><th>DATE</th><th>TEST</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>";
+        var tableHeader = "<table id=\"worklist-reffered-list\"><thead><tr><th>SAMPLE ID</th><th>PATIENT NAME</th><th>DATE</th><th>TEST</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>";
 
         var tableFooter = "</tbody></table>";
         var refferedCounter = 0;
@@ -518,7 +537,7 @@
 
     function displayLabOrderApproachA(labOrder) {
 
-        var displayDivHeader = "<table> <thead> <tr><th></th> <th>Patient</th><th>Orders</th> </tr> </thead> <tbody>";
+        var displayDivHeader = "<table id=\"worklist-referred-a\"> <thead> <tr><th></th> <th>Patient</th><th>Orders</th> </tr> </thead> <tbody>";
         var displayDivFooter = "</tbody></table>"
         var displayWorkListDiv = "";
         var displayReferralListDiv = "";
@@ -537,7 +556,7 @@
             var trCollapsedOpenTag = "<tr> <td colspan=\"12\" class=\"hiddenRow\"><div class=\"accordian-body collapse\" id=\"order" + index + "\">";
             var trCollapsedCloseTag = "</div></td>"
 
-            var tableHeader = "<table><thead><tr><th>SAMPLE ID</th><th>DATE</th><th>TEST</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>";
+            var tableHeader = "<table id=\"worklist-referred-ab\"><thead><tr><th>SAMPLE ID</th><th>DATE</th><th>TEST</th><th>STATUS</th><th>ACTION</th></tr></thead><tbody>";
             var tableFooter = "</tbody></table>";
 
             jq.each(patientencounter.orders, function (index, element) {

@@ -255,6 +255,41 @@
               "hide": {
                 "hideWhenExpression": "sex !== 'F'"
               }
+            },
+            {
+              "label": "CaCx Status",
+              "type": "obs",
+              "id": "cacxScreening",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5029d903-51ba-4c44-8745-e97f320739b6",
+                "answers": [
+                  {
+                    "concept": "6f3bcf5f-f113-4950-949b-2af0926b8110",
+                    "label": "No evidence of Malignancy"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT APPLICABLE"
+                  },
+                  {
+                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT ELIGIBLE"
+                  },
+                  {
+                    "concept": "e644e291-7848-456c-a7a3-197b8659cb54",
+                    "label": "Not screened for cancer"
+                  },
+                  {
+                    "concept": "66a3eee8-68c7-42bc-9f27-a866293c1e68",
+                    "label": "Suspicious of Malignancy"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             }
           ]
         },
