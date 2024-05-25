@@ -126,7 +126,7 @@
             {
               "label": "Gestation Age in Weeka",
               "type": "obs",
-              "id": "age_in_weeks",
+              "id": "ageInWeeks",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "0b995cb8-7d0d-46c0-bd1a-bd322387c870",
@@ -141,7 +141,7 @@
             {
               "label": "ANC No.",
               "type": "obs",
-              "id": "anc_no",
+              "id": "ancNo",
               "required": "true",
               "questionOptions": {
                 "rendering": "number",
@@ -163,7 +163,7 @@
             {
               "label": "Is on family planning?",
               "type": "obs",
-              "id": "on_family_planning",
+              "id": "onFamilyPlanning",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dce0a659-30ab-102d-86b0-7a5022ba4115",
@@ -228,15 +228,15 @@
                   }
                 ]
               },
-              "id": "family_planning_methods",
+              "id": "familyPlanningMethods",
               "hide": {
-                "hideWhenExpression": "isEmpty(on_family_planning) || on_family_planning != 'dcdd6c4a-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(onFamilyPlanning) || onFamilyPlanning != 'dcdd6c4a-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Intention to conceive in the next three months",
               "type": "obs",
-              "id": "conceive_next_three_months",
+              "id": "conceiveNextThreeMonths",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ede98e0d-0e04-49c6-b6bd-902ad759a084",
@@ -301,7 +301,7 @@
             {
               "label": "TB Status",
               "type": "obs",
-              "id": "tb_status",
+              "id": "tbStatus",
               "required": "true",
               "questionOptions": {
                 "rendering": "select",
@@ -365,7 +365,7 @@
             {
               "label": "TB Start Date",
               "type": "obs",
-              "id": "tb_start_date",
+              "id": "tbStartDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "dce02eca-30ab-102d-86b0-7a5022ba4115",
@@ -374,13 +374,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(tbStatus) || tbStatus !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Reg No.",
               "type": "obs",
-              "id": "reg_no",
+              "id": "regNo",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
@@ -389,13 +389,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(tbStatus) || tbStatus !== 'dcdaa6b4-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "TB Stop Date",
               "type": "obs",
-              "id": "tb_stop_date",
+              "id": "tbStopDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "ddd2adde2-30ab-102d-86b0-7a5022ba4115",
@@ -404,14 +404,14 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(tb_status) || tb_status !== '031d9b15-62d5-4f73-a374-5503f0421427'"
+                "hideWhenExpression": "isEmpty(tbStatus) || tbStatus !== '031d9b15-62d5-4f73-a374-5503f0421427'"
               }
             },
             {
               "label": "TPT Status",
               "type": "obs",
               "required": "true",
-              "id": "tpt_status",
+              "id": "tptStatus",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "37d4ac43-b3b4-4445-b63b-e3acf47c8910",
@@ -448,7 +448,7 @@
             {
               "label": "TPT Date Initiated",
               "type": "obs",
-              "id": "tpt_date_initiated",
+              "id": "tptDateInitiated",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "483939c7-79ba-4ca4-8c3e-346488c97fc7",
@@ -456,13 +456,13 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== 'dcdaaae4-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(tptStatus) || tptStatus !== 'dcdaaae4-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "TPT Date Completed",
               "type": "obs",
-              "id": "tpt_date_completed",
+              "id": "tptDateCompleted",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "813e21e7-4ccb-4fe9-aaab-3c0e40b6e356",
@@ -470,13 +470,13 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== '160035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(tptStatus) || tptStatus !== '160035AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "TPT Side Effects",
               "type": "obs",
-              "id": "tpt_side_effects",
+              "id": "tptSideEffects",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "23a6dc6e-ac16-4fa6-8029-155522548d04",
@@ -484,13 +484,13 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(tpt_status) || tpt_status !== 'dcda4d59-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(tptStatus) || tptStatus !== 'dcda4d59-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Signs and Symptoms",
               "type": "obs",
-              "id": "signs_and_symptoms",
+              "id": "signsAndSymptoms",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
@@ -587,7 +587,7 @@
             {
               "label": "Side effects of ART",
               "type": "obs",
-              "id": "side_effects_of_ART",
+              "id": "sideEffectsOfART",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dce05b7f-30ab-102d-86b0-7a5022ba4115",
@@ -665,7 +665,7 @@
               "label": "Advanced Disease Status",
               "type": "obs",
               "required": "true",
-              "id": "advanced_disease_status",
+              "id": "advancedDiseaseStatus",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "17def5f6-d6b4-444b-99ed-40eb05d2c4f8",
@@ -713,7 +713,7 @@
               "label": "WHO Clinical Stages",
               "type": "obs",
               "required": "true",
-              "id": "who_clinical_stages",
+              "id": "whoClinicalStages",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcdff274-30ab-102d-86b0-7a5022ba4115",
@@ -765,7 +765,7 @@
             {
               "label": "Hepatitis B status",
               "type": "obs",
-              "id": "hep_b_status",
+              "id": "hepBStatus",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dca16e53-30ab-102d-86b0-7a5022ba4115",
@@ -786,7 +786,7 @@
             {
               "label": "Hepatitis B Results",
               "type": "obs",
-              "id": "hep_b_results",
+              "id": "hepBResults",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dca16e53-30ab-102d-86b0-7a5022ba4115",
@@ -810,7 +810,7 @@
             {
               "label": "Syphilis Status",
               "type": "obs",
-              "id": "syphillis_status",
+              "id": "syphillisStatus",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "d8bc9915-ed4b-4df9-9458-72ca1bc2cd06",
@@ -842,7 +842,7 @@
             {
               "label": "ART Adherence",
               "type": "obs",
-              "id": "art_adherence",
+              "id": "artAdherence",
               "required": true,
               "questionOptions": {
                 "rendering": "radio",
@@ -936,7 +936,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(art_adherence) || art_adherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(artAdherence) || artAdherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -947,7 +947,7 @@
           "questions": [
             {
               "label": "Tests Ordered",
-              "id": "tests_ordered",
+              "id": "testsOrdered",
               "type": "testOrder",
               "questionOptions": {
                 "rendering": "repeating",
@@ -972,7 +972,7 @@
             {
               "label": "Indication for viral load testing",
               "type": "obs",
-              "id": "indication_vl_testing",
+              "id": "indicationVlTesting",
               "required": "true",
               "questionOptions": {
                 "rendering": "select",
@@ -1017,7 +1017,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(tests_ordered) || !tests_ordered.includes('1eb05918-f50c-4cad-a827-3c78f296a10a')"
+                "hideWhenExpression": "isEmpty(testsOrdered) || !testsOrdered.includes('1eb05918-f50c-4cad-a827-3c78f296a10a')"
               }
             }
           ]
@@ -1029,7 +1029,7 @@
             {
               "label": "Duration on Current Regimen",
               "type": "obs",
-              "id": "duration_on_current_regimen",
+              "id": "durationOnCurrentRegimen",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "171de3f4-a500-46f6-8098-8097561dfffb",
@@ -1041,7 +1041,7 @@
             {
               "label": "Duration on ART",
               "type": "obs",
-              "id": "duration_on_art",
+              "id": "durationOnArt",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "9ce522a8-cd6a-4254-babb-ebeb48b8ce2f",
@@ -1054,7 +1054,7 @@
               "label": "Patient Categorization",
               "type": "obs",
               "required": "true",
-              "id": "patient_categorization",
+              "id": "patientCategorization",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "cc183c11-0f94-4992-807c-84f33095ce37",
@@ -1132,7 +1132,7 @@
             {
               "label": "Visit Type",
               "type": "obs",
-              "id": "visit_type",
+              "id": "visitType",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",

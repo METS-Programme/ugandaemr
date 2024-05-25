@@ -49,7 +49,7 @@
           "questions": [
             {
               "label": "Tests Ordered",
-              "id": "tests_ordered",
+              "id": "testsOrdered",
               "type": "testOrder",
               "questionOptions": {
                 "rendering": "repeating",

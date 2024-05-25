@@ -232,8 +232,8 @@
             {
               "label": "Tuberculosis Treatment Phase",
               "type": "programState",
-              "id": "programStateSelect",
-              "value": "dc3fbc52-15a9-444c-99d1-65f01f9199dd",
+              "id": "tuberculosisTreatmentPhase",
+              "value": "0e2ff228-8dab-491d-9457-aaa47764ef8a",
               "questionOptions": {
                 "concept": "a8a318e8-1350-11df-a1f1-0026b9348838",
                 "answers": [
@@ -256,10 +256,10 @@
               }
             },
             {
-              "label": "TB Type",
+              "label": "TB Infection Type",
               "type": "programState",
-              "id": "programStateSelect",
-              "value": "dc3fbc52-15a9-444c-99d1-65f01f9199dd",
+              "id": "tBInfectionType",
+              "value": "673966b1-e181-4b46-a526-f7ac6954c59b",
               "questionOptions": {
                 "concept": "902691e2-2ff3-49bb-af45-6a94fe345d6f",
                 "answers": [

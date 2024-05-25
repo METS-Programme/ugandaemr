@@ -366,7 +366,7 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify",
+              "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
@@ -987,7 +987,7 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify_new_regmine",
+              "id": "otherSpecifyNewRegmine",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"

@@ -57,7 +57,7 @@
               "label": "Exposed Infant No.",
               "type": "obs",
               "required": "true",
-              "id": "exposed-infant-number",
+              "id": "exposedInfantNumber",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "872139fa-9820-4fde-87fd-f00df9ddcbd6"
@@ -68,7 +68,7 @@
               "label": "Entry Point (Clinic/Ward)",
               "type": "obs",
               "required": "true",
-              "id": "entry-point",
+              "id": "entryPoint",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
@@ -152,7 +152,7 @@
             {
               "label": "Date of NVP Start",
               "type": "obs",
-              "id": "date-of-nvp-start",
+              "id": "dateOfNvpStart",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "4d667898-fc8d-4df5-add4-1b9ca84ca7ea"
@@ -167,7 +167,7 @@
             {
               "label": "Date of CTX Start",
               "type": "obs",
-              "id": "date-of-ctx-start",
+              "id": "dateOfCtxStart",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "e4ca65ac-dc1d-485d-bdb2-b73c2f892aca"
@@ -182,7 +182,7 @@
             {
               "label": "Birth Defect ?",
               "type": "obs",
-              "id": "birth-defect",
+              "id": "birthDefect",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "f10be4c0-2ee9-4597-b52a-7f18838fd820",
@@ -202,7 +202,7 @@
             {
               "label": "Neurotube Defect ? ",
               "type": "obs",
-              "id": "neurotube_defect",
+              "id": "neurotubeDefect",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "844f40ef-7b44-4b3c-a462-d5155c4d83ed",
@@ -222,14 +222,14 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other-specify",
+              "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(neurotube_defect) || neurotube_defect !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(neurotubeDefect) || neurotubeDefect !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -241,7 +241,7 @@
             {
               "label": "Mother's Name",
               "type": "obs",
-              "id": "mother-name",
+              "id": "motherName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "137a9d5c-25cc-4a3c-98ad-328a89c6e681"
@@ -251,7 +251,7 @@
             {
               "label": "Common Name",
               "type": "obs",
-              "id": "common-name",
+              "id": "commonName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "71828cbc-c13c-43a1-9cbe-f3eaf164019a"
@@ -261,7 +261,7 @@
             {
               "label": "Telephone No.",
               "type": "obs",
-              "id": "telephone-no",
+              "id": "telephoneNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "4a90b605-6d4a-4abe-a6c6-53199da7da18"
@@ -291,7 +291,7 @@
             {
               "label": "Sub County",
               "type": "obs",
-              "id": "sub-county",
+              "id": "subCounty",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "50c26305-8cc6-4bd0-ba82-2cda06a21eab"
@@ -321,7 +321,7 @@
             {
               "label": "LC1 Zone",
               "type": "obs",
-              "id": "lc-1-zone",
+              "id": "lc1Zone",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "cb806624-2e43-4922-a6f6-2c65ce4f99e8"
@@ -331,7 +331,7 @@
             {
               "label": "LC1 Chairman",
               "type": "obs",
-              "id": "lc-1-chairman",
+              "id": "lc1Chairman",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "2fac4cb7-9207-44fb-b214-973a9e379dce"
@@ -341,7 +341,7 @@
             {
               "label": "How should outreach workers introduce themselves?",
               "type": "obs",
-              "id": "outreach_intorduce",
+              "id": "outreachIntorduce",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "07f92ca9-d64d-407d-a429-04a6d35956e9"
@@ -351,7 +351,7 @@
             {
               "label": "Directions to caregiver's home address",
               "type": "obs",
-              "id": "caregiver_direction_to_home",
+              "id": "caregiverDirectionToHome",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "78ed9223-4ec3-4cb2-971a-823a47c64b86"
@@ -361,7 +361,7 @@
             {
               "label": "Alternate Contact Person",
               "type": "obs",
-              "id": "alternate_contact_person",
+              "id": "alternateContactPerson",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "ca148ffe-134c-46b0-8e85-b08d67f0b62c"
@@ -437,7 +437,7 @@
             {
               "label": "Has this person been disclosed to?",
               "type": "obs",
-              "id": "person_disclosed_to",
+              "id": "personDisclosedTo",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
@@ -463,7 +463,7 @@
             {
               "label": "Place of Delivery",
               "type": "obs",
-              "id": "place_of_delivery",
+              "id": "placeOfDelivery",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "fdca545d-edc8-49d5-ae65-8140330c948d"
@@ -473,7 +473,7 @@
             {
               "label": " Mode of Delivery",
               "type": "obs",
-              "id": "mode_of_delivery",
+              "id": "modeOfDelivery",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
@@ -512,7 +512,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(mode_of_delivery) || mode_of_delivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(modeOfDelivery) || modeOfDelivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
