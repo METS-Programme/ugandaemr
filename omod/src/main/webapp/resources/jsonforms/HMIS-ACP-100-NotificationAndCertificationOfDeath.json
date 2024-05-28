@@ -1,0 +1,474 @@
+{
+  "encounterType": "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c",
+  "name": "HMIS FORM 100: Notification and Certification of Death",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "uuid": "bb282ac8-d8b6-4d76-88b9-86da83efec41",
+  "version": "1.0",
+  "pages": [
+    {
+      "label": "HMIS FORM 100: Notification and Certification of Death",
+      "sections": [
+        {
+          "label": "Frame A: Medical Data: Part 1 and 2",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Review",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Place of Death",
+              "type": "obs",
+              "required": false,
+              "id": "placeOfDeath",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5b3f4b6e-a7e2-11ed-afa1-0242ac120002"
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Death",
+              "type": "obs",
+              "required": false,
+              "id": "dateOfDeath",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dce14bd7-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "Time of Death",
+              "type": "obs",
+              "required": false,
+              "id": "timeOfDeath",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "51931527-8764-4245-b4c5-0bf5e763a617"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Cause of Death",
+          "isExpanded": "true",
+          "questions": []
+        },
+        {
+          "label": "Frame B: Other Medical Data",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Surgery with 4 Weeks",
+              "type": "obs",
+              "required": false,
+              "id": "surgeryWith4Weeks",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5ec66b1d-2bba-4399-947a-6f5e666dd92c",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Surgery",
+              "type": "obs",
+              "required": false,
+              "id": "dateOfSurgery",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "c192e637-ea27-4a28-9e2f-2f2d690738cc"
+              },
+              "validators": []
+            },
+            {
+              "label": "Reason for Surgery",
+              "type": "obs",
+              "required": false,
+              "id": "reasonForSurgery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "156dab9a-9864-4639-92be-d270daf8d2e8",
+                "answers": [
+                  {
+                    "concept": "db6dc4d4-432d-44e0-a4c1-0b414d3cc639",
+                    "label": "Disease"
+                  },
+                  {
+                    "concept": "55f0b3dd-1aa9-4fd9-92e3-b376e5b304b1",
+                    "label": "Health Condition"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Autopsy Requested",
+              "type": "obs",
+              "required": false,
+              "id": "autopsyRequested",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b8f3624a-0eb9-4697-9fa8-bd849e9dc62c",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Results Used in Certification",
+              "type": "obs",
+              "required": false,
+              "id": "resultsUsedInCertification",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8c9c2dae-4fc0-4281-bcb7-1942f935b062",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Frame C: Manner of Death",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Manner of Death",
+              "type": "obs",
+              "required": false,
+              "id": "mannerOfDeath",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "96c0e2ba-0aa4-461c-8a92-c1577c5e51ee",
+                "answers": [
+                  {
+                    "concept": "db6dc4d4-432d-44e0-a4c1-0b414d3cc639",
+                    "label": "Disease"
+                  },
+                  {
+                    "concept": "dc68e03a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Assault"
+                  },
+                  {
+                    "concept": "46d2a442-6249-455e-a278-4df8cd8a6a8e",
+                    "label": "Accident"
+                  },
+                  {
+                    "concept": "4dd97db0-4714-11ee-be56-0242ac120002",
+                    "label": "Legal Intervention"
+                  },
+                  {
+                    "concept": "a88e9552-8746-4dce-8190-0b179f008186",
+                    "label": "Pending Investigation"
+                  },
+                  {
+                    "concept": "de3a9f71-add2-4cee-80e0-5b2322528cdd",
+                    "label": "Intentional Self Harm"
+                  },
+                  {
+                    "concept": "54ab3e77-97fa-4ae9-ac0d-60d92892fc60",
+                    "label": "War"
+                  },
+                  {
+                    "concept": "dc659b57-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Poison / External Causes"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Could not be determined / Unknown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Injury",
+              "type": "obs",
+              "required": false,
+              "id": "dateOfInjury",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "501e5438-27fa-4d47-98f6-5726e0705819"
+              },
+              "validators": []
+            },
+            {
+              "label": "Place of Occurance",
+              "type": "obs",
+              "required": false,
+              "id": "placeOfOccurance",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5fd01982-3d71-4b30-8c5e-b82109001c2b",
+                "answers": [
+                  {
+                    "concept": "51407370-b2c0-11ed-afa1-0242ac120002",
+                    "label": "At home"
+                  },
+                  {
+                    "concept": "b0c9380a-1a97-4bd1-9a6c-b047ae62ec24",
+                    "label": "Residential Institution"
+                  },
+                  {
+                    "concept": "159928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "School, other institution, public administrative area"
+                  },
+                  {
+                    "concept": "14cc61a5-9e66-452c-a811-7d6bb4ef937e",
+                    "label": "Sports and Athletics area"
+                  },
+                  {
+                    "concept": "6951432b-8dfe-43cb-a519-afe0c73f8d90",
+                    "label": "Street and Highway"
+                  },
+                  {
+                    "concept": "d0486d1d-307a-4437-aeb1-01d5fafac69a",
+                    "label": "Trade and Service area"
+                  },
+                  {
+                    "concept": "b0b67581-8665-4b6a-ad31-f7c0c3fd940f",
+                    "label": "Industrial and Construction Area"
+                  },
+                  {
+                    "concept": "cf44737f-62ac-48d9-975f-adc06ffe9bfe",
+                    "label": "Farm"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Fetal / Infant Death",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Multiple Pregnancy",
+              "type": "obs",
+              "required": false,
+              "id": "multiplePregnancy",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5b40e62c-a7e2-11ed-afa1-0242ac120002",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Still Birth",
+              "type": "obs",
+              "required": false,
+              "id": "stillBirth",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "125872AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "1067AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hours Survived",
+              "type": "obs",
+              "required": false,
+              "id": "hoursSurvived",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "disallowDecimals": true
+              },
+              "validators": []
+            },
+            {
+              "label": "Number of Weeks Pregnant",
+              "type": "obs",
+              "required": false,
+              "id": "numberOfWeeksPregnant",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dca0a383-30ab-102d-86b0-7a5022ba4115",
+                "disallowDecimals": true
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Pregnancy",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Pregnant at Death",
+              "type": "obs",
+              "required": false,
+              "id": "pregnantAtDeath",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Mode of Delivery",
+              "type": "obs",
+              "required": false,
+              "id": "modeOfDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dc9aee12-30ab-102d-86b0-7a5022ba4115",
+                    "label": "SVD"
+                  },
+                  {
+                    "concept": "510c9c4b-9f8c-4f90-aeb0-3d83cb899fa2",
+                    "label": "Assisted"
+                  },
+                  {
+                    "concept": "dc9af278-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Caesarean"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Place of Delivery",
+              "type": "obs",
+              "required": false,
+              "id": "placeOfDelivery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4995ff16-0086-4994-b622-f8d775a2a902",
+                "answers": [
+                  {
+                    "concept": "1d05f776-a0d5-4932-99d6-ff657a638e35",
+                    "label": "Facility Based"
+                  },
+                  {
+                    "concept": "1ca0db4a-c5c6-48ed-9e17-84905f4487eb",
+                    "label": "Community"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Delivered By Skilled Attendant",
+              "type": "obs",
+              "required": false,
+              "id": "deliveredBySkilledAttendant",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "607cdd69-162a-43d4-894d-ffa85a62852e",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "description": "Notification and Certification of Death"
+}
