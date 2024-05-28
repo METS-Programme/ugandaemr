@@ -382,7 +382,7 @@
               "type": "obs",
               "id": "regNo",
               "questionOptions": {
-                "rendering": "number",
+                "rendering": "text",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
                 "conceptMappings": [],
                 "answers": []
@@ -398,7 +398,7 @@
               "id": "tbStopDate",
               "questionOptions": {
                 "rendering": "date",
-                "concept": "ddd2adde2-30ab-102d-86b0-7a5022ba4115",
+                "concept": "dd2adde2-30ab-102d-86b0-7a5022ba4115",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -677,7 +677,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dd552fe1-6701-4099-a032-bbb3fcb086dc",
+                    "concept": "bd552fe1-6701-4099-a032-bbb3fcb086dc",
                     "label": "2 - Suspected Adv. Disease",
                     "conceptMappings": []
                   },
@@ -867,7 +867,7 @@
             {
               "label": "Why Poor/Fair Adherence",
               "type": "obs",
-              "id": "why_poor_fair",
+              "id": "whyPoorFair",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "dce045a4-30ab-102d-86b0-7a5022ba4115",
@@ -1100,7 +1100,7 @@
                     "label": "CDDP - Community Drug Distribution Point"
                   }
                 ],
-                "rendering": "fixed-value",
+                "rendering": "select",
                 "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
                 "workflowUuid": "b8d44412-9d8a-422f-8952-7fe15997f8b6"
               }

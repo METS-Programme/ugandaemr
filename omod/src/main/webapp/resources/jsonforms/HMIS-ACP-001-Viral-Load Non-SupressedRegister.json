@@ -132,7 +132,7 @@
               "required": "true",
               "id": "vlResultsAtInitiation",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
                 "answers": []
               }
@@ -173,7 +173,7 @@
               "type": "obs",
               "id": "cd4TestResult",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115"
               },
               "validators": []
@@ -369,7 +369,7 @@
               "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
               },
               "validators": [],
               "hide": {

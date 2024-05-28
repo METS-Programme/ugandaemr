@@ -263,10 +263,10 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify",
+              "id": "immunisationCodesOtherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "d87dae7a-22bc-4f68-83cd-fee1d3b1664b"
               },
               "validators": [],
               "hide": {
@@ -404,62 +404,6 @@
                 ]
               },
               "validators": []
-            },
-            {
-              "label": "MUAC (cm)",
-              "type": "obs",
-              "id": "muac",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED CT",
-                    "value": "284473002"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "1343"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "1290"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1343"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "MUAC Code",
-              "type": "obs",
-              "id": "muacCode",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "d257300b-6aa4-483a-8ab2-acdf13b844e0",
-                "answers": [
-                  {
-                    "concept": "8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3",
-                    "label": "Green >=12.5cm and Oedema Absent"
-                  },
-                  {
-                    "concept": "a3b1734c-4743-4b9d-8e71-08d0459d29b9",
-                    "label": "Yellow 11.5 -<12.5cm and Oedema Absent"
-                  },
-                  {
-                    "concept": "de330d01-5586-4eed-a645-e04b6bd13701",
-                    "label": "Red <11.5cm and/or Oedema Present"
-                  }
-                ]
-              },
-              "validators": []
             }
           ]
         },
@@ -541,7 +485,7 @@
               "id": "otherSpecifyAsses",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "4726ecef-06c4-476c-9ee8-42cd7c7b43a0"
               },
               "validators": [],
               "hide": {
@@ -607,7 +551,7 @@
               "type": "obs",
               "id": "headCircumference",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "5314AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -853,10 +797,10 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "otherSpecifyMed",
+              "id": "otherMedicationSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "b04eaf95-77c9-456a-99fb-f668f58a9386"
               },
               "validators": [],
               "hide": {

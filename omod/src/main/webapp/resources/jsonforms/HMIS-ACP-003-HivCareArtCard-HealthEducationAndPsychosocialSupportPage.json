@@ -380,10 +380,6 @@
                     "label": "NUTRITION COUNSELLING ONLY >2YRS"
                   },
                   {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
-                  },
-                  {
                     "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
                     "label": "PMTCT"
                   },
@@ -394,6 +390,10 @@
                   {
                     "concept": "cc43847c-ee85-4cf7-8dd1-4a6d70f0fa0f",
                     "label": "STI screening and treatment"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
                   }
                 ]
               },
@@ -405,7 +405,7 @@
               "id": "otherPhdp",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "ccaba007-ea6c-4dae-a3b0-07118ddf5008",
                 "conceptMappings": [
                   {
                     "relationship": "SAME-AS",
@@ -447,7 +447,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(PHDPComponents) || PHDPComponents !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "!includes('PHDPComponents','dcd68a88-30ab-102d-86b0-7a5022ba4115')"
               }
             },
             {
