@@ -1151,6 +1151,23 @@
               }
             }
           ]
+        },
+        {
+          "label": "Return Visit Date",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Return date",
+              "type": "obs",
+              "required": "true",
+              "id": "returnDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "dcac04cf-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            }
+          ]
         }
       ]
     }

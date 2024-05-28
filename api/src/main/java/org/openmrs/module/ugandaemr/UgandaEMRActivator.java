@@ -105,7 +105,6 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
             appFrameworkService.disableApp("coreapps.obsGraph");
             appFrameworkService.enableApp("coreapps.visitByEncounterType");
             appFrameworkService.disableApp("coreapps.dataIntegrityViolations");
-            appFrameworkService.disableApp("coreapps.conditionlist");
             appFrameworkService.disableApp("fingerprint.findPatient");
             appFrameworkService.enableApp("ugandaemr.findPatient");
             appFrameworkService.disableApp("ugandaemr.registrationapp.registerPatient");
