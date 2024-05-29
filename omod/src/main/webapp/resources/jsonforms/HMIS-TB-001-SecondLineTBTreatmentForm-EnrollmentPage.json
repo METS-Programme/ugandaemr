@@ -6,7 +6,7 @@
   "encounterType": "0271ee3d-f274-49d1-b376-c842f075413f",
   "uuid": "4929f668-f8d0-11ea-adc1-0242ac120002",
   "processor": "EncounterFormProcessor",
-  "published": false,
+  "published": true,
   "retired": false,
   "meta": {
     "programs": {
@@ -24,12 +24,16 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date:",
+              "label": "Date Initial Home Assessment Completed",
               "type": "encounterDatetime",
+              "required": false,
+              "id": "dateInitialHomeAssessmentCompleted",
               "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
+                "rendering": "date",
+                "concept": "a412bf0d-5683-4a18-a248-004021abd726",
+                "conceptMappings": [],
+                "answers": []
+              }
             },
             {
               "label": "Provider:",
@@ -59,7 +63,6 @@
               "questionInfo": "",
               "required": "true",
               "id": "districtRegNum",
-              "default": "",
               "questionOptions": {
                 "rendering": "text",
                 "identifierType": "357e7a13-3832-47db-92cc-8ea416400158"
@@ -68,7 +71,7 @@
             {
               "label": "Unit TB No.",
               "type": "obs",
-              "id": "unit-tb-no",
+              "id": "unitTbNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
@@ -79,7 +82,7 @@
             {
               "label": "DR TB No.",
               "type": "obs",
-              "id": "dr-tb-no",
+              "id": "drTbNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "2c64410a-9f08-4b4f-9d00-23105e8730d4",
@@ -91,7 +94,7 @@
             {
               "label": "Treatment Initiation Facility",
               "type": "obs",
-              "id": "treatment-initiation-facility",
+              "id": "treatmentInitiationFacility",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "5e448a73-c9ef-41f2-8eee-2605eb75281b",
@@ -112,13 +115,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(treatment-initiation-facility)"
+                "hideWhenExpression": "isEmpty(treatmentInitiationFacility)"
               }
             },
             {
               "label": "Date Transferred to this Facility",
               "type": "encounterDatetime",
-              "id": "date-transferred-to-this-facility",
+              "id": "dateTransferredToThisFacility",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "981368b7-dbb4-4c3f-a62a-28ad16bf1b24",
@@ -149,7 +152,7 @@
             {
               "label": "Risk Group",
               "type": "obs",
-              "id": "risk-group",
+              "id": "riskGroup",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
@@ -220,7 +223,7 @@
             {
               "label": "Treatment Supporter Name",
               "type": "obs",
-              "id": "treatment-supporter-name",
+              "id": "treatmentSupporterName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "23e28311-3c17-4137-8eee-69860621b80b",
@@ -232,7 +235,7 @@
             {
               "label": "Supporter Phone Number",
               "type": "obs",
-              "id": "support-phone-number",
+              "id": "supportPhoneNumber",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "c2043e62-9bda-4ede-bc7a-3a9837f874ed",
@@ -256,7 +259,7 @@
             {
               "label": "Sub County",
               "type": "obs",
-              "id": "sub-county",
+              "id": "subCounty",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "3ded9ae0-0c07-4ce9-91b3-2e9c3b6b885a",
@@ -303,7 +306,7 @@
             {
               "label": "Treatment Start Date",
               "type": "obs",
-              "id": "treatment-start-date",
+              "id": "treatmentStartDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "ff20a5bb-de72-4617-9fda-546af283d23d",
@@ -320,7 +323,7 @@
             {
               "label": "Date of Prior TB Registration",
               "type": "obs",
-              "id": "date-of-prior-tb-registration",
+              "id": "dateOfPriorTbRegistration",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "49beab96-4bc3-48b8-b014-5ef82bf89a9e",
@@ -337,7 +340,7 @@
             {
               "label": "Reason for 2nd Line Treatment",
               "type": "obs",
-              "id": "reason-for-2nd-line-treatment",
+              "id": "reasonFor2ndLineTreatment",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "be45bb4a-eaf3-4727-9358-a3e5bc3924cb",
@@ -358,7 +361,7 @@
             {
               "label": "Transfer In",
               "type": "obs",
-              "id": "transfer-in",
+              "id": "transferIn",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ea730d69-7eec-486a-aaf2-54f8bab5a44c",
@@ -379,7 +382,7 @@
             {
               "label": "Health Center Name",
               "type": "obs",
-              "id": "health-center-name",
+              "id": "healthCenterName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "88e07e7c-f7e4-4ccf-8068-b770a3e3957b",
@@ -388,7 +391,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "transfer-in !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "transferIn !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -400,7 +403,7 @@
             {
               "label": "Registration Group",
               "type": "obs",
-              "id": "registration-group",
+              "id": "registrationGroup",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
@@ -436,7 +439,7 @@
             {
               "label": "Known MDR-TB Contact",
               "type": "obs",
-              "id": "known-mdr-tb-contact",
+              "id": "knownMdrTbContact",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2bc17884-ab3e-46c6-8c19-cff7bb261c4e",
@@ -457,7 +460,7 @@
             {
               "label": "Patient Name",
               "type": "obs",
-              "id": "patient-name",
+              "id": "patientName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "07a9ce66-3827-48e5-a3f1-c0bfc42c6176",
@@ -466,13 +469,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "known-mdr-tb-contact !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "knownMdrTbContact !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Date Initial Home Assessment Completed",
               "type": "encounterDatetime",
-              "id": "date-initial-home-assessment-completed",
+              "id": "dateInitialHomeAssessmentCompleted",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "a412bf0d-5683-4a18-a248-004021abd726",
@@ -485,6 +488,28 @@
                   "allowFutureDates": "false"
                 }
               ]
+            },
+            {
+              "label": "TB Infection Type",
+              "type": "programState",
+              "id": "tBInfectionType",
+              "value": "673966b1-e181-4b46-a526-f7ac6954c59b",
+              "questionOptions": {
+                "concept": "902691e2-2ff3-49bb-af45-6a94fe345d6f",
+                "answers": [
+                  {
+                    "value": "dc3fbc52-15a9-444c-99d1-65f01f9199dd",
+                    "label": "DS TB"
+                  },
+                  {
+                    "value": "673966b1-e181-4b46-a526-f7ac6954c59b",
+                    "label": "DR TB"
+                  }
+                ],
+                "rendering": "fixed-value",
+                "programUuid": "9dc21a72-0971-11e7-8037-507b9dc4c741",
+                "workflowUuid": "d6e3ed60-ffc7-4108-ab07-706d7b542d99"
+              }
             }
           ]
         }

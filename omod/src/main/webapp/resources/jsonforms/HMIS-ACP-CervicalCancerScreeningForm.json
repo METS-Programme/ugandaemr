@@ -36,7 +36,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended"
+                "rendering": "date"
               },
               "id": "encDate"
             },
@@ -98,11 +98,59 @@
             },
             {
               "label": "Entry Point:",
-              "type": "encounterLocation",
+              "type": "obs",
+              "id": "entryPoint",
               "questionOptions": {
-                "rendering": "ui-select-extended"
+                "rendering": "select",
+                "concept": "164993AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "OPD"
+                  },
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic"
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic"
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ostnatal Clinic"
+                  },
+                  {
+                    "concept": "f0d12a70-04a3-4f7f-992b-bed4ad331908",
+                    "label": "Mother Baby Care Point"
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Family Planning Clinic"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI Clinic"
+                  },
+                  {
+                    "concept": "5ec36701-7870-40b5-82bf-30841beefbdb",
+                    "label": "Cancer Unit"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "In patient ward"
+                  },
+                  {
+                    "concept": "7b082783-658c-4867-a650-ba5bdfa65d53",
+                    "label": "Community/Outreach"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
               },
-              "id": "encLocation"
+              "validators": []
             }
           ]
         },

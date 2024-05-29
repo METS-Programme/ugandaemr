@@ -27,7 +27,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended"
+                "rendering": "date"
               },
               "id": "encDate"
             },
@@ -57,7 +57,7 @@
               "label": "Enrollment into HIV Care Transfer in from",
               "type": "obs",
               "required": "true",
-              "id": "hiv-care-transfer-in-from",
+              "id": "hivCareTransferInFrom",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "31c5c7aa-4948-473e-890b-67fe2fbbd71a",
@@ -74,7 +74,7 @@
             {
               "label": "Date verification HIV test",
               "type": "obs",
-              "id": "hiv-test-date",
+              "id": "hivTestDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "cbbc0bfc-a7e2-11ed-afa1-0242ac120002",
@@ -91,7 +91,7 @@
             {
               "label": "Test type",
               "type": "obs",
-              "id": "test-type",
+              "id": "testType",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "ddcd8aad-9085-4a88-a411-f19521be4785",
@@ -112,7 +112,7 @@
             {
               "label": "Where",
               "type": "obs",
-              "id": "txt-where",
+              "id": "txtWhere",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "89d3ee61-7c74-4537-b199-4026bd6a3f67",
@@ -125,7 +125,7 @@
               "label": "Care Entry Point",
               "type": "obs",
               "required": "true",
-              "id": "care-entry-point",
+              "id": "careEntryPoint",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
@@ -222,7 +222,7 @@
             {
               "label": "Special Categories",
               "type": "obs",
-              "id": "special-categories",
+              "id": "specialCategories",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
@@ -298,7 +298,7 @@
               "type": "patientIdentifier",
               "label": "Pt Clinic #",
               "questionInfo": "",
-              "id": "art-number",
+              "id": "arrNumber",
               "default": "",
               "required": "true",
               "questionOptions": {
@@ -310,7 +310,7 @@
               "label": "At Start ART",
               "type": "obs",
               "required": "true",
-              "id": "art-start-date",
+              "id": "artStartDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "ab505422-26d9-41f1-a079-c3d222000440",
@@ -327,7 +327,7 @@
             {
               "label": "Start ART 1st Line Initial Regimen",
               "type": "obs",
-              "id": "initial-regimen",
+              "id": "initialRegimen",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c3332e8d-2548-4ad6-931d-6855692694a3",
@@ -447,7 +447,7 @@
               "label": "WHO Clinical Stage",
               "type": "obs",
               "required": "true",
-              "id": "who-clinical-stage",
+              "id": "whoClinicalStage",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "39243cef-b375-44b1-9e79-cbf21bd10878",
@@ -598,7 +598,7 @@
             {
               "label": "Duration in Months",
               "type": "obs",
-              "id": "duration-in-months",
+              "id": "durationInMonths",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "0b5fa454-0757-4f6d-b376-fefd60ae42ba",
@@ -649,7 +649,7 @@
             {
               "label": "Duration in Months",
               "type": "obs",
-              "id": "duration-in-months",
+              "id": "durationInMonths",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "d11d4ad1-4aa2-4f90-8f2c-83f52155f0fc",
@@ -659,6 +659,40 @@
               "validators": [],
               "hide": {
                 "hideWhenExpression": "isEmpty(prepChecked) || !arrayContains(['dcd695dc-30ab-102d-86b0-7a5022ba4115'], prepChecked)"
+              }
+            },
+            {
+              "label": "Approach",
+              "type": "programState",
+              "id": "dsdmApproach",
+              "value": "4eae684a-ee1f-4f62-87f3-e3e58c91f417",
+              "questionOptions": {
+                "concept": "73312fee-c321-11e8-a355-529269fb1459",
+                "answers": [
+                  {
+                    "value": "4eae684a-ee1f-4f62-87f3-e3e58c91f417",
+                    "label": "FBIM - Facility Based Individual Management"
+                  },
+                  {
+                    "value": "6b4906b1-388c-4984-974a-81e6f86f7737",
+                    "label": "FBG - Facility Based Group"
+                  },
+                  {
+                    "value": "5e122a20-3e23-4e65-bb1b-9f1324f97396",
+                    "label": "FTDR - Fast-Track Drug Refills"
+                  },
+                  {
+                    "value": "0ca3db87-567f-4159-acc0-0ec14d0b8036",
+                    "label": "CCLAD - Community Client-Led ART Delivery"
+                  },
+                  {
+                    "value": "7e2acb9c-25e9-4b8f-b012-8436051d5c32",
+                    "label": "CDDP - Community Drug Distribution Point"
+                  }
+                ],
+                "rendering": "select",
+                "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
+                "workflowUuid": "b8d44412-9d8a-422f-8952-7fe15997f8b6"
               }
             }
           ]

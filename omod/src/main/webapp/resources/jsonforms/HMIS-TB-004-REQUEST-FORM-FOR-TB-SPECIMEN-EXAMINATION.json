@@ -20,7 +20,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended",
+                "rendering": "date",
                 "allowFutureDates": "false"
               },
               "id": "encDate"
@@ -48,7 +48,7 @@
           "isExpanded": "true",
           "questions": [
             {
-              "id": "type_of_patient",
+              "id": "typeOfPatient",
               "label": "Type of Patient",
               "type": "obs",
               "questionOptions": {
@@ -126,7 +126,7 @@
               "label": "Special Categories",
               "type": "obs",
               "required": false,
-              "id": "special-categories",
+              "id": "specialCategories",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
@@ -169,7 +169,7 @@
               "validators": []
             },
             {
-              "id": "reason_examination",
+              "id": "reasonExamination",
               "label": "Reason for Examination",
               "type": "obs",
               "questionOptions": {

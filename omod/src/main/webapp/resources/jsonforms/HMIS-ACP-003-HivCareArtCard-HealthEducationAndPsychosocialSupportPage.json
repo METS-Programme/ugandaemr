@@ -20,7 +20,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended"
+                "rendering": "date"
               },
               "id": "encDate"
             },
@@ -78,7 +78,7 @@
             {
               "label": "PSS Issues Identified",
               "type": "obs",
-              "id": "pss_issues_identified",
+              "id": "pssIssuesIdentified",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8",
@@ -151,7 +151,7 @@
             {
               "label": "ART Preparation, Readiness, Adherence and Support",
               "type": "obs",
-              "id": "preparation_support",
+              "id": "preparationSupport",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "47502ce3-fc55-41e6-a61c-54a4404dd0e1",
@@ -188,7 +188,7 @@
             {
               "label": "Depression Status",
               "type": "obs",
-              "id": "depression_status",
+              "id": "depressionStatus",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "fe9a6bfc-b0db-4bf3-bab6-a8800dd93ded",
@@ -246,7 +246,7 @@
             {
               "label": "Disclosed Relationship",
               "type": "obs",
-              "id": "disclosed_relationship",
+              "id": "disclosedRelationship",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
@@ -267,7 +267,7 @@
             {
               "label": "OVC Screening",
               "type": "obs",
-              "id": "ovc_screening",
+              "id": "ovcScreening",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c2f9c9f3-3e46-456c-9f17-7bb23c473f1b",
@@ -312,7 +312,7 @@
             {
               "label": "OVC Assessment",
               "type": "obs",
-              "id": "ovc_assessment",
+              "id": "ovcAssessment",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "cb07b087-effb-4679-9e1c-5bcc506b5599",
@@ -345,7 +345,7 @@
             {
               "label": "PHDP Components",
               "type": "obs",
-              "id": "PHDP_components",
+              "id": "PHDPComponents",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "d788b8df-f25d-49e7-b946-bf5fe2d9407c",
@@ -380,10 +380,6 @@
                     "label": "NUTRITION COUNSELLING ONLY >2YRS"
                   },
                   {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
-                  },
-                  {
                     "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
                     "label": "PMTCT"
                   },
@@ -394,6 +390,10 @@
                   {
                     "concept": "cc43847c-ee85-4cf7-8dd1-4a6d70f0fa0f",
                     "label": "STI screening and treatment"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
                   }
                 ]
               },
@@ -402,10 +402,10 @@
             {
               "label": "Other PHDP",
               "type": "obs",
-              "id": "other_phdp",
+              "id": "otherPhdp",
               "questionOptions": {
                 "rendering": "textarea",
-                "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "ccaba007-ea6c-4dae-a3b0-07118ddf5008",
                 "conceptMappings": [
                   {
                     "relationship": "SAME-AS",
@@ -447,13 +447,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(PHDP_components) || PHDP_components !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "!includes('PHDPComponents','dcd68a88-30ab-102d-86b0-7a5022ba4115')"
               }
             },
             {
               "label": "Intervation Approaches",
               "type": "obs",
-              "id": "intervation_approaches",
+              "id": "intervationApproaches",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "eb7c1c34-59e5-46d5-beba-626694badd54",
@@ -486,7 +486,7 @@
             {
               "label": "Linkages and Referrals",
               "type": "obs",
-              "id": "linkages_and_referrals",
+              "id": "linkagesAndReferrals",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "325e4270-8b1f-447e-a591-b3daf13acea3",
@@ -550,13 +550,13 @@
             {
               "label": "Other Linkages and Referrals",
               "type": "obs",
-              "id": "other_linkages_and_referrals",
+              "id": "otherLinkagesAndReferrals",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "609193dc-ea2a-4746-9074-675661c025d0"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(linkages_and_referrals) || linkages_and_referrals !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(linkagesAndReferrals) || linkagesAndReferrals !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {

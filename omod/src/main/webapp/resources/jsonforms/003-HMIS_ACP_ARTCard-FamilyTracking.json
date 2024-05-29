@@ -20,7 +20,7 @@
               "label": "Date:",
               "type": "encounterDatetime",
               "questionOptions": {
-                "rendering": "ui-select-extended",
+                "rendering": "date",
                 "allowFutureDates": "false"
               },
               "id": "encDate"
@@ -51,7 +51,7 @@
               "label": "Family History",
               "type": "obsGroup",
               "questionOptions": {
-                "concept": "160593AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "8452e0ac-a83a-428e-bfda-21cb39eef79f",
                 "rendering": "repeating"
               },
               "questions": [
