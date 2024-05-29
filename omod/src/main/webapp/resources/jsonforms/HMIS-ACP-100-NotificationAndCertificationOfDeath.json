@@ -1,25 +1,28 @@
 {
   "encounterType": "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c",
-  "name": "HMIS FORM 100: Notification and Certification of Death",
+  "name": "HMIS 100: Notification and Certification of Cause of Death",
   "processor": "EncounterFormProcessor",
   "referencedForms": [],
   "uuid": "bb282ac8-d8b6-4d76-88b9-86da83efec41",
-  "version": "1.0",
+  "version": "4.0.0",
   "pages": [
     {
-      "label": "HMIS FORM 100: Notification and Certification of Death",
+      "label": "HMIS FORM 100: Notification and Certification of Cause of Death",
       "sections": [
         {
-          "label": "Frame A: Medical Data: Part 1 and 2",
+          "label": "Notification of Death",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date of Review",
+              "label": "Date of Notification",
               "type": "encounterDatetime",
+              "required": false,
+              "id": "dateOfNotification",
+              "datePickerType": "calendar",
               "questionOptions": {
-                "rendering": "ui-select-extended"
+                "rendering": "date"
               },
-              "id": "encDate"
+              "validators": []
             },
             {
               "label": "Place of Death",
@@ -53,131 +56,7 @@
                 "concept": "51931527-8764-4245-b4c5-0bf5e763a617"
               },
               "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Cause of Death",
-          "isExpanded": "true",
-          "questions": []
-        },
-        {
-          "label": "Frame B: Other Medical Data",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Surgery with 4 Weeks",
-              "type": "obs",
-              "required": false,
-              "id": "surgeryWith4Weeks",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "5ec66b1d-2bba-4399-947a-6f5e666dd92c",
-                "answers": [
-                  {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
-                  },
-                  {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
-                  },
-                  {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "UNKNOWN"
-                  }
-                ]
-              },
-              "validators": []
             },
-            {
-              "label": "Date of Surgery",
-              "type": "obs",
-              "required": false,
-              "id": "dateOfSurgery",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "c192e637-ea27-4a28-9e2f-2f2d690738cc"
-              },
-              "validators": []
-            },
-            {
-              "label": "Reason for Surgery",
-              "type": "obs",
-              "required": false,
-              "id": "reasonForSurgery",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "156dab9a-9864-4639-92be-d270daf8d2e8",
-                "answers": [
-                  {
-                    "concept": "db6dc4d4-432d-44e0-a4c1-0b414d3cc639",
-                    "label": "Disease"
-                  },
-                  {
-                    "concept": "55f0b3dd-1aa9-4fd9-92e3-b376e5b304b1",
-                    "label": "Health Condition"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Autopsy Requested",
-              "type": "obs",
-              "required": false,
-              "id": "autopsyRequested",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "b8f3624a-0eb9-4697-9fa8-bd849e9dc62c",
-                "answers": [
-                  {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
-                  },
-                  {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
-                  },
-                  {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "UNKNOWN"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Results Used in Certification",
-              "type": "obs",
-              "required": false,
-              "id": "resultsUsedInCertification",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "8c9c2dae-4fc0-4281-bcb7-1942f935b062",
-                "answers": [
-                  {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "YES"
-                  },
-                  {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NO"
-                  },
-                  {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "UNKNOWN"
-                  }
-                ]
-              },
-              "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Frame C: Manner of Death",
-          "isExpanded": "true",
-          "questions": [
             {
               "label": "Manner of Death",
               "type": "obs",
@@ -286,13 +165,75 @@
                 ]
               },
               "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Fetal / Infant Death",
-          "isExpanded": "true",
-          "questions": [
+            },
+            {
+              "label": "Please describe how external cause occurred (If poisoning please specify poisoning agent)",
+              "type": "obs",
+              "required": false,
+              "id": "pleaseDescribeHowExternalCauseOccurred",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Surgery with 4 Weeks",
+              "type": "obs",
+              "required": false,
+              "id": "surgeryWith4Weeks",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5ec66b1d-2bba-4399-947a-6f5e666dd92c",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date of Surgery",
+              "type": "obs",
+              "required": false,
+              "id": "dateOfSurgery",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "c192e637-ea27-4a28-9e2f-2f2d690738cc"
+              },
+              "validators": []
+            },
+            {
+              "label": "Reason for Surgery",
+              "type": "obs",
+              "required": false,
+              "id": "reasonForSurgery",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "156dab9a-9864-4639-92be-d270daf8d2e8",
+                "answers": [
+                  {
+                    "concept": "db6dc4d4-432d-44e0-a4c1-0b414d3cc639",
+                    "label": "Disease"
+                  },
+                  {
+                    "concept": "55f0b3dd-1aa9-4fd9-92e3-b376e5b304b1",
+                    "label": "Health Condition"
+                  }
+                ]
+              },
+              "validators": []
+            },
             {
               "label": "Multiple Pregnancy",
               "type": "obs",
@@ -316,7 +257,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
               "label": "Still Birth",
@@ -341,10 +285,13 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
-              "label": "Hours Survived",
+              "label": "If death within 24h specify number of hours survived",
               "type": "obs",
               "required": false,
               "id": "hoursSurvived",
@@ -353,10 +300,13 @@
                 "concept": "159616AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "disallowDecimals": true
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
-              "label": "Number of Weeks Pregnant",
+              "label": "Number of completed weeks of pregnancy",
               "type": "obs",
               "required": false,
               "id": "numberOfWeeksPregnant",
@@ -365,16 +315,47 @@
                 "concept": "dca0a383-30ab-102d-86b0-7a5022ba4115",
                 "disallowDecimals": true
               },
-              "validators": []
-            }
-          ]
-        },
-        {
-          "label": "Pregnancy",
-          "isExpanded": "true",
-          "questions": [
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
+            },
             {
-              "label": "Pregnant at Death",
+              "label": "Birth Weight",
+              "type": "obs",
+              "required": false,
+              "id": "birthWeight",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "dcce847a-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "Age of Mother",
+              "type": "obs",
+              "required": false,
+              "id": "ageOfMother",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c",
+                "disallowDecimals": true
+              },
+              "validators": []
+            },
+            {
+              "label": "If death was perinatal, please state conditions of mother that affected the fetus and newborn",
+              "type": "obs",
+              "required": false,
+              "id": "ifDeathWasPerinatal",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "86f85a98-d5ef-468b-bbf2-57a7e4565f3c"
+              },
+              "validators": []
+            },
+            {
+              "label": "Was the deceased pregnant?",
               "type": "obs",
               "required": false,
               "id": "pregnantAtDeath",
@@ -389,6 +370,35 @@
                   {
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Point of Death",
+              "type": "obs",
+              "required": false,
+              "id": "pointOfDeath",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "f9958caa-5215-44ad-8dbc-b18894f89ace",
+                "answers": [
+                  {
+                    "concept": "9f00f01f-24c5-4860-ba8a-ebc6334664ab",
+                    "label": "Pregnant at time of death"
+                  },
+                  {
+                    "concept": "3090ee03-200a-41a6-a1b3-3ef78c537995",
+                    "label": "Between 43 days up to 1 year before death"
+                  },
+                  {
+                    "concept": "ee71932f-0cc8-47a5-b734-2dcda940fb08",
+                    "label": "Died within 42 days after delivery"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
                   }
                 ]
               },
@@ -441,6 +451,50 @@
               "validators": []
             },
             {
+              "label": "Did the pregnancy contribute to Death",
+              "type": "obs",
+              "required": false,
+              "id": "didThePregnancyContributeToDeath",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3023a240-ac5a-48f5-8645-b16e5e7fb251",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Referred from",
+              "type": "obs",
+              "required": false,
+              "id": "referredFrom",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "524e6ef2-16a2-49f3-bcf0-b0cd58538933"
+              },
+              "validators": []
+            },
+            {
+              "label": "Parity",
+              "type": "obs",
+              "required": false,
+              "id": "parity",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "disallowDecimals": true
+              },
+              "validators": []
+            },
+            {
               "label": "Delivered By Skilled Attendant",
               "type": "obs",
               "required": false,
@@ -462,6 +516,78 @@
                     "label": "UNKNOWN"
                   }
                 ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Certification of Cause of Death",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Autopsy Requested",
+              "type": "obs",
+              "required": false,
+              "id": "autopsyRequested",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b8f3624a-0eb9-4697-9fa8-bd849e9dc62c",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Results Used in Certification",
+              "type": "obs",
+              "required": false,
+              "id": "resultsUsedInCertification",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "8c9c2dae-4fc0-4281-bcb7-1942f935b062",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Acknowledgement",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Medical Practioner",
+              "type": "encounterProvider",
+              "required": false,
+              "id": "medicalPractioner",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
               },
               "validators": []
             }
