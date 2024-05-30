@@ -269,7 +269,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -296,7 +296,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -310,7 +310,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -324,7 +324,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -337,7 +337,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -351,7 +351,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
@@ -364,7 +364,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "age > 1"
+                "hideWhenExpression": "age < 1"
               }
             },
             {
