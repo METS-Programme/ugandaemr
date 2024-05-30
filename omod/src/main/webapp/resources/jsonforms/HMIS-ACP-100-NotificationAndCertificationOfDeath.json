@@ -1,10 +1,14 @@
 {
-  "encounterType": "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c",
   "name": "HMIS 100: Notification and Certification of Cause of Death",
-  "processor": "EncounterFormProcessor",
-  "referencedForms": [],
-  "uuid": "bb282ac8-d8b6-4d76-88b9-86da83efec41",
   "version": "4.0.0",
+  "description": "Notification and Certification of Death",
+  "encounterType": "e75c856a-9e91-4ffb-bf43-1b0450b4ff8c",
+  "encounter": "DEATH AND CERTIFICATION",
+  "uuid": "00001ae1-1b37-41ca-adb2-17c04df008da",
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "referencedForms": [],
   "pages": [
     {
       "label": "HMIS FORM 100: Notification and Certification of Cause of Death",
@@ -16,7 +20,7 @@
             {
               "label": "Date of Notification",
               "type": "encounterDatetime",
-              "required": false,
+              "required": "true",
               "id": "dateOfNotification",
               "datePickerType": "calendar",
               "questionOptions": {
@@ -27,7 +31,7 @@
             {
               "label": "Place of Death",
               "type": "obs",
-              "required": false,
+              "required": "true",
               "id": "placeOfDeath",
               "questionOptions": {
                 "rendering": "text",
@@ -38,7 +42,6 @@
             {
               "label": "Date of Death",
               "type": "obs",
-              "required": false,
               "id": "dateOfDeath",
               "questionOptions": {
                 "rendering": "date",
@@ -49,7 +52,6 @@
             {
               "label": "Time of Death",
               "type": "obs",
-              "required": false,
               "id": "timeOfDeath",
               "questionOptions": {
                 "rendering": "date",
@@ -60,7 +62,7 @@
             {
               "label": "Manner of Death",
               "type": "obs",
-              "required": false,
+              "required": "true",
               "id": "mannerOfDeath",
               "questionOptions": {
                 "rendering": "select",
@@ -109,18 +111,19 @@
             {
               "label": "Date of Injury",
               "type": "obs",
-              "required": false,
               "id": "dateOfInjury",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "501e5438-27fa-4d47-98f6-5726e0705819"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(mannerOfDeath) || mannerOfDeath !== 'dc659b57-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Place of Occurance",
               "type": "obs",
-              "required": false,
               "id": "placeOfOccurance",
               "questionOptions": {
                 "rendering": "select",
@@ -164,23 +167,27 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(mannerOfDeath) || mannerOfDeath !== 'dc659b57-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Please describe how external cause occurred (If poisoning please specify poisoning agent)",
               "type": "obs",
-              "required": false,
               "id": "pleaseDescribeHowExternalCauseOccurred",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(mannerOfDeath) || mannerOfDeath !== 'dc659b57-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Surgery with 4 Weeks",
               "type": "obs",
-              "required": false,
               "id": "surgeryWith4Weeks",
               "questionOptions": {
                 "rendering": "select",
@@ -205,18 +212,19 @@
             {
               "label": "Date of Surgery",
               "type": "obs",
-              "required": false,
               "id": "dateOfSurgery",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "c192e637-ea27-4a28-9e2f-2f2d690738cc"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(surgeryWith4Weeks) || surgeryWith4Weeks !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Reason for Surgery",
               "type": "obs",
-              "required": false,
               "id": "reasonForSurgery",
               "questionOptions": {
                 "rendering": "select",
@@ -232,12 +240,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(surgeryWith4Weeks) || surgeryWith4Weeks !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Multiple Pregnancy",
               "type": "obs",
-              "required": false,
               "id": "multiplePregnancy",
               "questionOptions": {
                 "rendering": "select",
@@ -265,7 +275,6 @@
             {
               "label": "Still Birth",
               "type": "obs",
-              "required": false,
               "id": "stillBirth",
               "questionOptions": {
                 "rendering": "select",
@@ -293,7 +302,6 @@
             {
               "label": "If death within 24h specify number of hours survived",
               "type": "obs",
-              "required": false,
               "id": "hoursSurvived",
               "questionOptions": {
                 "rendering": "number",
@@ -308,7 +316,6 @@
             {
               "label": "Number of completed weeks of pregnancy",
               "type": "obs",
-              "required": false,
               "id": "numberOfWeeksPregnant",
               "questionOptions": {
                 "rendering": "number",
@@ -323,41 +330,46 @@
             {
               "label": "Birth Weight",
               "type": "obs",
-              "required": false,
               "id": "birthWeight",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "dcce847a-30ab-102d-86b0-7a5022ba4115"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
               "label": "Age of Mother",
               "type": "obs",
-              "required": false,
               "id": "ageOfMother",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c",
                 "disallowDecimals": true
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
               "label": "If death was perinatal, please state conditions of mother that affected the fetus and newborn",
               "type": "obs",
-              "required": false,
               "id": "ifDeathWasPerinatal",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "86f85a98-d5ef-468b-bbf2-57a7e4565f3c"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age > 1"
+              }
             },
             {
               "label": "Was the deceased pregnant?",
               "type": "obs",
-              "required": false,
               "id": "pregnantAtDeath",
               "questionOptions": {
                 "rendering": "select",
@@ -373,12 +385,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Point of Death",
               "type": "obs",
-              "required": false,
               "id": "pointOfDeath",
               "questionOptions": {
                 "rendering": "select",
@@ -402,12 +416,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Mode of Delivery",
               "type": "obs",
-              "required": false,
               "id": "modeOfDelivery",
               "questionOptions": {
                 "rendering": "select",
@@ -427,12 +443,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Place of Delivery",
               "type": "obs",
-              "required": false,
               "id": "placeOfDelivery",
               "questionOptions": {
                 "rendering": "select",
@@ -448,12 +466,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Did the pregnancy contribute to Death",
               "type": "obs",
-              "required": false,
               "id": "didThePregnancyContributeToDeath",
               "questionOptions": {
                 "rendering": "select",
@@ -469,12 +489,14 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Referred from",
               "type": "obs",
-              "required": false,
               "id": "referredFrom",
               "questionOptions": {
                 "rendering": "text",
@@ -485,19 +507,20 @@
             {
               "label": "Parity",
               "type": "obs",
-              "required": false,
               "id": "parity",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "1053AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "disallowDecimals": true
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             },
             {
               "label": "Delivered By Skilled Attendant",
               "type": "obs",
-              "required": false,
               "id": "deliveredBySkilledAttendant",
               "questionOptions": {
                 "rendering": "select",
@@ -517,7 +540,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
             }
           ]
         },
@@ -528,7 +554,7 @@
             {
               "label": "Autopsy Requested",
               "type": "obs",
-              "required": false,
+              "required": "true",
               "id": "autopsyRequested",
               "questionOptions": {
                 "rendering": "select",
@@ -553,7 +579,6 @@
             {
               "label": "Results Used in Certification",
               "type": "obs",
-              "required": false,
               "id": "resultsUsedInCertification",
               "questionOptions": {
                 "rendering": "select",
@@ -573,7 +598,75 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(autopsyRequested) || autopsyRequested != 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Cause of Death",
+              "type": "obsGroup",
+              "questionOptions": {
+                "concept": "163153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "repeating"
+              },
+              "questions": [
+                {
+                  "label": "Cause of Death",
+                  "type": "obs",
+                  "id": "adherenceCodes",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
+                    "answers": [
+                      {
+                        "concept": "dcdf1b36-30ab-102d-86b0-7a5022ba4115",
+                        "label": "FAIR ADHERENCE"
+                      },
+                      {
+                        "concept": "dcdf1708-30ab-102d-86b0-7a5022ba4115",
+                        "label": "GOOD ADHERENCE"
+                      },
+                      {
+                        "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
+                        "label": "POOR ADHERENCE"
+                      }
+                    ]
+                  },
+                  "validators": []
+                },
+                {
+                  "label": "Time of Death",
+                  "type": "obs",
+                  "id": "sessionDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "163154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ]
+                },
+                {
+                  "label": "Interval",
+                  "type": "obs",
+                  "id": "sessionDate",
+                  "questionOptions": {
+                    "rendering": "date",
+                    "concept": "163154AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ]
+                }
+              ],
+              "id": "__IKHospqEM"
             }
           ]
         },
@@ -584,7 +677,6 @@
             {
               "label": "Medical Practioner",
               "type": "encounterProvider",
-              "required": false,
               "id": "medicalPractioner",
               "questionOptions": {
                 "rendering": "ui-select-extended"
@@ -595,6 +687,5 @@
         }
       ]
     }
-  ],
-  "description": "Notification and Certification of Death"
+  ]
 }
