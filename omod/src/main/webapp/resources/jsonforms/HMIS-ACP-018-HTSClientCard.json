@@ -1,7 +1,7 @@
 {
   "name": "HMIS ACP 018:HTS Client Card",
   "version": "4.0.0",
-  "description": "HIV Testing Services Client Card",
+  "description": "HIV Testing Services",
   "encounterType": "264daIZd-f80e-48fe-nba9-P37f2W1905Pv",
   "encounter": "HTC - Encounter",
   "uuid": "b5c62a98-84d3-43e8-a9be-972185070dd4",
@@ -10,38 +10,8 @@
   "retired": false,
   "pages": [
     {
-      "label": "HIV Testing Services Client Card",
+      "label": "HIV Testing Services",
       "sections": [
-        {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "date"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
         {
           "label": "Client Details",
           "isExpanded": "true",
@@ -174,7 +144,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_deliver_model !== 'ecb88326-0a3f-44a5-9bbf-df4bfc3239e1'"
+                "hideWhenExpression": "isEmpty(htsDeliverModel) || htsDeliverModel !== 'ecb88326-0a3f-44a5-9bbf-df4bfc3239e1'"
               }
             },
             {
@@ -234,7 +204,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_deliver_model !== '4f4e6d1d-4343-42cc-ba47-2319b8a84369'"
+                "hideWhenExpression": "isEmpty(htsDeliverModel) || htsDeliverModel !== '4f4e6d1d-4343-42cc-ba47-2319b8a84369'"
               }
             },
             {
@@ -299,7 +269,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_approach !== '74120d00-5483-4148-acc3-00647dc13add'"
+                "hideWhenExpression": "htsApproach !== '74120d00-5483-4148-acc3-00647dc13add'"
               }
             },
             {
@@ -339,7 +309,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_approach !== 'a0857c20-9dc3-410f-9fda-d8fde202b727'"
+                "hideWhenExpression": "htsApproach !== 'a0857c20-9dc3-410f-9fda-d8fde202b727'"
               }
             },
             {
@@ -629,6 +599,7 @@
               "label": "Pre -Test Counseling done/information given",
               "type": "obs",
               "id": "preTestCounsellingDone",
+              "required": "true",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "193039f1-c378-4d81-bb72-653b66c69914",
@@ -1037,7 +1008,7 @@
             {
               "label": "Client has been referred for HIV care or other prevention services",
               "type": "obs",
-              "id": "client_has_been_referred_for_hiv_care",
+              "id": "clientHasBeenReferredForHivCare",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
