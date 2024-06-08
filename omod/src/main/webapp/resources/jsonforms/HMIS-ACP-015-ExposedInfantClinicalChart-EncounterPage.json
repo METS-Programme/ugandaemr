@@ -17,34 +17,10 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            },
-            {
               "label": "Visit Number",
               "type": "obs",
               "required": "true",
-              "id": "visit_number",
+              "id": "visitNumber",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "046b5fd4-3840-409b-9edb-5e05f2d81bd6",
@@ -143,7 +119,7 @@
             {
               "label": "Infant Feeding Code",
               "type": "obs",
-              "id": "infant_feeding_code",
+              "id": "infantFeedingCode",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "151283c0-8ef7-442f-8b03-3d7382a9d9cd",
@@ -179,7 +155,7 @@
             {
               "label": "Immunisation Codes",
               "type": "obs",
-              "id": "immunisation_codes",
+              "id": "immunisationCodes",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "c74ce384-60ce-4740-9bdd-9c2a673b5a7d",
@@ -263,14 +239,14 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify",
+              "id": "immunisationCodesOtherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "d87dae7a-22bc-4f68-83cd-fee1d3b1664b"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(immunisation_codes) || immunisation_codes !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(immunisationCodes) || immunisationCodes !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -404,62 +380,6 @@
                 ]
               },
               "validators": []
-            },
-            {
-              "label": "MUAC (cm)",
-              "type": "obs",
-              "id": "muac",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "1343AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                "conceptMappings": [
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "SNOMED CT",
-                    "value": "284473002"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "AMPATH",
-                    "value": "1343"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "PIH",
-                    "value": "1290"
-                  },
-                  {
-                    "relationship": "SAME-AS",
-                    "type": "CIEL",
-                    "value": "1343"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "MUAC Code",
-              "type": "obs",
-              "id": "muac_code",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "d257300b-6aa4-483a-8ab2-acdf13b844e0",
-                "answers": [
-                  {
-                    "concept": "8846c03f-67bf-4aeb-8ca7-39bf79b4ebf3",
-                    "label": "Green >=12.5cm and Oedema Absent"
-                  },
-                  {
-                    "concept": "a3b1734c-4743-4b9d-8e71-08d0459d29b9",
-                    "label": "Yellow 11.5 -<12.5cm and Oedema Absent"
-                  },
-                  {
-                    "concept": "de330d01-5586-4eed-a645-e04b6bd13701",
-                    "label": "Red <11.5cm and/or Oedema Present"
-                  }
-                ]
-              },
-              "validators": []
             }
           ]
         },
@@ -470,7 +390,7 @@
             {
               "label": "Clinical Assessment for Signs and Symptoms of HIV",
               "type": "obs",
-              "id": "clinicial_assessment",
+              "id": "clinicialAssessment",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "f0826902-a6d1-4abb-9783-1aeec0dea9d3",
@@ -538,14 +458,14 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify_asses",
+              "id": "otherSpecifyAsses",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "4726ecef-06c4-476c-9ee8-42cd7c7b43a0"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(clinicial_assessment) || clinicial_assessment !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(clinicialAssessment) || clinicialAssessment !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -557,7 +477,7 @@
             {
               "label": "Development Milestones",
               "type": "obs",
-              "id": "development_milestones",
+              "id": "developmentMilestones",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "e10fdb37-c7bf-4d71-b588-dc68f011596d",
@@ -605,9 +525,9 @@
             {
               "label": "Head Circumference (cm)",
               "type": "obs",
-              "id": "head_circumference",
+              "id": "headCircumference",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "5314AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "conceptMappings": [
                   {
@@ -693,7 +613,7 @@
             {
               "label": "Refill of ART for Mother?",
               "type": "obs",
-              "id": "refill_of_art",
+              "id": "refillOfArt",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "958de62d-c1ae-4262-bf19-14671b3094a2",
@@ -713,7 +633,7 @@
             {
               "label": "Other Medication / Care Items",
               "type": "obs",
-              "id": "other_medication",
+              "id": "otherMedication",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dc9b5b8f-30ab-102d-86b0-7a5022ba4115",
@@ -853,20 +773,20 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify_med",
+              "id": "otherMedicationSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "b04eaf95-77c9-456a-99fb-f668f58a9386"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(other_medication) || other_medication !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(otherMedication) || otherMedication !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "ACTION(S) TAKEN if any care indicator are a concern",
               "type": "obs",
-              "id": "action_taken",
+              "id": "actionTaken",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "7ac3b253-b25b-44fd-b2df-e255966a61bc"

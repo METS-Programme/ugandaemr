@@ -926,6 +926,18 @@ VALUES
 		</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-20240530-1455" author="slubwama">
+		<comment>Delete previous cause of death concepts</comment>
+		<sql>
+			delete  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
+			delete from concept_name where date_created="2023-11-08 13:34:24";
+			delete from concept_name where concept_id=169007;
+			delete  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
+			delete from concept where concept.date_created="2023-11-07 12:59:26";
+			delete from concept where concept.date_created="2023-11-08 09:19:30" ;
+		</sql>
+	</changeSet>
+
     <changeSet id="ugandaemr-20240318-1654" author="slubwama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -978,47 +990,47 @@ VALUES
         </preConditions>
         <comment>Migrate DSDM Programs into DSDM Workflows</comment>
         <sql>
-			INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-			SELECT patient_program_id, 17 as state,pp.date_enrolled as start_date,pp.date_completed as end_date,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=5;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 17 as state,pp.date_enrolled as start_date,pp.date_completed as end_date,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=5;
 
-			INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-			SELECT patient_program_id, 18,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=6;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 18,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=6;
 
-			INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-			SELECT patient_program_id, 19,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=7;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 19,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=7;
 
-			INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-			SELECT patient_program_id, 20,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=8;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 20,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=8;
 
-			INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
-			SELECT patient_program_id, 21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
+            INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
+            SELECT patient_program_id, 21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
 
-			UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 14;
-			UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 15;
-			UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 16;
+            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 14;
+            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 15;
+            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 16;
 
-			CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select  patient_program.*,state,patient_state_id from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
-			CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select  patient_program.*,state from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (1));
-			CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_hiv_program_match  AS (select patient_state_id as matching_patient_state_id ,dsdm_patient_programs.patient_program_id asdsdm_patient_program_id , hiv_program.patient_program_id  as hiv_patient_program_id,dsdm_patient_programs.patient_program_id as dsdm_patient_program_id ,dsdm_patient_programs.patient_id as dsdm_patient from hiv_program inner join dsdm_patient_programs on (hiv_program.patient_id=dsdm_patient_programs.patient_id) where dsdm_patient_programs.state in (17,18,19,20,21));
+            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select  patient_program.*,state,patient_state_id from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
+            CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select  patient_program.*,state from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (1));
+            CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_hiv_program_match  AS (select patient_state_id as matching_patient_state_id ,dsdm_patient_programs.patient_program_id asdsdm_patient_program_id , hiv_program.patient_program_id  as hiv_patient_program_id,dsdm_patient_programs.patient_program_id as dsdm_patient_program_id ,dsdm_patient_programs.patient_id as dsdm_patient from hiv_program inner join dsdm_patient_programs on (hiv_program.patient_id=dsdm_patient_programs.patient_id) where dsdm_patient_programs.state in (17,18,19,20,21));
 
-			UPDATE patient_state
-			INNER JOIN dsdm_hiv_program_match
-			ON dsdm_hiv_program_match.matching_patient_state_id = patient_state.patient_state_id
-			SET patient_state.patient_program_id = dsdm_hiv_program_match.hiv_patient_program_id
-			WHERE patient_state.state in (17,18,19,20,21);
+            UPDATE patient_state
+            INNER JOIN dsdm_hiv_program_match
+            ON dsdm_hiv_program_match.matching_patient_state_id = patient_state.patient_state_id
+            SET patient_state.patient_program_id = dsdm_hiv_program_match.hiv_patient_program_id
+            WHERE patient_state.state in (17,18,19,20,21);
 
-			update program_workflow set program_id=1 where program_workflow.program_id=9 and program_workflow_id=4;
+            update program_workflow set program_id=1 where program_workflow.program_id=9 and program_workflow_id=4;
 
-			drop table dsdm_patient_programs;
-			drop table hiv_program;
-			drop table dsdm_hiv_program_match;
+            drop table dsdm_patient_programs;
+            drop table hiv_program;
+            drop table dsdm_hiv_program_match;
 
-			UPDATE patient_program AS pp
-			SET pp.voided = true,
-			pp.voided_by = 1,
-			pp.date_voided = now(),
-			pp.void_reason = "Migrated to DSDM workflow from DSDM Program"
-			WHERE pp.program_id IN (5,6,7,8,9);
+            UPDATE patient_program AS pp
+            SET pp.voided = true,
+            pp.voided_by = 1,
+            pp.date_voided = now(),
+            pp.void_reason = "Migrated to DSDM workflow from DSDM Program"
+            WHERE pp.program_id IN (5,6,7,8,9);
         </sql>
     </changeSet>
 </databaseChangeLog>

@@ -13,36 +13,6 @@
       "label": "Treatment Phase",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Visit Information",
           "isExpanded": "true",
           "questions": [
@@ -50,7 +20,7 @@
               "label": "Month of Follow up",
               "type": "obs",
               "required": "true",
-              "id": "month-of-follow-up",
+              "id": "monthOfFollowUp",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
@@ -125,7 +95,7 @@
             {
               "label": "Adverse Event",
               "type": "obsGroup",
-              "id": "adverse-event",
+              "id": "adverseEvent",
               "questionOptions": {
                 "rendering": "repeating",
                 "concept": "dca278ca-30ab-102d-86b0-7a5022ba4115",
@@ -136,7 +106,7 @@
                 {
                   "label": "Adverse event",
                   "type": "obs",
-                  "id": "adverse-event-type",
+                  "id": "adverseEventType",
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "dce05b7f-30ab-102d-86b0-7a5022ba4115",
@@ -205,7 +175,7 @@
                 {
                   "label": "Severity of adverse event",
                   "type": "obs",
-                  "id": "severity-of-adverse-event",
+                  "id": "severityOfAdverseEvent",
                   "questionOptions": {
                     "rendering": "select",
                     "concept": "dce0d9c2-30ab-102d-86b0-7a5022ba4115",
@@ -238,7 +208,7 @@
                 {
                   "label": "Drug causing",
                   "type": "",
-                  "id": "drug-causing-adverse-event",
+                  "id": "drug-causing-adverseEvent",
                   "questionOptions": {
                     "rendering": "text",
                     "concept": "b868f24f-c4e7-4cb9-906f-718c78ecda9a",
@@ -263,7 +233,7 @@
             {
               "label": "Date of report",
               "type": "obs",
-              "id": "date-of-report",
+              "id": "dateOfReport",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "80645672-6690-4234-8d57-59dbd853b8ef",
@@ -280,7 +250,7 @@
             {
               "label": "Total # of contacts     5 years",
               "type": "obs",
-              "id": "total-number-contacts-younger-than-five-years",
+              "id": "totalNumberContactsYoungerThanFiveYears",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "5d041b7f-ae96-49a8-b3c0-9c251b80039b",
@@ -292,7 +262,7 @@
             {
               "label": "Total # of contacts < 5 years",
               "type": "obs",
-              "id": "total-number-contacts-older-than-five-years",
+              "id": "totalNumberContactsOlderThanFiveYears",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "164419AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -304,7 +274,7 @@
             {
               "label": "Total # of     5 years old contacts screened for TB",
               "type": "obs",
-              "id": "total-number-contacts-younger-than-five-years-screened-for-tb",
+              "id": "totalNumberContactsYoungerThanFiveYearsScreenedForTb",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "793762c6-5223-4d0f-ae92-2936530ae12c",
@@ -316,7 +286,7 @@
             {
               "label": "Total # of < 5 years old contacts screened for TB",
               "type": "obs",
-              "id": "total-number-contacts-older-than-five-years-screened-for-tb",
+              "id": "totalNumberContactsOlderThanFiveYearsScreenedForTb",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "9ecd5ff1-a87e-48ab-8b52-b0052f970a8e",
@@ -328,7 +298,7 @@
             {
               "label": "Total # of     5 years old contacts with TB",
               "type": "obs",
-              "id": "total-number-contacts-younger-than-five-years-with-tb",
+              "id": "totalNumberContactsYoungerThanFiveYearsWithTb",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "463f1761-b4d2-47da-9d0b-9bc1f5f8f6ac",
@@ -340,7 +310,7 @@
             {
               "label": "Total # of < 5 years old contacts with TB",
               "type": "obs",
-              "id": "total-number-contacts-older-than-five-years-with-tb",
+              "id": "totalNumberContactsOlderThanFiveYearsWithTb",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "4230e839-77ec-4c69-875d-e7fb37523ea1",
@@ -352,7 +322,7 @@
             {
               "label": "Total # of     5 years old contacts on TPT",
               "type": "obs",
-              "id": "total-number-contacts-younger-than-five-years-on-tpt",
+              "id": "totalNumberContactsYoungerThanFiveYearsOnTpt",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "af09d200-55b9-47b9-b46c-c32d494ce838",
@@ -364,7 +334,7 @@
             {
               "label": "Total # of < 5 years old contacts on TPT",
               "type": "obs",
-              "id": "total-number-contacts-older-than-five-years-on-tpt",
+              "id": "totalNumberContactsOlderThanFiveYearsOnTpt",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "164421AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -387,7 +357,7 @@
             {
               "label": "Date of follow up",
               "type": "obs",
-              "id": "date-of-follow-up",
+              "id": "dateOfFollowUp",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "bdd1b59b-328d-42fa-a5ce-5e81d1c4042a",
@@ -405,7 +375,7 @@
             {
               "label": "Patient missed appointment",
               "type": "obs",
-              "id": "patient-missed-appointment",
+              "id": "patientMissedAppointment",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "444403bb-14dc-4c33-a6db-2c75574f7abe",
@@ -437,7 +407,7 @@
             {
               "label": "DOT monitoring (Patient active)",
               "type": "obs",
-              "id": "dot-monitoring-patient-active",
+              "id": "dotMonitoringPatientActive",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "0eebaac1-8528-4c5a-a0cd-6f2a5b9d0316",
@@ -479,7 +449,7 @@
             {
               "label": "Pill refill",
               "type": "obs",
-              "id": "pill-refill",
+              "id": "pillRefill",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "4f6bd17b-1e71-41fd-b5b3-29aef8baaf96",
@@ -500,7 +470,7 @@
             {
               "label": "Appointment reminder",
               "type": "obs",
-              "id": "appointment-reminder",
+              "id": "appointmentReminder",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "6908508b-70c0-4b21-92d4-4fffd9458dac",
@@ -521,7 +491,7 @@
             {
               "label": "Sputum sample collection",
               "type": "obs",
-              "id": "sputum-sample-collection",
+              "id": "sputumSampleCollection",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "3601a46e-4392-4612-a390-123558318947",
@@ -542,7 +512,7 @@
             {
               "label": "Other Support",
               "type": "obs",
-              "id": "other-support",
+              "id": "otherSupport",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "ac8a9e07-e0d9-4ff4-8db9-02b2e4343e58",
@@ -560,7 +530,7 @@
             {
               "label": "Patient evaluated",
               "type": "obs",
-              "id": "patient-evaluated",
+              "id": "patientEvaluated",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2ff1ff13-6998-4310-97ed-f010b77f881a",
@@ -581,7 +551,7 @@
             {
               "label": "Found with a treatment supporter",
               "type": "obs",
-              "id": "found-with-a-treatment-supporter",
+              "id": "foundWithATreatmentSupporter",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "243dad0d-5c72-4ea6-9ef3-08da9bb7a7d4",
@@ -602,7 +572,7 @@
             {
               "label": "Patient transferred out",
               "type": "obs",
-              "id": "patient-transferred-out",
+              "id": "patientTransferredOut",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
@@ -623,7 +593,7 @@
             {
               "label": "Outcome of follow up",
               "type": "obs",
-              "id": "outcome-of-follow-up",
+              "id": "outcomeOfFollowUp",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "8f889d84-8e5c-4a66-970d-458d6d01e8a4",
@@ -657,125 +627,7 @@
         }
       ]
     },
-    {
-      "label": "DOT",
-      "sections": [
-        {
-          "label": "Appointment",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date of DOT report",
-              "type": "obs",
-              "id": "date-of-dot-report",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "a6903fa4-3085-4070-baa2-0f811235c535",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Next date of DOT appointment",
-              "type": "obs",
-              "id": "next-date-of-dot-appointment",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "2377dfda-b713-48da-9ce2-b9cc214a5ece",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days when patient was directly observed (in hospital or by DOT Nurse)",
-              "type": "obs",
-              "id": "number-of-days-under-direct-observation",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "814bb92c-ee21-4d0c-94f3-7084b68c9212",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. days of incomplete doses",
-              "type": "obs",
-              "id": "number-of-days-of-incomplete-doses",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "9e65437f-0bba-48a9-b70f-35ab479bc561",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days electronic message notifications of drug refills were received",
-              "type": "obs",
-              "id": "number-of-days-of-electronic-notifications-of-drug-refills-received",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "98acf275-a466-4386-a6bd-01615db35d40",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days of video observed therapy",
-              "type": "obs",
-              "id": "number-of-days-video-observed-therapy",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "30ecb9a1-11e5-4be5-b2b5-a6d0e071c2eb",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days when DOT was not supervised",
-              "type": "obs",
-              "id": "number-of-days-when-dot-was-not-supervised",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "9329109d-b4a0-4050-a1d1-acff1bdf50a7",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days when doses were taken under observation of a treatment supporter",
-              "type": "obs",
-              "id": "number-of-days-when-doses-were-taken-under-observation-of-a-treatment-supporter",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "8e2718c8-f69b-4d93-bd1b-b6157e68f6b2",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "No. of days when drugs were not taken",
-              "type": "obs",
-              "id": "number-of-days-when-drugs-were-not-taken",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "b5c36ea3-3f9f-4153-a2ab-2520f6060e32",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            }
-          ]
-        }
-      ]
-    },
+
     {
       "label": "Treatment Outcome",
       "sections": [
@@ -786,7 +638,7 @@
             {
               "label": "Outcome",
               "type": "obs",
-              "id": "tb-treatment-outcome",
+              "id": "tbTreatmentOutcome",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "e44c8c4c-db50-4d1e-9d6e-092d3b31cfd6",
@@ -823,7 +675,7 @@
             {
               "label": "Transferred to 2nd line",
               "type": "obs",
-              "id": "transferred-to-second-line",
+              "id": "transferredToSecondLine",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "d96ee5b5-7723-4f9e-8442-3b6aa1276f6d",
@@ -842,9 +694,9 @@
               "validators": []
             },
             {
-              "label": "Miss-classification",
+              "label": "missClassification",
               "type": "obs",
-              "id": "miss-classification",
+              "id": "missClassification",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "75a0e016-5f0c-4613-a7b2-cc0bf5dd7574",
@@ -863,9 +715,9 @@
               "validators": []
             },
             {
-              "label": "Reason for miss-classification",
+              "label": "Reason for missClassification",
               "type": "obs",
-              "id": "reason-for-miss-classification",
+              "id": "reasonForMissClassification",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "881b4254-21be-4372-aa96-42453c941230",
@@ -875,9 +727,9 @@
               "validators": []
             },
             {
-              "label": "Action taken for miss-classification",
+              "label": "Action taken for missClassification",
               "type": "obs",
-              "id": "action-taken-for-miss-classification",
+              "id": "actionTakenForMissClassification",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "6e936468-7c40-43fa-a515-137b53ed58d6",

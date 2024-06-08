@@ -13,36 +13,6 @@
       "label": "HMIS ACP 001 - Viral Load Non Suppressed Form",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "encounter-provider"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "encounter-location"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Non Suppressed VLResults",
           "isExpanded": "true",
           "questions": [
@@ -132,7 +102,7 @@
               "required": "true",
               "id": "vlResultsAtInitiation",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
                 "answers": []
               }
@@ -173,7 +143,7 @@
               "type": "obs",
               "id": "cd4TestResult",
               "questionOptions": {
-                "rendering": "text",
+                "rendering": "number",
                 "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115"
               },
               "validators": []
@@ -366,10 +336,10 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify",
+              "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
               },
               "validators": [],
               "hide": {
@@ -987,7 +957,7 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify_new_regmine",
+              "id": "otherSpecifyNewRegmine",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"

@@ -13,36 +13,6 @@
       "label": "HIV Testing Services Client Card",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Client Details",
           "isExpanded": "true",
           "questions": [
@@ -50,7 +20,7 @@
               "label": "Serial number",
               "type": "obs",
               "required": "true",
-              "id": "serial_number",
+              "id": "serialNumber",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -62,7 +32,7 @@
             {
               "label": "HTS delivery model",
               "type": "obs",
-              "id": "hts_deliver_model",
+              "id": "htsDeliverModel",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "46648b1d-b099-433b-8f9c-3815ff1e0a0f",
@@ -83,7 +53,7 @@
             {
               "label": "HTS Approach",
               "type": "obs",
-              "id": "hts_approach",
+              "id": "htsApproach",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "ff820a28-1adf-4530-bf27-537bfa9ce0b2",
@@ -105,7 +75,7 @@
               "label": "Entry point for health facility testing",
               "type": "obs",
               "required": "true",
-              "id": "entry_point_HF_testing",
+              "id": "entryPointHFTesting",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "720a1e85-ea1c-4f7b-a31e-cb896978df79",
@@ -180,7 +150,7 @@
             {
               "label": "Other entry point",
               "type": "obs",
-              "id": "other_entry_point",
+              "id": "otherEntryPoint",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6",
@@ -188,14 +158,14 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "entry_point_HF_testing !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "entryPointHFTesting !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Entry point for community health testing",
               "type": "obs",
               "required": "true",
-              "id": "entry_point_community_testing",
+              "id": "entryPointCommunityTesting",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "4f4e6d1d-4343-42cc-ba47-2319b8a84369",
@@ -240,7 +210,7 @@
             {
               "label": "Other community entry point",
               "type": "obs",
-              "id": "other_community_entry_point",
+              "id": "otherCommunityEntryPoint",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "16820069-b4bf-4c47-9efc-408746e1636b",
@@ -248,14 +218,14 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "entry_point_community_testing !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "entryPointCommunityTesting !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Reason for testing",
               "type": "obs",
               "required": "true",
-              "id": "reason_for_testing_pitc",
+              "id": "reasonForTestingPitc",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "2afe1128-c3f6-4b35-b119-d17b9b9958ed",
@@ -305,7 +275,7 @@
             {
               "label": "Other reasons for testing",
               "type": "obs",
-              "id": "other_reasons_for_testing_pitc",
+              "id": "otherReasonsForTestingPitc",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "8c628b5b-0045-40dc-a480-7e1518ffb256",
@@ -313,14 +283,14 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "reason_for_testing_pitc !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "reasonForTestingPitc !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Reason for testing",
               "type": "obs",
               "required": "true",
-              "id": "reason_for_testing_citc",
+              "id": "reasonForTestingCitc",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "2afe1128-c3f6-4b35-b119-d17b9b9958ed",
@@ -345,7 +315,7 @@
             {
               "label": "Other reasons for testing",
               "type": "obs",
-              "id": "other_reasons_for_testing_citc",
+              "id": "otherReasonsForTestingCitc",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "8c628b5b-0045-40dc-a480-7e1518ffb256",
@@ -353,7 +323,7 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "reason_for_testing_citc !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "reasonForTestingCitc !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -365,7 +335,7 @@
             {
               "label": "Special categories",
               "type": "obs",
-              "id": "special_categories",
+              "id": "specialCategories",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
@@ -437,7 +407,7 @@
             {
               "label": "Other special categories",
               "type": "obs",
-              "id": "other_special_categories",
+              "id": "otherSpecialCategories",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4",
@@ -445,13 +415,13 @@
                 "answers": []
               },
               "hide": {
-                "hideWhenExpression": "special_categories !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "specialCategories !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "First HIV test (has never tested before)",
               "type": "obs",
-              "id": "first_hiv_test",
+              "id": "firstHivTest",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -472,7 +442,7 @@
             {
               "label": "Last HIV visit date",
               "type": "obs",
-              "id": "last_hiv_visit_date",
+              "id": "lastHivVisitDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "34c917f0-356b-40d0-b3d1-cf609517b5fc",
@@ -481,13 +451,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "first_hiv_test !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Number of Months Since Last Tested",
               "type": "obs",
-              "id": "number_of_months_since_last_tested",
+              "id": "numberOfMonthsSinceLastTested",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "bf038497-df07-417d-9767-983e59983760",
@@ -496,13 +466,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "first_hiv_test !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Previous test results",
               "type": "obs",
-              "id": "previous_test_results",
+              "id": "previousTestResults",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "49ba801d-b6ff-47cd-8d29-e0ac8649cb7d",
@@ -520,13 +490,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "first_hiv_test !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Previous Test Location",
               "type": "obs",
-              "id": "previous_test_location",
+              "id": "previousTestLocation",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "a2397735-328f-432f-8c0d-d5c358516375",
@@ -535,13 +505,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "first_hiv_test !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Times tested in last 12 Months",
               "type": "obs",
-              "id": "times_tested_in_last_12_months",
+              "id": "timesTestedInLast12Months",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "8037192e-8f0c-4af3-ad8d-ccd1dd6880ba",
@@ -550,13 +520,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "first_hiv_test !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "firstHivTest !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Number of sexual partners in the last 12 months",
               "type": "obs",
-              "id": "number_of_sexual_partners_last_12_mnths",
+              "id": "numberOfSexualPartnersLast12Mnths",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "f1a6ede9-052e-4707-9cd8-a77fdeb2a02b",
@@ -568,7 +538,7 @@
             {
               "label": "Spouse/Partner ever been tested for HIV before",
               "type": "obs",
-              "id": "partner_ever_been_tested_for_hiv_before",
+              "id": "partnerEverBeenTestedForHivBefore",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "adc0b1a1-39cf-412b-9ab0-28ec0f731220",
@@ -599,7 +569,7 @@
             {
               "label": "Recent partner test result",
               "type": "obs",
-              "id": "recent_partner_test_result",
+              "id": "recentPartnerTestResult",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "ee802cf2-295b-4297-b53c-205f794294a5",
@@ -622,13 +592,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "partner_ever_been_tested_for_hiv_before !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "partnerEverBeenTestedForHivBefore !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Pre -Test Counseling done/information given",
               "type": "obs",
-              "id": "pre_test_counselling_done",
+              "id": "preTestCounsellingDone",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "193039f1-c378-4d81-bb72-653b66c69914",
@@ -649,7 +619,7 @@
             {
               "label": "Counseled as",
               "type": "obs",
-              "id": "counseled_as",
+              "id": "counseledAs",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "b92b1777-4356-49b2-9c83-a799680dc7d4",
@@ -676,7 +646,7 @@
             {
               "label": "HIV final test results",
               "type": "obs",
-              "id": "hiv_final_test_results",
+              "id": "hivFinalTestResults",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "3d292447-d7df-417f-8a71-e53e869ec89d",
@@ -702,7 +672,7 @@
             {
               "label": "HIV final Syphillis-Duo results",
               "type": "obs",
-              "id": "hiv_final_spyhillis_duo_results",
+              "id": "hivFinalApyhillisDuoResults",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "16091701-69b8-4bc7-82b3-b1726cf5a5df",
@@ -723,7 +693,7 @@
             {
               "label": "Do you agree to have blood drawn for recency?",
               "type": "obs",
-              "id": "agree_to_have_blood_drawn_for_recency",
+              "id": "agreeToHaveBloodDrawnForRecency",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "0698a45b-771c-4d11-84ff-095598c8883c",
@@ -741,13 +711,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hiv_final_test_results !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "HIV recency test result",
               "type": "obs",
-              "id": "hiv_recency_test_results",
+              "id": "hivRecencyTestResults",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "141520BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -765,13 +735,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "agree_to_have_blood_drawn_for_recency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "HIV Recency Viral Load Result",
               "type": "obs",
-              "id": "hiv_recency_viral_load_results",
+              "id": "hivRecencyViralLoadResults",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "5fd38584-21a7-4145-be4b-c126c5fb3d73",
@@ -780,13 +750,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "agree_to_have_blood_drawn_for_recency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "HIV Recency Viral Load Qaulitative",
               "type": "obs",
-              "id": "hiv_recency_vl_qualitative",
+              "id": "hivRecencyVlQualitative",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "0787cd66-0816-46f1-ade4-eb75b166144e",
@@ -804,13 +774,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "agree_to_have_blood_drawn_for_recency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Recency Sample ID",
               "type": "obs",
-              "id": "recency_sample_id",
+              "id": "recencySampleId",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "0f998893-ab24-4ee4-922a-f197ac5fd6e6",
@@ -819,7 +789,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "agree_to_have_blood_drawn_for_recency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "agreeToHaveBloodDrawnForRecency !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -831,7 +801,7 @@
             {
               "label": "If tested HIV positive finger print has been captured",
               "type": "obs",
-              "id": "if_tested_hiv_positive_fingerprint_been_captured",
+              "id": "ifTestedHivPositiveFingerprintBeenCaptured",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "d7974eae-a0a0-4a0c-b5ed-f060af91665d",
@@ -852,7 +822,7 @@
             {
               "label": "Results received as individual",
               "type": "obs",
-              "id": "results_received_as_individual",
+              "id": "resultsReceivedAsIndividual",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "3437ae80-bcc5-41e2-887e-d56999a1b467",
@@ -873,7 +843,7 @@
             {
               "label": "Results received as a couple",
               "type": "obs",
-              "id": "results_received_as_couple",
+              "id": "resultsReceivedAsCouple",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2aa9f0c1-3f7e-49cd-86ee-baac0d2d5f2d",
@@ -894,7 +864,7 @@
             {
               "label": "Couple results",
               "type": "obs",
-              "id": "couple_results",
+              "id": "coupleResults",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "94a5bd0a-b79d-421e-ab71-8e382eed100f",
@@ -917,13 +887,13 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "results_received_as_couple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "resultsReceivedAsCouple !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Client has presumptive TB",
               "type": "obs",
-              "id": "client_has_presumptive_tb",
+              "id": "clientHasPresumptiveTb",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "b80f04a4-1559-42fd-8923-f8a6d2456a04",
@@ -944,7 +914,7 @@
             {
               "label": "Presumptive TB case referred for TB Services",
               "type": "obs",
-              "id": "presumptive_tb_case_referred_for_tb",
+              "id": "presumptiveTBCaseReferredForTb",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "c5da115d-f6a3-4d13-b182-c2e982a3a796",
@@ -962,7 +932,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "client_has_presumptive_tb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "clientHasPresumptiveTb !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -974,7 +944,7 @@
             {
               "label": "Prevention Services",
               "type": "obs",
-              "id": "prevention_services",
+              "id": "preventionServices",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
@@ -1025,7 +995,7 @@
             {
               "label": "Other prevention services",
               "type": "obs",
-              "id": "other_prevention_services",
+              "id": "otherPreventionServices",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "f3419b12-f6da-4aed-a001-e9f0bd078140",
@@ -1059,7 +1029,7 @@
               "label": "Place of referral",
               "type": "obs",
               "required": "true",
-              "id": "place_of_referral",
+              "id": "placeOfReferral",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115",
@@ -1068,7 +1038,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "client_has_been_referred_for_hiv_care !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "clientHasBeenReferredForHivCare !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
