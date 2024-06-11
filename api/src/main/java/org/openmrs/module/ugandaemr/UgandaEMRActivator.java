@@ -259,6 +259,9 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         dataImporter.importData("metadata/concepts_and_drugs/cause_of_death_set.xml");
         log.info("import of ICD 11 cause_of_death_set  Successful");
 
+        log.info("Move Non ICD Coded Diagnosis");
+        dataImporter.importData("metadata/concepts_and_drugs/move_non_icd11-10-to-msc.xml");
+        log.info("Move non coded ICD 11 Diagnosis");
 
         log.info("Retire Meta data");
         dataImporter.importData("metadata/concepts_and_drugs/retire_meta_data.xml");

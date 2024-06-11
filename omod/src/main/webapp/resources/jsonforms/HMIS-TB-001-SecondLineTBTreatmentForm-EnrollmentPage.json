@@ -20,40 +20,6 @@
       "label": "Case Summary/Patient Type",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date Initial Home Assessment Completed",
-              "type": "encounterDatetime",
-              "required": false,
-              "id": "dateInitialHomeAssessmentCompleted",
-              "questionOptions": {
-                "rendering": "date",
-                "concept": "a412bf0d-5683-4a18-a248-004021abd726",
-                "conceptMappings": [],
-                "answers": []
-              }
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Case Summary/Patient Type",
           "isExpanded": "true",
           "questions": [

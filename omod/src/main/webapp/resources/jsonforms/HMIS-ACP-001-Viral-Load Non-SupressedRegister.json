@@ -13,36 +13,6 @@
       "label": "HMIS ACP 001 - Viral Load Non Suppressed Form",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "date"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "encounter-provider"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "encounter-location"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Non Suppressed VLResults",
           "isExpanded": "true",
           "questions": [
