@@ -1924,7 +1924,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         testOrder.setCareSetting(careSetting);
         testOrder.setOrderType(Context.getOrderService().getOrderTypeByUuid(TEST_ORDER_TYPE_UUID));
         testOrder.setAction(Order.Action.NEW);
-        testOrder.setInstructions("REFER TO " + "CPHL");
+        testOrder.setInstructions("REFER TO " + "cphl");
         testOrder.setSpecimenSource(specimenSource.getValueCoded());
         orders.add(testOrder);
 
@@ -2070,7 +2070,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         if (!instructions.equals("")) {
             testOrder = new TestOrder();
             testOrder.setAccessionNumber(accessionNumber);
-            testOrder.setInstructions("REFER TO " + instructions);
+            testOrder.setInstructions("REFER TO " + instructions.toUpperCase());
             testOrder.setConcept(order.getConcept());
             testOrder.setEncounter(order.getEncounter());
             testOrder.setOrderer(order.getOrderer());

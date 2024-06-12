@@ -305,7 +305,7 @@ public class HIVClinicalAssessmentSubmissionAction implements CustomFormSubmissi
                 viralLoadTest = obs;
             } else if (obs.getConcept().getConceptId() == 165845) {
                 labNo = obs;
-            } else if (obs.getConcept().getConceptId() == 162476) {
+            } else if (obs.getConcept().getConceptId() == 159959) {
                 specimenSource = obs;
             }
         }
