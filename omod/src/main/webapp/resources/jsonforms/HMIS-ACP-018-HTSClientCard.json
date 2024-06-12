@@ -714,27 +714,6 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "If tested HIV positive finger print has been captured",
-              "type": "obs",
-              "id": "ifTestedHivPositiveFingerprintBeenCaptured",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "d7974eae-a0a0-4a0c-b5ed-f060af91665d",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
               "label": "Results received as individual",
               "type": "obs",
               "id": "resultsReceivedAsIndividual",
@@ -753,6 +732,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledAs !== 'c61ea879-2a23-484d-bec1-ab177a926265'"
               }
             },
             {
@@ -774,6 +756,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledAs !== '934cd2fa-210e-430e-babf-ac846ee4a8b2'"
               }
             },
             {
