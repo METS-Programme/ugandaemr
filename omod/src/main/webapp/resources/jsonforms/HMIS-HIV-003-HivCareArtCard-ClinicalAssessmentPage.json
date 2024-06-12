@@ -139,18 +139,15 @@
                 "answers": [
                   {
                     "concept": "dcdad102-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT PREGNANT AND NOT ON FAMILY PLANNING",
+                    "label": "NOT ON FAMILY PLANNING",
                     "conceptMappings": []
                   },
                   {
                     "concept": "dcdd6c4a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT PREGNANT AND ON FAMILY PLANNING",
+                    "label": "ON FAMILY PLANNING",
                     "conceptMappings": []
                   }
                 ]
-              },
-              "hide": {
-                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {
@@ -168,22 +165,34 @@
                   {
                     "concept": "dc882c84-30ab-102d-86b0-7a5022ba4115",
                     "label": "Oral Contraceptive pills",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb30ba3-30ab-102d-86b0-7a5022ba4115",
                     "label": "Injectable",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "bb83fd9d-24c5-4d49-89c0-97e13c792aaf",
                     "label": "Implants",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb307b2-30ab-102d-86b0-7a5022ba4115",
                     "label": "Diaphram/Cervical Cap",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb2f595-30ab-102d-86b0-7a5022ba4115",
@@ -193,7 +202,10 @@
                   {
                     "concept": "dcb30381-30ab-102d-86b0-7a5022ba4115",
                     "label": "Fertility Awareness Methods",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   }
                 ]
               },
@@ -459,7 +471,7 @@
             {
               "label": "Signs and Symptoms",
               "type": "obs",
-              "id": "signsAndSymptoms",
+              "id": "signs_And_Symptoms",
               "questionOptions": {
                 "rendering": "checkbox",
                 "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
@@ -547,10 +559,23 @@
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Other specify",
+                    "label": "Other Symptoms",
                     "conceptMappings": []
                   }
                 ]
+              }
+            },
+            {
+              "label": "OTHER SYMPTOMATIC",
+              "type": "obs",
+              "id": "other_symptomatic",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "d4f4c0e7-06f5-4aa6-a218-17b1f97c5a44"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(signs_And_Symptoms) || signs_And_Symptoms !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -996,30 +1021,6 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Duration on Current Regimen",
-              "type": "obs",
-              "id": "durationOnCurrentRegimen",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "171de3f4-a500-46f6-8098-8097561dfffb",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Duration on ART",
-              "type": "obs",
-              "id": "durationOnArt",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "9ce522a8-cd6a-4254-babb-ebeb48b8ce2f",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
               "label": "Patient Categorization",
               "type": "obs",
               "required": "true",
@@ -1073,7 +1074,8 @@
                 "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
                 "workflowUuid": "b8d44412-9d8a-422f-8952-7fe15997f8b6"
               }
-            },{
+            },
+            {
               "label": "Drug Pickup Model",
               "type": "programState",
               "id": "drugPickupModel",
@@ -1122,7 +1124,7 @@
           ]
         },
         {
-          "label": "Return Visit Date",
+          "label": "Return Visit Details",
           "isExpanded": "true",
           "questions": [
             {
@@ -1133,6 +1135,75 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "dcac04cf-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "Reasons for next appointment",
+              "type": "obs",
+              "required": false,
+              "id": "reasonForNextAppoinment",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "ab4510ac-3feb-4abb-8653-5d252813798f",
+                    "label": "ART Initiation"
+                  },
+                  {
+                    "concept": "e06ac289-2920-4b85-80c9-805c69b6e5a9",
+                    "label": "ART Refill"
+                  },
+                  {
+                    "concept": "4b19b253-97c4-4b1b-bb14-41f2c576b8c5",
+                    "label": "ART Regimen Switch/ Substitution"
+                  },
+                  {
+                    "concept": "dc8d83e3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV VIRAL LOAD"
+                  },
+                  {
+                    "concept": "dcbcba2c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CD4 COUNT"
+                  },
+                  {
+                    "concept": "163153AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Intensive adherence counseling sessions set"
+                  },
+                  {
+                    "concept": "5def0b16-460a-494b-ab1f-ac8e398a88fa",
+                    "label": "T.B Drug Refill"
+                  },
+                  {
+                    "concept": "801b8959-4b2a-46c0-a28f-f7d3fc8b98bb",
+                    "label": "ANC Visit"
+                  },
+                  {
+                    "concept": "3f0f9c04-25a4-4070-84cc-5b49566aeb4c",
+                    "label": "EID Visit"
+                  },
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT"
+                  },
+                  {
+                    "concept": "dc8f22f9-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HYPERTENSION"
+                  },
+                  {
+                    "concept": "dcbc7b8e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NUTRITIONAL SUPPORT"
+                  },
+                  {
+                    "concept": "32dbfbc2-0f6c-4beb-88d0-55e0ee1a7b8c",
+                    "label": "CLINICAL ASSESSMENT"
+                  },
+                  {
+                    "concept": "347e93a0-72c2-400f-9579-116ce3ba6a68",
+                    "label": "Checkup"
+                  }
+                ]
               },
               "validators": []
             }
