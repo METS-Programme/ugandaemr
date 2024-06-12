@@ -13,37 +13,6 @@
       "label": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form ",
       "sections": [
         {
-          "label": "Visit Details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "date",
-                "allowFutureDates": "false"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "FAMILY TRACKING SECTION ",
           "isExpanded": "true",
           "questions": [
