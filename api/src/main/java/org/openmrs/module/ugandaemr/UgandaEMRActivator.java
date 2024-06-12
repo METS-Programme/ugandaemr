@@ -239,6 +239,30 @@ public class UgandaEMRActivator extends org.openmrs.module.BaseModuleActivator {
         dataImporter.importData("metadata/appointment.xml");
         log.info("import of Drugs  Successful");
 
+        log.info("import  of  ICD 11 concepts  Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/icd_11_import_concept.xml");
+        log.info("import of ICD 11 concepts  Successful");
+
+        log.info("import  of  ICD 11 concept_name Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/icd_11_import_concept_name.xml");
+        log.info("import of ICD 11 concept_name  Successful");
+
+        log.info("import  of  ICD 11 concept_reference Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/icd_11_import_concept_reference.xml");
+        log.info("import of ICD 11 concept_reference  Successful");
+
+        log.info("import  of  ICD 11 concept_map Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/icd_11_import_concept_map.xml");
+        log.info("import of ICD 11 concept_map  Successful");
+
+        log.info("import  of  ICD 11 cause_of_death_set Starting");
+        dataImporter.importData("metadata/concepts_and_drugs/cause_of_death_set.xml");
+        log.info("import of ICD 11 cause_of_death_set  Successful");
+
+        log.info("Move Non ICD Coded Diagnosis");
+        dataImporter.importData("metadata/concepts_and_drugs/move_non_icd11-10-to-msc.xml");
+        log.info("Move non coded ICD 11 Diagnosis");
+
         log.info("Retire Meta data");
         dataImporter.importData("metadata/concepts_and_drugs/retire_meta_data.xml");
         log.info("Retiring of meta data is Successful");

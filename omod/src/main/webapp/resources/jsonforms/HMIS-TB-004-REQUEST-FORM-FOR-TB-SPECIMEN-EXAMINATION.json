@@ -13,37 +13,6 @@
       "label": "REQUEST FORM FOR TB SPECIMEN EXAMINATION",
       "sections": [
         {
-          "label": "Visit Details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "date",
-                "allowFutureDates": "false"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "REQUEST FORM FOR TB SPECIMEN EXAMINATION",
           "isExpanded": "true",
           "questions": [
