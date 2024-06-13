@@ -42,7 +42,7 @@
                     "label": "NPB - Not pregnant nor breast feeding",
                     "conceptMappings": [],
                     "disable": {
-                      "disableWhenExpression": "pregnant === 'dcda5179-30ab-102d-86b0-7a5022ba4115' && pregnant === '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab'",
+                      "disableWhenExpression": "emtct === '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                     }
                   },
                   {
