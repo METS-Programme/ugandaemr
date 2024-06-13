@@ -150,7 +150,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "sex !== 'F'"
+                "hideWhenExpression": "onFamilyPlanning == 'F'"
               }
             },
             {
@@ -168,32 +168,58 @@
                   {
                     "concept": "dc882c84-30ab-102d-86b0-7a5022ba4115",
                     "label": "Oral Contraceptive pills",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb30ba3-30ab-102d-86b0-7a5022ba4115",
                     "label": "Injectable",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "bb83fd9d-24c5-4d49-89c0-97e13c792aaf",
                     "label": "Implants",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb307b2-30ab-102d-86b0-7a5022ba4115",
                     "label": "Diaphram/Cervical Cap",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb2f595-30ab-102d-86b0-7a5022ba4115",
                     "label": "Intra uterine device (IUD)",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dcb30381-30ab-102d-86b0-7a5022ba4115",
                     "label": "Fertility Awareness Methods",
-                    "conceptMappings": []
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'F'"
+                    }
+                  },
+                  {
+                    "concept": "dcdd8d8d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Vascetomy",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "sex !== 'M'"
+                    }
                   }
                 ]
               },
