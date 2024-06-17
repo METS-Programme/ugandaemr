@@ -166,30 +166,18 @@
                     "concept": "dc882c84-30ab-102d-86b0-7a5022ba4115",
                     "label": "Oral Contraceptive pills",
                     "conceptMappings": [],
-                    <<<<<<< HEAD
                     "hide": {
                       "hideWhenExpression": "sex !== 'F'"
-                      =======
-                      "disable": {
-                        "disableWhenExpression": "sex !== 'F'"
-
-                        >>>>>>> dde64dbd5f848ceb449c08a51b49e95e6d1604bb
-                      }
-                    },
+                    }
+                  },
                   {
                     "concept": "dcb30ba3-30ab-102d-86b0-7a5022ba4115",
                     "label": "Injectable",
                     "conceptMappings": [],
-                    <<<<<<< HEAD
                     "hide": {
                       "hideWhenExpression": "sex !== 'F'"
-                      =======
-                      "disable": {
-                        "disableWhenExpression": "sex !== 'F'"
-
-                        >>>>>>> dde64dbd5f848ceb449c08a51b49e95e6d1604bb
-                      }
-                    },
+                    }
+                  },
                   {
                     "concept": "bb83fd9d-24c5-4d49-89c0-97e13c792aaf",
                     "label": "Implants",
