@@ -938,8 +938,12 @@ VALUES
 		</sql>
 	</changeSet>
 
-    <changeSet id="ugandaemr-20240318-1654" author="slubwama">
+    <changeSet id="ugandaemr-20240624-0535" author="slubwama">
         <preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="0">
+				select count(*) from liquibasechangelog where ID="ugandaemr-20240318-1654";
+			</sqlCheck>
+
             <sqlCheck expectedResult="1">
                 select count(*) from program where uuid="18c6d4aa-0a36-11e7-8dbb-507b9dc4c741" and program_id=1;
             </sqlCheck>
@@ -1004,10 +1008,6 @@ VALUES
 
             INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
             SELECT patient_program_id, 21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
-
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 14;
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 15;
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 16;
 
             CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select  patient_program.*,state,patient_state_id from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
             CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select  patient_program.*,state from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (1));
