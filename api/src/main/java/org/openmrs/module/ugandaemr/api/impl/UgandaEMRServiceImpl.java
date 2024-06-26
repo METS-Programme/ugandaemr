@@ -2086,7 +2086,15 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
         } else {
             testOrder = (TestOrder) orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", accessionNumber);
+            updateSpecimenSourceManually(order,specimenSourceUuid);
         }
         return testOrder;
+    }
+
+    private void updateSpecimenSourceManually(Order order,String specimenSourceUUID){
+        Concept specimenSource=Context.getConceptService().getConceptByUuid(specimenSourceUUID);
+        if(specimenSource!=null) {
+            Context.getAdministrationService().executeSQL(String.format(SPECIMEN_MANUAL_UPDATE_QUERY,specimenSource.getConceptId(), order.getOrderId()), false);
+        }
     }
 }
