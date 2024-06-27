@@ -1672,8 +1672,6 @@
 
         /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
         if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#dsdm_approach").find("select").find(":selected").val() !== "4eae684a-ee1f-4f62-87f3-e3e58c91f417" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "6b4906b1-388c-4984-974a-81e6f86f7737" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "")) {
-        getField('dsdm_approach.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#dsdm_approach").find("select").find(":selected").text()).show();
-
         jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#dsdm_approach").find("select").find(":selected").text());
         return false;
         }
@@ -4714,6 +4712,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group" id="dsdm_approach">
                                             <workflowState workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+
                                         </div>
                                     </div>
                                     <div class="col-md-4">
