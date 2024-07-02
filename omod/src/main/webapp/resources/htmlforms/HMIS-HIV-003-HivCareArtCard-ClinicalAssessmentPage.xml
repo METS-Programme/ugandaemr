@@ -3255,7 +3255,10 @@
                                                              class="horizontal"/>
                                                     </div>
                                                     <div class="col-md-3" id="dsdm_approach">
-                                                        <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                                        <obs id="165143" conceptId="165143"
+                                                             answerConceptIds="165138,165140,165139,165142,165141"
+                                                             answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
+                                                             class="long-value-select" required="required"/>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -4713,7 +4716,10 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group" id="dsdm_approach">
-                                            <workflowState workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                            <obs id="165143" conceptId="165143"
+                                                 answerConceptIds="165138,165140,165139,165142,165141"
+                                                 answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
+                                                 class="long-value-select" required="required"/>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
