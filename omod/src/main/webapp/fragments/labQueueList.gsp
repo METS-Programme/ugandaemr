@@ -574,7 +574,7 @@
 
     function displayLabOrderApproachA(labOrder) {
 
-        var displayDivHeader = "<table id=\"worklist-referred-a\"> <thead> <tr><th></th><th>No.</th><th>Patient</th><th>DOB</th><th>Orders</th> </tr> </thead> <tbody>";
+        var displayDivHeader = "<table id=\"worklist-referred-a\"> <thead> <tr><th></th><th>No.</th><th>Patient</th><th>DOB</th><th>Gender</th><th>Orders</th> </tr> </thead> <tbody>";
         var displayDivFooter = "</tbody></table>"
         var displayWorkListDiv = "";
         var displayReferralListDiv = "";
@@ -590,6 +590,7 @@
             var tdPatientNames = "<td>" + patientencounter.patient.display + "</td>";
             var tdPatientIdentifier = "<td>" + identifierToDisplay(patientencounter.patient.identifiers) + "</td>";
             var tdPatientDob = "<td>" + formatDateFromString(patientencounter.patient.birthdate) + "</td>";
+            var tdPatientGender = "<td>" + patientencounter.patient.gender + "</td>";
             var tdOrderSummary = "<td>" + patientencounter.orders.length + "</td>";
             var trCloseTag = "</tr>";
             var trCollapsedOpenTag = "<tr> <td colspan=\"12\" class=\"hiddenRow\"><div class=\"accordian-body collapse\" id=\"order" + index + "\">";
@@ -640,11 +641,11 @@
                 }
             });
             if (workListTests.length > 0) {
-                displayWorkListDiv += trOpenTag + tdOpenTag + tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + workListTests + trCollapsedCloseTag + tableFooter
+                displayWorkListDiv += trOpenTag + tdOpenTag + tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdPatientGender+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + workListTests + trCollapsedCloseTag + tableFooter
             }
 
             if (referedTests.length > 0) {
-                displayReferralListDiv += trOpenTag + tdOpenTag +tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + referedTests + trCollapsedCloseTag + tableFooter
+                displayReferralListDiv += trOpenTag + tdOpenTag +tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdPatientGender+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + referedTests + trCollapsedCloseTag + tableFooter
             }
 
         })
