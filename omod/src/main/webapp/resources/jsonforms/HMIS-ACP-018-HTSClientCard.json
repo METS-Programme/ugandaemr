@@ -1,7 +1,7 @@
 {
   "name": "HMIS ACP 018:HTS Client Card",
   "version": "4.0.0",
-  "description": "HIV Testing Services Client Card",
+  "description": "HIV Testing Services",
   "encounterType": "264daIZd-f80e-48fe-nba9-P37f2W1905Pv",
   "encounter": "HTC - Encounter",
   "uuid": "b5c62a98-84d3-43e8-a9be-972185070dd4",
@@ -10,7 +10,7 @@
   "retired": false,
   "pages": [
     {
-      "label": "HIV Testing Services Client Card",
+      "label": "HIV Testing Services",
       "sections": [
         {
           "label": "Client Details",
@@ -144,7 +144,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_deliver_model !== 'ecb88326-0a3f-44a5-9bbf-df4bfc3239e1'"
+                "hideWhenExpression": "isEmpty(htsDeliverModel) || htsDeliverModel !== 'ecb88326-0a3f-44a5-9bbf-df4bfc3239e1'"
               }
             },
             {
@@ -204,7 +204,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_deliver_model !== '4f4e6d1d-4343-42cc-ba47-2319b8a84369'"
+                "hideWhenExpression": "isEmpty(htsDeliverModel) || htsDeliverModel !== '4f4e6d1d-4343-42cc-ba47-2319b8a84369'"
               }
             },
             {
@@ -269,7 +269,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_approach !== '74120d00-5483-4148-acc3-00647dc13add'"
+                "hideWhenExpression": "htsApproach !== '74120d00-5483-4148-acc3-00647dc13add'"
               }
             },
             {
@@ -309,7 +309,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hts_approach !== 'a0857c20-9dc3-410f-9fda-d8fde202b727'"
+                "hideWhenExpression": "htsApproach !== 'a0857c20-9dc3-410f-9fda-d8fde202b727'"
               }
             },
             {
@@ -332,92 +332,6 @@
           "label": "HIV Risk Assessment",
           "isExpanded": "true",
           "questions": [
-            {
-              "label": "Special categories",
-              "type": "obs",
-              "id": "specialCategories",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Prisoners",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "PWIDs",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Uniformed Men",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Migrant workers",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Truckers",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fisher Folks",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refugees",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Pregnant",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
-                    "label": "Breastfeeding",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "AGYW",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "People with Disabilities",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Others",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Other special categories",
-              "type": "obs",
-              "id": "otherSpecialCategories",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "eac4e9c2-a086-43fc-8d43-b5a4e02febb4",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "hide": {
-                "hideWhenExpression": "specialCategories !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
-              }
-            },
             {
               "label": "First HIV test (has never tested before)",
               "type": "obs",
@@ -599,6 +513,7 @@
               "label": "Pre -Test Counseling done/information given",
               "type": "obs",
               "id": "preTestCounsellingDone",
+              "required": "true",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "193039f1-c378-4d81-bb72-653b66c69914",
@@ -799,27 +714,6 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "If tested HIV positive finger print has been captured",
-              "type": "obs",
-              "id": "ifTestedHivPositiveFingerprintBeenCaptured",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "d7974eae-a0a0-4a0c-b5ed-f060af91665d",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
               "label": "Results received as individual",
               "type": "obs",
               "id": "resultsReceivedAsIndividual",
@@ -838,6 +732,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledAs !== 'c61ea879-2a23-484d-bec1-ab177a926265'"
               }
             },
             {
@@ -859,6 +756,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "counseledAs !== '934cd2fa-210e-430e-babf-ac846ee4a8b2'"
               }
             },
             {
@@ -1007,7 +907,7 @@
             {
               "label": "Client has been referred for HIV care or other prevention services",
               "type": "obs",
-              "id": "client_has_been_referred_for_hiv_care",
+              "id": "clientHasBeenReferredForHivCare",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "3d620422-0641-412e-ab31-5e45b98bc459",

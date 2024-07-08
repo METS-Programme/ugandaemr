@@ -522,6 +522,7 @@
     <privilege  privilege="App: ugandaemrpoc.mchclinic"  description="Access to the mch provider dashboard"  uuid="7949e7fa-0564-11ea-a69e-362b9e155667"/>
     <privilege  privilege="App: ugandaemrpoc.findPatient"  description="find patient ugandaemrpoc app privilege"  uuid="c837c951-b7bb-456d-8f49-8d439c0e8822"/>
 
+    <privilege  privilege="View OrderTemplates"  description="View OrderTemplates"  uuid="6896b895-0352-4efc-b262-645e5732fdc2"/>
 
     <!-- 4.x privileges -->
     <!-- Checkin privilege -->
@@ -1297,6 +1298,8 @@
     <role_privilege  role="Privilege Level: High"  privilege="Manage Clinical Forms"/>
     <role_privilege  role="Privilege Level: High"  privilege="Manage AI Button"/>
 
+
+    <role_privilege  role="Organizational: Clinician"  privilege="View OrderTemplates"/>
 </dataset>
 
 
