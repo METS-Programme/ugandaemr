@@ -854,6 +854,11 @@
         }
 
     </style>
+    <ifMode mode="ENTER">
+        <div class="hidden" id="dsdm_approach">
+            <workflowState  workflowId="5" labelText="Approach" stateId="17"  type="hidden" />
+        </div>
+    </ifMode>
 
     <!-- Beging of HTML Form -->
     <div class="poc-page-frame">
