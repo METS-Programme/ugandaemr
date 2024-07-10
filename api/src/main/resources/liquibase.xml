@@ -1020,6 +1020,32 @@ VALUES
             WHERE pp.program_id IN (5,6,7,8,9);
         </sql>
     </changeSet>
+
+	<changeSet id="ugandaemr-20240610-1655" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where uuid=="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+			</sqlCheck>
+		</preConditions>
+		<comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
+		<sql>
+			update concept_name set concept_name.uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad", concept_name.concept_name_id=198844, concept_name.concept_id=186351  where concept_id in (select concept.concept_id from  concept where concept.uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e");
+			update concept set concept_id=186351 where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240610-1656" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where uuid=="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+			</sqlCheck>
+		</preConditions>
+		<comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
+		<sql>
+			update concept_name set concept_name.uuid="209ebadb-d3df-489a-bd10-7171e21c4869", concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00");
+			update concept set concept_id=186352 where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
