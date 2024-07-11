@@ -961,10 +961,10 @@
               "id": "testsOrdered",
               "type": "testOrder",
               "questionOptions": {
-                "rendering": "repeating",
+                "rendering": "select",
                 "orderSettingUuid": "INPATIENT",
                 "orderType": "testorder",
-                "selectableOrders": [
+                "answers": [
                   {
                     "concept": "1eb05918-f50c-4cad-a827-3c78f296a10a",
                     "label": "VL",
@@ -972,13 +972,7 @@
                   }
                 ]
               },
-              "validators": [
-                {
-                  "type": "js_expression",
-                  "failsWhenExpression": "testsOrdered.map(test => test.concept).filter(item => item === '1eb05918-f50c-4cad-a827-3c78f296a10a').length > 1",
-                  "message": "You cannot add 'VL' more than once."
-                }
-              ]
+              "validators": []
             },
             {
               "label": "Indication for viral load testing",
