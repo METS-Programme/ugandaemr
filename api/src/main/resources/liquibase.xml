@@ -1024,7 +1024,7 @@ VALUES
 	<changeSet id="ugandaemr-20240610-1655" author="slubwama">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
-				select count(*) from concept where uuid=="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+				select count(*) from concept where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
 			</sqlCheck>
 		</preConditions>
 		<comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
@@ -1037,7 +1037,7 @@ VALUES
 	<changeSet id="ugandaemr-20240610-1656" author="slubwama">
 		<preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="1">
-				select count(*) from concept where uuid=="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+				select count(*) from concept where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
 			</sqlCheck>
 		</preConditions>
 		<comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
