@@ -835,19 +835,6 @@ VALUES
 			UPDATE patient_appointment a INNER JOIN obs b ON a.patient_id = b.person_id SET appointment_service_id = 10 WHERE  b.concept_id=160288 and value_coded=164973;
 		</sql>
 	</changeSet>
-    <changeSet id="ugandaemr-20240314-1721" author="slubama">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">
-                SELECT COUNT(*) FROM provider_attribute_type WHERE uuid='13a721e4-68e5-4f7a-8aee-3cbcec127179';
-            </sqlCheck>
-        </preConditions>
-        <comment>Create provider attribute default location in</comment>
-        <sql>
-            REPLACE INTO provider_attribute_type (name, description, datatype, preferred_handler, min_occurs, max_occurs, creator, date_created, retired, uuid) VALUES ('Default Location', 'The location which is assigned to a clinical provider', 'org.openmrs.customdatatype.datatype.LocationDatatype', 'org.openmrs.web.attribute.handler.LocationFieldGenDatatypeHandler', 0, 1, 1, '2023-08-10 14:14:27',  0, '13a721e4-68e5-4f7a-8aee-3cbcec127179');
-        </sql>
-    </changeSet>
-
-
     <changeSet id="ugandaemr-20240314-1821" author="slubama">
         <preConditions onFail="CONTINUE">
             <sqlCheck expectedResult="1">
@@ -938,8 +925,12 @@ VALUES
 		</sql>
 	</changeSet>
 
-    <changeSet id="ugandaemr-20240318-1654" author="slubwama">
+    <changeSet id="ugandaemr-20240624-0535" author="slubwama">
         <preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="0">
+				select count(*) from liquibasechangelog where ID="ugandaemr-20240318-1654";
+			</sqlCheck>
+
             <sqlCheck expectedResult="1">
                 select count(*) from program where uuid="18c6d4aa-0a36-11e7-8dbb-507b9dc4c741" and program_id=1;
             </sqlCheck>
@@ -1005,10 +996,6 @@ VALUES
             INSERT INTO patient_state (patient_program_id, state, start_date, end_date, creator, date_created, changed_by, date_changed, voided, voided_by, date_voided, void_reason, uuid)
             SELECT patient_program_id, 21,pp.date_enrolled,pp.date_completed,pp.creator,pp.date_created,pp.changed_by,pp.date_changed,pp.voided,pp.voided_by, pp.date_voided,pp.void_reason,uuid() from patient_program pp where program_id=9;
 
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 14;
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 15;
-            UPDATE program_workflow_state t SET t.program_workflow_id = 1 WHERE t.program_workflow_state_id = 16;
-
             CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_patient_programs AS (select  patient_program.*,state,patient_state_id from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (5,6,7,8,9));
             CREATE TEMPORARY TABLE IF NOT EXISTS hiv_program AS (select  patient_program.*,state from patient_program inner join patient_state on patient_program.patient_program_id = patient_state.patient_program_id where program_id in (1));
             CREATE TEMPORARY TABLE IF NOT EXISTS dsdm_hiv_program_match  AS (select patient_state_id as matching_patient_state_id ,dsdm_patient_programs.patient_program_id asdsdm_patient_program_id , hiv_program.patient_program_id  as hiv_patient_program_id,dsdm_patient_programs.patient_program_id as dsdm_patient_program_id ,dsdm_patient_programs.patient_id as dsdm_patient from hiv_program inner join dsdm_patient_programs on (hiv_program.patient_id=dsdm_patient_programs.patient_id) where dsdm_patient_programs.state in (17,18,19,20,21));
@@ -1033,6 +1020,32 @@ VALUES
             WHERE pp.program_id IN (5,6,7,8,9);
         </sql>
     </changeSet>
+
+	<changeSet id="ugandaemr-20240610-1655" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+			</sqlCheck>
+		</preConditions>
+		<comment>Change Image attachment to known concept metadata in UgandaEMR</comment>
+		<sql>
+			update concept_name set concept_name.uuid="552e757e-b072-4e68-a10d-b7db7efcd5ad", concept_name.concept_name_id=198844, concept_name.concept_id=186351  where concept_id in (select concept.concept_id from  concept where concept.uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e");
+			update concept set concept_id=186351 where uuid="7cac8397-53cd-4f00-a6fe-028e8d743f8e";
+		</sql>
+	</changeSet>
+
+	<changeSet id="ugandaemr-20240610-1656" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+			</sqlCheck>
+		</preConditions>
+		<comment>Change Default attachment to known concept metadata in UgandaEMR</comment>
+		<sql>
+			update concept_name set concept_name.uuid="209ebadb-d3df-489a-bd10-7171e21c4869", concept_name.concept_name_id=198845, concept_name.concept_id=186352  where concept_id in (select concept.concept_id from  concept where concept.uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00");
+			update concept set concept_id=186352 where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 

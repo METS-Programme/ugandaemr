@@ -117,24 +117,46 @@
                     }
                 });
 
-                jq("#dsdm_approach").change(function () {
-                    var model= jq("#dsdm_approach").find("select").find(":selected").val();
-                    if (model === "7e2acb9c-25e9-4b8f-b012-8436051d5c32" || model === "0ca3db87-567f-4159-acc0-0ec14d0b8036") {
+                function changeDSDMWorkFLow(model) {
+                    switch (model) {
+                        case "165138":
+                            jq("#dsdm_approach").val("17");
+                            break;
+                        case "165140":
+                            jq("#dsdm_approach").val("18");
+                            break;
+                        case "165139":
+                            jq("#dsdm_approach").val("19");
+                            break;
+                        case "165142":
+                            jq("#dsdm_approach").val("20");
+                            break;
+                        case "165141":
+                            jq("#dsdm_approach").val("21");
+                            break;
+                        default:
+                            jq("#dsdm_approach").val("");
+                            break;
+                    }
+                }
+
+                jq("#165143 select").change(function () {
+                    var model = jq("#165143").find("select").find(":selected").val();
+                    if (model === "165142" || model === "165141") {
                         enable_fields("cddp_category");
                         enable_fields("next_facility_visit_date");
-                        if (model === "7e2acb9c-25e9-4b8f-b012-8436051d5c32"){
-                            hideContainer("#cddp_category");
-                            jq("#refill_point_select_id").attr("disabled", false);
-                            getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
-                        }
-                    }else {
-                        jq('#refill_point_select_id').empty();
+                    } else if (model === "165141") {
+                        hideContainer("#cddp_category");
+                        jq("#refill_point_select_id").attr("disabled", false);
+                        getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
+                    } else {
                         setValue('refill_point_id.value', '');
                         jq("#refill_point_select_id  option").prop("selected", false);
                         jq("#cddp_category  option").prop("selected", false);
                         disable_fields("cddp_category");
                         disable_fields("next_facility_visit_date");
                     }
+                    changeDSDMWorkFLow(model);
                 });
 
 
@@ -281,25 +303,25 @@
             });
 
 
-        function getDrugByConcept(concept, drug_strength_id) {
-            if (enableStockManagement) {
-                jq("#" + drug_strength_id + "").find("select").empty();
-                var stockItems = []
-                jq.ajax({
-                type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    stockItems = data.results;
-            }
-        });
-        if (stockItems.length) {
-            enable_fields(drug_strength_id)
-        }
-            jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
-            for (var i = 0; i &lt; stockItems.length; i++) {
-                jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
+            function getDrugByConcept(concept, drug_strength_id) {
+                if (enableStockManagement) {
+                    jq("#" + drug_strength_id + "").find("select").empty();
+                    var stockItems = []
+                    jq.ajax({
+                        type: "GET",
+                        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            stockItems = data.results;
+                        }
+                    });
+                    if (stockItems.length) {
+                        enable_fields(drug_strength_id)
+                    }
+                    jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
+                    for (var i = 0; i &lt; stockItems.length; i++) {
+                        jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
             }
         }
         }
@@ -1755,8 +1777,10 @@
         }
 
         /* if DSDM is not FBIM or FTR or Empty and patient is not stable should not save.*/
-        if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#dsdm_approach").find("select").find(":selected").val() !== "4eae684a-ee1f-4f62-87f3-e3e58c91f417" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "6b4906b1-388c-4984-974a-81e6f86f7737" &amp;&amp; jq("#dsdm_approach").find("select").find(":selected").val() !== "")) {
-        jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#dsdm_approach").find("select").find(":selected").text());
+        if (jq("#patient-categorization").find("select").find(":selected").val() !== "90003" &amp;&amp; (jq("#165143").find("select").find(":selected").val() !== "165138" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "165140" &amp;&amp; jq("#165143").find("select").find(":selected").val() !== "")) {
+        getField('165143.error').html('Patient Not Stable due to ' + instabilityCause + '. \n Only Stable Patients can be enrolled in ' + jq("#165143").find("select").find(":selected").text()).show();
+
+        jq().toastmessage('showErrorToast', " Patient Not Stable " + instabilityCause + ". \n Only Stable Patients can be enrolled in " + jq("#165143").find("select").find(":selected").text());
         return false;
         }
 
@@ -3331,7 +3355,14 @@
                                                              answerLabels="S - Stable, US - Unstable"
                                                              class="horizontal"/>
                                                     </div>
-                                                    <div class="col-md-3" id="dsdm_approach">
+                                                    <div class="col-md-3">
+                                                        <label>Approach</label>
+                                                        <obs id="165143" conceptId="165143"
+                                                             answerConceptIds="165138,165140,165139,165142,165141"
+                                                             answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
+                                                             class="long-value-select" required="required"/>
+                                                    </div>
+                                                    <div class="hidden" id="dsdm_approach">
                                                         <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
                                                     </div>
                                                 </div>
@@ -4398,7 +4429,7 @@
                                                 <div id="split_regimen_container">
                                                     <repeat>
                                                         <template>
-                                                            <obsgroup groupingConceptId="160741">
+                                                            <obsgroup groupingConceptId="198843">
                                                                 <div class="row multi-arv-drug"
                                                                      id="{id}-toggleContainer1">
                                                                     <div class="col-md-4">
@@ -4789,9 +4820,14 @@
                                              class="horizontal long-value-select"/>
                                     </div>
                                     <div class="col-md-4">
-                                        <div class="form-group" id="dsdm_approach">
-                                            <workflowState workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
-
+                                        <div class="form-group">
+                                            <obs id="165143" conceptId="165143"
+                                                 answerConceptIds="165138,165140,165139,165142,165141"
+                                                 answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
+                                                 labelText="Approach" class="horizontal long-value-select"/>
+                                        </div>
+                                        <div class="hidden" id="dsdm_approach">
+                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -4818,7 +4854,8 @@
                                     <div class="row">
                                         <div class="col-md-3" id="cddp_category">
                                             <label>CDDP Category</label>
-                                            <workflowState workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                            <workflowState workflowId="4" stateIds="16,14,15"
+                                                           stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                         </div>
                                         <div class="col-md-3">
                                             <label>DSD Group Refill Point</label>
