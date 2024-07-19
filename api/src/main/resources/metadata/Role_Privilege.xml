@@ -594,6 +594,7 @@
     <privilege  privilege="View Reception Menu"  description="access to menu reception menu item"  uuid="b2307411-3d14-4e63-b665-dcbbe4fb7d9c"/>
     <privilege  privilege="View Triage Menu"  description="access to menu triage menu item"  uuid="5bae9fd5-d8a5-4f1a-b00c-48ab84d12fc6"/>
     <privilege  privilege="View Clinical Room Menu"  description="access to menu clinician room menu item"  uuid="7dd31456f-fad9-4f0f-adcf-4588f00ea21d"/>
+    <privilege  privilege="View Dispensing Menu"  description="access to menu clinician room menu item"  uuid="0ad580fa-4491-45fd-b97d-3089c22f7f37"/>
 
     <privilege  privilege="Manage AI Button"  description="Manage AI Button"  uuid="a333c427-54c5-4c34-82ec-2c6e31c32ac1"/>
     <privilege  privilege="Manage Clinical Forms"  description="Manage Clinical Forms"  uuid="da09a036-6d51-4f3c-a4f0-0758555f0f50"/>
@@ -873,6 +874,7 @@
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.edit.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense.ifCreator" />
+    <role_privilege role="Organizational:Pharmacy" privilege="View Dispensing Menu"/>
 
 
     <!--* DATA MANAGER ROLE *-->
