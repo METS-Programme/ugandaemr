@@ -1471,11 +1471,13 @@
                 }
 
                 /* Adherence Check*/
-                if (previousAdherence.length &lt;= 0 || previousAdherence.trim().includes("POOR")) {
-                    stableArray.push(false);
-                    instabilityCause += "Adherence is not Good \n "
-                } else {
-                    stableArray.push(true);
+                if(previousAdherence!=null) {
+                    if (previousAdherence.length &lt;= 0 || previousAdherence.trim().includes("POOR")) {
+                        stableArray.push(false);
+                        instabilityCause += "Adherence is not Good \n "
+                    } else {
+                        stableArray.push(true);
+                    }
                 }
 
                 /* Clinic staging */
