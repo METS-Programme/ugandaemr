@@ -49,6 +49,7 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PersonAttributeTypes.TELEPHONE_NUMBER_3);
         install(PersonAttributeTypes.OCCUPATION);
         install(PersonAttributeTypes.NATIONALITY);
+        install(PersonAttributeTypes.EMAIL_ADDRESS);
         log.info("Person AttributeTypes installed");
 
         // install roles
