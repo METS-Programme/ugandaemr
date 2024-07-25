@@ -191,6 +191,81 @@
               "validators": []
             },
             {
+              "label": "Treatment supporter Name/Medicine pick-up if ill:",
+              "type": "obs",
+              "id": "treatment supporter",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "23e28311-3c17-4137-8eee-69860621b80b",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Relationship to index clients:",
+              "type": "obs",
+              "id": "relationship to client",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "33b18e88-0eb9-48f0-8023-2e90caad4469",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dd22614e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Cousin"
+                  },
+                  {
+                    "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Child"
+                  },
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Partner/Spouse"
+                  },
+                  {
+                    "concept": "dd1e43f2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "GrandChild"
+                  },
+                  {
+                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Partner"
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Friend"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "In School",
+              "type": "obs",
+              "id": "inschool",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "dcc3a7e9-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+
+                ]
+              },
+              "validators": []
+            },
+            {
               "label": "Special Categories",
               "type": "obs",
               "id": "specialCategories",
@@ -213,11 +288,11 @@
                   },
                   {
                     "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Disability"
+                    "label": "People with Disability(PWD)"
                   },
                   {
                     "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fisherman"
+                    "label": "Fisherfolk"
                   },
                   {
                     "concept": "2ab8849a-8f4a-49f4-9e8b-cd84f40162cf",
@@ -229,7 +304,7 @@
                   },
                   {
                     "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Long distance truck driver"
+                    "label": "Long distance driver"
                   },
                   {
                     "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -237,7 +312,7 @@
                   },
                   {
                     "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
-                    "label": "Non IDU"
+                    "label": "Non-Injecting drug user"
                   },
                   {
                     "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
@@ -245,11 +320,19 @@
                   },
                   {
                     "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refugee Camp"
+                    "label": "Refugee"
+                  },
+                  {
+                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "People Who Inject Drugs (PWID)"
+                  },
+                  {
+                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "YAPS"
                   },
                   {
                     "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Uniformed Officer"
+                    "label": "Uniformed forces"
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
