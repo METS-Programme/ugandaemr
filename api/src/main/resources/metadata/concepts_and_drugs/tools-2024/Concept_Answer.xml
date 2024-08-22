@@ -142,4 +142,16 @@
     <concept_answer  concept_answer_id="7375345"  concept_id="198939"  answer_concept="1066" creator="1"  date_created="2024-08-01 05:03:49"  sort_weight="1"  uuid="858ea696-f208-4610-870e-e186ed6ef1d3"/>
     <concept_answer  concept_answer_id="7375346"  concept_id="198939"  answer_concept="1065" creator="1"  date_created="2024-08-01 05:03:49"  sort_weight="2"  uuid="c45d72a6-edf7-4cc1-9838-ac20dee02e7a"/>
 
+    <!--Monkey Pox-->
+    <concept_answer  concept_answer_id="7375375"  concept_id="198959"  answer_concept="168758"    creator="1"  date_created="2024-08-22 12:04:23"  sort_weight="2"  uuid="b2168f17-0c2c-435f-b343-a572a64ac9d0"/>
+    <concept_answer  concept_answer_id="7375376"  concept_id="198959"  answer_concept="166313"    creator="1"  date_created="2024-08-22 12:04:23"  sort_weight="1"  uuid="0033100f-d1fa-4d09-a880-48650ffd5b6c"/>
+    <concept_answer  concept_answer_id="7375370"  concept_id="198958"  answer_concept="198956"    creator="1"  date_created="2024-08-22 11:51:48"  sort_weight="4"  uuid="f586fa5f-6fe4-4fe9-80b3-8f22250ccf11"/>
+    <concept_answer  concept_answer_id="7375371"  concept_id="198958"  answer_concept="198955"    creator="1"  date_created="2024-08-22 11:51:48"  sort_weight="3"  uuid="34170393-1f6f-4e54-81b3-82f628f450de"/>
+    <concept_answer  concept_answer_id="7375372"  concept_id="198958"  answer_concept="5993"    creator="1"  date_created="2024-08-22 11:51:48"  sort_weight="1"  uuid="8e0e9f2d-05b7-45e1-9a6d-1d1aab5046f2"/>
+    <concept_answer  concept_answer_id="7375373"  concept_id="198958"  answer_concept="99634"    creator="1"  date_created="2024-08-22 11:51:48"  sort_weight="2"  uuid="3c578800-48a4-4a9a-bdce-1d4206ff2d9f"/>
+    <concept_answer  concept_answer_id="7375374"  concept_id="198958"  answer_concept="198957"    creator="1"  date_created="2024-08-22 11:51:48"  sort_weight="5"  uuid="905e7df3-f714-4251-b7f6-403e0bc4aa9b"/>
+    <concept_answer  concept_answer_id="7375367"  concept_id="198954"  answer_concept="198952"    creator="1"  date_created="2024-08-22 11:28:07"  sort_weight="2"  uuid="819feac0-5240-479d-bc3e-30632180eb06"/>
+    <concept_answer  concept_answer_id="7375368"  concept_id="198954"  answer_concept="161"    creator="1"  date_created="2024-08-22 11:28:07"  sort_weight="1"  uuid="534ef06e-0f89-40f2-81b3-85c2c48b6fcf"/>
+    <concept_answer  concept_answer_id="7375369"  concept_id="198954"  answer_concept="198953"    creator="1"  date_created="2024-08-22 11:28:07"  sort_weight="3"  uuid="c642c3c9-a44d-477e-b740-b9c6094cf152"/>
+
 </dataset>

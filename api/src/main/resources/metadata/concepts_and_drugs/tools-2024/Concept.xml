@@ -112,4 +112,16 @@
         <concept  concept_id="198945"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-03 15:49:33"  version=""  changed_by="1"  date_changed="2024-08-03 15:49:33" uuid="1c85146a-aa29-4047-91f9-9ff24a8d2926"/>
         <concept  concept_id="198946"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-03 16:09:52"  version=""  changed_by="1"  date_changed="2024-08-03 16:09:52" uuid="63542453-423a-47ab-a66e-af9140ef485d"/>
         <concept  concept_id="198947"  retired="0"  datatype_id="4"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-03 16:13:22"  version=""  changed_by="1"  date_changed="2024-08-03 16:13:22" uuid="11b42b75-c06d-430d-88a0-d7d9d6e3a62c"/>
+
+        <!--Monkey Pox Screening-->
+        <concept  concept_id="198959"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-22 12:04:23"  version="1.0"  changed_by="1"  date_changed="2024-08-22 12:04:23"    uuid="63d04966-8535-4003-80a1-45035b3f2196"/>
+        <concept  concept_id="198958"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-22 11:51:48"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:51:48"    uuid="4337ee67-c730-4fbc-83e7-38a4226b78b9"/>
+        <concept  concept_id="198957"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:48:22"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:48:22"    uuid="ec12ee96-fa73-42d4-ba72-111027929145"/>
+        <concept  concept_id="198956"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:48:00"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:48:00"    uuid="7b2d6ad7-f526-44e3-9d28-38bb1ad83c99"/>
+        <concept  concept_id="198955"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:47:00"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:47:00"    uuid="25e954dd-1d7d-41ad-b0c1-2ca313abd772"/>
+        <concept  concept_id="198954"  retired="0"  datatype_id="2"  class_id="5"  is_set="0"  creator="1"  date_created="2024-08-22 11:28:07"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:28:07"    uuid="d67af613-293a-4d4a-9606-37792b3423e5"/>
+        <concept  concept_id="198953"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:25:47"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:25:47"    uuid="d97e1649-7078-4a8c-b0a5-bf63dc0ce0bc"/>
+        <concept  concept_id="198952"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:24:53"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:24:53"    uuid="ef14be57-94ea-41cc-bd80-ef8a99b06c6e"/>
+        <concept  concept_id="198951"  retired="0"  datatype_id="4"  class_id="11"  is_set="0"  creator="1"  date_created="2024-08-22 11:19:19"  version="1.0"  changed_by="1"  date_changed="2024-08-22 11:19:37"    uuid="c0d8313a-117a-4375-ad93-3a792a0d3639"/>
+
 </dataset>
