@@ -45,21 +45,7 @@
                 "rendering": "text",
                 "concept": "",
                 "calculate": {
-                  "calculateExpression": "resolve(cusGetLatestObs(patient.id,'ab505422-26d9-41f1-a079-c3d222000440'))"
-                }
-              },
-              "validators": []
-            },
-            {
-              "label": "Current Line",
-              "type": "obs",
-              "required": false,
-              "id": "currentLine",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "",
-                "calculate": {
-                  "calculateExpression": "resolve(getPatientDSMD(patient.id))"
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id,'dd2b0b4d-30ab-102d-86b0-7a5022ba4115'))"
                 }
               },
               "validators": []
@@ -367,16 +353,6 @@
               "hide": {
                 "hideWhenExpression": "isEmpty(regimenChangeType) || regimenChangeType != 'dca2992b-30ab-102d-86b0-7a5022ba4115'"
               }
-            },
-            {
-              "label": "New Regimen Line for Switch",
-              "type": "obs",
-              "required": false,
-              "id": "newRegimenLineForSwitch",
-              "questionOptions": {
-                "rendering": "text"
-              },
-              "validators": []
             },
             {
               "label": "Reason for regimen switch",
