@@ -120,5 +120,5 @@
     <concept_name  concept_name_id="198961"  concept_id="198953"  name="Lesions more dense on face"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-22 11:25:47"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="638aad2b-467b-48e0-a7d7-d96eb7d39051"  />
     <concept_name  concept_name_id="198960"  concept_id="198952"  name="Lesions in one stage of development"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-22 11:24:53"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4830d64e-30b8-453d-b9c6-698b1491fa88"  />
     <concept_name  concept_name_id="198959"  concept_id="198951"  name="Exposure to Mpox 21 days before symptom onset"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-22 11:19:19"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4ce66e8b-8588-46cb-aa66-4836461e0e99"/>
-
+    <concept_name  concept_name_id="198969"  concept_id="198960"  name="Has had multiple and/or casual sexual partners in the 21 days before symptom onset"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-28 09:39:14"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="a685e606-ea66-4aa9-bf24-5a61cbcc0e2c"/>
 </dataset>
