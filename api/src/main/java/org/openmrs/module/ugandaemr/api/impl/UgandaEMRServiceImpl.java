@@ -102,6 +102,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
+
         PatientService patientService = Context.getPatientService();
         PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
@@ -1801,7 +1802,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         //check if issued at facility
 
         Obs dispensedAtFacility = createDispensingObs(encounter, conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST), null, null, order);
-        dispensedAtFacility.setValueBoolean(receivedAtFacility);
+        if(receivedAtFacility) {
+            dispensedAtFacility.setValueCoded(conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST_YES));
+        }else {
+            dispensedAtFacility.setValueCoded(conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST_NO));
+        }
         parentObs.addGroupMember(dispensedAtFacility);
         obs.add(dispensedAtFacility);
 
