@@ -4,7 +4,7 @@
           formEncounterType="cbf01392-ca29-11e9-a32f-2a2ae2dbcce4"
           formVersion="4.0.0"
           formAddMetadata="yes"
-          formUILocation="patientDashboard.overallActions"
+          formUILocation="patientDashboard.visitActions"
           formOrder="1"
           formIcon="icon-exchange"
           formShowIf="patient.person.dead==false"
@@ -77,6 +77,9 @@
             margin-left: auto;
             width: 20%;
         }
+        span p b{
+        color:red;
+        }
     </style>
     <script type="text/javascript">
         if (jQuery) {
@@ -97,61 +100,47 @@
 
                 if(artInitiationDate != '') {
                     jq("#99161").find("input").attr("style", "display: none;");
-                    jq("#99161").append("<span><p>"+artInitiationDate+"</p></span>");
+                    jq("#99161").append("<span><p><b>"+artInitiationDate+"</b></p></span>");
                 }
 
                 if(who_stage != '') {
 
                     jq("#who-clinic-stage").find("select").attr("style", "display: none;");
-                    jq("#who-clinic-stage").append("<span><p>"+who_stage+"</p></span>");
+                    jq("#who-clinic-stage").append("<span><p><b>"+who_stage+"</b></p></span>");
                 }
 
                 if(treatment_line != '') {
                     jq("#treatment-line").find("select").attr("style", "display: none;");
-                    jq("#treatment-line").append("<span><p>"+treatment_line+"</p></span>");
+                    jq("#treatment-line").append("<span><p><b>"+treatment_line+"</b></p></span>");
                 }
 
                 if(current_regimen != '') {
                     jq("#art-regimen").find("select").attr("style", "display: none;");
-                    jq("#art-regimen").append("<span><p>"+current_regimen+"</p></span>");
+                    jq("#art-regimen").append("<span><p><b>"+current_regimen+"</b></p></span>");
                 }
 
                 if(pregnant != '') {
-                    jq("#pregnant").find("input").attr("style", "display: none;");
-                    jq("#breast-feeding").find("input").attr("style", "display: none;");
-                    jq("#not-pregnant-not-breast-feeding").find("input").attr("style", "display: none;");
-                    jq("#not-pregnant-not-applicable").find("input").attr("style", "display: none;");
-                    jq("#pregnancy-status").append("<span><p>"+pregnant+"</p></span>");
+                    jq("#pregnancy-status").find("select").attr("style", "display: none;");
+
+                    jq("#pregnancy-status").append("<span><p><b>"+pregnant+"</b></p></span>");
                 }
 
                 if(tb_status != '') {
                     jq("#tb-status").find("select").attr("style", "display: none;");
-                    jq("#tb-status").append("<span><p>"+tb_status+"</p></span>");
+                    jq("#tb-status").append("<span><p><b>"+tb_status+"</b></p></span>");
                 }
 
                 if(adherence != '') {
-                    jq("#art-adherence").find("input").attr("style", "display: none;");
-                    jq("#art-adherence").append("<span><p>"+adherence+"</p></span>");
+                    jq("#art-adherence").find("select").attr("style", "display: none;");
+                    jq("#art-adherence").append("<span><p><b>"+adherence+"</b></p></span>");
                 }
 
                 if(dsdm != '') {
                     jq("#165143").find("select").attr("style", "display: none;");
-                    jq("#165143").append("<span><p>"+dsdm+"</p></span>");
+                    jq("#165143").append("<span><p><b>"+dsdm+"</b></p></span>");
                 }
 
-
-                console.log(patientuuid+'patient id');
-                console.log(artInitiationDate+'art Initiation Date');
-                console.log(who_stage+'who stage Date');
-                console.log(treatment_line);
-                console.log(current_regimen+'current regimen');
-                console.log(pregnant+'pregnancy status');
-                console.log(anc+'anc no');
-                console.log(pnc+'pnc no');
-                console.log(tb_start_date +'tb start date');
-                console.log(tb_status +'tb status');
-                console.log(adherence +'adherence');
-                console.log(dsdm +'dsdm');
+                jq("#order-viral-load-test input").prop("checked", true);
 
 
                 });
@@ -181,20 +170,13 @@
                                                    order="629d78e9-93e5-43b0-ad8a-48313fd99117"/>
                             </span>
 
-                            <obs id="99161" conceptId="99161" labelText="ART Start Date:"/>
+                            <obs id="99161" conceptId="99161" labelText="ART Start Date:" required="required"/>
                         </td>
                         <td>
-                            <div class="div-row">
-                            <div class="col-md-1"></div>
-                            <div class="col-md-2">
                                 <label>WHO Clinical stages</label>
-                            </div>
-                            <div class="col-md-3">
-                                <obs id="who-clinic-stage" class="long-value-select" conceptId="90203"
+                                <obs id="who-clinic-stage" class="long-value-select" conceptId="90203" required="required"
                                      answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                                      answerLabels="1,2,3,4,T1,T2,T3,T4"/>
-                            </div>
-                            </div>
                         </td>
                         <td>
                             <div  id="treatment-line">
@@ -202,11 +184,9 @@
                             </div>
                         </td>
                         <td>
-                            <div class="col-md-3">
-                                <obs id="art-regimen" conceptId="90315" labelText="Regimen:"
+                             <obs id="art-regimen" conceptId="90315" labelText="Regimen:" required="required"
                                      answerConceptIds="99015,99016,99005,99006,164979,99039,99040,164977,99041,99042,99007,99008,99044,99043,99282,99283,99046,99017,99018,99019,99045,99284,99285,99286,99884,99885,164978,99888,163017,99887,90002"
                                      answerLabels="d4T-3TC-NVP,d4T-3TC-EFV,AZT-3TC-NVP,AZT-3TC-EFV,AZT-3TC-DTG,TDF-3TC-NVP,TDF-3TC-EFV,TDF-3TC-DTG,TDF-FTC-NVP,TDF-FTC-EFV,ABC-ddI(250)-LPV/r,ABC-ddI(400)-LPV/r,TDF-3TC-LPV/r,TDF-FTC-LPV/r,ZDV-ddI(250)-LPV/r,ZDV-ddI(400)-LPV/r,AZT-3TC-LPV/r,ABC-ddI-LPV/r,ABC-ddI-NFV,ABC-ddI-SQV/r,ZDV-ddI-LPV/r,AZT-ABC-LPV/r,ABC-ddI-ATV/r,AZT-3TC-ATV/r,ABC-3TC-NVP,ABC-3TC-EFV,ABC-3TC-DTG,ABC-3TC-ATV/r,ABC-3TC-LPV/r,TDF-3TC-ATV/r,Other"/>
-                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -217,60 +197,25 @@
 
                 <tr>
                     <td>
-                        <div class="row">
-                            <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
-                                <div class="col-md-6">
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <label>Pregnancy Status</label>
-                                        </div>
-                                        <div class="card-body">
-                                            <div>
-                                                <div class="row">
-                                                    <div class="col-md-10">
-                                                        <label>Pregnancy Status</label>
-                                                        <span class="pregnancy" id="pregnancy-status">
-                                                            <obs conceptId="90041" answerConceptId="1065"
-                                                                 answerLabel="P - Pregnant"
-                                                                 id="pregnant"/>
-                                                            <obs conceptId="90041" answerConceptId="99601"
-                                                                 answerLabel="BF - Breast Feeding"
-                                                                 id="breast-feeding"/>
-                                                            <obs conceptId="90041" answerConceptId="1066"
-                                                                 answerLabel="NPB - Not pregnant or not breast feeding"
-                                                                 id="not-pregnant-not-breast-feeding"/>
-                                                            <obs conceptId="90041" answerConceptId="1175"
-                                                                 answerLabel="NA - Not Applicable"
-                                                                 id="not-pregnant-not-applicable"/>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
+                        <excludeIf velocityTest="$patient.gender =='M' || $patient.age &lt; 9">
+                            <label>Pregnancy Status</label>
+                            <span class="pregnancy" id="pregnancy-status">
+                                    <obs conceptId="90041" answerConceptIds="1065,99601,1066,1175" required="required"
+                                         answerLabels="P - Pregnant,BF - Breast Feeding,NPB - Not pregnant or not breast feeding,NA - Not Applicable"/>
+                                </span>
                             </excludeIf>
-                        </div>
                     </td>
                     <td>
-                        <div class="col-md-3">
-                            <label>Tb Status</label>
-                            <obs id="tb-status" class="long-value-select" conceptId="90216"
+                            <label>Tb Status</label><br/>
+                            <obs id="tb-status" class="long-value-select" conceptId="90216" required="required"
                                  answerConceptIds="90079,90073, 165295, 165296, 165297, 165298, 165299,165300,90071,99421"
                                  answerLabels="1 - No signs,2 - Presumptive, 3C - TB Diagnosed - Clinically diagnosed,  3G - TB Diagnosed - Gene Xpert, 3L - TB Diagnosed - TB LAM,3M - TB Diagnosed -TB Microscopy, 3X - TB Diagnosed - Chest Xray, 3O - TB Diagnosed - Others, 4 - Tb Rx - Currently on TB treatment, 5 - Completed TB Treatment"/>
-                        </div>
+
                     </td>
                     <td>
-                        <div class="row">
-                            <label>Adherence</label>
-                            <div class="col-md-6">
-                                <span id="art-adherence" class="ART-adherence horizontal">
-                                    <obs conceptId="90221" answerConceptIds="90156,90157,90158"
-                                         answerLabels="Good, Fair, Poor" style="radio"/>
-                                </span>
-                            </div>
-                        </div>
+                        <label>Adherence</label><br/>
+                                    <obs id="art-adherence" conceptId="90221" answerConceptIds="90156,90157,90158"
+                                         answerLabels="Good, Fair, Poor" required="required" class="horizontal long-value-select"/>
                     </td>
                     <td>
                         <obs id="165143" conceptId="165143"
@@ -279,58 +224,47 @@
                              labelText="Approach" class="horizontal long-value-select"/>
                     </td>
                 </tr>
-            </tbody>
-        </table>
-        <section>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <obs id="order-viral-load-test" conceptId="1271"
+                <tr>
+
+                    <td>
+                        <obs id="order-viral-load-test" conceptId="1271" class="hidden"
                              answerConceptId="165412"
                              answerLabel="Order Viral Load Test"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <obsgroup groupingConceptId="165412">
-                        <div class="col-md-6">
-                            <label>Date collected</label>
-                            <obs id="date-viral-load-taken" conceptId="163023"
-                                 allowFutureDates="false"/>
-                        </div>
-                    </obsgroup>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
+                        <label>Date collected</label><br/>
+                        <obs id="date-viral-load-taken" conceptId="163023"
+                             allowFutureDates="false" required="true"/>
+                    </td>
+                    <td>
                         <label>Specimen ID/Accession Number</label>
                         <obs id="viral-load-accession-number"
-                             conceptId="165845"/>
-                    </div>
-
-                    <div class="col-md-6">
+                             conceptId="165845" required="true"/>
+                    </td>
+                    <td>
                         <label>Specimen Source</label>
                         <obs id="viral-load-specimen-source" conceptId="159959"
-                             answerConceptSetIds="162476"/>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
+                             answerConceptSetIds="162476" required="true"/>
+                    </td>
+                    <td>
                         <label>Indication for viral load testing</label>
-                        <obs id="indication-for-viral-load-testing" conceptId="168689" style="checkbox"/>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <label><span class="required">*</span>Counselor</label>
-                    <encounterProvider required="true"/>
-                </div>
-            </div>
-        </section>
+                        <obs id="indication-for-viral-load-testing" conceptId="168689" style="checkbox" required="true"/>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td>
+                        <label><span class="required">*</span>Counselor</label>
+                        <encounterProviderAndRole encounterRole="240b26f9-dd88-4172-823d-4a8bfeb7841f"
+                                                  required="required" id="provider"/>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
     </div>
     <submit submitLabel="Save"/>
 
 
-<!--    <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.PatientReferralPostSubmissionAction"/>-->
+    <postSubmissionAction class="org.openmrs.module.ugandaemr.htmlformentry.ViralLoadSubmissionAction"/>
 </htmlform>
