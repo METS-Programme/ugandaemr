@@ -123,7 +123,7 @@
               "label": "ANC No.",
               "type": "obs",
               "id": "ancNo",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329",
@@ -1038,6 +1038,21 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Duration on ART",
+              "type": "obs",
+              "id": "durationOnArt",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "",
+                "calculate": {
+                  "calculateExpression": "resolve(CustomMonthsOnARTCalc(patient.id))"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
               "label": "Patient Categorization",
               "type": "obs",
               "required": "true",
@@ -1113,6 +1128,9 @@
                 "rendering": "select",
                 "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
                 "workflowUuid": "306c02b7-198e-4066-8b2c-39e40a1bcc53"
+              },
+              "hide": {
+                "hideWhenExpression": "dsdmApproach !== '733139e4-c321-11e8-a355-529269fb1459' & dsdmApproach !== '73313728-c321-11e8-a355-529269fb1459'"
               }
             },
             {
