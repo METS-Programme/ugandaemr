@@ -1038,21 +1038,6 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Duration on ART",
-              "type": "obs",
-              "id": "durationOnArt",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "",
-                "calculate": {
-                  "calculateExpression": "resolve(CustomMonthsOnARTCalc(patient.id))"
-                },
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
               "label": "Patient Categorization",
               "type": "obs",
               "required": "true",
