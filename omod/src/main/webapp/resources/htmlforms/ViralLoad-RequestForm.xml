@@ -86,7 +86,7 @@
             jq(document).ready(function () {
                 var patientuuid = '<lookup expression="patient.uuid"/>';
                 var artInitiationDate = '<lookup expression="fn.latestObs('99161').valueDatetime"/>';
-                var who_stage='<lookup expression="fn.latestObs('99070').valueCoded.name"/>';
+                var who_stage='<lookup expression="fn.latestObs('90203').valueCoded.name"/>';
                 var treatment_line= '<lookup expression="fn.currentProgramWorkflowStatus(5).state.concept.name" />';
                 var current_regimen= '<lookup expression="fn.latestObs('90315').valueCoded.name"/>';
                 var pregnant = '<lookup expression="fn.latestObs('90041').valueCoded.name"/>';
@@ -174,7 +174,7 @@
                         </td>
                         <td>
                                 <label>WHO Clinical stages</label>
-                                <obs id="who-clinic-stage" class="long-value-select" conceptId="90203" required="required"
+                                <obs id="who-clinic-stage" class="long-value-select" conceptId="90203"
                                      answerConceptIds="90033,90034,90035,90036,90293,90294,90295,90296"
                                      answerLabels="1,2,3,4,T1,T2,T3,T4"/>
                         </td>
