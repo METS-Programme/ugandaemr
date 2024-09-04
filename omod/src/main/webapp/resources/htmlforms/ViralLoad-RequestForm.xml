@@ -87,7 +87,7 @@
                 var patientuuid = '<lookup expression="patient.uuid"/>';
                 var artInitiationDate = '<lookup expression="fn.latestObs('99161').valueDatetime"/>';
                 var who_stage='<lookup expression="fn.latestObs('90203').valueCoded.name"/>';
-                var treatment_line= '<lookup expression="fn.currentProgramWorkflowStatus(5).state.concept.name" />';
+                var treatment_line= '<lookup expression="fn.currentProgramWorkflowStatus(3).state.concept.name" />';
                 var current_regimen= '<lookup expression="fn.latestObs('90315').valueCoded.name"/>';
                 var pregnant = '<lookup expression="fn.latestObs('90041').valueCoded.name"/>';
                 var anc = '<lookup expression="patient.getPatientIdentifier('b0cc255e-ef57-4266-839e-0df7f5099eb9')"/>';
