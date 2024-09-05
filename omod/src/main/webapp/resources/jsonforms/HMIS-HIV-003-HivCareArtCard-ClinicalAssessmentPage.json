@@ -18,6 +18,29 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Date:",
+              "type": "encounterDatetime",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "ART Start Date",
+              "type": "obs",
+              "id": "artStartDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, 'ab505422-26d9-41f1-a079-c3d222000440'))"
+                },
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": []
+            },
+            {
               "label": "Pregnancy",
               "type": "obs",
               "id": "pregnant",
@@ -470,6 +493,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "813e21e7-4ccb-4fe9-aaab-3c0e40b6e356",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '813e21e7-4ccb-4fe9-aaab-3c0e40b6e356'))"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -1037,6 +1063,20 @@
           "label": "DSD Model",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Duration on ART",
+              "type": "obs",
+              "id": "durationOnArt",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "9ce522a8-cd6a-4254-babb-ebeb48b8ce2f",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(artStartDate, encDate))"
+                },
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
             {
               "label": "Patient Categorization",
               "type": "obs",
