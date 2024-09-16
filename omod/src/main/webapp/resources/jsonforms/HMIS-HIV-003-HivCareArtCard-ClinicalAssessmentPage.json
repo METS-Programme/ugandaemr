@@ -123,7 +123,7 @@
               "label": "ANC No.",
               "type": "obs",
               "id": "ancNo",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329",
@@ -470,6 +470,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "813e21e7-4ccb-4fe9-aaab-3c0e40b6e356",
+                "calculate": {
+                  "calculateExpression": "resolve(cusGetLatestObs(patient.id, '813e21e7-4ccb-4fe9-aaab-3c0e40b6e356'))"
+                },
                 "conceptMappings": [],
                 "answers": []
               },

@@ -779,6 +779,7 @@
     <role_privilege role="Reception" privilege="View Reception Metrics"/>
     <role_privilege role="Reception" privilege="Add Patient Button"/>
     <role_privilege  role="Reception"  privilege="View Reception Menu"/>
+    <role_privilege role="Reception"  privilege="Edit Patient Details Button" />
 
 
 
