@@ -27,7 +27,7 @@
             {
               "label": "Enrollment into HIV Care Transfer in from",
               "type": "obs",
-              "required": "true",
+              "required": "false",
               "id": "hivCareTransferInFrom",
               "questionOptions": {
                 "rendering": "date",
@@ -185,75 +185,6 @@
                   {
                     "concept": "e9469d61-b0c3-4785-81c6-057c7bc099fc",
                     "label": "YCC-Young child clinic"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Special Categories",
-              "type": "obs",
-              "id": "specialCategories",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "165132AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "AGYW"
-                  },
-                  {
-                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
-                    "label": "Breast feeding"
-                  },
-                  {
-                    "concept": "160666AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Current drug user"
-                  },
-                  {
-                    "concept": "162558AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Disability"
-                  },
-                  {
-                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fisherman"
-                  },
-                  {
-                    "concept": "2ab8849a-8f4a-49f4-9e8b-cd84f40162cf",
-                    "label": "General ART Client"
-                  },
-                  {
-                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "In prison"
-                  },
-                  {
-                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Long distance truck driver"
-                  },
-                  {
-                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Migrant Worker"
-                  },
-                  {
-                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
-                    "label": "Non IDU"
-                  },
-                  {
-                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PREGNANT"
-                  },
-                  {
-                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refugee Camp"
-                  },
-                  {
-                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Uniformed Officer"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
                   }
                 ]
               },

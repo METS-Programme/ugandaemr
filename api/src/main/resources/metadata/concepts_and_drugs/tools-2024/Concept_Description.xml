@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <concept_description  concept_description_id="18743"  concept_id="198953"  description="This is a characteristic rash identified during monkey pox screening"  locale="en"  creator="1"  date_created="2024-08-22 11:25:47"  uuid="c4774a8d-ecd0-4f44-a771-931d9fbb0b13"/>
+    <concept_description  concept_description_id="18742"  concept_id="198952"  description="This is a characteristic rash identified during monkey pox screening"  locale="en"  creator="1"  date_created="2024-08-22 11:24:53"  uuid="d3dccc4c-3d0b-40de-ae4d-495fd714ff68"/>
+    <concept_description  concept_description_id="18741"  concept_id="198951"  description="This is the concept for Exposure to a confirmed or probable case of Monkey Pox during screening."  locale="en"  creator="1"  date_created="2024-08-22 11:19:19"  uuid="240ec8c9-d5c5-4373-a2a9-91ead9ad4ffc"/>
+    <concept_description  concept_description_id="18744"  concept_id="198960"  description="This is a concept that handles multiple sexual partners"  locale="en"  creator="1"  date_created="2024-08-28 09:39:14"   uuid="537648d8-309b-4a6c-9a58-b03760fe2ab2"/>
+</dataset>
