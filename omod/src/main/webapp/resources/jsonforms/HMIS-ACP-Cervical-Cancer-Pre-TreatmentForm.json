@@ -55,7 +55,7 @@
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
+                    "label": "Other Specify"
                   }
                 ]
               },
@@ -70,7 +70,10 @@
                 "rendering": "text",
                 "concept": "e0ad4fb8-6b74-41b0-a7d0-d23909cfc3b4"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(visitType) || visitType !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "HPV Test Done",
@@ -104,19 +107,22 @@
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NEGATIVE"
+                    "label": "Negative"
                   },
                   {
                     "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
-                    "label": "POSITIVE"
+                    "label": "Postive"
                   },
                   {
                     "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT DONE"
+                    "label": "Not Done"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(hpvTestDone) || hpvTestDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "VIA Done",
@@ -170,7 +176,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viaDone) || viaDone !== '1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "VIA Procedure Screening Results",
@@ -183,11 +192,11 @@
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NEGATIVE"
+                    "label": "Negative"
                   },
                   {
                     "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
-                    "label": "POSITIVE"
+                    "label": "Positive"
                   },
                   {
                     "concept": "03a2a1b7-f1c0-4655-a26b-9053e8c57fa4",
@@ -195,7 +204,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viaDone) || viaDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "VIA/VAT Procedure Results",
@@ -208,15 +220,18 @@
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NEGATIVE"
+                    "label": "Negative"
                   },
                   {
                     "concept": "dc866728-30ab-102d-86b0-7a5022ba4115",
-                    "label": "POSITIVE"
+                    "label": "Positive"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viaDone) || viaDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "Colposcopy Results",
@@ -229,19 +244,19 @@
                 "answers": [
                   {
                     "concept": "dc9816bd-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NORMAL"
+                    "label": "N- Normal"
                   },
                   {
                     "concept": "ece7dfa9-532a-48da-a882-111b7f05e9c3",
-                    "label": "Low grade"
+                    "label": "LG- Low grade"
                   },
                   {
                     "concept": "06986846-90f8-43ad-beaa-eea8fb268196",
-                    "label": "High grade"
+                    "label": "HG- High grade"
                   },
                   {
                     "concept": "f77261c7-d35b-4a00-9da5-15afd49ba44b",
-                    "label": "Unsatisfactory"
+                    "label": "US - Unsatisfactory"
                   }
                 ]
               },
@@ -258,15 +273,15 @@
                 "answers": [
                   {
                     "concept": "6218bfcb-2333-46ca-99df-b1feeee13a64",
-                    "label": "NILM - NEGATIVE for Intra-epithelial Lesion or Malignancy"
+                    "label": "NILM - Negative for Intra-epithelial Lesion or Malignancy"
                   },
                   {
                     "concept": "e95f0f57-a4bc-468c-8786-8fdcacf93465",
-                    "label": "LSIL- POSITIVE (Low grade Squamous Intra-epithelial Lesion)"
+                    "label": "LSIL- Positive (Low grade Squamous Intra-epithelial Lesion)"
                   },
                   {
                     "concept": "653ab814-1147-45cb-92ed-77e8cd803520",
-                    "label": "HSIL - POSITIVE (High grade Squamous Intra-epithelial Lesion)"
+                    "label": "HSIL - Positive (High grade Squamous Intra-epithelial Lesion)"
                   },
                   {
                     "concept": "9a559c4f-3be3-4f4c-89d9-80971e513570",
@@ -344,7 +359,7 @@
                   },
                   {
                     "concept": "dcb2fba9-30ab-102d-86b0-7a5022ba4115",
-                    "label": "FEMALE STERILIZATION"
+                    "label": "Hysterectomy"
                   }
                 ]
               },
@@ -404,11 +419,14 @@
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
+                    "label": "Other Specify"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(timelines) || timelines !== '57526dfb-d202-4baf-99c8-93a9800bb00d'"
+              }
             },
             {
               "label": "Other Reasons for Postponing",
@@ -419,7 +437,10 @@
                 "rendering": "text",
                 "concept": "d71af53e-e0de-48e2-a11c-1622bf66d0b0"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(reasonsForPostponing) || reasonsForPostponing !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Other Services",
@@ -432,7 +453,7 @@
                 "answers": [
                   {
                     "concept": "8c12d3f1-1634-42ef-8d71-fb946ab417ed",
-                    "label": "HIV Testing Services - HTS"
+                    "label": "HIV Testing Services"
                   },
                   {
                     "concept": "165049AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -440,7 +461,7 @@
                   },
                   {
                     "concept": "dcb2e4e5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "FAMILY PLANNING"
+                    "label": "Family Planning"
                   },
                   {
                     "concept": "2fd84c19-bec6-42b3-b53c-e7650511f362",
@@ -476,7 +497,7 @@
               "required": false,
               "id": "referredOut",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "radio",
                 "concept": "7b246acf-d518-4b51-828c-d69593f3d66b",
                 "answers": [
                   {
@@ -506,7 +527,7 @@
                   },
                   {
                     "concept": "dc8e17cc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PAPANICOLAOU SMEAR"
+                    "label": "AP Smear"
                   },
                   {
                     "concept": "738f8433-8e80-48b3-87e9-7fdfb656494b",
@@ -526,11 +547,14 @@
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "OTHER SPECIFY"
+                    "label": "Other Specify"
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(referredOut) || referredOut !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
               "label": "Other Reasons for Referral",
@@ -541,7 +565,10 @@
                 "rendering": "text",
                 "concept": "33538878-9736-48f9-9506-72fb412d5295"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(reasonsForReferral) || reasonsForReferral !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
             },
             {
               "label": "Health Facility Referred To",
@@ -552,10 +579,13 @@
                 "rendering": "text",
                 "concept": "f48dc58e-3755-4a5c-9525-9a649fd2a148"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(referredOut) || referredOut !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
             },
             {
-              "label": "Service offered",
+              "label": "Services offered",
               "type": "obs",
               "required": false,
               "id": "serviceOffered",
@@ -593,7 +623,10 @@
                 "rendering": "date",
                 "concept": "f9bb0beb-1639-4f2d-b68d-fcff7b5c90ee"
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(serviceOffered)"
+              }
             }
           ]
         },
