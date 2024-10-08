@@ -585,6 +585,9 @@
               "questionOptions": {
                 "rendering": "text",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '67e9ec2f-4c72-408b-8122-3706909d77ec'))?.valueString"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
