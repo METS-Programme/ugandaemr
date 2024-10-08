@@ -269,7 +269,7 @@
             },
             {
               "label": "Most recent Viral Load Qualitative",
-              "type": "obs",
+              "type": "control",
               "id": "recentVL",
               "questionOptions": {
                 "rendering": "text",
@@ -285,7 +285,7 @@
             },
             {
               "label": "Most recent Viral Load ",
-              "type": "obs",
+              "type": "control",
               "required": false,
               "id": "recentHivVL",
               "questionOptions": {
