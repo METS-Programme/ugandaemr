@@ -22,7 +22,7 @@
               "type": "testOrder",
               "questionOptions": {
                 "rendering": "repeating",
-                "orderSettingUuid": "INPATIENT",
+                "orderSettingUuid": "OUTPATIENT",
                 "orderType": "testorder",
                 "concept": "dca07f4a-30ab-102d-86b0-7a5022ba4115",
                 "selectableOrders": [
