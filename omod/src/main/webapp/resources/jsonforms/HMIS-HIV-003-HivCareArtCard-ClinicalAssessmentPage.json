@@ -151,12 +151,12 @@
                 "answers": [
                   {
                     "concept": "dcdad102-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Not on family planning",
+                    "label": "NOT ON FAMILY PLANNING",
                     "conceptMappings": []
                   },
                   {
                     "concept": "dcdd6c4a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "On family planning",
+                    "label": "ON FAMILY PLANNING",
                     "conceptMappings": []
                   }
                 ]
