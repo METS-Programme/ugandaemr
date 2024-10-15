@@ -1,6 +1,13 @@
 {
   "name": "HMIS ACP 008: Comprehensive HIV Care/ART Patient Transfer Out Form",
   "version": "4.0.0",
+  "description": "Patient Transfer Out Form",
+  "encounterType": "e305d98a-d6a2-45ba-ba2a-682b497ce27c",
+  "encounter": "Transfer Out",
+  "uuid": "37be0b17-c62c-4033-90ef-3cbedb7fe0a0",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "allowUnspecifiedAll": true,
   "published": true,
   "retired": false,
   "pages": [
@@ -1304,12 +1311,5 @@
         }
       ]
     }
-  ],
-  "processor": "EncounterFormProcessor",
-  "uuid": "37be0b17-c62c-4033-90ef-3cbedb7fe0a0",
-  "referencedForms": [],
-  "encounterType": "e305d98a-d6a2-45ba-ba2a-682b497ce27c",
-  "encounter": "Transfer Out",
-  "allowUnspecifiedAll": true,
-  "description": "Patient Transfer Out Form"
+  ]
 }
