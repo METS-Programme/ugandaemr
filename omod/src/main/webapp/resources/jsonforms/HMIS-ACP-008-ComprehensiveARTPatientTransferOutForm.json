@@ -36,6 +36,12 @@
                 "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967",
                 "conceptMappings": []
               },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
               "id": "transferOutDate"
             },
             {
