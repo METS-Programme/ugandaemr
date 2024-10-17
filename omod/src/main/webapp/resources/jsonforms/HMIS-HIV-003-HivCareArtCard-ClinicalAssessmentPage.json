@@ -567,6 +567,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "dce02eca-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02eca-30ab-102d-86b0-7a5022ba4115'))?.valueDateTime"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -582,6 +585,9 @@
               "questionOptions": {
                 "rendering": "text",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '67e9ec2f-4c72-408b-8122-3706909d77ec'))?.valueString"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -597,6 +603,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "dd2adde2-30ab-102d-86b0-7a5022ba4115",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2adde2-30ab-102d-86b0-7a5022ba4115'))?.valueDateTime"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -650,6 +659,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "483939c7-79ba-4ca4-8c3e-346488c97fc7",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '483939c7-79ba-4ca4-8c3e-346488c97fc7'))?.valueDateTime"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -664,6 +676,9 @@
               "questionOptions": {
                 "rendering": "date",
                 "concept": "813e21e7-4ccb-4fe9-aaab-3c0e40b6e356",
+                "calculate": {
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '813e21e7-4ccb-4fe9-aaab-3c0e40b6e356'))?.valueDateTime"
+                },
                 "conceptMappings": [],
                 "answers": []
               },
@@ -1149,6 +1164,23 @@
               "hide": {
                 "hideWhenExpression": "isEmpty(artAdherence) || artAdherence == 'dcdf1708-30ab-102d-86b0-7a5022ba4115'"
               }
+            }
+          ]
+        },
+        {
+          "label": "Clinic Notes",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Clinical Notes",
+              "type": "obs",
+              "required": false,
+              "id": "clinical-notes",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
             }
           ]
         },

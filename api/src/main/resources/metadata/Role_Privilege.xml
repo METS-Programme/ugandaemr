@@ -601,6 +601,9 @@
     <privilege  privilege="Manage Order Basket"  description="Manage Order Basket"  uuid="c7393a69-9d41-4f7d-b005-c8d71c851eef"/>
     <privilege  privilege="Manage Visit Note"  description="Manage Visit Note"  uuid="fb828c68-d3bd-4cef-8a3c-e51568e42842"/>
 
+    <privilege  privilege="View Upcoming Appointment"  description="View Upcoming Appointment"  uuid="52a0ae93-c937-4d9a-9a65-ee6f54c9543a"/>
+
+
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
     <role  role="HIV Clinic" description="This Role enables access to HIV clinic data for patient"  uuid="24d86b99-204e-44a7-a3a2-169f2c83319f"/>
@@ -780,6 +783,7 @@
     <role_privilege role="Reception" privilege="Add Patient Button"/>
     <role_privilege  role="Reception"  privilege="View Reception Menu"/>
     <role_privilege role="Reception"  privilege="Edit Patient Details Button" />
+    <role_privilege  role="Reception"  privilege="View Upcoming Appointment"/>
 
 
 
