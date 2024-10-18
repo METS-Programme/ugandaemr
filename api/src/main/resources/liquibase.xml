@@ -913,7 +913,27 @@ VALUES
 		</sql>
 	</changeSet>
 
-	<changeSet id="ugandaemr-20240530-1455" author="slubwama">
+	<changeSet id="ugandaemr-20240724-1455-01" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_name where date_created="2023-11-08 13:34:24";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept_name where concept_id=169007;
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*)  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept.date_created="2023-11-07 12:59:26";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(*) from concept where concept.date_created="2023-11-08 09:19:30";
+			</sqlCheck>
+		</preConditions>
 		<comment>Delete previous cause of death concepts</comment>
 		<sql>
 			delete  from concept_set where date_created="2024-01-10 13:18:43" and concept_set=175279;
@@ -921,7 +941,7 @@ VALUES
 			delete from concept_name where concept_id=169007;
 			delete  from concept_description where concept_id in (169014,169015,169016,169017,169018,169019,169020);
 			delete from concept where concept.date_created="2023-11-07 12:59:26";
-			delete from concept where concept.date_created="2023-11-08 09:19:30" ;
+			delete from concept where concept.date_created="2023-11-08 09:19:30";
 		</sql>
 	</changeSet>
 
@@ -1046,6 +1066,29 @@ VALUES
 			update concept set concept_id=186352 where uuid="42ed45fd-f3f6-44b6-bfc2-8bde1bb41e00";
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-20241015-1111" author="mmwanje">
+		<preConditions onFail="CONTINUE">
+			<tableExists tableName="bed"/>
+			<tableExists tableName="bed_location_map"/>
+			<tableExists tableName="bed_patient_assignment_map"/>
+			<tableExists tableName="bed_tag"/>
+			<tableExists tableName="bed_tag_map"/>
+			<tableExists tableName="bed_type"/>
+		</preConditions>
+
+		<comment>Dropping bed management module related tables</comment>
+
+		<sql>SET FOREIGN_KEY_CHECKS=0;</sql>
+		<dropTable tableName="bed"/>
+		<dropTable tableName="bed_location_map"/>
+		<dropTable tableName="bed_patient_assignment_map"/>
+		<dropTable tableName="bed_tag"/>
+		<dropTable tableName="bed_tag_map"/>
+		<dropTable tableName="bed_type"/>
+		<sql>SET FOREIGN_KEY_CHECKS=1;</sql>
+	</changeSet>
+
 </databaseChangeLog>
 
 

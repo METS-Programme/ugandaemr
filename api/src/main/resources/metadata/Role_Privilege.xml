@@ -594,11 +594,15 @@
     <privilege  privilege="View Reception Menu"  description="access to menu reception menu item"  uuid="b2307411-3d14-4e63-b665-dcbbe4fb7d9c"/>
     <privilege  privilege="View Triage Menu"  description="access to menu triage menu item"  uuid="5bae9fd5-d8a5-4f1a-b00c-48ab84d12fc6"/>
     <privilege  privilege="View Clinical Room Menu"  description="access to menu clinician room menu item"  uuid="7dd31456f-fad9-4f0f-adcf-4588f00ea21d"/>
+    <privilege  privilege="View Dispensing Menu"  description="access to menu clinician room menu item"  uuid="0ad580fa-4491-45fd-b97d-3089c22f7f37"/>
 
     <privilege  privilege="Manage AI Button"  description="Manage AI Button"  uuid="a333c427-54c5-4c34-82ec-2c6e31c32ac1"/>
     <privilege  privilege="Manage Clinical Forms"  description="Manage Clinical Forms"  uuid="da09a036-6d51-4f3c-a4f0-0758555f0f50"/>
     <privilege  privilege="Manage Order Basket"  description="Manage Order Basket"  uuid="c7393a69-9d41-4f7d-b005-c8d71c851eef"/>
     <privilege  privilege="Manage Visit Note"  description="Manage Visit Note"  uuid="fb828c68-d3bd-4cef-8a3c-e51568e42842"/>
+
+    <privilege  privilege="View Upcoming Appointment"  description="View Upcoming Appointment"  uuid="52a0ae93-c937-4d9a-9a65-ee6f54c9543a"/>
+
 
     <!-- ROLES -->
     <role  role="Base Role"  description="This Role is the default Role for basic functionality with less privileges"  uuid="6ec3134b-3e0d-430b-890b-3a7ac8f31e86"/>
@@ -778,6 +782,8 @@
     <role_privilege role="Reception" privilege="View Reception Metrics"/>
     <role_privilege role="Reception" privilege="Add Patient Button"/>
     <role_privilege  role="Reception"  privilege="View Reception Menu"/>
+    <role_privilege role="Reception"  privilege="Edit Patient Details Button" />
+    <role_privilege  role="Reception"  privilege="View Upcoming Appointment"/>
 
 
 
@@ -860,6 +866,7 @@
     <!-- role privilege -->
     <role_privilege  role="Organizational: Laboratory"  privilege="App: ugandaemrpoc.laboratory"/>
     <role_privilege  role="Organizational: Laboratory"  privilege="Delete Orders"/>
+    <role_privilege  role="Organizational: Laboratory"  privilege="Manage Laboratory"/>
 
 
     <!--* PHARMACY ROLE *-->
@@ -873,6 +880,7 @@
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.edit.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense" />
     <role_privilege role="Organizational:Pharmacy" privilege="Task: dispensing.delete.dispense.ifCreator" />
+    <role_privilege role="Organizational:Pharmacy" privilege="View Dispensing Menu"/>
 
 
     <!--* DATA MANAGER ROLE *-->
