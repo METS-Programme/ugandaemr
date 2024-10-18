@@ -63,7 +63,7 @@
               "required": false,
               "id": "service",
               "questionOptions": {
-                "rendering": "select",
+                "rendering": "multiCheckbox",
                 "concept": "160288AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                 "answers": [
                   {
