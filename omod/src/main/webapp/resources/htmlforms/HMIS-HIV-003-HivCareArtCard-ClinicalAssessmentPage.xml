@@ -2692,6 +2692,51 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>HTN Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198894"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Diabetes Mellitus Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198900"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/D Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198879"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/S Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198884"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card ">
                                             <div class="card-header">Side effects of ART</div>
                                             <div class="card-body">
@@ -3800,6 +3845,55 @@
                                                                 </div>
                                                             </div>
                                                            </obsgroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                                        <div class="card-body">
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>HTN Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198894"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>Diabetes Mellitus Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198900"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/D Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198879"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/S Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198884"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
