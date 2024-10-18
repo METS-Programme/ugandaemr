@@ -1185,23 +1185,6 @@
           ]
         },
         {
-          "label": "Clinic Notes",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Clinical Notes",
-              "type": "obs",
-              "required": false,
-              "id": "clinical-notes",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "validators": []
-            }
-          ]
-        },
-        {
           "label": "DSD Model",
           "isExpanded": "true",
           "questions": [
