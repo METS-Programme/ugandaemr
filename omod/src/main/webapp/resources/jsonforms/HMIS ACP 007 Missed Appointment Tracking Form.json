@@ -34,6 +34,43 @@
               ]
             },
             {
+              "label": "Service Point",
+              "type": "obs",
+              "id": "servicePoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "164993AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic"
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Service Point",
+              "type": "obs",
+              "id": "otherServicePoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "295467d1-289d-41da-95b0-b006873ef092"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(servicePoint) || servicePoint != 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
               "label": "Medication Due for Refill",
               "type": "obs",
               "id": "medicationDueForRefill",
@@ -537,7 +574,7 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != 'f57b1500-7ff2-46b4-b183-fed5bce479a9'"
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != '160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
@@ -578,7 +615,10 @@
                   }
                 ]
               },
-              "validators": []
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(outcomeByEndOfQuarter) || outcomeByEndOfQuarter != 'f57b1500-7ff2-46b4-b183-fed5bce479a9'"
+              }
             },
             {
               "label": "Comment",
