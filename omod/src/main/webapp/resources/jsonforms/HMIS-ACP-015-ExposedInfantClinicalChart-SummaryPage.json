@@ -4,7 +4,7 @@
   "description": "Captures demographic details for infants born to HIV positive mothers",
   "encounter": "EID Card - Summary",
   "encounterType": "9fcfcc91-ad60-4d84-9710-11cc25258719",
-  "uuid": "860c5f2f-cf3c-4c3f-b0c4-9958b6a5a938",
+  "uuid": "d0e150f9-3df7-43ad-906a-d2f6946e1efa",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -497,7 +497,7 @@
               "id": " mothersGroupNo",
               "questionOptions": {
                 "rendering": "text",
-                "concept": ""
+                "concept": "13ea0c13-7092-4834-9a50-00915f97794f"
               },
               "validators": []
             }
@@ -687,17 +687,17 @@
             {
               "label": "Testing Point",
               "type": "obs",
-              "id": "testingPoint",
+              "id": "firstTestingPoint",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
                     "label": "POC"
                   },
                   {
-                    "concept": "",
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
                     "label": "CPHL"
                   }
                 ]
@@ -718,16 +718,6 @@
                   "allowFutureDates": "false"
                 }
               ]
-            },
-            {
-              "label": "Age at 1st PCR",
-              "type": "obs",
-              "id": "firstEidPcrAge",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "d38a4d68-4205-4eae-a439-914658814119"
-              },
-              "validators": []
             },
             {
               "label": "Feeding Method",
@@ -815,17 +805,17 @@
             {
               "label": "Testing Point",
               "type": "obs",
-              "id": "testingPoint",
+              "id": "nineMonthsTestingPoint",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
                     "label": "POC"
                   },
                   {
-                    "concept": "",
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
                     "label": "CPHL"
                   }
                 ]
@@ -846,16 +836,6 @@
                   "allowFutureDates": "true"
                 }
               ]
-            },
-            {
-              "label": "Age at 9mths EID PCR",
-              "type": "obs",
-              "id": "9MthsEidPcrAge",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": "e12807bd-d201-4b7c-a5e2-514d8c52d573"
-              },
-              "validators": []
             },
             {
               "label": "Feeding Method",
@@ -943,17 +923,17 @@
             {
               "label": "Testing Point",
               "type": "obs",
-              "id": "testingPoint",
+              "id": "sixWeeksTestingPoint",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
                     "label": "POC"
                   },
                   {
-                    "concept": "",
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
                     "label": "CPHL"
                   }
                 ]
@@ -974,16 +954,6 @@
                   "allowFutureDates": "true"
                 }
               ]
-            },
-            {
-              "label": "Age at 6wks after stopping breastfeeding",
-              "type": "obs",
-              "id": "6wksEidPcrAge",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": ""
-              },
-              "validators": []
             },
             {
               "label": "Feeding Method",
@@ -1074,14 +1044,14 @@
               "id": "testingPoint",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
                     "label": "POC"
                   },
                   {
-                    "concept": "",
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
                     "label": "CPHL"
                   }
                 ]
@@ -1102,16 +1072,6 @@
                   "allowFutureDates": "true"
                 }
               ]
-            },
-            {
-              "label": "Age at Repeat PCR",
-              "type": "obs",
-              "id": "RepeatEidPcrAge",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": ""
-              },
-              "validators": []
             },
             {
               "label": "Feeding Method",
@@ -1210,16 +1170,6 @@
                   "allowFutureDates": "true"
                 }
               ]
-            },
-            {
-              "label": "Age at 18mths Rapid Month Test",
-              "type": "obs",
-              "id": "rapidMonthTestAge",
-              "questionOptions": {
-                "rendering": "number",
-                "concept": ""
-              },
-              "validators": []
             },
             {
               "label": "Feeding Method",
