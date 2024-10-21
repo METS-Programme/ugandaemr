@@ -940,4 +940,53 @@ public class Flags {
             return "e36b5fa8-fe48-4c8a-b993-0ca90c462aa2";
         }
     };
+
+    public static FlagDescriptor SUSPECTED_MPOX_PATIENT = new FlagDescriptor() {
+        @Override
+        public String criteria() {
+            return "SELECT DISTINCT\n" +
+                    "    p.patient_id,\n" +
+                    "    obs.value_coded,\n" +
+                    "    CASE\n" +
+                    "        WHEN obs.value_coded = 166313 THEN 'Transferred to Isolation Unit'\n" +
+                    "        WHEN obs.value_coded = 168758 THEN 'Referred to Isolation Unit'\n" +
+                    "        ELSE cn.name\n" +
+                    "    END AS value_coded_text,\n" +
+                    "    DATE_FORMAT(obs.date_created,'%d. %b. %Y') AS formatted_date\n" +
+                    "FROM obs\n" +
+                    "INNER JOIN patient p ON p.patient_id = obs.person_id\n" +
+                    "INNER JOIN concept_name cn ON obs.value_coded = cn.concept_id\n" +
+                    "WHERE obs.concept_id = 198959";
+        }
+
+        @Override
+        public String message() {
+            return "MPOX Suspect ${2} on ${3}";
+        }
+
+        @Override
+        public String priority() {
+            return Priorites.RED.uuid();
+        }
+
+        @Override
+        public List<String> tags() {
+            return Arrays.asList(Tags.PATIENT_STATUS.uuid());
+        }
+
+        @Override
+        public String name() {
+            return "Monkey POX Patient";
+        }
+
+        @Override
+        public String description() {
+            return "Monkey POX Patient";
+        }
+
+        @Override
+        public String uuid() {
+            return "8311e3eb-d87d-40f2-a35f-dd60f1782ddd";
+        }
+    };
 }
