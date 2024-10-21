@@ -646,7 +646,7 @@
               "id": "riskOfGettingHiv",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "fdd25ec0-5229-4f07-9afa-2a4c14107a53",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -663,31 +663,30 @@
               "validators": []
             },
             {
-              "label": "Risk profile",
+              "label": "Risk Profile",
               "type": "obs",
               "id": "riskProfile",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "69885d35-8861-4d16-a2c8-04ca380948ce",
                 "answers": [
                   {
-                    "concept": "",
-                    "label": "Low Risk",
+                    "concept": "1408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "High Risk",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
                     "label": "Moderate Risk",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
-                    "label": "High Risk",
+                    "concept": "26514156-31fb-4a99-95f1-f005a4676c16",
+                    "label": "Low Risk",
                     "conceptMappings": []
                   }
                 ]
               },
-              "validators": [],
               "hide": {
                 "hideWhenExpression": "riskOfGettingHiv !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
@@ -741,112 +740,6 @@
               },
               "hide": {
                 "hideWhenExpression": "counsellingDone !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
-            }
-          ]
-        },
-        {
-          "label": "Prevention Services and Referral",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Prevention Services",
-              "type": "obs",
-              "id": "preventionServices",
-              "questionOptions": {
-                "rendering": "checkbox",
-                "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
-                "answers": [
-                  {
-                    "concept": "2aa4eeb6-14d3-410c-aa50-94219b0d7866",
-                    "label": "Prevention Information",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcdd712d-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Condoms",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "2c48beab-1fc0-4000-91e0-523f8d22f0b5",
-                    "label": "STI Screening",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "9fd4c833-652b-4c84-a5f2-d5b7171fa89e",
-                    "label": "STI treatment",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
-                    "label": "Post-GBV",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "966db6f2-a9f2-4e47-bba2-051467c77c17",
-                    "label": "PEP",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
-                    "label": "PREP",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Others",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Other prevention services",
-              "type": "obs",
-              "id": "otherPreventionServices",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "f3419b12-f6da-4aed-a001-e9f0bd078140",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "Client has been referred for HIV care or other prevention services",
-              "type": "obs",
-              "id": "clientHasBeenReferredForHivCare",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "3d620422-0641-412e-ab31-5e45b98bc459",
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Place of referral",
-              "type": "obs",
-              "required": "true",
-              "id": "placeOfReferral",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "clientHasBeenReferredForHivCare !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -1059,7 +952,7 @@
               "id": "referredToLaboratory",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "1c85146a-aa29-4047-91f9-9ff24a8d2926",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -1074,7 +967,8 @@
               "validators": []
             }
           ]
-        }]
+        }
+      ]
     },
     {
       "label": "MCH Test Results",
@@ -1298,7 +1192,8 @@
               }
             }
           ]
-        }]
+        }
+      ]
     },
     {
       "label": "Recency Testing, Other Testing Information",
@@ -1360,27 +1255,28 @@
         {
           "label": "Other Testing Information",
           "isExpanded": "true",
-          "questions": [{
-            "label": "Results received as individual",
-            "type": "obs",
-            "id": "resultsReceivedAsIndividual",
-            "questionOptions": {
-              "rendering": "radio",
-              "concept": "3437ae80-bcc5-41e2-887e-d56999a1b467",
-              "answers": [
-                {
-                  "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "label": "Yes",
-                  "conceptMappings": []
-                },
-                {
-                  "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                  "label": "No",
-                  "conceptMappings": []
-                }
-              ]
-            }
-          },
+          "questions": [
+            {
+              "label": "Results received as individual",
+              "type": "obs",
+              "id": "resultsReceivedAsIndividual",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "3437ae80-bcc5-41e2-887e-d56999a1b467",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
             {
               "label": "Results received as a couple",
               "type": "obs",
@@ -1553,7 +1449,8 @@
               "hide": {
                 "hideWhenExpression": "linkedForHivCare !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
-            }]
+            }
+          ]
         }
       ]
     },
@@ -1585,7 +1482,7 @@
                 ]
               },
               "hide": {
-                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4653-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "hivFinalTestResults !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -1608,7 +1505,7 @@
               "type": "obs",
               "id": "preventionServices",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "multiCheckbox",
                 "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
                 "answers": [
                   {
@@ -1633,7 +1530,7 @@
                   },
                   {
                     "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
-                    "label": "Post-GBV",
+                    "label": "Post-GBV Care",
                     "conceptMappings": []
                   },
                   {
@@ -1647,11 +1544,19 @@
                     "conceptMappings": []
                   },
                   {
+                    "concept": "7e8eefbe-10a1-4a93-b399-04bb3a5f8aaf",
+                    "label": "Risk Reduction Conselling",
+                    "conceptMappings": []
+                  },
+                  {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
                     "label": "Other Specify",
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "linkedToHIVPreventionServices !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
@@ -1666,10 +1571,12 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "preventionServices(Empty) || preventionServices !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "preventionServices !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
-            }]
-        }]
+            }
+          ]
+        }
+      ]
     }
   ],
   "referencedForms": []
