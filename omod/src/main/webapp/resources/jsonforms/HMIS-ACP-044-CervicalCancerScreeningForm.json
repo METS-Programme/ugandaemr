@@ -47,7 +47,6 @@
               "label": "Reg. No.",
               "type": "obs",
               "id": "regNumber",
-              "required": true,
               "questionOptions": {
                 "rendering": "text",
                 "concept": "934337b1-8e08-4977-97b5-fd15b12db8fd"
@@ -57,6 +56,7 @@
             {
               "label": "Referred In",
               "type": "obs",
+              "required": "true",
               "id": "referredIn",
               "questionOptions": {
                 "rendering": "radio",
@@ -129,59 +129,6 @@
                 ]
               },
               "validators": []
-            },
-            {
-              "label": "Entry point Clinic Number",
-              "type": "obs",
-              "required": "true",
-              "id": "entryPointClinicNumber",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "ae9d66a4-e9f5-43f1-ba4a-e275d0c9f611",
-                "conceptMappings": [],
-                "answers": []
-              },
-              "validators": []
-            },
-            {
-              "label": "HIV Status",
-              "type": "obs",
-              "id": "hivStatus",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
-                "answers": [
-                  {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative",
-                    "conceptMappings": []
-                  },
-                  {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown",
-                    "conceptMappings": []
-                  }
-                ]
-              }
-            },
-            {
-              "label": "ART Number",
-              "type": "patientIdentifier",
-              "required": false,
-              "id": "artNumber",
-              "questionOptions": {
-                "rendering": "text",
-                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "hivStatus != 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
-              }
             }
           ]
         },
@@ -208,7 +155,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -232,7 +179,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -255,7 +202,7 @@
                     "label": "No"
                   },
                   {
-                    "concept": "",
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Not Applicable"
                   }
                 ]
@@ -280,7 +227,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -307,7 +254,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -334,7 +281,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -382,7 +329,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
@@ -409,7 +356,7 @@
                   },
                   {
                     "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT APPLICABLE"
+                    "label": "Not Applicable"
                   }
                 ]
               },
