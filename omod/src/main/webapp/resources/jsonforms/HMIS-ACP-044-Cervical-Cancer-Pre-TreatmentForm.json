@@ -1,13 +1,13 @@
 {
   "encounterType": "6d647bd4-33d6-4d04-a04a-595d2159b456",
-  "name": "HMIS ACP: Cervical Cancer Pre-Treatment Form",
+  "name": "HMIS ACP 044: Cervical Cancer Pre-Treatment Form",
   "processor": "EncounterFormProcessor",
   "referencedForms": [],
-  "uuid": "9bc7f745-b61f-4553-ad77-7208238a7068",
+  "uuid": "1d3ef1ae-40b9-48d7-a382-d40d60fa7227",
   "version": "4.0.0",
   "pages": [
     {
-      "label": "HMIS ACP: Cervical Cancer Pre-Treatment Form",
+      "label": "HMIS ACP 044: Cervical Cancer Pre-Treatment Form",
       "sections": [
         {
           "label": "Visit Details",
@@ -36,6 +36,10 @@
                   {
                     "concept": "07fb055d-d0f9-4c37-8b3c-f2e0ea38efec",
                     "label": "Initial Screening"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Rescreening at 3years"
                   },
                   {
                     "concept": "9c41ebad-4daf-4534-8d7c-07a1495c29f0",
@@ -360,10 +364,30 @@
                   {
                     "concept": "dcb2fba9-30ab-102d-86b0-7a5022ba4115",
                     "label": "Hysterectomy"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify",
+                    "conceptMappings": []
                   }
                 ]
               },
               "validators": []
+            },
+            {
+              "label": "Other recommended treatment",
+              "type": "obs",
+              "id": "otherTreatmentProvided",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "treatmentProvided !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
             }
           ]
         },
@@ -390,7 +414,7 @@
                   },
                   {
                     "concept": "6442c9f6-25e8-4c8e-af8a-e9f6845ceaed",
-                    "label": "Ref out"
+                    "label": "Referred"
                   }
                 ]
               },
@@ -407,7 +431,7 @@
                 "answers": [
                   {
                     "concept": "463415bf-db51-4c3b-b028-264934309580",
-                    "label": "No supplies/equipment"
+                    "label": "Lack of supplies"
                   },
                   {
                     "concept": "a36a353b-0193-4077-a0f6-97a868ad9004",
@@ -429,7 +453,7 @@
               }
             },
             {
-              "label": "Other Reasons for Postponing",
+              "label": "Observations and Complications",
               "type": "obs",
               "required": false,
               "id": "otherReasonsForPostponing",
