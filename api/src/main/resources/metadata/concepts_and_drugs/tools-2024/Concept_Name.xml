@@ -123,7 +123,7 @@
     <concept_name  concept_name_id="198969"  concept_id="198960"  name="Has had multiple and/or casual sexual partners in the 21 days before symptom onset"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-28 09:39:14"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="a685e606-ea66-4aa9-bf24-5a61cbcc0e2c"/>
     <concept_name  concept_name_id="198970"  concept_id="198961"  name="Ambulance"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-30 09:00:24"  concept_name_type="FULLY_SPECIFIED"  voided="0"   uuid="1f828c71-8ccc-4e7d-8542-511ddf062eae"/>
 
-
+    <concept_name  concept_name_id="198971"  concept_id="198962"  name="Has client been screened for TB"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-20 13:47:25"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="f95dd410-5c2e-4d19-b4d5-43f49c50dad8"/>
     <concept_name  concept_name_id="199003"  concept_id="198994"  name="Other Cacx recommended treatment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-21 22:48:02"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="4985c39b-32c3-4498-889b-35821e81c4fc"/>
     <concept_name  concept_name_id="199002"  concept_id="198993"  name="Re-screening at 3year"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-21 22:36:07"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="c49539d8-09e4-4eb0-b279-35300ad003d9"/>
 </dataset>
