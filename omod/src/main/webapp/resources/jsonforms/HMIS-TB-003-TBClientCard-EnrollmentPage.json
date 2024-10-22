@@ -24,6 +24,17 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Registration Date",
+              "type": "encounterDatetime",
+              "required": false,
+              "id": "registrationDate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date"
+              },
+              "validators": []
+            },
+            {
               "label": " District TB Number",
               "type": "obs",
               "id": "districtRegNum",
@@ -45,6 +56,31 @@
                 "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
                 "conceptMappings": [],
                 "answers": []
+              },
+              "validators": []
+            },
+            {
+              "label": "Treatment Supporter Type",
+              "type": "obs",
+              "required": false,
+              "id": "treatmentSupporterType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "805a9d40-8922-4fb0-8208-7c0fdf57936a",
+                "answers": [
+                  {
+                    "concept": "5619AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Health Worker"
+                  },
+                  {
+                    "concept": "002dfa89-5b94-4e7e-bc74-b5e556a7734a",
+                    "label": "Family Member"
+                  },
+                  {
+                    "concept": "567f955b-6a5e-4ca0-a6a4-6010e9327104",
+                    "label": " Community Health Worker"
+                  }
+                ]
               },
               "validators": []
             }
@@ -133,7 +169,7 @@
       ]
     },
     {
-      "label": "Risk Group",
+      "label": "Treatment / Risk Group",
       "sections": [
         {
           "label": "Risk Group",
@@ -206,6 +242,188 @@
                   }
                 ]
               }
+            }
+          ]
+        },
+        {
+          "label": "First Line Treatment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date Started On TB First line",
+              "type": "obs",
+              "required": false,
+              "id": "dateStartedOnFirstLine",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "7326297e-0ccd-4355-9b86-dde1c056e2c2"
+              }
+            },
+            {
+              "label": "DS TB Regimen",
+              "type": "obs",
+              "required": false,
+              "id": "dsTbRegimen",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "159958AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "b539f758-b24b-417f-9400-4edeca0f6e06",
+                    "label": "2RHZ/4RH"
+                  },
+                  {
+                    "concept": "7f47837f-1ea5-4a99-b4dd-5ca268d24ba8",
+                    "label": "2RHZE/10RH"
+                  },
+                  {
+                    "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Other"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "TB Drug Resistance",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date started on DR TB Treatment",
+              "type": "obs",
+              "required": false,
+              "id": "dateStartedOnDrTbTreatment",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "67ac3702-5ec1-4c52-8e80-405ec99b723b"
+              }
+            }
+          ]
+        },
+        {
+          "label": "TB / HIV",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "HIV Status",
+              "type": "obs",
+              "required": false,
+              "id": "hivStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5737ab4e-53f9-418e-94f4-35da78ab884f",
+                "answers": [
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "f72917e2-0bfb-4d73-b87b-643d7180f338",
+                    "label": "Newly tested Positive"
+                  },
+                  {
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "UNKNOWN"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Date",
+              "type": "obs",
+              "required": false,
+              "id": "hivdate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "d2f31713-aada-4d0d-9340-014b2371bdd8"
+              }
+            },
+            {
+              "label": "ART Status",
+              "type": "obs",
+              "required": false,
+              "id": "artStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dca25616-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dca2670e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Initiated on ART"
+                  },
+                  {
+                    "concept": "dca2817c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Already on ART"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "ART Start Date",
+              "type": "obs",
+              "required": false,
+              "id": "artStartDate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "ab505422-26d9-41f1-a079-c3d222000440"
+              },
+              "validators": []
+            },
+            {
+              "label": "ART No",
+              "type": "patientIdentifier",
+              "required": false,
+              "id": "artNo",
+              "questionOptions": {
+                "rendering": "text",
+                "identifierType": "e1731641-30ab-102d-86b0-7a5022ba4115"
+              },
+              "validators": []
+            },
+            {
+              "label": "CPT / Dapson",
+              "type": "obs",
+              "required": false,
+              "id": "cptDapson",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "bb77f9f0-9743-4c60-8e70-b20b5e800a50",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "CPT / Dapson Start Date",
+              "type": "obs",
+              "required": false,
+              "id": "cptDapsonStartDate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "481c5fdb-4719-4be3-84c0-a64172a426c7"
+              },
+              "validators": []
             }
           ]
         }
