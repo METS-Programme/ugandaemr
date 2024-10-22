@@ -116,6 +116,20 @@
               "validators": []
             },
             {
+              "label": "Other entry point",
+              "type": "obs",
+              "id": "otherEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "entryPoint !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
               "label": "Presumptive TB No.",
               "type": "obs",
               "id": "presumptiveTbNo",
@@ -172,11 +186,11 @@
               }
             },
             {
-              "id": "typeOfPatient",
-              "label": "Type of Patient",
+              "id": "clientType",
+              "label": "Client Type",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "select",
                 "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
                 "answers": [
                   {
@@ -203,86 +217,12 @@
               }
             },
             {
-              "label": "Hiv Status",
+              "label": "Examination type",
               "type": "obs",
-              "id": "hivStatus",
-              "required": "true",
+              "id": "examinationType",
               "questionOptions": {
-                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
-                "rendering": "select",
-                "answers": [
-                  {
-                    "concept": "dcdf4241-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Positive"
-                  },
-                  {
-                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Negative"
-                  },
-                  {
-                    "concept": "4d9159a2-37a6-4115-afe3-3f70050c4df3",
-                    "label": "Inconclusive HIV Results"
-                  },
-                  {
-                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Unknown"
-                  }
-                ]
-              }
-            },
-            {
-              "label": "Special Categories",
-              "type": "obs",
-              "required": false,
-              "id": "specialCategories",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "927563c5-cb91-4536-b23c-563a72d3f829",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "159674AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Fisherman"
-                  },
-                  {
-                    "concept": "162277AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "In prison"
-                  },
-                  {
-                    "concept": "162198AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Long distance truck driver"
-                  },
-                  {
-                    "concept": "165126AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Migrant Worker"
-                  },
-                  {
-                    "concept": "93d7b669-c6d7-45dd-a727-cb438e3992e1",
-                    "label": "Non IDU"
-                  },
-                  {
-                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PREGNANT"
-                  },
-                  {
-                    "concept": "165127AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Refugee Camp"
-                  },
-                  {
-                    "concept": "165125AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Uniformed Officer"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "id": "reasonExamination",
-              "label": "Reason for Examination",
-              "type": "obs",
-              "questionOptions": {
-                "rendering": "select",
                 "concept": "75fdbadd-183b-4abc-aafc-d370ba5c35bf",
+                "rendering": "radio",
                 "answers": [
                   {
                     "concept": "0de0b715-f3ef-4a91-a145-09509112b693",
@@ -290,10 +230,122 @@
                   },
                   {
                     "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
-                    "label": " Month of follow up"
+                    "label": "Follow-Up Month"
                   }
                 ]
               }
+            },
+            {
+              "label": "Month of Follow-Up",
+              "type": "obs",
+              "required": false,
+              "id": "followupMonth",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "cadfde54-9360-4f87-bdf0-9e5bda117e09",
+                    "label": "FU2 - 2 Months"
+                  },
+                  {
+                    "concept": "34ea51a8-3cc5-48ff-bd76-03c6727d674b",
+                    "label": "FU5 - 5 Months"
+                  },
+                  {
+                    "concept": "c72107f2-2ea0-44fc-9a65-53e901d88996",
+                    "label": "FU6 - 6 Months"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hiv Status",
+              "type": "obs",
+              "id": "hivStatus",
+              "required": "true",
+              "questionOptions": {
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "f72917e2-0bfb-4d73-b87b-643d7180f338",
+                    "label": "Newly Positive"
+                  },
+                  {
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Screening",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Confirmatory",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Remarks",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Remarks",
+              "type": "obs",
+              "id": "remarks",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Provider",
+              "type": "encounterProvider",
+              "required": false,
+              "id": "provider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "validators": []
             }
           ]
         }
