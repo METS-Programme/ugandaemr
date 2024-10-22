@@ -56,7 +56,7 @@
             queue_id: queue_id,
             async: false
         }, function (response) {
-            if (response!==null || response!=="") {
+            if (response!==null && response!=="" && response.hasOwnProperty("patientPharmacyQueueList")) {
                 var patientPharmacyQueueList = JSON.parse(response.patientPharmacyQueueList)
                 if(patientPharmacyQueueList.length>0) {
                     var editPrescriptionParameterOptions = getDrugOrderData(patientPharmacyQueueList, encounterId, 0);
