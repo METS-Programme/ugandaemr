@@ -1185,23 +1185,6 @@
           ]
         },
         {
-          "label": "Clinic Notes",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Clinical Notes",
-              "type": "obs",
-              "required": false,
-              "id": "clinical-notes",
-              "questionOptions": {
-                "rendering": "textarea",
-                "concept": "159395AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-              },
-              "validators": []
-            }
-          ]
-        },
-        {
           "label": "DSD Model",
           "isExpanded": "true",
           "questions": [
@@ -1284,6 +1267,63 @@
               },
               "hide": {
                 "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach == '733144c0-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313c96-c321-11e8-a355-529269fb1459' || dsdmApproach == '73313f20-c321-11e8-a355-529269fb1459' || dsdmApproach == '733139e4-c321-11e8-a355-529269fb1459'"
+              }
+            },
+            {
+              "label": "Pharmacy",
+              "type": "obs",
+              "required": false,
+              "id": "pharmacyDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "e50fa0af-df36-4a26-853f-feb05244e5ca"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach != '73313728-c321-11e8-a355-529269fb1459' || drugPickupModel != 'a6a0ab45-b7dc-43b2-b28c-45a91f968ebf'"
+              }
+            },
+            {
+              "label": "General CDDP Group Name",
+              "type": "obs",
+              "required": false,
+              "id": "generalCDDPDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "da964ff0-648e-440b-a219-d2aeba3670d0"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach != '73313728-c321-11e8-a355-529269fb1459' || drugPickupModel != '1b9b83d4-eaca-40da-a7c6-53b8ea3436ad'"
+              }
+            },
+            {
+              "label": "CLDDP Group",
+              "type": "obs",
+              "required": false,
+              "id": "clddpDatasource",
+              "questionOptions": {
+                "rendering": "ui-select-extended",
+                "concept": "7a22cfcb-a272-4eff-968c-5e9467125a7b",
+                "datasource": {
+                  "name": "dsdm_categorization_datasource",
+                  "config": {
+                    "cohortUuid": "5b7136fa-d207-4229-94a8-da6661ae00bf"
+                  }
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach != '73313728-c321-11e8-a355-529269fb1459' || drugPickupModel != 'd77cc565-5e53-4633-8fc7-956cfc1831d9'"
               }
             },
             {
