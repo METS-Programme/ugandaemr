@@ -945,7 +945,7 @@ VALUES
 		</sql>
 	</changeSet>
 
-    <changeSet id="ugandaemr-20240624-0535" author="slubwama">
+    <changeSet id="ugandaemr-20241013-2322" author="slubwama">
         <preConditions onFail="CONTINUE">
 			<sqlCheck expectedResult="0">
 				select count(*) from liquibasechangelog where ID="ugandaemr-20240318-1654";
@@ -1031,13 +1031,6 @@ VALUES
             drop table dsdm_patient_programs;
             drop table hiv_program;
             drop table dsdm_hiv_program_match;
-
-            UPDATE patient_program AS pp
-            SET pp.voided = true,
-            pp.voided_by = 1,
-            pp.date_voided = now(),
-            pp.void_reason = "Migrated to DSDM workflow from DSDM Program"
-            WHERE pp.program_id IN (5,6,7,8,9);
         </sql>
     </changeSet>
 
