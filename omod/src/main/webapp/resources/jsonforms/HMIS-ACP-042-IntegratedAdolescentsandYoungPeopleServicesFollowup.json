@@ -1,0 +1,1156 @@
+{
+  "encounterType": "5fbb600e-33c6-49d2-b8ef-6a9e9b90b5aa",
+  "name": "HMIS ACP 042 Integrated Adolescents and Young People Services - Followup",
+  "referencedForms": [],
+  "processor": "EncounterFormProcessor",
+  "published": true,
+  "retired": false,
+  "uuid": "5b67c798-39c0-418f-8454-eb7eb04e312b",
+  "version": "4.0.0",
+  "description": "YAPS Follow Up Encounter",
+  "pages": [
+    {
+      "label": "Integrated Adolescents and Young People Services Follow Up",
+      "sections": [
+        {
+          "label": "Visit Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Visit Date",
+              "type": "encounterDatetime",
+              "required": false,
+              "id": "visitDate",
+              "datePickerFormat": "calendar",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "a-system-defined-concept-uuid"
+              }
+            },
+            {
+              "label": "Visit Venue",
+              "id": "visitVenue",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "In"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Out"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Out"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Out"
+                  }
+                ]
+              }
+            },
+            {
+              "id": "reasonForVisit",
+              "label": "Reason for visit",
+              "type": "obs",
+              "questionOptions": {
+                "concept": "",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "AYPLHIV"
+                  },
+                  {
+                    "concept": "",
+                    "label": "AGYW"
+                  },
+                  {
+                    "concept": "",
+                    "label": "ABYM"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Partners AGYW"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Status of AYP",
+              "type": "obs",
+              "id": "statusOfAyp",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Active",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Lost/Missed",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Died",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Transferred",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Stopped ART",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "id": "hivStatus",
+              "label": "HIV Status",
+              "type": "obs",
+              "questionOptions": {
+                "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "f72917e2-0bfb-4d73-b87b-643d7180f338",
+                    "label": "HIV New Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV Negative"
+                  },
+                  {
+                    "concept": "dca2817c-30ab-102d-86b0-7a5022ba4115",
+                    "label": "HIV Known Positive"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Mode of Care",
+              "type": "obs",
+              "id": "modeOfCare",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Standard",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Enhanced",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "hivStatus !== 'dca2817c-30ab-102d-86b0-7a5022ba4115' || hivStatus !== 'f72917e2-0bfb-4d73-b87b-643d7180f338'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Mental Health Assessment",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "GBV",
+              "type": "obs",
+              "id": "gbv",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Referred"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Suicidal Risk",
+              "type": "obs",
+              "id": "depression",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1408AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "High"
+                  },
+                  {
+                    "concept": "ba7ae66b-8108-45b6-a34d-e842cf31c623",
+                    "label": "Moderate"
+                  },
+                  {
+                    "concept": "26514156-31fb-4a99-95f1-f005a4676c16",
+                    "label": "Low"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "TB Status",
+              "type": "obs",
+              "id": "tbStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce02aa1-30ab-102d-86b0-7a5022ba4115",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcdaccc1-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No signs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdaaf0f-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Presumptive",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdaa6b4-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Linked",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "PrEP",
+              "type": "obs",
+              "id": "prep",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a75ab6b0-dbe7-4037-93aa-f1dfd3976f10",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dca25a6e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Referred",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "STI",
+              "type": "obs",
+              "id": "sti",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3afba6c2-84b9-45ad-accd-1f699622fc77",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dca25a6e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Referred",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Stigma and/or discrimination",
+              "type": "obs",
+              "id": "stigmaAndOrDiscrimination",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dca25a6e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "ca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Eligible",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dd27a783-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Referred",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Services Provided",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Prevention Services",
+              "type": "obs",
+              "id": "preventionServices",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "73686a14-b55c-4b10-916d-fda2046b803f",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Pre- and Post-test counselling",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Screening for HIV testing eligibility",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "f06ce85a-69a3-4415-8cc3-e2b51a4ae6a1",
+                    "label": "Elicited sexual partners (APN)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Elicited children for index clients",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8c12d3f1-1634-42ef-8d71-fb946ab417ed",
+                    "label": "HTS",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcdd712d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Condoms",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Number of condoms given",
+              "type": "obs",
+              "required": false,
+              "id": "numberOfCondomsGiven",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "5b3fe3e4-a7e2-11ed-afa1-0242ac120002"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(preventionServices) || preventionServices !== 'dcdd712d-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Viral Load Services",
+              "type": "obs",
+              "id": "viralLoadServices",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Intensive Adherence counseling & support",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Viral Monitoring and Follow up of AYPs",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Treatment and Care Services",
+              "type": "obs",
+              "id": "treatmentAndCare",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "5da23d6e-acaf-402c-bf4d-d12372c46737",
+                    "label": "Psychosocial care and support",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Screening for HIV testing eligibility",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcbc8ef8-30ab-102d-86b0-7a5022ba4115",
+                    "label": " Adherence Counselling/Treatment literacy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "165050AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Nutrition assessment & counseling",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5d26ffa1-8b58-45af-a534-bc3b469850cb",
+                    "label": "GBV Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "5140d982-b2c0-11ed-afa1-0242ac120002",
+                    "label": "Mental Health Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "TB Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "SRH Information giving",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Appointment Tracking and Follow up",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "SRH Information giving",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9ae14d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Disclosure support",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "d068f6ed-2042-4b0b-a761-0f45ef67f035",
+                    "label": "Referral and Linkage",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others Specify"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Other Treatment and Care Services",
+              "type": "obs",
+              "id": "otherTreatmentService",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(treatmentAndCare) || treatmentAndCare !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Medical Services Accessed",
+              "type": "obs",
+              "id": "medicalServicesAccessed",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "161509AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "HCG",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "51407f8c-b2c0-11ed-afa1-0242ac120002",
+                    "label": "STI Screening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "7e8eefbe-10a1-4a93-b399-04bb3a5f8aaf",
+                    "label": "Risk Reduction Counselling",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Menstrual Hygiene",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Family Planning services",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Development Skills",
+              "type": "obs",
+              "id": "developmentSkills",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "EDA",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Vocational Skills",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Life Skills",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Soft Skills",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Girl Leadership Skills",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Social Economic",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Parenting Skills",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Financial Literacy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Education subsidy",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Mindset Change School based HIV and violence prevention",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "SASA",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Stepping Stones",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "8f38d77a-6488-49ad-a22e-0f84ab91ed7c",
+                    "label": "Post Violence Care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Parenting/Caregiver Programs",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Expand and improve the contraceptive mix Combined",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Socio-Economic Approaches",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "VSLA/SILC",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "SES",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Services Referred/Linked",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Prevention Services Referred/Linked",
+              "type": "obs",
+              "id": "preventionServicesReferred",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Linkage to HIV testing",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Linkage of positive HIV self-testers for confirmatory test",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "e8fc9bfa-efa7-4b7f-92ba-1a7d0fc467b3",
+                    "label": "Peer support group (PSG)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": " Safe Male Circumcision Services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Antenatal services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Postnatal services ",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Viral Load Services Referred/Linked",
+              "type": "obs",
+              "id": "viralLoadServicesReferred",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "35813f5b-e487-4324-b616-5c0caf47e674",
+                    "label": "Educational Support",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "SRH services",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1f4c3300-b44e-4f2a-99ad-de681c24edda",
+                    "label": "Spiritual support",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other Viral Load Services Referred/Linked",
+              "type": "obs",
+              "id": "otherVlServiceReferred",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(viralLoadServicesReferred) || viralLoadServicesReferred !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Treatment and Care Services Referred/Linked",
+              "type": "obs",
+              "id": "treatmentAndCareReferred",
+              "questionOptions": {
+                "rendering": "multiCheckbox",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Medical care (VL, INH, STI, OI)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "9ff95fa9-b91a-415e-967a-0c390d337794",
+                    "label": "Mental health care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "cbbc4644-a7e2-11ed-afa1-0242ac120002",
+                    "label": "Livelihood/economic strengthening",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "4dd96816-4714-11ee-be56-0242ac120002",
+                    "label": "GBV/VAC/Post violence care",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "83e759bc-3254-40be-a65e-71e0a544a122",
+                    "label": "Legal Support",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Disclosure",
+              "type": "obs",
+              "id": "disclosure",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "Disclosed to",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "",
+                    "label": "Disclosed to others",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Disclosed to others",
+              "type": "obs",
+              "id": "disclosedToOthers",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Spouse",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Parent",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "71279025-e01f-43d5-94d5-a01d8ee687f6",
+                    "label": "Child",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Friend(s)",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Disclosed to Others Specify",
+              "type": "obs",
+              "id": "disclosedToOthersSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": ""
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(disclosedToOthers) || disclosedToOthers !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            }
+          ]
+        },
+        {
+          "label": "Appointment Tracking and Follow up",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Missed Appointment/Lost",
+              "type": "obs",
+              "id": "missedAppointment",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "444403bb-14dc-4c33-a6db-2c75574f7abe",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "No"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Reasons for Missed Appointment/Lost",
+              "type": "obs",
+              "id": "missedAppointmentReason",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e41ada4c-fbcf-40fb-86fc-b9d53b655c03",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "2a5cc366-6dc6-464e-a8bc-cdc4c05156ea",
+                    "label": "Lack of Transport",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcded6f0-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Forgot Appointment",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dcda4d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Toxicity/Side Effects",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "b7a585fc-41c2-4051-a158-a5ed3669e0b1",
+                    "label": "Work Transfers/Relocated/Travelled"
+                  },
+                  {
+                    "concept": "41ed8d78-5d04-400c-be6d-6b5e9c99f019",
+                    "label": "Has pills from the previous refill"
+                  },
+                  {
+                    "concept": "e7ef292a-a83d-11ed-afa1-0242ac120002",
+                    "label": "Illness, hospitalization"
+                  },
+                  {
+                    "concept": "f57b1500-7ff2-46b4-b183-fed5bce479a9",
+                    "label": "Self Transfer"
+                  },
+                  {
+                    "concept": "160034AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Died"
+                  },
+                  {
+                    "concept": "e7f13d5a-a83d-11ed-afa1-0242ac120002",
+                    "label": "Busy work schedules "
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Others Specify"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(missedAppointment) || missedAppointment !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Other Reason for Missed Appointment",
+              "type": "obs",
+              "id": "otherReasonMissedAppointment",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(missedAppointmentReason) || missedAppointmentReason !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Followed-up",
+              "type": "obs",
+              "id": "followedUp",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Followed-up",
+              "type": "obs",
+              "id": "followedUp",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Pregnanct/Breastfeeding",
+              "type": "obs",
+              "id": "pregnant",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "cd48b900-dd21-45ce-ae6b-b38ad2a3a695",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "dcda5179-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Pregnant",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(pregnant, 'cbbbe73a-a7e2-11ed-afa1-0242ac120002') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
+                    }
+                  },
+                  {
+                    "concept": "9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab",
+                    "label": "Breast Feeding",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(pregnant, 'cbbbe73a-a7e2-11ed-afa1-0242ac120002') || arrayContains(pregnant, 'dc9b0596-30ab-102d-86b0-7a5022ba4115') "
+                    }
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NA - Not Applicable",
+                    "conceptMappings": [],
+                    "disable": {
+                      "disableWhenExpression": "arrayContains(pregnant, 'dcda5179-30ab-102d-86b0-7a5022ba4115') || arrayContains(pregnant, '9e5ac0a8-6041-4feb-8c07-fe522ef5f9ab') || arrayContains(pregnant, 'cbbbe73a-a7e2-11ed-afa1-0242ac120002')"
+                    }
+                  }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
+              }
+            },
+            {
+              "label": "Category of Provider",
+              "type": "obs",
+              "id": "providerCategory",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "",
+                    "label": "YAPS Peer"
+                  },
+                  {
+                    "concept": "",
+                    "label": "Caregiver mentor "
+                  },
+                  {
+                    "concept": "",
+                    "label": "AGYW Ambassador/Peer"
+                  },
+                  {
+                    "concept": "",
+                    "label": "ABYM Ambassador/Peer"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Gender Training",
+              "type": "obs",
+              "id": "genderTraining",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "dc9825cf-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not done",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "52aed7c2-ef3d-4220-8302-78b841f6ff24",
+                    "label": "Enrolled",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Member to any Peer support group",
+              "type": "obs",
+              "id": "peerSupportGroupMember",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Attend PSG",
+              "type": "obs",
+              "id": "attendPsg",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(peerSupportGroupMember) || peerSupportGroupMember !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
