@@ -4,7 +4,7 @@
   "description": "Encounter form for patients enrolled for PNC services",
   "encounterType": "fa6f3ff5-b784-43fb-ab35-a08ab7dbf074",
   "encounter": "PNC - Encounter",
-  "uuid": "a6c5a8c3-c414-449f-a077-c2f6acbdd8b1",
+  "uuid": "f98a99f5-e750-4e06-92da-1385dc608541",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -48,8 +48,8 @@
               "required": "fale",
               "id": "inrNumber",
               "questionOptions": {
-                "rendering": "text",
-                "concept": "",
+                "rendering": "number",
+                "concept": "b644c29c-9bb0-447e-9f73-2ae89496a709",
                 "conceptMappings": [],
                 "answers": []
               },
@@ -67,7 +67,8 @@
                 "answers": []
               },
               "validators": []
-            },{
+            },
+            {
               "label": "Father's Contact",
               "type": "obs",
               "required": "false",
@@ -171,21 +172,21 @@
               "id": "cervicalCancerScreeningMethod",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "bd0c20f2-39a5-4d82-ad69-742e7b67e447",
                 "answers": [
                   {
-                    "concept": "dc9bb53d-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "159859AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "HPV",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "6155ab75-5849-4130-ba07-0bb9da59f595",
                     "label": "VIA",
                     "conceptMappings": []
                   },
                   {
                     "concept": "dc8e17cc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "No",
+                    "label": "Pap Smear",
                     "conceptMappings": []
                   }
                 ]
@@ -197,7 +198,7 @@
               "id": "cervicalCancerScreeningStatus",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "d3ac6593-b782-4ba9-9ff9-f320e59c6417",
                 "answers": [
                   {
                     "concept": "dc85aa72-30ab-102d-86b0-7a5022ba4115",
@@ -210,12 +211,12 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "03a2a1b7-f1c0-4655-a26b-9053e8c57fa4",
                     "label": "Suspicious of Cancer",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5b3f1946-a7e2-11ed-afa1-0242ac120002",
                     "label": "Invasive Cancer",
                     "conceptMappings": []
                   },
@@ -231,7 +232,8 @@
                   }
                 ]
               }
-            }]
+            }
+          ]
         },
         {
           "label": "Cervical Cancer Treatment",
@@ -243,20 +245,20 @@
               "id": "cervicalCancerScreeningTreatment",
               "questionOptions": {
                 "rendering": "selecet",
-                "concept": "",
+                "concept": "6f1baf4c-1cdd-44a5-a48e-909391ed05f2",
                 "answers": [
                   {
-                    "concept": "",
+                    "concept": "c09f8971-8bf4-4624-b9f2-a62bfea92c67",
                     "label": "Thermocoagulation",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "12f92268-8e92-4c4e-8b8d-53b81c1c361d",
                     "label": "LEEP",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "dd80befb-70fc-4f90-a1ff-0c78c9752d67",
                     "label": "Cryotherapy",
                     "conceptMappings": []
                   }
@@ -287,7 +289,7 @@
               "id": "screenedForTb",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "81fa73db-eb74-4e1b-b259-be76658cbb10",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -308,7 +310,7 @@
               "id": "tbPresumed",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "c872b356-46fc-11ee-be56-0242ac120002",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -335,7 +337,8 @@
                 "answers": []
               },
               "validators": []
-            }]
+            }
+          ]
         },
         {
           "label": "HIV STK Kit Information",
@@ -391,8 +394,8 @@
                     "label": "Retest"
                   },
                   {
-                    "concept": "",
-                    "label": "Known POS"
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
                   }
                 ]
               },
@@ -406,7 +409,7 @@
               "id": "tfv",
               "required": "false",
               "questionOptions": {
-                "concept": "",
+                "concept": "d0cd851a-0a11-4196-b0ac-459bf003594f",
                 "rendering": "select",
                 "answers": [
                   {
@@ -436,16 +439,18 @@
               "type": "obs",
               "id": "receivedHivStkKit",
               "questionOptions": {
-                "concept": "",
+                "concept": "609c9aee-92b3-4e17-828a-efc7933f2ecf",
                 "rendering": "radio",
                 "answers": [
                   {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Yes"
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes",
+                    "conceptMappings": []
                   },
                   {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "No"
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -502,7 +507,7 @@
               "id": "partnerTfv",
               "required": "false",
               "questionOptions": {
-                "concept": "",
+                "concept": "03aad24f-b80f-4f17-af88-90b83592d044",
                 "rendering": "select",
                 "answers": [
                   {
@@ -567,7 +572,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
                     "label": "Known ART",
                     "conceptMappings": []
                   },
@@ -624,7 +629,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "2aa7d442-6cbb-4609-9dd3-bc2ad6f05016",
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
                     "label": "Known ART",
                     "conceptMappings": []
                   },
@@ -665,7 +670,6 @@
           "label": "PrEP Screening",
           "isExpanded": "true",
           "questions": [
-
             {
               "label": "Screened for PrEP",
               "type": "obs",
@@ -706,6 +710,9 @@
                     "conceptMappings": []
                   }
                 ]
+              },
+              "hide": {
+                "hideWhenExpression": "prepScreening !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -844,7 +851,7 @@
               "id": "routineMedication",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "",
+                "concept": "673d99cc-79a9-45a6-ba84-ecd3e9e793ef",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
@@ -906,7 +913,6 @@
       "label": "Infant Information",
       "sections": [
         {
-
           "label": "Infant Information",
           "isExpanded": "true",
           "questions": [
@@ -924,7 +930,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "9d2ff8e6-c6e9-4d62-a103-1bda37cef8c8",
                     "label": "Dead",
                     "conceptMappings": []
                   }
@@ -1240,12 +1246,12 @@
                 "concept": "",
                 "answers": [
                   {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Yes",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No",
                     "conceptMappings": []
                   }
