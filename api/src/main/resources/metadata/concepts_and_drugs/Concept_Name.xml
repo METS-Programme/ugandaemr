@@ -6804,9 +6804,4 @@
     <concept_name  concept_name_id="198956"  concept_id="198948"  name="Bimonthly"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:13:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d74c7c7f-319f-4385-8d19-ef60c4280773"/>
     <concept_name  concept_name_id="198957"  concept_id="198949"  name="Quarterly"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:14:05"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4927e2f2-610f-4920-9167-21c3d0581ab8"/>
     <concept_name  concept_name_id="198958"  concept_id="198950"  name="Annually"   locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:14:44"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="beef23bf-116c-4134-ba98-0bf1bddcce0d"/>
-
-    <concept_name  concept_name_id="199007"  concept_id="198998"  name="RA Number"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-23 15:27:23"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a87889a9-1327-4b96-83bb-0468d0c37912"/>
-    <concept_name  concept_name_id="199006"  concept_id="198997"  name="UPDF Patient Category"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-23 15:26:36"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e1f6a911-0ac6-4115-a0e2-2923fe94bf0c"/>
-    <concept_name  concept_name_id="199005"  concept_id="198996"  name="Soldier"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-23 15:17:47"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="e0745af7-8132-4390-9e90-06bf74c992e8"/>
-    <concept_name  concept_name_id="199004"  concept_id="198995"  name="Civilian"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-10-23 15:17:15"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="bd45c3f9-8002-4a9b-8294-cff74e4cbb76"/>
 </dataset>
