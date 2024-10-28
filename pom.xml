@@ -71,7 +71,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webservices.restModuleVersion>2.40.0</webservices.restModuleVersion>
 		<initializerVersion>2.5.2</initializerVersion>
-		<referencedemodataVersion>2.4.0-SNAPSHOT</referencedemodataVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
@@ -106,7 +105,7 @@
 		<metadatadeployVersion>1.13.0</metadatadeployVersion>
 		<metadatamappingVersion>1.6.0</metadatamappingVersion>
 		<metadatasharingVersion>1.9.0</metadatasharingVersion>
-		<openconceptlabModuleVersion>2.2.0-SNAPSHOT</openconceptlabModuleVersion>
+		<openconceptlabModuleVersion>2.4.0</openconceptlabModuleVersion>
 		<openwebappsVersion>1.13.0</openwebappsVersion>
 		<patientFlagsVersion>3.0.7</patientFlagsVersion>
 		<providermanagementVersion>2.13.0</providermanagementVersion>
@@ -129,8 +128,8 @@
 		<ugandaemrfingerprintVersion>1.1.0</ugandaemrfingerprintVersion>
 		<cohortModuleVersion>3.4.0</cohortModuleVersion>
 		<stockmanagementVersion>1.4.2</stockmanagementVersion>
-		<spaModuleVersion>1.0.10-SNAPSHOT</spaModuleVersion>
-		<o3formsVersion>2.2.0-SNAPSHOT</o3formsVersion>
+		<spaModuleVersion>2.0.0</spaModuleVersion>
+		<o3formsVersion>2.3.0</o3formsVersion>
 		<orderTemplatesVersion>1.0.3-SNAPSHOT</orderTemplatesVersion>
 		<attachmentsVersion>3.0.0</attachmentsVersion>
 
