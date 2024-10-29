@@ -1089,6 +1089,22 @@ VALUES
 		<sql>SET FOREIGN_KEY_CHECKS=1;</sql>
 	</changeSet>
 
+	<changeSet id="ugandaemr-20241029-2256" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="1">
+				select count(property) from global_property where property="webservices.rest.maxResultsAbsolute";
+			</sqlCheck>
+			<sqlCheck expectedResult="1">
+				select count(property) from global_property where property="webservices.rest.maxResultsDefault";
+			</sqlCheck>
+		</preConditions>
+		<comment>UPDATE GLOBAL PROPERTY OF webservices.rest to UgandaEMR Defaults.</comment>
+		<sql>
+			UPDATE global_property set property_value=500 where property="webservices.rest.maxResultsAbsolute";
+			UPDATE global_property set property_value=100 where property="webservices.rest.maxResultsDefault";
+		</sql>
+	</changeSet>
+
 </databaseChangeLog>
 
 
