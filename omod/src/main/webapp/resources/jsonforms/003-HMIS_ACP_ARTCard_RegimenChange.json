@@ -41,7 +41,7 @@
                 "rendering": "select",
                 "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "conceptMappings": [],
                 "answers": [
@@ -227,7 +227,7 @@
               "id": "currentLine",
               "readonly": true,
               "questionOptions": {
-                "concept": "e6a72c98-1c79-4e76-84b1-2db63d27bce6",
+                "concept": "",
                 "calculate": {
                   "calculateExpression": "resolve(api.getLatestObs(patient.id, 'e6a72c98-1c79-4e76-84b1-2db63d27bce6'))?.valueCodeableConcept?.coding[0]?.code"
                 },
@@ -475,10 +475,10 @@
               "validators": []
             },
             {
-              "label": "Current Regimen Other",
+              "label": "New Regimen Other",
               "type": "obs",
               "required": false,
-              "id": "currentRegimenOther",
+              "id": "newRegimenOther",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "97c48198-3cf7-4892-a3e6-d61fb1125882"
