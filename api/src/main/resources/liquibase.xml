@@ -1149,6 +1149,20 @@ VALUES
 			delete from scheduler_task_config where uuid ="08a36b06-7a71-11eb-9439-0242ac130002";
 		</sql>
 	</changeSet>
+
+	<changeSet id="ugandaemr-20241101-1134" author="slubwama">
+		<preConditions onFail="CONTINUE">
+			<sqlCheck expectedResult="6">
+				select count(*) from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+			</sqlCheck>
+		</preConditions>
+		<comment>
+			Delete concept set of DSDM.
+		</comment>
+		<sql>
+			delete from concept_set where concept_set_id in (19551,19552,19553,19554,19555,19556);
+		</sql>
+	</changeSet>
 </databaseChangeLog>
 
 
