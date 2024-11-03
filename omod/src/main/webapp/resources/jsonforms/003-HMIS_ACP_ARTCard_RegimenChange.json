@@ -223,13 +223,14 @@
             },
             {
               "label": "Current Line",
-              "type": "programState",
+              "type": "obs",
               "id": "currentLine",
               "readonly": true,
               "questionOptions": {
-                "concept": "",
+                "concept": "164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "rendering": "select",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'e6a72c98-1c79-4e76-84b1-2db63d27bce6'))?.valueCodeableConcept?.coding[0]?.code"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
@@ -244,10 +245,7 @@
                     "value": "5d2d0e7e-69a6-408a-b5ce-8d93fb72bc21",
                     "label": "THIRD LINE REGIMEN"
                   }
-                ],
-                "rendering": "select",
-                "programUuid": "18c6d4aa-0a36-11e7-8dbb-507b9dc4c741",
-                "workflowUuid": "4c30d724-dbcc-42db-ba9b-a9b9d2aadc00"
+                ]
               }
             },
             {
