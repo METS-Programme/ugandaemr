@@ -27,7 +27,7 @@
       ]
     },
     "logo": {
-      "src": "/openmrs/spa/logo-white.svg",
+      "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
     },
     "extensionSlots": {
@@ -246,7 +246,8 @@
         "Add Orders",
         "View OrderTemplates"
       ]
-    }
+    },
+    "maxDispenseDurationInDays": 366
   },
   "@openmrs/esm-patient-programs-app": {
     "Display conditions": {
@@ -275,7 +276,7 @@
       "f0c16a6d-dc5f-4118-a803-616d0075d282"
     ],
     "logo": {
-      "src": "/openmrs/spa/logo-white.svg",
+      "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
     },
     "sections": [
@@ -619,7 +620,7 @@
       "alt": "UgandaEMR+ logo"
     },
     "loginBanner": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/logo.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
@@ -650,7 +651,7 @@
       }
     },
     "logo": {
-      "src": "/openmrs/spa/logo-white.svg",
+      "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
     }
   },

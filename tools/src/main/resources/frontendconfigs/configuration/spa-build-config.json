@@ -1,8 +1,8 @@
 {
   "frontendModules": {
-    "@openmrs/esm-cohort-builder-app": "4.0.0",
+    "@openmrs/esm-cohort-builder-app": "next",
     "@openmrs/esm-devtools-app": "5.8.1",
-    "@openmrs/esm-dispensing-app": "1.5.0",
+    "@openmrs/esm-dispensing-app": "next",
     "@openmrs/esm-home-app": "5.5.0",
     "@openmrs/esm-implementer-tools-app": "5.8.1",
     "@openmrs/esm-patient-allergies-app": "8.2.0",
