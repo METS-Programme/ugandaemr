@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>ugandaemr</artifactId>
-	<version>4.0.2</version>
+	<version>4.0.3-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>UgandaEMR</name>
 	<description>Customizations for Uganda OpenMRS distribution</description>
@@ -56,7 +56,7 @@
 		<connection>scm:git:git@github.com:mohuganda/openmrs-module-ugandaemr.git</connection>
 		<developerConnection>scm:git:git@github.com:mohuganda/openmrs-module-ugandaemr.git</developerConnection>
 		<url>scm:git:https://github.com/mohuganda/openmrs-module-ugandaemr</url>
-		<tag>4.0.2</tag>
+		<tag>HEAD</tag>
 	</scm>
 
 	<modules>
