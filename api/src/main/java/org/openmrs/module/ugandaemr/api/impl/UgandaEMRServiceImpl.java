@@ -2088,6 +2088,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
             testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceUuid));
             orderService.saveOrder(testOrder, null);
+            orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS,"Order Sent to CPHHL");
             orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
         } else {
             testOrder = (TestOrder) orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", accessionNumber);

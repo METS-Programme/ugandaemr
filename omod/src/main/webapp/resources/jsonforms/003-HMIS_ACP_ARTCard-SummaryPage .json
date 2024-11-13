@@ -404,10 +404,10 @@
                     "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "No"
                   }
-                ],
-                "hide": {
-                  "hideWhenExpression": "sex !== 'F'"
-                }
+                ]
+              },
+              "hide": {
+                "hideWhenExpression": "sex !== 'F'"
               }
             },
             {

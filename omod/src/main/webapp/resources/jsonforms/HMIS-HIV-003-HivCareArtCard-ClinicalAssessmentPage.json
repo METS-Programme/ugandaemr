@@ -1423,7 +1423,10 @@
                   },
                   {
                     "concept": "801b8959-4b2a-46c0-a28f-f7d3fc8b98bb",
-                    "label": "ANC Visit"
+                    "label": "ANC Visit",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "3f0f9c04-25a4-4070-84cc-5b49566aeb4c",
@@ -1431,7 +1434,10 @@
                   },
                   {
                     "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PMTCT"
+                    "label": "PMTCT",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dc8f22f9-30ab-102d-86b0-7a5022ba4115",
@@ -1448,6 +1454,13 @@
                   {
                     "concept": "347e93a0-72c2-400f-9579-116ce3ba6a68",
                     "label": "Checkup"
+                  },
+                  {
+                    "concept": "cac9f005-226e-4d6c-8e3e-16119fcc8f6b",
+                    "label": "CACX Screening/Treatment",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   }
                 ]
               },
