@@ -39,7 +39,7 @@
               "readonly": true,
               "questionOptions": {
                 "rendering": "select",
-                "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115",
+                "concept": "107bef04-bf05-4f41-9260-b167c1108f7e",
                 "calculate": {
                   "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2b0b4d-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
@@ -230,7 +230,7 @@
                 "concept": "80148344-ce80-42f7-9d4a-8c1935efe76e",
                 "rendering": "select",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '80148344-ce80-42f7-9d4a-8c1935efe76e')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '164515AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA')).then(obs => obs.valueCodeableConcept?.coding[0]?.code)"
                 },
                 "answers": [
                   {
