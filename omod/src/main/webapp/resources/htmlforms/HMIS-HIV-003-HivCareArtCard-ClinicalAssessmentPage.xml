@@ -10,6 +10,12 @@
           formShowIf="(visit.active || !visit.active) &amp;&amp; patient.person.dead==false &amp;&amp; (sessionLocation.uuid=='86863db4-6101-4ecf-9a86-5e716d6504e4' || sessionLocation.uuid=='e9bc61b5-69ff-414b-9cf0-0c22d6dfca2b')"
           formDisplayStyle="Standard">
     <ifMode mode="ENTER,EDIT" include="false">
+        <style type="text/css">
+            img {
+                width: 100px;
+                height: auto;
+            }
+        </style>
         <includeIf velocityTest="$fn.allEncounters('8d5b27bc-c2cc-11de-8d13-0010c6dffd0f').size() == 0">
             <script>
                 jq(function () {
@@ -67,7 +73,7 @@
 
 
             jq(document).ready(function () {
-            currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
+                currentLocationUUID = getLocationByName(jq("#location_id").find("select").find(":selected").text())
 
 
                 var enableCDDPCategorization = <lookup expression="fn.globalProperty('ugandaemr.enableCDDPCategorization')"/>;
@@ -91,17 +97,17 @@
                     var cddpCategory = jq("#cddp_category").find("select").find(":selected").val();
                     setValue('refill_point_id.value', '');
                     if (cddpCategory === "a6a0ab45-b7dc-43b2-b28c-45a91f968ebf") {
-                            <!-- CRPDDP categories fetching -->
+                        <!-- CRPDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('Pharmacy');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("e50fa0af-df36-4a26-853f-feb05244e5ca");
                     } else if (cddpCategory === "d77cc565-5e53-4633-8fc7-956cfc1831d9") {
-                            <!--  CLDDP categories fetching -->
+                        <!--  CLDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('CLDDP Group');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
                     } else if (cddpCategory === "1b9b83d4-eaca-40da-a7c6-53b8ea3436ad") {
-                            <!--  General CDDP categories fetching -->
+                        <!--  General CDDP categories fetching -->
                         jq('#refill_point_select_id').parent('div').parent('div').find('label').html('General CDDP Group Name');
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("da964ff0-648e-440b-a219-d2aeba3670d0");
@@ -111,12 +117,35 @@
                     }
                 });
 
+                function changeDSDMWorkFLow(model) {
+                    switch (model) {
+                        case "165138":
+                            jq("#dsdm_approach").val("17");
+                            break;
+                        case "165140":
+                            jq("#dsdm_approach").val("18");
+                            break;
+                        case "165139":
+                            jq("#dsdm_approach").val("19");
+                            break;
+                        case "165142":
+                            jq("#dsdm_approach").val("20");
+                            break;
+                        case "165141":
+                            jq("#dsdm_approach").val("21");
+                            break;
+                        default:
+                            jq("#dsdm_approach").val("");
+                            break;
+                    }
+                }
+
                 jq("#165143 select").change(function () {
-                    var model= jq("#165143").find("select").find(":selected").val();
+                    var model = jq("#165143").find("select").find(":selected").val();
                     if (model === "165142" || model === "165141") {
                         enable_fields("cddp_category");
                         enable_fields("next_facility_visit_date");
-                    }else if (model === "165141"){
+                    } else if (model === "165141") {
                         hideContainer("#cddp_category");
                         jq("#refill_point_select_id").attr("disabled", false);
                         getCohortCategorizations("5b7136fa-d207-4229-94a8-da6661ae00bf");
@@ -127,6 +156,7 @@
                         disable_fields("cddp_category");
                         disable_fields("next_facility_visit_date");
                     }
+                    changeDSDMWorkFLow(model);
                 });
 
 
@@ -273,25 +303,25 @@
             });
 
 
-        function getDrugByConcept(concept, drug_strength_id) {
-            if (enableStockManagement) {
-                jq("#" + drug_strength_id + "").find("select").empty();
-                var stockItems = []
-                jq.ajax({
-                type: "GET",
-                url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    stockItems = data.results;
-            }
-        });
-        if (stockItems.length) {
-            enable_fields(drug_strength_id)
-        }
-            jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
-            for (var i = 0; i &lt; stockItems.length; i++) {
-                jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
+            function getDrugByConcept(concept, drug_strength_id) {
+                if (enableStockManagement) {
+                    jq("#" + drug_strength_id + "").find("select").empty();
+                    var stockItems = []
+                    jq.ajax({
+                        type: "GET",
+                        url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/stockmanagement/stockiteminventory?v=default&amp;limit=10&amp;totalCount=true&amp;conceptId=" + concept + "&amp;groupBy=LocationStockItem&amp;dispenseLocationUuid=" + currentLocationUUID + "&amp;includeStrength=1&amp;includeConceptRefIds=1",
+                        dataType: "json",
+                        async: false,
+                        success: function (data) {
+                            stockItems = data.results;
+                        }
+                    });
+                    if (stockItems.length) {
+                        enable_fields(drug_strength_id)
+                    }
+                    jq("#" + drug_strength_id + "").find("select").append($("<option >Select Strength</option>").attr("value", ''));
+                    for (var i = 0; i &lt; stockItems.length; i++) {
+                        jq("#" + drug_strength_id + "").find("select").append($("<option></option>").attr("value", stockItems[i].stockItemUuid).text((stockItems[i].drugName + " | " + stockItems[i].quantity + " " + stockItems[i].quantityUoM + " at " + stockItems[i].partyName).replace("null", " qty ")).attr("location", stockItems[i].locationUuid).attr("strength", stockItems[i].drugStrength).attr("stockItemUUID", stockItems[i].stockItemUuid).attr("drugUuid", stockItems[i].drugUuid));
             }
         }
         }
@@ -664,37 +694,115 @@
 
         var instabilityCause = "";
 
-        jq(document).ready(function () {
+            function queryRestData(url, method, data) {
+                var responseData = null;
+                jq.ajax({
+                    type: method,
+                    url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/" + url,
+                    dataType: "json",
+                    contentType: "application/json",
+                    accept: "application/json",
+                    async: false,
+                    data: data,
+                    success: function (response) {
+                        responseData = response;
+                    },
+                    error: function (response) {
+                        responseData = response
+                    }
+                });
+                return responseData;
+            }
 
-        jq("#visit-date").addClass("html-form-entry-disabled-field");
-        <!-- Determine muac code based on muac score and age -->
-        var age = <lookup complexExpression="$patient.age"/>;
+            jq(document).ready(function () {
 
-        getMUACCodeFromMUACScoreByAge(age, '1343', '99030');
+                jq("#visit-date").addClass("html-form-entry-disabled-field");
+                <!-- Determine muac code based on muac score and age -->
+                var age = <lookup complexExpression="$patient.age"/>;
 
-        //Block Multiple encounter entry on same date
-        blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"), "block");
+                getMUACCodeFromMUACScoreByAge(age, '1343', '99030');
 
-        var stableArray = [];
+                //Block Multiple encounter entry on same date
+                blockEncounterOnSameDateEncounter(jq("#encounterDate").find("input[type=hidden]"), "block");
 
-        var previousVl = jq("#vl").text().trim();
-        var previousVlDate = jq("#vlDate").text().trim();
-        var currentRegimen = jq("#regimen").text().trim();
-        var regimenBeforeDTG = jq("#regimen_before_dtg").text().trim();
-        var onThirdLine = jq("#on_third_line").text().trim();
-        var adherence = jq("#adherence").text().trim();
-        var clinicStaging = jq("#clinic_staging").text().trim();
-        var regimenStartedDate = jq("#regimen_started_date").text().trim();
-        var regimenBeforeDTGStartedDate = jq("#regimen_started_date_before_dtg").text().trim();
-        var sputumDate = jq("#sputum_date").text().trim();
-        var artStartDate = jq("#art_start_date").text().trim();
-        var teatmentStartDate = jq("#teatment_start_date").text().trim();
-        var sputumValue = jq("#sputum_value").text().trim();
-        var currentRegimenStartDate = jq("#current_regimen_start_date").text().trim();
+                var previousVl = null;
+                var previousVlDate = null;
+                var currentRegimen = null;
+                var regimenBeforeDTG = null;
+                var onThirdLine = null;
+                var previousAdherence = null;
+                var clinicStaging = null;
+                var regimenStartedDate = null;
+                var regimenBeforeDTGStartedDate = null;
+                var sputumDate = null;
+                var artStartDate = null;
+                var teatmentStartDate = null;
+                var sputumValue = null;
+                var currentRegimenStartDate = null;
 
-        if (regimenBeforeDTG &amp;&amp; regimenBeforeDTG !== "") {
-            regimenStartedDate = regimenBeforeDTGStartedDate;
-        }
+                let searchParams = new URLSearchParams(window.location.search)
+                var patientId = searchParams.get('patientId')
+                var visitId = searchParams.get('visitId')
+                var encounterId = ""
+
+                if (searchParams.get('encounterId') !== null &amp;&amp; searchParams.get('encounterId') !== "null") {
+                    encounterId = "&amp;encounter=" + searchParams.get('encounterId');
+                }
+                var stability_url = "stabilitycriteria?v=full&amp;patient=" + patientId + "&amp;visit=" + visitId + encounterId
+                var global_property_url = "systemsetting?q=ugandaemr.dsdm.allowClinicalOverrideDSDMPatientStability&amp;v=custom:(property,uuid,value)"
+
+                var enableCliniciansMakeStabilityDecisions = queryRestData(global_property_url).results[0].value;
+                if (enableCliniciansMakeStabilityDecisions !== true &amp;&amp; enableCliniciansMakeStabilityDecisions !== "true") {
+                    var stability = queryRestData(stability_url)
+
+                    if (stability != null &amp;&amp; stability.hasOwnProperty("results")) {
+                        var stabilityResults = stability.results[0];
+
+                        previousVl = stabilityResults.vlObs;
+                        previousVlDate = stabilityResults.vlDateObs;
+                        artStartDate = stabilityResults.artStartDate;
+                        currentRegimen = stabilityResults.regimenObsConceptId
+
+                        if(stabilityResults.regimenObs!=null){
+                            regimenStartedDate = stabilityResults.regimenObs.encounter.encounterDatetime;
+                        }
+
+                        if (stabilityResults.currentRegimenObsConceptId!=null &amp;&amp; stabilityResults.regimenObs!=null &amp;&amp; stabilityResults.currentRegimenObsConceptId === stabilityResults.baselineRegimenConceptId ) {
+                            currentRegimenStartDate = stabilityResults.regimenObs.encounter.encounterDatetime;
+                        } else {
+                            currentRegimenStartDate = null;
+                        }
+
+                        if (stabilityResults.regimenBeforeDTGObs != null) {
+                            regimenBeforeDTG = stabilityResults.regimenBeforeDTGObsValueConceptId
+                            regimenBeforeDTGStartedDate = stabilityResults.regimenBeforeDTGObs.encounter.encounterDatetime;
+                        }
+
+                        onThirdLine = stabilityResults.onThirdRegimen;
+
+                        if(stabilityResults.adherenceObs!=null){
+                            stabilityResults.adherenceObs.forEach((it, index) => {
+                                previousAdherence = it.value.name.name;
+                            });
+                        }
+
+
+                        clinicStaging = stabilityResults.conceptForClinicStage;
+                        if (stabilityResults.sputumResultDateObs !== null) {
+                            sputumDate = stabilityResults.sputumResultDateObs.valueDate;
+                            teatmentStartDate = stabilityResults.sputumResultDateObs.encounter.encounterDatetime;
+                            sputumValue = stabilityResults.sputumResultObsValueConceptId;
+                        }
+
+                    }
+                }
+
+                var stableArray = [];
+
+
+                if (regimenBeforeDTG &amp;&amp; regimenBeforeDTG !== "") {
+                    regimenStartedDate = regimenBeforeDTGStartedDate;
+                }
 
         disable_fields("duration-on-current-regimen");
         disable_fields("duration-on-art");
@@ -1363,11 +1471,13 @@
                 }
 
                 /* Adherence Check*/
-                if (adherence.length &lt;= 0 || adherence.trim().includes("POOR")) {
-                    stableArray.push(false);
-                    instabilityCause += "Adherence is not Good \n "
-                } else {
-                    stableArray.push(true);
+                if(previousAdherence!=null) {
+                    if (previousAdherence.length &lt;= 0 || previousAdherence.trim().includes("POOR")) {
+                        stableArray.push(false);
+                        instabilityCause += "Adherence is not Good \n "
+                    } else {
+                        stableArray.push(true);
+                    }
                 }
 
                 /* Clinic staging */
@@ -1890,11 +2000,6 @@
         </includeIf>
 
     </script>
-    <restrictByRole exclude="Organizational: System Administrator">
-        <div class="hidden">
-            <uiInclude provider="ugandaemr" fragment="patientStability"/>
-        </div>
-    </restrictByRole>
     <restrictByRole include="Organizational: System Administrator">
         <script>
             jq(function () {
@@ -2587,6 +2692,51 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="card">
+                                            <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                            <div class="card-body">
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>HTN Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198894"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>Diabetes Mellitus Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198900"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/D Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198879"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-md-3">
+                                                            <label>MH-A/S Status</label>
+                                                        </div>
+                                                        <div class="col-md-9">
+                                                            <obs conceptId="198884"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card ">
                                             <div class="card-header">Side effects of ART</div>
                                             <div class="card-body">
@@ -2935,7 +3085,7 @@
                                                     <div class="col-md-6">
                                                         <span id="art-adherence" class="ART-adherence horizontal">
                                                             <obs conceptId="90221" answerConceptIds="90156,90157,90158"
-                                                                 answerLabels=" Good, Fair, Poor" style="radio"/>
+                                                                 answerLabels="Good, Fair, Poor" style="radio"/>
                                                         </span>
                                                     </div>
                                                 </div>
@@ -3259,6 +3409,11 @@
                                                              answerLabels="FBIM - Facility Based Individual Management, FBG - Facility Based Group, FTDR - Fast-Track Drug Refills, CDDP - Community Drug Distribution Point, CCLAD - Community Client-Led ART Delivery"
                                                              class="long-value-select" required="required"/>
                                                     </div>
+                                                    <ifMode mode="EDIT" include="false">
+                                                        <div class="hidden" id="dsdm_approach">
+                                                            <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                                        </div>
+                                                    </ifMode>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-1">
@@ -3279,8 +3434,7 @@
                                                 <div class="row">
                                                     <div class="col-md-3" id="cddp_category">
                                                         <label>CDDP Category</label>
-                                                        <workflowState workflowId="4" stateIds="16,14,15"
-                                                                       stateLabels="General CDDP, CLDDP,CRPDDP"/>
+                                                        <workflowState workflowId="4" stateIds="16,14,15" stateLabels="General CDDP, CLDDP,CRPDDP"/>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <label>DSD Group Refill Point</label>
@@ -3693,6 +3847,55 @@
                                                                 </div>
                                                             </div>
                                                            </obsgroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="card">
+                                                        <div class="card-header">NCDs (Non-communicable Diseases) Status</div>
+                                                        <div class="card-body">
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>HTN Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198894"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>Diabetes Mellitus Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198900"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/D Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198879"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div>
+                                                                <div class="row">
+                                                                    <div class="col-md-3">
+                                                                        <label>MH-A/S Status</label>
+                                                                    </div>
+                                                                    <div class="col-md-9">
+                                                                        <obs conceptId="198884"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -4208,7 +4411,7 @@
                                                     <div class="col-md-12">
                                                         <span id="art-adherence" class="ART-adherence horizontal">
                                                             <obs conceptId="90221" answerConceptIds="90156,90157,90158"
-                                                                 answerLabels=" Good, Fair, Poor" style="radio"/>
+                                                                 answerLabels="Good, Fair, Poor" style="radio"/>
                                                         </span>
                                                         <div>
                                                             <span class="fair-or-poor-art-adherence-reason">
@@ -4324,7 +4527,7 @@
                                                 <div id="split_regimen_container">
                                                     <repeat>
                                                         <template>
-                                                            <obsgroup groupingConceptId="160741">
+                                                            <obsgroup groupingConceptId="198843">
                                                                 <div class="row multi-arv-drug"
                                                                      id="{id}-toggleContainer1">
                                                                     <div class="col-md-4">
@@ -4661,7 +4864,7 @@
                                                                     </div>
                                                                     <div class="col-md-3">
                                                                         <obs conceptId="160855"
-                                                                             labelText="Frequency"/>
+                                                                             labelText="Frequency" answerConceptIds="160862,162251,162250,1099"/>
                                                                     </div>
                                                                     <div class="col-md-6">
                                                                         <obs conceptId="175387"
@@ -4721,6 +4924,11 @@
                                                  answerLabels="FBIM,FBG,FTR,CDDP,CCLAD" required="required"
                                                  labelText="Approach" class="horizontal long-value-select"/>
                                         </div>
+                                        <ifMode mode="EDIT" include="false">
+                                            <div class="hidden" id="dsdm_approach">
+                                                <workflowState  workflowId="5" labelText="Approach" stateIds="17,18,19,20,21" stateLabels="FBIM,FBG,FTR,CDDP,CCLAD" style="dropdown" />
+                                            </div>
+                                        </ifMode>
                                     </div>
                                     <div class="col-md-4">
                                         <obs id="duration-on-art" conceptId="99024"

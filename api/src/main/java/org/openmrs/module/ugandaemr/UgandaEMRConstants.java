@@ -105,6 +105,8 @@ public class UgandaEMRConstants {
     public static final int MEDICATION_DISPENSE_SET = 163711;
     public static final int MEDICATION_DISPENSE_QUANTITY = 1443;
     public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST = 1276;
+    public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST_YES = 1065;
+    public static final int MEDICATION_DISPENSE_RECEIVED_AT_VIST_NO = 1066;
 
     public static final int CONCEPT_ID_NEXT_APPOINTMENT = 5096;
     public static final int CONCEPT_ID_TRANSFERED_OUT = 90306;
@@ -127,6 +129,7 @@ public class UgandaEMRConstants {
 
     public static final String PROCESSED_ORDER_WITH_RESULT_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.accession_number!=\"\" and specimen_source!=\"\" AND orders.date_created BETWEEN \"%s\" AND \"%s\"";
 
+    public static final String SPECIMEN_MANUAL_UPDATE_QUERY="UPDATE test_order set specimen_source=%s where order_id=%s";
     public static final String PROCESSED_ORDER_WITH_RESULT_OF_ENCOUNTER_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.accession_number!=\"\" and fulfiller_status=\"COMPLETED\" AND orders.encounter_id=%s";
 
     public static final String PROCESSED_ORDER_WITH_RESULT_FOR_PATIENT_QUERY = "select orders.order_id from orders  inner join test_order on (test_order.order_id=orders.order_id) inner join obs on (orders.order_id=obs.order_id) where orders.fulfiller_status=\"COMPLETED\" AND orders.patient_id=%s";

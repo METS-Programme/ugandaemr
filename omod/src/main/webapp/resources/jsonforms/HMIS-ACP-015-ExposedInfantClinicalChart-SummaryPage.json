@@ -20,55 +20,26 @@
       "label": "Mother/Caregiver Follow-up",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Date:",
-              "type": "encounterDatetime",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encDate"
-            },
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Care Entry Point",
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Exposed Infant No.",
-              "type": "obs",
+              "type": "patientIdentifier",
+              "label": "Exposed Infant No.#",
+              "questionInfo": "",
+              "id": "exposedInfantNumber",
+              "default": "",
               "required": "true",
-              "id": "exposed-infant-number",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "872139fa-9820-4fde-87fd-f00df9ddcbd6"
-              },
-              "validators": []
+                "identifierType": "2c5b695d-4bf3-452f-8a7c-fe3ee3432ffe"
+              }
             },
             {
               "label": "Entry Point (Clinic/Ward)",
               "type": "obs",
               "required": "true",
-              "id": "entry-point",
+              "id": "entryPoint",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcdfe3ce-30ab-102d-86b0-7a5022ba4115",
@@ -152,7 +123,7 @@
             {
               "label": "Date of NVP Start",
               "type": "obs",
-              "id": "date-of-nvp-start",
+              "id": "dateOfNvpStart",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "4d667898-fc8d-4df5-add4-1b9ca84ca7ea"
@@ -167,7 +138,7 @@
             {
               "label": "Date of CTX Start",
               "type": "obs",
-              "id": "date-of-ctx-start",
+              "id": "dateOfCtxStart",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "e4ca65ac-dc1d-485d-bdb2-b73c2f892aca"
@@ -182,7 +153,7 @@
             {
               "label": "Birth Defect ?",
               "type": "obs",
-              "id": "birth-defect",
+              "id": "birthDefect",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "f10be4c0-2ee9-4597-b52a-7f18838fd820",
@@ -202,7 +173,7 @@
             {
               "label": "Neurotube Defect ? ",
               "type": "obs",
-              "id": "neurotube_defect",
+              "id": "neurotubeDefect",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "844f40ef-7b44-4b3c-a462-d5155c4d83ed",
@@ -222,14 +193,14 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other-specify",
+              "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(neurotube_defect) || neurotube_defect !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(neurotubeDefect) || neurotubeDefect !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -241,7 +212,7 @@
             {
               "label": "Mother's Name",
               "type": "obs",
-              "id": "mother-name",
+              "id": "motherName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "137a9d5c-25cc-4a3c-98ad-328a89c6e681"
@@ -251,7 +222,7 @@
             {
               "label": "Common Name",
               "type": "obs",
-              "id": "common-name",
+              "id": "commonName",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "71828cbc-c13c-43a1-9cbe-f3eaf164019a"
@@ -261,7 +232,7 @@
             {
               "label": "Telephone No.",
               "type": "obs",
-              "id": "telephone-no",
+              "id": "telephoneNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "4a90b605-6d4a-4abe-a6c6-53199da7da18"
@@ -291,7 +262,7 @@
             {
               "label": "Sub County",
               "type": "obs",
-              "id": "sub-county",
+              "id": "subCounty",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "50c26305-8cc6-4bd0-ba82-2cda06a21eab"
@@ -321,7 +292,7 @@
             {
               "label": "LC1 Zone",
               "type": "obs",
-              "id": "lc-1-zone",
+              "id": "lc1Zone",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "cb806624-2e43-4922-a6f6-2c65ce4f99e8"
@@ -331,7 +302,7 @@
             {
               "label": "LC1 Chairman",
               "type": "obs",
-              "id": "lc-1-chairman",
+              "id": "lc1Chairman",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "2fac4cb7-9207-44fb-b214-973a9e379dce"
@@ -341,7 +312,7 @@
             {
               "label": "How should outreach workers introduce themselves?",
               "type": "obs",
-              "id": "outreach_intorduce",
+              "id": "outreachIntorduce",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "07f92ca9-d64d-407d-a429-04a6d35956e9"
@@ -351,7 +322,7 @@
             {
               "label": "Directions to caregiver's home address",
               "type": "obs",
-              "id": "caregiver_direction_to_home",
+              "id": "caregiverDirectionToHome",
               "questionOptions": {
                 "rendering": "textarea",
                 "concept": "78ed9223-4ec3-4cb2-971a-823a47c64b86"
@@ -361,7 +332,7 @@
             {
               "label": "Alternate Contact Person",
               "type": "obs",
-              "id": "alternate_contact_person",
+              "id": "alternateContactPerson",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "ca148ffe-134c-46b0-8e85-b08d67f0b62c"
@@ -437,7 +408,7 @@
             {
               "label": "Has this person been disclosed to?",
               "type": "obs",
-              "id": "person_disclosed_to",
+              "id": "personDisclosedTo",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
@@ -463,7 +434,7 @@
             {
               "label": "Place of Delivery",
               "type": "obs",
-              "id": "place_of_delivery",
+              "id": "placeOfDelivery",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "fdca545d-edc8-49d5-ae65-8140330c948d"
@@ -471,9 +442,9 @@
               "validators": []
             },
             {
-              "label": " Mode of Delivery",
+              "label": "Mode of Delivery",
               "type": "obs",
-              "id": "mode_of_delivery",
+              "id": "modeOfDelivery",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "dcc3ac63-30ab-102d-86b0-7a5022ba4115",
@@ -505,20 +476,20 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_specify",
+              "id": "otherSpecify",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "4af9f205-38e1-44cc-aa8a-ccf75d225ac7"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(mode_of_delivery) || mode_of_delivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(modeOfDelivery) || modeOfDelivery !== '5622AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Mother received ARVs for PMTCT ",
               "type": "obs",
-              "id": "Mother_Received_ARVs_for_PMTCT",
+              "id": "motherReceivedARVsForPMTCT",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "57ad8a9d-2b60-46f4-a37e-9f61e4fce70c",
@@ -542,7 +513,7 @@
             {
               "label": " Mother's ANC No.",
               "type": "obs",
-              "id": " Mothers_ANC_no",
+              "id": " mothersANCNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "98e1543d-dbee-4a5a-8dca-8df5eb28ed07"
@@ -582,7 +553,7 @@
             {
               "label": "During Labour/Delivery",
               "type": "obs",
-              "id": "During_labour_deliverly",
+              "id": "duringLabourDeliverly",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "2234ce82-f0e2-4363-b6d9-b1011a9f7630",
@@ -636,7 +607,7 @@
             {
               "label": "Infant's PMTCT ARVs",
               "type": "obs",
-              "id": "Infant_PMTCT_ARVs",
+              "id": "InfantPMTCTARVs",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "133d0cb7-53ce-460a-8826-e98a2bb99d73",
@@ -672,14 +643,14 @@
             {
               "label": "Other Specify",
               "type": "obs",
-              "id": "other_sp",
+              "id": "infantPMTCTARVsOther",
               "questionOptions": {
                 "rendering": "text",
-                "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115"
+                "concept": "30c866f6-479e-4474-ac85-2c183bbe752b"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(Infant_PMTCT_ARVs) || Infant_PMTCT_ARVs !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(InfantPMTCTARVs) || InfantPMTCTARVs !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -691,7 +662,7 @@
             {
               "label": "Mother in care at an ART Clinic? ",
               "type": "obs",
-              "id": "Mother_in_ART",
+              "id": "motherInART",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "9b9fe6e5-349c-4b18-9171-f75dbfed2389",
@@ -718,7 +689,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(Mother_in_ART) || Mother_in_ART !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(motherInART) || motherInART !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
@@ -735,7 +706,7 @@
             {
               "label": "Test Date",
               "type": "obs",
-              "id": "test_date",
+              "id": "testDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "51941f01-307f-44ca-9351-401bc008a208"
@@ -750,7 +721,7 @@
             {
               "label": "Feeding Method",
               "type": "obs",
-              "id": "feeding_method",
+              "id": "feedingMethod",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "3621e994-11c3-4ef6-b0bc-7080128594a7",
@@ -803,13 +774,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(test_date)"
+                "hideWhenExpression": "isEmpty(testDate)"
               }
             },
             {
               "label": "Date Results given to caregiver",
               "type": "obs",
-              "id": "date_results_given",
+              "id": "dateResultsGiven",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "f4d8932c-2b95-46c5-8aac-1fc345c3f01f"
@@ -833,7 +804,7 @@
             {
               "label": "Test Date",
               "type": "obs",
-              "id": "test_date_9mths",
+              "id": "testDate9mths",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "1f627527-2f97-4f21-9b61-2b79d887950f"
@@ -848,7 +819,7 @@
             {
               "label": "Feeding Method",
               "type": "obs",
-              "id": "feeding_method_9mths",
+              "id": "feedingMethod9mths",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "f13d9884-bf63-4f86-bc96-a650a29a9e42",
@@ -884,7 +855,7 @@
             {
               "label": "Result",
               "type": "obs",
-              "id": "result_9mths",
+              "id": "result9mths",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "e1b4efbf-0dff-4e9e-a2f2-34edcb02a5d0",
@@ -901,13 +872,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(test_date_9mths)"
+                "hideWhenExpression": "isEmpty(testDate_9mths)"
               }
             },
             {
               "label": "Date Results given to caregiver",
               "type": "obs",
-              "id": "date_results_given_9mths",
+              "id": "dateResultsGiven9mths",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "358cbf29-0d6f-4be0-9af4-5844049d5f28"
@@ -931,7 +902,7 @@
             {
               "label": "Test Date",
               "type": "obs",
-              "id": "test_date_6wks",
+              "id": "testDate6wks",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "b28177ee-d386-466e-82fb-4ad041cf97a2"
@@ -946,7 +917,7 @@
             {
               "label": "Feeding Method",
               "type": "obs",
-              "id": "feeding_method_6wks",
+              "id": "feedingMethod6wks",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "c0294aea-3cc7-4f5e-8ad3-7ae99cfcc566",
@@ -982,7 +953,7 @@
             {
               "label": "Result",
               "type": "obs",
-              "id": "result_6wks",
+              "id": "result6wks",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "e82cd146-9b6d-4c24-8085-80e96d2e1357",
@@ -999,13 +970,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(test_date_6wks)"
+                "hideWhenExpression": "isEmpty(testDate_6wks)"
               }
             },
             {
               "label": "Date Results given to caregiver",
               "type": "obs",
-              "id": "date_results_given_6wks",
+              "id": "dateResultsGiven6wks",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "26f6e338-4ba3-4d53-9a5d-cbdf59148a30"
@@ -1029,7 +1000,7 @@
             {
               "label": "Test Date",
               "type": "obs",
-              "id": "test_date_repeat",
+              "id": "testDateRepeat",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "4092ad52-3db3-47f5-b497-126e1202f1eb"
@@ -1044,7 +1015,7 @@
             {
               "label": "Feeding Method",
               "type": "obs",
-              "id": "feeding_method_repeat",
+              "id": "feedingMethodRepeat",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "2b200fb6-0be9-4bb0-9986-45b6ea892dd9",
@@ -1080,7 +1051,7 @@
             {
               "label": "Result",
               "type": "obs",
-              "id": "result_repeat",
+              "id": "resultRepeat",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "6591b4ae-1a85-44a6-abf7-1dc6ff25f45a",
@@ -1097,13 +1068,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(test_date_repeat)"
+                "hideWhenExpression": "isEmpty(testDate_repeat)"
               }
             },
             {
               "label": "Date Results given to caregiver",
               "type": "obs",
-              "id": "date_results_given_repeat",
+              "id": "dateResultsGivenRepeat",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "4f3b7c47-d931-4d65-b8a2-3486d083e919"
@@ -1115,7 +1086,7 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(result_repeat)"
+                "hideWhenExpression": "isEmpty(resultRepeat)"
               }
             }
           ]
@@ -1127,7 +1098,7 @@
             {
               "label": "Test Date",
               "type": "obs",
-              "id": "test_date_18mths",
+              "id": "testDate18mths",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "7065b181-abb0-4ad6-8082-62e99398f735"
@@ -1142,7 +1113,7 @@
             {
               "label": "Feeding Method",
               "type": "obs",
-              "id": "feeding_method_18mths",
+              "id": "feedingMethod18mths",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "971b7db4-81c5-49f3-bf82-3c26357b8b0c",
@@ -1178,7 +1149,7 @@
             {
               "label": "Result",
               "type": "obs",
-              "id": "result_18mths",
+              "id": "result18mths",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "71e135e8-cf63-4031-adc7-09a0a9b61c33",
@@ -1195,13 +1166,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(test_date_18mths)"
+                "hideWhenExpression": "isEmpty(testDate_18mths)"
               }
             },
             {
               "label": "Date Results given to caregiver",
               "type": "obs",
-              "id": "date_results_given_18mths",
+              "id": "dateResultsGiven18mths",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "852eb620-6705-4a15-b43e-ba1c384fe5ce"
@@ -1225,7 +1196,7 @@
             {
               "label": "Final HIV Status",
               "type": "obs",
-              "id": "final_HIV_status",
+              "id": "finalHIVstatus",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "977b16f4-2d3e-40d2-ba51-54794c98f7ef",
@@ -1256,7 +1227,7 @@
             {
               "label": "Referred to ART Clinic",
               "type": "obs",
-              "id": "referred_to_ART_clinic",
+              "id": "referredToARTClinic",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "5d6caa50-7dc9-44c3-aa15-be14300f7045",
@@ -1273,13 +1244,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_HIV_status) || final_HIV_status !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(finalHIVstatus) || finalHIVstatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": " Date Referred to ART Clinic",
               "type": "obs",
-              "id": "date_referred_ART_clinic",
+              "id": "dateReferredARTClinic",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "62dfa429-f4f8-420a-b990-14411cd9f97a"
@@ -1291,13 +1262,13 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(referred_to_ART_clinic) || referred_to_ART_clinic !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(referredToARTClinic) || referredToARTClinic !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Enrolled at ART Clinic",
               "type": "obs",
-              "id": "enrolled_at_ART",
+              "id": "enrolledAtART",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "d697d1db-32ff-4efe-a9d9-563e7c5f0827",
@@ -1314,13 +1285,13 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_HIV_status) || final_HIV_status !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(finalHIVstatus) || finalHIVstatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Date Enrolled at ART Clinic",
               "type": "obs",
-              "id": "date_enrolled",
+              "id": "dateEnrolled",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "836a70ea-4fae-4a22-83e3-9e866f8c617c"
@@ -1332,26 +1303,26 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(enrolled_at_ART) || enrolled_at_ART !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(enrolledAtART) || enrolledAtART !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": "Infant Pre-ART No.",
               "type": "obs",
-              "id": "infant_preART",
+              "id": "infantPreART",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "9fc5bf9d-a79e-4548-9207-b2afbbeba796"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_HIV_status) || final_HIV_status !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(finalHIVstatus) || finalHIVstatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             },
             {
               "label": " Presumptive Referral",
               "type": "obs",
-              "id": "presumptive_referral",
+              "id": "presumptiveReferral",
               "questionOptions": {
                 "rendering": "radio",
                 "concept": "48d526ec-5bba-4475-ac51-79b37ceb79ef",
@@ -1368,7 +1339,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_HIV_status) || final_HIV_status !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                "hideWhenExpression": "isEmpty(finalHIVstatus) || finalHIVstatus !=='1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
               }
             }
           ]
@@ -1385,7 +1356,7 @@
             {
               "label": "Date",
               "type": "obs",
-              "id": "first_attempt_date",
+              "id": "firstAttemptDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "2331d278-7bbf-42db-b839-bddce38025c2"
@@ -1395,7 +1366,7 @@
             {
               "label": "Method",
               "type": "obs",
-              "id": "first_attempt_method",
+              "id": "firstAttemptMethod",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "57c3a344-27bc-41cb-894e-d9f0e83104e9"
@@ -1405,7 +1376,7 @@
             {
               "label": "Outcome",
               "type": "obs",
-              "id": "first_attempt_ outcome",
+              "id": "firstAttemptOutcome",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "e47c3d56-ff37-4c33-b674-190549cf4444"
@@ -1421,7 +1392,7 @@
             {
               "label": "Date",
               "type": "obs",
-              "id": "second_attempt_date",
+              "id": "secondAttemptDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "a21780b5-01cd-49d6-bb84-8e249c4da530"
@@ -1431,7 +1402,7 @@
             {
               "label": "Method",
               "type": "obs",
-              "id": "second_attempt_method",
+              "id": "secondAttemptMethod",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "faa21f93-55b6-468a-b368-6e26fc311427"
@@ -1441,7 +1412,7 @@
             {
               "label": "Outcome",
               "type": "obs",
-              "id": "second_attempt_outcome",
+              "id": "secondAttemptOutcome",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "631733fb-0dc7-4d09-8c60-be9bfdbe5623"
@@ -1457,7 +1428,7 @@
             {
               "label": "Date",
               "type": "obs",
-              "id": "third_attempt_date",
+              "id": "thirdAttemptDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "e67abee7-453e-4ef9-8186-2e33f841e3f3"
@@ -1467,7 +1438,7 @@
             {
               "label": "Method",
               "type": "obs",
-              "id": "third_attempt_method",
+              "id": "thirdAttemptMethod",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "8492ca7b-0ac1-4454-9959-eddeae18f44f"
@@ -1477,7 +1448,7 @@
             {
               "label": "Outcome",
               "type": "obs",
-              "id": "third_attempt_outcome",
+              "id": "thirdAttemptOutcome",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "32ff7481-af22-4d73-ac81-22884157b024"
@@ -1493,7 +1464,7 @@
             {
               "label": "Final Outcome",
               "type": "obs",
-              "id": "final_outcome",
+              "id": "finalOutcome",
               "questionOptions": {
                 "rendering": "select",
                 "concept": "2099355c-ceb2-482e-9a81-536890ab3d1c",
@@ -1533,46 +1504,46 @@
             {
               "label": "ART No.",
               "type": "obs",
-              "id": "ART_no",
+              "id": "artNo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "85097a99-4126-4ad3-894e-25c1a7e91dee"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_outcome) || final_outcome !=='9b9fe6e5-349c-4b18-9171-f75dbfed2389'"
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='9b9fe6e5-349c-4b18-9171-f75dbfed2389'"
               }
             },
             {
               "label": "Location Transferred To",
               "type": "obs",
-              "id": "location_transferred_to",
+              "id": "locationTransferredTo",
               "questionOptions": {
                 "rendering": "text",
                 "concept": "dce015bb-30ab-102d-86b0-7a5022ba4115"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_outcome) || final_outcome !=='dd27a783-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='dd27a783-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Transfer out Date",
               "type": "obs",
-              "id": "transfer_out_date",
+              "id": "transferOutDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "fc1b1e96-4afb-423b-87e5-bb80d451c967"
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(final_outcome) || final_outcome !=='dd27a783-30ab-102d-86b0-7a5022ba4115'"
+                "hideWhenExpression": "isEmpty(finalOutcome) || finalOutcome !=='dd27a783-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
               "label": "Final Outcome Date",
               "type": "obs",
-              "id": "final_outcome_date",
+              "id": "finalOutcomeDate",
               "questionOptions": {
                 "rendering": "date",
                 "concept": "e6a2209e-7db5-4215-866b-cf128977ff91"

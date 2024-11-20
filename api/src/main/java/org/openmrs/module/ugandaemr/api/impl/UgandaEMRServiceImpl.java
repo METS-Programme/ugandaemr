@@ -102,6 +102,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
 
     @Override
     public void linkExposedInfantToMotherViaARTNumber(Person infant, String motherARTNumber) {
+
         PatientService patientService = Context.getPatientService();
         PersonService personService = Context.getPersonService();
         log.debug("Linking infant with ID " + infant.getPersonId() + " to mother with ART Number " + motherARTNumber);
@@ -1801,7 +1802,11 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         //check if issued at facility
 
         Obs dispensedAtFacility = createDispensingObs(encounter, conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST), null, null, order);
-        dispensedAtFacility.setValueBoolean(receivedAtFacility);
+        if(receivedAtFacility) {
+            dispensedAtFacility.setValueCoded(conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST_YES));
+        }else {
+            dispensedAtFacility.setValueCoded(conceptService.getConcept(MEDICATION_DISPENSE_RECEIVED_AT_VIST_NO));
+        }
         parentObs.addGroupMember(dispensedAtFacility);
         obs.add(dispensedAtFacility);
 
@@ -1924,7 +1929,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         testOrder.setCareSetting(careSetting);
         testOrder.setOrderType(Context.getOrderService().getOrderTypeByUuid(TEST_ORDER_TYPE_UUID));
         testOrder.setAction(Order.Action.NEW);
-        testOrder.setInstructions("REFER TO " + "CPHL");
+        testOrder.setInstructions("REFER TO " + "cphl");
         testOrder.setSpecimenSource(specimenSource.getValueCoded());
         orders.add(testOrder);
 
@@ -2070,7 +2075,7 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
         if (!instructions.equals("")) {
             testOrder = new TestOrder();
             testOrder.setAccessionNumber(accessionNumber);
-            testOrder.setInstructions("REFER TO " + instructions);
+            testOrder.setInstructions("REFER TO " + instructions.toUpperCase());
             testOrder.setConcept(order.getConcept());
             testOrder.setEncounter(order.getEncounter());
             testOrder.setOrderer(order.getOrderer());
@@ -2083,10 +2088,19 @@ public class UgandaEMRServiceImpl extends BaseOpenmrsService implements UgandaEM
             testOrder.setFulfillerStatus(Order.FulfillerStatus.IN_PROGRESS);
             testOrder.setSpecimenSource(Context.getConceptService().getConceptByUuid(specimenSourceUuid));
             orderService.saveOrder(testOrder, null);
+            orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS,"Order Sent to CPHHL");
             orderService.voidOrder(order, "REVISED with new order " + testOrder.getOrderNumber());
         } else {
             testOrder = (TestOrder) orderService.updateOrderFulfillerStatus(order, Order.FulfillerStatus.IN_PROGRESS, "To be processed", accessionNumber);
+            updateSpecimenSourceManually(order,specimenSourceUuid);
         }
         return testOrder;
+    }
+
+    private void updateSpecimenSourceManually(Order order,String specimenSourceUUID){
+        Concept specimenSource=Context.getConceptService().getConceptByUuid(specimenSourceUUID);
+        if(specimenSource!=null) {
+            Context.getAdministrationService().executeSQL(String.format(SPECIMEN_MANUAL_UPDATE_QUERY,specimenSource.getConceptId(), order.getOrderId()), false);
+        }
     }
 }

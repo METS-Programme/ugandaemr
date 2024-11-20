@@ -184,4 +184,24 @@ public class PersonAttributeTypes {
             return "b0868a16-4f8e-43da-abfc-6338c9d8f56a";
         }
     };
+    public static PersonAttributeTypeDescriptor EMAIL_ADDRESS = new PersonAttributeTypeDescriptor() {
+        @Override
+        public double sortWeight() {
+            return 12;
+        }
+
+        @Override
+        public String name() {
+            return "Email Address";
+        }
+
+        @Override
+        public String description() {
+            return "Email Address";
+        }
+
+        public String uuid() {
+            return "5ecfd59d-5988-4aa3-84f8-8b43599fc67c";
+        }
+    };
 }

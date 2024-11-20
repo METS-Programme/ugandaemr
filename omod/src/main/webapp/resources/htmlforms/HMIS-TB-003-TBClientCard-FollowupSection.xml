@@ -1013,8 +1013,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <label>Counselling</label>
-                                                <obs id="99294" conceptId="99294" answerConceptIds="90003,90004" 
-                                                         answerLabels="Yes, No" style="radio" class="horizontal"/>
+
                                             </div>
                                             <div class="col-md-4">   
                                                 <label>Pill refill</label>

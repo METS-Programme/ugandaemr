@@ -20,28 +20,6 @@
       "label": "Case Summary/Patient Type",
       "sections": [
         {
-          "label": "Visit details",
-          "isExpanded": "true",
-          "questions": [
-            {
-              "label": "Provider:",
-              "type": "encounterProvider",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encProvider "
-            },
-            {
-              "label": "Location:",
-              "type": "encounterLocation",
-              "questionOptions": {
-                "rendering": "ui-select-extended"
-              },
-              "id": "encLocation"
-            }
-          ]
-        },
-        {
           "label": "Case Summary - Patient Type",
           "isExpanded": "true",
           "questions": [
@@ -113,8 +91,8 @@
                 "answers": []
               },
               "validators": [],
-              "hide" : {
-                "hideWhenExpression" : "!includes('disease-classification','fa8e6d5a-759f-4e94-b558-a81a6b3af4dc')"
+              "hide": {
+                "hideWhenExpression": "!includes('disease-classification','fa8e6d5a-759f-4e94-b558-a81a6b3af4dc')"
               }
             },
             {

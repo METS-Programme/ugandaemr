@@ -121,7 +121,7 @@
             });
             jq("#clinician-list").hide();
             getPatientLabQueue();
-            getOrders();
+            getOrders(null);
             getResults();
             setSpecimenSource();
 
@@ -204,8 +204,37 @@
                 jq("#result-search").show();
             });
 
+            jq("#lab-work-list-tab").click(function () {
+                jq("#result-search").show();
+            });
+
+            jq("#referred-tests-tab").click(function () {
+                jq("#result-search").show();
+            });
+
+            jq("#lab-results-approved-tab").click(function () {
+                jq("#result-search").show();
+            });
+
             jq("#search-results").click(function () {
-                getResults(jq("#asOfDate").val());
+                var useGetOrders = false;
+                var useGetResults = false;
+                jq(".active").each(function () {
+                    var selectedTab = jq(this).attr("id");
+                    if (selectedTab === "lab-work-list" || selectedTab === "referred-tests") {
+                        useGetOrders = true
+                        useGetResults = false;
+                    } else if (selectedTab === "lab-results" || selectedTab === "lab-results-approved") {
+                        useGetResults = true;
+                        useGetOrders = false;
+                    }
+                });
+
+                if (useGetOrders) {
+                    getOrders(jq("#asOfDate").val());
+                } else if (useGetResults) {
+                    getResults(jq("#asOfDate").val());
+                }
             });
 
             jq('#reject-order-dialog').on('show.bs.modal', function (event) {
@@ -257,7 +286,7 @@
         }
 
         function reloadWorkList() {
-            getOrders();
+            getOrders(null);
         }
 
         function reloadResults() {
@@ -289,13 +318,16 @@
         });
     }
 
-    // Gets Orders of List of WorkList and Refered Tests
-    function getOrders() {
-
+    // Gets Orders of List of WorkList and Referred Tests
+    function getOrders(fromDate) {
+       var  dataToReturn="custom:(uuid,orderNumber,accessionNumber,patient:(display,birthdate,gender,identifiers),concept,action,careSetting,previousOrder,dateActivated,scheduledDate,dateStopped,autoExpireDate,encounter,orderer,orderReason,orderReasonNonCoded,orderType,urgency,instructions,commentToFulfiller,display,fulfillerStatus,fulfillerComment,specimenSource,laterality,clinicalHistory,frequency)"
         var date = "${labWorkListBackLogDaysToDisplay}";
+        if (fromDate != null) {
+            date = fromDate
+        }
         jq.ajax({
             type: "GET",
-            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order?orderTypes=52a447d3-a64a-11e3-9aeb-50e549534c5e&&careSetting=6f0c9a92-6f24-11e3-af88-005056821db0&activatedOnOrAfterDate=" + date + "&isStopped=false&fulfillerStatus=IN_PROGRESS&v=full",
+            url: '/' + OPENMRS_CONTEXT_PATH + "/ws/rest/v1/order?orderTypes=52a447d3-a64a-11e3-9aeb-50e549534c5e&&careSetting=6f0c9a92-6f24-11e3-af88-005056821db0&activatedOnOrAfterDate=" + date + "&isStopped=false&fulfillerStatus=IN_PROGRESS&v="+dataToReturn,
             dataType: "json",
             contentType: "application/json;",
             async: false,
@@ -371,7 +403,12 @@
     function identifierToDisplay(identifiers) {
         var identifierToDisplay = "";
         jq.each(identifiers, function (index, element) {
-            identifierToDisplay += element.identifierTypeName + " : " + element.identifier + " <br/> "
+            if(element.hasOwnProperty("identifierType")){
+                identifierToDisplay += element.identifierType.display + " : " + element.identifier + " <br/> "
+            }else  if (element.hasOwnProperty("identifierTypeName")){
+                identifierToDisplay += element.identifierTypeName + " : " + element.identifier + " <br/> "
+            }
+
         });
 
         return identifierToDisplay
@@ -537,7 +574,7 @@
 
     function displayLabOrderApproachA(labOrder) {
 
-        var displayDivHeader = "<table id=\"worklist-referred-a\"> <thead> <tr><th></th> <th>Patient</th><th>Orders</th> </tr> </thead> <tbody>";
+        var displayDivHeader = "<table id=\"worklist-referred-a\"> <thead> <tr><th></th><th>No.</th><th>Patient</th><th>DOB</th><th>Gender</th><th>Orders</th> </tr> </thead> <tbody>";
         var displayDivFooter = "</tbody></table>"
         var displayWorkListDiv = "";
         var displayReferralListDiv = "";
@@ -551,6 +588,9 @@
             var trOpenTag = "<tr data-toggle=\"collapse\" data-target=\"#order" + index + "\" class=\"accordion-toggle\">";
             var tdOpenTag = "<td><i class=\" + icon-eye-open + \"/></td>";
             var tdPatientNames = "<td>" + patientencounter.patient.display + "</td>";
+            var tdPatientIdentifier = "<td>" + identifierToDisplay(patientencounter.patient.identifiers) + "</td>";
+            var tdPatientDob = "<td>" + formatDateFromString(patientencounter.patient.birthdate) + "</td>";
+            var tdPatientGender = "<td>" + patientencounter.patient.gender + "</td>";
             var tdOrderSummary = "<td>" + patientencounter.orders.length + "</td>";
             var trCloseTag = "</tr>";
             var trCollapsedOpenTag = "<tr> <td colspan=\"12\" class=\"hiddenRow\"><div class=\"accordian-body collapse\" id=\"order" + index + "\">";
@@ -601,11 +641,11 @@
                 }
             });
             if (workListTests.length > 0) {
-                displayWorkListDiv += trOpenTag + tdOpenTag + tdPatientNames + tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + workListTests + trCollapsedCloseTag + tableFooter
+                displayWorkListDiv += trOpenTag + tdOpenTag + tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdPatientGender+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + workListTests + trCollapsedCloseTag + tableFooter
             }
 
             if (referedTests.length > 0) {
-                displayReferralListDiv += trOpenTag + tdOpenTag + tdPatientNames + tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + referedTests + trCollapsedCloseTag + tableFooter
+                displayReferralListDiv += trOpenTag + tdOpenTag +tdPatientIdentifier+ tdPatientNames + tdPatientDob+ tdPatientGender+ tdOrderSummary + trCloseTag + trCollapsedOpenTag + tableHeader + referedTests + trCollapsedCloseTag + tableFooter
             }
 
         })
