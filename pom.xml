@@ -71,7 +71,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webservices.restModuleVersion>2.40.0</webservices.restModuleVersion>
 		<initializerVersion>2.5.2</initializerVersion>
-		<referencedemodataVersion>2.4.0-SNAPSHOT</referencedemodataVersion>
 
 		<!-- Modules Bundled for Uganda distribution  -->
 		<!-- TODO: Arrange the dependencies and variables in alphabetical order -->
