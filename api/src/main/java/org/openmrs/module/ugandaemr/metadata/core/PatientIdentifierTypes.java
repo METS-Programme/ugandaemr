@@ -399,21 +399,4 @@ public class PatientIdentifierTypes {
         }
     };
 
-    public static PatientIdentifierTypeDescriptor RA_NUMBER = new PatientIdentifierTypeDescriptor() {
-
-        @Override
-        public String name() {
-            return "RA/O Identifier";
-        }
-
-        @Override
-        public String description() {
-            return "This Identifier uniquely identifies a UPDF Soldier";
-        }
-
-        public String uuid() {
-            return "fd0e44b3-e365-47c9-a2a6-e8170e440e30";
-        }
-    };
-
 }

@@ -36,7 +36,6 @@ public class CommonMetadataBundle extends AbstractMetadataBundle {
         install(PatientIdentifierTypes.PATIENT_ORGANIZATION_ID);
         install(PatientIdentifierTypes.PATIENT_OPD_IDENTIFICATION_NUMBER);
         install(PatientIdentifierTypes.DISTRICT_REG_TB_NUMBER);
-        install(PatientIdentifierTypes.RA_NUMBER);
         install(PatientIdentifierTypes.NHPI);
         install(PatientIdentifierTypes.PASSPORT);
         log.info("Patient IdentifierTypes installed");
