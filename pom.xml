@@ -84,6 +84,7 @@
 		<appointmentschedulinguiVersion>1.12.0</appointmentschedulinguiVersion>
 		<bahmniappointmentVersion>1.6.0</bahmniappointmentVersion>
 		<bedmanagementVersion>6.0.0</bedmanagementVersion>
+		<bilingVersion>1.2.0-SNAPSHOT</bilingVersion>
 		<calculationVersion>1.3.0</calculationVersion>
 		<coreappsVersion>1.39.0</coreappsVersion>
 		<databaseBackupVersion>1.3.0</databaseBackupVersion>
