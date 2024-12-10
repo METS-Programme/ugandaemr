@@ -546,6 +546,13 @@
               ]
             }
           },
+          "dispensing-dashboard-link": {
+            "Display conditions": {
+              "privileges": [
+                "View Dispensing Menu"
+              ]
+            }
+          },
           "patient-lists-dashboard-link": {
             "Display conditions": {
               "privileges": [
