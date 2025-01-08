@@ -5554,7 +5554,7 @@
     <concept_name  concept_name_id="160605"  concept_id="165514"  name="Calcium or sodium hypochlorite"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:08"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="c547b956-4bf2-40a1-bcf1-32c27c62de44"/>
     <concept_name  concept_name_id="160606"  concept_id="165515"  name="Candesartan cilexetil"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:08"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="08a9d3b1-5733-4df6-9a5d-7b782eba992d"/>
     <concept_name  concept_name_id="160607"  concept_id="165516"  name="Capecitabine"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:09"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="0e277b39-05f4-442d-9117-93e36dcda4fa"/>
-    <concept_name  concept_name_id="160608"  concept_id="165517"  name="Captopril"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:09"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="fd0320fd-f9db-4468-afb5-5a57b6dd7251"/>
+
     <concept_name  concept_name_id="160609"  concept_id="165518"  name="Chewable tablet"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:09"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="03fb5e41-0af2-4cc9-a434-7d6410d0aaa5"/>
     <concept_name  concept_name_id="160610"  concept_id="165519"  name="Carboplatin"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:10"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="3e981683-6dcc-42bd-847a-c2b925ad8c6b"/>
     <concept_name  concept_name_id="160611"  concept_id="165520"  name="Carvedilol"  locale="en"  locale_preferred="true"  creator="1"  date_created="2020-02-20 10:35:10"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="9345c63d-e447-41c0-85fd-4f3dd839504b"/>
@@ -6804,6 +6804,8 @@
     <concept_name  concept_name_id="198956"  concept_id="198948"  name="Bimonthly"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:13:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="d74c7c7f-319f-4385-8d19-ef60c4280773"/>
     <concept_name  concept_name_id="198957"  concept_id="198949"  name="Quarterly"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:14:05"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4927e2f2-610f-4920-9167-21c3d0581ab8"/>
     <concept_name  concept_name_id="198958"  concept_id="198950"  name="Annually"   locale="en"  locale_preferred="1"  creator="1"  date_created="2024-08-06 09:14:44"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="beef23bf-116c-4134-ba98-0bf1bddcce0d"/>
-
+    <concept_name  concept_name_id="199038"  concept_id="199029"  name="CACX Screening/Treatment"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-12 13:37:28"  concept_name_type="FULLY_SPECIFIED"  voided="0" uuid="a35a0840-ecdf-44b5-a6ea-97f0855ba496"/>
+    <concept_name  concept_name_id="199039"  concept_id="199030"  name="Known Diabetic and controlled on lifestyle modification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-13 11:16:57"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="78f2e1da-15bc-4872-b3d3-7a2522e5c6c7"/>
+    <concept_name  concept_name_id="199040"  concept_id="199031"  name="Known Diabetic and controlled on medication and lifestyle modification"  locale="en"  locale_preferred="1"  creator="1"  date_created="2024-11-13 11:18:29"  concept_name_type="FULLY_SPECIFIED"  voided="0"  uuid="4ced5e42-b1ed-44c7-ae22-fbc3d6492db8"/>
 
 </dataset>

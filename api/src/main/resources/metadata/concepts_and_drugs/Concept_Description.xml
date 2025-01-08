@@ -659,5 +659,8 @@
 
     <concept_description  concept_description_id="18739"  concept_id="168695"  description="Entry point for cancer patients"    locale="en"  creator="1"  date_created="2023-04-04 16:57:28"   uuid="fc24eb63-d463-4bf1-a4c3-22e31e3bfbd2"/>
     <concept_description  concept_description_id="18740"  concept_id="168697"  description="Is patient Currently Menstruating"  locale="en"  creator="1"  date_created="2023-04-04 17:00:41"   uuid="13e56678-0ba8-4b60-86e6-a3dfa47c4489"/>
+    <concept_description  concept_description_id="18746"  concept_id="199029"  description="CACX Screening/Treatment"  locale="en"  creator="1"  date_created="2024-11-12 13:37:28"  uuid="26cc3d04-df2c-4d60-ad2a-f311ba56a24b"/>
+    <concept_description  concept_description_id="18747"  concept_id="199030"  description="Known Diabetic and controlled on lifestyle modification"  locale="en"  creator="1"  date_created="2024-11-13 11:16:57" uuid="c4a46bdf-6002-4995-bc84-8e88e1000203"/>
+    <concept_description  concept_description_id="18748"  concept_id="199031"  description="Known Diabetic and controlled on medication and lifestyle modification"  locale="en"  creator="1"  date_created="2024-11-13 11:18:29" uuid="ba4130bb-0567-43f8-8114-a6d0570e31d1"/>
 
 </dataset>

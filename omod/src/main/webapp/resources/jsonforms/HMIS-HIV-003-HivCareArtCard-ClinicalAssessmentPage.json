@@ -151,12 +151,12 @@
                 "answers": [
                   {
                     "concept": "dcdad102-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT ON FAMILY PLANNING",
+                    "label": "Not On Family Planning",
                     "conceptMappings": []
                   },
                   {
                     "concept": "dcdd6c4a-30ab-102d-86b0-7a5022ba4115",
-                    "label": "ON FAMILY PLANNING",
+                    "label": "On Family Planning",
                     "conceptMappings": []
                   }
                 ]
@@ -166,7 +166,7 @@
               "label": "Family Planning Method",
               "type": "obs",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "multiCheckbox",
                 "concept": "dc7620b3-30ab-102d-86b0-7a5022ba4115",
                 "answers": [
                   {
@@ -312,40 +312,40 @@
                 "concept": "c8f00db3-abb6-46a2-89a4-25acf95be863",
                 "answers": [
                   {
-                    "concept": "6fd77b25-dc32-4c42-b278-d10034d0238a",
-                    "label": "Hypertensive patient referred for further management"
-                  },
-                  {
-                    "concept": "4c71f560-3d28-4ed5-9a81-e79e9706960d",
-                    "label": "Known Hypertensive and Controlled and on lifestyle modification"
-                  },
-                  {
-                    "concept": "f569d1a9-de58-4c80-8f97-807cc6129a6b",
-                    "label": "Known Hypertensive and Controlled and on lifestyle modification and Medication"
-                  },
-                  {
-                    "concept": "00a80828-26be-463c-8090-9c6d1c11a885",
-                    "label": "Known Hypertensive but not on Treatment"
-                  },
-                  {
-                    "concept": "5b839510-a3d0-41fa-bbeb-e446d98140d8",
-                    "label": "Known Hypertensive, not controlled and on lifestyle modification"
-                  },
-                  {
-                    "concept": "0e43e79e-92ba-42dd-b436-564e1bc1d856",
-                    "label": "Known Hypertensive, not controlled and on lifestyle modification and Medication"
+                    "concept": "5f0b55b8-d4ec-46e7-a052-7f1176a91077",
+                    "label": "1 - Normal Blood pressure"
                   },
                   {
                     "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
-                    "label": "Newly Diagnosed and on lifestyle modification"
+                    "label": "2 - Newly Diagnosed and on lifestyle modification"
                   },
                   {
                     "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
-                    "label": "Newly Diagnosed and on lifestyle modification and Medication"
+                    "label": "3 - Newly Diagnosed and on lifestyle modification and Medication"
                   },
                   {
-                    "concept": "5f0b55b8-d4ec-46e7-a052-7f1176a91077",
-                    "label": "Normal Blood pressure"
+                    "concept": "5b839510-a3d0-41fa-bbeb-e446d98140d8",
+                    "label": "4 - Known Hypertensive, not controlled and on lifestyle modification"
+                  },
+                  {
+                    "concept": "0e43e79e-92ba-42dd-b436-564e1bc1d856",
+                    "label": "5 - Known Hypertensive, not controlled and on lifestyle modification and Medication"
+                  },
+                  {
+                    "concept": "4c71f560-3d28-4ed5-9a81-e79e9706960d",
+                    "label": "6 - Known Hypertensive and Controlled and on lifestyle modification"
+                  },
+                  {
+                    "concept": "f569d1a9-de58-4c80-8f97-807cc6129a6b",
+                    "label": "7 - Known Hypertensive and Controlled and on lifestyle modification and Medication"
+                  },
+                  {
+                    "concept": "00a80828-26be-463c-8090-9c6d1c11a885",
+                    "label": "8 - Known Hypertensive but not on Treatment"
+                  },
+                  {
+                    "concept": "6fd77b25-dc32-4c42-b278-d10034d0238a",
+                    "label": "9 - Hypertensive patient referred for further management"
                   }
                 ]
               },
@@ -361,28 +361,44 @@
                 "concept": "126aecd6-c4de-4b1f-bfa2-8f68380f9329",
                 "answers": [
                   {
-                    "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
-                    "label": "Normal blood sugar"
-                  },
-                  {
                     "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
-                    "label": "No clinical Symptoms and Signs"
+                    "label": "1 - No clinical Symptoms and Signs"
                   },
                   {
-                    "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",
-                    "label": "Known Diabetic but not on Treatment"
+                    "concept": "fd36c202-06ad-4e9b-95e7-d3e02d34c936",
+                    "label": "2 - Normal blood sugar"
                   },
                   {
-                    "concept": "c1ede22a-fe95-402e-b2f2-18b1709f0414",
-                    "label": "Known Diabetic and not controlled on medication and lifestyle modification"
+                    "concept": "f23000f4-f6bf-4438-bcb8-2b741612238c",
+                    "label": "3 - Newly Diagnosed and on lifestyle modification"
+                  },
+                  {
+                    "concept": "205b0a6e-7367-46d0-9d2c-ee5a64fbc756",
+                    "label": "4 - Newly Diagnosed and on lifestyle modification and Medication"
                   },
                   {
                     "concept": "844dec77-9c0c-4bb1-ab23-ccc083c9c97a",
-                    "label": "Known Diabetic and not controlled on lifestyle modification"
+                    "label": "5 - Known Diabetic and not controlled on lifestyle modification"
+                  },
+                  {
+                    "concept": "c1ede22a-fe95-402e-b2f2-18b1709f0414",
+                    "label": "6 - Known Diabetic and not controlled on medication and lifestyle modification"
+                  },
+                  {
+                    "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
+                    "label": "7 - Known Diabetic and controlled on lifestyle modification"
+                  },
+                  {
+                    "concept": "7307349d-c333-4dee-a271-3a11cc656815",
+                    "label": "8 - Known Diabetic and controlled on medication and lifestyle modification"
+                  },
+                  {
+                    "concept": "8473a4cb-5431-4775-83b2-6f0c8086ecbe",
+                    "label": "9 - Known Diabetic but not on Treatment"
                   },
                   {
                     "concept": "8047b4be-11cb-47a6-a98b-2e7777ea7477",
-                    "label": "Diabetic patient referred for further management"
+                    "label": "10 - Diabetic patient referred for further management"
                   }
                 ]
               },
@@ -398,48 +414,48 @@
                 "concept": "6649a671-32ea-45b7-adc5-bda1cff7febd",
                 "answers": [
                   {
-                    "concept": "2e3760ca-aea9-4958-a2c6-6ad32dc79445",
-                    "label": "Has signs and symptoms with high suicide Risk on Medication only"
-                  },
-                  {
-                    "concept": "8faa9bb9-9065-44bc-b426-ef0336ff4c94",
-                    "label": "Has signs and symptoms with high suicide Risk on Psychotherapy and Medication"
+                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
+                    "label": "1 - No clinical Symptoms and Signs"
                   },
                   {
                     "concept": "9a3ecb59-6cfd-4c9a-b63b-1f4bda0a3a47",
-                    "label": "Has signs and symptoms with Low/moderate suicide Risk"
+                    "label": "2 - Has signs and symptoms with Low/moderate suicide Risk"
                   },
                   {
-                    "concept": "678ae5a3-8b79-4d2a-ac95-32128cf311f1",
-                    "label": "Known mental illness NEITHER on Psychotherapy NOR Medication"
+                    "concept": "2e3760ca-aea9-4958-a2c6-6ad32dc79445",
+                    "label": "3 - Has signs and symptoms with high suicide Risk on Medication only"
                   },
                   {
-                    "concept": "d3182660-b86b-4df1-950b-d9903587d88b",
-                    "label": "Known mental illness on Medication only"
-                  },
-                  {
-                    "concept": "62d257a7-9dea-4240-a7de-ec1f800da668",
-                    "label": "Known mental illness on Psychotherapy and Medication"
+                    "concept": "8faa9bb9-9065-44bc-b426-ef0336ff4c94",
+                    "label": "4 - Has signs and symptoms with high suicide Risk on Psychotherapy and Medication"
                   },
                   {
                     "concept": "0888ffe4-47d1-4f72-8d98-df2ff30a6f79",
-                    "label": "Known mental illness on Psychotherapy only"
+                    "label": "5 - Known mental illness on Psychotherapy only"
                   },
                   {
-                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
-                    "label": "No clinical Symptoms and Signs"
+                    "concept": "d3182660-b86b-4df1-950b-d9903587d88b",
+                    "label": "6 - Known mental illness on Medication only"
                   },
                   {
-                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT ELIGIBLE"
+                    "concept": "62d257a7-9dea-4240-a7de-ec1f800da668",
+                    "label": "7 - Known mental illness on Psychotherapy and Medication"
+                  },
+                  {
+                    "concept": "678ae5a3-8b79-4d2a-ac95-32128cf311f1",
+                    "label": "8 - Known mental illness NEITHER on Psychotherapy NOR Medication"
                   },
                   {
                     "concept": "21641587-3417-4f0a-b77a-bb7c07126b5b",
-                    "label": "Recovered"
+                    "label": "9 - Recovered"
                   },
                   {
                     "concept": "7b246acf-d518-4b51-828c-d69593f3d66b",
-                    "label": "Referred Out"
+                    "label": "10 - Referred Out"
+                  },
+                  {
+                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "11 - NOT ELIGIBLE"
                   }
                 ]
               },
@@ -455,36 +471,36 @@
                 "concept": "10eb8116-0602-41e4-8e62-6325440dffb2",
                 "answers": [
                   {
+                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
+                    "label": "1 - No clinical Symptoms and Signs"
+                  },
+                  {
                     "concept": "3a67585e-e401-4320-a31e-0d7c97818e61",
-                    "label": "Has Signs and Symptoms on Brief Intervention"
+                    "label": "2 - Has Signs and Symptoms on Brief Intervention"
                   },
                   {
                     "concept": "9b0fdd9e-0607-441b-80cd-de7ef710376c",
-                    "label": "Has Signs and Symptoms on Brief Intervention/clinical management"
-                  },
-                  {
-                    "concept": "fb681708-d19a-4a92-91c4-df29a50cbb35",
-                    "label": "Known Alcohol or Substance use disorder NEITHER on Brief Intervention NOR clinical management"
+                    "label": "3 - Has Signs and Symptoms on Brief Intervention/clinical management"
                   },
                   {
                     "concept": "f8c953db-113d-4b11-b4e6-83ad7516869d",
-                    "label": "Known Alcohol or Substance use disorder on Brief Intervention and/or clinical management"
+                    "label": "4 - Known Alcohol or Substance use disorder on Brief Intervention and/or clinical management"
                   },
                   {
-                    "concept": "5bc3446f-c473-4f6c-ba58-a168ea79f096",
-                    "label": "No clinical Symptoms and Signs"
-                  },
-                  {
-                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
-                    "label": "NOT ELIGIBLE"
+                    "concept": "fb681708-d19a-4a92-91c4-df29a50cbb35",
+                    "label": "5 - Known Alcohol or Substance use disorder NEITHER on Brief Intervention NOR clinical management"
                   },
                   {
                     "concept": "21641587-3417-4f0a-b77a-bb7c07126b5b",
-                    "label": "Recovered"
+                    "label": "6 - Recovered"
                   },
                   {
                     "concept": "7b246acf-d518-4b51-828c-d69593f3d66b",
-                    "label": "Referred Out"
+                    "label": "7 - Referred Out"
+                  },
+                  {
+                    "concept": "dca26f78-30ab-102d-86b0-7a5022ba4115",
+                    "label": "8 - NOT ELIGIBLE"
                   }
                 ]
               },
@@ -568,7 +584,7 @@
                 "rendering": "date",
                 "concept": "dce02eca-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02eca-30ab-102d-86b0-7a5022ba4115'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dce02eca-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -586,7 +602,7 @@
                 "rendering": "text",
                 "concept": "67e9ec2f-4c72-408b-8122-3706909d77ec",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '67e9ec2f-4c72-408b-8122-3706909d77ec'))?.valueString"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '67e9ec2f-4c72-408b-8122-3706909d77ec')).then(obs => obs.valueString)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -604,7 +620,7 @@
                 "rendering": "date",
                 "concept": "dd2adde2-30ab-102d-86b0-7a5022ba4115",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2adde2-30ab-102d-86b0-7a5022ba4115'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, 'dd2adde2-30ab-102d-86b0-7a5022ba4115')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -660,7 +676,7 @@
                 "rendering": "date",
                 "concept": "483939c7-79ba-4ca4-8c3e-346488c97fc7",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '483939c7-79ba-4ca4-8c3e-346488c97fc7'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '483939c7-79ba-4ca4-8c3e-346488c97fc7')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -677,7 +693,7 @@
                 "rendering": "date",
                 "concept": "813e21e7-4ccb-4fe9-aaab-3c0e40b6e356",
                 "calculate": {
-                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '813e21e7-4ccb-4fe9-aaab-3c0e40b6e356'))?.valueDateTime"
+                  "calculateExpression": "resolve(api.getLatestObs(patient.id, '813e21e7-4ccb-4fe9-aaab-3c0e40b6e356')).then(obs => obs.valueDateTime)"
                 },
                 "conceptMappings": [],
                 "answers": []
@@ -705,7 +721,7 @@
               "type": "obs",
               "id": "signsAndSymptoms",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "multiCheckbox",
                 "concept": "dce0e02a-30ab-102d-86b0-7a5022ba4115",
                 "conceptMappings": [],
                 "answers": [
@@ -815,7 +831,7 @@
               "type": "obs",
               "id": "sideEffectsOfART",
               "questionOptions": {
-                "rendering": "checkbox",
+                "rendering": "multiCheckbox",
                 "concept": "dce05b7f-30ab-102d-86b0-7a5022ba4115",
                 "conceptMappings": [],
                 "answers": [
@@ -1071,7 +1087,7 @@
               "id": "artAdherence",
               "required": true,
               "questionOptions": {
-                "rendering": "radio",
+                "rendering": "select",
                 "concept": "dce03b2f-30ab-102d-86b0-7a5022ba4115",
                 "answers": [
                   {
@@ -1085,6 +1101,11 @@
                   {
                     "concept": "dcdf1f4a-30ab-102d-86b0-7a5022ba4115",
                     "label": "Poor"
+                  },
+                  {
+                    "concept": "dc9b0596-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Not Applicable",
+                    "conceptMappings": []
                   }
                 ]
               },
@@ -1418,7 +1439,10 @@
                   },
                   {
                     "concept": "801b8959-4b2a-46c0-a28f-f7d3fc8b98bb",
-                    "label": "ANC Visit"
+                    "label": "ANC Visit",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "3f0f9c04-25a4-4070-84cc-5b49566aeb4c",
@@ -1426,7 +1450,10 @@
                   },
                   {
                     "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "PMTCT"
+                    "label": "PMTCT",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   },
                   {
                     "concept": "dc8f22f9-30ab-102d-86b0-7a5022ba4115",
@@ -1443,6 +1470,13 @@
                   {
                     "concept": "347e93a0-72c2-400f-9579-116ce3ba6a68",
                     "label": "Checkup"
+                  },
+                  {
+                    "concept": "cac9f005-226e-4d6c-8e3e-16119fcc8f6b",
+                    "label": "CACX Screening/Treatment",
+                    "hide": {
+                      "hideWhenExpression": "sex !== 'F'"
+                    }
                   }
                 ]
               },
