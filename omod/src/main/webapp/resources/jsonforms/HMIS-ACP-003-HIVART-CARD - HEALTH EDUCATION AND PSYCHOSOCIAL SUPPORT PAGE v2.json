@@ -1,0 +1,678 @@
+{
+  "name": "HMIS ACP 003 : HIV CARE/ART CARD - HEALTH EDUCATION AND PSYCHOSOCIAL SUPPORT PAGE",
+  "version": "4.0.1",
+  "description": "Captures health eduction and counseling encounters",
+  "encounter": "ART Card - Health Education Encounter",
+  "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
+  "uuid": "38783265-9c07-4bc9-8f7d-a215af6ec468",
+  "processor": "EncounterFormProcessor",
+  "published": false,
+  "retired": false,
+  "pages": [
+    {
+      "label": "HMIS ACP 003 : HIV CARE/ART CARD - HEALTH EDUCATION AND PSYCHOSOCIAL SUPPORT PAGE",
+      "sections": [
+        {
+          "label": "PSS1 (Assess)",
+          "questions": [
+            {
+              "label": "Economic",
+              "type": "obs",
+              "required": false,
+              "id": "pss1AssessEconomic",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8",
+                "answers": [
+                  {
+                    "concept": "6cec43a1-1f3c-42ab-844a-c3f786ec06f2",
+                    "label": "Denial/coping with result"
+                  },
+                  {
+                    "concept": "dcde3d87-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Fear /Anxiety"
+                  },
+                  {
+                    "concept": "1b532410-60c4-4514-be80-12ee3d8224a7",
+                    "label": "Bereavement"
+                  },
+                  {
+                    "concept": "0e36d228-8f19-407b-ad0b-b8b5bc4d3ba8",
+                    "label": "Anger/Stress"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Social",
+              "type": "obs",
+              "required": false,
+              "id": "pss1AssessSocial",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8",
+                "answers": [
+                  {
+                    "concept": "c14695ca-6f11-4f1c-9af5-8f3bd5ddb3a3",
+                    "label": "Alcohol and Substance Abuse"
+                  },
+                  {
+                    "concept": "b9884d17-08a1-430b-b003-3b79d467a9f0",
+                    "label": "Dysfunctional Family"
+                  },
+                  {
+                    "concept": "f6e863c5-1e09-445a-a714-fe4a2255ae64",
+                    "label": "Had less than one meal a day"
+                  },
+                  {
+                    "concept": "0cb89eba-5abf-4cb8-bc7f-0ab299035437",
+                    "label": "Lack of life-survival skills"
+                  },
+                  {
+                    "concept": "8595afed-96a0-4f3e-b88d-acc4ca81d03e",
+                    "label": "Malnourished"
+                  },
+                  {
+                    "concept": "01199072-c041-4129-8a12-bd97eb0156fc",
+                    "label": "Non Disclosure"
+                  },
+                  {
+                    "concept": "c8c6939c-a36b-4ee0-8c6e-85c6a259a0eb",
+                    "label": "Poverty"
+                  },
+                  {
+                    "concept": "fbc8c14f-8348-4acc-abd7-f14df60eff2d",
+                    "label": "Risky Sexual Behavior"
+                  },
+                  {
+                    "concept": "762cfa56-2d56-4e89-912a-3f61bf4c23e8",
+                    "label": "Spiritual Issues"
+                  },
+                  {
+                    "concept": "dcdee9a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STIGMA"
+                  },
+                  {
+                    "concept": "421dbf80-169b-4f02-a285-295d21ff64e9",
+                    "label": "Transition Challenges"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Screening",
+              "type": "obs",
+              "required": false,
+              "id": "pss1OVCScreening",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c2f9c9f3-3e46-456c-9f17-7bb23c473f1b",
+                "answers": [
+                  {
+                    "concept": "e1efe10b-50c4-43b1-b04d-01f81e19c215",
+                    "label": "Care giver unemployed"
+                  },
+                  {
+                    "concept": "f6e863c5-1e09-445a-a714-fe4a2255ae64",
+                    "label": "Had less than one meal a day"
+                  },
+                  {
+                    "concept": "32e3fc5e-cfb6-49f5-949a-77e6f191b437",
+                    "label": "Has signs of abuse, exploitation or neglect"
+                  },
+                  {
+                    "concept": "8595afed-96a0-4f3e-b88d-acc4ca81d03e",
+                    "label": "Malnourished"
+                  },
+                  {
+                    "concept": "9ea56d9a-818b-4700-944a-5110c7248379",
+                    "label": "Missed Appointment in the last 3 months"
+                  },
+                  {
+                    "concept": "6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce",
+                    "label": "No Signs"
+                  },
+                  {
+                    "concept": "f56e8d46-5b2f-488b-861a-94a89d16adf6",
+                    "label": "Non-suppressed"
+                  },
+                  {
+                    "concept": "0251af24-dc19-4d68-a2bb-4b3f3867b949",
+                    "label": "Not In School"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Assessment",
+              "type": "obs",
+              "required": false,
+              "id": "pss1OVCAssessment",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cb07b087-effb-4679-9e1c-5bcc506b5599",
+                "answers": [
+                  {
+                    "concept": "8578c43e-bb81-4adf-a4a5-389a9c716a49",
+                    "label": "Assessed and Not Eligible"
+                  },
+                  {
+                    "concept": "513d3a81-68d2-44f4-88a3-8dc74b5e1249",
+                    "label": "Assessed, Eligible not yet enrolled"
+                  },
+                  {
+                    "concept": "52aed7c2-ef3d-4220-8302-78b841f6ff24",
+                    "label": "Enrolled"
+                  },
+                  {
+                    "concept": "9669522d-d96a-411d-a534-5b13a7d65fc3",
+                    "label": "Graduated"
+                  },
+                  {
+                    "concept": "160737AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Not assessed"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "OVC Number",
+              "type": "obs",
+              "required": false,
+              "id": "pss1OVCNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "caffcc16-5a4d-4adc-a113-9a819c9b2c52"
+              }
+            },
+            {
+              "label": "Gender Based Violence(GBV)/ Violence Against Children (VAC)",
+              "type": "obs",
+              "required": false,
+              "id": "pss1GBV",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "23a37400-f855-405b-9268-cb2d25b97f54",
+                "answers": [
+                  {
+                    "concept": "6d1c2d6f-eb86-4a85-b6b4-c2ff4bb879ce",
+                    "label": "No Signs"
+                  },
+                  {
+                    "concept": "c5160b00-0641-4742-8672-97081379a92d",
+                    "label": "Emotional harm"
+                  },
+                  {
+                    "concept": "6686c0f0-cf27-4b9b-8495-8cf80a7357ae",
+                    "label": "Forced sexual intercourse"
+                  },
+                  {
+                    "concept": "e52d273e-48a8-4a20-a5a9-4679e752e841",
+                    "label": "Inappropriate touch"
+                  },
+                  {
+                    "concept": "1490AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Physical trauma"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Disclosed / Disclosed to Y/N",
+              "type": "obs",
+              "required": false,
+              "id": "pss1Disclosed",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
+                "answers": [
+                  {
+                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                    "label": "YES"
+                  },
+                  {
+                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NO"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Relationship",
+              "type": "obs",
+              "required": false,
+              "id": "pss1Relationship",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "dce138f8-30ab-102d-86b0-7a5022ba4115",
+                "answers": [
+                  {
+                    "concept": "dce186ca-30ab-102d-86b0-7a5022ba4115",
+                    "label": "AUNT/UNCLE"
+                  },
+                  {
+                    "concept": "dd21e8b5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "BROTHER/SISTER"
+                  },
+                  {
+                    "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                    "label": "CHILD"
+                  },
+                  {
+                    "concept": "dd22614e-30ab-102d-86b0-7a5022ba4115",
+                    "label": "COUSIN"
+                  },
+                  {
+                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "FRIEND"
+                  },
+                  {
+                    "concept": "dd1e43f2-30ab-102d-86b0-7a5022ba4115",
+                    "label": "GRANDCHILD"
+                  },
+                  {
+                    "concept": "dd1e1d59-30ab-102d-86b0-7a5022ba4115",
+                    "label": "GRANDPARENT"
+                  },
+                  {
+                    "concept": "dd1df716-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NIECE/NEPHEW"
+                  },
+                  {
+                    "concept": "dd22b709-30ab-102d-86b0-7a5022ba4115",
+                    "label": "NOT FAMILY"
+                  },
+                  {
+                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PARENT"
+                  },
+                  {
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                    "label": "SPOUSE/PARTNER"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Patient Categorization",
+              "type": "obs",
+              "required": false,
+              "id": "pss1PatientCategorization",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "13639b46-6ff3-4abe-b6d0-2fc70462edd6",
+                "answers": [
+                  {
+                    "concept": "13110a9a-aed7-4e8e-92bb-731efceb6c69",
+                    "label": "NEW HIV  PATIENT"
+                  },
+                  {
+                    "concept": "1c237067-ba60-42ce-aaef-062d77b553e3",
+                    "label": "PLHIV established on ART and or with controlled chronic illnesses / NCDs."
+                  },
+                  {
+                    "concept": "36e76b1a-775b-4fc9-ac45-c6ecf7ba024a",
+                    "label": "PLHIV newly identified and or re-engaging in care when clinically well"
+                  },
+                  {
+                    "concept": "bd735fd0-ad71-4bd3-b788-d87d56dba667",
+                    "label": "PLHIV newly identified and or re-engaging in care with advanced HIV disease"
+                  },
+                  {
+                    "concept": "274feca6-2fa9-4c65-9f16-29132f7528fd",
+                    "label": "PLHIV with treatment failure"
+                  },
+                  {
+                    "concept": "0357be90-0327-43f6-abb3-05cc7570edaa",
+                    "label": "PLHIV with uncontrolled chronic illness / NCDs, and any Drug limiting toxicities"
+                  },
+                  {
+                    "concept": "ea730d69-7eec-486a-aaf2-54f8bab5a44c",
+                    "label": "TRANSFER IN"
+                  },
+                  {
+                    "concept": "23594934-b635-4dc4-9d40-0a2e574551fe",
+                    "label": "TRANSFER NOT ON ART"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "PSS2 (Advise)",
+          "questions": [
+            {
+              "label": "Advise",
+              "type": "obs",
+              "required": false,
+              "id": "advise",
+              "questionOptions": {
+                "rendering": "checkbox",
+                "concept": "d788b8df-f25d-49e7-b946-bf5fe2d9407c",
+                "answers": [
+                  {
+                    "concept": "7f84b071-78b0-434b-ae3d-e8fde45e8098",
+                    "label": "Alcohol and Substance abuse reduction"
+                  },
+                  {
+                    "concept": "7c024474-66c3-47fb-8985-1cc5595de174",
+                    "label": "Basic Care package"
+                  },
+                  {
+                    "concept": "dc9ae14d-30ab-102d-86b0-7a5022ba4115",
+                    "label": "DISCLOSURE COUNSELING"
+                  },
+                  {
+                    "concept": "0815c786-5994-49e4-aa07-28b662b0e428",
+                    "label": "Family plannign counselling provided"
+                  },
+                  {
+                    "concept": "dc98d576-2623-4677-8a08-2061e195864f",
+                    "label": "Management of Stigma and Discrimination"
+                  },
+                  {
+                    "concept": "dc7620b3-30ab-102d-86b0-7a5022ba4115",
+                    "label": "METHOD OF FAMILY PLANNING"
+                  },
+                  {
+                    "concept": "7cb048f9-550b-4be2-9eb9-cc8e19c87041",
+                    "label": "NUTRITION COUNSELLING ONLY >2YRS"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "OTHER SPECIFY"
+                  },
+                  {
+                    "concept": "dcd7e8e5-30ab-102d-86b0-7a5022ba4115",
+                    "label": "PMTCT"
+                  },
+                  {
+                    "concept": "7e8eefbe-10a1-4a93-b399-04bb3a5f8aaf",
+                    "label": "Risk Reduction Counselling"
+                  },
+                  {
+                    "concept": "cc43847c-ee85-4cf7-8dd1-4a6d70f0fa0f",
+                    "label": "STI screening and treatment"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "PSS3 (Agree)",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": " DSDM Models",
+              "type": "obs",
+              "required": false,
+              "id": "dsdmModels",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "73312fee-c321-11e8-a355-529269fb1459",
+                "answers": [
+                  {
+                    "concept": "733139e4-c321-11e8-a355-529269fb1459",
+                    "label": "Community Client Led ART Delivery"
+                  },
+                  {
+                    "concept": "73313728-c321-11e8-a355-529269fb1459",
+                    "label": "Community Drug Distribution Point"
+                  },
+                  {
+                    "concept": "73313c96-c321-11e8-a355-529269fb1459",
+                    "label": "Facility Based Groups"
+                  },
+                  {
+                    "concept": "4db8e140-f7b3-44df-8476-d3cebff42ae9",
+                    "label": "Adolescent centers"
+                  },
+                  {
+                    "concept": "733144c0-c321-11e8-a355-529269fb1459",
+                    "label": "Facility Based Individual Management"
+                  },
+                  {
+                    "concept": "73313f20-c321-11e8-a355-529269fb1459",
+                    "label": "Fast Track Drug Refill"
+                  },
+                  {
+                    "concept": "eb9cc08f-bc65-4a04-97ea-79ab4f85814a",
+                    "label": "G-ANC/PNC"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": " Approaches",
+              "type": "obs",
+              "required": false,
+              "id": " approaches /",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "eb7c1c34-59e5-46d5-beba-626694badd54",
+                "answers": [
+                  {
+                    "concept": "a806304b-bef4-483f-b4d0-9514bfc80621",
+                    "label": "Health Education Linkages and  Refferals"
+                  },
+                  {
+                    "concept": "f1229461-aa7e-4a4f-a916-e1188c1ce622",
+                    "label": "Individual counseling"
+                  },
+                  {
+                    "concept": "42c8f58f-b2f8-4911-a9d2-90da92e22128",
+                    "label": "Peer counselling"
+                  },
+                  {
+                    "concept": "e8fc9bfa-efa7-4b7f-92ba-1a7d0fc467b3",
+                    "label": "Peer support group"
+                  }
+                ]
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "PSS4 (Assist)",
+          "questions": [
+            {
+              "label": "ART preparation, readiness, initiation,Adherence support& monitoring",
+              "type": "obs",
+              "required": false,
+              "id": "artPreparation",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "47502ce3-fc55-41e6-a61c-54a4404dd0e1",
+                "answers": [
+                  {
+                    "concept": "8519d4ef-6d9a-4110-9712-3ccdab4d7a09",
+                    "label": "ART Literacy"
+                  },
+                  {
+                    "concept": "b465e067-a447-44a6-afc2-b4cdfe8189bc",
+                    "label": "HEALTH EDUCATION ART READY"
+                  },
+                  {
+                    "concept": "0df2a7db-caed-4351-925c-8e45a3621504",
+                    "label": "Mild hypertension"
+                  },
+                  {
+                    "concept": "012c5218-25d7-4cd0-aad5-1f028d9404ad",
+                    "label": "Not ready to start and initiate"
+                  },
+                  {
+                    "concept": "bd4f0efb-8a43-4e5c-9048-eda47b675bb7",
+                    "label": "Ongoing Adherence counselling and support"
+                  },
+                  {
+                    "concept": "497bb6d8-f648-49f7-a3fa-d84708a8ce57",
+                    "label": "Severe hypertension"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Intervention Approaches",
+              "type": "obs",
+              "required": false,
+              "id": "interventionApproaches",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "eb7c1c34-59e5-46d5-beba-626694badd54",
+                "answers": [
+                  {
+                    "concept": "934cd2fa-210e-430e-babf-ac846ee4a8b2",
+                    "label": "Group Counselling session"
+                  },
+                  {
+                    "concept": "a806304b-bef4-483f-b4d0-9514bfc80621",
+                    "label": "Health Education Linkages and  Refferals"
+                  },
+                  {
+                    "concept": "f1229461-aa7e-4a4f-a916-e1188c1ce622",
+                    "label": "Individual counseling"
+                  },
+                  {
+                    "concept": "42c8f58f-b2f8-4911-a9d2-90da92e22128",
+                    "label": "Peer counselling"
+                  },
+                  {
+                    "concept": "e8fc9bfa-efa7-4b7f-92ba-1a7d0fc467b3",
+                    "label": "Peer support group"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Linkages & Referrals",
+              "type": "obs",
+              "id": "linkagesAndReferrals",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "label": "Mental health care/ Rehabilitation",
+                    "concept": "4d5a0642-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Livelihood Support",
+                    "concept": "4d5a0643-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "GBV /VAC care",
+                    "concept": "4d5a0644-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Legal support",
+                    "concept": "4d5a0645-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Educational Support",
+                    "concept": "4d5a0646-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "OVC services (for all below 20 yrs)",
+                    "concept": "4d5a0647-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Spiritual care",
+                    "concept": "4d5a0648-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Community Support",
+                    "concept": "4d5a0649-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Peer support",
+                    "concept": "4d5a0610-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Counseling",
+                    "concept": "4d5a0611-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Nutritional Support",
+                    "concept": "4d5a0612-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Sexual and Reproductive Health services (SRH)",
+                    "concept": "4d5a0613-ef12-4101-be76-533d4ba651df"
+                  },
+                  {
+                    "label": "Others",
+                    "concept": "4d5a0614-ef12-4101-be76-533d4ba651df"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "PSS5 (Arrange)",
+          "questions": [
+            {
+              "label": "Arrange",
+              "type": "obs",
+              "required": false,
+              "id": "pss5Arrange",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2d5a0641-ef12-4101-be76-533d4ba651df",
+                "answers": [
+                  {
+                    "concept": "e646fcf7-aaf2-4b04-a24c-9b4506bf634f",
+                    "label": "Community Based"
+                  },
+                  {
+                    "concept": "865811ad-796f-48c2-b575-1f530122c408",
+                    "label": "Health Facility"
+                  },
+                  {
+                    "concept": "159928AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "school"
+                  },
+                  {
+                    "concept": "e9332f1e-3af5-499a-b5ea-5c196cdf24c2",
+                    "label": "HEALTH EDUCATION HOME BASED CARE"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "PSS Notes",
+          "questions": [
+            {
+              "label": "PSS Notes",
+              "type": "obs",
+              "required": false,
+              "id": "pssNotes",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "165095AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "conceptMappings": [
+                  {
+                    "relationship": "NARROWER-THAN",
+                    "type": "LOINC",
+                    "value": "34109-9"
+                  },
+                  {
+                    "relationship": "SAME-AS",
+                    "type": "CIEL",
+                    "value": "165095"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
