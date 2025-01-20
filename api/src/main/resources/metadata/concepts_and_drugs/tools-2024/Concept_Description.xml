@@ -5,4 +5,7 @@
     <concept_description  concept_description_id="18741"  concept_id="198951"  description="This is the concept for Exposure to a confirmed or probable case of Monkey Pox during screening."  locale="en"  creator="1"  date_created="2024-08-22 11:19:19"  uuid="240ec8c9-d5c5-4373-a2a9-91ead9ad4ffc"/>
     <concept_description  concept_description_id="18744"  concept_id="198960"  description="This is a concept that handles multiple sexual partners"  locale="en"  creator="1"  date_created="2024-08-28 09:39:14"   uuid="537648d8-309b-4a6c-9a58-b03760fe2ab2"/>
     <concept_description  concept_description_id="18745"  concept_id="199028"  description="The Unit Number for a Soldier"  locale="en"  creator="1"  date_created="2024-10-26 11:45:27" uuid="ddb8d834-7ffc-40b1-8820-73c4684b2da6"/>
+
+    <concept_description  concept_description_id="18749"  concept_id="199032"  description="Lab Monitoring"  locale="en"  creator="1"  date_created="2025-01-19 21:37:34"  uuid="882c88c4-66d5-4f24-9652-07662e2b6c12"/>
+
 </dataset>
