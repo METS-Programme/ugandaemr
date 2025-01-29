@@ -610,4 +610,20 @@ public class EncounterTypes {
             return "09478ad9-ccc1-4cbe-9e55-473447984158";
         }
     };
+
+    public static EncounterTypeDescriptor TB_LABORATORY_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "TB Laboratory Register";
+        }
+
+        @Override
+        public String description() {
+            return "This keeps track of person information, tests, and results of TB/HIV laboratory tests";
+        }
+
+        public String uuid() {
+            return "b15150b3-89d6-41e5-888e-dc0d38873bfb";
+        }
+    };
 }
