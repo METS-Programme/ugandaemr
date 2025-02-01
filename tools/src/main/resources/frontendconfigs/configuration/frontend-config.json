@@ -27,14 +27,13 @@
       ]
     },
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/logo.svg",
       "alt": "UgandaEMR+ logo"
     },
     "extensionSlots": {
       "visit-header-right-slot": {
         "remove": [
-          "start-visit-button",
-          ""
+          "start-visit-button"
         ]
       },
       "patient-highlights-bar-slot": {
@@ -43,9 +42,6 @@
         ]
       },
       "patient-chart-summary-dashboard-slot": {
-        "remove": [
-          "biometrics-overview-widget"
-        ],
         "add": [
           "allergies-details-widget"
         ]
@@ -62,6 +58,9 @@
         }
       },
       "patient-chart-dashboard-slot": {
+        "add": [
+          "nav-group#HIVCareTreatment"
+        ],
         "configure": {
           "charts-summary-dashboard": {
             "Display conditions": {
@@ -120,6 +119,161 @@
                 ]
               }
             }
+          },
+          "nav-group#HIVCareTreatment": {
+            "title": "HIV Care And Treatment",
+            "slotName": "hiv-care-and-treatment-group-slot",
+            "isExpanded": true
+          }
+        }
+      },
+      "hiv-care-and-treatment-group-slot": {
+        "add": [
+          "dashboard#hct-general-counselling",
+          "dashboard#hct-physcosocial"
+        ],
+        "configure": {
+          "dashboard#hct-general-counselling": {
+            "title": "General Counselling",
+            "path": "hct-general-counselling",
+            "slot": "hct-general-counselling-dashboard-slot"
+          },
+          "dashboard#hct-physcosocial": {
+            "title": "Physoial Counselling",
+            "path": "hct-physcosocial",
+            "slot": "hct-physcosocial-slot"
+          }
+        }
+      },
+      "hct-general-counselling-dashboard-slot": {
+        "add": [
+          "encounter-list"
+        ],
+        "configure": {
+          "encounter-list": {
+            "tabDefinitions": [
+              {
+                "tabName": "mentalHealthAssessment",
+                "headerTitle": "mentalHealthAssessment",
+                "displayText": "mentalHealthAssessment",
+                "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
+                "hasFilter": true,
+                "columns": [
+                  {
+                    "id": "screeningDate",
+                    "title": "screeningDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "littleInterest",
+                    "title": "disinterestedInThings",
+                    "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8"
+                  },
+                  {
+                    "id": "depressed",
+                    "title": "depressedTitle",
+                    "concept": "47502ce3-fc55-41e6-a61c-54a4404dd0e1"
+                  },
+                  {
+                    "id": "appetite",
+                    "title": "poorAppetite",
+                    "concept": "fe9a6bfc-b0db-4bf3-bab6-a8800dd93ded"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "2069bd57-d534-3de9-ae24-f1d4e4b2de83"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "hct-physcosocial-slot": {
+        "add": [
+          "encounter-list"
+        ],
+        "configure": {
+          "encounter-list": {
+            "tabDefinitions": [
+              {
+                "tabName": "mentalHealthAssessment",
+                "headerTitle": "mentalHealthAssessment",
+                "displayText": "mentalHealthAssessment",
+                "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
+                "hasFilter": true,
+                "columns": [
+                  {
+                    "id": "screeningDate",
+                    "title": "screeningDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "littleInterest",
+                    "title": "disinterestedInThings",
+                    "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8"
+                  },
+                  {
+                    "id": "depressed",
+                    "title": "depressedTitle",
+                    "concept": "47502ce3-fc55-41e6-a61c-54a4404dd0e1"
+                  },
+                  {
+                    "id": "appetite",
+                    "title": "poorAppetite",
+                    "concept": "fe9a6bfc-b0db-4bf3-bab6-a8800dd93ded"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "2069bd57-d534-3de9-ae24-f1d4e4b2de83"
+                  }
+                ]
+              }
+            ]
           }
         }
       },
@@ -178,6 +332,7 @@
         }
       }
     }
+
   },
   "@openmrs/esm-styleguide": {
     "Brand color #1": " #009384",
@@ -246,8 +401,7 @@
         "Add Orders",
         "View OrderTemplates"
       ]
-    },
-    "maxDispenseDurationInDays": 366
+    }
   },
   "@openmrs/esm-patient-programs-app": {
     "Display conditions": {
@@ -276,7 +430,7 @@
       "f0c16a6d-dc5f-4118-a803-616d0075d282"
     ],
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/logo.svg",
       "alt": "UgandaEMR+ logo"
     },
     "sections": [
@@ -620,11 +774,11 @@
       "alt": "UgandaEMR+ logo"
     },
     "loginBanner": {
-      "src": "/openmrs/spa/logo.svg",
+      "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
-  "@openmrs/esm-primary-navigation-app": {
+  "@ugandaemr/esm-primary-navigation-app": {
     "Display conditions": {
       "privileges": [
         "View Menu App"
@@ -651,7 +805,7 @@
       }
     },
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/log.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
