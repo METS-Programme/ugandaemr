@@ -1,135 +1,724 @@
 {
   "@openmrs/esm-laboratory-app": {
     "Display conditions": {
-      "privileges": [
-        "Manage Laboratory"
-      ]
+      "privileges": ["Manage Laboratory"]
     }
   },
   "@ugandaemr/esm-data-visualizer-app": {
     "Display conditions": {
-      "privileges": [
-        "Manage Data Visualizer"
-      ]
+      "privileges": ["Manage Data Visualizer"]
     }
   },
   "@openmrs/esm-appointments-app": {
     "Display conditions": {
-      "privileges": [
-        "Manage Appointments"
-      ]
+      "privileges": ["Manage Appointments"]
     }
   },
   "@openmrs/esm-patient-chart-app": {
     "Display conditions": {
-      "privileges": [
-        "View Patient Summary"
-      ]
+      "privileges": ["View Patient Summary"]
     },
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/logo.svg",
       "alt": "UgandaEMR+ logo"
     },
     "extensionSlots": {
       "visit-header-right-slot": {
-        "remove": [
-          "start-visit-button",
-          ""
-        ]
+        "remove": ["start-visit-button"]
       },
       "patient-highlights-bar-slot": {
-        "remove": [
-          "patient-flag-tags"
-        ]
+        "remove": ["patient-flag-tags"]
       },
       "patient-chart-summary-dashboard-slot": {
-        "remove": [
-          "biometrics-overview-widget"
-        ],
-        "add": [
-          "allergies-details-widget"
-        ]
+        "add": ["allergies-details-widget"]
       },
       "top-of-all-patient-dashboards-slot": {
         "configure": {
           "patient-flag": {
             "Display conditions": {
-              "privileges": [
-                "o3: View Patient Flags"
-              ]
+              "privileges": ["o3: View Patient Flags"]
             }
           }
         }
       },
       "patient-chart-dashboard-slot": {
+        "add": [
+          "nav-group#HIVProgram",
+          "nav-group#TBProgram",
+          "nav-group#EIDProgram",
+          "nav-group#CaCx"
+        ],
         "configure": {
           "charts-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Summary"
-              ]
+              "privileges": ["Manage Patient Summary"]
             }
           },
           "medications-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Medication"
-              ]
+              "privileges": ["Manage Patient Medication"]
             }
           },
           "laboratory-patient-chart-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Investigation"
-              ]
+              "privileges": ["Manage Patient Investigation"]
             }
           },
           "results-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Vital"
-              ]
+              "privileges": ["Manage Patient Vital"]
             }
           },
           "programs-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Program"
-              ]
+              "privileges": ["Manage Patient Program"]
             }
           },
           "test-results-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Test Summary"
-              ]
+              "privileges": ["Manage Patient Test Summary"]
             }
           },
           "immunization-summary-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage Immunization Summary"
-              ]
+              "privileges": ["Manage Immunization Summary"]
             }
           },
           "appointments-summary-dashboard": {
             "configure": {
               "Display conditions": {
-                "privileges": [
-                  "Manage Patient appointments B"
-                ]
+                "privileges": ["Manage Patient appointments B"]
               }
             }
+          },
+          "nav-group#HIVProgram": {
+            "title": "HIV Program",
+            "slotName": "hiv-care-and-treatment-group-slot",
+            "isExpanded": true
+          },
+          "nav-group#TBProgram": {
+            "title": "TB Program",
+            "slotName": "tb-program-treatment-group-slot",
+            "isExpanded": false
+          },
+          "nav-group#EIDProgram": {
+            "title": "EID Program",
+            "slotName": "eid-program-treatment-group-slot",
+            "isExpanded": false
+          },
+          "nav-group#CaCx": {
+            "title": "CaCx",
+            "slotName": "cacx-program-treatment-group-slot",
+            "isExpanded": false
           }
         }
       },
+      "hiv-care-and-treatment-group-slot": {
+        "add": [
+          "dashboard#hct-test-and-preventive-services",
+          "dashboard#hct-treatment",
+          "dashboard#hct-patient-summary"
+        ],
+        "configure": {
+          "dashboard#hct-test-and-preventive-services": {
+            "title": "Test and Preventive Services",
+            "path": "hct-test-and-preventive-services",
+            "slot": "hct-test-and-preventive-services-dashboard-slot"
+          },
+          "dashboard#hct-treatment": {
+            "title": "Treatment",
+            "path": "hct-treatment",
+            "slot": "hct-treatment-dashboard-slot"
+          },
+          "dashboard#hct-patient-summary": {
+            "title": "Patient Summary",
+            "path": "hct-patient-summary",
+            "slot": "hct-patient-summary-dashboard-slot"
+          }
+        }
+      },
+
+      "tb-program-treatment-group-slot": {},
+      "eid-program-treatment-group-slot": {},
+      "cacx-program-treatment-group-slot": {},
+
+      "hct-test-and-preventive-services-dashboard-slot": {
+        "add": ["encounter-list"],
+        "configure": {
+          "encounter-list": {
+            "tabDefinitions": [
+              {
+                "tabName": "HTS",
+                "hasFilter": true,
+                "headerTitle": "HTS",
+                "displayText": "HTS",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Prep Care Card",
+                "hasFilter": true,
+                "headerTitle": "Prep Care Card",
+                "displayText": "Prep Care Card",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Pep Care Card",
+                "hasFilter": true,
+                "headerTitle": "Pep Care Card",
+                "displayText": "Pep Care Card",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "hct-treatment-dashboard-slot": {
+        "add": ["encounter-list"],
+        "configure": {
+          "encounter-list": {
+            "tabDefinitions": [
+              {
+                "tabName": "Summary Page",
+                "hasFilter": true,
+                "headerTitle": "Summary Page",
+                "displayText": "Summary Page",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Family Tracking",
+                "hasFilter": true,
+                "headerTitle": "Family Tracking",
+                "displayText": "Family Tracking",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Treatment Regimen",
+                "hasFilter": true,
+                "headerTitle": "Treatment Regimen",
+                "displayText": "Treatment Regimen",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Clinical Assessment",
+                "hasFilter": true,
+                "headerTitle": "Clinical Assessment",
+                "displayText": "Clinical Assessment",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              },
+              {
+                "tabName": "Counselling",
+                "hasFilter": true,
+                "headerTitle": "Counselling",
+                "displayText": "Counselling",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "hct-patient-summary-dashboard-slot": {
+        "add": ["program-summary"],
+        "configure": {
+          "program-summary": {
+            "tilesDefinitions": [
+              {
+                "tileHeader": "Viral Load",
+                "columns": [
+                  {
+                    "id": "dateBled",
+                    "title": "Date Bled",
+                    "encounterType": "dateBledEncounterType",
+                    "concept": "datebledConceptUuid"
+                  },
+                  {
+                    "id": "vlQualitative",
+                    "title": "VL Qualitative",
+                    "encounterType": "viralLoadQualitativeEncounterType",
+                    "concept": "vlQualitativeConceptUuid"
+                  },
+                  {
+                    "id": "vlQuantitative",
+                    "title": "VL Quantitative",
+                    "encounterType": "viralLoadQuantitativeEncounterType",
+                    "concept": "viralLoadQuantitativeConceptUuid"
+                  },
+                  {
+                    "id": "vlSuppression",
+                    "title": "VL Suppression",
+                    "encounterType": "viralSuppressionEncounterType",
+                    "concept": "viralLoadSuppressionConceptUuid"
+                  }
+                ]
+              },
+              {
+                "tileHeader": "TPT",
+                "columns": [
+                  {
+                    "id": "tptStartDate",
+                    "title": "TPT Start Date",
+                    "encounterType": "tptStartDateEncounterType",
+                    "concept": "tpeStartDateConceptUuid"
+                  },
+                  {
+                    "id": "tptCompletionDate",
+                    "title": "TPT Completion Date",
+                    "encounterType": "tptCompletionDateEncounterType",
+                    "concept": "tptCompletionDateConceptUuid"
+                  },
+                  {
+                    "id": "tptDrug",
+                    "title": "TPT Drug",
+                    "encounterType": "tptDrugEncounterType",
+                    "concept": "tptDrugConceptUuid"
+                  },
+                  {
+                    "id": "tptStatus",
+                    "title": "TPT Status",
+                    "encounterType": "tptStatusEncounterType",
+                    "concept": "tptStatusConceptUuid"
+                  }
+                ]
+              },
+              {
+                "tileHeader": "Transfer Details",
+                "columns": []
+              },
+              {
+                "tileHeader": "Regimen",
+                "columns": []
+              },
+              {
+                "tileHeader": "BaseLine Information",
+                "columns": [
+                  {
+                    "id": "artStartDate",
+                    "title": "ART Start Date",
+                    "encounterType": "artStartDateEncounterType",
+                    "concept": "artStartDateConceptUuid"
+                  },
+                  {
+                    "id": "datePositiveHIVConfirmed",
+                    "title": "Date Postive HIV Confirmed",
+                    "encounterType": "datePositiveHIVConfirmedEncounterType",
+                    "concept": "datePositiveHIVConfirmedConceptUuid"
+                  },
+                  {
+                    "id": "baselineRegimen",
+                    "title": "Baseline Regimen",
+                    "encounterType": "baselineRegimenEncounterType",
+                    "concept": "baselineRegimenConceptUuid"
+                  },
+                  {
+                    "id": "baselineCD4",
+                    "title": "Baseline CD4",
+                    "encounterType": "baselineCD4EncounterType",
+                    "concept": "baselineCD4ConceptUuid"
+                  },
+                  {
+                    "id": "baselineHeight",
+                    "title": "Baseline Height",
+                    "encounterType": "baselineHeightEncounterType",
+                    "concept": "baselineHeightConceptUuid"
+                  },
+                  {
+                    "id": "baselineWeight",
+                    "title": "Baseline Weight",
+                    "encounterType": "baselineWeightEncounterType",
+                    "concept": "baselineWeightConceptUuid"
+                  },
+                  {
+                    "id": "baselineClinicalWhoStage",
+                    "title": "Baseline WHO clinical Stage",
+                    "encounterType": "baselineClinicalWhoStageEncounterType",
+                    "concept": "baselineClinicalWhoStageConceptUuid"
+                  }
+                ]
+              },
+              {
+                "tileHeader": "Last Visit Summary",
+                "columns": [
+                  {
+                    "id": "currentRegimen",
+                    "title": "Current Regimen",
+                    "encounterType": "currentRegimenEncounterType",
+                    "concept": "currentRegimenConceptUuid"
+                  },
+                  {
+                    "id": "whoClinicalStage",
+                    "title": "WHO Clinical Stage",
+                    "encounterType": "whoClinicalStageEncounterType",
+                    "concept": "whoClinicalStageConceptUuid"
+                  },
+                  {
+                    "id": "regimenLine",
+                    "title": "Regimen Line",
+                    "encounterType": "regimenLineEncounterType",
+                    "concept": "regimenLineConceptUuid"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+
       "laboratory-orders-dashboard-slot": {
         "configure": {
           "laboratory-orders-summary": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Lab Orders"
-              ]
+              "privileges": ["Manage Patient Lab Orders"]
             }
           }
         }
@@ -138,9 +727,7 @@
         "configure": {
           "immunization-details-widget": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Immunization Orders"
-              ]
+              "privileges": ["Manage Patient Immunization Orders"]
             }
           }
         }
@@ -149,30 +736,22 @@
         "configure": {
           "order-basket-action-menu": {
             "Display conditions": {
-              "privileges": [
-                "Manage Order Basket"
-              ]
+              "privileges": ["Manage Order Basket"]
             }
           },
           "visit-note-nav-button": {
             "Display conditions": {
-              "privileges": [
-                "Manage Visit Note"
-              ]
+              "privileges": ["Manage Visit Note"]
             }
           },
           "clinical-form-action-menu": {
             "Display conditions": {
-              "privileges": [
-                "Manage Clinical Forms"
-              ]
+              "privileges": ["Manage Clinical Forms"]
             }
           },
           "vl-suppression-prediction": {
             "Display conditions": {
-              "privileges": [
-                "Manage AI Button"
-              ]
+              "privileges": ["Manage AI Button"]
             }
           }
         }
@@ -186,97 +765,69 @@
   },
   "@openmrs/esm-patient-biometrics-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Vitals and Biometrics"
-      ]
+      "privileges": ["Add Vitals and Biometrics"]
     }
   },
   "@ugandaemr/esm-care-panel-app": {
     "Display conditions": {
-      "privileges": [
-        "Manage Care Panel"
-      ]
+      "privileges": ["Manage Care Panel"]
     }
   },
   "@openmrs/esm-patient-appointments-app": {
     "Display conditions": {
-      "privileges": [
-        "Manage Patient Appointments"
-      ]
+      "privileges": ["Manage Patient Appointments"]
     }
   },
   "@openmrs/esm-patient-immunizations-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Immunizations"
-      ]
+      "privileges": ["Add Immunizations"]
     }
   },
   "@openmrs/esm-patient-allergies-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Allergies"
-      ]
+      "privileges": ["Add Allergies"]
     }
   },
   "@openmrs/esm-patient-attachments-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Attachments"
-      ]
+      "privileges": ["Add Attachments"]
     }
   },
   "@openmrs/esm-patient-conditions-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Conditions"
-      ]
+      "privileges": ["Add Conditions"]
     }
   },
   "@openmrs/esm-patient-forms-app": {
     "Display conditions": {
-      "privileges": [
-        "Get Forms"
-      ]
+      "privileges": ["Get Forms"]
     }
   },
   "@openmrs/esm-patient-medications-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Orders",
-        "View OrderTemplates"
-      ]
-    },
-    "maxDispenseDurationInDays": 366
+      "privileges": ["Add Orders", "View OrderTemplates"]
+    }
   },
   "@openmrs/esm-patient-programs-app": {
     "Display conditions": {
-      "privileges": [
-        "Add Patient Programs"
-      ]
+      "privileges": ["Add Patient Programs"]
     }
   },
   "@openmrs/esm-patient-test-results-app": {
     "concepts": [],
     "Display conditions": {
-      "privileges": [
-        "View Test Results"
-      ]
+      "privileges": ["View Test Results"]
     }
   },
   "@openmrs/esm-offline-tools-app": {
     "Display conditions": {
-      "privileges": [
-        "Access Offline Tools"
-      ]
+      "privileges": ["Access Offline Tools"]
     }
   },
   "@ugandaemr/esm-patient-registration-app": {
-    "defaultPatientIdentifierTypes": [
-      "f0c16a6d-dc5f-4118-a803-616d0075d282"
-    ],
+    "defaultPatientIdentifierTypes": ["f0c16a6d-dc5f-4118-a803-616d0075d282"],
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/logo.svg",
       "alt": "UgandaEMR+ logo"
     },
     "sections": [
@@ -302,10 +853,7 @@
       {
         "id": "nextOfKin",
         "name": "Next of Kin Details",
-        "fields": [
-          "nextOfKinName",
-          "nextOfkinPhone"
-        ]
+        "fields": ["nextOfKinName", "nextOfkinPhone"]
       }
     ],
     "fieldDefinitions": [
@@ -520,79 +1068,57 @@
         "configure": {
           "patient-queues-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Queues"
-              ]
+              "privileges": ["Manage Patient Queues"]
             }
           },
           "queue-reception-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "View Reception Menu"
-              ]
+              "privileges": ["View Reception Menu"]
             }
           },
           "queue-triage-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "View Triage Menu"
-              ]
+              "privileges": ["View Triage Menu"]
             }
           },
           "queue-clinical-room-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "View Clinical Room Menu"
-              ]
+              "privileges": ["View Clinical Room Menu"]
             }
           },
           "patient-lists-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Lists"
-              ]
+              "privileges": ["Manage Patient Lists"]
             }
           },
           "service-queues-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Service Queues"
-              ]
+              "privileges": ["Manage Service Queues"]
             }
           },
           "clinical-appointments-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Patient Appointments"
-              ]
+              "privileges": ["Manage Patient Appointments"]
             }
           },
           "bed-admission-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Inpatient"
-              ]
+              "privileges": ["Manage Inpatient"]
             }
           },
           "data-visualizer-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Data Visualizer"
-              ]
+              "privileges": ["Manage Data Visualizer"]
             }
           },
           "laboratory-dashboard-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Laboratory"
-              ]
+              "privileges": ["Manage Laboratory"]
             }
           },
           "home-widget-db-link": {
             "Display conditions": {
-              "privileges": [
-                "Manage Home Link"
-              ]
+              "privileges": ["Manage Home Link"]
             }
           }
         }
@@ -601,9 +1127,7 @@
         "configure": {
           "clinical-appointments-dashboard": {
             "Display conditions": {
-              "privileges": [
-                "Manage appointments dashboard"
-              ]
+              "privileges": ["Manage appointments dashboard"]
             }
           }
         }
@@ -620,38 +1144,32 @@
       "alt": "UgandaEMR+ logo"
     },
     "loginBanner": {
-      "src": "/openmrs/spa/logo.svg",
+      "src": "/openmrs/spa/banner.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
-  "@openmrs/esm-primary-navigation-app": {
+  "@ugandaemr/esm-primary-navigation-app": {
     "Display conditions": {
-      "privileges": [
-        "View Menu App"
-      ]
+      "privileges": ["View Menu App"]
     },
     "extensionSlots": {
       "top-nav-actions-slot": {
         "configure": {
           "patient-search-icon": {
             "Display conditions": {
-              "privileges": [
-                "Search Patient"
-              ]
+              "privileges": ["Search Patient"]
             }
           },
           "add-patient-action": {
             "Display conditions": {
-              "privileges": [
-                "Add Patient Button"
-              ]
+              "privileges": ["Add Patient Button"]
             }
           }
         }
       }
     },
     "logo": {
-      "src": "/openmrs/spa/banner.svg",
+      "src": "/openmrs/spa/log.svg",
       "alt": "UgandaEMR+ logo"
     }
   },
@@ -661,51 +1179,37 @@
         "configure": {
           "start-visit-button": {
             "Display conditions": {
-              "privileges": [
-                "Start Visit Button"
-              ]
+              "privileges": ["Start Visit Button"]
             }
           },
           "stop-visit-button": {
             "Display conditions": {
-              "privileges": [
-                "Stop Visit Button"
-              ]
+              "privileges": ["Stop Visit Button"]
             }
           },
           "cancel-visit-button": {
             "Display conditions": {
-              "privileges": [
-                "Cancel Visit Button"
-              ]
+              "privileges": ["Cancel Visit Button"]
             }
           },
           "mark-patient-deceased-button": {
             "Display conditions": {
-              "privileges": [
-                "Mark Dead Button"
-              ]
+              "privileges": ["Mark Dead Button"]
             }
           },
           "edit-patient-details-button": {
             "Display conditions": {
-              "privileges": [
-                "Edit Patient Details Button"
-              ]
+              "privileges": ["Edit Patient Details Button"]
             }
           },
           "add-patient-to-patient-list-button": {
             "Display conditions": {
-              "privileges": [
-                "Add Patient To List Button"
-              ]
+              "privileges": ["Add Patient To List Button"]
             }
           },
           "patient-move-to-next-service-point": {
             "Display conditions": {
-              "privileges": [
-                "Next Service Point"
-              ]
+              "privileges": ["Next Service Point"]
             }
           }
         }
@@ -767,9 +1271,7 @@
         ]
       },
       "start-visit-button-slot": {
-        "remove": [
-          "start-visit-button-patient-search"
-        ]
+        "remove": ["start-visit-button-patient-search"]
       }
     }
   }
