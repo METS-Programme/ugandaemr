@@ -114,32 +114,43 @@
         }
       },
       "hiv-care-and-treatment-group-slot": {
-        "add": ["dashboard#hct-treatment", "dashboard#hct-patient-summary", "dashboard#hct-counselling","dashboard#hct-treatment-regimen","dashboard#hct-family-tracking"],
+        "add": [
+          "dashboard#hct-treatment",
+          "dashboard#hct-patient-summary",
+          "dashboard#hct-counselling",
+          "dashboard#hct-treatment-regimen",
+          "dashboard#hct-family-tracking"
+        ],
         "configure": {
           "dashboard#hct-patient-summary": {
             "title": "Patient Summary",
             "path": "hct-patient-summary",
-            "slot": "hct-patient-summary-dashboard-slot"
+            "slot": "hct-patient-summary-dashboard-slot",
+            "layoutMode": "anchored"
           },
           "dashboard#hct-treatment": {
             "title": "Treatment",
             "path": "hct-treatment",
-            "slot": "hct-treatment-dashboard-slot"
+            "slot": "hct-treatment-dashboard-slot",
+            "layoutMode": "anchored"
           },
           "dashboard#hct-counselling": {
             "title": "Counselling",
             "path": "hct-counselling",
-            "slot": "hct-counselling-dashboard-slot"
+            "slot": "hct-counselling-dashboard-slot",
+            "layoutMode": "anchored"
           },
           "dashboard#hct-treatment-regimen": {
             "title": "Treatment Regimen",
             "path": "hct-treatment-regimen",
-            "slot": "hct-treatment-regimen-dashboard-slot"
+            "slot": "hct-treatment-regimen-dashboard-slot",
+            "layoutMode": "anchored"
           },
           "dashboard#hct-family-tracking": {
             "title": "Family Tracking",
             "path": "hct-family-tracking",
-            "slot": "hct-family-tracking-dashboard-slot"
+            "slot": "hct-family-tracking-dashboard-slot",
+            "layoutMode": "anchored"
           }
         }
       },
@@ -154,17 +165,23 @@
           "dashboard#hps-hts": {
             "title": "HTS",
             "path": "hps-hts",
-            "slot": "hps-hts-dashboard-slot"
+            "slot": "hps-hts-dashboard-slot",
+            "layoutMode": "anchored"
+
           },
           "dashboard#hps-prep-card": {
             "title": "Prep Care Card",
             "path": "hps-prep-care-card",
-            "slot": "hps-prep-care-card-dashboard-slot"
+            "slot": "hps-prep-care-card-dashboard-slot",
+            "layoutMode": "anchored"
+
           },
           "dashboard#hps-pep-care-card": {
             "title": "Pep Care Card",
             "path": "hps-pep-care-card",
-            "slot": "hps-pep-care-card-dashboard-slot"
+            "slot": "hps-pep-care-card-dashboard-slot",
+            "layoutMode": "anchored"
+
           }
         }
       },
@@ -279,7 +296,6 @@
                   }
                 ]
               }
-
             ]
           }
         }
@@ -430,7 +446,7 @@
         }
       },
 
-      "hct-counselling-dashboard-slot" : {
+      "hct-counselling-dashboard-slot": {
         "add": ["encounter-list"],
         "configure": {
           "encounter-list": {
@@ -537,7 +553,6 @@
                   }
                 ]
               }
-
             ]
           }
         }
@@ -650,13 +665,12 @@
                   }
                 ]
               }
-
             ]
           }
         }
       },
 
-      "hct-family-tracking-dashboard-slot":{
+      "hct-family-tracking-dashboard-slot": {
         "add": ["encounter-list"],
         "configure": {
           "encounter-list": {
@@ -712,14 +726,10 @@
                   }
                 ]
               }
-
-
             ]
           }
         }
       },
-
-
 
       "hps-hts-dashboard-slot": {
         "add": ["encounter-list"],
@@ -781,7 +791,7 @@
         }
       },
 
-      "hps-prep-care-card-dashboard-slot" : {
+      "hps-prep-care-card-dashboard-slot": {
         "add": ["encounter-list"],
         "configure": {
           "encounter-list": {
@@ -841,15 +851,15 @@
         }
       },
 
-      "hps-pep-care-card-dashboard-slot":{
+      "hps-pep-care-card-dashboard-slot": {
         "add": ["encounter-list"],
         "configure": {
           "encounter-list": {
             "tabDefinitions": [
               {
-                "tabName": "HTS",
-                "headerTitle": "HTS",
-                "displayText": "HTS",
+                "tabName": "Pep Care Card",
+                "headerTitle": "Pep Care Card",
+                "displayText": "Pep Care Card",
                 "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
                 "columns": [
                   {
@@ -900,9 +910,6 @@
           }
         }
       }
-
-
-
     },
     "@openmrs/esm-styleguide": {
       "Brand color #1": " #009384",
