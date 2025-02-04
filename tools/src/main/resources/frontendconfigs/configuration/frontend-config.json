@@ -114,7 +114,7 @@
         }
       },
       "hiv-care-and-treatment-group-slot": {
-        "add": ["dashboard#hct-treatment", "dashboard#hct-patient-summary", "dashboard#hct-counselling","dashboard#hct-treatment-regimen"],
+        "add": ["dashboard#hct-treatment", "dashboard#hct-patient-summary", "dashboard#hct-counselling","dashboard#hct-treatment-regimen","dashboard#hct-family-tracking"],
         "configure": {
           "dashboard#hct-patient-summary": {
             "title": "Patient Summary",
@@ -135,6 +135,11 @@
             "title": "Treatment Regimen",
             "path": "hct-treatment-regimen",
             "slot": "hct-treatment-regimen-dashboard-slot"
+          },
+          "dashboard#hct-family-tracking": {
+            "title": "Family Tracking",
+            "path": "hct-family-tracking",
+            "slot": "hct-family-tracking-dashboard-slot"
           }
         }
       },
@@ -177,57 +182,6 @@
                 "hasFilter": true,
                 "headerTitle": "Summary Page",
                 "displayText": "Summary Page",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
-                "columns": [
-                  {
-                    "id": "contactDate",
-                    "isDate": true,
-                    "title": "contactDateTitle",
-                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-                  },
-                  {
-                    "id": "actions",
-                    "title": "actionsTitle",
-                    "actionOptions": [
-                      {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "viewDetails",
-                        "mode": "view"
-                      },
-                      {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "editForm",
-                        "mode": "edit"
-                      }
-                    ]
-                  }
-                ],
-                "launchOptions": {
-                  "displayText": "add"
-                },
-                "formList": [
-                  {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
-                  }
-                ]
-              },
-              {
-                "tabName": "Family Tracking",
-                "hasFilter": true,
-                "headerTitle": "Family Tracking",
-                "displayText": "Family Tracking",
                 "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
                 "columns": [
                   {
@@ -696,6 +650,69 @@
                   }
                 ]
               }
+
+            ]
+          }
+        }
+      },
+
+      "hct-family-tracking-dashboard-slot":{
+        "add": ["encounter-list"],
+        "configure": {
+          "encounter-list": {
+            "tabDefinitions": [
+              {
+                "tabName": "Family Member",
+                "hasFilter": true,
+                "headerTitle": "Family Member",
+                "displayText": "Family Member",
+                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "columns": [
+                  {
+                    "id": "contactDate",
+                    "isDate": true,
+                    "title": "contactDateTitle",
+                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactMethod",
+                    "title": "contactMethodTitle",
+                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "contactOutcome",
+                    "title": "contactOutcomeTitle",
+                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "actions",
+                    "title": "actionsTitle",
+                    "actionOptions": [
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "viewDetails",
+                        "mode": "view"
+                      },
+                      {
+                        "formName": "Contact Tracing Form",
+                        "package": "hiv-care-treatment",
+                        "label": "editForm",
+                        "mode": "edit"
+                      }
+                    ]
+                  }
+                ],
+                "launchOptions": {
+                  "displayText": "add"
+                },
+                "formList": [
+                  {
+                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                  }
+                ]
+              }
+
 
             ]
           }
