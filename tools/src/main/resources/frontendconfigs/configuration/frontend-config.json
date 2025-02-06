@@ -275,12 +275,12 @@
                     "actionOptions": [
                       {
                         "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -303,42 +303,71 @@
                 "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
                 "columns": [
                   {
-                    "id": "contactDate",
-                    "isDate": true,
-                    "title": "contactDateTitle",
-                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "nutritionStatus",
+                    "title": "Nutrition Status",
+                    "concept": "nutritionStatusConceptUuid"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "nutritionSupport",
+                    "title": "Nutrition Support",
+                    "concept": "nutrittionSupportConceptUuid"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "pregnancyStatus",
+                    "title": "Pregnancy Status",
+                    "concept": "pregnancyStatusConceptUuid"
                   },
+                  {
+                    "id": "syphilisStatus",
+                    "title": "Syphilis Status",
+                    "concept": "syphilisStatusConceptUuid"
+                  },
+                  {
+                    "id": "covidStatus",
+                    "title": "Covid19 Status",
+                    "concept": "covideStatusConceptUuid"
+                  },
+                  {
+                    "id": "hpvStatus",
+                    "title": "HPV Status",
+                    "concept": "hpvStatusConceptUuid"
+                  },
+
+                  {
+                    "id": "dateOfsampleCollection",
+                    "title": "Date of Sample Colection (HIV Drug Resistance)",
+                    "concept": "dateOfSampleCollectionConceptUuid"
+                  },
+                  {
+                    "id": "drug",
+                    "title": "Drug(HIV Drug Resistance)",
+                    "concept": "drugConceptUuid"
+                  },
+                  {
+                    "id": "drStatus",
+                    "title": "DR Status (HIV Drug Resistance)",
+                    "concept": "drStatusConceptUuid"
+                  },
+
                   {
                     "id": "actions",
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "viewDetails",
+                        "formName": "HMIS 003 HIV Care ART Card - Clinical Assessment",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "editForm",
+                        "formName": "HMIS 003 HIV Care ART Card - Clinical Assessment",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
@@ -530,21 +559,19 @@
                     "actionOptions": [
                       {
                         "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
@@ -581,25 +608,23 @@
                     "actionOptions": [
                       {
                         "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "12de5bc5-352e-4faf-9961-a2125085a75c"
                   }
                 ]
               }
@@ -642,12 +667,12 @@
                     "actionOptions": [
                       {
                         "formName": "ART Regimen Change",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "ART Regimen Change",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -691,12 +716,12 @@
                     "actionOptions": [
                       {
                         "formName": "ART Regimen Change",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "ART Regimen Change",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -786,12 +811,12 @@
                     "actionOptions": [
                       {
                         "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -844,12 +869,12 @@
                     "actionOptions": [
                       {
                         "formName": "HMIS ACP 018:HTS Client Card",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "HMIS ACP 018:HTS Client Card",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -903,13 +928,13 @@
                       {
                         "formName": "Contact Tracing Form",
                         "package": "hiv-care-treatment",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "Contact Tracing Form",
                         "package": "hiv-care-treatment",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
@@ -963,13 +988,13 @@
                       {
                         "formName": "Contact Tracing Form",
                         "package": "hiv-care-treatment",
-                        "label": "viewDetails",
+                        "label": "View Details",
                         "mode": "view"
                       },
                       {
                         "formName": "Contact Tracing Form",
                         "package": "hiv-care-treatment",
-                        "label": "editForm",
+                        "label": "EditForm",
                         "mode": "edit"
                       }
                     ]
