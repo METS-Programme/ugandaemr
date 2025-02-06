@@ -126,31 +126,36 @@
             "title": "Patient Summary",
             "path": "hct-patient-summary",
             "slot": "hct-patient-summary-dashboard-slot",
-            "layoutMode": "anchored"
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hct-treatment": {
             "title": "Treatment",
             "path": "hct-treatment",
             "slot": "hct-treatment-dashboard-slot",
-            "layoutMode": "anchored"
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hct-counselling": {
             "title": "Counselling",
             "path": "hct-counselling",
             "slot": "hct-counselling-dashboard-slot",
-            "layoutMode": "anchored"
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hct-treatment-regimen": {
             "title": "Treatment Regimen",
             "path": "hct-treatment-regimen",
             "slot": "hct-treatment-regimen-dashboard-slot",
-            "layoutMode": "anchored"
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hct-family-tracking": {
             "title": "Family Tracking",
             "path": "hct-family-tracking",
             "slot": "hct-family-tracking-dashboard-slot",
-            "layoutMode": "anchored"
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           }
         }
       },
@@ -166,22 +171,22 @@
             "title": "HTS",
             "path": "hps-hts",
             "slot": "hps-hts-dashboard-slot",
-            "layoutMode": "anchored"
-
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hps-prep-card": {
             "title": "Prep Care Card",
             "path": "hps-prep-care-card",
             "slot": "hps-prep-care-card-dashboard-slot",
-            "layoutMode": "anchored"
-
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           },
           "dashboard#hps-pep-care-card": {
             "title": "Pep Care Card",
             "path": "hps-pep-care-card",
             "slot": "hps-pep-care-card-dashboard-slot",
-            "layoutMode": "anchored"
-
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
           }
         }
       },
@@ -199,37 +204,82 @@
                 "hasFilter": true,
                 "headerTitle": "Summary Page",
                 "displayText": "Summary Page",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
                 "columns": [
                   {
-                    "id": "contactDate",
+                    "id": "registrationDate",
                     "isDate": true,
-                    "title": "contactDateTitle",
-                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "title": "Registration Date",
+                    "concept": "31c5c7aa-4948-473e-890b-67fe2fbbd71a"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
+                    "id": "testType",
+                    "title": "Test Type",
                     "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "verificationDate",
+                    "title": "Date of Verification Test",
+                    "concept": "verificationDateConceptUuid"
                   },
+                  {
+                    "id": "specialCategory",
+                    "title": "Special Category",
+                    "concept": "specialCategoryConceptUuid"
+                  },
+                  {
+                    "id": "categoryEntryPoint",
+                    "title": "Category Entry",
+                    "concept": "categoryEntryPointConceptUuid"
+                  },
+                  {
+                    "id": "treatmentInterruptions",
+                    "title": "Treatment Interruptions",
+                    "concept": "treatmentInterruptionsConceptUuid"
+                  },
+
+                  {
+                    "id": "baselineARVRegimen",
+                    "title": "Baseline ARV Regimen",
+                    "concept": "baselineARVRegimenConceptUuid"
+                  },
+                  {
+                    "id": "baselineARTStartDate",
+                    "title": "Baseline ART StartDate",
+                    "concept": "baselineARTStartDateConceptUuid"
+                  },
+                  {
+                    "id": "baselineWeight",
+                    "title": "Baseline Weight",
+                    "concept": "baselineWeightConceptUuid"
+                  },
+                  {
+                    "id": "baselineClinicalStage",
+                    "title": "Baseline WHO clinical Stage",
+                    "concept": "baselineClinicalWhoStageConceptUuid"
+                  },
+                  {
+                    "id": "baselineCD4",
+                    "title": "Baseline CD4",
+                    "concept": "baselineCD4ConceptUuid"
+                  },
+                  {
+                    "id": "baselinePMTCT",
+                    "title": "Baseline PMTCT",
+                    "concept": "baselinePMTCTConceptUuid"
+                  },
+
                   {
                     "id": "actions",
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form",
                         "label": "viewDetails",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Summary Form",
                         "label": "editForm",
                         "mode": "edit"
                       }
@@ -237,11 +287,11 @@
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "52653a60-8300-4c13-be4d-4b746da06fee"
                   }
                 ]
               },
@@ -250,7 +300,7 @@
                 "hasFilter": true,
                 "headerTitle": "Clinical Assessment",
                 "displayText": "Clinical Assessment",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "8d5b2be0-c2cc-11de-8d13-0010c6dffd0f",
                 "columns": [
                   {
                     "id": "contactDate",
@@ -292,7 +342,7 @@
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "12de5bc5-352e-4faf-9961-a2125085a75c"
                   }
                 ]
               }
@@ -456,7 +506,7 @@
                 "hasFilter": true,
                 "headerTitle": "Education and Physco Social Support",
                 "displayText": "Education and Physco Social Support",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
                 "columns": [
                   {
                     "id": "contactDate",
@@ -498,7 +548,7 @@
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "b8224534-7df0-4c00-ba8e-6b1f291087eb"
                   }
                 ]
               },
@@ -568,37 +618,35 @@
                 "hasFilter": true,
                 "headerTitle": "Switch Regimen",
                 "displayText": "Switch Regimen",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "c11774c1-3b4a-4bdb-a847-6060895e006d",
                 "columns": [
                   {
-                    "id": "contactDate",
+                    "id": "substitutionDate",
                     "isDate": true,
-                    "title": "contactDateTitle",
+                    "title": "Substitution Date",
                     "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "New Regimen",
+                    "title": "New Regimen",
+                    "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "reason",
+                    "title": "Reason",
+                    "concept": "dce0c977-30ab-102d-86b0-7a5022ba4115"
                   },
                   {
                     "id": "actions",
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "ART Regimen Change",
                         "label": "viewDetails",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "ART Regimen Change",
                         "label": "editForm",
                         "mode": "edit"
                       }
@@ -606,11 +654,11 @@
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "53a3850c-855a-11eb-8dcd-0242ac130003"
                   }
                 ]
               },
@@ -619,37 +667,35 @@
                 "hasFilter": true,
                 "headerTitle": "Substitute Regimen",
                 "displayText": "Substitute Regimen",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "c11774c1-3b4a-4bdb-a847-6060895e006d",
                 "columns": [
                   {
-                    "id": "contactDate",
+                    "id": "substitutionDate",
                     "isDate": true,
-                    "title": "contactDateTitle",
+                    "title": "Substitution Date",
                     "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "New Regimen",
+                    "title": "New Regimen",
+                    "concept": "dd2b0b4d-30ab-102d-86b0-7a5022ba4115"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "reason",
+                    "title": "Reason",
+                    "concept": "dce0c977-30ab-102d-86b0-7a5022ba4115"
                   },
                   {
                     "id": "actions",
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "ART Regimen Change",
                         "label": "viewDetails",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "ART Regimen Change",
                         "label": "editForm",
                         "mode": "edit"
                       }
@@ -657,11 +703,11 @@
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "53a3850c-855a-11eb-8dcd-0242ac130003"
                   }
                 ]
               }
@@ -680,37 +726,71 @@
                 "hasFilter": true,
                 "headerTitle": "Family Member",
                 "displayText": "Family Member",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "591cba6a-5c5f-11ee-8c99-0242ac120002",
                 "columns": [
                   {
-                    "id": "contactDate",
-                    "isDate": true,
-                    "title": "contactDateTitle",
-                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "memberName",
+                    "title": "Member Name",
+                    "concept": "e96d0880-e80e-4088-9787-bb2623fd46af"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "memberAge",
+                    "title": "Member Age",
+                    "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "memberAgeUnit",
+                    "title": "Member Age",
+                    "concept": "4049d989-b99e-440d-8f70-c222aa9fe45c"
+                  },
+                  {
+                    "id": "memberRelationship",
+                    "title": "Member Relationship",
+                    "concept": "164352AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+
+                  {
+                    "id": "memberEIDCare",
+                    "title": "EID Care",
+                    "concept": "eidCareConceptUuid"
+                  },
+
+                  {
+                    "id": "memberStatus",
+                    "title": "Member Status",
+                    "concept": "1f98a7e6-4d0a-4008-a6f7-4ec118f08983"
+                  },
+                  {
+                    "id": "memberHIVCare",
+                    "title": "HIV Care",
+                    "concept": "dce13f66-30ab-102d-86b0-7a5022ba4115"
+                  },
+                  {
+                    "id": "memberEIDNo",
+                    "title": "EID No",
+                    "concept": "dce11a89-30ab-102d-86b0-7a5022ba4115"
+                  },
+                  {
+                    "id": "memberContact",
+                    "title": "Contact ",
+                    "concept": "159635AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                  },
+                  {
+                    "id": "memberStatusDate",
+                    "title": "HIV Status Date",
+                    "concept": "b7f597e7-39b5-419e-9ec5-de5901fffb52"
                   },
                   {
                     "id": "actions",
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
                         "label": "viewDetails",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
                         "label": "editForm",
                         "mode": "edit"
                       }
@@ -718,11 +798,11 @@
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "f2722150-5c5f-11ee-8c99-0242ac120002"
                   }
                 ]
               }
@@ -740,37 +820,35 @@
                 "tabName": "HTS",
                 "headerTitle": "HTS",
                 "displayText": "HTS",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "encounterType": "264daIZd-f80e-48fe-nba9-P37f2W1905Pv",
                 "columns": [
                   {
-                    "id": "contactDate",
+                    "id": "serialNumber",
                     "isDate": true,
-                    "title": "contactDateTitle",
-                    "concept": "160753AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "title": "Serial Number",
+                    "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
                   },
                   {
-                    "id": "contactMethod",
-                    "title": "contactMethodTitle",
-                    "concept": "166456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "htsDeliverModel",
+                    "title": "HTS delivery model",
+                    "concept": "46648b1d-b099-433b-8f9c-3815ff1e0a0f"
                   },
                   {
-                    "id": "contactOutcome",
-                    "title": "contactOutcomeTitle",
-                    "concept": "167011AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                    "id": "htsApproach",
+                    "title": "HTS Approach",
+                    "concept": "ff820a28-1adf-4530-bf27-537bfa9ce0b2"
                   },
                   {
                     "id": "actions",
-                    "title": "actionsTitle",
+                    "title": "Actions",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP 018:HTS Client Card",
                         "label": "viewDetails",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
-                        "package": "hiv-care-treatment",
+                        "formName": "HMIS ACP 018:HTS Client Card",
                         "label": "editForm",
                         "mode": "edit"
                       }
@@ -778,11 +856,11 @@
                   }
                 ],
                 "launchOptions": {
-                  "displayText": "add"
+                  "displayText": "Add"
                 },
                 "formList": [
                   {
-                    "uuid": "94a911a8-8da1-3c12-b696-2f3e78c2e87c"
+                    "uuid": "b5c62a98-84d3-43e8-a9be-972185070dd4"
                   }
                 ]
               }
