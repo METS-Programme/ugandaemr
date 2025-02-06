@@ -50,47 +50,88 @@
         ],
         "configure": {
           "charts-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Summary"]
             }
           },
           "medications-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Medication"]
             }
           },
           "laboratory-patient-chart-link": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Investigation"]
             }
           },
           "results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Vital"]
             }
           },
           "programs-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Program"]
             }
           },
           "test-results-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Patient Test Summary"]
             }
           },
           "immunization-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "Display conditions": {
               "privileges": ["Manage Immunization Summary"]
             }
           },
           "appointments-summary-dashboard": {
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true,
             "configure": {
               "Display conditions": {
                 "privileges": ["Manage Patient appointments B"]
               }
             }
           },
+          "patient-orders-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+          "allergies-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+          "conditions-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+          "patient-appointments-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+          "clincial-patient-link":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+          "encounters-summary-dashboard":{
+            "layoutMode": "anchored",
+            "hideDashboardTitle": true
+          },
+
           "nav-group#HIVPreventionServices": {
             "title": "HIV Prevention Services",
             "slotName": "hiv-prevention-services-group-slot",
@@ -380,9 +421,9 @@
         }
       },
       "hct-patient-summary-dashboard-slot": {
-        "add": ["program-summary"],
+        "add": ["encounter-tile"],
         "configure": {
-          "program-summary": {
+          "encounter-tile": {
             "tilesDefinitions": [
               {
                 "tileHeader": "Viral Load",
