@@ -455,84 +455,117 @@
               "id": "dsdmApproach",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "",
+                "concept": "73312fee-c321-11e8-a355-529269fb1459",
                 "conceptMappings": [],
                 "answers": [
                   {
-                    "concept": "ac1c965c-b65c-4a0a-8fcd-e6b1081e3850",
-                    "label": "GMH-FBG"
+                    "concept": "73313c96-c321-11e8-a355-529269fb1459",
+                    "label": "GMH-FBG",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c6563d48-5e16-45e5-ab6f-a64214656801'"
+                    }
                   },
                   {
-                    "concept": "106c7eab-a56b-4c93-b0e0-9135240a4a42",
-                    "label": "GMH-CDDP"
+                    "concept": "73313728-c321-11e8-a355-529269fb1459",
+                    "label": "GMH-CDDP",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c6563d48-5e16-45e5-ab6f-a64214656801'"
+                    }
                   },
                   {
                     "concept": "b613e170-08d1-4a47-8f35-3d14e0c2a217",
-                    "label": "GMH-FSG"
+                    "label": "GMH-FSG",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c6563d48-5e16-45e5-ab6f-a64214656801'"
+                    }
                   },
                   {
-                    "concept": "b7f318c3-122a-448b-aa67-7316bccbed54",
-                    "label": "GMH-Viraemia Clinics"
+                    "concept": "4c6a6a60-97f6-4699-a8e0-927af34288a4",
+                    "label": "GMH-Viraemia Clinics",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c6563d48-5e16-45e5-ab6f-a64214656801'"
+                    }
                   },
                   {
-                    "concept": "4ce50c51-0227-440b-9a46-3e354fe43dcd",
-                    "label": "GMH-G-ANC / PNC"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "GMH- Other Specify"
-                  },
-                  {
-                    "concept": "0bcc3b1b-5f57-460e-a667-8e8542d702b8",
-                    "label": "GMC-CCLAD"
-                  },
-                  {
-                    "concept": "e64c988a-ebf6-402c-8628-f81f349a5aaf",
-                    "label": "GMC-CLDDP"
+                    "concept": "eb9cc08f-bc65-4a04-97ea-79ab4f85814a",
+                    "label": "GMH-G-ANC / PNC",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c6563d48-5e16-45e5-ab6f-a64214656801'"
+                    }
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "GMC- Other Specify"
+                    "label": "Other Specify"
                   },
                   {
-                    "concept": "dd3e9b86-dd8e-4018-bc78-be1a3502087b",
-                    "label": "IMC-CRPDDP"
+                    "concept": "733139e4-c321-11e8-a355-529269fb1459",
+                    "label": "GMC-CCLAD",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'b69dc787-8a34-443a-a054-e2a895a10a58'"
+                    }
+                  },
+                  {
+                    "concept": "0e8c2722-61a5-4658-ab58-4014c991f92a",
+                    "label": "GMC-CLDDP",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'b69dc787-8a34-443a-a054-e2a895a10a58'"
+                    }
+                  },
+                  {
+                    "concept": "566e7e03-4024-4299-b12e-ecaa2820698d",
+                    "label": "IMC-CRPDDP",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== '9d1a4797-766e-495f-9387-b92462926fad'"
+                    }
                   },
                   {
                     "concept": "0fe88771-9ae4-4343-b808-733fc5c31298",
-                    "label": "IMC-Drop in centers "
+                    "label": "IMC-Drop in centers ",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== '9d1a4797-766e-495f-9387-b92462926fad'"
+                    }
                   },
                   {
                     "concept": "dd13f121-fc4c-46c5-b483-b4ef7f154be9",
-                    "label": "IMC-Home ART delivery"
+                    "label": "IMC-Home ART delivery",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== '9d1a4797-766e-495f-9387-b92462926fad'"
+                    }
                   },
                   {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "IMC- Other Specify"
+                    "concept": "73313f20-c321-11e8-a355-529269fb1459",
+                    "label": "IMF- FTDR",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5'"
+                    }
                   },
                   {
-                    "concept": "c290fd76-ba48-4c33-aba7-50b31265a672",
-                    "label": "IMF- FTDR"
+                    "concept": "733144c0-c321-11e8-a355-529269fb1459",
+                    "label": "IMF-FBIM",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5'"
+                    }
                   },
                   {
-                    "concept": "3f065c9a-d2e8-488d-8c75-e664117d116f",
-                    "label": "IMF-FBIM"
+                    "concept": "1a4dfef4-c35b-46e3-b598-1505f59b6e48",
+                    "label": "IMF-YAPS",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5'"
+                    }
                   },
                   {
-                    "concept": "bd787df8-e754-4bdf-bf16-def1b866b333",
-                    "label": "IMF-YAPS"
+                    "concept": "4db8e140-f7b3-44df-8476-d3cebff42ae9",
+                    "label": "IMF-Adolescent centers",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5'"
+                    }
                   },
                   {
-                    "concept": "bd4fb2ba-6a42-47c9-823c-986be0b040cb",
-                    "label": "IMF-Adolescent centers"
-                  },
-                  {
-                    "concept": "57b627a9-4488-406b-b8ce-31e717210bcd",
-                    "label": "IMF-Holiday treatment children"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "IMF-Other Specify"
+                    "concept": "6fb363d0-0776-408b-af33-946b8eec40df",
+                    "label": "IMF-Holiday treatment children",
+                    "hide": {
+                      "hideWhenExpression": "dsdmModels !== 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5'"
+                    }
                   }
                 ]
               },
@@ -547,7 +580,7 @@
                 "concept": "d42d2bab-f8a3-4bc4-8205-093d014b4215"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach !== ''"
+                "hideWhenExpression": "dsdmModels !='c6563d48-5e16-45e5-ab6f-a64214656801' || dsdmApproach !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -559,7 +592,7 @@
                 "concept": "99d7cd10-13bd-4ad1-9947-db2c720ba99a"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach !== ''"
+                "hideWhenExpression": "dsdmModels != '9d1a4797-766e-495f-9387-b92462926fad' || dsdmApproach !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -571,7 +604,7 @@
                 "concept": "d0c7752d-edea-42df-a556-7bf5af44ffcf"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach !== ''"
+                "hideWhenExpression": "dsdmModels != 'b69dc787-8a34-443a-a054-e2a895a10a58' || dsdmApproach !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             },
             {
@@ -583,7 +616,7 @@
                 "concept": "503fdc10-293e-48cd-9380-408111d2dc5b"
               },
               "hide": {
-                "hideWhenExpression": "isEmpty(dsdmApproach) || dsdmApproach !== ''"
+                "hideWhenExpression": "dsdmModels != 'c3c9a3cd-e277-49e8-bd31-e8898a3d14f5' || dsdmApproach !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
               }
             }
           ]
