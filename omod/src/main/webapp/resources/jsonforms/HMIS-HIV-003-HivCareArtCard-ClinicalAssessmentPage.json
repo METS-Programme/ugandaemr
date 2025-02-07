@@ -98,7 +98,7 @@
                     "label": "Known Diabetic and not controlled on medication and lifestyle modification"
                   },
                   {
-                    "concept": "",
+                    "concept": "973a7e7c-2e1d-4431-813f-ce03d5afda62",
                     "label": "Known Diabetic and controlled on lifestyle modification"
                   },
                   {
@@ -262,11 +262,11 @@
                     "label": "Normal"
                   },
                   {
-                    "concept": "001c08bb-ac87-4c0a-9272-da17324f5b3b",
+                    "concept": "114413AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Overweight"
                   },
                   {
-                    "concept": "",
+                    "concept": "001c08bb-ac87-4c0a-9272-da17324f5b3b",
                     "label": "Obese"
                   }
                 ]
@@ -585,7 +585,7 @@
               "label": "ANC No.",
               "type": "obs",
               "id": "ancNo",
-              "required": "true",
+              "required": "false",
               "questionOptions": {
                 "rendering": "number",
                 "concept": "c7231d96-34d8-4bf7-a509-c810f75e3329",
@@ -1222,7 +1222,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "b5937f58-1cee-4784-b31d-d79998d4fd4f",
                     "label": "PJP",
                     "conceptMappings": []
                   },
@@ -1237,7 +1237,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "cb491edf-aabb-4754-805d-1f62ba1d1a99",
                     "label": "Cryptococcal antigenemia ",
                     "conceptMappings": []
                   },
@@ -1287,7 +1287,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "d561d609-5989-49b3-99cb-6e4f7f5e5342",
                     "label": "Cancer of the cervix",
                     "conceptMappings": []
                   },
@@ -1710,7 +1710,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "5ebf506e-fa2b-4c74-aa8f-55ae095808d7",
                     "label": "Polyphagia",
                     "conceptMappings": []
                   },
