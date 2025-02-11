@@ -77,11 +77,23 @@
               "privileges": ["Manage Patient Vital"]
             }
           },
-          "programs-summary-dashboard": {
+          "program-summary-dashboard": {
             "layoutMode": "anchored",
+            "order": 2,
             "hideDashboardTitle": true,
+            "meta": {
+              "fullWidth": true
+            },
             "Display conditions": {
               "privileges": ["Manage Patient Program"]
+            }
+          },
+          "care-panel-patient-summary": {
+            "layoutMode": "anchored",
+            "order": 2,
+            "hideDashboardTitle": true,
+            "meta": {
+              "fullWidth": true
             }
           },
           "test-results-summary-dashboard": {
@@ -107,27 +119,27 @@
               }
             }
           },
-          "patient-orders-summary-dashboard":{
+          "patient-orders-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
-          "allergies-summary-dashboard":{
+          "allergies-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
-          "conditions-summary-dashboard":{
+          "conditions-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
-          "patient-appointments-summary-dashboard":{
+          "patient-appointments-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
-          "clincial-patient-link":{
+          "clincial-patient-link": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
-          "encounters-summary-dashboard":{
+          "encounters-summary-dashboard": {
             "layoutMode": "anchored",
             "hideDashboardTitle": true
           },
@@ -431,25 +443,29 @@
                   {
                     "id": "dateBled",
                     "title": "Date Bled",
-                    "encounterType": "dateBledEncounterType",
+                    "header": "Date Bled",
+                    "encounterTypeUuid": "dateBledEncounterType",
                     "concept": "datebledConceptUuid"
                   },
                   {
                     "id": "vlQualitative",
                     "title": "VL Qualitative",
-                    "encounterType": "viralLoadQualitativeEncounterType",
+                    "header": "VL Qualitative",
+                    "encounterTypeUuid": "viralLoadQualitativeEncounterType",
                     "concept": "vlQualitativeConceptUuid"
                   },
                   {
                     "id": "vlQuantitative",
                     "title": "VL Quantitative",
-                    "encounterType": "viralLoadQuantitativeEncounterType",
+                    "header": "VL Quantitative",
+                    "encounterTypeUuid": "viralLoadQuantitativeEncounterType",
                     "concept": "viralLoadQuantitativeConceptUuid"
                   },
                   {
                     "id": "vlSuppression",
                     "title": "VL Suppression",
-                    "encounterType": "viralSuppressionEncounterType",
+                    "header": "VL Suppression",
+                    "encounterTypeUuid": "viralSuppressionEncounterType",
                     "concept": "viralLoadSuppressionConceptUuid"
                   }
                 ]
@@ -572,10 +588,10 @@
           "encounter-list": {
             "tabDefinitions": [
               {
-                "tabName": "Education and Physco Social Support",
+                "tabName": "Education and Psychosocial Support",
                 "hasFilter": true,
-                "headerTitle": "Education and Physco Social Support",
-                "displayText": "Education and Physco Social Support",
+                "headerTitle": "Education and Psychosocial Support",
+                "displayText": "Education and Psychosocial Support",
                 "encounterType": "6d88e370-f2ba-476b-bf1b-d8eaf3b1b67e",
                 "columns": [
                   {
@@ -599,12 +615,12 @@
                     "title": "actionsTitle",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
                         "label": "View Details",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
+                        "formName": "HMIS ACP 003: HIV Care ART Card - Health Education And Psychosocial support Page",
                         "label": "EditForm",
                         "mode": "edit"
                       }
@@ -621,11 +637,11 @@
                 ]
               },
               {
-                "tabName": "Adherence Counselling",
+                "tabName": "ViralLoad Non-Suppression",
                 "hasFilter": true,
-                "headerTitle": "Adherence Counselling",
-                "displayText": "Adherence Counselling",
-                "encounterType": "570e9e42-4306-41dc-9bf8-634bbc70a524",
+                "headerTitle": "ViralLoad Non-Suppression",
+                "displayText": "ViralLoad Non-Suppression",
+                "encounterType": "38cb2232-30fc-4b1f-8df1-47c795771ee9",
                 "columns": [
                   {
                     "id": "contactDate",
@@ -645,15 +661,15 @@
                   },
                   {
                     "id": "actions",
-                    "title": "actionsTitle",
+                    "title": "Actions",
                     "actionOptions": [
                       {
-                        "formName": "Contact Tracing Form",
+                        "formName": "HMIS ACP 001 - Viral Load Non Suppressed Form",
                         "label": "View Details",
                         "mode": "view"
                       },
                       {
-                        "formName": "Contact Tracing Form",
+                        "formName": "HMIS ACP 001 - Viral Load Non Suppressed Form",
                         "label": "EditForm",
                         "mode": "edit"
                       }
@@ -665,7 +681,7 @@
                 },
                 "formList": [
                   {
-                    "uuid": "12de5bc5-352e-4faf-9961-a2125085a75c"
+                    "uuid": "79cab593-632b-4193-b686-6de2efa4cc7c"
                   }
                 ]
               }
@@ -848,7 +864,7 @@
                   },
                   {
                     "id": "actions",
-                    "title": "actionsTitle",
+                    "title": "Actions",
                     "actionOptions": [
                       {
                         "formName": "HMIS ACP HIV 003: HIV CARE/ART CARD - Family Tracking Form",
