@@ -17,9 +17,9 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Economic Issues",
+              "label": "Psychological /emotional issues",
               "type": "obs",
-              "id": "economicIssues",
+              "id": "emotionalIssues",
               "questionOptions": {
                 "rendering": "multiCheckbox",
                 "concept": "1760ea50-8f05-4675-aedd-d55f99541aa8",
@@ -87,7 +87,7 @@
                     "label": "Economic Challenges"
                   },
                   {
-                    "concept": "f6e863c5-1e09-445a-a714-fe4a2255ae64",
+                    "concept": "bf155da2-8f4e-42c9-8828-eb913a66ae7a",
                     "label": "Had 1 meal a day"
                   }
                 ]
@@ -226,37 +226,48 @@
               "validators": []
             },
             {
-              "label": "Disclosed",
+              "label": "Disclosure",
               "type": "obs",
-              "id": "disclosed",
+              "id": "disclosure",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
+                "concept": "5140502a-b2c0-11ed-afa1-0242ac120002",
+                "rendering": "group"
+              },
+              "questions": [
+                {
+                  "label": "Disclosed",
+                  "type": "obs",
+                  "id": "disclosed",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
+                  "validators": []
+                },
+                {
+                  "label": "Disclosed to",
+                  "type": "obs",
+                  "id": "disclosedTo",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": ""
+                  },
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(disclosed) || disclosed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
                   }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Disclosed to",
-              "type": "obs",
-              "id": "disclosedTo",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": ""
-              },
-              "hide": {
-                "hideWhenExpression": "isEmpty(disclosed) || disclosed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
-              }
+                }
+              ]
             },
             {
               "label": "Relationship",
@@ -304,7 +315,7 @@
               }
             },
             {
-              "label": "Ptaient Categorization",
+              "label": "Patient Categorization",
               "type": "obs",
               "id": "patientCategorization",
               "questionOptions": {
