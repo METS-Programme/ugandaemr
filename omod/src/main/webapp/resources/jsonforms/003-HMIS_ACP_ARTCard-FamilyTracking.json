@@ -92,7 +92,7 @@
                   }
                 },
                 {
-                  "label": "Hiv Status",
+                  "label": "HIV Status",
                   "type": "obs",
                   "id": "hivStatus",
                   "required": "false",
@@ -113,6 +113,24 @@
                         "label": "Unknown"
                       }
                     ]
+                  }
+                },
+                {
+                  "label": "HIV Status Date",
+                  "type": "obs",
+                  "id": "hivStatusDate",
+                  "questionOptions": {
+                    "concept": "b7f597e7-39b5-419e-9ec5-de5901fffb52",
+                    "rendering": "date"
+                  },
+                  "validators": [
+                    {
+                      "type": "date",
+                      "allowFutureDates": "false"
+                    }
+                  ],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(hivStatus) || hivStatus !== 'dcdf4241-30ab-102d-86b0-7a5022ba4115'"
                   }
                 },
                 {
@@ -148,21 +166,6 @@
                   "hide": {
                     "hideWhenExpression": "isEmpty(careStatus) || careStatus !== 'dcd695dc-30ab-102d-86b0-7a5022ba4115'"
                   }
-                },
-                {
-                  "label": "HIV Status Date",
-                  "type": "obs",
-                  "id": "hivStatusDate",
-                  "questionOptions": {
-                    "concept": "b7f597e7-39b5-419e-9ec5-de5901fffb52",
-                    "rendering": "date"
-                  },
-                  "validators": [
-                    {
-                      "type": "date",
-                      "allowFutureDates": "false"
-                    }
-                  ]
                 },
                 {
                   "label": "Contact",
