@@ -468,51 +468,62 @@
           "isExpanded": "true",
           "questions": [
             {
-              "label": "Pregnant",
-              "type": "obs",
-              "id": "baselinepregnancy",
+              "label": "Baseline eMTCT",
+              "type": "obsGroup",
+              "id": "baselineEmtct",
               "questionOptions": {
-                "rendering": "radio",
-                "concept": "b253be65-0155-4b43-ad15-88bc797322c9",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "Yes"
-                  },
-                  {
-                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-                    "label": "No"
-                  }
-                ]
+                "concept": "f838147d-277d-421a-9c6f-202aa30e799c",
+                "rendering": "group"
               },
-              "hide": {
-                "hideWhenExpression": "sex !== 'F'"
-              }
-            },
-            {
-              "label": "Lactating",
-              "type": "obs",
-              "id": "baselineLactating",
-              "questionOptions": {
-                "rendering": "radio",
-                "concept": "ab7bb4db-1a54-4225-b71c-d8e138b471e9",
-                "conceptMappings": [],
-                "answers": [
-                  {
-                    "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Yes"
+              "questions": [
+                {
+                  "label": "Pregnant",
+                  "type": "obs",
+                  "id": "baselinePregnancy",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "b253be65-0155-4b43-ad15-88bc797322c9",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                        "label": "No"
+                      }
+                    ]
                   },
-                  {
-                    "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
-                    "label": "No"
+                  "hide": {
+                    "hideWhenExpression": "sex !== 'F'"
                   }
-                ]
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "sex !== 'F'"
-              }
+                },
+                {
+                  "label": "Lactating",
+                  "type": "obs",
+                  "id": "baselineLactating",
+                  "questionOptions": {
+                    "rendering": "radio",
+                    "concept": "ab7bb4db-1a54-4225-b71c-d8e138b471e9",
+                    "conceptMappings": [],
+                    "answers": [
+                      {
+                        "concept": "dcd695dc-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Yes"
+                      },
+                      {
+                        "concept": "dcd69c06-30ab-102d-86b0-7a5022ba4115",
+                        "label": "No"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "sex !== 'F'"
+                  }
+                }
+              ]
             }
           ]
         }
