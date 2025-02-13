@@ -227,7 +227,7 @@
             },
             {
               "label": "Disclosure",
-              "type": "obs",
+              "type": "obsGroup",
               "id": "disclosure",
               "questionOptions": {
                 "concept": "5140502a-b2c0-11ed-afa1-0242ac120002",
@@ -237,7 +237,7 @@
                 {
                   "label": "Disclosed",
                   "type": "obs",
-                  "id": "disclosed",
+                  "id": "disclosureStatus",
                   "questionOptions": {
                     "rendering": "radio",
                     "concept": "2edfe7ae-b20a-4ef0-b450-751028026c8f",
@@ -261,58 +261,61 @@
                   "id": "disclosedTo",
                   "questionOptions": {
                     "rendering": "text",
-                    "concept": ""
+                    "concept": "2435d630-14a9-47ad-939b-dc5b9d3052d3"
                   },
                   "hide": {
-                    "hideWhenExpression": "isEmpty(disclosed) || disclosed !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                    "hideWhenExpression": "isEmpty(disclosureStatus) || disclosureStatus !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+                  }
+                },
+                {
+                  "label": "Relationship",
+                  "type": "obs",
+                  "id": "relationship",
+                  "questionOptions": {
+                    "rendering": "select",
+                    "concept": "dce138f8-30ab-102d-86b0-7a5022ba4115",
+                    "answers": [
+                      {
+                        "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Spouse"
+                      },
+                      {
+                        "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Parent"
+                      },
+                      {
+                        "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Children"
+                      },
+                      {
+                        "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Friend"
+                      },
+                      {
+                        "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                        "label": "Other Specify"
+                      }
+                    ]
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(disclosedTo)"
+                  }
+                },
+                {
+                  "label": "Other Relative",
+                  "type": "obs",
+                  "id": "otherRelative",
+                  "questionOptions": {
+                    "rendering": "text",
+                    "concept": "dcc37f5c-30ab-102d-86b0-7a5022ba4115"
+                  },
+                  "validators": [],
+                  "hide": {
+                    "hideWhenExpression": "isEmpty(relationship) || relationship !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
                   }
                 }
               ]
-            },
-            {
-              "label": "Relationship",
-              "type": "obs",
-              "id": "relationship",
-              "questionOptions": {
-                "rendering": "select",
-                "concept": "dce138f8-30ab-102d-86b0-7a5022ba4115",
-                "answers": [
-                  {
-                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Spouse"
-                  },
-                  {
-                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Parent"
-                  },
-                  {
-                    "concept": "dce180a8-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Children"
-                  },
-                  {
-                    "concept": "dcc374a5-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Friend"
-                  },
-                  {
-                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
-                    "label": "Other Specify"
-                  }
-                ]
-              },
-              "validators": []
-            },
-            {
-              "label": "Other Relative",
-              "type": "obs",
-              "id": "otherRelative",
-              "questionOptions": {
-                "rendering": "text",
-                "concept": "dcc37f5c-30ab-102d-86b0-7a5022ba4115"
-              },
-              "validators": [],
-              "hide": {
-                "hideWhenExpression": "isEmpty(relationship) || relationship !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
-              }
             },
             {
               "label": "Patient Categorization",
