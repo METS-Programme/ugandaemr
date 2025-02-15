@@ -1636,7 +1636,7 @@
               "id": "adrSideEffects",
               "questionOptions": {
                 "concept": "b05f81ca-afa4-4c7d-af9c-4523947f5dd6",
-                "rendering": "group"
+                "rendering": "repeating"
               },
               "questions": [
                 {
