@@ -14,6 +14,48 @@
       "label": "HIV Clinical Form",
       "sections": [
         {
+          "label": "Visit Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Previous encounter dates",
+              "type": "obs",
+              "id": "previousEncounterDates",
+              "questionOptions": {
+                "concept": "",
+                "rendering": "fixed-value",
+                "calculate": {
+                  "calculateExpression": "getPreviousEncounterDates(patient.id, '8d5b2be0-c2cc-11de-8d13-0010c6dffd0f').then(value => value)"
+                }
+              },
+              "hide": {
+                "hideWhenExpression": "true"
+              }
+            },
+            {
+              "label": "Encounter Date",
+              "type": "encounterDatetime",
+              "id": "encounterDate",
+              "readonly": "mode != 'enter'",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": ""
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                },
+                {
+                  "type": "js_expression",
+                  "failsWhenExpression": "(mode == 'enter') && !isEmpty(previousEncounterDates) && includes(previousEncounterDates, formatDate(myValue, 'YYYY-MM-DD'))",
+                  "message": "Date entered already exists, please update the existing entry or enter another date"
+                }
+              ]
+            }
+          ]
+        },
+        {
           "label": "Pregnancy",
           "isExpanded": "true",
           "questions": [
