@@ -226,7 +226,7 @@
               "id": "relationshipToClient",
               "questionOptions": {
                 "rendering": "select",
-                "concept": "33b18e88-0eb9-48f0-8023-2e90caad4469",
+                "concept": "bc61e60a-53ce-4767-8eed-29f3ec088829",
                 "conceptMappings": [],
                 "answers": [
                   {
@@ -246,7 +246,7 @@
                     "label": "GrandChild"
                   },
                   {
-                    "concept": "dce17a7d-30ab-102d-86b0-7a5022ba4115",
+                    "concept": "dd23c975-30ab-102d-86b0-7a5022ba4115",
                     "label": "Partner"
                   },
                   {
