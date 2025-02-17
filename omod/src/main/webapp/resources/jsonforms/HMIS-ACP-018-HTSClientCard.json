@@ -4,7 +4,7 @@
   "description": "HIV Testing Services",
   "encounterType": "264daIZd-f80e-48fe-nba9-P37f2W1905Pv",
   "encounter": "HTC - Encounter",
-  "uuid": "ca1b55fe-1de7-4043-a512-fb80104e7447",
+  "uuid": "b5c62a98-84d3-43e8-a9be-972185070dd4",
   "processor": "EncounterFormProcessor",
   "published": true,
   "retired": false,
@@ -343,17 +343,17 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "e5610911-8d03-4a91-9b80-b8563de984e5",
                     "label": "EMTCT ANC2+",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "160456AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "07299fc4-61f6-42dd-a2f5-f1f2758cea82",
                     "label": "Maternity",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "concept": "dcb2e4e5-30ab-102d-86b0-7a5022ba4115",
                     "label": "PNC Services",
                     "conceptMappings": []
                   },
@@ -363,7 +363,7 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "11c12455-2f54-4bb5-b051-0ecfd4a5fe96",
+                    "concept": "dcbc7b8e-30ab-102d-86b0-7a5022ba4115",
                     "label": "Nutrition",
                     "conceptMappings": []
                   },
@@ -373,12 +373,12 @@
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "872139fa-9820-4fde-87fd-f00df9ddcbd6",
                     "label": "EID",
                     "conceptMappings": []
                   },
                   {
-                    "concept": "",
+                    "concept": "1a4dfef4-c35b-46e3-b598-1505f59b6e48",
                     "label": "AYP",
                     "conceptMappings": []
                   },
@@ -420,7 +420,7 @@
               "id": "firstHivTest",
               "questionOptions": {
                 "rendering": "radio",
-                "concept": "164989AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "concept": "2766c090-c057-44f2-98f0-691b6d0336dc",
                 "answers": [
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
