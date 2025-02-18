@@ -14,6 +14,53 @@
       "label": "Safe Male Circumcision Client Form",
       "sections": [
         {
+          "label": "Facility Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Site Type",
+              "type": "obs",
+              "id": "siteType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "ac44b5f2-cf57-43ca-bea0-8b392fe21802",
+                "answers": [
+                  {
+                    "concept": "f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f",
+                    "label": "Fixed/Static",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "03596df2-09bc-4d1f-94fd-484411ac9012",
+                    "label": "Outreach",
+                    "conceptMappings": []
+                  },
+                  {
+                    "concept": "63e5387f-74f6-4a92-a71f-7b5dd3ed8432",
+                    "label": "Camp",
+                    "conceptMappings": []
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Site Name",
+              "type": "obs",
+              "id": "siteName",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "e7f22f80-a83d-11ed-afa1-0242ac120002",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(siteType) || siteType == 'f2aa1852-fcfe-484b-a6ef-1613bd3a1a7f'"
+              }
+            }
+          ]
+        },
+        {
           "label": "Client Information",
           "isExpanded": "true",
           "questions": [
