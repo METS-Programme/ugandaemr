@@ -25,7 +25,7 @@
           "questions": [
             {
               "type": "patientIdentifier",
-              "label": "Exposed Infant No.#",
+              "label": "Exposed Infant No.",
               "questionInfo": "",
               "id": "exposedInfantNumber",
               "default": "",
@@ -181,6 +181,10 @@
                   {
                     "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
                     "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
                   },
                   {
                     "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
@@ -704,6 +708,26 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Testing Point",
+              "type": "obs",
+              "id": "testingPoint",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                "answers": [
+                  {
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                    "label": "POC"
+                  },
+                  {
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                    "label": "CPHL"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
               "label": "Test Date",
               "type": "obs",
               "id": "testDate",
@@ -802,6 +826,26 @@
           "isExpanded": "true",
           "questions": [
             {
+              "label": "Testing Point at 9 Months",
+              "type": "obs",
+              "id": "testingPoint9Mths",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                "answers": [
+                  {
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                    "label": "POC"
+                  },
+                  {
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                    "label": "CPHL"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
               "label": "Test Date",
               "type": "obs",
               "id": "testDate9mths",
@@ -872,7 +916,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(testDate_9mths)"
+                "hideWhenExpression": "isEmpty(testDate9mths)"
               }
             },
             {
@@ -890,7 +934,7 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(result_9mths)"
+                "hideWhenExpression": "isEmpty(result9mths)"
               }
             }
           ]
@@ -899,6 +943,26 @@
           "label": "PCR at 6wks after stoping breast-feeding",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Testing Point at 6 Weeks",
+              "type": "obs",
+              "id": "testingPoint6Weeks",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                "answers": [
+                  {
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                    "label": "POC"
+                  },
+                  {
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                    "label": "CPHL"
+                  }
+                ]
+              },
+              "validators": []
+            },
             {
               "label": "Test Date",
               "type": "obs",
@@ -970,7 +1034,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(testDate_6wks)"
+                "hideWhenExpression": "isEmpty(testDate6wks)"
               }
             },
             {
@@ -988,7 +1052,7 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(result_6wks)"
+                "hideWhenExpression": "isEmpty(result6wks)"
               }
             }
           ]
@@ -997,6 +1061,26 @@
           "label": "Repeat PCR (if necessary)",
           "isExpanded": "true",
           "questions": [
+            {
+              "label": "Testing Point at Repeat PCR",
+              "type": "obs",
+              "id": "testingPointRepeatPcr",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "4b52e240-ce86-41be-9425-4067bea94cc9",
+                "answers": [
+                  {
+                    "concept": "686846e6-6973-407b-ad1b-fd746b29eb83",
+                    "label": "POC"
+                  },
+                  {
+                    "concept": "b1f8b6c8-c255-4518-89f5-4236ab76025b",
+                    "label": "CPHL"
+                  }
+                ]
+              },
+              "validators": []
+            },
             {
               "label": "Test Date",
               "type": "obs",
@@ -1068,7 +1152,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(testDate_repeat)"
+                "hideWhenExpression": "isEmpty(testDateRepeat)"
               }
             },
             {
@@ -1166,7 +1250,7 @@
               },
               "validators": [],
               "hide": {
-                "hideWhenExpression": "isEmpty(testDate_18mths)"
+                "hideWhenExpression": "isEmpty(testDate18mths)"
               }
             },
             {
@@ -1184,7 +1268,7 @@
                 }
               ],
               "hide": {
-                "hideWhenExpression": "isEmpty(result_18mths)"
+                "hideWhenExpression": "isEmpty(result18mths)"
               }
             }
           ]
