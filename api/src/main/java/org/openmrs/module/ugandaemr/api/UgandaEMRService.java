@@ -447,4 +447,7 @@ public interface UgandaEMRService extends OpenmrsService {
      */
     public TestOrder accessionLabTest(String orderUuid, String accessionNumber, String specimenSourceUuid, String instructions);
 
+
+    public Map initaliseMetaData();
+
 }
