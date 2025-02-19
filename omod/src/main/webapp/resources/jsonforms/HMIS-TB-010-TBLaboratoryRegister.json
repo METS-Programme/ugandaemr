@@ -1,0 +1,355 @@
+{
+  "name": "HMIS TB 010: TB Laboratory Register",
+  "encounterType": "b15150b3-89d6-41e5-888e-dc0d38873bfb",
+  "processor": "EncounterFormProcessor",
+  "referencedForms": [],
+  "uuid": "34e9a8a2-f4cf-47c5-9436-22bad4874d79",
+  "version": "4.0.0",
+  "description": "This keeps track of person information, tests, and results of TB/HIV laboratory tests",
+  "encounter": "TB Screening",
+  "published": true,
+  "retired": false,
+  "pages": [
+    {
+      "label": "HMIS TB 010: TB Laboratory Register",
+      "sections": [
+        {
+          "label": "TB Laboratory Information",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date of Sample Collection",
+              "type": "obs",
+              "required": "true",
+              "id": "sampleCollectionDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "c4389c60-32f5-4390-b7c6-9095ff880df5"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Date for Sample Receipt",
+              "type": "obs",
+              "id": "sampleReceiptDate",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "e7f219be-a83d-11ed-afa1-0242ac120002"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ]
+            },
+            {
+              "label": "Lab Serial Number",
+              "type": "obs",
+              "required": true,
+              "id": "labSerialNumber",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "1646AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Entry Point:",
+              "type": "obs",
+              "id": "entryPoint",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "164993AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                "answers": [
+                  {
+                    "concept": "160542AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "OPD"
+                  },
+                  {
+                    "concept": "165047AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ART Clinic"
+                  },
+                  {
+                    "concept": "165048AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "TB Clinic"
+                  },
+                  {
+                    "concept": "165046AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "ostnatal Clinic"
+                  },
+                  {
+                    "concept": "f0d12a70-04a3-4f7f-992b-bed4ad331908",
+                    "label": "Mother Baby Care Point"
+                  },
+                  {
+                    "concept": "164984AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Family Planning Clinic"
+                  },
+                  {
+                    "concept": "dcd98f72-30ab-102d-86b0-7a5022ba4115",
+                    "label": "STI Clinic"
+                  },
+                  {
+                    "concept": "5ec36701-7870-40b5-82bf-30841beefbdb",
+                    "label": "Cancer Unit"
+                  },
+                  {
+                    "concept": "dcd9dd84-30ab-102d-86b0-7a5022ba4115",
+                    "label": "In patient ward"
+                  },
+                  {
+                    "concept": "7b082783-658c-4867-a650-ba5bdfa65d53",
+                    "label": "Community/Outreach"
+                  },
+                  {
+                    "concept": "dcd68a88-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Other Specify"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Other entry point",
+              "type": "obs",
+              "id": "otherEntryPoint",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "adf31c43-c9a0-4ab8-b53a-42097eb3d2b6",
+                "conceptMappings": [],
+                "answers": []
+              },
+              "hide": {
+                "hideWhenExpression": "entryPoint !== 'dcd68a88-30ab-102d-86b0-7a5022ba4115'"
+              }
+            },
+            {
+              "label": "Presumptive TB No.",
+              "type": "obs",
+              "id": "presumptiveTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Unit TB No.",
+              "type": "obs",
+              "id": "unitTbNo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "2e2ec250-f5d3-4de7-8c70-a458f42441e6",
+                "conceptMappings": [],
+                "answers": []
+              }
+            },
+            {
+              "label": "Sample referred from community",
+              "type": "obs",
+              "id": "sampleReferredFromCommunity",
+              "questionOptions": {
+                "rendering": "radio",
+                "concept": "80df8b91-b758-4361-ac31-64865f375c3d",
+                "answers": [
+                  {
+                    "concept": "1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "1066AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Name of Facility/Unit sample referred from",
+              "type": "obs",
+              "required": false,
+              "id": "healthFacilityReferredTo",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "160481AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(sampleReferredFromCommunity) || sampleReferredFromCommunity !== '1065AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'"
+              }
+            },
+            {
+              "id": "clientType",
+              "label": "Client Type",
+              "type": "obs",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "e077f196-c19a-417f-adc6-b175a3343bfd",
+                "answers": [
+                  {
+                    "concept": "b3c43c5e-1987-42c1-a7b3-2c71dc58c126",
+                    "label": "New Case"
+                  },
+                  {
+                    "concept": "13678f4d-69d4-4a93-a2f2-a7d21aadd1f9",
+                    "label": "Return after lost to follow up"
+                  },
+                  {
+                    "concept": "8ad53c8c-e136-41e3-aab8-eace935a3bbe",
+                    "label": "Relapse"
+                  },
+                  {
+                    "concept": "fa87a1c0-0315-4e95-a868-7394e2429d6d",
+                    "label": "Failure"
+                  },
+                  {
+                    "concept": "d493a2d8-f519-4a57-9458-7962e61f4398",
+                    "label": "Treatment history Unknown"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Examination type",
+              "type": "obs",
+              "id": "examinationType",
+              "questionOptions": {
+                "concept": "75fdbadd-183b-4abc-aafc-d370ba5c35bf",
+                "rendering": "radio",
+                "answers": [
+                  {
+                    "concept": "0de0b715-f3ef-4a91-a145-09509112b693",
+                    "label": "Diagnosis"
+                  },
+                  {
+                    "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
+                    "label": "Follow-Up Month"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Month of Follow-Up",
+              "type": "obs",
+              "required": false,
+              "id": "followupMonth",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "4d1cc565-ae34-4bb2-92e7-681614218b7b",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "cadfde54-9360-4f87-bdf0-9e5bda117e09",
+                    "label": "FU2 - 2 Months"
+                  },
+                  {
+                    "concept": "34ea51a8-3cc5-48ff-bd76-03c6727d674b",
+                    "label": "FU5 - 5 Months"
+                  },
+                  {
+                    "concept": "c72107f2-2ea0-44fc-9a65-53e901d88996",
+                    "label": "FU6 - 6 Months"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Hiv Status",
+              "type": "obs",
+              "id": "hivStatus",
+              "required": "true",
+              "questionOptions": {
+                "concept": "dce0e886-30ab-102d-86b0-7a5022ba4115",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "f72917e2-0bfb-4d73-b87b-643d7180f338",
+                    "label": "Newly Positive"
+                  },
+                  {
+                    "concept": "6e46ac6b-944d-4a66-a994-b99ae90d4fed",
+                    "label": "Known Positive"
+                  },
+                  {
+                    "concept": "dcdf4653-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "dcd6865a-30ab-102d-86b0-7a5022ba4115",
+                    "label": "Unknown"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "label": "Screening",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Confirmatory",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Comment",
+              "type": "obs",
+              "id": "comment",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            }
+          ]
+        },
+        {
+          "label": "Remarks",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Remarks",
+              "type": "obs",
+              "id": "remarks",
+              "questionOptions": {
+                "rendering": "textarea",
+                "concept": "160632AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+              },
+              "validators": []
+            },
+            {
+              "label": "Provider",
+              "type": "encounterProvider",
+              "required": false,
+              "id": "provider",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
