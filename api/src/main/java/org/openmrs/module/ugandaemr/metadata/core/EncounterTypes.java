@@ -610,4 +610,20 @@ public class EncounterTypes {
             return "09478ad9-ccc1-4cbe-9e55-473447984158";
         }
     };
+
+    public static EncounterTypeDescriptor YAPS_FOLLOWUP_ENCOUNTER = new EncounterTypeDescriptor() {
+        @Override
+        public String name() {
+            return "YAPS Follow UP";
+        }
+
+        @Override
+        public String description() {
+            return "YAPS Follow Up Encounter";
+        }
+
+        public String uuid() {
+            return "5fbb600e-33c6-49d2-b8ef-6a9e9b90b5aa";
+        }
+    };
 }
